@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
     if (inquiry = params[:inquiry])
 
       api_endpoint = 'https://api-v3.igdb.com/games'
-      request_headers = { headers: { 'user-key' => '605c81028ed48d0b6ee68e29dd247b75' } }
+      request_headers = { headers: { 'user-key' => ENV['IGDB_KEY'] } }
 
       api = Apicalypse.new(api_endpoint, request_headers)
       api
