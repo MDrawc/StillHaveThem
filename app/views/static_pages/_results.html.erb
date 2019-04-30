@@ -1,0 +1,16 @@
+<% if @search_results %>
+  <table>
+    <tr>
+      <th>index</th>
+      <th>Name:</th>
+      <th>Year:</th>
+    </tr>
+    <% @search_results.each.with_index do |game, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= game["name"] %></td>
+        <td><%= game["first_release_date"] %></td>
+      </tr>
+   <% end %>
+  </table>
+<% end %>

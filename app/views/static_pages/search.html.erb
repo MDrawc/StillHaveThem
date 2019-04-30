@@ -1,21 +1,11 @@
 <h1>Search a game:</h1>
 
-<%= form_tag("/search", method: :get) do %>
+<%= form_tag("/search", method: :get, remote: true) do %>
 <%= text_field_tag(:inquiry, "Enter game's name") %>
 <%= submit_tag 'Search' %>
 <% end %>
 <hr>
-<% if @search_results %>
-<table>
-  <tr>
-    <th>index</th>
-    <th>Name:</th>
-    <th>Year:</th>
-  </tr>
-  <% @search_results.each do |game| %>
-  <tr>
-    <td><%= game["name"] %></td>
-    <td><%= game["first_release_date"] %></td>
-    <% end %>
-  </table>
-  <% end %>
+
+<div id="search-results">
+  <p id="stupid"> ..... :( </p>
+</div>

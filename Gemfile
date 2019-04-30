@@ -3,8 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+
 # Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails', groups: [:development, :test]
+# jQuery
+gem 'jquery-rails'
 # Ruby wrapper for Apicalypse
 gem 'ruby-apicalypse'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
