@@ -20,11 +20,10 @@ class StaticPagesController < ApplicationController
         .offset(0)
 
       @search_results = api.request
-      @search_results.map do |game|
-        (release_date = game["first_release_date"]) ?
-        game["first_release_date"] = Time.at(1317686400).year
-         : game["first_release_date"] = "unknown"
-     end
+      @search_results.map { |game|
+        (release_date = game['first_release_date']) ?
+        game['first_release_date'] = Time.at(1317686400).year
+         : game['first_release_date'] = ' - ' }
     end
   end
 

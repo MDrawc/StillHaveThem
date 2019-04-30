@@ -1,4 +1,8 @@
 <h1>Search a game:</h1>
+
+<p><%= ENV['S3_BUCKET'] %></p>
+
+
 <%= form_tag("/search", method: :get) do %>
 <%= text_field_tag(:inquiry, "Enter game's name") %>
 <%= submit_tag 'Search' %>
@@ -7,6 +11,7 @@
 <% if @search_results %>
 <table>
   <tr>
+    <th>index</th>
     <th>Name:</th>
     <th>Year:</th>
   </tr>

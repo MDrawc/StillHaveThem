@@ -29,3 +29,6 @@
 # Ignore Sublime project file.
 /yvgc.sublime-project
 /yvgc.sublime-workspace
+
+# .env configuration - dotenv gem
+/.env
