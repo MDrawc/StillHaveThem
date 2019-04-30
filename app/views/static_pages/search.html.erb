@@ -1,20 +1,19 @@
-<h1>Hi there lets search for a game</h1>
-<p>For now just by id...</p>
-
-<div>
+<h1>Search a game:</h1>
 <%= form_tag("/search", method: :get) do %>
-  <%= label_tag(:search_thing, "Enter game id:") %>
-  <%= text_field_tag :search_thing %>
-  <%= submit_tag 'Search' %>
+<%= text_field_tag(:inquiry, "Enter game's name") %>
+<%= submit_tag 'Search' %>
 <% end %>
-</div>
-
 <hr>
-
-<div>
-<% if game_id = params[:search_thing] %>
-
-  <p><%=  getino(game_id) %></p>
-
-<% end %>
-</div>
+<% if @search_results %>
+<table>
+  <tr>
+    <th>Name:</th>
+    <th>Year:</th>
+  </tr>
+  <% @search_results.each do |game| %>
+  <tr>
+    <td><%= game["name"] %></td>
+    <td><%= game["first_release_date"] %></td>
+    <% end %>
+  </table>
+  <% end %>
