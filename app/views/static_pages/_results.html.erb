@@ -1,4 +1,4 @@
-<% if @search_results %>
+<% if @search_results.present? %>
   <table>
     <tr>
       <th>index</th>
@@ -9,8 +9,11 @@
       <tr>
         <td><%= i+1 %></td>
         <td><%= game["name"] %></td>
-        <td><%= game["first_release_date"] %></td>
+        <td><%= Time.at(game["first_release_date"]).year if game["first_release_date"]%>
+        </td>
       </tr>
    <% end %>
   </table>
+<% else %>
+  <p>No such game in database :( Try something different or add custom game.</p>
 <% end %>

@@ -208,7 +208,7 @@
 			"file": "app/controllers/static_pages_controller.rb",
 			"settings":
 			{
-				"buffer_size": 740,
+				"buffer_size": 981,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -218,6 +218,15 @@
 			"settings":
 			{
 				"buffer_size": 244,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/static_pages/_results.html.erb",
+			"settings":
+			{
+				"buffer_size": 397,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -654,13 +663,15 @@
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax"
+							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -669,15 +680,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 740,
+						"buffer_size": 981,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								462,
-								462
+								868,
+								868
 							]
 						],
 						"settings":
@@ -722,6 +733,40 @@
 							"_anf_new": "",
 							"apply_syntax_touched": true,
 							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/static_pages/_results.html.erb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								397,
+								397
+							]
+						],
+						"settings":
+						{
+							"SL.85.region_keys":
+							[
+							],
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -789,6 +834,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"_r",
+				"app/views/static_pages/_results.html.erb"
+			],
 			[
 				".env",
 				".env"
@@ -1296,10 +1345,6 @@
 			[
 				"ne",
 				"app/views/sessions/new.html.erb"
-			],
-			[
-				"ut",
-				"test/models/user_test.rb"
 			]
 		],
 		"width": 0.0
@@ -1312,7 +1357,7 @@
 		[
 			[
 				"",
-				"~/Desktop/RailsProjects/Rails_Tutorial/sample_app/sample_app.sublime-project"
+				"~/Desktop/RubyProjects/My Tests/my_ruby_tests.sublime-project"
 			],
 			[
 				"sam",
@@ -1337,7 +1382,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 292.0,
 	"status_bar_visible": true,
 	"template_settings":

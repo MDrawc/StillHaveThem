@@ -8,10 +8,11 @@ class StaticPagesController < ApplicationController
 
   def search
     if inquiry = params[:inquiry]
-      http = Net::HTTP.new('api-v3.igdb.com', 80)
-      request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'), {'user-key' => ENV['IGDB_KEY'] })
 
       inquiry = '"' + inquiry + '"'
+
+      http = Net::HTTP.new('api-v3.igdb.com', 80)
+      request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'), {'user-key' => ENV['IGDB_KEY'] })
 
       # 1:
       request.body = "fields name, first_release_date; search #{inquiry}; limit 50;"
@@ -29,13 +30,6 @@ class StaticPagesController < ApplicationController
       sum_size = sum_bucket.size
 
       @search_results = sum_bucket
-      @search_results.map { |game|
-        (release_date = game['first_release_date']) ?
-        game['first_release_date'] = Time.at(release_date).year
-         : game['first_release_date'] = ' - ' }
-
-
-
 
       respond_to do |format|
         format.js
