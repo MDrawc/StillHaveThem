@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sera",
+				"search-results"
+			],
+			[
+				"sea",
+				"search_results\t(static_pages_controller.rb)"
+			],
+			[
 				"firs",
 				"first_release_date"
 			],
@@ -196,10 +204,19 @@
 	"buffers":
 	[
 		{
-			"file": "config/application.rb",
+			"file": "app/models/igdb_query.rb",
 			"settings":
 			{
-				"buffer_size": 803,
+				"buffer_size": 184,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/static_pages/search.html.erb",
+			"settings":
+			{
+				"buffer_size": 213,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -209,24 +226,6 @@
 			"settings":
 			{
 				"buffer_size": 981,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/search.html.erb",
-			"settings":
-			{
-				"buffer_size": 244,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/_results.html.erb",
-			"settings":
-			{
-				"buffer_size": 397,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -441,6 +440,8 @@
 		"/home/mdad/Desktop/MyProject/yvgc/app",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets",
+		"/home/mdad/Desktop/MyProject/yvgc/app/controllers",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views",
@@ -450,17 +451,21 @@
 	],
 	"file_history":
 	[
+		"/home/mdad/Desktop/MyProject/yvgc/config/application.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_messages.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/application.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/Gemfile",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/application.scss",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/static_pages.scss",
 		"/home/mdad/Desktop/MyProject/yvgc/.env",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/static_pages_helper.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/controllers/static_pages_controller.rb",
-		"/home/mdad/Desktop/MyProject/yvgc/Gemfile",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts/application.js",
 		"/home/mdad/Desktop/MyProject/yvgc/.gitignore",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/application_helper.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/home.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/application.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search_id.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/config/routes.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/test/controllers/static_pages_controller_test.rb",
@@ -573,11 +578,7 @@
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/controllers/static_pages_controller_test.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/application_helper_test.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/helpers/.keep",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/test/helpers application_helper_test.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/layouts/_rails_default.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/assets/javascripts/application.js",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/assets/images/signup.png",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/assets/stylesheets/static_pages.scss"
+		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/test/helpers application_helper_test.rb"
 	],
 	"find":
 	{
@@ -640,89 +641,54 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "config/application.rb",
+					"file": "app/models/igdb_query.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 803,
+						"buffer_size": 184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								672,
-								672
+								179,
+								179
 							]
 						],
 						"settings":
 						{
+							"_anf_new": "",
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/controllers/static_pages_controller.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 981,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								868,
-								868
-							]
-						],
-						"settings":
-						{
-							"SL.29.region_keys":
-							[
-							],
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "app/views/static_pages/search.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 244,
+						"buffer_size": 213,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								244,
-								244
+								213,
+								213
 							]
 						],
 						"settings":
@@ -742,29 +708,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/views/static_pages/_results.html.erb",
+					"buffer": 2,
+					"file": "app/controllers/static_pages_controller.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 397,
+						"buffer_size": 981,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								397,
-								397
+								343,
+								343
 							]
 						],
 						"settings":
 						{
-							"SL.85.region_keys":
+							"SL.29.region_keys":
 							[
 							],
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -772,7 +738,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -835,6 +801,26 @@
 		"selected_items":
 		[
 			[
+				"appsc",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"scss",
+				"app/assets/stylesheets/static_pages.scss"
+			],
+			[
+				"js",
+				"app/views/static_pages/search.js.erb"
+			],
+			[
+				"applicationhtml",
+				"app/views/layouts/application.html.erb"
+			],
+			[
 				"_r",
 				"app/views/static_pages/_results.html.erb"
 			],
@@ -845,10 +831,6 @@
 			[
 				"staticont",
 				"app/controllers/static_pages_controller.rb"
-			],
-			[
-				"gem",
-				"Gemfile"
 			],
 			[
 				"Stat",
@@ -941,10 +923,6 @@
 			[
 				"routes",
 				"config/routes.rb"
-			],
-			[
-				"scss",
-				"app/assets/stylesheets/application.scss"
 			],
 			[
 				"homelo",
@@ -1333,18 +1311,6 @@
 			[
 				"hea",
 				"app/views/layouts/_header.html.erb"
-			],
-			[
-				"user co",
-				"app/controllers/users_controller.rb"
-			],
-			[
-				"testhe",
-				"test/test_helper.rb"
-			],
-			[
-				"ne",
-				"app/views/sessions/new.html.erb"
 			]
 		],
 		"width": 0.0
@@ -1382,7 +1348,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 292.0,
 	"status_bar_visible": true,
 	"template_settings":
