@@ -1,10 +1,10 @@
 <h1>Search a game:</h1>
-
 <%= form_tag("/search", method: :get, remote: true) do %>
-<%= text_field_tag(:inquiry, "Enter game's name") %>
+<%= text_field_tag(:inquiry) %>
 <%= submit_tag 'Search' %>
 <% end %>
 <hr>
-<div id="search-results">
-</div>
+<div id="search-errors"></div>
+<div id="search-results"></div>
+
 

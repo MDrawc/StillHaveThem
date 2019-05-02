@@ -7,8 +7,14 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+    @search = IgdbQuery.new("")
     if params[:inquiry]
-      @search_results = GameQuery.new(params[:inquiry]).results
+      @search = IgdbQuery.new(params[:inquiry])
+      if @search.valid?
+        @search.request
+      else
+        render 'search'
+      end
       respond_to do |format|
         format.js
       end

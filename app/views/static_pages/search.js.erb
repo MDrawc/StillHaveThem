@@ -1,2 +1,2 @@
-$("#stupid").hide();
+$("#search-errors").html("<%= escape_javascript(render 'shared/errors', obj: @search) %>");
 $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");

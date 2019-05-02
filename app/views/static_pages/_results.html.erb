@@ -1,19 +1,37 @@
-<% if @search_results.present? %>
+<% if @search.results.present? %>
   <table>
     <tr>
       <th>index</th>
       <th>Name:</th>
       <th>Year:</th>
     </tr>
-    <% @search_results.each.with_index do |game, i| %>
+    <% @search.results.each.with_index do |game, i| %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= game["name"] %></td>
-        <td><%= Time.at(game["first_release_date"]).year if game["first_release_date"]%>
+        <td>
+          <% if game["first_release_date"]%>
+            <%= Time.at(game["first_release_date"]).year %>
+          <% else %>
+            -
+          <% end %>
         </td>
       </tr>
    <% end %>
   </table>
-<% else %>
+
+
+  <%= link_to("Show more", '#') if @search.is_more? %>
+
+
+
+
+
+
+
+
+
+
+<% elsif @search.valid? %>
   <p>No such game in database :( Try something different or add custom game.</p>
 <% end %>
