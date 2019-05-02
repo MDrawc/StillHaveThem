@@ -13,18 +13,20 @@ class IgdbQuery
     @query = query
   end
 
-  def request
+  def request(offset = 0)
     http = Net::HTTP.new('api-v3.igdb.com', 80)
     request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'),
                                  'user-key' => ENV['IGDB_KEY'])
     # 1:
     request.body = "fields name, first_release_date; search #{@query.inspect};
-                                                              limit #{@@limit};"
+                                                              limit #{@@limit};
+                                                              offset #{offset};"
     first_bucket = JSON.parse http.request(request).body
     @first_size = first_bucket.size
     # 2:
     request.body  = "fields name, first_release_date;
-      where name ~ #{@query.inspect}*; sort popularity desc; limit #{@@limit};"
+      where name ~ #{@query.inspect}*; sort popularity desc; limit #{@@limit};
+                                                              offset #{offset};"
     second_bucket = JSON.parse http.request(request).body
     @second_size = second_bucket.size
     # 1+2:

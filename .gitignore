@@ -26,7 +26,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore Sublime project file.
+# Ignore Sublime project files.
 /yvgc.sublime-project
 /yvgc.sublime-workspace
 

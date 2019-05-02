@@ -19,19 +19,14 @@
       </tr>
    <% end %>
   </table>
-
-
-  <%= link_to("Show more", '#') if @search.is_more? %>
-
-
-
-
-
-
-
-
-
-
+  <% if @search.is_more? %>
+    <div id="show-more">
+      <%= form_tag("/search", method: :get, remote: true) do %>
+      <%= hidden_field_tag :last_query, @search.query %>
+      <%= submit_tag 'Show more' %>
+      <% end %>
+    </div>
+  <% end %>
 <% elsif @search.valid? %>
   <p>No such game in database :( Try something different or add custom game.</p>
 <% end %>
