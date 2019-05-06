@@ -1,13 +1,7 @@
 <% if @inquiry.results.present? %>
   <table>
-    <tr>
-      <th>index</th>
-      <th>Name:</th>
-      <th>Year:</th>
-    </tr>
-    <% @inquiry.results.each.with_index do |game, i| %>
+    <% @inquiry.results.each do |game| %>
       <tr>
-        <td><%= i+1 %></td>
         <td><%= game["name"] %></td>
         <td>
           <% if game["first_release_date"]%>
@@ -19,7 +13,10 @@
       </tr>
    <% end %>
   </table>
+<!-- Space for more results -->
 
+
+<!-- Is there more results we can obtain from IGDB? -->
   <% if @inquiry.is_more? %>
     <div id="show-more">
 
@@ -31,6 +28,7 @@
 
     </div>
   <% end %>
+<!-- No Results -->
 <% else %>
   <p>0 results for "<%= @inquiry.query %>"</p>
   <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>

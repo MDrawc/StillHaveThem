@@ -1,9 +1,15 @@
 <h1>Search a game:</h1>
 
 <%= form_tag("/search", method: :get, remote: true) do %>
-<%= text_field_tag(:inquiry) %>
-<%= submit_tag 'Search', data: { disable_with: "Please wait..." } %>
+  <%= text_field_tag(:inquiry) %>
+  <%= submit_tag 'Search', data: { disable_with: "Please wait..." } %>
 <% end %>
+
 <hr>
 
 <div id="search-results"></div>
+
+
+<% (IgdbQuery::OFFSET_LIMIT / IgdbQuery::RESULT_LIMIT).times.with_index do |i| %>
+  <%= content_tag(:div, "", id: "sm-#{i}")%>
+<% end %>

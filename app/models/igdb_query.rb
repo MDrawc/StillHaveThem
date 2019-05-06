@@ -4,14 +4,14 @@ class IgdbQuery
   include ActiveModel::Validations
   attr_reader :query, :offset, :results
   validates :query, presence: true
-
+ # add custom validator
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
+
 
   def initialize(query = "", offset = 0)
     @query, @offset = query, offset
     @results = []
-    puts "Initialized with query #{query} and offset #{offset}"
   end
 
   def search
