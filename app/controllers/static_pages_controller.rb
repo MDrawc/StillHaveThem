@@ -8,7 +8,6 @@ class StaticPagesController < ApplicationController
 
   def search
     if params[:inquiry]
-
       @inquiry = IgdbQuery.new(params[:inquiry])
       @inquiry.search
 
@@ -16,18 +15,13 @@ class StaticPagesController < ApplicationController
         format.js
       end
 
-      #refactor this
-
     elsif params[:last_query]
-
       @inquiry = IgdbQuery.new(params[:last_query],
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
-
       @inquiry.search
-      sm_id = "sm-#{ params[:last_offset].to_i / IgdbQuery::RESULT_LIMIT}"
 
       respond_to do |format|
-        format.js { render partial: "search_more", locals: { sm_id: sm_id } }
+        format.js { render partial: "show_more" }
       end
     end
   end

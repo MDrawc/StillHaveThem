@@ -13,23 +13,17 @@
       </tr>
    <% end %>
   </table>
-<!-- Space for more results -->
-
-
-<!-- Is there more results we can obtain from IGDB? -->
   <% if @inquiry.is_more? %>
     <div id="show-more">
-
       <%= form_tag("/search", method: :get, remote: true) do %>
       <%= hidden_field_tag :last_query, @inquiry.query %>
       <%= hidden_field_tag :last_offset, @inquiry.offset %>
       <%= submit_tag "Search more", data: { disable_with: "Please wait..." } %>
       <% end %>
-
     </div>
   <% end %>
-<!-- No Results -->
 <% else %>
   <p>0 results for "<%= @inquiry.query %>"</p>
+  <!-- Give nicer better explanation maybe with buttons and links -->
   <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
 <% end %>
