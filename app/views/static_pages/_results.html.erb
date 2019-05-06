@@ -1,11 +1,11 @@
-<% if @search.results.present? %>
+<% if @inquiry.results.present? %>
   <table>
     <tr>
       <th>index</th>
       <th>Name:</th>
       <th>Year:</th>
     </tr>
-    <% @search.results.each.with_index do |game, i| %>
+    <% @inquiry.results.each.with_index do |game, i| %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= game["name"] %></td>
@@ -19,14 +19,19 @@
       </tr>
    <% end %>
   </table>
-  <% if @search.is_more? %>
+
+  <% if @inquiry.is_more? %>
     <div id="show-more">
+
       <%= form_tag("/search", method: :get, remote: true) do %>
-      <%= hidden_field_tag :last_query, @search.query %>
-      <%= submit_tag 'Show more' %>
+      <%= hidden_field_tag :last_query, @inquiry.query %>
+      <%= hidden_field_tag :last_offset, @inquiry.offset %>
+      <%= submit_tag "Search more", data: { disable_with: "Please wait..." } %>
       <% end %>
+
     </div>
   <% end %>
-<% elsif @search.valid? %>
-  <p>No such game in database :( Try something different or add custom game.</p>
+<% else %>
+  <p>0 results for "<%= @inquiry.query %>"</p>
+  <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
 <% end %>

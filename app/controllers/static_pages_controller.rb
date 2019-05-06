@@ -7,24 +7,26 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @search = IgdbQuery.new("")
     if params[:inquiry]
-      @search = IgdbQuery.new(params[:inquiry])
-      if @search.valid?
-        @search.request
-      else
-        render 'search'
-      end
+
+      @inquiry = IgdbQuery.new(params[:inquiry])
+      @inquiry.search
+
       respond_to do |format|
         format.js
       end
+
+      #refactor this
+
     elsif params[:last_query]
-      @search = IgdbQuery.new(params[:last_query])
-      @search.get_more
+
+      @inquiry = IgdbQuery.new(params[:last_query], params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
+      @inquiry.search
 
       respond_to do |format|
         format.js { render :partial => "search_more" }
       end
+
     end
   end
 end

@@ -2,50 +2,90 @@ require 'net/https'
 
 class IgdbQuery
   include ActiveModel::Validations
-  attr_accessor :query
-  attr_reader :results
+  attr_reader :query, :offset, :results
   validates :query, presence: true
 
-  @@limit = 50
-  @@offset_limit = 150
+  RESULT_LIMIT = 50
+  OFFSET_LIMIT = 150
 
-  def initialize(query)
-    @query = query
+  def initialize(query = "", offset = 0)
+    @query, @offset = query, offset
+    @results = []
+    puts "Initialized with query #{query} and offset #{offset}"
   end
 
-  def request(offset = 0)
-    http = Net::HTTP.new('api-v3.igdb.com', 80)
-    request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'),
-                                 'user-key' => ENV['IGDB_KEY'])
-    # 1:
-    request.body = "fields name, first_release_date; search #{@query.inspect};
-                                                              limit #{@@limit};
-                                                              offset #{offset};"
-    first_bucket = JSON.parse http.request(request).body
-    @first_size = first_bucket.size
-    # 2:
-    request.body  = "fields name, first_release_date;
-      where name ~ #{@query.inspect}*; sort popularity desc; limit #{@@limit};
-                                                              offset #{offset};"
-    second_bucket = JSON.parse http.request(request).body
-    @second_size = second_bucket.size
-    # 1+2:
-    @results = (first_bucket + second_bucket).uniq
+  def search
+    data = analyze_query(@query)
+    request(data[:query], data[:type])
   end
 
   def is_more?
-    #make some constants for limits of using igdb!!!!
-    if @first_size.nil?
-      return nil
-    elsif @first_size == @@limit || @second_size == @@limit
+    if @results.count == RESULT_LIMIT && @offset < OFFSET_LIMIT
       return true
     else
       return false
     end
+ end
+
+  def status_id
+    if @results.empty?
+      return 0 # Before first search
+    elsif @results.count == RESULT_LIMIT && @offset < OFFSET_LIMIT
+      return 1 # There are more results and limit has not been reached
+    elsif @results.count == RESULT_LIMIT && @offset = OFFSET_LIMIT
+      return 2 # There are more results but limit has been reached
+    else
+      return 3 # Fully finished search
+    end
   end
 
-  def get_more
+  private
+    def analyze_query(query)
+      fixed_query = query.strip
+      fixed_query.gsub!(/\s\s+/, " ")
+      type = :search
+      if !fixed_query.match(/\A[*].*[^*]\z/).nil?
+        fixed_query.delete_prefix!("*")
+        type = :where_prefix
+      elsif !fixed_query.match(/\A[^*].*[*]\z/).nil?
+        fixed_query.delete_suffix!("*")
+        type = :where_postfix
+      elsif !fixed_query.match(/\A[*].*[*]\z/).nil?
+        fixed_query.delete_prefix!("*").delete_suffix!("*")
+        type = :where_infix
+      end
+      return { :query => fixed_query, :type => type }
+    end
 
-  end
-
+    def request(query = @query, type = :search, offset = @offset)
+      http = Net::HTTP.new('api-v3.igdb.com', 80)
+      request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'),
+       { 'user-key' => ENV['IGDB_KEY'] })
+      # add status = 0 (onyl released games)
+      if type == :search
+        request.body = "fields name, first_release_date;
+                        search #{query.inspect};
+                        limit #{RESULT_LIMIT};
+                        offset #{offset};"
+      elsif type == :where_prefix
+        request.body = "fields name, first_release_date;
+                        where name ~ *#{query.inspect};
+                        sort popularity desc;
+                        limit #{RESULT_LIMIT};
+                        offset #{offset};"
+      elsif type == :where_postfix
+        request.body = "fields name, first_release_date;
+                        where name ~ #{query.inspect}*;
+                        sort popularity desc;
+                        limit #{RESULT_LIMIT};
+                        offset #{offset};"
+      elsif type == :where_infix
+        request.body = "fields name, first_release_date;
+                        where name ~ *#{query.inspect}*;
+                        sort popularity desc;
+                        limit #{RESULT_LIMIT};
+                        offset #{offset};"
+      end
+      @results = JSON.parse http.request(request).body
+    end
 end
