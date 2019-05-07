@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
-# Bootstrap 4 ruby gem for Ruby on Rails
-gem 'bootstrap', '~> 4.3.1'
+# UIKit 3 for Ruby on Rails
+gem "rails-uikit", git: 'git://github.com/nicbet/rails-uikit.git'
 # Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails', groups: [:development, :test]
 # jQuery

@@ -63,29 +63,30 @@ class IgdbQuery
        { 'user-key' => ENV['IGDB_KEY'] })
       # add status = 0 (onyl released games)
       if type == :search
-        request.body = "fields name, first_release_date;
+        request.body = "fields name, first_release_date, cover.image_id;
                         search #{query.inspect};
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_prefix
-        request.body = "fields name, first_release_date;
+        request.body = "fields name, first_release_date, cover.image_id;
                         where name ~ *#{query.inspect};
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_postfix
-        request.body = "fields name, first_release_date;
+        request.body = "fields name, first_release_date, cover.image_id;
                         where name ~ #{query.inspect}*;
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_infix
-        request.body = "fields name, first_release_date;
+        request.body = "fields name, first_release_date, cover.image_id;
                         where name ~ *#{query.inspect}*;
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       end
       @results = JSON.parse http.request(request).body
+      puts @results
     end
 end
