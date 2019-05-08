@@ -1,53 +1,24 @@
 <% if @inquiry.results.present? %>
-
-
-
-
-
-
-<div class="uk-grid-match uk-child-width-1-6 uk-flex-center uk-text-center" uk-grid>
-  <% @inquiry.results.each do |game| %>
-  <div>
-    <div class="uk-card uk-card-small uk-card-default uk-card-body">
-      <h3 class="uk-card-title"><%= game["name"] %></h3>
-      <p>
-        <% if game["first_release_date"]%>
-        <%= Time.at(game["first_release_date"]).year %>
-        <% else %>
-        -
-        <% end %>
-      </p>
-
-
-
-<% if game["cover"] %>
-<% cover_id = game["cover"]["image_id"] %>
-<img data-src="https://images.igdb.com/igdb/image/upload/t_cover_big/<%= cover_id %>.jpg" width="data-width" height="data-hight" alt="" uk-img>
-<% else %>
-  <p>no cover :((</p>
-<% end %>
-
-
-
-    </div>
-  </div>
-  <% end %>
-</div>
-
-
-
-
-
-
+  <%= render 'cover_view' %>
 <% if @inquiry.is_more? %>
+
+
+
+
+
+
+
+
+
 <div id="show-more">
   <%= form_tag("/search", method: :get, remote: true) do %>
   <%= hidden_field_tag :last_query, @inquiry.query %>
   <%= hidden_field_tag :last_offset, @inquiry.offset %>
-  <%= submit_tag "Search more", class: "uk-button uk-button-default uk-light" , data: { disable_with: "Please wait..." } %>
+  <%= submit_tag "Search more", class: "uk-button uk-button-default uk-dark" , data: { disable_with: "Please wait..." } %>
   <% end %>
 </div>
 <% end %>
+
 <% else %>
 <p>0 results for "<%= @inquiry.query %>"</p>
 <!-- Give nicer better explanation maybe with buttons and links -->

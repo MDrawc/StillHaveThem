@@ -13,47 +13,111 @@
  *= require_tree .
  *= require_self
  */
-
 @import "uikit/variables-theme.scss";
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
-
-// Search Bar (IGDB)
-
+// Background - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
-  background-color: #E9E7E7;
+    background-color: #E9E7E7;
+    // background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
+    // background: url("ignasi_pattern_s.png");
 }
 
-// Footer
+// Search Bar (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
+.uk-search-navbar .uk-search-input {
+    border-radius: 50px;
+    // border: 3px solid white;
+    font-size: 18px;
+    background: white;
+    // background: linear-gradient(0deg, rgba(255, 255, 255, 1) 30%, rgba(231, 231, 231, 1) 100%);
+}
 
+.uk-search-input:hover, :focus {
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+  }
+
+// Search Results (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - //
+div#search-results {
+    margin-top: 80px;
+}
+
+// Cover View (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
+.game-space {
+    padding-bottom: 30px !important;
+}
+
+.game-name {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    max-width: 200px;
+    font-weight: 500;
+}
+
+.game-release-date {
+    margin: 0px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.game-cover {
+    margin-bottom: 0px !important;
+    border-radius: 3px;
+    box-shadow: -2px 4px 9px 1px #9e9e9e !important;
+    outline: 1px solid #ffffff3d;
+    outline-offset: -1px;
+    outline-style: outset;
+}
+
+.no-cover {
+    width: 200px;
+    height: 266px;
+    margin-bottom: 0px !important;
+    border-radius: 3px;
+    outline: 1px solid #ffffff3d;
+    outline-offset: -1px;
+    outline-style: outset;
+    background-color: transparent;
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
+}
+
+.no-cover-tag {
+    text-align: center;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #0000004f;
+    text-shadow: 2px 2px 3px #c2c2c2;
+    padding: 50px 10px 0px 10px;
+}
+
+// Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 footer {
-  margin: auto;
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
+    margin: auto;
+    margin-top: 45px;
+    padding-top: 5px;
+    border-top: 1px solid #eaeaea;
+    color: #777;
 }
 
 footer a {
-  font-size: 80%;
-  vertical-align: top;
+    font-size: 80%;
+    vertical-align: top;
 }
 
 footer a:hover {
-  color: #222;
+    color: #222;
 }
 
 footer small {
-  float: left;
+    float: left;
 }
 
 footer ul {
-  float: right;
-  list-style: none;
+    float: right;
+    list-style: none;
 }
 
-footer ul li{
-  float: left;
-  margin-left: 10px;
+footer ul li {
+    float: left;
+    margin-left: 10px;
 }
