@@ -1,26 +1,33 @@
 <% if @inquiry.results.present? %>
   <%= render 'cover_view' %>
-<% if @inquiry.is_more? %>
+  <% if @inquiry.is_more? %>
+    <div id="show-more">
+      <%= form_tag("/search", method: :get, remote: true) do %>
+      <%= hidden_field_tag :last_query, @inquiry.query %>
+      <%= hidden_field_tag :last_offset, @inquiry.offset %>
+      <%= submit_tag "Load more...",
+       class: "uk-button uk-button-default show-more-button",
+        data: { disable_with: "Please wait..." } %>
+      <% end %>
+    </div>
+  <% else %>
+    <% if status = @inquiry.status_id == 2 %>
+        <div uk-scrollspy="cls: uk-animation-shake; repeat: true">
 
-
-
-
-
-
-
-
-
-<div id="show-more">
-  <%= form_tag("/search", method: :get, remote: true) do %>
-  <%= hidden_field_tag :last_query, @inquiry.query %>
-  <%= hidden_field_tag :last_offset, @inquiry.offset %>
-  <%= submit_tag "Search more", class: "uk-button uk-button-default uk-dark" , data: { disable_with: "Please wait..." } %>
+      <p>I can't show you more, try to be more precise.</p>
+      </div>
+    <% end %>
   <% end %>
-</div>
+<% else %>
+  <!-- New partial here no results -->
+  <p>0 results for "<%= @inquiry.query %>"</p>
+  <!-- Give nicer better explanation maybe with buttons and links -->
+  <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
 <% end %>
 
-<% else %>
-<p>0 results for "<%= @inquiry.query %>"</p>
-<!-- Give nicer better explanation maybe with buttons and links -->
-<p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
-<% end %>
+
+<div class="scroll-up">
+  <a class="scroll-up-button" href="#target"
+   uk-icon="icon: arrow-up; ratio: 2"
+   uk-scroll="duration: 600"></a>
+</div>

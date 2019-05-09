@@ -14,6 +14,7 @@
 //
 //= require jquery3
 //= require "uikit"
+//= require uikit/uikit-icons.js
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
