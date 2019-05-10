@@ -63,25 +63,41 @@ class IgdbQuery
        { 'user-key' => ENV['IGDB_KEY'] })
       # add status = 0 (onyl released games)
       if type == :search
-        request.body = "fields name, first_release_date, cover.image_id;
+        request.body = "fields name,
+                        first_release_date,
+                        status,
+                        parent_game,
+                        cover.image_id;
                         search #{query.inspect};
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_prefix
-        request.body = "fields name, first_release_date, cover.image_id;
-                        where name ~ *#{query.inspect};
+        request.body = "fields name,
+                        first_release_date,
+                        status,
+                        parent_game,
+                        cover.image_id;
+                        where (name ~ *#{query.inspect}) & (themes != 42);
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_postfix
-        request.body = "fields name, first_release_date, cover.image_id;
-                        where name ~ #{query.inspect}*;
+        request.body = "fields name,
+                        first_release_date,
+                        status,
+                        parent_game,
+                        cover.image_id;
+                        where (name ~ *#{query.inspect}) & (themes != 42);
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"
       elsif type == :where_infix
-        request.body = "fields name, first_release_date, cover.image_id;
-                        where name ~ *#{query.inspect}*;
+        request.body = "fields name,
+                        first_release_date,
+                        status,
+                        parent_game,
+                        cover.image_id;
+                        where (name ~ *#{query.inspect}) & (themes != 42);
                         sort popularity desc;
                         limit #{RESULT_LIMIT};
                         offset #{offset};"

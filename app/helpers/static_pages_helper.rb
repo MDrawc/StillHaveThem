@@ -1,34 +1,33 @@
-require 'apicalypse'
 
 module StaticPagesHelper
-  def getino(id)
-    api_endpoint = 'https://api-v3.igdb.com/games'
-    request_headers = { headers: { 'user-key' => '605c81028ed48d0b6ee68e29dd247b75' } }
 
-    api = Apicalypse.new(api_endpoint, request_headers)
+  def convert_to_game_cover(game, options = { width: 200 })
+    cover = game["cover"]
 
-    api
-      .fields(:name)
-      .where("id = #{id}")
-      .limit(5)
+    if cover.nil? || cover.class != Hash
+      no_cover = content_tag(:div, content_tag(:p, game["name"] ,
+        class: "no-cover-tag"), class: "no-cover")
+      return no_cover
+    end
+    cover_id = cover["image_id"]
+    cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
+    cover_url += cover_id.to_s + ".jpg"
 
-    api.request
+    content_tag(:div, nil, class: "game-cover-effect") do
+      image_tag(cover_url, alt: game["name"], class: "game-cover",
+       draggable: "false", width: options[:width])
+    end
   end
 
-  def get_cover(game_id, thumb_size = false, size = nil)
-    api_endpoint = 'https://api-v3.igdb.com/covers'
-    request_headers = { headers: { 'user-key' => '605c81028ed48d0b6ee68e29dd247b75' } }
-    api = Apicalypse.new(api_endpoint, request_headers)
-    api
-      .fields(:image_id)
-      .where("game = #{game_id}")
-    cover_url = 'https://images.igdb.com/igdb/image/upload/'
-    cover_url += thumb_size ? 't_thumb/' : 't_cover_big/'
-    cover_url += api.request.first['image_id'] + '.jpg'
-    image_tag(cover_url, alt: game_id, class: 'gamecover', size: size)
+  def convert_status(status_id)
+    status = [ nil,
+      nil,
+     "in alpha state",
+     "in beta state",
+     "in early access",
+     "game or/and online modes are shut down",
+     "cancelled"]
+    return status[status_id]
   end
 
-  def get_thumb(game_id)
-    get_cover(game_id, true)
-  end
 end
