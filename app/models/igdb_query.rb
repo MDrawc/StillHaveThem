@@ -51,11 +51,27 @@ class IgdbQuery
 
   def search
     start_where
-    prepare_platforms
+    where_platforms
+    where_erotic
+    where_released
     end_where
     prepare_search
     prepare_sort
     request(@offset)
+  end
+
+  def where_released
+    if @only_released
+      @where.blank? ? @where += 'w ' : @where += '& '
+      @where += '(first_release_date != null) '
+    end
+  end
+
+  def where_erotic
+    unless @erotic
+      @where.blank? ? @where += 'w ' : @where += '& '
+      @where += '(themes != (42)) '
+    end
   end
 
   def fix_duplicates(last_result_ids)
@@ -100,7 +116,7 @@ class IgdbQuery
       return [fixed_query, type]
     end
 
-    def prepare_platforms
+    def where_platforms
       unless @platforms.values.all?
         if calculate_rm_cost > LIST_LIMIT
           puts "IGDB-> ADDING PLATFORMS"
@@ -266,6 +282,7 @@ class IgdbQuery
     end
 
     def end_where
+      @where.rstrip!
       @where += "; " if @where.present?
     end
 
