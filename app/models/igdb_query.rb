@@ -13,24 +13,24 @@ class IgdbQuery
   def initialize(obj, offset = 0)
     @last_input = obj
 
-    @query = obj["inquiry"]
+    @query = obj['inquiry']
     @offset = offset
     @fixed_query, @type = analyze_query(@query)
 
-    @platforms = obj.slice(:console,
-                           :arcade,
-                           :portable,
-                           :pc,
-                           :linux,
-                           :mac,
-                           :mobile,
-                           :computer,
-                           :other)
+    @platforms = obj.slice('console',
+                           'arcade',
+                           'portable',
+                           'pc',
+                           'linux',
+                           'mac',
+                           'mobile',
+                           'computer',
+                           'other')
 
     @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
 
-    @erotic = !(obj[:erotic].to_i.zero?)
-    @only_released = !(obj[:only_released].to_i.zero?)
+    @erotic = !(obj['erotic'].to_i.zero?)
+    @only_released = !(obj['only_released'].to_i.zero?)
 
 
 
@@ -101,16 +101,16 @@ class IgdbQuery
   private
     def analyze_query(query)
       fixed_query = query.strip
-      fixed_query.gsub!(/\s\s+/, " ")
+      fixed_query.gsub!(/\s\s+/, ' ')
       type = :search
       if !fixed_query.match(/\A[*].*[^*]\z/).nil?
-        fixed_query.delete_prefix!("*")
+        fixed_query.delete_prefix!('*')
         type = :prefix
       elsif !fixed_query.match(/\A[^*].*[*]\z/).nil?
-        fixed_query.delete_suffix!("*")
+        fixed_query.delete_suffix!('*')
         type = :postfix
       elsif !fixed_query.match(/\A[*].*[*]\z/).nil?
-        fixed_query.delete_prefix!("*").delete_suffix!("*")
+        fixed_query.delete_prefix!('*').delete_suffix!('*')
         type = :infix
       end
       return [fixed_query, type]
@@ -119,25 +119,25 @@ class IgdbQuery
     def where_platforms
       unless @platforms.values.all?
         if calculate_rm_cost > LIST_LIMIT
-          puts "IGDB-> ADDING PLATFORMS"
+          puts 'IGDB-> ADDING PLATFORMS'
           add_platforms
         else
-          puts "IGDB-> REMOVING PLATFORMS"
+          puts 'IGDB-> REMOVING PLATFORMS'
           remove_platforms
         end
       end
     end
 
     def calculate_rm_cost
-      cost = { "console" => 4,
-                "arcade" => 0,
-                "portable" => 0,
-                "pc" => 2,
-                "linux" => 2,
-                "mac" => 1,
-                "mobile" => 3,
-                "computer" => 0,
-                "other" => 3 }
+      cost = { 'console' => 4,
+                'arcade' => 0,
+                'portable' => 0,
+                'pc' => 2,
+                'linux' => 2,
+                'mac' => 1,
+                'mobile' => 3,
+                'computer' => 0,
+                'other' => 3 }
 
       result = 0
 
@@ -170,26 +170,26 @@ class IgdbQuery
       yes_categories = []
       yes_platforms = []
       # Add big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
-      if @platforms[:console]
+      if @platforms['console']
          yes_categories.push 1
          yes_platforms.push 160, 36, 45, 47
       end
       # Add arcade:
-      yes_categories.push 2 if @platforms[:arcade]
+      yes_categories.push 2 if @platforms['arcade']
       # Add portable consoles (with Ngage):
-      yes_categories.push 5 if @platforms[:portable]
+      yes_categories.push 5 if @platforms['portable']
       # Add PC (with PC DOS):
-      yes_platforms.push 6, 13 if @platforms[:pc]
+      yes_platforms.push 6, 13 if @platforms['pc']
       # Add Linux (with SteamOS):
-      yes_platforms.push 3, 92 if @platforms[:linux]
+      yes_platforms.push 3, 92 if @platforms['linux']
       # Add Mac:
-      yes_platforms.push 14 if @platforms[:mac]
+      yes_platforms.push 14 if @platforms['mac']
       # Add mobile (iOs, BlackBerry Os, Android):
-      yes_platforms.push 39, 73, 34 if @platforms[:mobile]
+      yes_platforms.push 39, 73, 34 if @platforms['mobile']
       # Add old computers:
-      yes_categories.push 6 if @platforms[:computer]
+      yes_categories.push 6 if @platforms['computer']
       # Add other (Amazon Fire TV, Web browser, OnLive Game System):
-      yes_platforms.push 132, 82, 113 if @platforms[:other]
+      yes_platforms.push 132, 82, 113 if @platforms['other']
 
       is_category_added = false
 
@@ -206,7 +206,7 @@ class IgdbQuery
       end
 
       @where.rstrip!
-      @where += ") "
+      @where += ') '
     end
 
     def remove_platforms
@@ -232,26 +232,26 @@ class IgdbQuery
       no_categories = []
       no_platforms = []
       # Remove big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
-      unless @platforms[:console]
+      unless @platforms['console']
          no_categories.push 1
          no_platforms.push 160, 36, 45, 47
       end
       # Remove arcade:
-      no_categories.push 2 unless @platforms[:arcade]
+      no_categories.push 2 unless @platforms['arcade']
       # Remove portable consoles (with Ngage):
-      no_categories.push 5 unless @platforms[:portable]
+      no_categories.push 5 unless @platforms['portable']
       # Remove PC (with PC DOS):
-      no_platforms.push 6, 13 unless @platforms[:pc]
+      no_platforms.push 6, 13 unless @platforms['pc']
       # Remove Linux (with SteamOS):
-      no_platforms.push 3, 92 unless @platforms[:linux]
+      no_platforms.push 3, 92 unless @platforms['linux']
       # Remove Mac:
-      no_platforms.push 14 unless @platforms[:mac]
+      no_platforms.push 14 unless @platforms['mac']
       # Remove mobile (iOs, BlackBerry Os, Android):
-      no_platforms.push 39, 73, 34 unless @platforms[:mobile]
+      no_platforms.push 39, 73, 34 unless @platforms['mobile']
       # Remove old computers:
-      no_categories.push 6 unless @platforms[:computer]
+      no_categories.push 6 unless @platforms['computer']
       # Remove other (Amazon Fire TV, Web browser, OnLive Game System):
-      no_platforms.push 132, 82, 113 unless @platforms[:other]
+      no_platforms.push 132, 82, 113 unless @platforms['other']
 
       is_category_removed = false
 
@@ -268,7 +268,7 @@ class IgdbQuery
       end
 
       @where.rstrip!
-      @where += ") "
+      @where += ') '
     end
 
     def start_where
@@ -283,7 +283,7 @@ class IgdbQuery
 
     def end_where
       @where.rstrip!
-      @where += "; " if @where.present?
+      @where += '; ' if @where.present?
     end
 
     def prepare_search
@@ -291,7 +291,7 @@ class IgdbQuery
     end
 
     def prepare_sort
-      @sort = "sort popularity desc; " if @type != :search
+      @sort = 'sort popularity desc; ' if @type != :search
     end
 
     def request(offset)
@@ -309,7 +309,7 @@ class IgdbQuery
       @response_size = @results.size
 
       puts 'IGDB-> RECEIVED RESULTS:'
-      puts @results
+      # puts @results
       puts '=' * 100
     end
 end
