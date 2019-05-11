@@ -1,7 +1,7 @@
 
 module StaticPagesHelper
 
-  def convert_to_game_cover(game, options = { width: 200 })
+  def get_game_cover(game, options = { width: 200 })
     cover = game["cover"]
 
     if cover.nil? || cover.class != Hash
@@ -22,12 +22,21 @@ module StaticPagesHelper
   def convert_status(status_id)
     status = [ nil,
       nil,
-     "in alpha state",
-     "in beta state",
-     "in early access",
-     "game or/and online modes are shut down",
-     "cancelled"]
+     'in alpha state',
+     'in beta state',
+     'in early access',
+     'game or/and online modes are shut down',
+     'cancelled']
     return status[status_id]
+  end
+
+  def convert_category(category_id)
+    category = [ 'main game',
+      'DLC addon',
+      'Expansion',
+      'Bundle',
+      'Standalone expansion']
+    return category[category_id]
   end
 
 end

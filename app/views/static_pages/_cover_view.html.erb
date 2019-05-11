@@ -2,18 +2,18 @@
   <% @inquiry.results.each do |game| %>
   <div class="game-space">
 
-    <%= convert_to_game_cover(game) %>
+    <%= get_game_cover(game) %>
 
     <p class="game-name">
       <%= game["name"] %>
-      <% if game["status"] && game["status"] != 0 %>
-        <button class="game-warning", uk-icon="icon: warning"
-         uk-tooltip="title: <%= convert_status(game["status"]) %>; pos: right"></button>
+      <% if (status_id = game["status"]) && status_id != 0 %>
+         <button class="game-warning", uk-icon="icon: warning"
+         uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
       <% end %>
 
-      <% if game["parent_game"] %>
+      <% if (category_id = game["category"]) && category_id != 0 %>
         <button class="game-warning", uk-icon="icon: album"
-         uk-tooltip="title: DLC or Expansion; pos: right"></button>
+         uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
       <% end %>
     </p>
 

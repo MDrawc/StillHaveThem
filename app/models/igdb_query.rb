@@ -5,7 +5,7 @@ class IgdbQuery
   attr_reader :query, :offset, :results, :last_input
   validates :query, presence: true
 
-  FIELDS = "f name,first_release_date,status,parent_game,cover.image_id,platforms.name"
+  FIELDS = "f name,first_release_date,status,category,cover.image_id,platforms.name"
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
   LIST_LIMIT = 10
@@ -47,8 +47,9 @@ class IgdbQuery
   end
 
   def search
+    start_where
     prepare_platforms
-    prepare_where
+    end_where
     prepare_search
     prepare_sort
     request(@offset)
@@ -129,15 +130,22 @@ class IgdbQuery
     # Add other (Amazon Fire TV, Web browser, OnLive Game System):
     yes_platforms.push 132, 82, 113 if @platforms[:other]
 
+    is_category_added = false
+
+    @where.blank? ? @where += 'w (' : @where += '& ('
+
     unless yes_categories.empty?
-      @where.blank? ? @where += 'w ' : @where += '| '
+      is_category_added = true
       @where += "(platforms.category = (#{yes_categories.join(',')})) "
     end
 
     unless yes_platforms.empty?
-      @where.blank? ? @where += 'w ' : @where += '| '
+      @where += '| ' if is_category_added
       @where += "(platforms = (#{yes_platforms.join(',')})) "
     end
+
+    @where.rstrip!
+    @where += ") "
   end
 
   def remove_platforms
@@ -184,40 +192,44 @@ class IgdbQuery
     # Remove other (Amazon Fire TV, Web browser, OnLive Game System):
     no_platforms.push 132, 82, 113 unless @platforms[:other]
 
+    is_category_removed = false
+
+    @where.blank? ? @where += 'w (' : @where += '& ('
+
     unless no_categories.empty?
-      @where.blank? ? @where += 'w ' : @where += '& '
+      is_category_removed = true
       @where += "(platforms.category != (#{no_categories.join(',')})) "
     end
 
     unless no_platforms.empty?
-      @where.blank? ? @where += 'w ' : @where += '& '
+      @where += '& ' if is_category_removed
       @where += "(platforms != (#{no_platforms.join(',')})) "
     end
+
+    @where.rstrip!
+    @where += ") "
   end
 
-  def prepare_where
-
-    if @where.present? && @type != :search
-      @where += '& '
-    elsif @type != :search
-      @where += 'w '
-    end
+  def start_where
 
     case @type
-    when :prefix then @where += "(name ~ *#{@fixed_query.inspect})"
-    when :postfix then @where += "(name ~ #{@fixed_query.inspect}*)"
-    when :infix then @where += "(name ~ *#{@fixed_query.inspect}*)"
+    when :prefix then @where += "w (name ~ *#{@fixed_query.inspect}) "
+    when :postfix then @where += "w (name ~ #{@fixed_query.inspect}*) "
+    when :infix then @where += "w (name ~ *#{@fixed_query.inspect}*) "
     end
 
+  end
+
+  def end_where
     @where += "; " if @where.present?
   end
 
   def prepare_search
-      @search = "search #{@fixed_query.inspect}; " if @type == :search
+    @search = "search #{@fixed_query.inspect}; " if @type == :search
   end
 
   def prepare_sort
-      @sort = "sort popularity desc; " if @type != :search
+    @sort = "sort popularity desc; " if @type != :search
   end
 
   def is_more?
