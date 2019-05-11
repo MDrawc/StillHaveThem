@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  @@last_result_ids = []
 
   def home
   end
@@ -7,19 +8,24 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+
+    # First time search:
     if params[:search]
-      # debugger
       @inquiry = IgdbQuery.new(params[:search])
       @inquiry.search
+      @@last_result_ids = @inquiry.results.map { |game| game = game["id"]}
 
       respond_to do |format|
         format.js
       end
 
+    # Load more:
     elsif params[:last_input]
       @inquiry = IgdbQuery.new(eval(params[:last_input]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
       @inquiry.search
+      @inquiry.fix_duplicates(@@last_result_ids)
+      @@last_result_ids += @inquiry.results.map { |game| game = game["id"]}
 
       respond_to do |format|
         format.js { render partial: "show_more" }
@@ -28,7 +34,8 @@ class StaticPagesController < ApplicationController
   end
 
   def status
-      #refactor to use IgdbQuery class
+
+      # Make helper for this
 
       http = Net::HTTP.new('api-v3.igdb.com', 80)
       request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),

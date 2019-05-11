@@ -6,7 +6,7 @@ module StaticPagesHelper
 
     if cover.nil? || cover.class != Hash
       no_cover = content_tag(:div, content_tag(:p, game["name"] ,
-        class: "no-cover-tag"), class: "no-cover")
+        class: "no-cover-tag unselectable"), class: "no-cover")
       return no_cover
     end
     cover_id = cover["image_id"]
