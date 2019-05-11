@@ -1,0 +1,40 @@
+<div class="uk-grid uk-flex-center uk-text-center uk-margin-medium cover-view">
+  <% @inquiry.results.each do |game| %>
+  <div class="game-space">
+
+    <%= convert_to_game_cover(game) %>
+
+    <p class="game-name">
+      <%= game["name"] %>
+      <% if game["status"] && game["status"] != 0 %>
+        <button class="game-warning", uk-icon="icon: warning"
+         uk-tooltip="title: <%= convert_status(game["status"]) %>; pos: right"></button>
+      <% end %>
+
+      <% if game["parent_game"] %>
+        <button class="game-warning", uk-icon="icon: album"
+         uk-tooltip="title: DLC or Expansion; pos: right"></button>
+      <% end %>
+    </p>
+
+    <p class="game-release-date">
+      <% if game["first_release_date"]%>
+      <%= Time.at(game["first_release_date"]).year %>
+      <% else %>
+      -
+      <% end %>
+
+<!-- Temporary!!!!!!!!! -->
+<% if game["platforms"] %>
+  <% game["platforms"].each do |platform| %>
+    <p class="game-platform">
+    <%= platform["name"]%>
+    </p>
+  <% end %>
+<% end %>
+<!-- !!!!!!!!!!!!! -->
+
+  </div>
+  <% end %>
+</div>
+</div>
