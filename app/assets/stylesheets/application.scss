@@ -17,7 +17,7 @@
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
-// Background - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Body - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
     background-color: #E9E7E7;
 
@@ -25,7 +25,39 @@ html {
     // background: url("ignasi_pattern_s.png");
 }
 
-// Search Bar (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
+body {
+    overflow-y: scroll;
+}
+
+// Search Form (Search IGDB)  - - - - - - - - - - - - - - - - - - - - - - - - //
+.search-form {
+    text-align: center;
+}
+
+.search-bar {
+    padding-left: 40px;
+    border-radius: 5px;
+    height: 35px;
+    width: 350px;
+}
+
+.search:hover, :focus {
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+}
+
+.search-dropdown {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 350px;
+}
+
+.uk-tooltip {
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6) !important;
+}
+
 .uk-search-navbar .uk-search-input {
     border-radius: 50px;
     // border: 3px solid white;
@@ -35,7 +67,8 @@ html {
 }
 
 .uk-search-input:hover, :focus {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+    // box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+    // Fix This
 }
 
 // Search Results (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - //

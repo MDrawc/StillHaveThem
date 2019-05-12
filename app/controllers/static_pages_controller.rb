@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  # For duplicates removal:
   @@last_result_ids = []
 
   def home
@@ -8,7 +9,6 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-
     # First time search:
     if params[:search]
       @inquiry = IgdbQuery.new(params[:search])
@@ -18,7 +18,6 @@ class StaticPagesController < ApplicationController
       respond_to do |format|
         format.js
       end
-
     # Load more:
     elsif params[:last_input]
       @inquiry = IgdbQuery.new(eval(params[:last_input]),
@@ -34,9 +33,7 @@ class StaticPagesController < ApplicationController
   end
 
   def status
-
-      # Make helper for this
-
+      # Make helper for this:
       http = Net::HTTP.new('api-v3.igdb.com', 80)
       request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),
        { 'user-key' => ENV['IGDB_KEY'] })

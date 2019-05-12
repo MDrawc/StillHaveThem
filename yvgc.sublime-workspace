@@ -4,8 +4,188 @@
 		"selected_items":
 		[
 			[
+				"botto",
+				"bottom-center\t(_searchbar.html.erb)"
+			],
+			[
+				"sea",
+				"search-bar"
+			],
+			[
+				"api",
+				"api-status"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"search",
+				"search-drop\t(_searchbar.html.erb)"
+			],
+			[
+				"left",
+				"padding-left\tproperty"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"res",
+				"response_size"
+			],
+			[
+				"resu",
+				"results_ids"
+			],
+			[
+				"las",
+				"last_input"
+			],
+			[
+				"remo",
+				"remove_platforms"
+			],
+			[
+				"prepa",
+				"prepare_search"
+			],
+			[
+				"prep",
+				"prepare_where"
+			],
+			[
+				"prepe",
+				"prepare_platforms"
+			],
+			[
+				"serach",
+				"search"
+			],
+			[
+				"no",
+				"no_categories"
+			],
+			[
+				"onl",
+				"only_released"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"con",
+				"convert_status\t(static_pages_helper.rb)"
+			],
+			[
+				"statu",
+				"status_id"
+			],
+			[
+				"stat",
+				"status_id"
+			],
+			[
+				"tra",
+				"transparent"
+			],
+			[
+				"bo",
+				"box-shadow"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"scr",
+				"scroll-up-button\t(_results.html.erb)"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"align",
+				"align-self\tproperty"
+			],
+			[
+				"uk-fle",
+				"uk-flex-center\t(search.html.erb)"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"bore",
+				"border-radius"
+			],
+			[
+				"show",
+				"show-more-button\t(_results.html.erb)"
+			],
+			[
+				"h",
+				"hover"
+			],
+			[
+				"translate",
+				"translateY()\ttransform"
+			],
+			[
+				"over",
+				"overflow\tproperty"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"font-s",
+				"font-style\tproperty"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"gam",
+				"game-name\t(_cover_view.html.erb)"
+			],
+			[
+				"game-",
+				"game-space\t(_cover_view.html.erb)"
+			],
+			[
+				"!",
+				"!important"
+			],
+			[
 				"uk-mar",
-				"uk-margin-right \tUIkit class"
+				"uk-margin-medium \tUIkit class"
+			],
+			[
+				"uk-text-c",
+				"uk-text-center \tUIkit class"
+			],
+			[
+				"uk-flex",
+				"uk-flex-center \tUIkit class"
+			],
+			[
+				"uk-po",
+				"uk-position-center \tUIkit class"
 			],
 			[
 				"uk-m",
@@ -32,10 +212,6 @@
 				"offset_limit_number\t(static_pages_controller.rb)"
 			],
 			[
-				"search",
-				"search-more\t(static_pages_controller.rb)"
-			],
-			[
 				"with",
 				"with_index\t(_results.html.erb)"
 			],
@@ -58,10 +234,6 @@
 			[
 				"sera",
 				"search-results"
-			],
-			[
-				"sea",
-				"search_results\t(static_pages_controller.rb)"
 			],
 			[
 				"se",
@@ -252,55 +424,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/assets/stylesheets/application.scss",
+			"file": "app/models/igdb_query.rb",
 			"settings":
 			{
-				"buffer_size": 1233,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/application.html.erb",
-			"settings":
-			{
-				"buffer_size": 455,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/_footer.html.erb",
-			"settings":
-			{
-				"buffer_size": 216,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/home.html.erb",
-			"settings":
-			{
-				"buffer_size": 64,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/search.html.erb",
-			"settings":
-			{
-				"buffer_size": 160,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/_results.html.erb",
-			"settings":
-			{
-				"buffer_size": 1003,
+				"buffer_size": 8556,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -309,7 +436,43 @@
 			"file": "app/views/layouts/_searchbar.html.erb",
 			"settings":
 			{
-				"buffer_size": 379,
+				"buffer_size": 2443,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/static_pages/home.html.erb",
+			"settings":
+			{
+				"buffer_size": 568,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/layouts/application.html.erb",
+			"settings":
+			{
+				"buffer_size": 495,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/application.scss",
+			"settings":
+			{
+				"buffer_size": 5655,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/static_pages_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1120,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -343,16 +506,56 @@
 		"selected_items":
 		[
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"ht",
 				"HTMLBeautify"
 			],
 			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"git",
+				"Set Syntax: Git Commit"
+			],
+			[
+				"view",
+				"View: Toggle Menu"
+			],
+			[
+				"m",
+				"View: Toggle Minimap"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"ui colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"sa",
+				"SassBeautify"
+			],
+			[
 				"h",
 				"HTMLBeautify"
+			],
+			[
+				"sas",
+				"SassBeautify"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
 				"html",
@@ -371,10 +574,6 @@
 				"Pretty Ruby: Format"
 			],
 			[
-				"htm",
-				"HTMLBeautify"
-			],
-			[
 				"re",
 				"Package Control: Remove Package"
 			],
@@ -391,20 +590,12 @@
 				"Pretty Ruby: Format"
 			],
 			[
-				"sa",
-				"SassBeautify"
-			],
-			[
 				"ruby",
 				"Pretty Ruby: Format"
 			],
 			[
 				"Sass",
 				"SassBeautify"
-			],
-			[
-				"remo",
-				"Package Control: Remove Package"
 			],
 			[
 				"install",
@@ -445,10 +636,6 @@
 			[
 				"replr",
 				"SublimeREPL: Ruby"
-			],
-			[
-				"menu",
-				"View: Toggle Menu"
 			],
 			[
 				"sett",
@@ -531,40 +718,52 @@
 		"/home/mdad/Desktop/MyProject/yvgc",
 		"/home/mdad/Desktop/MyProject/yvgc/app",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets",
-		"/home/mdad/Desktop/MyProject/yvgc/app/channels",
-		"/home/mdad/Desktop/MyProject/yvgc/app/controllers",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/shared",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages",
-		"/home/mdad/Desktop/MyProject/yvgc/config",
-		"/home/mdad/Desktop/MyProject/yvgc/test"
+		"/home/mdad/Desktop/MyProject/yvgc/lib",
+		"/home/mdad/Desktop/MyProject/yvgc/lib/assets",
+		"/home/mdad/Desktop/MyProject/yvgc/lib/tasks"
 	],
 	"file_history":
 	[
-		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/static_pages.scss",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_navigation.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_footer.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_cover_view.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/static_pages_helper.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_searchbar.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/home.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/application.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/application.scss",
+		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/controllers/static_pages_controller.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query_OLD.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_searchbar_OLD.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_searchbar2.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/application.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/notes.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/Gemfile",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/home.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_show_more.js.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/Gemfile.lock",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts/application.js",
+		"/home/mdad/Desktop/MyProject/yvgc/_show_more.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/shattered.png",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_cover_viewOLD.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results_LAME1.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_navigation.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results_OLD.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_footer.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/config/routes.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/status.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/static_pages.scss",
 		"/home/mdad/.config/sublime-text-3/Packages/User/ColorPicker.sublime-settings",
 		"/home/mdad/.config/sublime-text-3/Packages/ColorPicker/ColorPicker.sublime-settings",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_messages.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/Gemfile",
-		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts/application.js",
-		"/home/mdad/Desktop/MyProject/yvgc/Gemfile.lock",
-		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query.rb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/controllers/static_pages_controller.rb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_results.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_show_more.js.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query_old.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/shared/_errors.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/.gitignore",
@@ -576,10 +775,8 @@
 		"/home/mdad/Desktop/MyProject/yvgc/app/models/game2.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/config/application.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/.env",
-		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/static_pages_helper.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/application_helper.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search_id.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/config/routes.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/test/controllers/static_pages_controller_test.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/following_test.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/models/user_test.rb",
@@ -662,22 +859,11 @@
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/users_signup_test.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/user_mailer/account_activation.text.erb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/user_mailer/account_activation.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/helpers/account_activations_helper.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/mailers/application_mailer.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/fixtures/users.yml",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/db/migrate/20190330182759_add_activation_to_users.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/users/index.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/db/migrate/20190329224514_add_admin_to_users.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/users/new.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/layouts/_header.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/site_layout_test.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/Gemfile.lock",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/views/users/index.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/users_edit_test.rb"
+		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/helpers/account_activations_helper.rb"
 	],
 	"find":
 	{
-		"height": 31.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -692,6 +878,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"default",
+			"%>",
+			"\"\"",
+			"%>",
+			"</span>",
+			"<span>",
+			"]",
+			"[:",
+			"\"",
+			"]",
+			"[:",
+			"\"",
+			"prepare_platforms",
+			"count\t",
+			"results",
+			"convert_to_game_cover",
+			"\"",
+			"     \"",
+			"category",
+			"is_category_added",
+			"is_added",
+			"case",
+			"last_query",
+			": ",
+			"arcade",
+			":,",
+			"arcade",
+			"unless",
+			"Remove",
+			"no_platforms",
+			"no_categories",
+			"pc",
+			"portable",
+			"mobile",
+			"arcade",
+			"console",
+			"pet_dog",
 			"query_r",
 			"query",
 			"search",
@@ -734,6 +957,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
 			"'"
 		],
 		"reverse": false,
@@ -745,153 +969,55 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/assets/stylesheets/application.scss",
+					"file": "app/models/igdb_query.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1233,
+						"buffer_size": 8556,
 						"regions":
 						{
-							"col_212121FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										868,
-										875
-									]
-								],
-								"scope": "col_212121FF"
-							},
-							"col_212121FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_212121FF_circle.png",
-								"regions":
-								[
-									[
-										848,
-										848
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_222222FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1088,
-										1092
-									]
-								],
-								"scope": "col_222222FF"
-							},
-							"col_222222FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_222222FF_circle.png",
-								"regions":
-								[
-									[
-										1079,
-										1079
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_777777FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										998,
-										1002
-									]
-								],
-								"scope": "col_777777FF"
-							},
-							"col_777777FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_777777FF_circle.png",
-								"regions":
-								[
-									[
-										989,
-										989
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_EAEAEAFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										980,
-										987
-									]
-								],
-								"scope": "col_EAEAEAFF"
-							},
-							"col_EAEAEAFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_EAEAEAFF_circle.png",
-								"regions":
-								[
-									[
-										956,
-										956
-									]
-								],
-								"scope": "col_gutter"
-							}
 						},
 						"selection":
 						[
 							[
-								818,
-								818
+								361,
+								361
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax"
+							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 392.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/layouts/application.html.erb",
+					"file": "app/views/layouts/_searchbar.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 455,
+						"buffer_size": 2443,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								55,
-								55
+								1524,
+								1524
 							]
 						],
 						"settings":
@@ -910,48 +1036,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/views/layouts/_footer.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 216,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								216,
-								216
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "app/views/static_pages/home.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 64,
+						"buffer_size": 568,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								37,
-								37
+								398,
+								398
 							]
 						],
 						"settings":
@@ -963,56 +1060,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app/views/static_pages/search.html.erb",
+					"buffer": 3,
+					"file": "app/views/layouts/application.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 160,
+						"buffer_size": 495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								160,
-								160
-							]
-						],
-						"settings":
-						{
-							"SL.18.region_keys":
-							[
-							],
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/views/static_pages/_results.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1003,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1002,
-								1002
+								476,
+								476
 							]
 						],
 						"settings":
@@ -1026,33 +1091,561 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "app/views/layouts/_searchbar.html.erb",
+					"buffer": 4,
+					"file": "app/assets/stylesheets/application.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 379,
+						"buffer_size": 5655,
+						"regions":
+						{
+							"col_0000004F":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4830,
+										4839
+									]
+								],
+								"scope": "col_0000004F"
+							},
+							"col_0000004F_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_0000004F_circle.png",
+								"regions":
+								[
+									[
+										4819,
+										4819
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_212121FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										5499,
+										5503
+									]
+								],
+								"scope": "col_212121FF"
+							},
+							"col_212121FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_212121FF_circle.png",
+								"regions":
+								[
+									[
+										5488,
+										5488
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_4BEBEC01":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4214,
+										4235
+									]
+								],
+								"scope": "col_4BEBEC01"
+							},
+							"col_4BEBEC01_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_4BEBEC01_circle.png",
+								"regions":
+								[
+									[
+										4169,
+										4169
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_777777FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										5403,
+										5407
+									]
+								],
+								"scope": "col_777777FF"
+							},
+							"col_777777FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_777777FF_circle.png",
+								"regions":
+								[
+									[
+										5392,
+										5392
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_9E9E9E99":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										1321,
+										1345
+									],
+									[
+										1447,
+										1471
+									],
+									[
+										1587,
+										1611
+									],
+									[
+										1936,
+										1960
+									],
+									[
+										3050,
+										3074
+									],
+									[
+										3237,
+										3261
+									],
+									[
+										4571,
+										4595
+									],
+									[
+										4617,
+										4641
+									]
+								],
+								"scope": "col_9E9E9E99"
+							},
+							"col_9E9E9E99_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_9E9E9E99_circle.png",
+								"regions":
+								[
+									[
+										1288,
+										1288
+									],
+									[
+										1414,
+										1414
+									],
+									[
+										1554,
+										1554
+									],
+									[
+										1900,
+										1900
+									],
+									[
+										3017,
+										3017
+									],
+									[
+										3198,
+										3198
+									],
+									[
+										4538,
+										4538
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_9E9E9EFF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										3822,
+										3829
+									]
+								],
+								"scope": "col_9E9E9EFF"
+							},
+							"col_9E9E9EFF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_9E9E9EFF_circle.png",
+								"regions":
+								[
+									[
+										3789,
+										3789
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_ACACACFF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										2522,
+										2529
+									]
+								],
+								"scope": "col_ACACACFF"
+							},
+							"col_ACACACFF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_ACACACFF_circle.png",
+								"regions":
+								[
+									[
+										2486,
+										2486
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_C2C2C2FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4870,
+										4877
+									]
+								],
+								"scope": "col_C2C2C2FF"
+							},
+							"col_C2C2C2FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_C2C2C2FF_circle.png",
+								"regions":
+								[
+									[
+										4841,
+										4841
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_E7E7E7FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										1834,
+										1856
+									]
+								],
+								"scope": "col_E7E7E7FF"
+							},
+							"col_E7E7E7FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_E7E7E7FF_circle.png",
+								"regions":
+								[
+									[
+										1765,
+										1765
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_E9E7E7FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										927,
+										934
+									]
+								],
+								"scope": "col_E9E7E7FF"
+							},
+							"col_E9E7E7FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_E9E7E7FF_circle.png",
+								"regions":
+								[
+									[
+										905,
+										905
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_EAEAEAFF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										5383,
+										5390
+									]
+								],
+								"scope": "col_EAEAEAFF"
+							},
+							"col_EAEAEAFF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_EAEAEAFF_circle.png",
+								"regions":
+								[
+									[
+										5357,
+										5357
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_FFFFFF26":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4241,
+										4266
+									]
+								],
+								"scope": "col_FFFFFF26"
+							},
+							"col_FFFFFF26_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF26_circle.png",
+								"regions":
+								[
+									[
+										4169,
+										4169
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_FFFFFF3D":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4439,
+										4448
+									]
+								],
+								"scope": "col_FFFFFF3D"
+							},
+							"col_FFFFFF3D_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF3D_circle.png",
+								"regions":
+								[
+									[
+										4416,
+										4416
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_FFFFFF47":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										4272,
+										4297
+									]
+								],
+								"scope": "col_FFFFFF47"
+							},
+							"col_FFFFFF47_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF47_circle.png",
+								"regions":
+								[
+									[
+										4169,
+										4169
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_FFFFFFD8":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										1387,
+										1412
+									]
+								],
+								"scope": "col_FFFFFFD8"
+							},
+							"col_FFFFFFD8_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFD8_circle.png",
+								"regions":
+								[
+									[
+										1365,
+										1365
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_FFFFFFFF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										1714,
+										1719
+									],
+									[
+										1758,
+										1763
+									],
+									[
+										1806,
+										1828
+									],
+									[
+										2907,
+										2912
+									],
+									[
+										3115,
+										3120
+									],
+									[
+										3174,
+										3179
+									]
+								],
+								"scope": "col_FFFFFFFF"
+							},
+							"col_FFFFFFFF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFFF_circle.png",
+								"regions":
+								[
+									[
+										1689,
+										1689
+									],
+									[
+										1742,
+										1742
+									],
+									[
+										1765,
+										1765
+									],
+									[
+										2891,
+										2891
+									],
+									[
+										3093,
+										3093
+									],
+									[
+										3152,
+										3152
+									]
+								],
+								"scope": "col_gutter"
+							}
+						},
+						"selection":
+						[
+							[
+								1346,
+								1346
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 124.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "app/controllers/static_pages_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1120,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								99,
-								99
+								113,
+								113
 							]
 						],
 						"settings":
 						{
-							"SL.19.region_keys":
-							[
-							],
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
+							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1066,11 +1659,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 28.0
 	},
 	"input":
 	{
-		"height": 45.0
+		"height": 51.0
 	},
 	"layout":
 	{
@@ -1081,11 +1674,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.746503623504,
 			1.0
 		],
 		"rows":
@@ -1107,11 +1707,15 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 133.0
+	},
 	"pinned_build_system": "Packages/Ruby/Ruby.sublime-build",
 	"project": "yvgc.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 73.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1121,20 +1725,192 @@
 		"selected_items":
 		[
 			[
-				"resu",
-				"app/views/static_pages/_results.html.erb"
+				"_home",
+				"app/views/static_pages/home.html.erb"
+			],
+			[
+				"appht",
+				"app/views/layouts/application.html.erb"
 			],
 			[
 				"scs",
 				"app/assets/stylesheets/application.scss"
 			],
 			[
+				"helpst",
+				"app/helpers/static_pages_helper.rb"
+			],
+			[
+				"co",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"sear",
+				"app/views/layouts/_searchbar.html.erb"
+			],
+			[
+				"_re",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"seac",
+				"app/views/layouts/_searchbar.html.erb"
+			],
+			[
 				"scss",
-				"app/assets/stylesheets/static_pages.scss"
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"stathel",
+				"app/helpers/static_pages_helper.rb"
+			],
+			[
+				"cov",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"stat",
+				"app/controllers/static_pages_controller.rb"
+			],
+			[
+				"res",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"q",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"ig",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"_re\t",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"re",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"searc",
+				"app/views/layouts/_searchbar.html.erb"
+			],
+			[
+				"contro",
+				"app/controllers/static_pages_controller.rb"
+			],
+			[
+				"apphtml",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"ig\t",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"_co",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"_hom",
+				"app/views/static_pages/home.html.erb"
+			],
+			[
+				"ho",
+				"app/views/static_pages/home.html.erb"
+			],
+			[
+				"",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"appscs",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"igdb",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"gemlo",
+				"Gemfile.lock"
+			],
+			[
+				"gemi",
+				"Gemfile"
+			],
+			[
+				"appsc",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"_s",
+				"app/views/static_pages/_show_more.js.erb"
+			],
+			[
+				"j",
+				"app/views/static_pages/search.js.erb"
+			],
+			[
+				"applhtml",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"sea",
+				"app/views/static_pages/search.html.erb"
+			],
+			[
+				"cov\t",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"cover",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"appli.html",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"quer",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"seabar",
+				"app/views/layouts/_searchbar.html.erb"
+			],
+			[
+				"_nav",
+				"app/views/layouts/_navigation.html.erb"
+			],
+			[
+				"igd",
+				"app/models/igdb_query.rb"
 			],
 			[
 				"se",
 				"app/views/static_pages/search.html.erb"
+			],
+			[
+				"resu",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"ro",
+				"config/routes.rb"
+			],
+			[
+				"stati",
+				"app/controllers/static_pages_controller.rb"
+			],
+			[
+				"foot",
+				"app/views/layouts/_footer.html.erb"
 			],
 			[
 				"home",
@@ -1157,16 +1933,8 @@
 				"app/views/static_pages/home.html.erb"
 			],
 			[
-				"appht",
-				"app/views/layouts/application.html.erb"
-			],
-			[
 				"application",
 				"app/views/layouts/application.html.erb"
-			],
-			[
-				"gem",
-				"Gemfile.lock"
 			],
 			[
 				"sass",
@@ -1181,28 +1949,12 @@
 				"app/controllers/static_pages_controller.rb"
 			],
 			[
-				"sear",
-				"app/views/static_pages/search.html.erb"
-			],
-			[
 				"_er",
 				"app/views/shared/_errors.html.erb"
 			],
 			[
-				"re",
-				"app/views/static_pages/_results.html.erb"
-			],
-			[
 				"js",
 				"app/views/static_pages/search.js.erb"
-			],
-			[
-				"sea",
-				"app/views/static_pages/search.html.erb"
-			],
-			[
-				"_re",
-				"app/views/static_pages/_results.html.erb"
 			],
 			[
 				"sta",
@@ -1219,10 +1971,6 @@
 			[
 				"_r",
 				"app/views/static_pages/_results.html.erb"
-			],
-			[
-				"appsc",
-				"app/assets/stylesheets/application.scss"
 			],
 			[
 				"applicationhtml",
@@ -1245,10 +1993,6 @@
 				"app/views/layouts/application.html.erb"
 			],
 			[
-				"ro",
-				"config/routes.rb"
-			],
-			[
 				"static_pages",
 				"test/controllers/static_pages_controller_test.rb"
 			],
@@ -1263,10 +2007,6 @@
 			[
 				"followintest",
 				"test/integration/following_test.rb"
-			],
-			[
-				"stati",
-				"app/controllers/static_pages_controller.rb"
 			],
 			[
 				"micropo",
@@ -1413,10 +2153,6 @@
 				"app/views/shared/_micropost_form.html.erb"
 			],
 			[
-				"_hom",
-				"app/views/static_pages/_home_logged.html.erb"
-			],
-			[
 				"statico",
 				"app/controllers/static_pages_controller.rb"
 			],
@@ -1427,10 +2163,6 @@
 			[
 				"abo",
 				"app/views/static_pages/about.html.erb"
-			],
-			[
-				"apphtml",
-				"app/views/layouts/application.html.erb"
 			],
 			[
 				"micropostcont",
@@ -1503,134 +2235,6 @@
 			[
 				"password test",
 				"test/integration/password_resets_test.rb"
-			],
-			[
-				"_form",
-				"app/views/users/_form.html.erb"
-			],
-			[
-				"edit user html",
-				"app/views/users/edit.html.erb"
-			],
-			[
-				"edit password",
-				"app/views/password_resets/edit.html.erb"
-			],
-			[
-				"new pass",
-				"app/views/password_resets/new.html.erb"
-			],
-			[
-				"pas",
-				"app/views/user_mailer/password_reset.html.erb"
-			],
-			[
-				"user_mail",
-				"test/mailers/user_mailer_test.rb"
-			],
-			[
-				"usermailepr",
-				"test/mailers/previews/user_mailer_preview.rb"
-			],
-			[
-				"n",
-				"app/views/sessions/new.html.erb"
-			],
-			[
-				"route",
-				"config/routes.rb"
-			],
-			[
-				"prod",
-				"config/environments/production.rb"
-			],
-			[
-				"usersin",
-				"test/integration/users_index_test.rb"
-			],
-			[
-				"controll",
-				"app/controllers/account_activations_controller.rb"
-			],
-			[
-				"controller",
-				"app/controllers/users_controller.rb"
-			],
-			[
-				"sess",
-				"app/controllers/sessions_controller.rb"
-			],
-			[
-				"users_si",
-				"test/integration/users_signup_test.rb"
-			],
-			[
-				"activation cont",
-				"app/controllers/account_activations_controller.rb"
-			],
-			[
-				"user_te",
-				"test/models/user_test.rb"
-			],
-			[
-				"sses",
-				"app/helpers/sessions_helper.rb"
-			],
-			[
-				"usesign",
-				"test/integration/users_signup_test.rb"
-			],
-			[
-				"Userc",
-				"app/controllers/users_controller.rb"
-			],
-			[
-				"test.rb",
-				"config/environments/test.rb"
-			],
-			[
-				"accoun_acttxt",
-				"app/views/user_mailer/account_activation.text.erb"
-			],
-			[
-				"activation",
-				"app/views/user_mailer/account_activation.html.erb"
-			],
-			[
-				"user_mailer",
-				"test/mailers/previews/user_mailer_preview.rb"
-			],
-			[
-				"dev",
-				"config/environments/development.rb"
-			],
-			[
-				"ac",
-				"app/controllers/account_activations_controller.rb"
-			],
-			[
-				"usercon",
-				"app/controllers/users_controller.rb"
-			],
-			[
-				"sesi",
-				"app/controllers/sessions_controller.rb"
-			],
-			[
-				"userscontest",
-				"test/controllers/users_controller_test.rb"
-			],
-			[
-				"_us",
-				"app/views/users/_user.html.erb"
-			],
-			[
-				"usrecte",
-				"test/controllers/users_controller_test.rb"
-			],
-			[
-				"usrc",
-				"app/controllers/users_controller.rb"
 			]
 		],
 		"width": 0.0
@@ -1669,7 +2273,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 215.0,
+	"side_bar_width": 315.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
