@@ -29,6 +29,13 @@ class IgdbQuery
 
     @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
 
+    @categories = obj.slice('dlc',
+                           'expansion',
+                           'bundle',
+                           'standalone')
+
+    @categories.each { |k, v| @categories[k] = !(v.to_i.zero?) }
+
     @erotic = !(obj['erotic'].to_i.zero?)
     @only_released = !(obj['only_released'].to_i.zero?)
 
@@ -45,6 +52,7 @@ class IgdbQuery
     puts "fixed_query: #{@fixed_query}"
     puts "type: #{@type}"
     puts "platforms: #{@platforms}"
+    puts "categories: #{@categories}"
     puts "erotic: #{@erotic}"
     puts "only_released: #{@only_released}"
   end
@@ -52,12 +60,25 @@ class IgdbQuery
   def search
     start_where
     where_platforms
+    where_categories
     where_erotic
     where_released
     end_where
     prepare_search
     prepare_sort
     request(@offset)
+  end
+
+  def where_categories
+    unless @categories.values.all?
+      no_categories = []
+      no_categories.push 1 unless @categories['dlc']
+      no_categories.push 2 unless @categories['expansion']
+      no_categories.push 3 unless @categories['bundle']
+      no_categories.push 4 unless @categories['standalone']
+      @where.blank? ? @where += 'w ' : @where += '& '
+      @where += "(category != (#{no_categories.join(',')})) "
+    end
   end
 
   def where_released
