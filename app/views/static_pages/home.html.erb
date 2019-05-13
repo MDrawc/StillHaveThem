@@ -1,6 +1,44 @@
 <h1>Welcome!</h1>
 <%= link_to "Add Game", search_url %>
-
-
-
 <%= link_to "TEst form", test_url %>
+<br>
+
+<!-- - - - - - - - - - - -->
+<p>1:</p>
+<button class="platforms-toggler" uk-icon="triangle-down" uk-toggle="target: #test" type="button"></button>
+
+
+<!-- - - - - - - - - - - -->
+<p>2:</p>
+
+<label class="switch">
+  <input type="checkbox" uk-toggle="target: #test">
+  <span class="slider"></span>
+</label>
+
+
+<!-- - - - - - - - - - - -->
+<p>3:</p>
+
+<label class="mp-label">
+  <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #test">
+</label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<div id="test" hidden><p>hello</p></div>
+
+
+
+

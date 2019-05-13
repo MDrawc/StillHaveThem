@@ -3,7 +3,6 @@ module StaticPagesHelper
 
   def get_game_cover(game, options = { width: 200 })
     cover = game["cover"]
-
     if cover.nil? || cover.class != Hash
       no_cover = content_tag(:div, content_tag(:p, game["name"] ,
         class: "no-cover-tag unselectable"), class: "no-cover")
@@ -37,6 +36,10 @@ module StaticPagesHelper
       'Bundle',
       'Standalone expansion']
     return category[category_id]
+  end
+
+  def get_platforms(game)
+
   end
 
 end

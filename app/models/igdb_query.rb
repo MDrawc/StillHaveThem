@@ -330,7 +330,7 @@ class IgdbQuery
       @response_size = @results.size
 
       puts 'IGDB-> RECEIVED RESULTS:'
-      # puts @results
+      puts @results
       puts '=' * 100
     end
 end
