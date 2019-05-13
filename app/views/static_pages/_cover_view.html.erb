@@ -1,13 +1,7 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
-
-
-
   <% @inquiry.results.each do |game| %>
   <div class="game-space">
     <%= get_game_cover(game) %>
-
-
-
     <p class="game-name">
       <%= game["name"] %>
       <% if (status_id = game["status"]) && status_id != 0 %>
@@ -19,64 +13,35 @@
       uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
       <% end %>
     </p>
-
-
-
     <p class="game-release-date">
       <% if game["first_release_date"]%>
       <%= Time.at(game["first_release_date"]).year %>
       <% else %>
       -
       <% end %>
-
-
-
-
-      <!-- Temporary!!!!!!!!! -->
-
-
       <% if platforms = game["platforms"] %>
-        <% if platforms.size > 3 %>
-          <% rest = platforms[3..-1] %>
-          <%  2.times do |i| %>
-<p class="game-platform"><%= platforms[i]["name"]%>
-          <% end %>
-
-            <!-- gerere -->
-
-
+      <% if platforms.size > 3 %>
+      <% rest = platforms[3..-1] %>
+      <%  2.times do |i| %>
+      <p class="game-platform"><%= platforms[i]["name"]%>
+        <% end %>
         <p class="game-platform"><%= platforms[2]["name"]%>
-
-<label class="mp-label">
-  <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
-</label>
-
-   </p>
-
-
+          <label class="mp-label">
+            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
+          </label>
+        </p>
         <div id="mp-<%= game['id'] %>" hidden>
           <% rest.each do |platform| %>
           <p class="game-platform"><%= platform["name"]%></p>
           <% end %>
         </div>
-
-
-<!-- gererere -->
-
-
         <% else %>
-          <% platforms.each do |platform| %>
-          <p class="game-platform"><%= platform["name"]%></p>
-          <% end %>
+        <% platforms.each do |platform| %>
+        <p class="game-platform"><%= platform["name"]%></p>
         <% end %>
+        <% end %>
+        <% end %>
+      </div>
       <% end %>
-
-
-      <!-- !!!!!!!!!!!!! -->
     </div>
-  <% end %>
   </div>
-
-
-
-</div>

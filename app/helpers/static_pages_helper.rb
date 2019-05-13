@@ -37,9 +37,4 @@ module StaticPagesHelper
       'Standalone expansion']
     return category[category_id]
   end
-
-  def get_platforms(game)
-
-  end
-
 end

@@ -17,17 +17,18 @@
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
-// Body - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// HTML, Body-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
     background-color: #E9E7E7;
-
-    // background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
-    // background: url("ignasi_pattern_s.png");
 }
+
 
 body {
     overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
 }
+body::-webkit-scrollbar { width: 0 !important } // Safari, Chrome, Opera
 
 // Search Form (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - //
 .search-form {
