@@ -19,3 +19,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+var status = 'ok';
+console.log(status);

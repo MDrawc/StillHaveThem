@@ -41,4 +41,8 @@ class StaticPagesController < ApplicationController
       request.body = "fields *;"
       @status = JSON.parse http.request(request).body
   end
+
+  def test
+
+  end
 end
