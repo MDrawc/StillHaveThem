@@ -16,7 +16,6 @@ class IgdbQuery
     @query = obj['inquiry']
     @offset = offset
     @fixed_query, @type = analyze_query(@query)
-
     @platforms = obj.slice('console',
                            'arcade',
                            'portable',
@@ -193,7 +192,7 @@ class IgdbQuery
       # Add big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
       if @platforms['console']
          yes_categories.push 1
-         yes_platforms.push 160, 36, 45, 47
+         yes_platforms.push 160, 36, 45, 47, 56
       end
       # Add arcade:
       yes_categories.push 2 if @platforms['arcade']
@@ -255,7 +254,7 @@ class IgdbQuery
       # Remove big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
       unless @platforms['console']
          no_categories.push 1
-         no_platforms.push 160, 36, 45, 47
+         no_platforms.push 160, 36, 45, 47, 56, 165
       end
       # Remove arcade:
       no_categories.push 2 unless @platforms['arcade']

@@ -1,0 +1,36 @@
+<div class="search-form">
+  <%= form_for("search", method: :get, remote: true) do |f| %>
+  <div class="uk-inline">
+    <span class="uk-form-icon" uk-icon="icon: search"></span>
+    <%= f.text_field(:inquiry, placeholder: "Search video games..." , class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
+  </div>
+  <div class="search-dropdown" uk-dropdown="mode: click; pos: bottom-center">
+    <div class="strike"><span>Platforms:</span></div>
+    <div class="uk-margin uk-grid-small uk-grid drop-grid">
+      <label class="platforms-labels"><%= f.check_box(:console, checked: "checked", class: "uk-checkbox search-checkbox") %> Consoles</label>
+      <label class="platforms-labels"><%= f.check_box(:arcade, checked: "checked", class: "uk-checkbox search-checkbox") %> Arcade</label>
+      <label class="platforms-labels"><%= f.check_box(:portable, checked: "checked", class: "uk-checkbox search-checkbox") %> Portable</label>
+      <label class="platforms-labels"><%= f.check_box(:pc, checked: "checked", class: "uk-checkbox search-checkbox") %> PC </label>
+      <label class="platforms-labels"><%= f.check_box(:linux, checked: "checked", class: "uk-checkbox search-checkbox") %> Linux </label>
+      <label class="platforms-labels"><%= f.check_box(:mac, checked: "checked", class: "uk-checkbox search-checkbox") %> Mac</label>
+      <label class="platforms-labels"><%= f.check_box(:mobile, checked: "checked", class: "uk-checkbox search-checkbox") %> Mobile</label>
+      <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %> Computers</label>
+      <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %> Other</label>
+    </div>
+    <!-- checkboxes as Presable buttons -->
+    <div class="strike"><span>Show: </span></div>
+    <div class="uk-margin uk-grid-small uk-grid drop-grid">
+      <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %> Only released games</label>
+      <label class="options-labels"><%= f.check_box(:dlc, checked: "checked", class: "uk-checkbox") %> DLCs</label>
+      <label class="options-labels"><%= f.check_box(:expansion, checked: "checked", class: "uk-checkbox") %> Expansions</label>
+      <label class="options-labels"><%= f.check_box(:bundle, checked: "checked", class: "uk-checkbox") %> Bundles</label>
+      <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %> Standalone expansions</label>
+      <label class="options-labels"><%= f.check_box(:erotic, checked: "unchecked", class: "uk-checkbox") %> Erotic games</label>
+    </div>
+    <div class="drop-buttons">
+      <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
+      <%= f.submit('Search', class: "uk-button uk-button-default search-button", data: { disable_with: "Please wait..." } )%>
+    </div>
+  </div>
+  <% end %>
+</div>

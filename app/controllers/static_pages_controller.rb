@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
   def search
     # First time search:
     if params[:search]
-      @inquiry = IgdbQuery.new(params[:search])
+      @inquiry = IgdbQuery4.new(params[:search])
       @inquiry.search
       @@last_result_ids = @inquiry.results.map { |game| game = game["id"]}
 
@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
       end
     # Load more:
     elsif params[:last_input]
-      @inquiry = IgdbQuery.new(eval(params[:last_input]),
+      @inquiry = IgdbQuery4.new(eval(params[:last_input]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
       @inquiry.search
       @inquiry.fix_duplicates(@@last_result_ids)
