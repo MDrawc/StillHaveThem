@@ -1,18 +1,17 @@
-
-
 <div class="search-form">
   <%= form_for("search", method: :get, remote: true) do |f| %>
   <div class="uk-inline">
-    <span class="uk-form-icon" uk-icon="icon: search"></span>
+<!--     <div id="search-errors" class="uk-inline">
+      <span class="uk-form-icon" uk-icon="search"></span>
+    </div> -->
+
+    <span class="info-icon" uk-icon="icon: info" uk-tooltip="title: IGDB Api status: green ?????/10000; pos: right"></span>
+    <span class="uk-form-icon search-icon" uk-icon="icon: search"></span>
     <%= f.text_field(:inquiry, placeholder: "Search video games..." , class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
   </div>
 
+  <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
 
-
-
-
-
-  <!-- <div class="search-dropdown" uk-dropdown="mode: click; pos: bottom-center"> -->
   <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
     <p>Platforms: </p>
     <label><%= f.check_box(:console, checked: "checked", class: "uk-checkbox") %> Consoles</label>
@@ -39,7 +38,6 @@
       <option>Xbox One</option>
     </select>
   </div>
-  <form action="">
 
   <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
     <p>Show: </p>
@@ -55,22 +53,12 @@
   </div>
   <!-- </div> -->
   <% end %>
-
-
-
-  <button type="reset">Reset</button>
-</form>
-
-
-
-
-
 </div>
 
 
-
-
-
+<br>
+<br>
+<div class="b1"></div> <div class="b3"></div>
 
 
 

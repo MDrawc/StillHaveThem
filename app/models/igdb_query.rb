@@ -1,17 +1,46 @@
 require 'net/https'
 
 class IgdbQuery
-  include ActiveModel::Validations
-  attr_reader :query, :offset, :results, :last_input
-  validates :query, presence: true
+  extend ActiveModel::Naming
+  attr_accessor :query, :platforms
+  attr_reader :errors, :query, :offset, :results, :last_input
 
-  FIELDS = "f name,first_release_date,status,category,cover.image_id,platforms.name"
+  FIELDS_GAMES = ["name,
+  first_release_date,
+  status,
+  category,
+  cover.image_id,
+  platforms.name"].join(',')
+
+  FIELDS_DEV = ["name",
+  "developed.name",
+  "developed.first_release_date",
+  "developed.status",
+  "developed.category",
+  "developed.cover.image_id",
+  "developed.platforms.name",
+  "developed.platforms.category"].join(',')
+
+  PLATFORMS = { "console" => { "category" => [1], "platforms" => [160, 36, 45, 47, 56, 165]},
+  "arcade" => { "category" => [2], "platforms" => [52]},
+  "portable" => { "category" => [5], "platforms" => []},
+  "pc" => { "category" => [], "platforms" => [6, 13, 163, 162]},
+  "linux" => { "category" => [], "platforms" => [3, 92]},
+  "mac" => { "category" => [], "platforms" => [14]},
+  "mobile" => { "category" => [], "platforms" => [39, 73, 34, 55]},
+  "computer" => { "category" => [6], "platforms" => []},
+  "other" => { "category" => [], "platforms" => [132, 82, 113]}}
+
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
   LIST_LIMIT = 10
 
   def initialize(obj, offset = 0)
+    @errors = ActiveModel::Errors.new(self)
+
     @last_input = obj
+
+    @query_type = obj['query_type'].to_sym
 
     @query = obj['inquiry']
     @offset = offset
@@ -37,9 +66,6 @@ class IgdbQuery
 
     @erotic = !(obj['erotic'].to_i.zero?)
     @only_released = !(obj['only_released'].to_i.zero?)
-
-
-
     @where, @search , @sort  = '', '', ''
 
     @response_size = 0
@@ -48,6 +74,7 @@ class IgdbQuery
 
     puts 'IGDB-> INITIALIZED:'
     puts "query: #{@query}"
+    puts "query type: #{@query_type}"
     puts "fixed_query: #{@fixed_query}"
     puts "type: #{@type}"
     puts "platforms: #{@platforms}"
@@ -57,40 +84,10 @@ class IgdbQuery
   end
 
   def search
-    start_where
-    where_platforms
-    where_categories
-    where_erotic
-    where_released
-    end_where
-    prepare_search
-    prepare_sort
-    request(@offset)
-  end
-
-  def where_categories
-    unless @categories.values.all?
-      no_categories = []
-      no_categories.push 1 unless @categories['dlc']
-      no_categories.push 2 unless @categories['expansion']
-      no_categories.push 3 unless @categories['bundle']
-      no_categories.push 4 unless @categories['standalone']
-      @where.blank? ? @where += 'w ' : @where += '& '
-      @where += "(category != (#{no_categories.join(',')})) "
-    end
-  end
-
-  def where_released
-    if @only_released
-      @where.blank? ? @where += 'w ' : @where += '& '
-      @where += '(first_release_date != null) '
-    end
-  end
-
-  def where_erotic
-    unless @erotic
-      @where.blank? ? @where += 'w ' : @where += '& '
-      @where += '(themes != (42)) '
+    case @query_type
+    when :game then search_game
+    when :dev  then search_dev
+    when :year then search_year
     end
   end
 
@@ -118,7 +115,44 @@ class IgdbQuery
     end
   end
 
+  def validate!
+    errors.add(:base, :blank, message: "insert at least one character") if @query.blank?
+    unless @platforms.values.any?
+      errors.add(:base, :blank, message: "choose at least one platform")
+    end
+    !self.errors.any?
+  end
+
+  def read_attribute_for_validation(attr)
+    send(attr)
+  end
+
+  def self.human_attribute_name(attr, options = {})
+    attr
+  end
+
+  def self.lookup_ancestors
+    [self]
+  end
+
   private
+    def search_game
+      prepare_where
+      prepare_search
+      prepare_sort
+      request(@offset)
+    end
+
+    def search_dev
+      start_where
+      end_where
+      request(@offset)
+      post_filters
+    end
+
+    def search_year
+    end
+
     def analyze_query(query)
       fixed_query = query.strip
       fixed_query.gsub!(/\s\s+/, ' ')
@@ -136,169 +170,118 @@ class IgdbQuery
       return [fixed_query, type]
     end
 
-    def where_platforms
-      unless @platforms.values.all?
-        if calculate_rm_cost > LIST_LIMIT
-          puts 'IGDB-> ADDING PLATFORMS'
-          add_platforms
-        else
-          puts 'IGDB-> REMOVING PLATFORMS'
-          remove_platforms
-        end
-      end
-    end
-
-    def calculate_rm_cost
-      cost = { 'console' => 4,
-                'arcade' => 0,
-                'portable' => 0,
-                'pc' => 2,
-                'linux' => 2,
-                'mac' => 1,
-                'mobile' => 3,
-                'computer' => 0,
-                'other' => 3 }
-
-      result = 0
-
-      @platforms.each { |k, _v| result += cost[k] unless @platforms[k] }
-
-      puts "IGDB-> RM_COST: #{result}"
-      result
-    end
-
-    def add_platforms
-      # @platforms array should have 9 keys:
-      # console
-      # arcade
-      # portable
-      # pc
-      # linux
-      # mac
-      # mobile
-      # computer
-      # other
-      #
-      # IGDB Platform Categories:
-      # console 1
-      # arcade  2
-      # platform  3 (web browser, eshop e.t.c)
-      # operating_system  4
-      # portable_console  5
-      # computer  6 (zx spectrum, apple II e.t.c)
-
-      yes_categories = []
-      yes_platforms = []
-      # Add big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
-      if @platforms['console']
-         yes_categories.push 1
-         yes_platforms.push 160, 36, 45, 47, 56
-      end
-      # Add arcade:
-      yes_categories.push 2 if @platforms['arcade']
-      # Add portable consoles (with Ngage):
-      yes_categories.push 5 if @platforms['portable']
-      # Add PC (with PC DOS):
-      yes_platforms.push 6, 13 if @platforms['pc']
-      # Add Linux (with SteamOS):
-      yes_platforms.push 3, 92 if @platforms['linux']
-      # Add Mac:
-      yes_platforms.push 14 if @platforms['mac']
-      # Add mobile (iOs, BlackBerry Os, Android):
-      yes_platforms.push 39, 73, 34 if @platforms['mobile']
-      # Add old computers:
-      yes_categories.push 6 if @platforms['computer']
-      # Add other (Amazon Fire TV, Web browser, OnLive Game System):
-      yes_platforms.push 132, 82, 113 if @platforms['other']
-
-      is_category_added = false
-
-      @where.blank? ? @where += 'w (' : @where += '& ('
-
-      unless yes_categories.empty?
-        is_category_added = true
-        @where += "(platforms.category = (#{yes_categories.join(',')})) "
-      end
-
-      unless yes_platforms.empty?
-        @where += '| ' if is_category_added
-        @where += "(platforms = (#{yes_platforms.join(',')})) "
-      end
-
-      @where.rstrip!
-      @where += ') '
-    end
-
-    def remove_platforms
-      # @platforms array should have 9 keys:
-      # console
-      # arcade
-      # portable
-      # pc
-      # linux
-      # mac
-      # mobile
-      # computer
-      # other
-      #
-      # IGDB Platform Categories:
-      # console 1
-      # arcade  2
-      # platform  3 (web browser, eshop e.t.c)
-      # operating_system  4
-      # portable_console  5
-      # computer  6 (zx spectrum, apple II e.t.c)
-
-      no_categories = []
-      no_platforms = []
-      # Remove big consoles (with Nintendo eShop, XBLA, PSN, Virtual Console):
-      unless @platforms['console']
-         no_categories.push 1
-         no_platforms.push 160, 36, 45, 47, 56, 165
-      end
-      # Remove arcade:
-      no_categories.push 2 unless @platforms['arcade']
-      # Remove portable consoles (with Ngage):
-      no_categories.push 5 unless @platforms['portable']
-      # Remove PC (with PC DOS):
-      no_platforms.push 6, 13 unless @platforms['pc']
-      # Remove Linux (with SteamOS):
-      no_platforms.push 3, 92 unless @platforms['linux']
-      # Remove Mac:
-      no_platforms.push 14 unless @platforms['mac']
-      # Remove mobile (iOs, BlackBerry Os, Android):
-      no_platforms.push 39, 73, 34 unless @platforms['mobile']
-      # Remove old computers:
-      no_categories.push 6 unless @platforms['computer']
-      # Remove other (Amazon Fire TV, Web browser, OnLive Game System):
-      no_platforms.push 132, 82, 113 unless @platforms['other']
-
-      is_category_removed = false
-
-      @where.blank? ? @where += 'w (' : @where += '& ('
-
-      unless no_categories.empty?
-        is_category_removed = true
-        @where += "(platforms.category != (#{no_categories.join(',')})) "
-      end
-
-      unless no_platforms.empty?
-        @where += '& ' if is_category_removed
-        @where += "(platforms != (#{no_platforms.join(',')})) "
-      end
-
-      @where.rstrip!
-      @where += ') '
+    def prepare_where
+      start_where
+      where_platforms
+      where_categories
+      where_erotic
+      where_released
+      end_where
     end
 
     def start_where
-
-      case @type
-      when :prefix then @where += "w (name ~ *#{@fixed_query.inspect}) "
-      when :postfix then @where += "w (name ~ #{@fixed_query.inspect}*) "
-      when :infix then @where += "w (name ~ *#{@fixed_query.inspect}*) "
+      if @query_type == :game
+        case @type
+        when :prefix then @where += "w (name ~ *#{@fixed_query.inspect}) "
+        when :postfix then @where += "w (name ~ #{@fixed_query.inspect}*) "
+        when :infix then @where += "w (name ~ *#{@fixed_query.inspect}*) "
+        end
+      elsif @query_type == :dev
+        @where += "w ((name ~ "
+        case @type
+        when :prefix
+          @where += "*#{@fixed_query.inspect}) | (slug ~ *#{@fixed_query.inspect})) "
+        when :postfix
+          @where += "#{@fixed_query.inspect}*) | (slug ~ #{@fixed_query.inspect}*)) "
+        when :infix
+          @where += "*#{@fixed_query.inspect}*) | (slug ~ *#{@fixed_query.inspect}*)) "
+        else
+          @where += "#{@fixed_query.inspect}) | (slug ~ #{@fixed_query.inspect})) "
+        end
+        @where += "& developed != null "
       end
+    end
 
+    def where_platforms
+      unless @platforms.values.all?
+        yes_categories = []
+        yes_platforms = []
+
+        @platforms.each do |k, v|
+          if v
+            yes_categories += PLATFORMS[k]["category"]
+            yes_platforms += PLATFORMS[k]["platforms"]
+          end
+        end
+
+        puts "="*100
+        puts "="*100
+        puts "CATEGORIES:"
+        p yes_categories
+        puts "PLATFORMS:"
+        p yes_platforms
+
+
+        is_category_added = false
+        @where.blank? ? @where += 'w (' : @where += '& ('
+        unless yes_categories.empty?
+          is_category_added = true
+          @where += "(platforms.category = (#{yes_categories.join(',')})) "
+        end
+
+        unless yes_platforms.empty?
+          @where += '|' if is_category_added
+          fixed_platforms = divide_list(yes_platforms, LIST_LIMIT)
+          fixed_platforms.each do |part|
+            @where += " (platforms = (#{part.join(',')})) |"
+          end
+          @where.chop!
+        end
+
+        @where.rstrip!
+        @where += ') '
+      end
+    end
+
+    def divide_list(list, limit)
+      t = (list.size / 11)
+      t += 1 if list.size%11 > 0
+
+      result = []
+      t.times do |_i|
+        buf = []
+        limit.times do |_g|
+          buf << list.shift
+        end
+        result.push buf.compact
+      end
+      result
+    end
+
+    def where_categories
+      unless @categories.values.all?
+        no_categories = []
+        no_categories.push 1 unless @categories['dlc']
+        no_categories.push 2 unless @categories['expansion']
+        no_categories.push 3 unless @categories['bundle']
+        no_categories.push 4 unless @categories['standalone']
+        @where.blank? ? @where += 'w ' : @where += '& '
+        @where += "(category != (#{no_categories.join(',')})) "
+      end
+    end
+
+    def where_released
+      if @only_released
+        @where.blank? ? @where += 'w ' : @where += '& '
+        @where += '(first_release_date != null) '
+      end
+    end
+
+    def where_erotic
+      unless @erotic
+        @where.blank? ? @where += 'w ' : @where += '& '
+        @where += '(themes != (42)) '
+      end
     end
 
     def end_where
@@ -316,20 +299,112 @@ class IgdbQuery
 
     def request(offset)
       http = Net::HTTP.new('api-v3.igdb.com', 80)
-      request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'),
+
+      case @query_type
+      when :game
+        url_end = "games"
+        fields = FIELDS_GAMES
+      when :dev
+        url_end = "companies"
+        fields = FIELDS_DEV
+      when :year then url_end = "games"
+      end
+
+      request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{url_end}"),
        { 'user-key' => ENV['IGDB_KEY'] })
 
-      request.body = FIELDS + '; ' + @search + @where + @sort + "limit #{RESULT_LIMIT}; " + "offset #{offset};"
+      request.body = 'f ' + fields + '; ' + @search + @where + @sort +
+       "limit #{RESULT_LIMIT}; " + "offset #{offset};"
 
       puts 'IGDB-> REQUEST:'
       puts request.body
 
       @results = JSON.parse http.request(request).body
 
+      @results = convert_to_games(@results) if @query_type == :dev
+
       @response_size = @results.size
 
       puts 'IGDB-> RECEIVED RESULTS:'
       puts @results
       puts '=' * 100
+    end
+
+    def convert_to_games(developers)
+      games = []
+      developers.each do |developer|
+        if developer["developed"]
+          developer["developed"].each do |game|
+            games.push game if game.class == Hash
+          end
+        end
+      end
+      return games
+    end
+
+    def post_filters
+      puts "IGDB -> Applaying filters"
+
+      # Only released games:
+      if @only_released
+        @results.delete_if { |game| game["first_release_date"].nil?}
+      end
+
+      # Show Erotic games:
+      unless @erotic
+        @results.delete_if { |game| game["themes"].include?(42) if game["themes"]}
+      end
+
+      # Show Dlc, Expansion, Bundle, Standalone:
+      unless @categories['dlc']
+        @results.delete_if { |game| game["category"] == 1}
+      end
+
+      unless @categories['expansion']
+        @results.delete_if { |game| game["category"] == 2}
+      end
+
+      unless @categories['bundle']
+        @results.delete_if { |game| game["category"] == 3}
+      end
+
+      unless @categories['standalone']
+        @results.delete_if { |game| game["category"] == 4}
+      end
+
+      unless @platforms.values.all?
+
+        puts "IGDB -> platforms/platforms.categories filters "
+        puts "IGDB -> Plaforms array: #{@platforms}"
+
+        yes_categories = []
+        yes_platforms = []
+
+        @platforms.each do |k, v|
+          if v
+            yes_categories += PLATFORMS[k]["category"]
+            yes_platforms += PLATFORMS[k]["platforms"]
+          end
+        end
+
+        puts "IGDB -> Prepared helper arrays:"
+        puts "IGDB -> keep categories: #{yes_categories}"
+        puts "IGDB -> keep platforms: #{yes_platforms}"
+
+        @results.keep_if do |game|
+          a, b = [], []
+          game["platforms"].each do |platform|
+            a.push true if yes_categories.include?(platform["category"])
+            b.push true if yes_platforms.include?(platform["id"])
+          end
+          puts "IGDB -> #{game["name"]}, #{game["platforms"]}"
+          puts "IGDB -> categories: #{a}"
+          puts "IGDB -> platforms #{b}"
+          puts ". "*100
+          puts "IGDB -> DELETE?, #{!(a.any? || b.any?)}"
+          puts ". "*100
+          a.any? || b.any?
+        end
+      end
     end
 end
