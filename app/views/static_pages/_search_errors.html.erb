@@ -1,7 +1,18 @@
 <% if @inquiry.errors.any? %>
-  <% errors = [] %>
-  <% @inquiry.errors.full_messages.each { |msg| errors << msg } %>
-  <span id="search-errors" class="uk-form-icon warning-icon blink_me" uk-icon="warning" uk-tooltip="title: please <%= errors.join(" and ") %>; pos: left;  cls: uk-active search-warnings"></span>
+  <span id="search-errors" class="uk-form-icon warning-icon blink_me" uk-icon="warning"></span>
+  <div class="errors-dropdown" uk-dropdown="toggle: #search-errors; pos: left-center; mode: click; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
+    <% errors = @inquiry.errors.full_messages %>
+    <% if errors.size == 1 %>
+      <p>Please <%= errors.first %></p>
+    <% else %>
+      <p>Please:</p>
+      <ul>
+      <% errors.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
 <% else %>
   <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
 <% end %>
