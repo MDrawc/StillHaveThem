@@ -35,17 +35,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def status
-    # Make helper for this:
-    http = Net::HTTP.new('api-v3.igdb.com', 80)
-    request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),
-     { 'user-key' => ENV['IGDB_KEY'] })
-
-    request.body = "fields *;"
-    @status = JSON.parse http.request(request).body
-  end
-
   def test
-
   end
 end

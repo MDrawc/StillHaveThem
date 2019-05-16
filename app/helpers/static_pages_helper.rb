@@ -18,6 +18,24 @@ module StaticPagesHelper
     end
   end
 
+  def get_api_status
+    http = Net::HTTP.new('api-v3.igdb.com', 80)
+    request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),
+     { 'user-key' => ENV['IGDB_KEY'] })
+
+    request.body = "fields *;"
+    data = JSON.parse http.request(request).body
+    data = data[0]["usage_reports"]["usage_report"]
+    current = data["current_value"]
+    max = data["max_value"]
+    to_next_period = data["period_end"].to_date
+    days_left = (to_next_period - Date.today).to_i
+    period_end = "#{pluralize(days_left, 'day')} to next period"
+    requests = current.to_s + "/" + max.to_s
+
+    [requests, period_end]
+  end
+
   def convert_status(status_id)
     status = [ nil,
       nil,

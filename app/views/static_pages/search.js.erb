@@ -1,4 +1,4 @@
-$("#search-errors").html("<%= escape_javascript(render :partial => 'search_errors') %>");
+$("#search-errors").replaceWith("<%= escape_javascript(render :partial => 'search_errors') %>");
 
 if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");

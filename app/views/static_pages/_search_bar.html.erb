@@ -1,16 +1,13 @@
 <div class="search-form">
   <%= form_for("search", method: :get, remote: true) do |f| %>
-  <div class="uk-inline">
-
-    <div id="search-errors" class="uk-inline">
-      <span class="uk-form-icon search-icon" uk-icon="search"></span>
-    </div>
-    <span class="info-icon" uk-icon="icon: info" uk-tooltip="title: IGDB Api status: green ?????/10000; pos: right"></span>
+  <div class="uk-inline s-inline">
+    <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
+    <% requests, period_end = get_api_status %>
+    <% as = image_tag("icon-white.svg", alt: "IGDB logo",class: "igdb-logo", draggable: "false", width: 30) %>
+    <%= content_tag(:span, nil, class: "info-icon", "uk-icon" => "info", "uk-tooltip" => "title: #{as} IGDB Api status: #{requests} #{period_end}; pos: right; cls: uk-active api-status") %>
     <%= f.text_field(:inquiry, placeholder: "Search video games..." , class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
   </div>
-
-
-    <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
+  <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
     <div class="strike"><span>Search by:</span></div>
     <div class="uk-margin uk-grid-small uk-grid drop-grid">
       <label class="platforms-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Game's title</span></label>

@@ -25,18 +25,12 @@ html {
 body {
     overflow-y: scroll;
     scrollbar-width: none;
-
-    /* Firefox */
     -ms-overflow-style: none;
-
-    /* IE 10+ */
 }
 
 body::-webkit-scrollbar {
     width: 0 !important;
 }
-
-// Safari, Chrome, Opera
 
 // Search Form (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - //
 .search-form {
@@ -56,11 +50,11 @@ body::-webkit-scrollbar {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
 }
 
-.search-icon { left: 24px; }
+.search-icon { left: 20px; }
 
 .info-icon {
     position: relative;
-    left: 394px;
+    left: 390px;
     color: #999999;
     svg {
         fill: #999999;
@@ -79,6 +73,14 @@ body::-webkit-scrollbar {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
 }
 
+.warning-icon:hover ~ .search-bar {
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+}
+
+.s-inline {
+    font-size: 0px;
+}
+
 // Errors (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .warning-icon {
     @extend .search-icon;
@@ -94,6 +96,16 @@ body::-webkit-scrollbar {
   50% {
     opacity: 0.1;
   }
+}
+
+// API Status and Search warnings (Search IGDB) - - - - - - - - - - - - - - - //
+.api-status {
+    text-align: right;
+    // left: 15px !important;
+}
+
+.search-warnings {
+    text-align: right;
 }
 
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
@@ -185,7 +197,16 @@ body::-webkit-scrollbar {
 
 // Other (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .uk-tooltip {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6) !important;
+  box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6) !important;
+
+  box-sizing: border-box;
+  max-width: 200px;
+  padding: 3px 6px;
+
+  background: #666;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
 }
 
 // Search Results (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - //

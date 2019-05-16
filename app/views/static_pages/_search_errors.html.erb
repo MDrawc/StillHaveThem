@@ -1,7 +1,7 @@
 <% if @inquiry.errors.any? %>
   <% errors = [] %>
   <% @inquiry.errors.full_messages.each { |msg| errors << msg } %>
-  <span class="uk-form-icon warning-icon blink_me" uk-icon="warning" uk-tooltip="title: please <%= errors.join(" and ") %>; pos: left"></span>
+  <span id="search-errors" class="uk-form-icon warning-icon blink_me" uk-icon="warning" uk-tooltip="title: please <%= errors.join(" and ") %>; pos: left;  cls: uk-active search-warnings"></span>
 <% else %>
-  <span class="uk-form-icon search-icon" uk-icon="search"></span>
+  <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
 <% end %>
