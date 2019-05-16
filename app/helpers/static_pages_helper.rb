@@ -30,10 +30,10 @@ module StaticPagesHelper
     max = data["max_value"]
     to_next_period = data["period_end"].to_date
     days_left = (to_next_period - Date.today).to_i
-    period_end = "#{pluralize(days_left, 'day')} to next period"
-    requests = current.to_s + "/" + max.to_s
+    requests_left = max - current
+    status = requests_left > 0
 
-    [requests, period_end]
+    [status, requests_left, days_left]
   end
 
   def convert_status(status_id)

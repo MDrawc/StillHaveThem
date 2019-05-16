@@ -1,2 +1,12 @@
 $("#show-more").html("<%= escape_javascript(render :partial => 'results') %>");
 $("#show-more").attr('id', 'showed_more');
+
+  var status_data = <%= get_api_status %>;
+  if (status_data[0]) {
+      $("#status").html("<%= escape_javascript(content_tag(:span, nil, 'uk-icon' => 'check')) %>");
+  } else {
+    $("#status").html("<%= escape_javascript(content_tag(:span, nil, 'uk-icon' => 'ban')) %>");
+  }
+  $("#requests_left").html(status_data[1]);
+  $("#days_left").html(status_data[2]);
+

@@ -2,44 +2,62 @@
   <%= form_for("search", method: :get, remote: true) do |f| %>
   <div class="uk-inline s-inline">
     <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
-    <% requests, period_end = get_api_status %>
-    <% as = image_tag("icon-white.svg", alt: "IGDB logo",class: "igdb-logo", draggable: "false", width: 30) %>
-    <%= content_tag(:span, nil, class: "info-icon", "uk-icon" => "info", "uk-tooltip" => "title: #{as} IGDB Api status: #{requests} #{period_end}; pos: right; cls: uk-active api-status") %>
+    <%= content_tag(:span, nil,id: "infc", class: "info-icon", "uk-icon" => "info")%>
     <%= f.text_field(:inquiry, placeholder: "Search video games..." , class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
   </div>
-  <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
-    <div class="strike"><span>Search by:</span></div>
-    <div class="uk-margin uk-grid-small uk-grid drop-grid">
-      <label class="platforms-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Game's title</span></label>
-      <label class="platforms-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
-      <label class="platforms-labels"><%= f.radio_button :query_type, "year", class: "uk-radio" %><span>Release year</span></label>
+  <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
+    <% status, requests_left, days_left = get_api_status %>
+    <% icon = status ? "check" : "ban" %>
+    <table>
+      <tr class="first-r">
+        <td class="status-label">
+          <%= image_tag("icon-white.svg", alt: "IGDB logo",class: "igdb-logo", draggable: "false", width: 30)%>
+          IGDB API Status:
+          <td id="status" class="values"><%= content_tag(:span, nil, "uk-icon" => "#{icon}") %></td>
+        </tr>
+        <tr>
+          <td>Requests left:</td>
+          <td id="requests_left" class="values"><%= requests_left %></td>
+        </tr>
+        <tr>
+          <td>Days to next period:</td>
+          <td id="days_left" class="values"><%= days_left %></td>
+        </tr>
+      </table>
     </div>
-    <div class="strike"><span>Platforms:</span></div>
-    <div class="uk-margin uk-grid-small uk-grid drop-grid">
-      <label class="platforms-labels"><%= f.check_box(:console, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Consoles</span></label>
-      <label class="platforms-labels"><%= f.check_box(:arcade, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Arcade</span></label>
-      <label class="platforms-labels"><%= f.check_box(:portable, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Portable</span></label>
-      <label class="platforms-labels"><%= f.check_box(:pc, checked: "checked", class: "uk-checkbox search-checkbox") %><span>PC</span></label>
-      <label class="platforms-labels"><%= f.check_box(:linux, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Linux</span></label>
-      <label class="platforms-labels"><%= f.check_box(:mac, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mac</span></label>
-      <label class="platforms-labels"><%= f.check_box(:mobile, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mobile</span></label>
-      <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Computers</span></label>
-      <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Other</span></label>
+    <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
+      <div class="strike"><span>Search by:</span></div>
+      <div class="uk-margin uk-grid-small uk-grid drop-grid">
+        <label class="platforms-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Game's title</span></label>
+        <label class="platforms-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
+        <label class="platforms-labels"><%= f.radio_button :query_type, "year", class: "uk-radio" %><span>Release year</span></label>
+      </div>
+      <div class="strike"><span>Platforms:</span></div>
+      <div class="uk-margin uk-grid-small uk-grid drop-grid">
+        <label class="platforms-labels"><%= f.check_box(:console, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Consoles</span></label>
+        <label class="platforms-labels"><%= f.check_box(:arcade, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Arcade</span></label>
+        <label class="platforms-labels"><%= f.check_box(:portable, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Portable</span></label>
+        <label class="platforms-labels"><%= f.check_box(:pc, checked: "checked", class: "uk-checkbox search-checkbox") %><span>PC</span></label>
+        <label class="platforms-labels"><%= f.check_box(:linux, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Linux</span></label>
+        <label class="platforms-labels"><%= f.check_box(:mac, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mac</span></label>
+        <label class="platforms-labels"><%= f.check_box(:mobile, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mobile</span></label>
+        <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Computers</span></label>
+        <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Other</span></label>
+      </div>
+      <!-- checkboxes as Presable buttons -->
+      <div class="strike"><span>Show: </span></div>
+      <div class="uk-margin uk-grid-small uk-grid drop-grid">
+        <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %><span>Only with release date</span></label>
+        <label class="options-labels"><%= f.check_box(:dlc, checked: "checked", class: "uk-checkbox") %><span>DLCs</span></label>
+        <label class="options-labels"><%= f.check_box(:expansion, checked: "checked", class: "uk-checkbox") %><span>Expansions</span></label>
+        <label class="options-labels"><%= f.check_box(:bundle, checked: "checked", class: "uk-checkbox") %><span>Bundles</span></label>
+        <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %><span>Standalone expansions</span></label>
+        <label class="options-labels"><%= f.check_box(:erotic, checked: "unchecked", class: "uk-checkbox") %><span>Erotic games</span></label>
+      </div>
+      <div class="drop-buttons">
+        <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
+        <%= f.submit('Search', class: "uk-button uk-button-default search-button", data: { disable_with: "Please wait..." } )%>
+      </div>
     </div>
-    <!-- checkboxes as Presable buttons -->
-    <div class="strike"><span>Show: </span></div>
-    <div class="uk-margin uk-grid-small uk-grid drop-grid">
-      <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %><span>Only with release date</span></label>
-      <label class="options-labels"><%= f.check_box(:dlc, checked: "checked", class: "uk-checkbox") %><span>DLCs</span></label>
-      <label class="options-labels"><%= f.check_box(:expansion, checked: "checked", class: "uk-checkbox") %><span>Expansions</span></label>
-      <label class="options-labels"><%= f.check_box(:bundle, checked: "checked", class: "uk-checkbox") %><span>Bundles</span></label>
-      <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %><span>Standalone expansions</span></label>
-      <label class="options-labels"><%= f.check_box(:erotic, checked: "unchecked", class: "uk-checkbox") %><span>Erotic games</span></label>
-    </div>
-    <div class="drop-buttons">
-      <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
-      <%= f.submit('Search', class: "uk-button uk-button-default search-button", data: { disable_with: "Please wait..." } )%>
-    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
