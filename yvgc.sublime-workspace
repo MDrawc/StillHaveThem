@@ -4,12 +4,88 @@
 		"selected_items":
 		[
 			[
-				"margin",
-				"margin-left"
+				"sta",
+				"status_data"
 			],
 			[
 				"get",
-				"get_api_status"
+				"get_api_status\t(_search_bar.html.erb)"
+			],
+			[
+				"req",
+				"requests_left"
+			],
+			[
+				"conte",
+				"content_tag"
+			],
+			[
+				"fir",
+				"first-r\t(_search_bar.html.erb)"
+			],
+			[
+				"margin",
+				"margin-top\tproperty"
+			],
+			[
+				"margi",
+				"margin-bottom\tproperty"
+			],
+			[
+				"marg",
+				"margin-bottom\tproperty"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"fotn",
+				"font-size"
+			],
+			[
+				"er",
+				"errors-dropdown\t(_search_errors.html.erb)"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"api",
+				"api-status\t(_search_bar.html.erb)"
+			],
+			[
+				"tex",
+				"text-align\t(application.scss)"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"uk-",
+				"uk-tooltip"
+			],
+			[
+				"reque",
+				"requests\t(static_pages_helper.rb)"
+			],
+			[
+				"perido",
+				"period_end\t(static_pages_helper.rb)"
+			],
+			[
+				"per",
+				"period_end"
 			],
 			[
 				"info",
@@ -32,10 +108,6 @@
 				"background-color"
 			],
 			[
-				"margi",
-				"margin-right"
-			],
-			[
 				"se",
 				"search-errors\t(_search_bar.html.erb)"
 			],
@@ -50,10 +122,6 @@
 			[
 				"padd",
 				"padding-left"
-			],
-			[
-				"sta",
-				"status"
 			],
 			[
 				"plat",
@@ -116,10 +184,6 @@
 				"developed"
 			],
 			[
-				"uk-",
-				"uk-toggle\t(home.html.erb)"
-			],
-			[
 				"more-gam",
 				"more-games-link\t(_cover_view.html.erb)"
 			],
@@ -168,10 +232,6 @@
 				"bottom-center\t(_searchbar.html.erb)"
 			],
 			[
-				"api",
-				"api-status"
-			],
-			[
 				"z",
 				"z-index"
 			],
@@ -182,10 +242,6 @@
 			[
 				"left",
 				"padding-left\tproperty"
-			],
-			[
-				"pad",
-				"padding"
 			],
 			[
 				"res",
@@ -344,20 +400,12 @@
 				"with_index\t(_results.html.erb)"
 			],
 			[
-				"req",
-				"request\t(igdb_query.rb)"
-			],
-			[
 				"firs",
 				"first_size"
 			],
 			[
 				"second",
 				"second_size"
-			],
-			[
-				"fir",
-				"first_size"
 			],
 			[
 				"sera",
@@ -466,95 +514,11 @@
 			[
 				"asser",
 				"assert_select"
-			],
-			[
-				"aler",
-				"alert-heading\t(_error_messages.html.erb)"
-			],
-			[
-				"backgr",
-				"background-color\tproperty"
-			],
-			[
-				"valid",
-				"valid_address"
-			],
-			[
-				"sign",
-				"sign_up\t(routes.rb)"
-			],
-			[
-				"te",
-				"test_helper\t(site_layout_test.rb)"
-			],
-			[
-				"contact",
-				"contact_path"
-			],
-			[
-				"root",
-				"root_path"
-			],
-			[
-				"co",
-				"contact_path\t(static_pages_controller_test.rb)"
-			],
-			[
-				"abo",
-				"about_path\t(static_pages_controller_test.rb)"
-			],
-			[
-				"hel",
-				"help_path\t(static_pages_controller_test.rb)"
-			],
-			[
-				"padi",
-				"padding-bottom\tproperty"
-			],
-			[
-				"nav",
-				"nav-link"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views/static_pages/_search_bar.html.erb",
-			"settings":
-			{
-				"buffer_size": 4020,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/helpers/static_pages_helper.rb",
-			"settings":
-			{
-				"buffer_size": 1744,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/search.js.erb",
-			"settings":
-			{
-				"buffer_size": 216,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/application.scss",
-			"settings":
-			{
-				"buffer_size": 8738,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -586,6 +550,10 @@
 			[
 				"h",
 				"HTMLBeautify"
+			],
+			[
+				"s",
+				"SassBeautify"
 			],
 			[
 				"sas",
@@ -696,10 +664,6 @@
 				"SassBeautify"
 			],
 			[
-				"s",
-				"SassBeautify"
-			],
-			[
 				"in",
 				"Package Control: Install Package"
 			],
@@ -800,9 +764,10 @@
 		"/home/mdad/Desktop/MyProject/yvgc",
 		"/home/mdad/Desktop/MyProject/yvgc/app",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets",
-		"/home/mdad/Desktop/MyProject/yvgc/app/assets/javascripts",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets",
 		"/home/mdad/Desktop/MyProject/yvgc/app/helpers",
+		"/home/mdad/Desktop/MyProject/yvgc/app/lib",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts",
@@ -813,20 +778,28 @@
 	],
 	"file_history":
 	[
-		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/application.scss",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/test.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/static_pages_helper.rb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_footer.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/controllers/static_pages_controller.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_search_bar.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_cover_view.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/lib/igdb_query.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/lib/IGDB_year_search.rb",
+		"/home/mdad/Desktop/RubyProjects/My Tests/IGDB_year_search.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/controllers/static_pages_controller.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_show_more.js.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/helpers/static_pages_helper.rb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_search_errors.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/stylesheets/application.scss",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/home.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/icon-dark.svg",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/icon-green-2.svg",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/icon-green.svg",
+		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/icon-white.svg",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/test.html.erb",
+		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_footer.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/status.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/application.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_search_errors.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_search_bar.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/home.html.erb",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/search.js.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_searchbar.html.erb",
 		"/home/mdad/Desktop/RubyProjects/My Tests/IGDB_only_released.rb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/models/igdb_query3.rb",
@@ -847,7 +820,6 @@
 		"/home/mdad/Desktop/MyProject/yvgc/app/views/layouts/_searchbar2.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/notes.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/Gemfile",
-		"/home/mdad/Desktop/MyProject/yvgc/app/views/static_pages/_show_more.js.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/Gemfile.lock",
 		"/home/mdad/Desktop/MyProject/yvgc/_show_more.html.erb",
 		"/home/mdad/Desktop/MyProject/yvgc/app/assets/images/shattered.png",
@@ -933,14 +905,7 @@
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/db/migrate/20190409111409_create_microposts.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/db/migrate/20190322132824_add_index_to_users_email.rb",
 		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/mailers/user_mailer.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/config/environments/production.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/config/environments/development.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/test/integration/password_resets_test.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/controllers/password_resets_controller.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/user_mailer/password_reset.html.erb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/config/environments/test.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/config/environment.rb",
-		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/app/views/password_resets/new.html.erb"
+		"/home/mdad/Desktop/RailsProjects/Rails_Tutorial/sample_app/config/environments/production.rb"
 	],
 	"find":
 	{
@@ -959,6 +924,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"uk-tooltip",
+			"ffffffcf",
+			"a",
+			"status",
+			"a",
+			"b",
 			"\")\n",
 			"tomorrow",
 			"b2",
@@ -1095,786 +1066,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views/static_pages/_search_bar.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4020,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								580,
-								580
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/helpers/static_pages_helper.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1744,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								647,
-								647
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/Ruby on Rails.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 95.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 2,
-					"file": "app/views/static_pages/search.js.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 216,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								216,
-								216
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"history_list_is_closing": true,
-							"syntax": "Packages/Rails/JavaScript (Rails).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/assets/stylesheets/application.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8738,
-						"regions":
-						{
-							"col_00000028":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2301,
-										2320
-									],
-									[
-										2587,
-										2606
-									]
-								],
-								"scope": "col_00000028"
-							},
-							"col_00000028_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_00000028_circle.png",
-								"regions":
-								[
-									[
-										2265,
-										2265
-									],
-									[
-										2554,
-										2554
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_0000004F":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6758,
-										6767
-									]
-								],
-								"scope": "col_0000004F"
-							},
-							"col_0000004F_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_0000004F_circle.png",
-								"regions":
-								[
-									[
-										6747,
-										6747
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_212121FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										7949,
-										7953
-									]
-								],
-								"scope": "col_212121FF"
-							},
-							"col_212121FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_212121FF_circle.png",
-								"regions":
-								[
-									[
-										7938,
-										7938
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_4BEBEC01":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6140,
-										6161
-									]
-								],
-								"scope": "col_4BEBEC01"
-							},
-							"col_4BEBEC01_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_4BEBEC01_circle.png",
-								"regions":
-								[
-									[
-										6095,
-										6095
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_666666FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1630,
-										1634
-									],
-									[
-										1672,
-										1676
-									],
-									[
-										3459,
-										3466
-									],
-									[
-										7270,
-										7274
-									],
-									[
-										7640,
-										7644
-									]
-								],
-								"scope": "col_666666FF"
-							},
-							"col_666666FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_666666FF_circle.png",
-								"regions":
-								[
-									[
-										1619,
-										1619
-									],
-									[
-										1662,
-										1662
-									],
-									[
-										3448,
-										3448
-									],
-									[
-										7260,
-										7260
-									],
-									[
-										7625,
-										7625
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_777777FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										7853,
-										7857
-									]
-								],
-								"scope": "col_777777FF"
-							},
-							"col_777777FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_777777FF_circle.png",
-								"regions":
-								[
-									[
-										7842,
-										7842
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_808080FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2920,
-										2924
-									]
-								],
-								"scope": "col_808080FF"
-							},
-							"col_808080FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_808080FF_circle.png",
-								"regions":
-								[
-									[
-										2891,
-										2891
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_999999FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1549,
-										1556
-									],
-									[
-										1582,
-										1589
-									],
-									[
-										1980,
-										1987
-									],
-									[
-										7603,
-										7610
-									]
-								],
-								"scope": "col_999999FF"
-							},
-							"col_999999FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_999999FF_circle.png",
-								"regions":
-								[
-									[
-										1538,
-										1538
-									],
-									[
-										1568,
-										1568
-									],
-									[
-										1969,
-										1969
-									],
-									[
-										7592,
-										7592
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_9E9E9E99":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1425,
-										1449
-									],
-									[
-										1747,
-										1771
-									],
-									[
-										3975,
-										3999
-									],
-									[
-										4971,
-										4995
-									],
-									[
-										5158,
-										5182
-									],
-									[
-										6497,
-										6521
-									],
-									[
-										6543,
-										6567
-									]
-								],
-								"scope": "col_9E9E9E99"
-							},
-							"col_9E9E9E99_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_9E9E9E99_circle.png",
-								"regions":
-								[
-									[
-										1392,
-										1392
-									],
-									[
-										1714,
-										1714
-									],
-									[
-										3942,
-										3942
-									],
-									[
-										4938,
-										4938
-									],
-									[
-										5119,
-										5119
-									],
-									[
-										6464,
-										6464
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_9E9E9EFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										5743,
-										5750
-									]
-								],
-								"scope": "col_9E9E9EFF"
-							},
-							"col_9E9E9EFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_9E9E9EFF_circle.png",
-								"regions":
-								[
-									[
-										5710,
-										5710
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_ACACACFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										3674,
-										3681
-									],
-									[
-										4488,
-										4495
-									],
-									[
-										7333,
-										7340
-									]
-								],
-								"scope": "col_ACACACFF"
-							},
-							"col_ACACACFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_ACACACFF_circle.png",
-								"regions":
-								[
-									[
-										3638,
-										3638
-									],
-									[
-										4452,
-										4452
-									],
-									[
-										7297,
-										7297
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_C2C2C2FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6798,
-										6805
-									]
-								],
-								"scope": "col_C2C2C2FF"
-							},
-							"col_C2C2C2FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_C2C2C2FF_circle.png",
-								"regions":
-								[
-									[
-										6769,
-										6769
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_C8C8C8FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										8513,
-										8520
-									]
-								],
-								"scope": "col_C8C8C8FF"
-							},
-							"col_C8C8C8FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_C8C8C8FF_circle.png",
-								"regions":
-								[
-									[
-										8497,
-										8497
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_E9E7E7FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										927,
-										934
-									]
-								],
-								"scope": "col_E9E7E7FF"
-							},
-							"col_E9E7E7FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_E9E7E7FF_circle.png",
-								"regions":
-								[
-									[
-										905,
-										905
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_EAEAEAFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										7833,
-										7840
-									]
-								],
-								"scope": "col_EAEAEAFF"
-							},
-							"col_EAEAEAFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_EAEAEAFF_circle.png",
-								"regions":
-								[
-									[
-										7807,
-										7807
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFF26":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6167,
-										6192
-									]
-								],
-								"scope": "col_FFFFFF26"
-							},
-							"col_FFFFFF26_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF26_circle.png",
-								"regions":
-								[
-									[
-										6095,
-										6095
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFF47":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6198,
-										6223
-									]
-								],
-								"scope": "col_FFFFFF47"
-							},
-							"col_FFFFFF47_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF47_circle.png",
-								"regions":
-								[
-									[
-										6095,
-										6095
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFCF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2254,
-										2263
-									],
-									[
-										2543,
-										2552
-									]
-								],
-								"scope": "col_FFFFFFCF"
-							},
-							"col_FFFFFFCF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFCF_circle.png",
-								"regions":
-								[
-									[
-										2229,
-										2229
-									],
-									[
-										2521,
-										2521
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFE8":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6365,
-										6374
-									]
-								],
-								"scope": "col_FFFFFFE8"
-							},
-							"col_FFFFFFE8_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFE8_circle.png",
-								"regions":
-								[
-									[
-										6342,
-										6342
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										4828,
-										4833
-									],
-									[
-										5036,
-										5041
-									],
-									[
-										5095,
-										5100
-									]
-								],
-								"scope": "col_FFFFFFFF"
-							},
-							"col_FFFFFFFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFFF_circle.png",
-								"regions":
-								[
-									[
-										4812,
-										4812
-									],
-									[
-										5014,
-										5014
-									],
-									[
-										5073,
-										5073
-									]
-								],
-								"scope": "col_gutter"
-							}
-						},
-						"selection":
-						[
-							[
-								3062,
-								3062
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1895,18 +1088,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.525261761324,
 			1.0
 		],
 		"rows":
@@ -1946,16 +1132,68 @@
 		"selected_items":
 		[
 			[
+				"seac",
+				"app/views/static_pages/_search_bar.html.erb"
+			],
+			[
+				"cov",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"searc",
+				"app/views/static_pages/_search_bar.html.erb"
+			],
+			[
+				"igd",
+				"app/models/igdb_query.rb"
+			],
+			[
+				"erro",
+				"app/views/static_pages/_search_errors.html.erb"
+			],
+			[
+				"hes",
+				"app/helpers/static_pages_helper.rb"
+			],
+			[
+				"sear",
+				"app/views/static_pages/_search_bar.html.erb"
+			],
+			[
+				"stat",
+				"app/controllers/static_pages_controller.rb"
+			],
+			[
+				"seamo",
+				"app/views/static_pages/_show_more.js.erb"
+			],
+			[
+				"err",
+				"app/views/static_pages/_search_errors.html.erb"
+			],
+			[
+				"se",
+				"app/views/static_pages/search.js.erb"
+			],
+			[
+				"cove",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"seachre",
+				"app/views/static_pages/_search_errors.html.erb"
+			],
+			[
+				"hom",
+				"app/views/static_pages/home.html.erb"
+			],
+			[
 				"scss",
 				"app/assets/stylesheets/application.scss"
 			],
 			[
 				"test",
 				"app/views/static_pages/test.html.erb"
-			],
-			[
-				"cov",
-				"app/views/static_pages/_cover_view.html.erb"
 			],
 			[
 				"scs",
@@ -1978,14 +1216,6 @@
 				"app/helpers/static_pages_helper.rb"
 			],
 			[
-				"searc",
-				"app/views/static_pages/_search_bar.html.erb"
-			],
-			[
-				"hom",
-				"app/views/static_pages/home.html.erb"
-			],
-			[
 				"searchbar",
 				"app/views/static_pages/_search_bar.html.erb"
 			],
@@ -1994,24 +1224,8 @@
 				"app/views/layouts/application.html.erb"
 			],
 			[
-				"se",
-				"app/views/static_pages/search.js.erb"
-			],
-			[
-				"stat",
-				"app/controllers/static_pages_controller.rb"
-			],
-			[
-				"sear",
-				"app/views/static_pages/search.html.erb"
-			],
-			[
 				".js",
 				"app/views/static_pages/search.js.erb"
-			],
-			[
-				"igd",
-				"app/models/igdb_query.rb"
 			],
 			[
 				"sera",
@@ -2096,10 +1310,6 @@
 			[
 				"helpst",
 				"app/helpers/static_pages_helper.rb"
-			],
-			[
-				"seac",
-				"app/views/layouts/_searchbar.html.erb"
 			],
 			[
 				"stathel",
@@ -2432,30 +1642,6 @@
 			[
 				"User",
 				"app/models/user.rb"
-			],
-			[
-				"formm",
-				"app/views/shared/_micropost_form.html.erb"
-			],
-			[
-				"statico",
-				"app/controllers/static_pages_controller.rb"
-			],
-			[
-				"_err",
-				"app/views/shared/_error_messages.html.erb"
-			],
-			[
-				"abo",
-				"app/views/static_pages/about.html.erb"
-			],
-			[
-				"micropostcont",
-				"app/controllers/microposts_controller.rb"
-			],
-			[
-				"ses",
-				"app/helpers/sessions_helper.rb"
 			]
 		],
 		"width": 0.0
@@ -2493,7 +1679,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 368.0,
 	"status_bar_visible": true,
 	"template_settings":

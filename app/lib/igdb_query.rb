@@ -21,6 +21,15 @@ class IgdbQuery
   "developed.platforms.name",
   "developed.platforms.category"].join(',')
 
+  FIELDS_CHAR = ["name",
+  "games.name",
+  "games.first_release_date",
+  "games.status",
+  "games.category",
+  "games.cover.image_id",
+  "games.platforms.name",
+  "games.platforms.category"].join(',')
+
   PLATFORMS = { "console" => { "category" => [1], "platforms" => [160, 36, 45, 47, 56, 165]},
   "arcade" => { "category" => [2], "platforms" => [52]},
   "portable" => { "category" => [5], "platforms" => []},
@@ -87,7 +96,7 @@ class IgdbQuery
     case @query_type
     when :game then search_game
     when :dev  then search_dev
-    when :year then search_year
+    when :char then search_char
     end
   end
 
@@ -150,7 +159,12 @@ class IgdbQuery
       post_filters
     end
 
-    def search_year
+    def search_char
+      start_where
+      end_where
+      prepare_search
+      request(@offset)
+      post_filters
     end
 
     def analyze_query(query)
@@ -180,7 +194,7 @@ class IgdbQuery
     end
 
     def start_where
-      if @query_type == :game
+      if [:game, :char].include? @query_type
         case @type
         when :prefix then @where += "w (name ~ *#{@fixed_query.inspect}) "
         when :postfix then @where += "w (name ~ #{@fixed_query.inspect}*) "
@@ -220,7 +234,6 @@ class IgdbQuery
         p yes_categories
         puts "PLATFORMS:"
         p yes_platforms
-
 
         is_category_added = false
         @where.blank? ? @where += 'w (' : @where += '& ('
@@ -273,14 +286,14 @@ class IgdbQuery
     def where_released
       if @only_released
         @where.blank? ? @where += 'w ' : @where += '& '
-        @where += '(first_release_date != null) '
+        @where += "(first_release_date != null) "
       end
     end
 
     def where_erotic
       unless @erotic
         @where.blank? ? @where += 'w ' : @where += '& '
-        @where += '(themes != (42)) '
+        @where += "(themes != (42)) "
       end
     end
 
@@ -307,7 +320,9 @@ class IgdbQuery
       when :dev
         url_end = "companies"
         fields = FIELDS_DEV
-      when :year then url_end = "games"
+      when :char
+        url_end = "characters"
+        fields = FIELDS_CHAR
       end
 
       request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{url_end}"),
@@ -321,7 +336,7 @@ class IgdbQuery
 
       @results = JSON.parse http.request(request).body
 
-      @results = convert_to_games(@results) if @query_type == :dev
+      @results = convert_to_games(@results, @query_type) unless @query_type == :game
 
       @response_size = @results.size
 
@@ -330,16 +345,17 @@ class IgdbQuery
       puts '=' * 100
     end
 
-    def convert_to_games(developers)
+    def convert_to_games(lists, type)
       games = []
-      developers.each do |developer|
-        if developer["developed"]
-          developer["developed"].each do |game|
+      key = @query_type == :dev ? "developed" : "games"
+      lists.each do |list|
+        if list[key]
+          list[key].each do |game|
             games.push game if game.class == Hash
           end
         end
       end
-      return games
+      games
     end
 
     def post_filters

@@ -1,4 +1,4 @@
-
+require 'net/https'
 module StaticPagesHelper
 
   def get_game_cover(game, options = { width: 200 })

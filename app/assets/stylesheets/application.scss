@@ -147,7 +147,6 @@ body::-webkit-scrollbar {
     td {
         font-size: 12px;
         color: #fff;
-
     }
 
     td.values {
@@ -209,19 +208,24 @@ body::-webkit-scrollbar {
 }
 
 .options-labels {
-    width: 180px;
-    font-size: 14px;
+    @extend .platforms-labels;
 
-    span {
-        padding-left: 5px;
-    }
+    width: 180px;
+}
+
+.searchby-labels {
+    @extend .platforms-labels;
+
+    width: 100px;
 }
 
 .drop-buttons {
     text-align: right;
 }
 
-.search-button {
+.reset-button {
+    float: right;
+    width: 60px;
     box-shadow: none;
     background: transparent;
     border: 0px;
@@ -229,32 +233,73 @@ body::-webkit-scrollbar {
     font-size: 15px;
     text-transform: capitalize;
     color: #666666;
-    padding: 0px 10px 0px 0px;
+    padding: 0px 5px 0px 0px;
+    height: 35px;
 }
 
-.reset-button {
-    @extend .search-button;
-}
-
-.search-button:focus {
+.reset-button:focus {
     color: inherit;
 }
 
-.search-button:hover {
+.reset-button:hover {
     color: inherit;
     filter: drop-shadow(0px 2px 3px #ACACAC);
 }
 
-.search-button:active {
+.reset-button:active {
     background: transparent;
     border: 0px;
     transform: scale(0.97);
     transition-duration: 0.1s;
 }
 
-.search-button:disabled {}
+.search-button {
+    @extend .reset-button;
+}
 
-// Other (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+.tip {
+    font-size: 14px;
+}
+
+.search-tip {
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+
+    table {
+        border-collapse: collapse;
+        width: auto;
+        margin-top: 5px;
+
+        td {
+            padding: 0px 5px 0px 5px;
+        }
+    }
+}
+
+// Radios and checkboxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.uk-radio:focus, .uk-checkbox:focus {
+    outline: none;
+    border-color: #ac89bd;
+}
+
+.uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: #ac89bd;
+    border-color: transparent;
+}
+
+.uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
+    background-color: #916AA4;
+}
+
+::selection {
+    background: #ac89bd;
+    color: #fff;
+    text-shadow: none;
+}
+
+// Other (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .uk-tooltip {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6) !important;
     box-sizing: border-box;

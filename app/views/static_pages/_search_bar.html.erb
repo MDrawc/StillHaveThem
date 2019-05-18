@@ -28,9 +28,9 @@
     <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
       <div class="strike"><span>Search by:</span></div>
       <div class="uk-margin uk-grid-small uk-grid drop-grid">
-        <label class="platforms-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Game's title</span></label>
-        <label class="platforms-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
-        <label class="platforms-labels"><%= f.radio_button :query_type, "year", class: "uk-radio" %><span>Release year</span></label>
+        <label class="searchby-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Title</span></label>
+        <label class="searchby-labels"><%= f.radio_button :query_type, "char", class: "uk-radio" %><span>Character</span></label>
+        <label class="searchby-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
       </div>
       <div class="strike"><span>Platforms:</span></div>
       <div class="uk-margin uk-grid-small uk-grid drop-grid">
@@ -44,7 +44,6 @@
         <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Computers</span></label>
         <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Other</span></label>
       </div>
-      <!-- checkboxes as Presable buttons -->
       <div class="strike"><span>Show: </span></div>
       <div class="uk-margin uk-grid-small uk-grid drop-grid">
         <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %><span>Only with release date</span></label>
@@ -54,10 +53,34 @@
         <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %><span>Standalone expansions</span></label>
         <label class="options-labels"><%= f.check_box(:erotic, checked: "unchecked", class: "uk-checkbox") %><span>Erotic games</span></label>
       </div>
-      <div class="drop-buttons">
-        <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
-        <%= f.submit('Search', class: "uk-button uk-button-default search-button", data: { disable_with: "Please wait..." } )%>
+      <div class="search-tip">
+        <a class="uk-link-muted" uk-toggle="target: #examples; animation: uk-animation-fade">You can use * for prefix, postfix and infix search.
+        </a>
+      </label>
+      <div id="examples" hidden>
+        <table>
+          <tr>
+            <td>platinum*</td>
+            <td><span uk-icon="arrow-right"></span></td>
+            <td>Platinum Games</td>
+          </tr>
+          <tr>
+            <td>*birkin</td>
+            <td><span uk-icon="arrow-right"></span></td>
+            <td>William Birkin</td>
+          </tr>
+          <tr>
+            <td>*more*</td>
+            <td><span uk-icon="arrow-right"></span></td>
+            <td>No More Heroes</td>
+          </tr>
+        </table>
       </div>
     </div>
-    <% end %>
+    <div class="drop-buttons">
+      <%= f.button('Search', class: "uk-button uk-button-default search-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } )%>
+      <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
+    </div>
   </div>
+  <% end %>
+</div>
