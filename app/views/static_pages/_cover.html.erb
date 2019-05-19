@@ -1,0 +1,11 @@
+<div class="game-cover-effect">
+<%= image_tag(cover_url, alt: game["name"], class: "game-cover",
+       draggable: "false", width: options[:width])%>
+
+<% if game["xtra"] %>
+  <div class="ex-info" uk-alert>
+    <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
+    <p><%= game["xtra"] %></p>
+  </div>
+<% end %>
+</div>

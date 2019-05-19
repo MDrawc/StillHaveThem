@@ -346,11 +346,15 @@ class IgdbQuery
     end
 
     def convert_to_games(lists, type)
+
+      ## ad extra info to each game
       games = []
       key = @query_type == :dev ? "developed" : "games"
       lists.each do |list|
+        xtra = list["name"]
         if list[key]
           list[key].each do |game|
+            game['xtra'] = xtra unless xtra.nil?
             games.push game if game.class == Hash
           end
         end
