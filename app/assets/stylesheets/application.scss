@@ -533,23 +533,7 @@ footer ul li {
 
 // Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 
-.game-space {
-    position: relative;
-
-    .extra-info {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        color: #313131;
-        font-size: 14px;
-        font-style: italic;
-        background: rgba(255, 255, 255, 0.75);
-        padding: 3px 0px 3px 0px;
-    }
-}
-
-.ex-info {
+.xtra-info {
     box-sizing: border-box;
     width: 100%;
     max-height: 100%;
@@ -564,50 +548,20 @@ footer ul li {
     font-size: 14px;
     font-style: italic;
     word-wrap: break-word;
+    padding: 10px;
 
     .uk-alert-close {
-        opacity: 1;
+        top: 14px;
+        position: unset;
+        float: right;
+        width: 20px;
+        transform: translateY(3px);
+    }
+
+    p {
+        margin: 0px;
     }
 }
-
-
-.ex-info2 {
-    @extend .ex-info;
-
-    border-radius: 0px 3px 0px 3px;
-    font-size: 14px;
-    padding: 5px 10px 5px 10px;
-
-    width: auto;
-    max-width: 100%;
-
-    svg {
-        width: 10px;
-    }
-
-    .uk-alert-close {
-        opacity: 1;
-        position: static;
-    }
-}
-
-.ex-info3 {
-    @extend .ex-info2;
-    top: 0;
-    bottom: unset;
-    padding: 5px 8px 5px 8px;
-    border-radius: 3px 0px 3px 0px;
-    background: #000000;
-    color: #d2d2d2;
-    svg {
-        width: 12px;
-        transform: translateY(-2px) !important;
-    }
-    label {
-    padding-right: 5px;
-    }
-}
-
 
 // Strike - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .strike {

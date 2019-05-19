@@ -8,7 +8,7 @@ gem "rails-uikit", git: 'git://github.com/nicbet/rails-uikit.git'
 gem 'dotenv-rails', groups: [:development, :test]
 # jQuery
 gem 'jquery-rails'
-
+# Rails
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
