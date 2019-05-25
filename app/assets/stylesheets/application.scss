@@ -17,7 +17,16 @@
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
-// HTML, Body-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABL
+
+$footer_height: 5rem;
+$navbar_height: 5rem;
+
+//Colors:
+$accent: #75C7AF;
+$accent_darker: #49AB8A;
+
+// HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
     background-color: #E9E7E7;
 }
@@ -30,6 +39,103 @@ body {
 
 body::-webkit-scrollbar {
     width: 0 !important;
+}
+
+.main-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: $footer_height + $navbar_height;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background: none;
+    width: 100%;
+    height: $footer_height;
+    font-size: 14px;
+
+    ul {
+        padding: 0px 15px 0px 0px;
+        margin: 0px;
+        float: right;
+        list-style: none;
+    }
+}
+
+// Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.speech-bubble {
+    position: relative;
+    left: 15px;
+    top: 15px;
+    background: #ffffff;
+    border-radius: 4px;
+    width: 80px;
+
+    p {
+        margin: 0;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 100;
+        color: #666666;
+        width: 60px;
+    }
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-right-color: #ffffff;
+    border-left: 0;
+    border-top: 0;
+    margin-top: 20px;
+    margin-left: -15px;
+}
+
+// Other- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.about-link {
+    color: #999;
+    text-transform: uppercase;
+    transition: 0.1s ease-in-out;
+    transition-property: color, background-color;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.about-link:hover {
+    color: #666;
+    outline: none;
+    text-decoration: none;
+}
+
+.uk-radio {
+    border: 2px solid #cccccc;
+}
+
+.uk-checkbox {
+    border: 2px solid #cccccc;
+    border-radius: 2px;
+}
+
+// Landing Page- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.still {
+    margin-top: 50px;
+}
+
+.keep {
+    @extend .still;
 }
 
 // Search Form (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -281,20 +387,20 @@ body::-webkit-scrollbar {
 
 .uk-radio:focus, .uk-checkbox:focus {
     outline: none;
-    border-color: #ac89bd;
+    border-color: $accent;
 }
 
 .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
-    background-color: #ac89bd;
+    background-color: $accent;
     border-color: transparent;
 }
 
 .uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
-    background-color: #916AA4;
+    background-color: $accent_darker;
 }
 
 ::selection {
-    background: #ac89bd;
+    background: $accent;
     color: #fff;
     text-shadow: none;
 }
@@ -349,20 +455,20 @@ body::-webkit-scrollbar {
     text-align: center;
 }
 
-.show-more-button {
+.md-button {
     background: white;
     border: 0px;
-    border-radius: 50px;
+    border-radius: 5px;
     text-transform: capitalize;
 }
 
-.show-more-button:hover {
+.md-button:hover {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
     border: 0px;
     background-color: white;
 }
 
-.show-more-button:active {
+.md-button:active {
     background-color: white;
     border: 0px;
     box-shadow: inset 0px 0px 11px 0px rgba(158, 158, 158, 0.6);
@@ -497,38 +603,6 @@ body::-webkit-scrollbar {
     :hover {
         color: #666;
     }
-}
-
-// Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-footer {
-    margin: auto;
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid #eaeaea;
-    color: #777;
-}
-
-footer a {
-    font-size: 80%;
-    vertical-align: top;
-}
-
-footer a:hover {
-    color: #222;
-}
-
-footer small {
-    float: left;
-}
-
-footer ul {
-    float: right;
-    list-style: none;
-}
-
-footer ul li {
-    float: left;
-    margin-left: 10px;
 }
 
 // Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//

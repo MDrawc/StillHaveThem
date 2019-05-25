@@ -1,184 +1,28 @@
-<h1>Welcome!</h1>
-<%= link_to "Add Game", search_url %>
-<%= link_to "TEst form", test_url %>
-<br>
-<br>
-<br>
-<br>
-<% game = {"id"=>11549, "category"=>0, "cover"=>{"id"=>15833, "image_id"=>"hgq68pexegdcmswhere8"}, "first_release_date"=>1467072000, "name"=>"Zero Escape: Zero Time Dilemma", "platforms"=>[{"id"=>6, "name"=>"PC (Microsoft Windows)"}, {"id"=>37, "name"=>"Nintendo 3DS"}, {"id"=>46, "name"=>"PlayStation Vita"}, {"id"=>48, "name"=>"PlayStation 4"}]} %>
-<div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <div class="game-space">
-    <div class="game-cover-effect">
-      <img alt="Zero Escape: Zero Time Dilemma" class="game-cover" draggable="false" width="200" src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/hgq68pexegdcmswhere8.jpg">
-      <!--  <p class="extra-info">Platinum games</p> -->
-      <div class="ex-info" uk-alert>
-        <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
-        <p>PlatinumGames</p>
-      </div>
-    </div>
-    <p class="game-name">
-      <%= game["name"] %>
-      <% if (status_id = game["status"]) && status_id != 0 %>
-      <button class="game-warning", uk-icon="icon: warning"
-      uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
-      <% end %>
-      <% if (category_id = game["category"]) && category_id != 0 %>
-      <button class="game-warning", uk-icon="icon: album"
-      uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
-      <% end %>
+<div class="uk-flex-center" uk-grid>
+  <div class="uk-width-auto still">
+    <h3>Do You Still Have Them?</h3>
+
+    <p>If so, why not to maintain your collection
+    with this free app?</p>
+    <p uk-margin>
+      <a class="uk-button uk-button-default md-button" href="#">Log in</a>
+      <%= link_to "Sign up", signup_url, class: "uk-button uk-button-default md-button" %>
     </p>
-    <p class="game-release-date">
-      <% if game["first_release_date"]%>
-      <%= Time.at(game["first_release_date"]).year %>
-      <% else %>
-      -
-      <% end %>
-      <% if platforms = game["platforms"] %>
-      <% if platforms.size > 3 %>
-      <% rest = platforms[3..-1] %>
-      <%  2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]["name"]%>
-        <% end %>
-        <p class="game-platform"><%= platforms[2]["name"]%>
-          <label class="mp-label">
-            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
-          </label>
-        </p>
-        <div id="mp-<%= game['id'] %>" hidden>
-          <% rest.each do |platform| %>
-          <p class="game-platform"><%= platform["name"]%></p>
-          <% end %>
-        </div>
-        <% else %>
-        <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform["name"]%></p>
-        <% end %>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
+  <div class="uk-width-auto keep">
+    <h3>Keep track of your games!</h3>
+    <p>Bad things can happen to them if you forget about them.</p>
+
+    <p>They can:</p>
+<ul>
+  <li>be eaten by a dog</li>
+  <li>be sold for candy by younger brother </li>
+  <li>be lost in your garage or cellar</li>
+  <li>runaway from home </li>
+  <li>be kept hostage in your friend's house</li>
+</ul>
 
 
-  <br>
-<br>
-<br>
-<br>
-<% game = {"id"=>11549, "category"=>0, "cover"=>{"id"=>15833, "image_id"=>"hgq68pexegdcmswhere8"}, "first_release_date"=>1467072000, "name"=>"Zero Escape: Zero Time Dilemma", "platforms"=>[{"id"=>6, "name"=>"PC (Microsoft Windows)"}, {"id"=>37, "name"=>"Nintendo 3DS"}, {"id"=>46, "name"=>"PlayStation Vita"}, {"id"=>48, "name"=>"PlayStation 4"}]} %>
-<div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <div class="game-space">
-    <div class="game-cover-effect">
-      <img alt="Zero Escape: Zero Time Dilemma" class="game-cover" draggable="false" width="200" src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/hgq68pexegdcmswhere8.jpg">
-      <!--  <p class="extra-info">Platinum games</p> -->
-      <div class="ex-info2" uk-alert>
-        <label>PlatinumGames</label>
-          <button class="uk-alert-close uk-icon uk-close" type="button" uk-close>
-        </button>
-
-      </div>
-    </div>
-    <p class="game-name">
-      <%= game["name"] %>
-      <% if (status_id = game["status"]) && status_id != 0 %>
-      <button class="game-warning", uk-icon="icon: warning"
-      uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
-      <% end %>
-      <% if (category_id = game["category"]) && category_id != 0 %>
-      <button class="game-warning", uk-icon="icon: album"
-      uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
-      <% end %>
-    </p>
-    <p class="game-release-date">
-      <% if game["first_release_date"]%>
-      <%= Time.at(game["first_release_date"]).year %>
-      <% else %>
-      -
-      <% end %>
-      <% if platforms = game["platforms"] %>
-      <% if platforms.size > 3 %>
-      <% rest = platforms[3..-1] %>
-      <%  2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]["name"]%>
-        <% end %>
-        <p class="game-platform"><%= platforms[2]["name"]%>
-          <label class="mp-label">
-            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
-          </label>
-        </p>
-        <div id="mp-<%= game['id'] %>" hidden>
-          <% rest.each do |platform| %>
-          <p class="game-platform"><%= platform["name"]%></p>
-          <% end %>
-        </div>
-        <% else %>
-        <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform["name"]%></p>
-        <% end %>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
+</div>
 
-
-
-
-  <br>
-<br>
-<br>
-<br>
-<% game = {"id"=>11549, "category"=>0, "cover"=>{"id"=>15833, "image_id"=>"hgq68pexegdcmswhere8"}, "first_release_date"=>1467072000, "name"=>"Zero Escape: Zero Time Dilemma", "platforms"=>[{"id"=>6, "name"=>"PC (Microsoft Windows)"}, {"id"=>37, "name"=>"Nintendo 3DS"}, {"id"=>46, "name"=>"PlayStation Vita"}, {"id"=>48, "name"=>"PlayStation 4"}]} %>
-<div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <div class="game-space">
-    <div class="game-cover-effect">
-      <img alt="Zero Escape: Zero Time Dilemma" class="game-cover" draggable="false" width="200" src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/hgq68pexegdcmswhere8.jpg">
-      <!--  <p class="extra-info">Platinum games</p> -->
-      <div class="ex-info3 uk-animation-fade" uk-alert>
-        <label>PlatinumGames</label>
-          <button class="uk-alert-close uk-icon uk-close" type="button" uk-close>
-        </button>
-
-      </div>
-    </div>
-    <p class="game-name">
-      <%= game["name"] %>
-      <% if (status_id = game["status"]) && status_id != 0 %>
-      <button class="game-warning", uk-icon="icon: warning"
-      uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
-      <% end %>
-      <% if (category_id = game["category"]) && category_id != 0 %>
-      <button class="game-warning", uk-icon="icon: album"
-      uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
-      <% end %>
-    </p>
-    <p class="game-release-date">
-      <% if game["first_release_date"]%>
-      <%= Time.at(game["first_release_date"]).year %>
-      <% else %>
-      -
-      <% end %>
-      <% if platforms = game["platforms"] %>
-      <% if platforms.size > 3 %>
-      <% rest = platforms[3..-1] %>
-      <%  2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]["name"]%>
-        <% end %>
-        <p class="game-platform"><%= platforms[2]["name"]%>
-          <label class="mp-label">
-            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
-          </label>
-        </p>
-        <div id="mp-<%= game['id'] %>" hidden>
-          <% rest.each do |platform| %>
-          <p class="game-platform"><%= platform["name"]%></p>
-          <% end %>
-        </div>
-        <% else %>
-        <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform["name"]%></p>
-        <% end %>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>

@@ -8,12 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'layouts/navigation' %>
-    <%= render 'layouts/messages' %>
-
-    <div class="uk-container">
-      <%= yield %>
+    <div class="main-container">
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/messages' %>
+      <div class="uk-container content-wrap">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
     </div>
-    <%= render 'layouts/footer' %>
   </body>
 </html>
