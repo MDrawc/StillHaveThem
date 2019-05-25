@@ -1,0 +1,19 @@
+<%= form_for(@user, url: eval(path)) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="uk-margin">
+  <%= f.text_field :name, class: 'uk-input uk-form-width-medium',
+   placeholder: 'Name', autofocus: "true" %>
+</div>
+<div class="uk-margin">
+  <%= f.email_field :email, class: 'uk-input uk-form-width-medium', placeholder: 'Email' %>
+</div>
+<div class="uk-margin">
+  <%= f.password_field :password, class: 'uk-input uk-form-width-medium', placeholder: 'Password' %>
+</div>
+<div class="uk-margin">
+  <%= f.password_field :password_confirmation, class: 'uk-input uk-form-width-medium',
+  placeholder: 'Password confirmation' %>
+</div>
+<%= f.submit yield(:button_text),
+ class: "uk-button uk-button-default md-button" %>
+<% end %>

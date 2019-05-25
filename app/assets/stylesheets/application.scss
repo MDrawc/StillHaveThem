@@ -23,12 +23,13 @@ $footer_height: 5rem;
 $navbar_height: 5rem;
 
 //Colors:
+$background: #dddddd; // #E9E7E7
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
 
 // HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
-    background-color: #E9E7E7;
+    background-color: $background;
 }
 
 body {
@@ -636,7 +637,18 @@ footer {
         margin: 0px;
     }
 }
+// Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+.uk-input {
+    border: none;
+    border-radius: 5px;
+    padding-right: 40px;
+    font-size: 14px;
+}
+
+.uk-input:focus {
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+}
 // Strike - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .strike {
     display: block;
