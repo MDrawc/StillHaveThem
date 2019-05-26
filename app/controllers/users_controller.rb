@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new()
+    @user = User.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -8,7 +12,11 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_url
     else
-      render 'new'
+      @errors = @user.errors
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 
@@ -17,5 +25,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-
 end

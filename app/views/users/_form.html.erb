@@ -1,18 +1,27 @@
-<%= form_for(@user, url: eval(path)) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+<%= form_for(@user, url: eval(path), remote: true) do |f| %>
+
+<div id="signup_errors">
+  <p id="stupid"></p>
+</div>
+
+
 <div class="uk-margin">
+  <%= f.label :name %>
   <%= f.text_field :name, class: 'uk-input uk-form-width-medium',
-   placeholder: 'Name', autofocus: "true" %>
+  autofocus: "true" %>
 </div>
 <div class="uk-margin">
-  <%= f.email_field :email, class: 'uk-input uk-form-width-medium', placeholder: 'Email' %>
+  <%= f.label :email %>
+  <%= f.email_field :email, class: 'uk-input uk-form-width-medium' %>
 </div>
 <div class="uk-margin">
-  <%= f.password_field :password, class: 'uk-input uk-form-width-medium', placeholder: 'Password' %>
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'uk-input uk-form-width-medium' %>
 </div>
 <div class="uk-margin">
-  <%= f.password_field :password_confirmation, class: 'uk-input uk-form-width-medium',
-  placeholder: 'Password confirmation' %>
+  <%= f.label :password_confirmation, 'Confirmation:' %>
+  <%= f.password_field :password_confirmation,
+   class: 'uk-input uk-form-width-medium' %>
 </div>
 <%= f.submit yield(:button_text),
  class: "uk-button uk-button-default md-button" %>

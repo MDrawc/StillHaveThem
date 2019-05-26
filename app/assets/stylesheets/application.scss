@@ -639,16 +639,11 @@ footer {
 }
 // Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-.uk-input {
-    border: none;
+.uk-modal-body {
+    background-color: $background;
     border-radius: 5px;
-    padding-right: 40px;
-    font-size: 14px;
 }
 
-.uk-input:focus {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
-}
 // Strike - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .strike {
     display: block;
