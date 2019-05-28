@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_url
     else
-      @errors = @user.errors
+      @errors = @user.errors.messages
       respond_to do |format|
         format.html
         format.js
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end

@@ -1,1 +1,5 @@
-$("#stupid").html("<%= @msg %>");
+
+$("#mail-icon").replaceWith("<%= escape_javascript(render partial: 'form_mail_errors', locals: { errors: @errors[:email] }) %>");
+$("#key-icon").replaceWith("<%= escape_javascript(render partial: 'form_pass_errors', locals: { errors: @errors[:password] }) %>");
+
+

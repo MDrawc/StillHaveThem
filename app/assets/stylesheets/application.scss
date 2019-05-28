@@ -121,11 +121,11 @@ footer {
 }
 
 .uk-radio {
-    border: 2px solid #cccccc;
+    border: 1px solid #cccccc;
 }
 
 .uk-checkbox {
-    border: 2px solid #cccccc;
+    border: 1px solid #cccccc;
     border-radius: 2px;
 }
 
@@ -215,6 +215,7 @@ footer {
     border-radius: 5px;
     padding: 7px;
     text-align: left;
+    min-width: auto;
 
     p {
         font-size: 12px;
@@ -457,22 +458,8 @@ footer {
 }
 
 .md-button {
-    background: white;
-    border: 0px;
     border-radius: 5px;
     text-transform: capitalize;
-}
-
-.md-button:hover {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
-    border: 0px;
-    background-color: white;
-}
-
-.md-button:active {
-    background-color: white;
-    border: 0px;
-    box-shadow: inset 0px 0px 11px 0px rgba(158, 158, 158, 0.6);
 }
 
 // Cover View (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -638,10 +625,181 @@ footer {
     }
 }
 // Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+.uk-form-width-medium {
+    width: 250px;
+}
 
 .uk-modal-body {
-    background-color: $background;
+    background-color: white;
     border-radius: 5px;
+}
+
+span.signup-title {
+    font-size: 24px;
+}
+
+span.its-free {
+    font-size: 14px;
+    font-style: italic;
+}
+
+img.lock-icon {
+    position: relative;
+    top: -8px;
+    left: -2px;
+}
+
+.uk-input {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 1px solid #dddddd;
+    font-size: 14px;
+    padding-left: 36px;
+}
+
+.uk-input:focus {
+    outline: none;
+    background-color: #dddddd;
+    color: #666;
+    border-color: #939393;
+}
+
+.why {
+    font-size: 14px;
+    font-style: italic;
+    float: right;
+    width: 260px;
+    padding-top: 5px;
+
+    p {
+        margin-top: 5px;
+    }
+}
+
+.submit {
+    margin-top: 35px;
+}
+
+.md-divider {
+    float: left;
+    width: 30px;
+    height: 168px;
+    margin: 0px;
+}
+
+#password {
+    padding-right: 38px;
+}
+
+#password-min {
+    font-size: 12px;
+    font-style: italic;
+    padding-left: 5px;
+    margin-top: 0px;
+    color: #999999;
+}
+
+p#emot-happy {
+    font-size: 22px;
+    color: #5da18d;
+    position: relative;
+    width: 110px;
+    top: -10px;
+    left: 155px;
+}
+
+div.rem-me {
+    padding-left: 5px;
+}
+
+span.rem-me {
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+
+p.password {
+    margin-bottom: 10px;
+}
+
+.agree {
+    font-size: 12px;
+    padding-left: 15px;
+    float: left;
+    width: 220px;
+}
+
+.create-button {
+    @extend .md-button;
+    float: left;
+    width: 102.88px;
+}
+
+p.header {
+    margin: 0px;
+}
+
+.have-account {
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding-left: 2px;
+}
+
+.input {
+    position: relative;
+}
+
+#mail-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 2.5px;
+    top: 5px;
+}
+
+#key-icon {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    left: 4px;
+    top: 6px;
+}
+
+#mail-icon.warning-icon {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+}
+
+#key-icon.warning-icon {
+    @extend #mail-icon.warning-icon;
+}
+// Eye (unmask password)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.password + .unmask {
+    width:40px;
+    height:50px;
+    background:url('eye.svg');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 215px;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 0px;
+}
+
+.password[type="text"] + .unmask {
+    background:url('eye_hidden.svg');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+
+.new_user label {
+    padding: 0px;
 }
 
 // Strike - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -677,8 +835,9 @@ footer {
     margin-left: 10px;
 }
 
-///////////////////// tests
-///
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 /* Float */
 .hvr-float {

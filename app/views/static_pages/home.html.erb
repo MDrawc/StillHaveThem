@@ -4,18 +4,20 @@
     <p>If so, why not to maintain your collection
     with this free app?</p>
     <p uk-margin>
-      <a class="uk-button uk-button-default md-button" href="#">Log in</a>
+      <a class="uk-button uk-button-default md-button" href="#">Sign in</a>
       <%= link_to "Sign up", signup_url, class: "uk-button uk-button-default md-button" %>
     </p>
-
     <%= link_to 'Sign up modal', signup_path,  {:remote => true, "uk-toggle" => "target: #modal-center", class: 'uk-button uk-button-default md-button'}  %>
-    <div id="modal-center" class="uk-flex-top" uk-modal>
+    <div id="modal-center" class="uk-flex-top" uk-modal="bg-close: false">
       <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="modal-header">
+          <p class="header"><span class="signup-title">Create a new account </span><span><%= image_tag('lock.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span><span class="its-free"> - it's free!</span></p>
+          <p class="have-account">Have an account? <%= link_to 'Sign In', root_url, class: 'uk-link-muted' %> </p>
+        </div>
         <div class="modal-content"></div>
       </div>
     </div>
-
   </div>
   <div class="uk-width-auto keep">
     <h3>Keep track of your games!</h3>
