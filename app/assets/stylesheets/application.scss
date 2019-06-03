@@ -674,6 +674,18 @@ img.lock-icon {
 
     p {
         margin-top: 5px;
+        margin-bottom: 0px;
+    }
+
+    ul {
+        margin: 0px;
+        margin-bottom: 5px;
+        padding-left: 48px;
+    }
+
+    .head {
+    font-size: 20px;
+    margin: 0px;
     }
 }
 
@@ -688,6 +700,10 @@ img.lock-icon {
     margin: 0px;
 }
 
+.md-divider.signin {
+    height: 144px;
+}
+
 #password {
     padding-right: 38px;
 }
@@ -696,7 +712,7 @@ img.lock-icon {
     font-size: 12px;
     font-style: italic;
     padding-left: 5px;
-    margin-top: 0px;
+    margin: 0px;
     color: #999999;
 }
 
@@ -705,12 +721,13 @@ p#emot-happy {
     color: #5da18d;
     position: relative;
     width: 110px;
-    top: -10px;
+    // top: -10px;
     left: 155px;
 }
 
 div.rem-me {
     padding-left: 5px;
+    margin-top: 20px;
 }
 
 span.rem-me {
@@ -727,7 +744,7 @@ p.password {
     font-size: 12px;
     padding-left: 15px;
     float: left;
-    width: 220px;
+    width: 240px;
 }
 
 .create-button {
