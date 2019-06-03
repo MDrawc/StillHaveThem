@@ -1,6 +1,6 @@
 <% if errors.any? %>
-  <span id="key-icon" class="warning-icon blink_me" uk-icon="warning"></span>
-  <div class="errors" uk-dropdown="toggle: #key-icon; pos: bottom-left; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
+  <span id="key-icon" class="warning-icon blink_me"></span>
+  <div class="errors" uk-dropdown="toggle: #key-icon; pos: top-left; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
     <% if errors.size == 1 %>
       <p>Password <%= errors.first %></p>
     <% else %>

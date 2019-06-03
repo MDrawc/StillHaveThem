@@ -3,11 +3,10 @@
   <hr class="uk-divider-vertical md-divider">
   <p><span class="head">In a minute,</span> you'll be ready to:</p>
   <ul>
-   <li>search games</li>
-   <li>create collections</li>
+    <li>search games</li>
+    <li>create collections</li>
     <li>get your lent out games back</li>
-     <li>deal with your pile of shame.</li>
-
+    <li>deal with your pile of shame.</li>
   </ul>
   <p id="emot-happy">\(^o^)/</p>
 </div>
@@ -24,8 +23,8 @@
 </div>
 </div>
 <div class="submit">
-<%= f.submit yield(:button_text),
-class: "uk-button uk-button-default create-button" %>
+<%= f.button yield(:button_text),
+class: "uk-button uk-button-default create-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
 <div class="agree">By clicking the "Create" button you agree to
   <%= link_to 'Terms of Use', root_url, class: 'uk-link-muted' %> and
   <%= link_to 'Privacy Policy', root_url, class: 'uk-link-muted' %>.

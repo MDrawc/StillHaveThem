@@ -786,12 +786,34 @@ p.header {
 
 #mail-icon.warning-icon {
     position: absolute;
-    left: 8px;
-    top: 10px;
 }
 
 #key-icon.warning-icon {
     @extend #mail-icon.warning-icon;
+}
+
+
+#s-mail-icon {
+    @extend #mail-icon;
+}
+
+#s-key-icon {
+    @extend #key-icon;
+}
+
+.warning-icon {
+    width:40px;
+    height:40px;
+    background:url('warning.svg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.search-warning-icon {
+    @extend .warning-icon;
+    background-size: 70% 70%;
 }
 // Eye (unmask password)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

@@ -6,10 +6,10 @@
   <p id="emot-happy">(◡‿◡ )</p>
 </div>
 <div class="input">
-  <p><%= image_tag('mail.svg', alt: 'mail logo', id: 'mail-icon', draggable: 'false')%><%= f.email_field :email, class: 'uk-input uk-form-width-medium', placeholder: 'Email address' %></p>
+  <p><%= image_tag('mail.svg', alt: 'mail logo', id: 's-mail-icon', draggable: 'false')%><%= f.email_field :email, class: 'uk-input uk-form-width-medium', placeholder: 'Email address' %></p>
 </div>
 <div class="input">
-  <p class="password"><%= image_tag('key.svg', alt: 'password logo, key', id: 'key-icon', draggable: 'false')%><%= f.password_field :password, id: 'password', class: 'password uk-input uk-form-width-medium', placeholder: 'Password' %>
+  <p class="password"><%= image_tag('key.svg', alt: 'password logo, key', id: 's-key-icon', draggable: 'false')%><%= f.password_field :password, id: 'password', class: 'password uk-input uk-form-width-medium', placeholder: 'Password' %>
   <button class="uk-button unmask" type="button"></button></p>
 </div>
 <div class="rem-me">
@@ -17,7 +17,7 @@
 </div>
 </div>
 <div class="submit">
-<%= f.submit yield(:button_text),
-class: "uk-button uk-button-default create-button" %>
+<%= f.button yield(:button_text),
+class: "uk-button uk-button-default create-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
 </div>
 <% end %>
