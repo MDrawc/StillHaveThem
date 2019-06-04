@@ -17,23 +17,27 @@ module StaticPagesHelper
   end
 
   def get_api_status
-    # http = Net::HTTP.new('api-v3.igdb.com', 80)
-    # request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),
-    #  { 'user-key' => ENV['IGDB_KEY'] })
 
-    # request.body = "fields *;"
-    # data = JSON.parse http.request(request).body
-    # data = data[0]["usage_reports"]["usage_report"]
-    # current = data["current_value"]
-    # max = data["max_value"]
-    # to_next_period = data["period_end"].to_date
-    # days_left = (to_next_period - Date.today).to_i
-    # requests_left = max - current
-    # status = requests_left > 0
+    http = Net::HTTP.new('api-v3.igdb.com', 80)
+    request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/api_status'),
+     { 'user-key' => ENV['IGDB_KEY'] })
+    request.body = "fields *;"
 
-    days_left = 0
-    requests_left = 0
-    status = requests_left > 0
+    begin
+      data = JSON.parse http.request(request).body
+      data = data[0]["usage_reports"]["usage_report"]
+      current = data["current_value"]
+      max = data["max_value"]
+      to_next_period = data["period_end"].to_date
+      days_left = (to_next_period - Date.today).to_i
+      requests_left = max - current
+      status = requests_left > 0
+
+      rescue JSON::ParserError
+        days_left = "???"
+        requests_left = "???"
+        status = nil
+    end
 
     [status, requests_left, days_left]
   end

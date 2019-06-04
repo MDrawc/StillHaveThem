@@ -7,13 +7,19 @@
   </div>
   <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
     <% status, requests_left, days_left = get_api_status %>
-    <% icon = status ? "check" : "ban" %>
     <table>
       <tr class="first-r">
         <td class="status-label">
-          <%= image_tag("igdb_white.svg", alt: "IGDB logo",class: "igdb-logo", draggable: "false", width: 30)%>
+          <%= image_tag("igdb_white.svg", alt: "IGDB logo",class: "igdb-logo", draggable: "false", width: 30) %>
           IGDB API Status:
-          <td id="status" class="values"><%= content_tag(:span, nil, "uk-icon" => "#{icon}") %></td>
+          <td id="status" class="values">
+            <% if status %>
+            <% icon = status ? "check" : "ban" %>
+            <% else %>
+            <% icon = "question" %>
+            <% end %>
+            <%= content_tag(:span, nil, "uk-icon" => "#{icon}") %>
+          </td>
         </tr>
         <tr>
           <td>Requests left:</td>

@@ -1,15 +1,5 @@
 $("#search-errors").replaceWith("<%= escape_javascript(render :partial => 'search_errors') %>");
 
 if (<%= !@inquiry.errors.any? %>) {
-
-  var status_data = <%= get_api_status %>;
-  if (status_data[0]) {
-      $("#status").html("<%= escape_javascript(content_tag(:span, nil, 'uk-icon' => 'check')) %>");
-  } else {
-    $("#status").html("<%= escape_javascript(content_tag(:span, nil, 'uk-icon' => 'ban')) %>");
-  }
-  $("#requests_left").html(status_data[1]);
-  $("#days_left").html(status_data[2]);
-
   $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
 }
