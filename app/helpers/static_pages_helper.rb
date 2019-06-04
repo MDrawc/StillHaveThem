@@ -13,7 +13,8 @@ module StaticPagesHelper
     cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
     cover_url += cover_id.to_s + ".jpg"
 
-    render partial: "cover", locals: { game: game, cover_url: cover_url, options: options}
+    render partial: "cover", locals: { game: game, cover_url: cover_url,
+     options: options }
   end
 
   def get_api_status

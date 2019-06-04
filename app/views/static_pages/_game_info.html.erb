@@ -1,0 +1,41 @@
+<div id="i-<%= game['id'] %>" uk-offcanvas="mode: none">
+  <div class="uk-offcanvas-bar">
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <h3><%= game['name'] %>
+    <% if game["first_release_date"]%>
+    (<%= Time.at(game["first_release_date"]).year %>)
+    <% else %>
+    <% end %>
+    </h3>
+    <p>
+      <%= image_tag(cover_url, alt: game["name"], class: "game-cover",
+      draggable: "false", width: options[:width]) %>
+    </p>
+    <% if platforms = game["platforms"] %>
+    <p class="game-platform">
+      <% platforms.each do |platform| %>
+      <%= platform["name"]%>,
+      <% end %>
+    </p>
+    <% end %>
+    <p><%= link_to 'Add To Collection ', root_url, class: "uk-icon-link", "uk-icon" => "plus-circle" %></p>
+    <hr>
+
+
+    <div id="game-summary">
+      <%= game['summary'] %>
+    </div>
+
+
+
+
+    <hr>
+    <!-- SCreenshots -->
+    <hr>
+
+
+
+    <%= link_to 'Search in Google',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22" , class: "uk-icon-link", target: "_blank", "uk-icon" => "google" %>
+
+  </div>
+</div>

@@ -276,7 +276,7 @@ footer {
 
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
 .search-dropdown {
-    background-color: #ffffffcf;
+    background-color: #fff;
     box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.16);
     padding: 10px;
     border-radius: 5px;
@@ -504,8 +504,7 @@ footer {
 
 .game-cover-effect:hover {
     transform: rotate(10deg);
-
-    // cursor: pointer; // might be not needed
+    cursor: pointer;
 }
 
 .game-cover-effect::after {
@@ -873,6 +872,27 @@ p.header {
     left: 100%;
     margin-left: 10px;
 }
+
+// Game Info  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+
+.uk-offcanvas-bar {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.uk-offcanvas-bar::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+#game-summary {
+    font-size: 14px;
+}
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

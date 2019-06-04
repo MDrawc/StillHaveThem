@@ -1,6 +1,6 @@
-<div class="game-cover-effect">
+<div class="game-cover-effect" uk-toggle="target: #i-<%= game['id'] %>">
 <%= image_tag(cover_url, alt: game["name"], class: "game-cover",
-       draggable: "false", width: options[:width])%>
+       draggable: "false", width: options[:width]) %>
 
 <% if game["xtra"] %>
   <div class="xtra-info" uk-alert>
@@ -9,3 +9,5 @@
   </div>
 <% end %>
 </div>
+
+<%= render partial: "game_info", locals: { game: game, cover_url: cover_url, options: options } %>

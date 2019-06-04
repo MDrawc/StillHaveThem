@@ -5,16 +5,20 @@ class IgdbQuery
   attr_accessor :query, :platforms
   attr_reader :errors, :query, :offset, :results, :last_input
 
-  FIELDS_GAMES = ["name,
-  first_release_date,
-  status,
-  category,
-  cover.image_id,
-  platforms.name"].join(',')
+  FIELDS_GAMES = ["name",
+  "first_release_date",
+  "screenshots.image_id",
+  "summary",
+  "status",
+  "category",
+  "cover.image_id",
+  "platforms.name"].join(',')
 
   FIELDS_DEV = ["name",
   "developed.name",
   "developed.first_release_date",
+  "developed.screenshots.image_id",
+  "developed.summary",
   "developed.status",
   "developed.category",
   "developed.cover.image_id",
@@ -24,6 +28,8 @@ class IgdbQuery
   FIELDS_CHAR = ["name",
   "games.name",
   "games.first_release_date",
+  "games.screenshots.image_id",
+  "games.summary",
   "games.status",
   "games.category",
   "games.cover.image_id",
