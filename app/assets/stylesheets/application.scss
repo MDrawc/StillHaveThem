@@ -23,7 +23,9 @@ $footer_height: 5rem;
 $navbar_height: 5rem;
 
 //Colors:
-$background: #dddddd; // #E9E7E7
+$background: #dddddd;
+
+// #E9E7E7
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
 
@@ -494,7 +496,7 @@ footer {
 .game-cover {
     margin-bottom: 0px !important;
     border-radius: 3px;
-    box-shadow: -2px 4px 9px 1px #9e9e9e;
+    box-shadow: -2px 4px 9px 1px #0000004a;
 }
 
 .game-cover-effect {
@@ -529,6 +531,7 @@ footer {
     background-color: transparent;
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
     transition-duration: 0.3s;
+    cursor: pointer;
 }
 
 .no-cover:hover {
@@ -623,6 +626,7 @@ footer {
         margin: 0px;
     }
 }
+
 // Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .uk-form-width-medium {
     width: 250px;
@@ -683,8 +687,8 @@ img.lock-icon {
     }
 
     .head {
-    font-size: 20px;
-    margin: 0px;
+        font-size: 20px;
+        margin: 0px;
     }
 }
 
@@ -720,6 +724,7 @@ p#emot-happy {
     color: #5da18d;
     position: relative;
     width: 110px;
+
     // top: -10px;
     left: 155px;
 }
@@ -734,7 +739,6 @@ span.rem-me {
     padding-left: 5px;
 }
 
-
 p.password {
     margin-bottom: 10px;
 }
@@ -748,6 +752,7 @@ p.password {
 
 .create-button {
     @extend .md-button;
+
     float: left;
     width: 102.88px;
 }
@@ -791,7 +796,6 @@ p.header {
     @extend #mail-icon.warning-icon;
 }
 
-
 #s-mail-icon {
     @extend #mail-icon;
 }
@@ -801,9 +805,9 @@ p.header {
 }
 
 .warning-icon {
-    width:40px;
-    height:40px;
-    background:url('warning.svg');
+    width: 40px;
+    height: 40px;
+    background: url("warning.svg");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -812,14 +816,16 @@ p.header {
 
 .search-warning-icon {
     @extend .warning-icon;
+
     background-size: 70% 70%;
 }
+
 // Eye (unmask password)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .password + .unmask {
-    width:40px;
-    height:50px;
-    background:url('eye.svg');
+    width: 40px;
+    height: 50px;
+    background: url("eye.svg");
     background-size: 80% 80%;
     background-repeat: no-repeat;
     position: absolute;
@@ -831,7 +837,7 @@ p.header {
 }
 
 .password[type="text"] + .unmask {
-    background:url('eye_hidden.svg');
+    background: url("eye_hidden.svg");
     background-size: 80% 80%;
     background-repeat: no-repeat;
 }
@@ -875,7 +881,6 @@ p.header {
 
 // Game Info  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-
 .uk-offcanvas-bar {
     overflow-y: scroll;
     scrollbar-width: none;
@@ -886,17 +891,160 @@ p.header {
     width: 0 !important;
 }
 
-#game-summary {
+#info-title {
+    margin-bottom: 0px;
+    margin-top: 0px; // when no close button
+}
+
+#info-year {
     font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#info-by {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0px;
+}
+
+#info-cover {
+    margin-bottom: 10px;
+}
+
+#info-platform {
+    @extend .game-platform;
+
+    font-style: normal;
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+#info-summary {
+    font-size: 14px;
+    text-align: justify;
+}
+
+
+.uk-slideshow {
+    margin: 15px 0px;
+}
+
+.uk-iconnav {
+    padding-top: 20px;
+}
+
+#info-links {
+    margin-top: 20px;
+}
+// Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.t-scr {
+    min-width: 100%;
+    td {
+        text-align: center;
+        letter-spacing: 10px;
+    }
+    td.arrow {
+        width: 20px;
+    }
+}
+
+.hor-cen-list {
+    display: table;
+    margin: 0 auto;
+}
+
+#screen-nav{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#screen-nav li {
+    display: inline;
+}
+// Show more summary  - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.more {
+display: none;
+}
+
+
+// Variant 1:
+// .ms-b {
+//     float: right;
+//     width: 20px;
+//     padding-bottom: 20px;
+// }
+
+// .md-slideshow {
+//     clear: both;
+// }
+
+// Variant 2:
+
+span.dots {
+    white-space: nowrap;
+}
+
+.ms-b-down {
+    position: relative;
+    top: 1px;
+}
+
+.ms-b-up {
+    position: relative;
+    top: -4px;
+}
+// Slideshow border - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Variant 1
+//$slideshow: #0a0a0a;
+// Variant 2
+$slideshow: #393939;
+
+.uk-position-relative.uk-slideshow {
+    // Variant 1
+    // background: $slideshow;
+    // border: 4px solid $slideshow;
+    // border-radius: 5px;
+
+    // Variant 2
+    background: $slideshow;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+ul.uk-slideshow-items {
+    // Variant 1
+    // border-radius: 3px;
+
+    // Variant 2
+    border-radius: 3px 3px 0px 0px;
+    box-shadow: 0px 10px 10px -8px #00000030;
+}
+
+//Missing first picture fix:
+
+ul.uk-slideshow-items li img {
+    height: unset !important;
 }
 
 
 
 
 
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 /* Float */
 .hvr-float {

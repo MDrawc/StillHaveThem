@@ -38,7 +38,7 @@
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
         <hr>
-        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
+        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span id="dots-<%= game['id'] %>"><%= summary[:span] %></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %></span><button class="uk-icon-link uk-icon ms-b" onclick="myFunction(<%= game['id'] %>)" id="ms-b-<%= game['id'] %>" uk-icon="icon: triangle-down"></button>
     </p>
     <script>
     function myFunction(id) {
@@ -47,9 +47,13 @@
     if (dots.style.display === "none") {
     dots.style.display = "inline";
     moreText.style.display = "none";
+    $("#ms-b-" + id).attr("uk-icon", "triangle-down");
+    $("#ms-b-" + id).blur();
     } else {
     dots.style.display = "none";
     moreText.style.display = "inline";
+    $("#ms-b-" + id).attr("uk-icon", "triangle-up");
+    $("#ms-b-" + id).blur();
     }
     }
     </script>
