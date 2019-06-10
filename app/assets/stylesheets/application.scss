@@ -893,7 +893,9 @@ p.header {
 
 #info-title {
     margin-bottom: 0px;
-    margin-top: 0px; // when no close button
+    margin-top: 0px;
+
+    // when no close button
 }
 
 #info-year {
@@ -926,7 +928,6 @@ p.header {
     text-align: justify;
 }
 
-
 .uk-slideshow {
     margin: 15px 0px;
 }
@@ -938,14 +939,35 @@ p.header {
 #info-links {
     margin-top: 20px;
 }
+
+.metacritic {
+    border: 3px solid #656565;
+
+    svg {
+        max-width: 80%;
+        fill: #a5a5a5;
+    }
+}
+
+.metacritic:hover svg {
+    fill: #c9c9c9;
+}
+
+.google svg{
+    max-width: unset;
+    width: 26px;
+}
+
 // Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .t-scr {
     min-width: 100%;
+
     td {
         text-align: center;
         letter-spacing: 10px;
     }
+
     td.arrow {
         width: 20px;
     }
@@ -956,7 +978,7 @@ p.header {
     margin: 0 auto;
 }
 
-#screen-nav{
+#screen-nav {
     list-style: none;
     margin: 0px;
     padding: 0px;
@@ -965,12 +987,12 @@ p.header {
 #screen-nav li {
     display: inline;
 }
+
 // Show more summary  - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .more {
-display: none;
+    display: none;
 }
-
 
 // Variant 1:
 // .ms-b {
@@ -998,6 +1020,7 @@ span.dots {
     position: relative;
     top: -4px;
 }
+
 // Slideshow border - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // Variant 1
 //$slideshow: #0a0a0a;
@@ -1031,37 +1054,6 @@ ul.uk-slideshow-items li img {
     height: unset !important;
 }
 
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
-/* Float */
-.hvr-float {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-
-.hvr-float:hover, .hvr-float:focus, .hvr-float:active {
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
-}

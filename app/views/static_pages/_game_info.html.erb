@@ -92,12 +92,13 @@
             </table>
             <% end %>
         </div>
+
         <% end %>
         <!-- LINKS -->
+        <hr>
         <div id="info-links">
-            <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
-            <%= link_to '',"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
-            <%= link_to '',"https://isthereanydeal.com/search/?q=#{ game['name'].gsub(' ', '+') }" , class: "uk-icon-button", target: "_blank", "uk-icon" => "google" %>
+            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+            <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
         </div>
     </div>
 </div>
