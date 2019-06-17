@@ -1,5 +1,15 @@
 <h1>Welcome <%= current_user.email %></h1>
-<p>Those are your games...</p>
+<h2>Your collections: </h2>
+
+
+<ul>
+<% current_user.collections.each do |collection| %>
+  <li><%= collection.name %> (<%= collection.default ? 'default' : 'custom' %>)
+  </li>
+<% end %>
+</ul>
+
+
 
 <p><%= link_to "Log out", logout_path, method: :delete %></p>
 <p><%= link_to "Add games", search_path%></p>
