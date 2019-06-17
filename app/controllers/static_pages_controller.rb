@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :require_user, only: [:search]
   # For duplicates removal:
   @@last_result_ids = []
 
