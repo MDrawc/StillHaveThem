@@ -11,6 +11,7 @@ class StaticPagesController < ApplicationController
   def search
     # First time search:
     if params[:search]
+
       @inquiry = IgdbQuery.new(params[:search])
 
       if @inquiry.validate!
@@ -19,6 +20,7 @@ class StaticPagesController < ApplicationController
       end
 
       respond_to do |format|
+        format.html
         format.js
       end
     # Load more:

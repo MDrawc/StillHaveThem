@@ -9,7 +9,11 @@
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-        <p id="info-by">by Platinum Games</p>
+
+        <% if devs = get_developer(game) %>
+            <p id="info-by">by <%= devs.join(', ') %></p>
+        <% end %>
+
         <!-- COVER -->
         <% if cover_url %>
         <p id="info-cover"><%= image_tag(cover_url, alt: game['name'], class: "game-cover",
@@ -30,14 +34,16 @@
         </p>
         <% end %>
         <!-- NAVIGATION -->
+        <div class="info-nav">
         <ul class="uk-iconnav">
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: database' %></li>
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: star' %></li>
-            <li><%= link_to '', root_url, 'uk-icon' => 'icon: heart' %></li>
+            <li><%= link_to '', root_url, 'uk-icon' => 'icon: bell' %></li>
         </ul>
+    </div>
+        <hr>
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
-        <hr>
         <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
     </p>
     <script>
@@ -92,13 +98,13 @@
             </table>
             <% end %>
         </div>
-
+        <hr>
         <% end %>
         <!-- LINKS -->
-        <hr>
+
         <div id="info-links">
-            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
-            <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+            <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
         </div>
     </div>
 </div>

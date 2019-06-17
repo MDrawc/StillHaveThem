@@ -12,6 +12,8 @@ class IgdbQuery
   "status",
   "category",
   "cover.image_id",
+  "involved_companies.company.name",
+  "involved_companies.developer",
   "platforms.name"].join(',')
 
   FIELDS_DEV = ["name",
@@ -33,6 +35,8 @@ class IgdbQuery
   "games.status",
   "games.category",
   "games.cover.image_id",
+  "games.involved_companies.company.name",
+  "games.involved_companies.developer",
   "games.platforms.name",
   "games.platforms.category"].join(',')
 
@@ -360,6 +364,7 @@ class IgdbQuery
         xtra = list["name"]
         if list[key]
           list[key].each do |game|
+            game['request'] = @query_type
             game['xtra'] = xtra unless xtra.nil?
             games.push game if game.class == Hash
           end

@@ -49,6 +49,22 @@ module StaticPagesHelper
     end
   end
 
+  def get_developer(game)
+    involved = game['involved_companies']
+    if involved && involved.class == Array
+      if involved.any? { |thing| thing.class == Hash }
+        devs = []
+        involved.each do |company|
+          devs << company['company']['name'] if company['developer']
+        end
+        return devs
+      end
+    elsif game['request'] == :dev
+      return [game['xtra']]
+    end
+    return false
+  end
+
   def get_screenshots(game)
     screenshots = game['screenshots']
     urls = []
