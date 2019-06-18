@@ -15,7 +15,7 @@ class IgdbQuery
   "cover.image_id",
   "involved_companies.company.name",
   "involved_companies.developer",
-  "platforms.name"].join(',')
+  "platforms.*"].join(',')
 
   FIELDS_DEV = ["name",
   "developed.name",
@@ -25,8 +25,7 @@ class IgdbQuery
   "developed.status",
   "developed.category",
   "developed.cover.image_id",
-  "developed.platforms.name",
-  "developed.platforms.category"].join(',')
+  "developed.platforms.*"].join(',')
 
   FIELDS_CHAR = ["name",
   "games.name",
@@ -38,8 +37,7 @@ class IgdbQuery
   "games.cover.image_id",
   "games.involved_companies.company.name",
   "games.involved_companies.developer",
-  "games.platforms.name",
-  "games.platforms.category"].join(',')
+  "games.platforms.*"].join(',')
 
   PLATFORMS = { "console" => { "category" => [1], "platforms" => [160, 36, 45, 47, 56, 165]},
   "arcade" => { "category" => [2], "platforms" => [52]},
@@ -161,6 +159,7 @@ class IgdbQuery
       prepare_search
       prepare_sort
       request(@offset)
+      save_platforms
     end
 
     def search_dev
@@ -168,6 +167,7 @@ class IgdbQuery
       end_where
       request(@offset)
       post_filters
+      save_platforms
     end
 
     def search_char
@@ -176,6 +176,7 @@ class IgdbQuery
       prepare_search
       request(@offset)
       post_filters
+      save_platforms
     end
 
     def analyze_query(query)
@@ -437,6 +438,21 @@ class IgdbQuery
           puts ". "*100
           a.any? || b.any?
         end
+      end
+    end
+
+    def save_platforms
+      if @results.present?
+      @results.each do |game|
+        if game['platforms']
+        game['platforms'].each do |plat|
+          unless Platform.exists?(igdb_id: plat['id'])
+            Platform.create(igdb_id: plat['id'], name: plat['name'],
+              generation: plat['generation'], category: plat['category'])
+          end
+        end
+        end
+      end
       end
     end
 end

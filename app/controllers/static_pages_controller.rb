@@ -18,6 +18,9 @@ class StaticPagesController < ApplicationController
       if @inquiry.validate!
         @inquiry.search
         @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
+
+
+
       end
 
       respond_to do |format|
