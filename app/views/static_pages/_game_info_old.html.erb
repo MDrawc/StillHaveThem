@@ -41,28 +41,6 @@
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: bell' %></li>
         </ul>
     </div>
-
-        <!-- ADD GAME TO WHISHLIST -->
-
-        <%= form_for(:game, url: games_path) do |f| %>
-            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'Wishlist').id %>
-            <%= f.hidden_field :name, value: game['name'] %>
-            <%= f.hidden_field :igdb_id, value: game['id'] %>
-            <%= f.submit 'Add to Whishlist', class: "btn btn-primary" %>
-        <% end %>
-
-
-        <!-- ADD GAME TO PLAYED -->
-
-        <%= form_for(:game, url: games_path) do |f| %>
-            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'I\'ve Played This').id %>
-            <%= f.hidden_field :name, value: game['name'] %>
-            <%= f.hidden_field :igdb_id, value: game['id'] %>
-            <%= f.submit 'Add to I\'ve Played This', class: "btn btn-primary" %>
-        <% end %>
-
-        <!-- ////////////////////////////////////// -->
-
         <hr>
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>

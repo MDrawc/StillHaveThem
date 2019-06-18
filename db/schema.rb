@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_092012) do
+ActiveRecord::Schema.define(version: 2019_06_17_211600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_games", force: :cascade do |t|
+    t.bigint "collection_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id", "game_id"], name: "index_collection_games_on_collection_id_and_game_id", unique: true
+    t.index ["collection_id"], name: "index_collection_games_on_collection_id"
+    t.index ["game_id"], name: "index_collection_games_on_game_id"
+  end
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
@@ -21,7 +31,17 @@ ActiveRecord::Schema.define(version: 2019_06_17_092012) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "custom_name"
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.integer "first_release_date"
+    t.text "summary"
+    t.integer "status"
+    t.integer "category"
+    t.integer "igdb_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,3 +1,4 @@
+
 require 'net/https'
 
 class IgdbQuery

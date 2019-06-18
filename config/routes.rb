@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   resources :users, only: [:create, :edit, :update, :destroy]
+  resources :collections, only: [:new, :create, :edit, :update, :destroy]
+  resources :games, only: [:create]
 end
