@@ -15,7 +15,7 @@ class IgdbQuery
   "cover.image_id",
   "involved_companies.company.name",
   "involved_companies.developer",
-  "platforms.*"].join(',')
+  "platforms.name"].join(',')
 
   FIELDS_DEV = ["name",
   "developed.name",
@@ -25,7 +25,8 @@ class IgdbQuery
   "developed.status",
   "developed.category",
   "developed.cover.image_id",
-  "developed.platforms.*"].join(',')
+  "games.platforms.name",
+  "developed.platforms.category"].join(',')
 
   FIELDS_CHAR = ["name",
   "games.name",
@@ -37,7 +38,8 @@ class IgdbQuery
   "games.cover.image_id",
   "games.involved_companies.company.name",
   "games.involved_companies.developer",
-  "games.platforms.*"].join(',')
+  "games.platforms.name",
+  "games.platforms.category"].join(',')
 
   PLATFORMS = { "console" => { "category" => [1], "platforms" => [160, 36, 45, 47, 56, 165]},
   "arcade" => { "category" => [2], "platforms" => [52]},
@@ -448,7 +450,7 @@ class IgdbQuery
         game['platforms'].each do |plat|
           unless Platform.exists?(igdb_id: plat['id'])
             Platform.create(igdb_id: plat['id'], name: plat['name'],
-              generation: plat['generation'], category: plat['category'])
+              category: plat['category'])
           end
         end
         end

@@ -13,7 +13,6 @@ class GamesController < ApplicationController
         flash.now[:danger] = "Cant Add game :("
       end
 
-
     else
       @game = @collection.games.build(game_params)
       if @game.save
@@ -27,7 +26,7 @@ class GamesController < ApplicationController
 private
 
   def game_params
-    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary, :status, :category)
+    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary, :status, :category, :platform, platforms: [])
   end
 
 end

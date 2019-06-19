@@ -134,4 +134,12 @@ module StaticPagesHelper
       'Standalone expansion']
     return category[category_id]
   end
+
+  def scalp_platforms(game, key = 'id')
+    game['platforms'].collect { |platform| platform[key] }
+  end
+
+  def platforms_for_select(game)
+    game['platforms'].collect { |p| [ p['name'], p['id'] ] }
+  end
 end

@@ -42,12 +42,39 @@
         </ul>
     </div>
 
+
+
+
+        <!-- ADD GAME TO COLLECTION -->
+        <%= form_for(:game, url: games_path) do |f| %>
+            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'Wishlist').id %>
+            <%= f.hidden_field :name, value: game['name'] %>
+            <%= f.hidden_field :igdb_id, value: game['id'] %>
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
+            <% if game['platforms'].size > 1 %>
+                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
+            <% else %>
+                <%= f.select(:platform, platforms_for_select(game)) %>
+            <% end %>
+
+            <%= f.submit 'Add to Collection', class: "btn btn-primary" %>
+        <% end %>
+
+
         <!-- ADD GAME TO WHISHLIST -->
 
         <%= form_for(:game, url: games_path) do |f| %>
             <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'Wishlist').id %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
+
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
             <%= f.submit 'Add to Whishlist', class: "btn btn-primary" %>
         <% end %>
 
@@ -58,8 +85,15 @@
             <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'I\'ve Played This').id %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
+
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
             <%= f.submit 'Add to I\'ve Played This', class: "btn btn-primary" %>
         <% end %>
+
+
 
         <!-- ////////////////////////////////////// -->
 
