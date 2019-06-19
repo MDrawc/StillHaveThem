@@ -140,6 +140,7 @@ module StaticPagesHelper
   end
 
   def platforms_for_select(game)
-    game['platforms'].collect { |p| [ p['name'], p['id'] ] }
+    # game['platforms'].collect { |p| [ p['name'], p['id'] ] }
+    game['platforms'].collect { |p| [ p['name'], "#{p['id']},#{p['name']}" ] }
   end
 end

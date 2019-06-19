@@ -14,7 +14,12 @@ class GamesController < ApplicationController
       end
 
     else
-      @game = @collection.games.build(game_params)
+      @game = @collection.games.build(game_params.except(:platform))
+      if params[:needs_platform]
+      @game.platform = game_params[:platform].split(',').first
+      @game.platform_name = game_params[:platform].split(',').last
+      end
+
       if @game.save
         flash.now[:success] = "Game added to your collection"
       else

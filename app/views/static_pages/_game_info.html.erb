@@ -43,11 +43,11 @@
     </div>
 
 
-
-
         <!-- ADD GAME TO COLLECTION -->
         <%= form_for(:game, url: games_path) do |f| %>
-            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'Wishlist').id %>
+            <% collection = current_user.collections.find_by(name: 'My Collection') %>
+            <%= hidden_field_tag :collection, collection.id %>
+            <%= hidden_field_tag :needs_platform, value: true %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
             <% scalp_platforms(game).each do |pid| %>
@@ -59,15 +59,15 @@
             <% else %>
                 <%= f.select(:platform, platforms_for_select(game)) %>
             <% end %>
-
-            <%= f.submit 'Add to Collection', class: "btn btn-primary" %>
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
         <% end %>
-
 
         <!-- ADD GAME TO WHISHLIST -->
 
         <%= form_for(:game, url: games_path) do |f| %>
-            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'Wishlist').id %>
+            <% collection = current_user.collections.find_by(name: 'Wishlist') %>
+            <%= hidden_field_tag :collection, collection.id %>
+            <%= hidden_field_tag :needs_platform, value: false %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
 
@@ -75,14 +75,16 @@
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
             <% end %>
 
-            <%= f.submit 'Add to Whishlist', class: "btn btn-primary" %>
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
         <% end %>
 
 
         <!-- ADD GAME TO PLAYED -->
 
         <%= form_for(:game, url: games_path) do |f| %>
-            <%= hidden_field_tag :collection, current_user.collections.find_by(name: 'I\'ve Played This').id %>
+            <% collection = current_user.collections.find_by(name: 'I\'ve Played This') %>
+            <%= hidden_field_tag :collection, collection.id %>
+            <%= hidden_field_tag :needs_platform, value: false %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
 
@@ -90,10 +92,10 @@
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
             <% end %>
 
-            <%= f.submit 'Add to I\'ve Played This', class: "btn btn-primary" %>
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
         <% end %>
 
-
+        <!-- ADD TO CUSTOM COLLECTION -->
 
         <!-- ////////////////////////////////////// -->
 

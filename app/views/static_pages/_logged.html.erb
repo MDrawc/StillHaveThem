@@ -1,7 +1,6 @@
 <h1>Welcome <%= current_user.email %></h1>
 <h2>Your collections: </h2>
 
-
 <ul>
 <% current_user.collections.each do |collection| %>
   <li>
@@ -13,8 +12,6 @@
 <% end %>
 </ul>
 
-
-
 <% current_user.collections.each do |collection| %>
   <h3><%= collection.custom_name || collection.name %>:</h3>
   <ul>
@@ -23,8 +20,6 @@
   <% end %>
   </ul>
 <% end %>
-
-
 
 <%= link_to 'Create new collection', new_collection_url %>
 
