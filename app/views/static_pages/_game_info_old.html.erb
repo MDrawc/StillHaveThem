@@ -39,8 +39,72 @@
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: database' %></li>
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: star' %></li>
             <li><%= link_to '', root_url, 'uk-icon' => 'icon: bell' %></li>
+            <li><%= link_to '', root_url, 'uk-icon' => 'icon: settings' %></li>
         </ul>
     </div>
+
+        <!-- ADD GAME TO COLLECTION -->
+        <%= form_for(:game, url: games_path, remote: true) do |f| %>
+            <% collection = current_user.collections.find_by(name: 'My Collection') %>
+            <%= hidden_field_tag :collection, collection.id %>
+
+            <%= f.hidden_field :needs_platform, value: true %>
+            <%= f.hidden_field :name, value: game['name'] %>
+            <%= f.hidden_field :igdb_id, value: game['id'] %>
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
+
+            <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
+            <label><%= f.radio_button(:physical, false) %>Digital</label>
+
+            <% if game['platforms'].size > 1 %>
+                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
+            <% else %>
+                <%= f.select(:platform, platforms_for_select(game)) %>
+            <% end %>
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
+        <% end %>
+
+        <div class="add-myc-errors"></div>
+
+        <!-- ADD GAME TO WHISHLIST -->
+        <%= form_for(:game, url: games_path) do |f| %>
+            <% collection = current_user.collections.find_by(name: 'Wishlist') %>
+            <%= hidden_field_tag :collection, collection.id %>
+
+            <%= f.hidden_field :needs_platform, value: false %>
+            <%= f.hidden_field :name, value: game['name'] %>
+            <%= f.hidden_field :igdb_id, value: game['id'] %>
+
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
+        <% end %>
+
+        <!-- ADD GAME TO PLAYED -->
+        <%= form_for(:game, url: games_path) do |f| %>
+            <% collection = current_user.collections.find_by(name: 'I\'ve Played This') %>
+            <%= hidden_field_tag :collection, collection.id %>
+
+            <%= f.hidden_field :needs_platform, value: false %>
+            <%= f.hidden_field :name, value: game['name'] %>
+            <%= f.hidden_field :igdb_id, value: game['id'] %>
+
+            <% scalp_platforms(game).each do |pid| %>
+                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+            <% end %>
+
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
+        <% end %>
+
+        <!-- ADD TO CUSTOM COLLECTION -->
+
+        <!-- ////////////////////////////////////// -->
+
         <hr>
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
@@ -103,8 +167,9 @@
         <!-- LINKS -->
 
         <div id="info-links">
-            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
             <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+
         </div>
     </div>
 </div>

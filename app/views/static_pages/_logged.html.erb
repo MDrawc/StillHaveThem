@@ -1,4 +1,7 @@
 <h1>Welcome <%= current_user.email %></h1>
+
+<p><%= link_to "Add games", search_path%></p>
+
 <h2>Your collections: </h2>
 
 <ul>
@@ -25,4 +28,4 @@
 <% end %>
 
 <p><%= link_to "Log out", logout_path, method: :delete %></p>
-<p><%= link_to "Add games", search_path%></p>
+

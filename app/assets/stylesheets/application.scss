@@ -961,7 +961,20 @@ p.header {
     max-width: unset;
     width: 24px;
 }
+// Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
+hr.nav-bottom {
+    margin-top: 10px;
+}
 
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+.add-form {
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
 // Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .t-scr {

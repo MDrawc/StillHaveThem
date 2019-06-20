@@ -9,11 +9,9 @@
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-
         <% if devs = get_developer(game) %>
-            <p id="info-by">by <%= devs.join(', ') %></p>
+        <p id="info-by">by <%= devs.join(', ') %></p>
         <% end %>
-
         <!-- COVER -->
         <% if cover_url %>
         <p id="info-cover"><%= image_tag(cover_url, alt: game['name'], class: "game-cover",
@@ -35,74 +33,73 @@
         <% end %>
         <!-- NAVIGATION -->
         <div class="info-nav">
-        <ul class="uk-iconnav">
-            <li><%= link_to '', root_url, 'uk-icon' => 'icon: database' %></li>
-            <li><%= link_to '', root_url, 'uk-icon' => 'icon: star' %></li>
-            <li><%= link_to '', root_url, 'uk-icon' => 'icon: bell' %></li>
-        </ul>
-    </div>
-
+            <ul class="uk-iconnav">
+                <li><button id="add-collection-<%= game['id'] %>" class="icon-btn uk-icon-link" uk-icon='icon: database'></button></li>
+                <li>
+                    <% collection = current_user.collections.find_by(name: 'Wishlist') %>
+                    <%= render partial: "add_form_no_platform", locals: { game: game, collection_id: collection.id, icon: 'star' } %>
+                </li>
+                <li>
+                    <% collection = current_user.collections.find_by(name: 'I\'ve Played This') %>
+                    <%= render partial: "add_form_no_platform", locals: { game: game, collection_id: collection.id, icon: 'bell' } %>
+                </li>
+                <li><button id="add-custom-<%= game['id'] %>"class="icon-btn uk-icon-link" uk-icon='icon: settings'></button></li>
+            </ul>
+        </div>
         <!-- ADD GAME TO COLLECTION -->
-        <%= form_for(:game, url: games_path) do |f| %>
-            <% collection = current_user.collections.find_by(name: 'My Collection') %>
-            <%= hidden_field_tag :collection, collection.id %>
-
-            <%= f.hidden_field :needs_platform, value: true %>
-            <%= f.hidden_field :name, value: game['name'] %>
-            <%= f.hidden_field :igdb_id, value: game['id'] %>
-            <% scalp_platforms(game).each do |pid| %>
+            <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>;mode: click; delay-hide: 100">
+                <%= form_for(:game, url: games_path, remote: true) do |f| %>
+                <% collection = current_user.collections.find_by(name: 'My Collection') %>
+                <%= hidden_field_tag :collection, collection.id %>
+                <%= hidden_field_tag :form_type, 'collection' %>
+                <%= f.hidden_field :needs_platform, value: true %>
+                <%= f.hidden_field :name, value: game['name'] %>
+                <%= f.hidden_field :igdb_id, value: game['id'] %>
+                    <% scalp_platforms(game).each do |pid| %>
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
-            <% end %>
-
-
-            <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
-            <label><%= f.radio_button(:physical, false) %>Digital</label>
-
-            <% if game['platforms'].size > 1 %>
+                <% end %>
+                <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
+                <label><%= f.radio_button(:physical, false) %>Digital</label>
+                <% if game['platforms'].size > 1 %>
                 <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
-            <% else %>
+                <% else %>
                 <%= f.select(:platform, platforms_for_select(game)) %>
-            <% end %>
-            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
-        <% end %>
-
-        <!-- ADD GAME TO WHISHLIST -->
-        <%= form_for(:game, url: games_path) do |f| %>
-            <% collection = current_user.collections.find_by(name: 'Wishlist') %>
-            <%= hidden_field_tag :collection, collection.id %>
-
-            <%= f.hidden_field :needs_platform, value: false %>
-            <%= f.hidden_field :name, value: game['name'] %>
-            <%= f.hidden_field :igdb_id, value: game['id'] %>
-
-            <% scalp_platforms(game).each do |pid| %>
-                <%= f.hidden_field :platforms, value: pid, multiple: true %>
-            <% end %>
-
-            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
-        <% end %>
-
-        <!-- ADD GAME TO PLAYED -->
-        <%= form_for(:game, url: games_path) do |f| %>
-            <% collection = current_user.collections.find_by(name: 'I\'ve Played This') %>
-            <%= hidden_field_tag :collection, collection.id %>
-
-            <%= f.hidden_field :needs_platform, value: false %>
-            <%= f.hidden_field :name, value: game['name'] %>
-            <%= f.hidden_field :igdb_id, value: game['id'] %>
-
-            <% scalp_platforms(game).each do |pid| %>
-                <%= f.hidden_field :platforms, value: pid, multiple: true %>
-            <% end %>
-
-            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
-        <% end %>
-
+                <% end %>
+                <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
+                <% end %>
+                <div class="add-form-errors">erros will be shown here</div>
+            </div>
         <!-- ADD TO CUSTOM COLLECTION -->
+                <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>;mode: click; delay-hide: 100">
 
-        <!-- ////////////////////////////////////// -->
+                <% if current_user.collections.where(default: false).present? %>
+                <%= form_for(:game, url: games_path, remote: true) do |f| %>
+                <%= hidden_field_tag :form_type, 'custom' %>
+                <%= f.hidden_field :needs_platform, value: true %>
+                <%= f.hidden_field :name, value: game['name'] %>
+                <%= f.hidden_field :igdb_id, value: game['id'] %>
+                <% scalp_platforms(game).each do |pid| %>
+                    <%= f.hidden_field :platforms, value: pid, multiple: true %>
+                <% end %>
 
-        <hr>
+                <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select Collection') %>
+                <% if game['platforms'].size > 1 %>
+                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
+                <% else %>
+                <%= f.select(:platform, platforms_for_select(game)) %>
+                <% end %>
+                <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
+                <label><%= f.radio_button(:physical, false) %>Digital</label>
+
+                <%= f.submit 'Add', class: "btn btn-primary" %>
+                <% end %>
+                <div class="add-form-errors">errors here</div>
+                <% else %>
+                <p>No custom collections to add games to!</p>
+                <% end %>
+
+            </div>
+        <hr class="nav-bottom">
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
         <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
@@ -162,10 +159,9 @@
         <hr>
         <% end %>
         <!-- LINKS -->
-
         <div id="info-links">
-            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
             <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
         </div>
     </div>
 </div>

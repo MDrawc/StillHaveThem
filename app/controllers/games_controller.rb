@@ -4,27 +4,48 @@ class GamesController < ApplicationController
   def create
     @collection = current_user.collections.find_by_id(params[:collection])
 
-    if Game.exists?(igdb_id: game_params[:igdb_id])
-      @game = Game.find_by(igdb_id: game_params[:igdb_id])
+    if @collection.needs_platform
+      platform, platform_name = game_params[:platform].split(',')
+      @form_type = params[:form_type]
 
-      begin
-        @collection.games << @game
-      rescue ActiveRecord::RecordNotUnique
-        flash.now[:danger] = "Cant Add game :("
-      end
+      if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
 
-    else
-      @game = @collection.games.build(game_params.except(:platform))
-      if @collection.needs_platform
-        @game.platform = game_params[:platform].split(',').first
-        @game.platform_name = game_params[:platform].split(',').last
-      end
+        begin
+          @collection.games << @game
+        rescue ActiveRecord::RecordNotUnique
+          #error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        end
 
-      if @game.save
-        flash.now[:success] = "Game added to your collection"
       else
-        flash.now[:danger] = "Cant Add game :("
+        @game = @collection.games.build(game_params.except(:platform))
+        @game.platform, @game.platform_name = platform, platform_name
+
+        if @game.save
+        else
+          @errors = @game.errors.full_messages
+        end
       end
+    else
+      if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
+
+        begin
+          @collection.games << @game
+        rescue ActiveRecord::RecordNotUnique
+          #error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        end
+
+      else
+        @game = @collection.games.build(game_params)
+
+        if @game.save
+        else
+          @errors = @game.errors.full_messages
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 

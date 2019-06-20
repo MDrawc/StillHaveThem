@@ -8,7 +8,7 @@ def new
 end
 
 def create
-  @collection = current_user.collections.build(collection_params)
+  @collection = current_user.collections.build(collection_params.except(:name))
   @collection.name = @collection.custom_name
 
   if @collection.save

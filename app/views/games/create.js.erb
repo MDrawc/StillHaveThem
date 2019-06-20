@@ -1,0 +1,10 @@
+// UIkit.dropdown("#add-nos").hide();
+
+// UIkit.notification({
+//     message: 'Game added to your collection',
+//     status: 'primary',
+//     pos: 'top-right',
+//     timeout: 5000
+// });
+
+$("#add-<%= @form_type %>-form-<%= @game.igdb_id %> .add-form-errors").html("<%= @errors %>")
