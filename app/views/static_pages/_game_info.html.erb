@@ -63,7 +63,6 @@
         <% end %>
 
         <!-- ADD GAME TO WHISHLIST -->
-
         <%= form_for(:game, url: games_path) do |f| %>
             <% collection = current_user.collections.find_by(name: 'Wishlist') %>
             <%= hidden_field_tag :collection, collection.id %>

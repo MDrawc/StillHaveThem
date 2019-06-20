@@ -16,7 +16,7 @@
   <h3><%= collection.custom_name || collection.name %>:</h3>
   <ul>
   <% collection.games.each do |game| %>
-    <li><%= game.name %> | <%= game.igdb_id %></li>
+    <li><%= game.name %> | <%= game.platform_name || '[platform not defined]' %></li>
   <% end %>
   </ul>
 <% end %>
