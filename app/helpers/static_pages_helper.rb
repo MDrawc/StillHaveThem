@@ -57,7 +57,7 @@ module StaticPagesHelper
         involved.each do |company|
           devs << company['company']['name'] if company['developer']
         end
-        return devs
+        return devs if devs.present?
       end
     elsif game['request'] == :dev
       return [game['xtra']]

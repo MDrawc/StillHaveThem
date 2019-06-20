@@ -42,17 +42,21 @@
         </ul>
     </div>
 
-
         <!-- ADD GAME TO COLLECTION -->
         <%= form_for(:game, url: games_path) do |f| %>
             <% collection = current_user.collections.find_by(name: 'My Collection') %>
             <%= hidden_field_tag :collection, collection.id %>
-            <%= hidden_field_tag :needs_platform, value: true %>
+
+            <%= f.hidden_field :needs_platform, value: true %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
             <% scalp_platforms(game).each do |pid| %>
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
             <% end %>
+
+
+            <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
+            <label><%= f.radio_button(:physical, false) %>Digital</label>
 
             <% if game['platforms'].size > 1 %>
                 <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
@@ -66,7 +70,8 @@
         <%= form_for(:game, url: games_path) do |f| %>
             <% collection = current_user.collections.find_by(name: 'Wishlist') %>
             <%= hidden_field_tag :collection, collection.id %>
-            <%= hidden_field_tag :needs_platform, value: false %>
+
+            <%= f.hidden_field :needs_platform, value: false %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
 
@@ -77,13 +82,12 @@
             <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
         <% end %>
 
-
         <!-- ADD GAME TO PLAYED -->
-
         <%= form_for(:game, url: games_path) do |f| %>
             <% collection = current_user.collections.find_by(name: 'I\'ve Played This') %>
             <%= hidden_field_tag :collection, collection.id %>
-            <%= hidden_field_tag :needs_platform, value: false %>
+
+            <%= f.hidden_field :needs_platform, value: false %>
             <%= f.hidden_field :name, value: game['name'] %>
             <%= f.hidden_field :igdb_id, value: game['id'] %>
 

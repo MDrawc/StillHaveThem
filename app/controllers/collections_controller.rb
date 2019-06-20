@@ -40,7 +40,8 @@ end
 private
 
   def collection_params
-    params.require(:collection).permit(:name, :default, :custom_name)
+    params.require(:collection).permit(:name, :default, :custom_name,
+     :needs_platform)
   end
 
   def correct_user

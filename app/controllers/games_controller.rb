@@ -15,9 +15,9 @@ class GamesController < ApplicationController
 
     else
       @game = @collection.games.build(game_params.except(:platform))
-      if params[:needs_platform]
-      @game.platform = game_params[:platform].split(',').first
-      @game.platform_name = game_params[:platform].split(',').last
+      if @collection.needs_platform
+        @game.platform = game_params[:platform].split(',').first
+        @game.platform_name = game_params[:platform].split(',').last
       end
 
       if @game.save
@@ -31,7 +31,8 @@ class GamesController < ApplicationController
 private
 
   def game_params
-    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary, :status, :category, :platform, platforms: [])
+    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
+     :status, :category, :needs_platform, :platform, :physical, platforms: [])
   end
 
 end

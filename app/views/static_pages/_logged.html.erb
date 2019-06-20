@@ -6,11 +6,14 @@
   <li>
   <%= collection.custom_name || collection.name %>
   (<%= collection.default ? 'default' : 'custom' %>)
+  [<%= collection.needs_platform ? 'requires platform' : 'do not need platform' %>]
   | <%= link_to 'Edit Name', edit_collection_url(collection) %>
   | <%= link_to 'Delete', collection, method: :delete, data: { confirm: "You sure?"}  %>
   </li>
 <% end %>
 </ul>
+
+<%= link_to 'Create new collection', new_collection_url %>
 
 <% current_user.collections.each do |collection| %>
   <h3><%= collection.custom_name || collection.name %>:</h3>
@@ -20,8 +23,6 @@
   <% end %>
   </ul>
 <% end %>
-
-<%= link_to 'Create new collection', new_collection_url %>
 
 <p><%= link_to "Log out", logout_path, method: :delete %></p>
 <p><%= link_to "Add games", search_path%></p>
