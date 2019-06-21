@@ -1,5 +1,6 @@
 <%= form_for(:game, url: games_path, remote: true) do |f| %>
 <%= hidden_field_tag :collection, collection_id %>
+<%= hidden_field_tag :form_type, 'without-dropdown' %>
 <%= f.hidden_field :needs_platform, value: false %>
 <%= f.hidden_field :name, value: game['name'] %>
 <%= f.hidden_field :igdb_id, value: game['id'] %>

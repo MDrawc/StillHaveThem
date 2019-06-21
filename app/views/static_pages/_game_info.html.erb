@@ -67,7 +67,7 @@
                 <% end %>
                 <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
                 <% end %>
-                <div class="add-form-errors">erros will be shown here</div>
+                <div class="add-form-errors">[]</div>
             </div>
         <!-- ADD TO CUSTOM COLLECTION -->
                 <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>;mode: click; delay-hide: 100">
@@ -93,7 +93,7 @@
 
                 <%= f.submit 'Add', class: "btn btn-primary" %>
                 <% end %>
-                <div class="add-form-errors">errors here</div>
+                <div class="add-form-errors">[]</div>
                 <% else %>
                 <p>No custom collections to add games to!</p>
                 <% end %>

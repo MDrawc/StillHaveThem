@@ -1,10 +1,23 @@
-// UIkit.dropdown("#add-nos").hide();
 
-// UIkit.notification({
-//     message: 'Game added to your collection',
-//     status: 'primary',
-//     pos: 'top-right',
-//     timeout: 5000
-// });
+var msg_type = '<%= @message_type %>';
+var form_type = '<%= @form_type %>';
 
-$("#add-<%= @form_type %>-form-<%= @game.igdb_id %> .add-form-errors").html("<%= @errors %>")
+console.log(form_type);
+console.log(typeof form_type);
+
+if (msg_type) {
+UIkit.notification({
+    message: '<%= @message %>',
+    status: msg_type,
+    pos: 'top-right',
+    timeout: 5000
+});
+
+  if (form_type != 'without-dropdown') {
+    UIkit.dropdown("#add-<%= @form_type %>-form-<%= @game.igdb_id %>").hide();
+  }
+}
+
+if (form_type != 'without-dropdown') {
+$("#add-<%= @form_type %>-form-<%= @game.igdb_id %> .add-form-errors").html("<%= @errors %>");
+}
