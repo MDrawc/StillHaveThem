@@ -53,7 +53,22 @@ class GamesController < ApplicationController
     end
   end
 
+  def destroy
+
+
+
+
+
+
+  end
+
+
 private
+
+  def game_params
+    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
+     :status, :category, :needs_platform, :platform, :physical, platforms: [])
+  end
 
   def message(needs_platform = true, duplicate = false)
     if needs_platform
@@ -77,11 +92,6 @@ private
         " Nothing added."
       end
     end
-  end
-
-  def game_params
-    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
-     :status, :category, :needs_platform, :platform, :physical, platforms: [])
   end
 
 end

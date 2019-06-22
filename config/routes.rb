@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources :users, only: [:create, :edit, :update, :destroy]
   resources :collections, only: [:new, :create, :edit, :update, :destroy]
-  resources :games, only: [:new, :create]
+  resources :games, only: [:create, :destroy]
+
+  delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
 end

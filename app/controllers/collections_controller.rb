@@ -37,6 +37,22 @@ def destroy
     redirect_to root_url
 end
 
+def remove_game
+  @collection = current_user.collections.find_by_id(params[:collection_id])
+  @game = @collection.games.find_by_id(params[:game_id])
+  if @collection.games.delete(@game)
+    flash[:danger] = "Deleted \"#{@game.name}\" from \"#{ @collection.custom_name || @collection.name }\""
+    redirect_to root_url
+  else
+    flash[:danger] = "You cant delete this game"
+  end
+
+  respond_to do |format|
+    format.js
+    format.html
+  end
+end
+
 private
 
   def collection_params

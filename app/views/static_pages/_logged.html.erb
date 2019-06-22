@@ -22,10 +22,35 @@
   <h3><%= collection.custom_name || collection.name %>:</h3>
   <ul>
   <% collection.games.each do |game| %>
-    <li><%= game.name %> | <%= game.platform_name || '[platform not defined]' %></li>
+    <li><%= game.name %> | <%= game.platform_name || '[platform not defined]' %>
+    | <%= link_to "remove", remove_url(game_id: game.id, collection_id: collection.id), method: :delete, remote: true %>
+    </li>
   <% end %>
   </ul>
 <% end %>
 
 <p><%= link_to "Log out", logout_path, method: :delete %></p>
 
+<button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav-primary">Default Nav</button>
+
+<div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+
+        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+            <li class="uk-active"><a href="#">Active</a></li>
+            <li class="uk-parent">
+                <a href="#">Parent</a>
+                <ul class="uk-nav-sub">
+                    <li><a href="#">Sub item</a></li>
+                    <li><a href="#">Sub item</a></li>
+                </ul>
+            </li>
+            <li class="uk-nav-header">Header</li>
+            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
+            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
+            <li class="uk-nav-divider"></li>
+            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
+        </ul>
+
+    </div>
+</div>

@@ -1,6 +1,6 @@
-<div id="i-<%= game['id'] %>" uk-offcanvas="mode: none">
+<div id="i-<%= game['id'] %>" uk-offcanvas="mode: none; bg-close: false">
     <div class="uk-offcanvas-bar <%= game['id'] %>">
-        <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
         <!-- TITLE & RELEASE YEAR -->
         <h3 id="info-title"><%= game['name'] %>
         <% if game["first_release_date"]%>
