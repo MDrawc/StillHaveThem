@@ -1,0 +1,17 @@
+var game_id = '<%= @game.igdb_id %>';
+var form = '<%= @collection.form %>';
+var success = <%= @success %>;
+
+UIkit.notification({
+    message: '<%= @message %>',
+    status: 'warning',
+    pos: 'top-right',
+    timeout: 5000
+});
+
+if (success) {
+    var element = "#add-" + form + "-form-" + game_id;
+    $(element).show();
+    element = element.replace("add", "remove");
+    $(element).hide();
+}

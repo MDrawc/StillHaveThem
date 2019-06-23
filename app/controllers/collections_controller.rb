@@ -46,11 +46,27 @@ def remove_game
   else
     flash[:danger] = "You cant delete this game"
   end
+end
+
+def remove_game_search
+  @collection = current_user.collections.find_by_id(params[:collection_id])
+  @success = false
+
+  if @game = @collection.games.find_by(igdb_id: params[:game_igdb_id])
+    @collection.games.delete(@game)
+    @message = "Removed \"#{@game.name}\" from \"#{@collection.name}\""
+    @success = true
+  else
+    @message = "Game does not belong to \"#{@collection.name}\""
+  end
 
   respond_to do |format|
     format.js
-    format.html
   end
+end
+
+def move_game
+
 end
 
 private
@@ -67,7 +83,7 @@ private
 
   def never_those
     @collection = current_user.collections.find_by(id: params[:id])
-    if @collection.default
+    if @collection.initial
       flash[:danger] = "You can not delete this collection"
       redirect_to root_url
     end

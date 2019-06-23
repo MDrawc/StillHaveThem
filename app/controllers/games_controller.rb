@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   def create
     @errors = []
     @collection = current_user.collections.find_by_id(params[:collection])
-    @form_type = params[:form_type]
+
 
     if @collection.needs_platform
       platform, platform_name = game_params[:platform].split(',')
@@ -55,13 +55,7 @@ class GamesController < ApplicationController
 
   def destroy
 
-
-
-
-
-
   end
-
 
 private
 
@@ -76,20 +70,20 @@ private
         @message_type = 'primary'
         @message = "Added \"#{@game.name}\"" +
         " [ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ]" +
-        " to \"#{@collection.custom_name || @collection.name}\"."
+        " to \"#{@collection.custom_name || @collection.name}\""
       else
-        @message_type = false
+        @message_type = nil
       end
     else
       if !duplicate
         @message_type = 'primary'
         @message = "Added \"#{@game.name}\"" +
-        " to \"#{@collection.custom_name || @collection.name}\"."
+        " to \"#{@collection.custom_name || @collection.name}\""
       else
         @message_type = 'warning'
         @message = "\"#{@game.name}\"" +
-        " is already in the \"#{@collection.custom_name || @collection.name}\"." +
-        " Nothing added."
+        " already belongs to the \"#{@collection.custom_name || @collection.name}\"" +
+        " - Nothing added"
       end
     end
   end

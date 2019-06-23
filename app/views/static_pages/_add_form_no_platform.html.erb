@@ -1,11 +1,10 @@
 <%= form_for(:game, url: games_path, remote: true) do |f| %>
-<%= hidden_field_tag :collection, collection_id %>
-<%= hidden_field_tag :form_type, 'without-dropdown' %>
+<%= hidden_field_tag :collection, collection.id %>
 <%= f.hidden_field :needs_platform, value: false %>
 <%= f.hidden_field :name, value: game['name'] %>
 <%= f.hidden_field :igdb_id, value: game['id'] %>
 <% scalp_platforms(game).each do |pid| %>
 <%= f.hidden_field :platforms, value: pid, multiple: true %>
 <% end %>
-<button class="icon-btn uk-icon-link" type="submit" uk-icon="icon: <%= icon %>"></button>
+<button class="icon-btn uk-icon-link" type="submit" uk-icon="icon: <%= icon %>" uk-tooltip="Add to <%= collection.custom_name || collection.name %>"></button>
 <% end %>

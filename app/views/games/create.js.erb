@@ -1,20 +1,28 @@
-
+var game_id = '<%= @game.igdb_id %>';
+var form = '<%= @collection.form %>';
 var msg_type = '<%= @message_type %>';
-var form_type = '<%= @form_type %>';
+var success = <%= !@errors.present? ? true : false %>;
 
 if (msg_type) {
-UIkit.notification({
-    message: '<%= @message %>',
-    status: msg_type,
-    pos: 'top-right',
-    timeout: 5000
-});
-
-  if (form_type != 'without-dropdown') {
-    UIkit.dropdown("#add-<%= @form_type %>-form-<%= @game.igdb_id %>").hide();
-  }
+    UIkit.notification({
+        message: '<%= @message %>',
+        status: msg_type,
+        pos: 'top-right',
+        timeout: 5000
+    });
 }
 
-if (form_type != 'without-dropdown') {
-$("#add-<%= @form_type %>-form-<%= @game.igdb_id %> .add-form-errors").html("<%= @errors %>");
+if (success) {
+    if ((form === 'collection') || (form === 'custom')) {
+        var element = "#add-" + form + "-form-" + game_id;
+        UIkit.dropdown(element).hide();
+    } else {
+        var element = "#add-" + form + "-form-" + game_id;
+        $(element).hide();
+        element = element.replace("add", "remove");
+        $(element).show();
+    }
+} else if ((form === 'collection') || (form === 'custom')) {
+    var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
+    $(element).html("<%= @errors %>");
 }

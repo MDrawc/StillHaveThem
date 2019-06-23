@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
   resources :users, only: [:create, :edit, :update, :destroy]
   resources :collections, only: [:new, :create, :edit, :update, :destroy]
   resources :games, only: [:create, :destroy]
 
   delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
+  delete '/remove_s/:game_igdb_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
+  delete '/move/:game_id/:from_id/:to_id', to: 'collections#move_game', as: 'move'
 end
