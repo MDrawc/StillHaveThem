@@ -37,24 +37,36 @@
                 <!-- COLLECTION -->
                 <li><button id="add-collection-<%= game['id'] %>" class="icon-btn uk-icon-link" uk-icon='icon: database'></button></li>
                 <!-- WISHLIST -->
+                <!-- ___ADD -->
                 <% collection = @collections['wishlist'] %>
                 <% added = collection.games.find_by(igdb_id: game['id']) ? true : false %>
-                <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s, style: added ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: added ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'star' } %>
+                <div class="underlight"></div>
                 <% end %>
-                <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s, style: !added ? 'display: none;' : nil) do %>
-                <%= link_to "X", remove_s_url(game_igdb_id: game['id'], collection_id: collection.id), method: :delete, remote: true %>
+                <!-- ___REMOVE -->
+                <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s,  style: !added ? 'display: none;' : nil) do %>
+                <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
+                <%= link_to '', remove_s_url(game_igdb_id: game['id'], collection_id: collection.id),
+                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'star', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
+                <div class="underlight"></div>
                 <% end %>
                 <!-- PLAYED -->
+                <!-- ___ADD -->
                 <% collection = @collections['played'] %>
                 <% added = collection.games.find_by(igdb_id: game['id']) ? true : false %>
-                <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s, style: added ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s,
+                    style: added ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'bell' } %>
                 <% end %>
+                <!-- ___REMOVE -->
                 <%= content_tag(:li, id: "remove-played-form-" + game['id'].to_s, style: !added ? 'display: none;' : nil) do %>
-                <%= link_to "X", remove_s_url(game_igdb_id: game['id'], collection_id: collection.id), method: :delete, remote: true %>
+                <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
+                <%= link_to '', remove_s_url(game_igdb_id: game['id'], collection_id: collection.id),
+                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'bell', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
+                <div class="underlight"></div>
                 <% end %>
                 <!-- CUSTOM -->
                 <li><button id="add-custom-<%= game['id'] %>"class="icon-btn uk-icon-link" uk-icon='icon: settings'></button></li>

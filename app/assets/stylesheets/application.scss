@@ -976,6 +976,21 @@ hr.nav-bottom {
     border-radius: 5px;
     background-color: antiquewhite;
 }
+
+.add + .underlight {
+    display: none;
+}
+
+.remove + .underlight{
+ border-bottom: 3px solid $accent_darker;
+ position: relative;
+ bottom: -4px;
+}
+
+.remove:hover + .underlight{
+    border-color: $accent;
+}
+
 // Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .t-scr {

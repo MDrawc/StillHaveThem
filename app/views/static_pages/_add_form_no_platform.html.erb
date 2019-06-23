@@ -6,5 +6,5 @@
 <% scalp_platforms(game).each do |pid| %>
 <%= f.hidden_field :platforms, value: pid, multiple: true %>
 <% end %>
-<button class="icon-btn uk-icon-link" type="submit" uk-icon="icon: <%= icon %>" uk-tooltip="Add to <%= collection.custom_name || collection.name %>"></button>
+<button class="icon-btn uk-icon-link add" type="submit" uk-icon="icon: <%= icon %>" uk-tooltip="title: Add to <%= collection.custom_name || collection.name %>; pos: top-left"></button>
 <% end %>
