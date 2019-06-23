@@ -161,7 +161,6 @@ class IgdbQuery
       prepare_search
       prepare_sort
       request(@offset)
-      save_platforms
     end
 
     def search_dev
@@ -169,7 +168,6 @@ class IgdbQuery
       end_where
       request(@offset)
       post_filters
-      save_platforms
     end
 
     def search_char
@@ -178,7 +176,6 @@ class IgdbQuery
       prepare_search
       request(@offset)
       post_filters
-      save_platforms
     end
 
     def analyze_query(query)
@@ -440,21 +437,6 @@ class IgdbQuery
           puts ". "*100
           a.any? || b.any?
         end
-      end
-    end
-
-    def save_platforms
-      if @results.present?
-      @results.each do |game|
-        if game['platforms']
-        game['platforms'].each do |plat|
-          unless Platform.exists?(igdb_id: plat['id'])
-            Platform.create(igdb_id: plat['id'], name: plat['name'],
-              category: plat['category'])
-          end
-        end
-        end
-      end
       end
     end
 end

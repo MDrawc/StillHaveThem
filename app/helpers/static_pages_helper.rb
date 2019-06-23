@@ -144,6 +144,7 @@ module StaticPagesHelper
   end
 
   def collections_for_select(user)
-    user.collections.where(default: false).collect { |c| [ c.name, c.id ] }
+    user.collections.collect { |c| [ c.name, c.id ] }
   end
+
 end

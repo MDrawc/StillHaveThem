@@ -37,7 +37,7 @@
                 <!-- COLLECTION -->
                 <li><button id="add-collection-<%= game['id'] %>" class="icon-btn uk-icon-link" uk-icon='icon: database'></button></li>
                 <!-- WISHLIST -->
-                <% collection = current_user.collections.find_by(form: 'wishlist') %>
+                <% collection = @collections['wishlist'] %>
                 <% added = collection.games.find_by(igdb_id: game['id']) ? true : false %>
                 <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s, style: added ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
@@ -47,7 +47,7 @@
                 <%= link_to "X", remove_s_url(game_igdb_id: game['id'], collection_id: collection.id), method: :delete, remote: true %>
                 <% end %>
                 <!-- PLAYED -->
-                <% collection = current_user.collections.find_by(form: 'played') %>
+                <% collection = @collections['played'] %>
                 <% added = collection.games.find_by(igdb_id: game['id']) ? true : false %>
                 <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s, style: added ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
@@ -63,7 +63,7 @@
         <!-- ADD GAME TO COLLECTION -->
         <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>;mode: click; delay-hide: 100">
             <%= form_for(:game, url: games_path, remote: true) do |f| %>
-            <% collection = current_user.collections.find_by(name: 'My Collection') %>
+            <% collection = @collections['collection'] %>
             <%= hidden_field_tag :collection, collection.id %>
             <%= f.hidden_field :needs_platform, value: true %>
             <%= f.hidden_field :name, value: game['name'] %>
@@ -84,7 +84,7 @@
         </div>
         <!-- ADD TO CUSTOM COLLECTION -->
         <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>;mode: click; delay-hide: 100">
-            <% if current_user.collections.where(default: false).present? %>
+            <% if @collections.keys.any? { |form| form == 'custom'} %>
             <%= form_for(:game, url: games_path, remote: true) do |f| %>
             <%= f.hidden_field :needs_platform, value: true %>
             <%= f.hidden_field :name, value: game['name'] %>

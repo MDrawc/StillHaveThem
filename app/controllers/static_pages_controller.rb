@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
         @inquiry.search
         @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
 
-
+        prepare_user_collections(@current_user) if @inquiry.results.present?
 
       end
 
@@ -38,6 +38,16 @@ class StaticPagesController < ApplicationController
       respond_to do |format|
         format.js { render partial: "show_more" }
       end
+    end
+  end
+
+  private
+
+    def prepare_user_collections(user)
+    @collections = {}
+
+    user.collections.each do |collection|
+      @collections[collection.form] = collection
     end
   end
 end
