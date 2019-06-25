@@ -78,11 +78,7 @@
             </ul>
         </div>
         <!-- ADD GAME TO COLLECTION -->
-        <div class="b-<%= game['id'] %>">
-        <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>" >
-
-            <!-- <button class="uk-dropdown-close" type="button" uk-close></button> -->
-
+        <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>;mode: click; delay-hide: 100">
             <%= form_for(:game, url: games_path, remote: true) do |f| %>
             <% collection = @collections['collection'] %>
             <%= hidden_field_tag :collection, collection.id %>
@@ -92,36 +88,23 @@
             <% scalp_platforms(game).each do |pid| %>
             <%= f.hidden_field :platforms, value: pid, multiple: true %>
             <% end %>
+            <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
+            <label><%= f.radio_button(:physical, false) %>Digital</label>
 
-            <div class="select-platform">
-            <div uk-form-custom="target: > * > span:last-child">
+
             <% if game['platforms'].size > 1 %>
             <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
             <% else %>
             <%= f.select(:platform, platforms_for_select(game)) %>
             <% end %>
-            <span class='bigs'>
-            <span class="platform-icon"><%= render 'platform' %></span>
-            <span></span>
-            </span>
-            </div>
-            </div>
-
-            <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-            <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'physical' %> Physical</label>
-            <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'digital' %> Digital</label>
-            </div>
-
-            <button name="button" type="submit" class="add-button">Add</button>
 
 
-             <!-- # f.submit "Add" -->
-
+            <%= f.submit "Add to #{collection.custom_name || collection.name }", class: "btn btn-primary" %>
             <% end %>
-            <!-- <div class="add-form-errors">[]</div> -->
+            <div class="add-form-errors">[]</div>
         </div>
         <!-- ADD TO CUSTOM COLLECTION -->
-        <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>">
+        <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>;mode: click; delay-hide: 100">
             <% if @collections.keys.any? { |form| form == 'custom'} %>
             <%= form_for(:game, url: games_path, remote: true) do |f| %>
             <%= f.hidden_field :needs_platform, value: true %>
@@ -145,9 +128,7 @@
             <p>No custom collections to add games to!</p>
             <% end %>
         </div>
-        </div>
         <hr class="nav-bottom">
-
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
         <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>

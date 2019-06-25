@@ -24,9 +24,10 @@ $navbar_height: 5rem;
 
 //Colors:
 $background: #dddddd;
-// #E9E7E7
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
+$light: rgba(255,255,255,.5);
+$lighter: rgba(255,255,255,.7);;
 
 // HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
@@ -411,9 +412,9 @@ footer {
 
 // Other (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .uk-tooltip {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6) !important;
+    box-shadow: -2px 4px 9px 1px #0000004a !important;
     box-sizing: border-box;
-    max-width: 200px;
+    max-width: 270px;
     padding: 3px 6px;
     background: #666666de;
     border-radius: 2px;
@@ -885,6 +886,7 @@ p.header {
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    padding-bottom: 20px;
 }
 
 .uk-offcanvas-bar::-webkit-scrollbar {
@@ -892,10 +894,13 @@ p.header {
 }
 
 #info-title {
-    margin-bottom: 0px;
-    margin-top: 0px;
-
     // when no close button
+    // margin-bottom: 0px;
+    // margin-top: 0px;
+
+    // with close button
+    margin-bottom: 0px;
+    margin-top: 15px;
 }
 
 #info-year {
@@ -967,22 +972,121 @@ hr.nav-bottom {
     margin-top: 10px;
 }
 
+.add-form {
+    border-radius: 5px;
+    background-color: #444444f7;
+    box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
+    padding: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.add-button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 3px 6px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.add-button:focus {
+    outline: none;
+}
+
+button.uk-dropdown-close.uk-close.uk-icon {
+    position: absolute;
+    z-index: 1000;
+    top: 20px;
+    right: 20px;
+    padding: 5px;
+}
+
+// Butrons
+
 .icon-btn {
     display: inline-flex;
     align-items: center;
-}
-
-.add-form {
-    border-radius: 5px;
-    background-color: antiquewhite;
 }
 
 .add + .underlight {
     display: none;
 }
 
+.platform-icon svg {
+    fill: $light;
+}
+
+.platform-icon + span {
+    position: relative;
+    top: 13px;
+}
+
+// #game_platform:hover + span {
+//     color: $lighter;
+// }
+
+#game_platform:hover + span .platform-icon svg {
+    fill: $lighter;
+}
+
+.physical, .digital {
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    margin: 0;
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, border;
+}
+
+.physical + svg, .digital + svg {
+  cursor: pointer;
+}
+
+.physical + svg path {
+    fill: $light;
+}
+
+.physical:hover + svg path {
+    fill: $lighter;
+}
+.physical:hover {
+    color:red;
+}
+
+.digital + svg {
+    fill: $light;
+}
+
+.digital:hover + svg {
+    fill: $lighter;
+}
+
+.physical:checked + svg path {
+  fill: $accent;
+}
+
+.physical:focus + svg path {
+  fill: $accent_darker;
+}
+
+.digital:checked + svg {
+  fill: $accent;
+}
+
+.digital:focus + svg {
+  fill: $accent_darker;
+}
+
 .remove + .underlight{
- border-bottom: 3px solid $accent_darker;
+ box-shadow: 0px 2px 0px 2px $accent_darker;
  position: relative;
  bottom: -4px;
 }
@@ -1059,6 +1163,7 @@ $slideshow: #393939;
     background: $slideshow;
     border-radius: 5px;
     padding-bottom: 3px;
+    box-shadow: -4px 3px 9px 0px #0000004a;
 }
 
 ul.uk-slideshow-items {
