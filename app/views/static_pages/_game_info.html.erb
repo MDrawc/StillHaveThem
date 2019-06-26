@@ -81,7 +81,7 @@
         <div class="b-<%= game['id'] %>">
         <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>" >
 
-            <!-- <button class="uk-dropdown-close" type="button" uk-close></button> -->
+            <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
 
             <%= form_for(:game, url: games_path, remote: true) do |f| %>
             <% collection = @collections['collection'] %>
@@ -97,13 +97,18 @@
             <div uk-form-custom="target: > * > span:last-child">
             <% if game['platforms'].size > 1 %>
             <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
-            <% else %>
-            <%= f.select(:platform, platforms_for_select(game)) %>
-            <% end %>
             <span class='bigs'>
             <span class="platform-icon"><%= render 'platform' %></span>
             <span></span>
             </span>
+            <% else %>
+            <%= f.select(:platform, platforms_for_select(game)) %>
+            <span class='bigs'>
+            <span class="platform-green"><%= render 'platform' %></span>
+            <span></span>
+            </span>
+            <% end %>
+
             </div>
             </div>
 
@@ -112,13 +117,9 @@
             <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'digital' %> Digital</label>
             </div>
 
-            <button name="button" type="submit" class="add-button">Add</button>
-
-
-             <!-- # f.submit "Add" -->
+            <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
 
             <% end %>
-            <!-- <div class="add-form-errors">[]</div> -->
         </div>
         <!-- ADD TO CUSTOM COLLECTION -->
         <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>">
@@ -213,3 +214,16 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$('#add-collection-form-<%= game['id'] %> #game_platform').on('input', function() {
+
+    $('.platform-icon').attr('class', 'platform-green')
+
+    if ($('#add-form-errors').length) {
+        var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
+        $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
+    }
+
+});
+</script>

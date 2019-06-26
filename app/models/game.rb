@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
   validates :name, presence: true
-  validates :platform, presence: true, if: :needs_platform?
+  validates :platform, presence: { message: 'must be selected'}, if: :needs_platform?
 
   has_many :collection_games
   has_many :collections, through: :collection_games

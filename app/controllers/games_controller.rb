@@ -57,35 +57,34 @@ class GamesController < ApplicationController
 
   end
 
-private
+  private
 
-  def game_params
-    params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
-     :status, :category, :needs_platform, :platform, :physical, platforms: [])
-  end
+    def game_params
+      params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
+       :status, :category, :needs_platform, :platform, :physical, platforms: [])
+    end
 
-  def message(needs_platform = true, duplicate = false)
-    if needs_platform
-      if !duplicate
-        @message_type = 'primary'
-        @message = "Added \"#{@game.name}\"" +
-        " [ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ]" +
-        " to \"#{@collection.custom_name || @collection.name}\""
+    def message(needs_platform = true, duplicate = false)
+      if needs_platform
+        if !duplicate
+          @message_type = 'primary'
+          @message = "Added \"#{@game.name}\"" +
+          " [ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ]" +
+          " to \"#{@collection.custom_name || @collection.name}\""
+        else
+          @message_type = nil
+        end
       else
-        @message_type = nil
-      end
-    else
-      if !duplicate
-        @message_type = 'primary'
-        @message = "Added \"#{@game.name}\"" +
-        " to \"#{@collection.custom_name || @collection.name}\""
-      else
-        @message_type = 'warning'
-        @message = "\"#{@game.name}\"" +
-        " already belongs to the \"#{@collection.custom_name || @collection.name}\"" +
-        " - Nothing added"
+        if !duplicate
+          @message_type = 'primary'
+          @message = "Added \"#{@game.name}\"" +
+          " to \"#{@collection.custom_name || @collection.name}\""
+        else
+          @message_type = 'warning'
+          @message = "\"#{@game.name}\"" +
+          " already belongs to the \"#{@collection.custom_name || @collection.name}\"" +
+          " - Nothing added"
+        end
       end
     end
-  end
-
 end

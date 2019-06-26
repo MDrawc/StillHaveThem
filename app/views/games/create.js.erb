@@ -22,7 +22,7 @@ if (success) {
         element = element.replace("add", "remove");
         $(element).show();
     }
-} else if ((form === 'collection') || (form === 'custom')) {
-    var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
-    $(element).html("<%= @errors %>");
 }
+
+var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
+$(element).html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");

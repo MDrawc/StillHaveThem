@@ -35,6 +35,8 @@ class StaticPagesController < ApplicationController
       @inquiry.fix_duplicates(@@last_result_ids)
       @@last_result_ids += @inquiry.results.map { |game| game = game["id"] }
 
+      prepare_user_collections(@current_user) if @inquiry.results.present?
+
       respond_to do |format|
         format.js { render partial: "show_more" }
       end

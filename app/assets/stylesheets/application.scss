@@ -26,8 +26,8 @@ $navbar_height: 5rem;
 $background: #dddddd;
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
-$light: rgba(255,255,255,.5);
-$lighter: rgba(255,255,255,.7);;
+$light: rgba(255, 255, 255, 0.5);
+$lighter: rgba(255, 255, 255, 0.7);
 
 // HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
@@ -963,10 +963,11 @@ p.header {
     fill: #c9c9c9;
 }
 
-.google svg{
+.google svg {
     max-width: unset;
     width: 24px;
 }
+
 // Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
 hr.nav-bottom {
     margin-top: 10px;
@@ -978,7 +979,14 @@ hr.nav-bottom {
     box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
     padding: 20px;
     font-size: 14px;
+    width: 230px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 960px) {
+    .add-form {
+        width: 270px;
+    }
 }
 
 .add-button {
@@ -998,6 +1006,10 @@ hr.nav-bottom {
 
 .add-button:focus {
     outline: none;
+}
+
+.add-button:active {
+    box-shadow: inset 0px 0px 6px;
 }
 
 button.uk-dropdown-close.uk-close.uk-icon {
@@ -1023,17 +1035,42 @@ button.uk-dropdown-close.uk-close.uk-icon {
     fill: $light;
 }
 
-.platform-icon + span {
-    position: relative;
-    top: 13px;
+.platform-green svg {
+    fill: $accent;
 }
 
-// #game_platform:hover + span {
-//     color: $lighter;
-// }
+.platform-icon + span, .platform-green + span {
+    position: relative;
+    top: 11px;
+}
+
+.add-form-warning {
+    @extend .warning-icon;
+
+    background-size: 60% 60%;
+    left: 56px;
+    bottom: 12px;
+}
+
+.add-form-close {
+    top: 8px !important;
+    right: 8px !important;
+    padding: 5px !important;
+    width: 22px;
+}
+
+.add-acc-errors {
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 31px;
+}
 
 #game_platform:hover + span .platform-icon svg {
     fill: $lighter;
+}
+
+#game_platform:hover + span .platform-green svg {
+    fill: $accent_darker;
 }
 
 .physical, .digital {
@@ -1047,7 +1084,7 @@ button.uk-dropdown-close.uk-close.uk-icon {
 }
 
 .physical + svg, .digital + svg {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .physical + svg path {
@@ -1057,8 +1094,9 @@ button.uk-dropdown-close.uk-close.uk-icon {
 .physical:hover + svg path {
     fill: $lighter;
 }
+
 .physical:hover {
-    color:red;
+    color: red;
 }
 
 .digital + svg {
@@ -1070,28 +1108,28 @@ button.uk-dropdown-close.uk-close.uk-icon {
 }
 
 .physical:checked + svg path {
-  fill: $accent;
+    fill: $accent;
 }
 
 .physical:focus + svg path {
-  fill: $accent_darker;
+    fill: $accent_darker;
 }
 
 .digital:checked + svg {
-  fill: $accent;
+    fill: $accent;
 }
 
 .digital:focus + svg {
-  fill: $accent_darker;
+    fill: $accent_darker;
 }
 
-.remove + .underlight{
- box-shadow: 0px 2px 0px 2px $accent_darker;
- position: relative;
- bottom: -4px;
+.remove + .underlight {
+    box-shadow: 0px 2px 0px 2px $accent_darker;
+    position: relative;
+    bottom: -4px;
 }
 
-.remove:hover + .underlight{
+.remove:hover + .underlight {
     border-color: $accent;
 }
 
@@ -1124,7 +1162,6 @@ button.uk-dropdown-close.uk-close.uk-icon {
 #screen-nav li {
     display: inline;
 }
-
 
 .md-scrnav {
     width: 40px;
