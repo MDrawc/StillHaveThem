@@ -60,7 +60,16 @@ def remove_game_search
 
   if @game
     @collection.games.delete(@game)
-    @message = "Removed \"#{@game.name}\" from \"#{@collection.name}\""
+
+    @message = "Removed \"#{@game.name}\" "
+    if @collection.needs_platform
+      @message += "[ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ] "
+
+      @all_deleted = !@collection.games.where(igdb_id: @game.igdb_id).any? ;
+
+    end
+    @message += "from \"#{@collection.name}\""
+
     @success = true
   else
     @message = "Game does not belong to \"#{@collection.name}\""

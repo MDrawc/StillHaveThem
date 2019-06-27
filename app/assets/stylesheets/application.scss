@@ -1045,14 +1045,6 @@ button.uk-dropdown-close.uk-close.uk-icon {
     top: 11px;
 }
 
-.add-form-warning {
-    @extend .warning-icon;
-
-    background-size: 60% 60%;
-    left: 56px;
-    bottom: 12px;
-}
-
 .add-form-close {
     top: 8px !important;
     right: 8px !important;
@@ -1133,6 +1125,10 @@ button.uk-dropdown-close.uk-close.uk-icon {
     border-color: $accent;
 }
 
+span.add-form-errors {
+    position: relative;
+    top: -1px;
+}
 // Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .already-in {

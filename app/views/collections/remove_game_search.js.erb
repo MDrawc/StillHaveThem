@@ -1,6 +1,4 @@
-var game_id = '<%= @game.igdb_id %>';
 var form = '<%= @collection.form %>';
-var success = <%= @success %>;
 
 UIkit.notification({
     message: '<%= @message %>',
@@ -9,9 +7,31 @@ UIkit.notification({
     timeout: 5000
 });
 
-if (success) {
+<% if @success %>
+
+    var game_id = '<%= @game.igdb_id %>';
+
+    if ((form === 'wishlist') || (form === 'played')) {
     var element = "#add-" + form + "-form-" + game_id;
     $(element).show();
     element = element.replace("add", "remove");
     $(element).hide();
-}
+
+    } else if (form === 'collection') {
+
+    // render games already in my collection
+    var drop_element = "#add-" + form + "-form-" + game_id;
+    var already = "#add-" + form + "-form-" + game_id + " .already-in";
+    proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>"
+
+    $(already).html(proxy);
+
+    // change underlight in my collection
+    <% if @all_deleted %>
+    var button = "#add-" + form + "-" + game_id;
+    $(button).removeClass('remove');
+    <% end %>
+
+    }
+
+<% end %>

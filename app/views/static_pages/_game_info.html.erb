@@ -37,7 +37,7 @@
                 <!-- CHECK USERS COLLECTIONS -->
                 <% added = {} %>
                 <% @collections.each_value do |collection| %>
-                <% added["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) %>
+                <% added["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) ? true : false %>
                 <% end %>
                 <!-- COLLECTION -->
                 <li>
@@ -123,12 +123,6 @@
                     <%= render(partial: 'already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if added['collection']  %>
                 </div>
             </div>
-
-
-
-
-
-
 
             <!-- ADD TO CUSTOM COLLECTION -->
             <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>">
