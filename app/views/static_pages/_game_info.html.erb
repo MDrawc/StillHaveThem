@@ -78,7 +78,14 @@
                 <div class="underlight"></div>
                 <% end %>
                 <!-- CUSTOM -->
-                <li><button id="add-custom-<%= game['id'] %>"class="icon-btn uk-icon-link" uk-icon='icon: settings'></button></li>
+                <li>
+
+                    <% tooltip = 'Add to / Remove from Custom Collections' %>
+                    <%= content_tag(:a, '',id: "add-custom-#{ game['id'] }", class: "uk-icon-link",
+                    'uk-icon' => 'cog', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
+                    <div class="underlight"></div>
+
+                </li>
             </ul>
         </div>
         <!-- ADD GAME TO COLLECTION -->
@@ -150,7 +157,6 @@
                 <% end %>
             </div>
         </div>
-        <hr class="nav-bottom">
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
         <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
