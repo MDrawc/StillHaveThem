@@ -1,5 +1,8 @@
 $("#search-errors").replaceWith("<%= escape_javascript(render :partial => 'search_errors') %>");
 
+// remove offcanvas from last search!
+$("[id^=i-]").remove()
+
 if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
 }

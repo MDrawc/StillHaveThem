@@ -895,12 +895,12 @@ p.header {
 
 #info-title {
     // when no close button
-    // margin-bottom: 0px;
-    // margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 
     // with close button
-    margin-bottom: 0px;
-    margin-top: 15px;
+    // margin-bottom: 0px;
+    // margin-top: 15px;
 }
 
 #info-year {
@@ -997,6 +997,7 @@ hr.nav-bottom {
     color: rgba(255, 255, 255, 0.5);
     padding: 3px 6px;
     cursor: pointer;
+    margin-bottom: 2px;
 }
 
 .add-button:hover {
@@ -1062,16 +1063,15 @@ button.uk-dropdown-close.uk-close.uk-icon {
 .add-acc-errors {
     font-size: 12px;
     font-style: italic;
-    margin-left: 31px;
 }
 
 #game_platform:hover + span .platform-icon svg {
     fill: $lighter;
 }
 
-#game_platform:hover + span .platform-green svg {
-    fill: $accent_darker;
-}
+// #game_platform:hover + span .platform-green svg {
+//     fill: $accent_darker;
+// }
 
 .physical, .digital {
     -webkit-appearance: none;
@@ -1111,17 +1111,17 @@ button.uk-dropdown-close.uk-close.uk-icon {
     fill: $accent;
 }
 
-.physical:focus + svg path {
-    fill: $accent_darker;
-}
+// .physical:focus + svg path {
+//     fill: $accent_darker;
+// }
 
 .digital:checked + svg {
     fill: $accent;
 }
 
-.digital:focus + svg {
-    fill: $accent_darker;
-}
+// .digital:focus + svg {
+//     fill: $accent_darker;
+// }
 
 .remove + .underlight {
     box-shadow: 0px 2px 0px 2px $accent_darker;
@@ -1131,6 +1131,12 @@ button.uk-dropdown-close.uk-close.uk-icon {
 
 .remove:hover + .underlight {
     border-color: $accent;
+}
+
+// Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.already-in {
+
 }
 
 // Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //

@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :destroy]
 
   delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
-  delete '/remove_s/:game_igdb_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
+  delete '/remove_s/:game_id/:collection_id/:id_type', to: 'collections#remove_game_search', as: 'remove_s'
   delete '/move/:game_id/:from_id/:to_id', to: 'collections#move_game', as: 'move'
 end

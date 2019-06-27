@@ -52,7 +52,13 @@ def remove_game_search
   @collection = current_user.collections.find_by_id(params[:collection_id])
   @success = false
 
-  if @game = @collection.games.find_by(igdb_id: params[:game_igdb_id])
+  if params[:id_type] == 'igdb'
+    @game = @collection.games.find_by(igdb_id: params[:game_id])
+  else
+    @game = @collection.games.find_by_id(params[:game_id])
+  end
+
+  if @game
     @collection.games.delete(@game)
     @message = "Removed \"#{@game.name}\" from \"#{@collection.name}\""
     @success = true
