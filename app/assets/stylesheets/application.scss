@@ -939,6 +939,7 @@ p.header {
 
 .uk-iconnav {
     padding-top: 20px;
+    height: 35px;
 }
 
 .uk-iconnav a {
@@ -951,6 +952,10 @@ p.header {
     background: #444444f7;
     padding: 5px;
     border-radius: 3px;
+}
+
+.uk-iconnav li {
+    padding-left: 8px;
 }
 
 #info-links {
@@ -1007,7 +1012,7 @@ hr.nav-bottom {
     border-radius: 5px;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
-    padding: 3px 6px;
+    padding: 2px 6px;
     cursor: pointer;
     margin-bottom: 2px;
 }
@@ -1147,7 +1152,29 @@ span.add-form-errors {
 // Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .already-in {
+    font-size: 12px;
+    margin-top: 10px;
 
+    p {
+        margin-bottom: 10px
+    }
+
+    ul {
+        padding-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        list-style-type: none;
+
+        li {
+            height: 20px;
+            font-style: italic;
+        }
+    }
+
+    a {
+        position: relative;
+        top: -2px;
+    }
 }
 
 // Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1217,7 +1244,7 @@ $slideshow: #393939;
     background: $slideshow;
     border-radius: 5px;
     padding-bottom: 3px;
-    box-shadow: -4px 3px 9px 0px #0000004a;
+    // box-shadow: -4px 3px 9px 0px #0000004a;
 }
 
 ul.uk-slideshow-items {

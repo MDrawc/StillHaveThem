@@ -25,8 +25,8 @@ class IgdbQuery
   "developed.status",
   "developed.category",
   "developed.cover.image_id",
-  "games.platforms.name",
-  "developed.platforms.category"].join(',')
+  "developed.platforms.category",
+  "developed.platforms.name"].join(',')
 
   FIELDS_CHAR = ["name",
   "games.name",

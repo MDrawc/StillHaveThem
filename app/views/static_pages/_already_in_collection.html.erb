@@ -3,9 +3,9 @@
 <p>"<%= game_name %>" games already in "<%= collection.custom_name || collection.name %>":</p>
 <ul>
   <% games.each do |game| %>
-  <li><%= game.platform_name %> (<%= game.physical ? 'Physical' : 'Digital' %>)
+  <li>- <%= game.platform_name %> (<%= game.physical ? 'Physical' : 'Digital' %>)
     <%= link_to '', remove_s_url(game_id: game.id, collection_id: collection.id, id_type: 'game_id'),
-    class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon' => 'trash' %>
+    class: 'uk-icon-link acf-remove', method: :delete, remote: true, 'uk-icon' => 'icon: trash; ratio: 0.8' %>
   </li>
   <% end %>
 </ul>
