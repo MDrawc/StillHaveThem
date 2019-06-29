@@ -31,7 +31,9 @@ $lighter: rgba(255, 255, 255, 0.7);
 
 // HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
-    background-color: $background;
+    // background-color: $background;
+    background-image: url('noise.png');
+    box-shadow: inset 5px 5px 200px #00000036;
 }
 
 body {
@@ -521,6 +523,8 @@ footer {
     background: linear-gradient(to left top, rgba(75, 235, 236, 0) 50%, rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.28) 100%);
 }
 
+
+
 .no-cover {
     width: 200px;
     height: 266px;
@@ -533,7 +537,7 @@ footer {
     border: 1px solid transparent;
 
     background-color: transparent;
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
+    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.4), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
     transition-duration: 0.3s;
     cursor: pointer;
 }
