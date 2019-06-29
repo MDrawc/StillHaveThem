@@ -1,4 +1,8 @@
-$("#search-errors").replaceWith("<%= escape_javascript(render :partial => 'search_errors') %>");
+$("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
+
+$('#search-igdb-bar').on('input', function() {
+    $("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: [] }) %>");
+});
 
 // remove offcanvas from last search!
 $("[id^=i-]").remove()
