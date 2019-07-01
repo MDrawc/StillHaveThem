@@ -61,14 +61,20 @@ def remove_game_search
   if @game
     @collection.games.delete(@game)
 
+    #Prepare notification:
     @message = "Removed \"#{@game.name}\" "
     if @collection.needs_platform
       @message += "[ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ] "
-
-      @all_deleted = !@collection.games.where(igdb_id: @game.igdb_id).any? ;
-
     end
     @message += "from \"#{@collection.name}\""
+
+    #Turn of underlight in My Collection
+    if @collection.form == 'collection'
+      @all_deleted = !@collection.games.igdb(@game.igdb_id).any?
+    #Turn of underlight in Custom Collections
+    elsif @collection.form == 'custom'
+      @all_deleted = !check_for_game_in_custom(@game.igdb_id)
+    end
 
     @success = true
   else
@@ -102,5 +108,13 @@ private
       flash[:danger] = "You can not delete this collection"
       redirect_to root_url
     end
+  end
+
+  def check_for_game_in_custom(igdb_id)
+    results = []
+    current_user.collections.custom.each do |collection|
+      results << collection.games.any? { |game| game.igdb_id == igdb_id }
+    end
+    return results.any?
   end
 end

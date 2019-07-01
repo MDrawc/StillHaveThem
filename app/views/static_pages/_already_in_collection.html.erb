@@ -1,5 +1,6 @@
-<% games = collection.games.where(igdb_id: igdb_id)%>
+<% games = collection.games.igdb(igdb_id)%>
 <% if games.any? %>
+<hr>
 <p>"<%= game_name %>" games already in "<%= collection.custom_name || collection.name %>":</p>
 <ul>
   <% games.each do |game| %>

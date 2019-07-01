@@ -144,7 +144,31 @@ module StaticPagesHelper
   end
 
   def collections_for_select(user)
-    user.collections.collect { |c| [ c.name, c.id ] }
+    user.collections.custom.collect { |c| [ c.custom_name, "#{c.id},#{c.needs_platform}" ] }
+  end
+
+
+  def check_for_games(options = {})
+
+    collections = current_user.collections
+
+    id = options[:game_id] || options[:igdb_id]
+
+    case options[:type]
+    when 'initial'; collections = collections.initial
+    when 'custom'
+      collections = collections.custom.sort_by { |c| [c.needs_platform ? 1 : 0] }
+    end
+
+    results = {}
+
+    collections.each do |collection|
+      games = collection.games
+      findings = options[:igdb_id] ? games.igdb(id) : games.find_by_id(id)
+      results[collection] = findings if findings.present?
+    end
+
+    return results.present? ? results : false
   end
 
 end

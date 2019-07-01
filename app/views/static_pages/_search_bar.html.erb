@@ -6,9 +6,9 @@
     <%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
   </div>
   <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
-  <p><%= render 'svgs/igdb' %> IGDB: Free Video Game Database</p>
+  <p><%= render 'svgs/igdb_icon' %> IGDB: Free Video Game Database</p>
 </div>
-    <div class="search-dropdown" uk-dropdown="toggle: #search_inquiry; pos: bottom-center; mode: click">
+    <div class="search-dropdown" uk-dropdown="toggle: #search-igdb-bar; pos: bottom-center; mode: click">
       <div class="strike"><span>Search by:</span></div>
       <div class="uk-margin uk-grid-small uk-grid drop-grid">
         <label class="searchby-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Title</span></label>
@@ -67,3 +67,23 @@
   </div>
   <% end %>
 </div>
+
+<script>
+//Change search bar placeholder:
+$("input[type='radio']").on('input', function() {
+var selectedVal = "";
+var selected = $("input[type='radio']:checked");
+if (selected.length > 0) {
+    selectedVal = selected.val();
+}
+
+if (selectedVal === 'char') {
+  $('#search-igdb-bar').attr('placeholder', 'Search video game characters...')
+} else if (selectedVal === 'dev') {
+  $('#search-igdb-bar').attr('placeholder', 'Search video game developers...')
+} else if (selectedVal === 'game') {
+  $('#search-igdb-bar').attr('placeholder', 'Search video games...')
+}
+
+});
+</script>

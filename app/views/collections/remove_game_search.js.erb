@@ -9,29 +9,41 @@ UIkit.notification({
 
 <% if @success %>
 
-    var game_id = '<%= @game.igdb_id %>';
+var game_id = '<%= @game.igdb_id %>';
 
-    if ((form === 'wishlist') || (form === 'played')) {
+// Show add form and hide remove form for Wishlist and Played
+if ((form === 'wishlist') || (form === 'played')) {
     var element = "#add-" + form + "-form-" + game_id;
     $(element).show();
     element = element.replace("add", "remove");
     $(element).hide();
 
-    } else if (form === 'collection') {
+} else if ((form === 'collection') || (form === 'custom')) {
 
-    // render games already in my collection
+    // Render games already in My Collection and Custom Collections
     var drop_element = "#add-" + form + "-form-" + game_id;
     var already = "#add-" + form + "-form-" + game_id + " .already-in";
-    proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>"
 
+    if (form === 'collection') {
+        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+    } else {
+        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+    }
     $(already).html(proxy);
 
-    // change underlight in my collection
+    // Change underlight in My collection and Custom Collection
     <% if @all_deleted %>
     var button = "#add-" + form + "-" + game_id;
     $(button).removeClass('remove');
     <% end %>
 
+    // Reseting error status upon succesful remove
+    // - both forms (collection and custom)
+    if ($('#add-form-errors').length) {
+        var errorsPlace = '#add-' + form + '-form-' + game_id + ' .add-form-errors';
+        $(errorsPlace).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
     }
+
+}
 
 <% end %>

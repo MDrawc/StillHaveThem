@@ -1,8 +1,12 @@
-var game_id = '<%= @game.igdb_id %>';
-var form = '<%= @collection.form %>';
+// VARIABLES:
+var game_id = '<%= @game_igdb_id %>';
+var form = '<%= @form %>';
 var msg_type = '<%= @message_type %>';
 var success = <%= !@errors.present? ? true : false %>;
 
+// NOTIFICATIONS:
+// WHEN: warning type messages are shown only for 'wishlist' and 'played'
+//
 if (msg_type) {
     UIkit.notification({
         message: '<%= @message %>',
@@ -12,20 +16,28 @@ if (msg_type) {
     });
 }
 
+// DO NOT DO THIS IF USER HAS NOT SELECTED COLLECTION IN
+// ADD TO CUSTOM COLLECTION FORM
+<% if @collection && @game %>
 if (success) {
     if ((form === 'collection') || (form === 'custom')) {
 
-        // hide form dropdown
+        // Hide form dropdown
         var drop_element = "#add-" + form + "-form-" + game_id;
         UIkit.dropdown(drop_element).hide();
 
-        // add green mark to button
+        // Add green mark to button
         var element = "#add-" + form + "-" + game_id;
         $(element).addClass('remove');
 
-        // render games already in my collection
+        // Render games already in my collection
         var already = "#add-" + form + "-form-" + game_id + " .already-in";
-        proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>"
+
+        if (form === 'collection') {
+        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+        } else {
+        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+        }
 
         UIkit.util.on(drop_element, 'hidden', function () {
             $(already).html(proxy);
@@ -38,6 +50,39 @@ if (success) {
         $(element).show();
     }
 }
+<% end %>
 
+// SHOWING ERRORS - BOTH FORMS (COLLECTION AND CUSTOM):
 var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
 $(element).html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+
+// RESETING ERROR STATUS UPON INPUT CHANGE - BOTH FORMS (COLLECTION AND CUSTOM):
+
+function resetFormErrors(form) {
+
+    var resetElements = ['#game_platform', '.physical', '.digital']
+
+    if (form = 'custom') {
+        resetElements.push('#collection')
+    }
+
+    var errorsPlace = '.add-form-errors';
+    var errorsPart = '#add-form-errors';
+    var element = '#add-' + form + '-form-' + game_id + ' ' + errorsPlace;
+
+
+    for (i = 0; i < resetElements.length; i++) {
+
+        var formPart = '#add-' + form + '-form-' + game_id + ' ' + resetElements[i];
+
+        $(formPart).on('input', function() {
+            if ($(errorsPart).length) {
+                $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
+            }
+        });
+
+    }
+}
+
+resetFormErrors('collection');
+resetFormErrors('custom');

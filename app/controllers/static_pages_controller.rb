@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
         @inquiry.search
         @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
 
-        prepare_user_collections(@current_user) if @inquiry.results.present?
+        prepare_user_collections(current_user) if @inquiry.results.present?
 
       end
 
@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
       @inquiry.fix_duplicates(@@last_result_ids)
       @@last_result_ids += @inquiry.results.map { |game| game = game["id"] }
 
-      prepare_user_collections(@current_user) if @inquiry.results.present?
+      prepare_user_collections(current_user) if @inquiry.results.present?
 
       respond_to do |format|
         format.js { render partial: "show_more" }
@@ -48,8 +48,10 @@ class StaticPagesController < ApplicationController
     def prepare_user_collections(user)
     @collections = {}
 
-    user.collections.each do |collection|
+    user.collections.initial.each do |collection|
       @collections[collection.form] = collection
     end
+
+    @custom_collections = user.collections.custom
   end
 end

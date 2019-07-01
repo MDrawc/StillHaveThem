@@ -79,12 +79,14 @@
                 <% end %>
                 <!-- CUSTOM -->
                 <li>
-
+                    <% in_custom = @custom_collections.any? do |custom_c| %>
+                        <% custom_c.games.find_by(igdb_id: game['id']) %>
+                    <% end %>
                     <% tooltip = 'Add to / Remove from Custom Collections' %>
-                    <%= content_tag(:a, '',id: "add-custom-#{ game['id'] }", class: "uk-icon-link",
+                    <% extra_class = in_custom ? 'remove' : '' %>
+                    <%= content_tag(:a, '',id: "add-custom-#{ game['id'] }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'cog', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
                     <div class="underlight"></div>
-
                 </li>
             </ul>
         </div>
@@ -104,15 +106,15 @@
                 <div class="select-platform">
                     <div uk-form-custom="target: > * > span:last-child">
                         <% if game['platforms'].size > 1 %>
-                        <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
+                        <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
                         <span class='bigs'>
-                            <span class="platform-icon"><%= render 'platform' %></span>
+                            <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
                             <span></span>
                         </span>
                         <% else %>
                         <%= f.select(:platform, platforms_for_select(game)) %>
                         <span class='bigs'>
-                            <span class="platform-green"><%= render 'platform' %></span>
+                            <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
                             <span></span>
                         </span>
                         <% end %>
@@ -124,44 +126,76 @@
                 </div>
                 <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
                 <% end %>
-
                 <!-- ALREADY IN -->
                 <div class="already-in">
                     <%= render(partial: 'already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if added['collection']  %>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
             <!-- ADD TO CUSTOM COLLECTION -->
             <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>">
-                <% if @collections.keys.any? { |form| form == 'custom'} %>
+                <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
+                <% if @custom_collections.any? %>
                 <%= form_for(:game, url: games_path, remote: true) do |f| %>
-                <%= f.hidden_field :needs_platform, value: true %>
+                <%= hidden_field_tag :form, 'custom' %>
+                <!-- GAME -->
                 <%= f.hidden_field :name, value: game['name'] %>
                 <%= f.hidden_field :igdb_id, value: game['id'] %>
                 <% scalp_platforms(game).each do |pid| %>
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
                 <% end %>
-                <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select Collection') %>
-                <% if game['platforms'].size > 1 %>
-                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select Platform') %>
-                <% else %>
-                <%= f.select(:platform, platforms_for_select(game)) %>
+                <!-- SELECT COLLECTION -->
+                <div class="select-collection">
+                    <% if @custom_collections.size > 1 %>
+                    <div uk-form-custom="target: > * > span:last-child">
+                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select custom collection') %>
+                        <span class="bigs">
+                            <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <% else %>
+                    <div uk-form-custom="target: > * > span:last-child">
+                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user))) %>
+                        <span class="bigs">
+                            <span class="collection-green"><%= render 'svgs/shelf_icon' %></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <% end %>
+                </div>
+                <!-- DEPENDS ON COLLECTION -->
+                <div id="platform-option" style="display: none">
+                    <%= f.hidden_field :needs_platform, value: false %>
+                    <div class="uk-margin select-platform">
+                        <div uk-form-custom="target: > * > span:last-child">
+                            <% if game['platforms'].size > 1 %>
+                            <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
+                            <span class='bigs'>
+                                <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
+                                <span></span>
+                            </span>
+                            <% else %>
+                            <%= f.select(:platform, platforms_for_select(game)) %>
+                            <span class='bigs'>
+                                <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
+                                <span></span>
+                            </span>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
+                        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'gamebox' %> Physical</label>
+                        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'digital' %> Digital</label>
+                    </div>
+                </div>
+                <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
                 <% end %>
-                <label><%= f.radio_button(:physical, true, checked: true) %>Physical</label>
-                <label><%= f.radio_button(:physical, false) %>Digital</label>
-                <%= f.submit 'Add', class: "btn btn-primary" %>
-                <% end %>
-                <div class="add-form-errors">[]</div>
+                <!-- ALREADY IN -->
+                <div class="already-in">
+                    <%= render(partial: 'already_in_custom', locals: { game_name: game['name'], igdb_id: game['id'] }) if in_custom %>
+                </div>
                 <% else %>
-                <p>No custom collections to add games to!</p>
+                No custom collections to add games to!
                 <% end %>
             </div>
         </div>
@@ -231,27 +265,72 @@
     </div>
 </div>
 
+<script type="text/javascript">
 
-        <script type="text/javascript">
-        $('#add-collection-form-<%= game['id'] %> #game_platform').on('input', function() {
-            $('.platform-icon').attr('class', 'platform-green')
-            if ($('#add-form-errors').length) {
-                var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
-                $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
-            }
-        });
+// COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
+function updatePlatformIcon(formType) {
 
-        $('#add-collection-form-<%= game['id'] %> .physical').on('input', function() {
-            if ($('#add-form-errors').length) {
-                var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
-                $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
-            }
-        });
+    var form = '#add-' + formType + '-form-<%= game['id'] %>';
+    var selectElement = form + ' #game_platform';
 
-        $('#add-collection-form-<%= game['id'] %> .digital').on('input', function() {
-            if ($('#add-form-errors').length) {
-                var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
-                $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
-            }
-        });
-        </script>
+    $(selectElement).on('input', function() {
+
+        var value = $(selectElement).val();
+        var icon = form + ' .platform-icon';
+
+        if (value.length > 0) {
+            $(icon).attr('class', 'platform-green');
+        } else {
+            icon = form + ' .platform-green';
+            $(icon).attr('class', 'platform-icon');
+        }
+    });
+}
+
+updatePlatformIcon('collection')
+
+// CUSTOM COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - -//
+// IF ONLY ONE CUSTOM COLLECTION PREPARE FORM AFTER AUTOMATICALY SELECTING IT
+var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+var nd = (value.split(",")[1] == 'true');
+var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
+var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
+
+if (nd == true) {
+        $(plat_form_element).show();
+        $(needs_platform).attr('value', 'true');
+    } else if (nd == false) {
+        $(plat_form_element).hide();
+        $(needs_platform).attr('value', 'false');
+    }
+
+// CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
+updatePlatformIcon('custom')
+
+// SHOW PLATFORM FORM FOR COLLECTION THAT REQUIRE PLATFORM SELECTION FOR GAMES
+// CHANGE COLLECTION ICON COLOR AFTER INPUT CHANGE
+$('#add-custom-form-<%= game['id'] %> #collection').on('input', function() {
+var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+var nd = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
+var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
+var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
+
+var icon = '#add-custom-form-<%= game['id'] %> .collection-icon';
+
+if (nd == true) {
+        $(icon).attr('class', 'collection-green');
+        $(plat_form_element).show();
+        $(needs_platform).attr('value', 'true');
+    } else if (nd == false) {
+        $(icon).attr('class', 'collection-green');
+        $(plat_form_element).hide();
+        $(needs_platform).attr('value', 'false');
+    } else if (nd == 'select'){
+        icon = '#add-custom-form-<%= game['id'] %> .collection-green';
+        $(icon).attr('class', 'collection-icon');
+        $(plat_form_element).hide();
+        $(needs_platform).attr('value', 'false');
+    }
+});
+</script>

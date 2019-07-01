@@ -27,12 +27,13 @@ $background: #dddddd;
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
 $light: rgba(255, 255, 255, 0.5);
+$light_nt: rgb(154, 154, 154);
 $lighter: rgba(255, 255, 255, 0.7);
-
+$lighter: rgb(197, 197, 197);
 // HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
-    // background-color: $background;
-    background-image: url('noise.png');
+    background-color: $background;
+    // background-image: url('noise.png');
     // box-shadow: inset 5px 5px 200px #00000036;
 }
 
@@ -70,6 +71,13 @@ footer {
         list-style: none;
     }
 }
+// Main Menu- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+#main-menu {
+
+}
+
+
 
 // Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1013,6 +1021,10 @@ hr.nav-bottom {
     }
 }
 
+.select-collection {
+    margin: 0px 0px 20px 0px;
+}
+
 .add-button {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -1065,6 +1077,21 @@ button.uk-dropdown-close.uk-close.uk-icon {
 }
 
 .platform-icon + span, .platform-green + span {
+    position: relative;
+    top: 11px;
+}
+
+.collection-icon svg rect {
+    stroke-width: 2.5;
+    stroke: $light_nt;
+}
+
+.collection-green svg rect {
+    stroke-width: 2.5;
+    stroke: $accent;
+}
+
+.collection-icon + span, .collection-green + span {
     position: relative;
     top: 11px;
 }
@@ -1163,7 +1190,7 @@ span.add-form-errors {
     font-size: 12px;
     margin-top: 0px;
 
-    p {
+    p, hr {
         margin-top: 10px;
         margin-bottom: 10px;
     }
@@ -1173,10 +1200,13 @@ span.add-form-errors {
         margin-top: 0px;
         margin-bottom: 0px;
         list-style-type: none;
+        width: 230px;
+        float: left;
 
         li {
             height: 20px;
             font-style: italic;
+            clear: left;
         }
     }
 

@@ -4,9 +4,16 @@ class GamesController < ApplicationController
   def create
     @errors = []
     @collection = current_user.collections.find_by_id(params[:collection])
+    @game_igdb_id = game_params[:igdb_id]
 
+    if @collection
+      @form = @collection.form
+    else
+      @errors << 'Select collection'
+      @form = params[:form]
+    end
 
-    if @collection.needs_platform
+    if @collection && @collection.needs_platform
       platform, platform_name = game_params[:platform].split(',')
 
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
@@ -28,17 +35,17 @@ class GamesController < ApplicationController
           @errors += @game.errors.full_messages
         end
       end
-    else # Does not need platform:
+    elsif @collection # Does not need platform:
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
           @collection.games << @game
           message(false, false)
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in your collection'
-          message(false, true)
+          message(false, true) unless @form == 'custom'
         end
       else
-        @game = @collection.games.build(game_params)
+        @game = @collection.games.build(game_params.except(:platform, :physical))
 
         if @game.save
           message(false, false)
