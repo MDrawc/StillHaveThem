@@ -2,21 +2,9 @@
 <nav class="uk-navbar-container uk-navbar-transparent uk-dark" uk-navbar>
   <div class="uk-navbar-left">
     <ul class="uk-navbar-nav">
-      <li>
-        <a id="menu-button" href="#">> STILL HAVE THEM</a>
-        <div id="main-menu" class="uk-navbar-dropdown" uk-dropdown="mode: click; toggle: #menu-button">
-          <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li><%= link_to 'Home', root_url %></li>
-            <li><%= link_to "Add games", search_url, 'data-turbolinks' => 'false' %></li>
-            <li class="uk-nav-header">Collections</li>
-            <li><a href="#">Item</a></li>
-            <li><a href="#">Item</a></li>
-            <li class="uk-nav-header">Custom Collections</li>
-            <li class="uk-nav-divider"></li>
-            <li><a href="#">Settings</a></li>
-            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-          </ul>
-        </div>
+      <li><%= link_to(root_path) do %>
+      > STILL HAVE THEM
+      <% end %>
       </li>
     </ul>
   </div>

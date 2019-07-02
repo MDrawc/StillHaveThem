@@ -4,6 +4,13 @@ class StaticPagesController < ApplicationController
   @@last_result_ids = []
 
   def home
+    @home_collection = current_user.collections.find_by(default: true)
+  end
+
+  def privacy
+  end
+
+  def terms
   end
 
   def about

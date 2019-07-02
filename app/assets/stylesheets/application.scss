@@ -30,7 +30,7 @@ $light: rgba(255, 255, 255, 0.5);
 $light_nt: rgb(154, 154, 154);
 $lighter: rgba(255, 255, 255, 0.7);
 $lighter: rgb(197, 197, 197);
-// HTML, Body, Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// HTML, Body- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
     background-color: $background;
     // background-image: url('noise.png');
@@ -56,28 +56,89 @@ body::-webkit-scrollbar {
     padding-bottom: $footer_height + $navbar_height;
 }
 
+// Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+#logo svg {
+    width: 70px;
+    height: 110px;
+}
+
+#logo svg path {
+    stroke: #999;
+    stroke-width: 2px;
+}
+
+#logo:hover svg path {
+    stroke: #accent_darker;
+}
+
+
+// button#menu-button {
+//     border-radius: 500px;
+//     width: 115px;
+//     box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.16);
+//     cursor: pointer;
+//     background: #444444f7;
+//     border: none;
+// }
+
+// button#menu-button:focus {
+//     outline: none !important;
+// }
+
+// button#menu-button:active {
+//     border-style: none !important;
+// }
+// Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 footer {
     position: absolute;
     bottom: 0;
     background: none;
     width: 100%;
     height: $footer_height;
-    font-size: 14px;
+    font-size: 12px;
 
     ul {
-        padding: 0px 15px 0px 0px;
-        margin: 0px;
-        float: right;
+        margin: 0px 35px 0px 0px;
         list-style: none;
+
+
+        li {
+            float: right;
+            padding-left: 10px;
+        }
     }
 }
 // Main Menu- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-#main-menu {
-
+.main-menu {
+    position: fixed;
+    z-index: 5;
 }
 
+a#menu-button {
+    background: #00000012;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0px 5px 5px 0px;
 
+    svg {
+        color: #999;
+
+        rect {
+            height: 2px;
+        }
+    }
+}
+
+a#menu-button:hover svg {
+    color: #666;
+}
+
+#menu-dropdown {
+    width: 300px;
+    border-radius: 5px;
+}
 
 // Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -531,8 +592,6 @@ footer {
     background: linear-gradient(to left top, rgba(75, 235, 236, 0) 50%, rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.28) 100%);
 }
 
-
-
 .no-cover {
     width: 200px;
     height: 266px;
@@ -605,11 +664,18 @@ footer {
 // Game Warning (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - //
 .game-warning {
     color: #999999;
+    cursor: default !important;
 
     :hover {
         color: #666;
     }
+
 }
+
+button.game-warning.uk-icon:focus {
+    outline: none;
+}
+
 
 // Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 
@@ -1297,6 +1363,10 @@ ul.uk-slideshow-items li img {
     height: unset !important;
 }
 
+// Table view - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+.uk-table-hover > tr:hover, .uk-table-hover tbody tr:hover {
+    background: $accent;
+}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,25 @@
+<table class="uk-table uk-table-small uk-table-hover">
+    <caption><%= collection.custom_name || collection.name%></caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <!-- <th>First Release Date</th> -->
+            <!-- <th>Developer</th> -->
+            <% if needs_p = collection.needs_platform %>
+            <th>Platform</th>
+            <th>Physical / Digital</th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <% collection.games.each do |game| %>
+        <tr>
+            <%= content_tag(:td, game.name) %>
+            <% if needs_p %>
+                <%= content_tag(:td, game.platform_name) %>
+                <%= content_tag(:td, game.physical ? 'Physical' : 'Digital') %>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
