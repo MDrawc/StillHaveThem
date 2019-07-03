@@ -79,6 +79,9 @@ def remove_game_search
       @all_deleted = !check_for_game_in_custom(@game.igdb_id)
     end
 
+    # Remove underline from removed game - coverview
+    @remove_underline = !check_for_game_in_all(@game.igdb_id)
+
     @success = true
   else
     @message = "Game does not belong to \"#{@collection.name}\""
@@ -115,6 +118,14 @@ private
   def check_for_game_in_custom(igdb_id)
     results = []
     current_user.collections.custom.each do |collection|
+      results << collection.games.any? { |game| game.igdb_id == igdb_id }
+    end
+    return results.any?
+  end
+
+  def check_for_game_in_all(igdb_id)
+    results = []
+    current_user.collections.each do |collection|
       results << collection.games.any? { |game| game.igdb_id == igdb_id }
     end
     return results.any?

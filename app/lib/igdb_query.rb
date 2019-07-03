@@ -322,7 +322,8 @@ class IgdbQuery
     end
 
     def request(offset)
-      http = Net::HTTP.new('api-v3.igdb.com', 80)
+      http = Net::HTTP.new('api-v3.igdb.com', 443)
+      http.use_ssl = true
 
       case @query_type
       when :game

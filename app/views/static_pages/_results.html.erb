@@ -1,5 +1,5 @@
 <% if @inquiry.results.present? %>
-<%= render 'cover_view' %>
+  <%= render 'cover_view' %>
 <% if @inquiry.is_more? %>
 <div id="show-more">
   <%= form_tag("/search", method: :get, remote: true) do %>
@@ -26,6 +26,18 @@
 
 <div class="scroll-up">
   <a class="scroll-up-button" href="#target"
-    uk-icon="icon: arrow-up; ratio: 2"
-  uk-scroll="duration: 600"></a>
+    uk-icon="icon: arrow-up; ratio: 1.5"
+    uk-scroll="duration: 600" style="display: none"></a>
 </div>
+
+<script>
+// Show scroll-up-button
+$(window).scroll(function() {
+    if ($(window).scrollTop() > 200) {
+       $('.scroll-up-button').fadeIn()
+    }
+    else {
+       $('.scroll-up-button').fadeOut()
+    }
+});
+</script>

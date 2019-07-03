@@ -46,4 +46,10 @@ if ((form === 'wishlist') || (form === 'played')) {
 
 }
 
+// Remove underline from removed game
+<% if @remove_underline %>
+var name_el = '#gs-' + game_id + ' .game-name span'
+$(name_el).removeClass('owned');
+<% end %>
+
 <% end %>

@@ -32,32 +32,35 @@
             <% end %>
         </p>
         <% end %>
+        <!-- CHECK USERS COLLECTIONS -->
+        <% in_initial = {} %>
+        <% @initial_collections.each_value do |collection| %>
+        <% in_initial["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) ? true : false %>
+        <% end %>
+        <% in_custom = @custom_collections.any? do |custom_c| %>
+        <% custom_c.games.find_by(igdb_id: game['id']) %>
+        <% end %>
         <!-- NAVIGATION -->
         <div class="info-nav">
             <ul class="uk-iconnav">
-                <!-- CHECK USERS COLLECTIONS -->
-                <% added = {} %>
-                <% @collections.each_value do |collection| %>
-                <% added["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) ? true : false %>
-                <% end %>
                 <!-- COLLECTION -->
                 <li>
-                    <% collection = @collections['collection'] %>
+                    <% collection = @initial_collections['collection'] %>
                     <% tooltip = 'Add to / Remove from ' + (collection.custom_name || collection.name) %>
-                    <% extra_class = added['collection'] ? 'remove' : '' %>
+                    <% extra_class = in_initial['collection'] ? 'remove' : '' %>
                     <%= content_tag(:a, '',id: "add-collection-#{ game['id'] }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'database', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
                     <div class="underlight"></div>
                 </li>
                 <!-- WISHLIST -->
                 <!-- ___ADD -->
-                <% collection = @collections['wishlist'] %>
-                <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: added['wishlist'] ? 'display: none;' : nil) do %>
+                <% collection = @initial_collections['wishlist'] %>
+                <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: in_initial['wishlist'] ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'star' } %>
                 <% end %>
                 <!-- ___REMOVE -->
-                <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s,  style: !added['wishlist'] ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s,  style: !in_initial['wishlist'] ? 'display: none;' : nil) do %>
                 <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
                 <%= link_to '', remove_s_url(game_id: game['id'], collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'star', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
@@ -65,14 +68,14 @@
                 <% end %>
                 <!-- PLAYED -->
                 <!-- ___ADD -->
-                <% collection = @collections['played'] %>
+                <% collection = @initial_collections['played'] %>
                 <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s,
-                style: added['played'] ? 'display: none;' : nil) do %>
+                style: in_initial['played'] ? 'display: none;' : nil) do %>
                 <%= render partial: "add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'bell' } %>
                 <% end %>
                 <!-- ___REMOVE -->
-                <%= content_tag(:li, id: "remove-played-form-" + game['id'].to_s, style: !added['played'] ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "remove-played-form-" + game['id'].to_s, style: !in_initial['played'] ? 'display: none;' : nil) do %>
                 <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
                 <%= link_to '', remove_s_url(game_id: game['id'], collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'bell', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
@@ -80,9 +83,6 @@
                 <% end %>
                 <!-- CUSTOM -->
                 <li>
-                    <% in_custom = @custom_collections.any? do |custom_c| %>
-                        <% custom_c.games.find_by(igdb_id: game['id']) %>
-                    <% end %>
                     <% tooltip = 'Add to / Remove from Custom Collections' %>
                     <% extra_class = in_custom ? 'remove' : '' %>
                     <%= content_tag(:a, '',id: "add-custom-#{ game['id'] }", class: "uk-icon-link " + extra_class,
@@ -96,7 +96,7 @@
             <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>" >
                 <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
                 <%= form_for(:game, url: games_path, remote: true) do |f| %>
-                <% collection = @collections['collection'] %>
+                <% collection = @initial_collections['collection'] %>
                 <%= hidden_field_tag :collection, collection.id %>
                 <%= f.hidden_field :needs_platform, value: true %>
                 <%= f.hidden_field :name, value: game['name'] %>
@@ -122,14 +122,14 @@
                     </div>
                 </div>
                 <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-                    <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'gamebox' %> Physical</label>
-                    <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'digital' %> Digital</label>
+                    <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
+                    <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
                 </div>
                 <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
                 <% end %>
                 <!-- ALREADY IN -->
                 <div class="already-in">
-                    <%= render(partial: 'already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if added['collection']  %>
+                    <%= render(partial: 'already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if in_initial['collection']  %>
                 </div>
             </div>
             <!-- ADD TO CUSTOM COLLECTION -->
@@ -185,8 +185,8 @@
                         </div>
                     </div>
                     <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-                        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'gamebox' %> Physical</label>
-                        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'digital' %> Digital</label>
+                        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
+                        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
                     </div>
                 </div>
                 <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
@@ -236,7 +236,7 @@
         <% if no_of_screens > 1 %>
         <table class="t-scr">
             <tr>
-                <td class="arrow">
+                <td class="arrow-left">
                     <a class="uk-icon-link" href="#" uk-slideshow-item="previous" uk-icon='chevron-left'>
                     </td>
                     <td>
@@ -249,52 +249,50 @@
                             </ul>
                         </div>
                     </td>
-                    <td class="arrow">
+                    <td class="arrow-right">
                         <a class="uk-icon-link" href="#" uk-slideshow-item="next" uk-icon='chevron-right'></a>
                     </td>
                 </tr>
             </table>
             <% end %>
         </div>
-        <hr>
         <% end %>
         <!-- LINKS -->
+        <hr>
         <div id="info-links">
             <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
-            <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+            <%= link_to render('svgs/metacritic_icon'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
 
-            <button id='i-flipper-<%= game['id'] %>'>flipex</button>
+            <button id='i-flipper-<%= game['id'] %>' class="flip"><%= render 'svgs/flip_icon' %></button>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
+// UNDERLINE OWNED GAMES ON COVER VIEW - - - - - - - - - - - - - - - - - - //
+var in_custom = <%= in_custom %>;
+var in_initial = <%= in_initial.values.any? %>;
+
+if (in_custom || in_initial) {
+    $('#gs-<%= game['id'] %> .game-name span').addClass('owned');
+}
+
 // FLIP GAME INFO - - - - - - - - - - - - - - - - - - - - - - - - - - //
 $('#i-flipper-<%= game['id'] %>').click(function() {
-
-
-var offcanvas ="#i-<%= game['id'] %>";
-UIkit.offcanvas(offcanvas).hide();
-
-UIkit.util.on(offcanvas, 'hidden', function () {
-    $(offcanvas).attr('uk-offcanvas', '<%= i_settings + '; flip: true' %>');
-    UIkit.offcanvas(offcanvas).toggle();
+    $('body').toggleClass('uk-offcanvas-flip');
+    $('#i-flipper-<%= game['id'] %>').toggleClass('flip-rotate');
 });
-
-
-});
-
 
 // COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
-function updatePlatformIcon(formType) {
+function updatePlatformIcon(form_type) {
 
-    var form = '#add-' + formType + '-form-<%= game['id'] %>';
-    var selectElement = form + ' #game_platform';
+    var form = '#add-' + form_type + '-form-<%= game['id'] %>';
+    var select_element = form + ' #game_platform';
 
-    $(selectElement).on('input', function() {
+    $(select_element).on('input', function() {
 
-        var value = $(selectElement).val();
+        var value = $(select_element).val();
         var icon = form + ' .platform-icon';
 
         if (value.length > 0) {

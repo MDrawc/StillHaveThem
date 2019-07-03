@@ -53,12 +53,12 @@ class StaticPagesController < ApplicationController
   private
 
     def prepare_user_collections(user)
-    @collections = {}
+      @initial_collections = {}
 
-    user.collections.initial.each do |collection|
-      @collections[collection.form] = collection
+      user.collections.initial.each do |collection|
+        @initial_collections[collection.form] = collection
+      end
+
+      @custom_collections = user.collections.custom
     end
-
-    @custom_collections = user.collections.custom
-  end
 end

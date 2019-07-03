@@ -1,9 +1,10 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
   <% @inquiry.results.each do |game| %>
-  <div class="game-space">
+  <div id="gs-<%= game['id'] %>" class="game-space">
     <%= get_game_cover(game) %>
+    <!-- NAME AND WARNING -->
     <p class="game-name">
-      <%= game["name"] %>
+      <span><%= game["name"] %></span>
       <% if (status_id = game["status"]) && status_id != 0 %>
       <button class="game-warning", uk-icon="icon: warning"
       uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
@@ -13,12 +14,14 @@
       uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
       <% end %>
     </p>
+    <!-- RELEASE DATE -->
     <p class="game-release-date">
       <% if game["first_release_date"]%>
       <%= Time.at(game["first_release_date"]).year %>
       <% else %>
       -
       <% end %>
+      <!-- PLATFORMS -->
       <% if platforms = game["platforms"] %>
       <% if platforms.size > 3 %>
       <% rest = platforms[3..-1] %>

@@ -30,9 +30,11 @@ $light: rgba(255, 255, 255, 0.5);
 $light_nt: rgb(154, 154, 154);
 $lighter: rgba(255, 255, 255, 0.7);
 $lighter: rgb(197, 197, 197);
+
 // HTML, Body- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 html {
     background-color: $background;
+
     // background-image: url('noise.png');
     // box-shadow: inset 5px 5px 200px #00000036;
 }
@@ -71,7 +73,6 @@ body::-webkit-scrollbar {
     stroke: #accent_darker;
 }
 
-
 // button#menu-button {
 //     border-radius: 500px;
 //     width: 115px;
@@ -102,22 +103,24 @@ footer {
         margin: 0px 35px 0px 0px;
         list-style: none;
 
-
         li {
             float: right;
             padding-left: 10px;
         }
     }
 }
+
 // Main Menu- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .main-menu {
     position: fixed;
     z-index: 5;
+    top: 200px;
 
     ul {
         list-style: none;
         padding-left: 0px;
+
         li {
             padding-bottom: 15px;
         }
@@ -151,41 +154,6 @@ a.menu-button:hover {
 #menu-dropdown {
     width: 300px;
     border-radius: 5px;
-}
-
-// Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.speech-bubble {
-    position: relative;
-    left: 15px;
-    top: 15px;
-    background: #ffffff;
-    border-radius: 4px;
-    width: 80px;
-
-    p {
-        margin: 0;
-        padding: 10px;
-        font-size: 18px;
-        font-weight: 100;
-        color: #666666;
-        width: 60px;
-    }
-}
-
-.speech-bubble:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border: 15px solid transparent;
-    border-right-color: #ffffff;
-    border-left: 0;
-    border-top: 0;
-    margin-top: 20px;
-    margin-left: -15px;
 }
 
 // Other- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -514,29 +482,28 @@ a.menu-button:hover {
 // Scroll Up Button (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - //
 .scroll-up {
     position: fixed;
-    bottom: 9%;
-    right: 2%;
-    z-index: 3;
+    bottom: 10%;
+    right: 0;
+    z-index: 5;
 }
 
 .scroll-up-button {
-    box-shadow: none;
-    background: transparent;
-    border: 0px;
-    transition-duration: 0.2s;
+    background: rgba(0, 0, 0, .07);
+    box-sizing: border-box;
+    border-radius: 5px 0px 0px 5px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        color: #999;
+    }
 }
 
-.scroll-up-button:hover {
-    filter: drop-shadow(0px 2px 3px #ACACAC);
-    background: transparent;
-    border: 0px;
-    color: inherit;
-}
-
-.scroll-up-button:active {
-    background: transparent;
-    border: 0px;
-    transform: scaleY(1.5);
+.scroll-up-button:hover svg {
+    color: #666;
 }
 
 // Show More Button (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - //
@@ -552,6 +519,11 @@ a.menu-button:hover {
 // Cover View (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
 .cover-view {
     margin-bottom: 0px;
+}
+
+.owned {
+    box-shadow: 0px 3px 0px -1px #00000028;
+    padding-bottom: 2px;
 }
 
 .game-space {
@@ -610,12 +582,12 @@ a.menu-button:hover {
     height: 266px;
     margin-bottom: 0px !important;
     border-radius: 3px;
+
     // outline: 1px solid #ffffffe8;
     // outline-offset: -1px;
     // outline-style: outset;
 
     border: 1px solid transparent;
-
     background-color: transparent;
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.4), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
     transition-duration: 0.3s;
@@ -682,13 +654,11 @@ a.menu-button:hover {
     :hover {
         color: #666;
     }
-
 }
 
 button.game-warning.uk-icon:focus {
     outline: none;
 }
-
 
 // Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 
@@ -1031,6 +1001,22 @@ p.header {
     margin: 15px 0px;
 }
 
+td.arrow-left a, td.arrow-right a  {
+    transition: all 0.15s ease-out;
+}
+
+td.arrow-left a:focus, td.arrow-right a:focus {
+    color: $light !important;
+}
+
+td.arrow-left a:active {
+    transform: translateX(-5px);
+}
+
+td.arrow-right a:active {
+    transform: translateX(5px);
+}
+
 .uk-iconnav {
     padding-top: 20px;
     height: 35px;
@@ -1040,12 +1026,30 @@ p.header {
     background: #444444f7;
     padding: 5px;
     border-radius: 3px;
+    transition: all 0.15s ease-out;
+}
+
+.uk-iconnav a:active {
+    position: relative;
+    top: 5px;
+}
+
+.uk-iconnav a.uk-open {
+    position: relative;
+    top: 5px;
 }
 
 .uk-iconnav button {
     background: #444444f7;
     padding: 5px;
     border-radius: 3px;
+    transition: all 0.15s ease-out;
+}
+
+.uk-iconnav button:active {
+    background: #444444f7;
+    position: relative;
+    top: 5px;
 }
 
 .uk-iconnav li {
@@ -1079,6 +1083,34 @@ p.header {
     width: 24px;
 }
 
+// Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.flip {
+    background: none;
+    padding: 0px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    float: right;
+    transform: rotate(0deg);
+
+    svg path {
+        stroke: $light !important;
+    }
+}
+
+.flip:hover svg path {
+    stroke: $lighter !important;
+}
+
+.flip:focus {
+    outline: none;
+}
+
+.flip-rotate {
+    transform: rotate(180deg);
+}
+
 // Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
 hr.nav-bottom {
     margin-top: 10px;
@@ -1088,7 +1120,7 @@ hr.nav-bottom {
     border-radius: 5px;
     background-color: #444444f7;
     box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
-    padding: 20px;
+    padding: 15px;
     font-size: 14px;
     width: 230px;
     color: rgba(255, 255, 255, 0.5);
@@ -1263,6 +1295,7 @@ span.add-form-errors {
     position: relative;
     top: -1px;
 }
+
 // Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .already-in {
@@ -1362,6 +1395,7 @@ $slideshow: #393939;
     background: $slideshow;
     border-radius: 5px;
     padding-bottom: 3px;
+
     // box-shadow: -4px 3px 9px 0px #0000004a;
 }
 
@@ -1380,6 +1414,7 @@ ul.uk-slideshow-items li img {
 .uk-table-hover > tr:hover, .uk-table-hover tbody tr:hover {
     background: $accent;
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

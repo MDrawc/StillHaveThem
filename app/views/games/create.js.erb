@@ -49,6 +49,11 @@ if (success) {
         element = element.replace("add", "remove");
         $(element).show();
     }
+
+    // Underline owned game on cover view
+    var name_el = '#gs-' + game_id + ' .game-name span'
+    $(name_el).addClass('owned');
+
 }
 <% end %>
 
