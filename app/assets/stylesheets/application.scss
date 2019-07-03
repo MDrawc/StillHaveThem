@@ -114,25 +114,38 @@ footer {
 .main-menu {
     position: fixed;
     z-index: 5;
-}
 
-a#menu-button {
-    background: #00000012;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 0px 5px 5px 0px;
-
-    svg {
-        color: #999;
-
-        rect {
-            height: 2px;
+    ul {
+        list-style: none;
+        padding-left: 0px;
+        li {
+            padding-bottom: 15px;
         }
     }
 }
 
-a#menu-button:hover svg {
+a.menu-button {
+    background: #00000012;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0px 5px 5px 0px;
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    color: #999;
+
+    svg {
+        color: #999;
+    }
+}
+
+a.menu-button:hover {
     color: #666;
+    text-decoration: none;
+
+    svg {
+        color: #666;
+    }
 }
 
 #menu-dropdown {

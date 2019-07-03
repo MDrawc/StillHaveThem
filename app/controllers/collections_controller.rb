@@ -1,10 +1,13 @@
 class CollectionsController < ApplicationController
 before_action :require_user
-before_action :correct_user, only: [:edit, :update, :destroy]
+before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :never_those, only: [:destroy]
 
 def new
   @collection = Collection.new
+end
+
+def show
 end
 
 def create
@@ -87,7 +90,6 @@ def remove_game_search
 end
 
 def move_game
-
 end
 
 private

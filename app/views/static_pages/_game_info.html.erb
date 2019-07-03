@@ -1,4 +1,5 @@
-<div id="i-<%= game['id'] %>" uk-offcanvas="mode: none; bg-close: true">
+<% i_settings = 'mode: none; bg-close: true' %>
+<div id="i-<%= game['id'] %>" uk-offcanvas="<%= i_settings %>">
     <div class="uk-offcanvas-bar <%= game['id'] %>">
         <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
         <!-- TITLE & RELEASE YEAR -->
@@ -261,11 +262,28 @@
         <div id="info-links">
             <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
             <%= link_to render('metacritic'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+
+            <button id='i-flipper-<%= game['id'] %>'>flipex</button>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
+// FLIP GAME INFO - - - - - - - - - - - - - - - - - - - - - - - - - - //
+$('#i-flipper-<%= game['id'] %>').click(function() {
+
+
+var offcanvas ="#i-<%= game['id'] %>";
+UIkit.offcanvas(offcanvas).hide();
+
+UIkit.util.on(offcanvas, 'hidden', function () {
+    $(offcanvas).attr('uk-offcanvas', '<%= i_settings + '; flip: true' %>');
+    UIkit.offcanvas(offcanvas).toggle();
+});
+
+
+});
+
 
 // COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
