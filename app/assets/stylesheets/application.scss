@@ -487,6 +487,11 @@ a.menu-button:hover {
     z-index: 5;
 }
 
+.scroll-flip {
+    left: 0;
+    border-radius: 0px 5px 5px 0px;
+}
+
 .scroll-up-button {
     background: rgba(0, 0, 0, .07);
     box-sizing: border-box;

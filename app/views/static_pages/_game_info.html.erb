@@ -281,6 +281,8 @@ if (in_custom || in_initial) {
 $('#i-flipper-<%= game['id'] %>').click(function() {
     $('body').toggleClass('uk-offcanvas-flip');
     $('#i-flipper-<%= game['id'] %>').toggleClass('flip-rotate');
+    // Flip scroll-up
+    $('.scroll-up').toggleClass('scroll-flip');
 });
 
 // COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
