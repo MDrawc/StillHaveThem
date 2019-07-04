@@ -2,14 +2,25 @@
 var game_id = '<%= @game_igdb_id %>';
 var form = '<%= @form %>';
 var msg = '<%= @message %>';
+var msg_pos = 'top-right';
 var success = <%= !@errors.present? ? true : false %>;
+
+// Notifications position depends on offcanvas position
+
+if ($('.uk-offcanvas-container').length) {
+    var offc_class = $('.uk-offcanvas-container').attr('class');
+
+    if (offc_class.includes('uk-offcanvas-flip')) {
+        msg_pos = 'top-left';
+    }
+}
 
 // NOTIFICATIONS:
 // WHEN: warning type messages are shown only for 'wishlist' and 'played'
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
-        pos: 'top-right',
+        pos: msg_pos,
         timeout: 5000
     });
 }

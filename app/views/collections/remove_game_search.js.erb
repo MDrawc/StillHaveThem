@@ -1,9 +1,19 @@
 var form = '<%= @collection.form %>';
+var msg_pos = 'top-right'
+
+// Notifications position depends on offcanvas position
+if ($('.uk-offcanvas-container').length) {
+    var offc_class = $('.uk-offcanvas-container').attr('class');
+
+    if (offc_class.includes('uk-offcanvas-flip')) {
+        msg_pos = 'top-left';
+    }
+}
 
 UIkit.notification({
     message: $('<div/>').html('<%= @message %>').text(),
     status: 'warning',
-    pos: 'top-right',
+    pos: msg_pos,
     timeout: 5000
 });
 

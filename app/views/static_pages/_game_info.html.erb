@@ -283,6 +283,11 @@ $('#i-flipper-<%= game['id'] %>').click(function() {
     $('#i-flipper-<%= game['id'] %>').toggleClass('flip-rotate');
     // Flip scroll-up
     $('.scroll-up').toggleClass('scroll-flip');
+    // Flip notification
+    if ($('.uk-notification').length) {
+        $('.uk-notification').toggleClass('uk-notification-top-right');
+         $('.uk-notification').toggleClass('uk-notification-top-left');
+    }
 });
 
 // COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
