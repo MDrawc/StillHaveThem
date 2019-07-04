@@ -72,25 +72,22 @@ class GamesController < ApplicationController
     end
 
     def message(needs_platform = true, duplicate = false)
+      collection_link = "<a class='c' href='#{collection_url(@collection)}'>#{ @collection.custom_name || @collection.name }</a>"
       if needs_platform
         if !duplicate
-          @message_type = 'primary'
-          @message = "Added \"#{@game.name}\"" +
-          " [ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ]" +
-          " to \"#{@collection.custom_name || @collection.name}\""
+          @message = "<span class='g'>Added</span> #{@game.name}" +
+          " <span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span>" +
+          " to " + collection_link
         else
-          @message_type = nil
+          @message = nil
         end
       else
         if !duplicate
-          @message_type = 'primary'
-          @message = "Added \"#{@game.name}\"" +
-          " to \"#{@collection.custom_name || @collection.name}\""
+          @message = "<span class='g'>Added</span> #{@game.name}" +
+          " to " + collection_link
         else
-          @message_type = 'warning'
-          @message = "\"#{@game.name}\"" +
-          " already belongs to the \"#{@collection.custom_name || @collection.name}\"" +
-          " - Nothing added"
+          @message = "#{@game.name}" +
+          " <span class='b'>already belongs</span> to " + collection_link
         end
       end
     end

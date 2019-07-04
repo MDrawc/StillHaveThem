@@ -65,11 +65,12 @@ def remove_game_search
     @collection.games.delete(@game)
 
     #Prepare notification:
-    @message = "Removed \"#{@game.name}\" "
+    collection_link = "<a class='c' href='#{collection_url(@collection)}'>#{ @collection.custom_name || @collection.name }</a>"
+    @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
-      @message += "[ #{@game.platform_name} | #{@game.physical ? 'Physical' : 'Digital'} ] "
+      @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
-    @message += "from \"#{@collection.name}\""
+    @message += "from " + collection_link
 
     #Turn of underlight in My Collection
     if @collection.form == 'collection'
@@ -84,7 +85,9 @@ def remove_game_search
 
     @success = true
   else
-    @message = "Game does not belong to \"#{@collection.name}\""
+    #Notification:
+    collection_link = "<a class='c' href='#{collection_url(@collection)}'>#{ @collection.custom_name || @collection.name }</a>"
+    @message = "Game <span class='b'>does not belong</span> to " + collection_link
   end
 
   respond_to do |format|

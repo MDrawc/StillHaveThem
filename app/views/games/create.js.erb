@@ -1,16 +1,14 @@
 // VARIABLES:
 var game_id = '<%= @game_igdb_id %>';
 var form = '<%= @form %>';
-var msg_type = '<%= @message_type %>';
+var msg = '<%= @message %>';
 var success = <%= !@errors.present? ? true : false %>;
 
 // NOTIFICATIONS:
 // WHEN: warning type messages are shown only for 'wishlist' and 'played'
-//
-if (msg_type) {
+if (msg) {
     UIkit.notification({
-        message: '<%= @message %>',
-        status: msg_type,
+        message: $('<div/>').html(msg).text(),
         pos: 'top-right',
         timeout: 5000
     });

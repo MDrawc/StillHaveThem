@@ -1,7 +1,7 @@
 var form = '<%= @collection.form %>';
 
 UIkit.notification({
-    message: '<%= @message %>',
+    message: $('<div/>').html('<%= @message %>').text(),
     status: 'warning',
     pos: 'top-right',
     timeout: 5000
