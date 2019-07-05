@@ -14,7 +14,6 @@
         <p id="info-by">by <%= devs.join(', ') %></p>
         <% end %>
         <!-- COVER -->
-
         <!-- PLATFORMS -->
         <% if platforms = game["platforms"] %>
         <p id="info-platform">
@@ -29,9 +28,44 @@
             <% end %>
         </p>
         <% end %>
-
-
-
+    <!-- SLIDESHOW -->
+    <% if urls = get_screenshots(game) %>
+    <div class="uk-position-relative md-slideshow" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
+        <ul class="uk-slideshow-items">
+            <% no_of_screens = 0 %>
+            <% urls.each do |url| %>
+            <li>
+                <%= image_tag('', 'data-src' => url[:small], alt: game['name'], 'uk-cover' => '', 'uk-img' => '') %>
+                <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
+            </li>
+            <% no_of_screens += 1 %>
+            <% end %>
+        </ul>
+        <!-- SLIDESHOW NAVIGATION -->
+        <% if no_of_screens > 1 %>
+        <table class="t-scr">
+            <tr>
+                <td class="arrow-left">
+                    <a class="uk-icon-link" href="#" uk-slideshow-item="previous" uk-icon='chevron-left'>
+                    </td>
+                    <td>
+                        <div class="hor-cen-list">
+                            <ul id="screen-nav">
+                                <% no_of_screens.times do |t| %>
+                                <li uk-slideshow-item="<%= t %>"><%= content_tag(:a, '', href: '#',
+                                class: 'uk-icon-link', 'uk-icon' => 'image') %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="arrow-right">
+                        <a class="uk-icon-link" href="#" uk-slideshow-item="next" uk-icon='chevron-right'></a>
+                    </td>
+                </tr>
+            </table>
+            <% end %>
+        </div>
+        <% end %>
         <!-- LINKS -->
         <hr>
         <div id="info-links">
