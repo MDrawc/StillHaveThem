@@ -33,9 +33,10 @@
     <div class="uk-position-relative md-slideshow" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
         <ul class="uk-slideshow-items">
             <% no_of_screens = 0 %>
-            <% urls.each do |url| %>
+            <% urls.each_with_index do |url, i| %>
             <li>
-                <%= image_tag('', 'data-src' => url[:small], alt: game['name'], 'uk-cover' => '', 'uk-img' => '') %>
+                <% img_target = (i == 0) ? "target: #gc-#{ game['id'] }" : "target: #i-#{ game['id'] }" %>
+                <%= image_tag('', 'data-src' => url[:small], alt: game['name'], 'uk-cover' => '', 'uk-img' => img_target ) %>
                 <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
             </li>
             <% no_of_screens += 1 %>
