@@ -180,4 +180,25 @@ module StaticPagesHelper
     name = collection.custom_name || collection.name
     return name.first.capitalize
   end
+
+  def random_cover
+    require 'net/https'
+    require 'json'
+    http = Net::HTTP.new('api-v3.igdb.com', 443)
+    http.use_ssl = true
+    request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/covers'), {'user-key' => 'e9394e9ef83e0c394643dc946d168b15'})
+
+    cover_id = nil
+
+    until cover_id
+      game = rand(15000)
+      request.body = "fields image_id; w game=#{game}; limit 1;"
+      results = JSON.parse http.request(request).body
+      cover_id = results.first
+    end
+
+    cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
+    return cover_url += cover_id['image_id'] + ".jpg"
+  end
 end
+

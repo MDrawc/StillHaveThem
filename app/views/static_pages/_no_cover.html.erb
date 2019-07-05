@@ -1,10 +1,3 @@
 <div class="no-cover" uk-toggle="target: #i-<%= game['id'] %>">
-  <p class="no-cover-tag unselectable"><%= game["name"] %></p>
-  <% if game["xtra"] %>
-  <div class="xtra-info" uk-alert>
-    <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
-    <p><%= game["xtra"] %></p>
-  </div>
-  <% end %>
 </div>
-<%= render partial: "game_info", locals: { game: game, cover_url: nil, options: nil } %>
+

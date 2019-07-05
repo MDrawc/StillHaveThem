@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'search', to: 'static_pages#search'
   get 'about', to: 'static_pages#about'
+  get 'terms', to: 'static_pages#terms'
+  get 'privacy', to: 'static_pages#privacy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'signin', to: 'sessions#new'

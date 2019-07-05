@@ -14,10 +14,7 @@
         <p id="info-by">by <%= devs.join(', ') %></p>
         <% end %>
         <!-- COVER -->
-        <% if cover_url %>
-        <p id="info-cover"><%= image_tag(cover_url, alt: game['name'], class: "game-cover",
-        draggable: "false", width: options[:width]) %></p>
-        <% end %>
+
         <!-- PLATFORMS -->
         <% if platforms = game["platforms"] %>
         <p id="info-platform">
