@@ -1,7 +1,9 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
   <% @inquiry.results.each do |game| %>
   <div id="gs-<%= game['id'] %>" class="game-space">
+    <!-- COVER -->
     <%= get_game_cover(game) %>
+    <!-- GAME INFO -->
     <!-- NAME AND WARNING -->
     <p class="game-name">
       <span><%= game["name"] %></span>
