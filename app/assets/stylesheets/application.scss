@@ -61,6 +61,7 @@ body::-webkit-scrollbar {
 // Image (Cover) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 
 img[data-src][src*='data:image'] { background: $accent; }
+
 // img[data-src] { background: $accent; }
 
 // Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

@@ -1,2 +1,13 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<h1>LAZY LOAD TEST</h1>
+
+<% 50.times do |i| %>
+
+<div id="test-<%=  i %>" class='lli_test'>
+  <img data-src="https://source.unsplash.com/random/<%= rand(200..800) %>x<%= rand(200..800) %>" height='200' width='200' uk-img>
+</div>
+
+<hr>
+
+<% end %>
+
+

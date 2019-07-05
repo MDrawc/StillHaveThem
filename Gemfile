@@ -10,12 +10,12 @@ gem 'rails', '~> 5.2.3'
 gem 'bcrypt', '~>3.1.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-# UIKit 3 for Ruby on Rails
-gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 # Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails', groups: [:development, :test]
 # jQuery
 gem 'jquery-rails'
+# UIKit 3 for Ruby on Rails
+gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
