@@ -268,3 +268,94 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+// UNDERLINE OWNED GAMES ON COVER VIEW - - - - - - - - - - - - - - - - - - //
+var in_custom = <%= in_custom %>;
+var in_initial = <%= in_initial.values.any? %>;
+
+if (in_custom || in_initial) {
+    $('#gs-<%= game['id'] %> .game-name span').addClass('owned');
+}
+
+// FLIP GAME INFO - - - - - - - - - - - - - - - - - - - - - - - - - - //
+$('#i-flipper-<%= game['id'] %>').click(function() {
+    $('body').toggleClass('uk-offcanvas-flip');
+    $('#i-flipper-<%= game['id'] %>').toggleClass('flip-rotate');
+    // Flip scroll-up
+    $('.scroll-up').toggleClass('scroll-flip');
+    // Flip notification
+    if ($('.uk-notification').length) {
+        $('.uk-notification').toggleClass('uk-notification-top-right');
+         $('.uk-notification').toggleClass('uk-notification-top-left');
+    }
+});
+
+// COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
+function updatePlatformIcon(form_type) {
+
+    var form = '#add-' + form_type + '-form-<%= game['id'] %>';
+    var select_element = form + ' #game_platform';
+
+    $(select_element).on('input', function() {
+
+        var value = $(select_element).val();
+        var icon = form + ' .platform-icon';
+
+        if (value.length > 0) {
+            $(icon).attr('class', 'platform-green');
+        } else {
+            icon = form + ' .platform-green';
+            $(icon).attr('class', 'platform-icon');
+        }
+    });
+}
+
+updatePlatformIcon('collection')
+
+// CUSTOM COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - -//
+// IF ONLY ONE CUSTOM COLLECTION PREPARE FORM AFTER AUTOMATICALY SELECTING IT
+if ($('#add-custom-form-<%= game['id'] %> #collection').length){
+    var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+    var nd = (value.split(",")[1] == 'true');
+    var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
+    var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
+
+    if (nd == true) {
+            $(plat_form_element).show();
+            $(needs_platform).attr('value', 'true');
+        } else if (nd == false) {
+            $(plat_form_element).hide();
+            $(needs_platform).attr('value', 'false');
+        }
+}
+// CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
+updatePlatformIcon('custom')
+
+// SHOW PLATFORM FORM FOR COLLECTION THAT REQUIRE PLATFORM SELECTION FOR GAMES
+// CHANGE COLLECTION ICON COLOR AFTER INPUT CHANGE
+$('#add-custom-form-<%= game['id'] %> #collection').on('input', function() {
+var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+var nd = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
+var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
+var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
+
+var icon = '#add-custom-form-<%= game['id'] %> .collection-icon';
+
+if (nd == true) {
+        $(icon).attr('class', 'collection-green');
+        $(plat_form_element).show();
+        $(needs_platform).attr('value', 'true');
+    } else if (nd == false) {
+        $(icon).attr('class', 'collection-green');
+        $(plat_form_element).hide();
+        $(needs_platform).attr('value', 'false');
+    } else if (nd == 'select'){
+        icon = '#add-custom-form-<%= game['id'] %> .collection-green';
+        $(icon).attr('class', 'collection-icon');
+        $(plat_form_element).hide();
+        $(needs_platform).attr('value', 'false');
+    }
+});
+</script>
