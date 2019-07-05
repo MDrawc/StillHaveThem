@@ -14,6 +14,7 @@
         <p id="info-by">by <%= devs.join(', ') %></p>
         <% end %>
         <!-- COVER -->
+        <%= image_tag('', class: 'game-cover info-cover', width: options[:width], 'data-src' => cover_url, alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" ) if cover_url %>
         <!-- PLATFORMS -->
         <% if platforms = game["platforms"] %>
         <p id="info-platform">
@@ -28,6 +29,25 @@
             <% end %>
         </p>
         <% end %>
+        <!-- SUMMARY -->
+        <% if summary = get_summary(game, 280, 50) %>
+        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
+    </p>
+    <script>
+    function myFunction(id) {
+    var dots = document.getElementById("dots-" + id);
+    var moreText = document.getElementById("more-" + id);
+    if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+    } else {
+    dots.style.display = "none";
+    moreText.style.display = "inline";
+    }
+    }
+    </script>
+    <% end %>
+    <% end %>
     <!-- SLIDESHOW -->
     <% if urls = get_screenshots(game) %>
     <div class="uk-position-relative md-slideshow" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
@@ -72,9 +92,7 @@
         <div id="info-links">
             <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
             <%= link_to render('svgs/metacritic_icon'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
-
             <button id='i-flipper-<%= game['id'] %>' class="flip"><%= render 'svgs/flip_icon' %></button>
         </div>
     </div>
 </div>
-

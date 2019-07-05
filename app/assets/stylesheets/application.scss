@@ -598,7 +598,7 @@ a.menu-button:hover {
 }
 
 .game-cover {
-    margin-bottom: 0px !important;
+    margin-bottom: 0px; //!important was here do not know why!
     border-radius: 3px;
     box-shadow: -2px 4px 9px 1px #0000004a;
 }
@@ -1025,7 +1025,7 @@ p.header {
     margin-top: 0px;
 }
 
-#info-cover {
+.info-cover {
     margin-bottom: 10px;
 }
 
