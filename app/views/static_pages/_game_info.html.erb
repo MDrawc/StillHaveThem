@@ -196,7 +196,7 @@
                     <%= render(partial: 'already_in_custom', locals: { game_name: game['name'], igdb_id: game['id'] }) if in_custom %>
                 </div>
                 <% else %>
-                No custom collections to add games to!
+                <p>Create custom collection first.</p>
                 <% end %>
             </div>
         </div>
@@ -315,19 +315,20 @@ updatePlatformIcon('collection')
 
 // CUSTOM COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - -//
 // IF ONLY ONE CUSTOM COLLECTION PREPARE FORM AFTER AUTOMATICALY SELECTING IT
-var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
-var nd = (value.split(",")[1] == 'true');
-var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
-var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
+if ($('#add-custom-form-<%= game['id'] %> #collection').length){
+    var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+    var nd = (value.split(",")[1] == 'true');
+    var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
+    var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
 
-if (nd == true) {
-        $(plat_form_element).show();
-        $(needs_platform).attr('value', 'true');
-    } else if (nd == false) {
-        $(plat_form_element).hide();
-        $(needs_platform).attr('value', 'false');
-    }
-
+    if (nd == true) {
+            $(plat_form_element).show();
+            $(needs_platform).attr('value', 'true');
+        } else if (nd == false) {
+            $(plat_form_element).hide();
+            $(needs_platform).attr('value', 'false');
+        }
+}
 // CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
 updatePlatformIcon('custom')
 

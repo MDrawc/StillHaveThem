@@ -8,10 +8,15 @@ module StaticPagesHelper
       render partial: "no_cover", locals: { game: game }
     else
       cover_id = cover["image_id"]
+      ratio = cover["height"]/cover["width"].to_f
+
+      width = options[:width]
+      height = (width * ratio).round(2)
+
       cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
       cover_url += cover_id.to_s + ".jpg"
       render partial: "cover", locals: { game: game, cover_url: cover_url,
-       options: options }
+        width: width, height: height, options: options }
     end
   end
 

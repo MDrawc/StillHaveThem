@@ -13,6 +13,8 @@ class IgdbQuery
   "status",
   "category",
   "cover.image_id",
+  "cover.width",
+  "cover.height",
   "involved_companies.company.name",
   "involved_companies.developer",
   "platforms.name"].join(',')
@@ -25,6 +27,8 @@ class IgdbQuery
   "developed.status",
   "developed.category",
   "developed.cover.image_id",
+  "developed.cover.width",
+  "developed.cover.height",
   "developed.platforms.category",
   "developed.platforms.name"].join(',')
 
@@ -36,6 +40,8 @@ class IgdbQuery
   "games.status",
   "games.category",
   "games.cover.image_id",
+  "games.cover.width",
+  "games.cover.height",
   "games.involved_companies.company.name",
   "games.involved_companies.developer",
   "games.platforms.name",
