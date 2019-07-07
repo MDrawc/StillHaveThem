@@ -17,27 +17,22 @@
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
-// VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABL
-
+//VARIABLES
 $footer_height: 5rem;
 $navbar_height: 5rem;
-
-//Colors:
 $background: #dddddd;
 $accent: #75C7AF;
 $accent_darker: #49AB8A;
+$warning: #e9806e;
 $light: rgba(255, 255, 255, 0.5);
 $light_nt: rgb(154, 154, 154);
 $lighter: rgba(255, 255, 255, 0.7);
-$lighter: rgb(197, 197, 197);
+$lighter_nt: rgb(197, 197, 197);
+$light_grey: #999;
+$dark_grey: #666;
 
-// HTML, Body- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-html {
-    background-color: $background;
-
-    // background-image: url('noise.png');
-    // box-shadow: inset 5px 5px 200px #00000036;
-}
+// HTML, BODY
+html { background-color: $background; }
 
 body {
     overflow-y: scroll;
@@ -58,19 +53,13 @@ body::-webkit-scrollbar {
     padding-bottom: $footer_height + $navbar_height;
 }
 
-// Image (Cover) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-
+// COVER PLACEHOLDER
 img[data-src][src*='data:image'] {
     background: $accent;
     border-radius: 3px;
 }
 
-
-// Logo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-
-// Footer - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+// FOOTER
 footer {
     position: absolute;
     bottom: 0;
@@ -78,7 +67,6 @@ footer {
     width: 100%;
     height: $footer_height;
     font-size: 12px;
-
     ul {
         margin: 0px 35px 0px 0px;
         list-style: none;
@@ -90,8 +78,7 @@ footer {
     }
 }
 
-// Notifications  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+// NOTIFICATIONS
 .uk-notification-close {
     top: unset;
     bottom: 13px;
@@ -102,74 +89,44 @@ a.uk-notification-close {
     svg {
         width: 12px;
         height: 12px;
-
-        line {
-            stroke-width: 1.4;
-        }
+        line { stroke-width: 1.4; }
     }
 }
 
 .uk-notification-message {
     background: #cdcdcde0;
-    color: #666;
+    color: $dark_grey;
     font-size: 14px;
     border-radius: 5px;
     padding: 10px 26px 10px 10px;
-
-    .g {
-        color: #49AB8A;
-    }
-
-    .b {
-        color: #e9806e;
-    }
-
+    .g { color: $accent_darker; }
+    .b { color: $warning; }
     .d {
         font-style: italic;
         font-weight: 300;
     }
-
     .c {
-        color: #666;
+        color: $dark_grey;
         display: inline-flex;
         text-decoration: underline;
-
-        // BADGE LIKE:
-        // display: inline-flex;
-        // color: #f3f3f3;
-        // background: #999;
-        // border-radius: 3px;
-        // margin-left: 2px;
-        // padding: 0px 5px;
     }
 }
 
-.uk-notification-message .c:hover {
-    color: #999;
-    // BADGE LIKE:
-    // background: #666;
-    // color: #f3f3f3;
-    // text-decoration: none;
-}
+.uk-notification-message .c:hover { color: $light_grey; }
 
-// Main Menu- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+// MENU
 .main-menu {
     position: fixed;
     z-index: 5;
     top: 200px;
-
     ul {
         list-style: none;
         padding-left: 0px;
-
-        li {
-            padding-bottom: 15px;
-        }
+        li { padding-bottom: 15px; }
     }
 }
 
-a.menu-button {
+.menu-button {
     background: #00000012;
     padding: 10px;
     box-sizing: border-box;
@@ -177,31 +134,19 @@ a.menu-button {
     display: inline-block;
     width: 40px;
     text-align: center;
-    color: #999;
-
-    svg {
-        color: #999;
-    }
+    color: $light_grey;
+    svg { color: $light_grey; }
 }
 
-a.menu-button:hover {
-    color: #666;
+.menu-button:hover {
+    color: $dark_grey;
     text-decoration: none;
-
-    svg {
-        color: #666;
-    }
+    svg { color: $dark_grey; }
 }
 
-#menu-dropdown {
-    width: 300px;
-    border-radius: 5px;
-}
-
-// Other- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+//OTHER
 .about-link {
-    color: #999;
+    color: $light_grey;
     text-transform: uppercase;
     transition: 0.1s ease-in-out;
     transition-property: color, background-color;
@@ -211,7 +156,7 @@ a.menu-button:hover {
 }
 
 .about-link:hover {
-    color: #666;
+    color: $dark_grey;
     outline: none;
     text-decoration: none;
 }
@@ -630,10 +575,6 @@ a.menu-button:hover {
     margin-bottom: 0px !important;
     border-radius: 3px;
 
-    // outline: 1px solid #ffffffe8;
-    // outline-offset: -1px;
-    // outline-style: outset;
-
     border: 1px solid transparent;
     background-color: transparent;
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.4), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
@@ -1048,22 +989,6 @@ p.header {
     margin: 15px 0px;
 }
 
-td.arrow-left a, td.arrow-right a {
-    transition: all 0.15s ease-out;
-}
-
-td.arrow-left a:focus, td.arrow-right a:focus {
-    color: $light !important;
-}
-
-td.arrow-left a:active {
-    transform: translateX(-5px);
-}
-
-td.arrow-right a:active {
-    transform: translateX(5px);
-}
-
 .uk-iconnav {
     padding-top: 20px;
     height: 35px;
@@ -1298,7 +1223,7 @@ button.uk-dropdown-close.uk-close.uk-icon {
 
 .physical + svg, .digital + svg {
     cursor: pointer;
-    margin-right: 7px
+    margin-right: 7px;
 }
 
 .physical + svg path {
@@ -1325,17 +1250,9 @@ button.uk-dropdown-close.uk-close.uk-icon {
     fill: $accent;
 }
 
-// .physical:focus + svg path {
-//     fill: $accent_darker;
-// }
-
 .digital:checked + svg {
     fill: $accent;
 }
-
-// .digital:focus + svg {
-//     fill: $accent_darker;
-// }
 
 .remove + .underlight {
     background: $accent_darker;
@@ -1344,11 +1261,6 @@ button.uk-dropdown-close.uk-close.uk-icon {
     border: 2px solid $accent_darker;
     border-radius: 1px;
 }
-
-// .remove:hover + .underlight {
-//     background: $accent;
-//     border-color: $accent;
-// }
 
 span.add-form-errors {
     height: 25px;
@@ -1398,9 +1310,21 @@ span.add-form-errors {
         letter-spacing: 10px;
     }
 
-    td.arrow {
+    .arrow-left, .arrow-right {
         width: 20px;
     }
+}
+
+.arrow-left a, .arrow-right a {
+    transition: all 0.15s ease-out;
+}
+
+.arrow-left a:active {
+    transform: translateX(-5px);
+}
+
+.arrow-right a:active {
+    transform: translateX(5px);
 }
 
 .hor-cen-list {
@@ -1474,7 +1398,3 @@ ul.uk-slideshow-items li img {
 .uk-table-hover > tr:hover, .uk-table-hover tbody tr:hover {
     background: $accent;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
