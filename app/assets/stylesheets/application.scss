@@ -54,10 +54,9 @@ body::-webkit-scrollbar {
 }
 
 // COVER PLACEHOLDER
-img[data-src][src*='data:image'] {
-    background: $accent;
-    border-radius: 3px;
-}
+// img[data-src][src*='data:image'] {
+//     background: #c3c3c3;
+// }
 
 // FOOTER
 footer {
@@ -551,6 +550,27 @@ a.uk-notification-close {
 .game-cover-effect {
     position: relative;
     transition-duration: 0.3s;
+    background: #bababa;
+    border-radius: 3px;
+}
+
+.spinner {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 25px;
+
+}
+
+.spinner svg {
+    fill: $light_grey;
+    animation: 1s infinite normal rotate;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
 }
 
 .game-cover-effect:hover {

@@ -3,9 +3,16 @@ $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
-// remove offcanvas from last search!
+// Remove offcanvas from last search!
 $("[id^=i-]").remove()
 
 if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
 }
+
+// Remove cover placeholder's spinner
+UIkit.util.on(document, 'load', '.game-cover', e => {
+    if (!e.target.currentSrc.startsWith('data:')) {
+        $(e.target).parent().find(".spinner").remove()
+    }
+}, true)
