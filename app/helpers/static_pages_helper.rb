@@ -5,7 +5,7 @@ module StaticPagesHelper
   def get_game_cover(game, options = { width: 200 })
     cover = game["cover"]
     if cover.nil? || cover.class != Hash
-      render partial: "no_cover", locals: { game: game }
+      render partial: "cover_view/no_cover", locals: { game: game }
     else
       cover_id = cover["image_id"]
       ratio = cover["height"]/cover["width"].to_f
@@ -15,7 +15,7 @@ module StaticPagesHelper
 
       cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
       cover_url += cover_id.to_s + ".jpg"
-      render partial: "cover", locals: { game: game, cover_url: cover_url,
+      render partial: "cover_view/cover", locals: { game: game, cover_url: cover_url,
         width: width, height: height, options: options }
     end
   end

@@ -32,3 +32,5 @@
 
 # .env configuration - dotenv gem
 /.env
+
+.DS_Store

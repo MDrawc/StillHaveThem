@@ -35,9 +35,9 @@ if ((form === 'wishlist') || (form === 'played')) {
     var already = "#add-" + form + "-form-" + game_id + " .already-in";
 
     if (form === 'collection') {
-        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+        var proxy = "<%= escape_javascript(render partial: 'cover_view/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
     } else {
-        var proxy = "<%= escape_javascript(render partial: 'static_pages/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+        var proxy = "<%= escape_javascript(render partial: 'cover_view/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
     }
     $(already).html(proxy);
 

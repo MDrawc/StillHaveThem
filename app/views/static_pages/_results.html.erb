@@ -1,5 +1,5 @@
 <% if @inquiry.results.present? %>
-  <%= render 'cover_view' %>
+  <%= render 'cover_view/cover_view' %>
 <% if @inquiry.is_more? %>
 <div id="show-more">
   <%= form_tag("/search", method: :get, remote: true) do %>

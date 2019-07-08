@@ -4,12 +4,364 @@
 		"selected_items":
 		[
 			[
-				"bord",
-				"border-color\tabc"
+				"key",
+				"keyframes\tabc"
+			],
+			[
+				"ligh",
+				"light_grey\tabc"
+			],
+			[
+				"tra",
+				"transform\tabc"
+			],
+			[
+				"lig",
+				"light_grey\tabc"
+			],
+			[
+				"da",
+				"dark_grey\tabc"
+			],
+			[
+				"arro",
+				"arrow-right\tabc"
+			],
+			[
+				"cover",
+				"cover_url\tabc"
+			],
+			[
+				"img",
+				"img_target\tabc"
+			],
+			[
+				"ran",
+				"random_cover\t(static_pages_helper.rb)"
+			],
+			[
+				"he",
+				"height\t(static_pages_helper.rb)"
+			],
+			[
+				"op",
+				"options\tabc"
+			],
+			[
+				"h",
+				"height\tproperty"
 			],
 			[
 				"acce",
+				"accent\tabc"
+			],
+			[
+				"pos",
+				"position\tabc"
+			],
+			[
+				"uk-o",
+				"uk-offcanvas-flip\t(_game_info.html.erb)"
+			],
+			[
+				"font-",
+				"font-weight\tabc"
+			],
+			[
+				"col",
+				"collections\t(collections_controller.rb)"
+			],
+			[
+				"inlin",
+				"inline-flex\tabc"
+			],
+			[
+				"co",
+				"collection_link\tabc"
+			],
+			[
+				"text",
+				"text-decoration\tabc"
+			],
+			[
+				"font",
+				"font-size\tabc"
+			],
+			[
+				"strok",
+				"stroke-width\tabc"
+			],
+			[
+				"margin",
+				"margin-right\tabc"
+			],
+			[
+				"li",
+				"lighter\tabc"
+			],
+			[
+				"border",
+				"border-radius\tabc"
+			],
+			[
+				"uk-no",
+				"uk-notification-message\tabc"
+			],
+			[
+				"scro",
+				"scroll-up\tabc"
+			],
+			[
+				"remo",
+				"remove_underline\t(collections_controller.rb)"
+			],
+			[
+				"game",
+				"game_id\tabc"
+			],
+			[
+				"in",
+				"in_initial\tabc"
+			],
+			[
+				"igd",
+				"igdb_id\t(_already_in_custom.html.erb)"
+			],
+			[
+				"che",
+				"check_for_games\t(_already_in_custom.html.erb)"
+			],
+			[
+				"ini",
+				"initial_collections\t(_game_info.html.erb)"
+			],
+			[
+				"scrol",
+				"scroll-up-button\tabc"
+			],
+			[
+				"toggl",
+				"toggleClass\tabc"
+			],
+			[
+				"bac",
+				"background\tabc"
+			],
+			[
+				"flip",
+				"flip-right\tabc"
+			],
+			[
+				"uk-of",
+				"uk-offcanvas-flip\tabc"
+			],
+			[
+				"bod",
+				"bodyClass\tabc"
+			],
+			[
+				"di",
+				"display\tabc"
+			],
+			[
+				"fli",
+				"flipper\tabc"
+			],
+			[
+				"colle",
+				"collection\tabc"
+			],
+			[
+				"coll",
+				"collection\tabc"
+			],
+			[
+				"padding",
+				"padding-bottom\tabc"
+			],
+			[
+				"cus",
+				"custom_name\t(collections_controller.rb)"
+			],
+			[
+				"bor",
+				"border-box\tabc"
+			],
+			[
+				"box",
+				"box-sizing\tabc"
+			],
+			[
+				"acc",
 				"accent_darker\tabc"
+			],
+			[
+				"wid",
+				"width\tabc"
+			],
+			[
+				"!",
+				"!important\tabc"
+			],
+			[
+				"fo",
+				"focus\tabc"
+			],
+			[
+				"ne",
+				"needs_p\tabc"
+			],
+			[
+				"home",
+				"home_collection\tabc"
+			],
+			[
+				"platfo",
+				"platform_name\t(_logged_old.html.erb)"
+			],
+			[
+				"cu",
+				"custom_name\t(_logged_old.html.erb)"
+			],
+			[
+				"hom",
+				"home_collection\tabc"
+			],
+			[
+				"res",
+				"resetElements\tabc"
+			],
+			[
+				"err",
+				"errorsPlace\tabc"
+			],
+			[
+				"c",
+				"collection\tabc"
+			],
+			[
+				"igdb",
+				"igdb_id\tabc"
+			],
+			[
+				"curr",
+				"current_user\tabc"
+			],
+			[
+				"alre",
+				"already-in\tabc"
+			],
+			[
+				"sc",
+				"script\tTag"
+			],
+			[
+				"fin",
+				"findings\tabc"
+			],
+			[
+				"otp",
+				"options\tabc"
+			],
+			[
+				"se",
+				"selector\tabc"
+			],
+			[
+				"add-c",
+				"add-collection\tabc"
+			],
+			[
+				"sel",
+				"selectedVal\tabc"
+			],
+			[
+				"search-i",
+				"search-igdb-bar\tabc"
+			],
+			[
+				"main",
+				"main-menu\t(_navigation.html.erb)"
+			],
+			[
+				"inc",
+				"in_custom\tabc"
+			],
+			[
+				"custom",
+				"custom_collections\t(static_pages_controller.rb)"
+			],
+			[
+				"game_",
+				"game_igdb_id\t(games_controller.rb)"
+			],
+			[
+				"need",
+				"needs_platform\tabc"
+			],
+			[
+				"margin-",
+				"margin-bottom\tabc"
+			],
+			[
+				"replac",
+				"replaceWith\tabc"
+			],
+			[
+				"find",
+				"ld.find()\t _ Collection"
+			],
+			[
+				"con",
+				"console.log('denion"
+			],
+			[
+				"consol",
+				"console.log('denion"
+			],
+			[
+				"no",
+				"no_errors\t(search.js.erb)"
+			],
+			[
+				"all",
+				"all_deleted\tabc"
+			],
+			[
+				"drop",
+				"drop_element\tabc"
+			],
+			[
+				"alrea",
+				"already_in_collection\t(_game_info.html.erb)"
+			],
+			[
+				"ex",
+				"extra_class\tabc"
+			],
+			[
+				"whi",
+				"wishlist\tabc"
+			],
+			[
+				"pl",
+				"platform-green\tabc"
+			],
+			[
+				"plat",
+				"platform-green\t(application.scss)"
+			],
+			[
+				"pla",
+				"platform-icon\tabc"
+			],
+			[
+				"w",
+				"width\tabc"
+			],
+			[
+				"bord",
+				"border-color\tabc"
 			],
 			[
 				"icon",
@@ -20,22 +372,6 @@
 				"icon-crossed\t(_game_info.html.erb)"
 			],
 			[
-				"cu",
-				"current_user\t(_game_info.html.erb)"
-			],
-			[
-				"coll",
-				"collections\tabc"
-			],
-			[
-				"co",
-				"collections\tabc"
-			],
-			[
-				"colle",
-				"collection\tabc"
-			],
-			[
 				"msg",
 				"msg_type\tabc"
 			],
@@ -44,16 +380,8 @@
 				"content_tag\tabc"
 			],
 			[
-				"game",
-				"game_to_be\t(collections_controller.rb)"
-			],
-			[
 				"gam",
 				"game_to_be\t(collections_controller.rb)"
-			],
-			[
-				"find",
-				"find_by_id\tabc"
 			],
 			[
 				"collec",
@@ -72,28 +400,12 @@
 				"custom_name\t(_game_info.html.erb)"
 			],
 			[
-				"col",
-				"collection\tabc"
-			],
-			[
-				"ne",
-				"needs_platform\tabc"
-			],
-			[
 				"ga",
 				"game_params\tabc"
 			],
 			[
-				"pl",
-				"platform_name\tabc"
-			],
-			[
 				"add-form",
 				"add-form-errors\t(_game_info.html.erb)"
-			],
-			[
-				"plat",
-				"platform\t(_game_info.html.erb)"
 			],
 			[
 				"cur",
@@ -102,10 +414,6 @@
 			[
 				"nav",
 				"nav-bottom\t(_game_info.html.erb)"
-			],
-			[
-				"add-c",
-				"add-c-form\t(_game_info.html.erb)"
 			],
 			[
 				"ned",
@@ -120,20 +428,12 @@
 				"platform_name\t(games_controller.rb)"
 			],
 			[
-				"pla",
-				"platform\tabc"
-			],
-			[
 				"sca",
 				"scalp_platforms\t(static_pages_helper.rb)"
 			],
 			[
 				"al",
 				"alternative_name\t(20190618181016_create_platforms.rb)"
-			],
-			[
-				"igd",
-				"igdb_id\t(igdb_query.rb)"
 			],
 			[
 				"Pla",
@@ -180,14 +480,6 @@
 				"height\tabc"
 			],
 			[
-				"ex",
-				"ex-link\t(_game_info.html.erb)"
-			],
-			[
-				"wid",
-				"width"
-			],
-			[
 				"any",
 				"anydeal\t(_game_info.html.erb)"
 			],
@@ -200,20 +492,19 @@
 	"buffers":
 	[
 		{
-			"file": "app/assets/stylesheets/application.scss",
+			"file": "app/views/cover_view/_game_info.html.erb",
 			"settings":
 			{
-				"buffer_size": 18652,
+				"buffer_size": 18959,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/static_pages/_add_form_no_platform.html.erb",
+			"file": "app/views/games/create.js.erb",
 			"settings":
 			{
-				"buffer_size": 571,
-				"encoding": "UTF-8",
+				"buffer_size": 3217,
 				"line_ending": "Unix"
 			}
 		}
@@ -229,6 +520,38 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"SAS",
+				"SassBeautify"
+			],
+			[
+				"h",
+				"HTMLBeautify"
+			],
+			[
+				"sas",
+				"SassBeautify"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ht",
+				"HTMLBeautify"
+			],
+			[
+				"merge",
+				"Sublime Merge: Open Repository"
+			],
+			[
+				"sass",
+				"SassBeautify"
+			],
 			[
 				"HT",
 				"HTMLBeautify"
@@ -246,24 +569,8 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"h",
-				"HTMLBeautify"
-			],
-			[
-				"ht",
-				"HTMLBeautify"
-			],
-			[
 				"remov",
 				"Package Control: Remove Package"
-			],
-			[
-				"sas",
-				"SassBeautify"
-			],
-			[
-				"sass",
-				"SassBeautify"
 			],
 			[
 				"htm",
@@ -272,10 +579,6 @@
 			[
 				"the",
 				"UI: Select Theme"
-			],
-			[
-				"color",
-				"UI: Select Color Scheme"
 			],
 			[
 				"in",
@@ -288,10 +591,6 @@
 			[
 				"color sch",
 				"UI: Select Color Scheme"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"package list",
@@ -333,61 +632,133 @@
 		"/Users/mdad/Documents/MyProject/YVGC",
 		"/Users/mdad/Documents/MyProject/YVGC/app",
 		"/Users/mdad/Documents/MyProject/YVGC/app/assets",
-		"/Users/mdad/Documents/MyProject/YVGC/app/assets/images",
+		"/Users/mdad/Documents/MyProject/YVGC/app/assets/javascripts",
+		"/Users/mdad/Documents/MyProject/YVGC/app/controllers",
 		"/Users/mdad/Documents/MyProject/YVGC/app/helpers",
 		"/Users/mdad/Documents/MyProject/YVGC/app/lib",
 		"/Users/mdad/Documents/MyProject/YVGC/app/models",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/cover_view",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/games",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/users",
 		"/Users/mdad/Documents/MyProject/YVGC/bin",
 		"/Users/mdad/Documents/MyProject/YVGC/db",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate",
 		"/Users/mdad/Documents/MyProject/YVGC/log"
 	],
 	"file_history":
 	[
 		"/Users/mdad/Documents/MyProject/YVGC/app/helpers/static_pages_helper.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/cover_view/_cover_view.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/cover_view/_cover.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_results.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/cover_view/_cover.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/cover_view/_game_info.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/cover_view/_no_cover.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/search.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_loading.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_no_cover.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_cover_view.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/assets/stylesheets/application.scss",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info_old_good.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/privacy.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/terms.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/about.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_search_errors.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/static_pages_controller.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/_footer.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/config/routes.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_logged_old.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_logged.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/Gemfile",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_show_more.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_search_bar.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/lib/igdb_query.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/application.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/games/create.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/remove_game_search.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/assets/stylesheets/static_pages.scss",
+		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190704143634_add_index_initial_to_collections.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/collections_controller.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/games_controller.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/models/collection.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/_menu.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/games_controller_old.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_already_in_custom.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_cover.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/games/_add_form_errors.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_platform_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_shelf_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_gamebox.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_digital.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_flip_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_flip2_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_igdb_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/show.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/helpers/sessions_helper.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/.env",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/_navigation.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_menu.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_logo.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/logo.svg",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_my_games_table.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_img.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/home.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_already_in_collection.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/untitled.rails",
+		"/Users/mdad/Documents/MyProject/YVGC/app/models/game.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_already_in_custom_TOBE.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_add_form_no_platform.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_add_custom_no_platform.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_add_custom_needs_platform.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_add_custom_needs_platform_TOBE.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_collection_icon.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_tetris.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/svgs/_igdb.html.erb",
+		"/Users/mdad/Documents/head_not_work",
+		"/Users/mdad/Documents/head_work",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/remove_game_search_old.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_warning.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info_old.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/create.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_platform3.html.erb",
+		"/Users/mdad/.Trash/platform3.html.erb.svg",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info_not_so_old.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_physical.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_platform.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/assets/stylesheets/collections.scss",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_form.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/create.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_form_pass_errors.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_form_mail_errors.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/new.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/models/user.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/new.js.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_new.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/_login_error_old.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/_login_error.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/_form.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/sessions_controller.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/_login_changed.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info_it_works.html.erb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/helpers/application_helper.rb",
+		"/Users/mdad/Documents/MyProject/YVGC/app/assets/images/physical.svg",
+		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_metacritic.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190623171611_drop_platforms.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/users_controller.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/helpers/collections_helper.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/games/create_old.js.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/games_controller.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/collections_controller.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/games/create.js.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/remove_game_search.js.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/assets/stylesheets/application.scss",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190623155122_add_index_to_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/config/routes.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/remove_game_search_old.js.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_add_form_no_platform.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_remove_form_no_platform.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/remove_game.js.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/_form.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190623125223_add_initial_and_form_columns_to_collections.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/seeds.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190623124253_add_form_column_to_collections.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_logged.html.erb",
 		"/Users/mdad/Library/Application Support/Sublime Text 3/Packages/Javascript Beautify/Default (OSX).sublime-keymap",
 		"/Users/mdad/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/mdad/Documents/MyProject/YVGC/app/models/game.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/models/collection.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/models/collection_game.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/test/controllers/games_controller_test.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/games_controller_old.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/create.js.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_game_info_old.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/application.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/layouts/_messages.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_results.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_search_bar.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190620114754_add_columns_to_games_and_collections.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/new.html.erb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190620125429_add_default_value_to_collection_needs_platfrom_attribute.rb",
@@ -402,36 +773,11 @@
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190618181016_create_platforms.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190618195812_add_index_and_category_to_platforms.rb",
 		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190618202410_delete_useless_columns_from_platforms.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617211600_add_custom_name_to_collections.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/collections/edit.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617092012_create_collections.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617204937_add_double_index_uniq_to_collection_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617203006_add_igdb_id_to_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617164642_remove_timestamps_from_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617153753_create_collection_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_new.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617145829_create_games.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/helpers/sessions_helper.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/sessions/_new.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/users/_form_mail_errors.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/application_controller.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/models/user.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190525144653_add_index_to_users_email.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/controllers/sessions_controller.rb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_cover_view.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_metacritic.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_metacritic_old.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_anydeal.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/views/static_pages/_google.html.erb",
-		"/Users/mdad/Documents/MyProject/YVGC/app/assets/images/metacritic.svg",
-		"/Users/mdad/Documents/MyProject/YVGC/app/assets/images/meta_initial.svg",
-		"/Users/mdad/Documents/MyProject/YVGC/.gitignore",
-		"/Users/mdad/Documents/MyProject/YVGC/.env",
-		"/Users/mdad/Documents/puts.rb"
+		"/Users/mdad/Documents/MyProject/YVGC/db/migrate/20190617211600_add_custom_name_to_collections.rb"
 	],
 	"find":
 	{
-		"height": 48.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -446,6 +792,89 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"util.on",
+			"content",
+			"666",
+			" src=",
+			"search",
+			"img",
+			"game-c",
+			"cover",
+			"img",
+			"rotate",
+			"spiner",
+			"underlight",
+			"content:",
+			"        pos: 'top-right',",
+			"    pos: 'top-right',",
+			"nc-d",
+			"nc-g",
+			"g",
+			"test",
+			"formType",
+			"selectElement",
+			"check_for_games",
+			"collections",
+			"@collections",
+			"collections",
+			"Collections",
+			"collections",
+			"in_initial",
+			"added",
+			"warning",
+			"render 'warning'",
+			"render 'digital'",
+			"digital",
+			"metacritic",
+			"render 'gamebox'",
+			"gamebox",
+			"right",
+			"offcanvas",
+			"id",
+			"footer_height",
+			"home_collection",
+			"content_tag",
+			"th",
+			"'#add-form-errors'",
+			".any?",
+			"form",
+			"c",
+			"r",
+			"game",
+			"where(igdb_id",
+			"where(",
+			"selectEl",
+			"select_el",
+			"'#add-custom-form-<%= game['id'] %> .collection-icon'",
+			"collection",
+			"<%= @form %>",
+			"game['id']",
+			"'] ",
+			"form",
+			"true",
+			"replaceWith",
+			"value",
+			"color",
+			"154",
+			"platform",
+			"search_errors",
+			"locals:",
+			"added",
+			"element",
+			"b-",
+			"warning",
+			"cursor:",
+			"rgba(255,255,255,0.7)",
+			"rgba(255,255,255,0.5)",
+			"offcanvas",
+			"boundary",
+			"50px",
+			"30px",
+			"40px",
+			"color",
+			"physical",
+			"[type=radio]",
+			"metacritic",
 			"prepare_collections",
 			"collections",
 			"current_user.collections.find_by(form: ",
@@ -498,6 +927,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"td",
+			"t",
+			"td",
+			"$lighter",
+			"$light"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -513,1051 +947,130 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/assets/stylesheets/application.scss",
+					"file": "app/views/cover_view/_game_info.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18652,
+						"buffer_size": 18959,
 						"regions":
 						{
-							"col_00000028":
+							"col_AADDDDFF":
 							{
 								"flags": 16,
 								"regions":
 								[
 									[
-										5352,
-										5371
+										5282,
+										5286
+									],
+									[
+										7992,
+										7996
+									],
+									[
+										16462,
+										16466
+									],
+									[
+										17115,
+										17119
+									],
+									[
+										17192,
+										17196
+									],
+									[
+										17323,
+										17327
+									],
+									[
+										17403,
+										17407
+									],
+									[
+										17931,
+										17935
+									],
+									[
+										18020,
+										18024
+									],
+									[
+										18174,
+										18178
+									],
+									[
+										18250,
+										18254
+									],
+									[
+										18321,
+										18325
+									],
+									[
+										18747,
+										18751
 									]
 								],
-								"scope": "col_00000028"
+								"scope": "col_AADDDDFF"
 							},
-							"col_00000028_icon":
+							"col_AADDDDFF_icon":
 							{
 								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_00000028_circle.png",
+								"icon": "Packages/User/Color Highlight.cache/col_AADDDDFF_circle.png",
 								"regions":
 								[
 									[
-										5319,
-										5319
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_00000030":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										18301,
-										18310
-									]
-								],
-								"scope": "col_00000030"
-							},
-							"col_00000030_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_00000030_circle.png",
-								"regions":
-								[
-									[
-										18266,
-										18266
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_0000004A":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										9229,
-										9238
-									]
-								],
-								"scope": "col_0000004A"
-							},
-							"col_0000004A_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_0000004A_circle.png",
-								"regions":
-								[
-									[
-										9196,
-										9196
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_0000004F":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										10240,
-										10249
-									]
-								],
-								"scope": "col_0000004F"
-							},
-							"col_0000004F_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_0000004F_circle.png",
-								"regions":
-								[
-									[
-										10229,
-										10229
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_393939FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										18079,
-										18086
-									]
-								],
-								"scope": "col_393939FF"
-							},
-							"col_393939FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_393939FF_circle.png",
-								"regions":
-								[
-									[
-										18067,
-										18067
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_49AB8AFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1021,
-										1028
-									]
-								],
-								"scope": "col_49AB8AFF"
-							},
-							"col_49AB8AFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_49AB8AFF_circle.png",
-								"regions":
-								[
-									[
-										1005,
-										1005
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_4BEBEC01":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										9601,
-										9622
-									]
-								],
-								"scope": "col_4BEBEC01"
-							},
-							"col_4BEBEC01_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_4BEBEC01_circle.png",
-								"regions":
-								[
-									[
-										9556,
-										9556
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_5DA18DFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										13119,
-										13126
-									]
-								],
-								"scope": "col_5DA18DFF"
-							},
-							"col_5DA18DFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_5DA18DFF_circle.png",
-								"regions":
-								[
-									[
-										13108,
-										13108
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_656565FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										16420,
-										16427
-									]
-								],
-								"scope": "col_656565FF"
-							},
-							"col_656565FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_656565FF_circle.png",
-								"regions":
-								[
-									[
-										16398,
-										16398
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_666666DE":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										4248,
-										4257
-									],
-									[
-										7726,
-										7735
-									]
-								],
-								"scope": "col_666666DE"
-							},
-							"col_666666DE_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_666666DE_circle.png",
-								"regions":
-								[
-									[
-										4226,
-										4226
-									],
-									[
-										7710,
-										7710
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_666666FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2038,
-										2045
-									],
-									[
-										2682,
-										2686
-									],
-									[
-										3554,
-										3558
-									],
-									[
-										3596,
-										3600
-									],
-									[
-										6314,
-										6321
-									],
-									[
-										10752,
-										10756
-									],
-									[
-										11123,
-										11127
-									],
-									[
-										11455,
-										11462
-									],
-									[
-										12368,
-										12372
-									]
-								],
-								"scope": "col_666666FF"
-							},
-							"col_666666FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_666666FF_circle.png",
-								"regions":
-								[
-									[
-										2023,
-										2023
-									],
-									[
-										2671,
-										2671
-									],
-									[
-										3543,
-										3543
-									],
-									[
-										3586,
-										3586
-									],
-									[
-										6303,
-										6303
-									],
-									[
-										10742,
-										10742
-									],
-									[
-										11108,
-										11108
-									],
-									[
-										11444,
-										11444
-									],
-									[
-										12357,
-										12357
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_75C7AFFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										996,
-										1003
-									]
-								],
-								"scope": "col_75C7AFFF"
-							},
-							"col_75C7AFFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_75C7AFFF_circle.png",
-								"regions":
-								[
-									[
-										987,
-										987
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_808080FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										5703,
-										5707
-									]
-								],
-								"scope": "col_808080FF"
-							},
-							"col_808080FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_808080FF_circle.png",
-								"regions":
-								[
-									[
-										5674,
-										5674
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_939393FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										12392,
-										12399
-									]
-								],
-								"scope": "col_939393FF"
-							},
-							"col_939393FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_939393FF_circle.png",
-								"regions":
-								[
-									[
-										12374,
-										12374
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_999999FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2461,
-										2465
-									],
-									[
-										3472,
-										3479
-									],
-									[
-										3506,
-										3513
-									],
-									[
-										4003,
-										4010
-									],
-									[
-										6789,
-										6793
-									],
-									[
-										11085,
-										11092
-									],
-									[
-										13060,
-										13067
-									]
-								],
-								"scope": "col_999999FF"
-							},
-							"col_999999FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_999999FF_circle.png",
-								"regions":
-								[
-									[
-										2450,
-										2450
-									],
-									[
-										3461,
-										3461
-									],
-									[
-										3492,
-										3492
-									],
-									[
-										3992,
-										3992
-									],
-									[
-										6778,
-										6778
-									],
-									[
-										11074,
-										11074
-									],
-									[
-										13049,
-										13049
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_9E9E9E99":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										3344,
-										3368
-									],
-									[
-										3671,
-										3695
-									],
-									[
-										3769,
-										3793
-									],
-									[
-										7601,
-										7625
-									],
-									[
-										9958,
-										9982
-									],
-									[
-										10004,
-										10028
-									]
-								],
-								"scope": "col_9E9E9E99"
-							},
-							"col_9E9E9E99_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_9E9E9E99_circle.png",
-								"regions":
-								[
-									[
-										3311,
-										3311
-									],
-									[
-										3638,
-										3638
-									],
-									[
-										3736,
-										3736
-									],
-									[
-										7568,
-										7568
-									],
-									[
-										9925,
-										9925
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_A5A5A5FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										16478,
-										16485
-									]
-								],
-								"scope": "col_A5A5A5FF"
-							},
-							"col_A5A5A5FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_A5A5A5FF_circle.png",
-								"regions":
-								[
-									[
-										16464,
-										16464
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_ACACACFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										6497,
-										6504
-									],
-									[
-										8275,
-										8282
-									],
-									[
-										10815,
-										10822
-									]
-								],
-								"scope": "col_ACACACFF"
-							},
-							"col_ACACACFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_ACACACFF_circle.png",
-								"regions":
-								[
-									[
-										6461,
-										6461
-									],
-									[
-										8239,
-										8239
-									],
-									[
-										10779,
-										10779
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_C2C2C2FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										10280,
-										10287
-									]
-								],
-								"scope": "col_C2C2C2FF"
-							},
-							"col_C2C2C2FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_C2C2C2FF_circle.png",
-								"regions":
-								[
-									[
-										10251,
-										10251
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_C8C8C8FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										15381,
-										15388
-									]
-								],
-								"scope": "col_C8C8C8FF"
-							},
-							"col_C8C8C8FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_C8C8C8FF_circle.png",
-								"regions":
-								[
-									[
-										15365,
-										15365
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_C9C9C9FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										16579,
-										16586
-									]
-								],
-								"scope": "col_C9C9C9FF"
-							},
-							"col_C9C9C9FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_C9C9C9FF_circle.png",
-								"regions":
-								[
-									[
-										16569,
-										16569
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_CCCCCCFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										2771,
-										2778
-									],
-									[
-										2820,
-										2827
-									]
-								],
-								"scope": "col_CCCCCCFF"
-							},
-							"col_CCCCCCFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_CCCCCCFF_circle.png",
-								"regions":
-								[
-									[
-										2749,
-										2749
-									],
-									[
-										2798,
-										2798
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_DDDDDDFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										967,
-										974
-									],
-									[
-										12232,
-										12239
+										5184,
+										5184
 									],
-									[
-										12348,
-										12355
-									]
-								],
-								"scope": "col_DDDDDDFF"
-							},
-							"col_DDDDDDFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_DDDDDDFF_circle.png",
-								"regions":
-								[
-									[
-										954,
-										954
-									],
-									[
-										12203,
-										12203
-									],
-									[
-										12326,
-										12326
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_E9E7E7FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										979,
-										986
-									]
-								],
-								"scope": "col_E9E7E7FF"
-							},
-							"col_E9E7E7FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_E9E7E7FF_circle.png",
-								"regions":
-								[
-									[
-										976,
-										976
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FAEBD7FF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										16891,
-										16903
-									]
-								],
-								"scope": "col_FAEBD7FF"
-							},
-							"col_FAEBD7FF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FAEBD7FF_circle.png",
-								"regions":
-								[
-									[
-										16869,
-										16869
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFF26":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										9628,
-										9653
-									]
-								],
-								"scope": "col_FFFFFF26"
-							},
-							"col_FFFFFF26_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF26_circle.png",
-								"regions":
-								[
-									[
-										9556,
-										9556
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFF47":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										9659,
-										9684
-									]
-								],
-								"scope": "col_FFFFFF47"
-							},
-							"col_FFFFFF47_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFF47_circle.png",
-								"regions":
-								[
-									[
-										9556,
-										9556
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFB2":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										15915,
-										15939
-									],
-									[
-										15987,
-										16011
-									]
-								],
-								"scope": "col_FFFFFFB2"
-							},
-							"col_FFFFFFB2_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFB2_circle.png",
-								"regions":
-								[
-									[
-										15904,
-										15904
-									],
-									[
-										15976,
-										15976
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFE8":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										9826,
-										9835
-									]
-								],
-								"scope": "col_FFFFFFE8"
-							},
-							"col_FFFFFFE8_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFE8_circle.png",
-								"regions":
-								[
-									[
-										9803,
-										9803
-									]
-								],
-								"scope": "col_gutter"
-							},
-							"col_FFFFFFFF":
-							{
-								"flags": 16,
-								"regions":
-								[
-									[
-										1871,
-										1878
-									],
-									[
-										2257,
-										2264
-									],
-									[
-										4393,
-										4397
-									],
-									[
-										4548,
-										4552
-									],
-									[
-										4704,
-										4708
-									],
-									[
-										4775,
-										4779
-									],
-									[
-										4912,
-										4916
-									],
-									[
-										5313,
-										5317
-									],
-									[
-										7442,
-										7446
-									],
-									[
-										7772,
-										7776
-									],
-									[
-										11402,
-										11406
-									],
-									[
-										11911,
-										11916
-									]
-								],
-								"scope": "col_FFFFFFFF"
-							},
-							"col_FFFFFFFF_icon":
-							{
-								"flags": 16,
-								"icon": "Packages/User/Color Highlight.cache/col_FFFFFFFF_circle.png",
-								"regions":
-								[
 									[
-										1855,
-										1855
+										7898,
+										7898
 									],
 									[
-										2233,
-										2233
+										16446,
+										16446
 									],
 									[
-										4378,
-										4378
+										17108,
+										17108
 									],
 									[
-										4533,
-										4533
+										17173,
+										17173
 									],
 									[
-										4671,
-										4671
+										17294,
+										17294
 									],
 									[
-										4742,
-										4742
+										17377,
+										17377
 									],
 									[
-										4897,
-										4897
+										17928,
+										17928
 									],
 									[
-										5291,
-										5291
+										18005,
+										18005
 									],
 									[
-										7431,
-										7431
+										18149,
+										18149
 									],
 									[
-										7761,
-										7761
+										18228,
+										18228
 									],
 									[
-										11386,
-										11386
+										18309,
+										18309
 									],
 									[
-										11889,
-										11889
+										18731,
+										18731
 									]
 								],
 								"scope": "col_gutter"
@@ -1566,19 +1079,19 @@
 						"selection":
 						[
 							[
-								17070,
-								17070
+								7672,
+								7672
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax",
+							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 19261.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1586,28 +1099,136 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/static_pages/_add_form_no_platform.html.erb",
-					"semi_transient": false,
+					"file": "app/views/games/create.js.erb",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 571,
+						"buffer_size": 3217,
 						"regions":
 						{
+							"col_008000FF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										1027,
+										1032
+									]
+								],
+								"scope": "col_008000FF"
+							},
+							"col_008000FF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_008000FF_circle.png",
+								"regions":
+								[
+									[
+										1012,
+										1012
+									]
+								],
+								"scope": "col_gutter"
+							},
+							"col_AADDDDFF":
+							{
+								"flags": 16,
+								"regions":
+								[
+									[
+										930,
+										934
+									],
+									[
+										1071,
+										1075
+									],
+									[
+										1214,
+										1218
+									],
+									[
+										1821,
+										1825
+									],
+									[
+										2187,
+										2191
+									],
+									[
+										2680,
+										2684
+									],
+									[
+										2718,
+										2722
+									],
+									[
+										2850,
+										2854
+									]
+								],
+								"scope": "col_AADDDDFF"
+							},
+							"col_AADDDDFF_icon":
+							{
+								"flags": 16,
+								"icon": "Packages/User/Color Highlight.cache/col_AADDDDFF_circle.png",
+								"regions":
+								[
+									[
+										902,
+										902
+									],
+									[
+										1048,
+										1048
+									],
+									[
+										1191,
+										1191
+									],
+									[
+										1798,
+										1798
+									],
+									[
+										2172,
+										2172
+									],
+									[
+										2658,
+										2658
+									],
+									[
+										2699,
+										2699
+									],
+									[
+										2826,
+										2826
+									]
+								],
+								"scope": "col_gutter"
+							}
 						},
 						"selection":
 						[
 							[
-								571,
-								571
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
+							"syntax": "Packages/Rails/JavaScript (Rails).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 167.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1616,44 +1237,14 @@
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 1,
-					"file": "app/views/static_pages/_add_form_no_platform.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 571,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								486,
-								534
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -1679,7 +1270,7 @@
 		"cols":
 		[
 			0.0,
-			0.914926147461,
+			0.878804030373,
 			1.0
 		],
 		"rows":
@@ -1697,11 +1288,15 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 142.0
+	},
 	"pinned_build_system": "",
 	"project": "yvgc.sublime-project",
 	"replace":
 	{
-		"height": 86.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1711,88 +1306,316 @@
 		"selected_items":
 		[
 			[
-				"add_fo",
-				"app/views/static_pages/_add_form_no_platform.html.erb"
+				"game_i",
+				"app/views/cover_view/_game_info.html.erb"
+			],
+			[
+				"res",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"sea",
+				"app/views/static_pages/search.js.erb"
+			],
+			[
+				"_gam",
+				"app/views/static_pages/_game_info_old_good.html.erb"
+			],
+			[
+				"GAME_I",
+				"app/views/static_pages/_game_info.html.erb"
+			],
+			[
+				"COV\t",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"no",
+				"app/views/static_pages/_no_cover.html.erb"
 			],
 			[
 				"sc",
 				"app/assets/stylesheets/application.scss"
 			],
 			[
-				"sta",
-				"app/controllers/static_pages_controller.rb"
+				"STTA",
+				"app/helpers/static_pages_helper.rb"
 			],
 			[
-				"igd",
-				"app/lib/igdb_query.rb"
-			],
-			[
-				"drop",
-				"db/migrate/20190623171611_drop_platforms.rb"
+				"rot",
+				"config/routes.rb"
 			],
 			[
 				"stat",
 				"app/controllers/static_pages_controller.rb"
 			],
 			[
-				"user",
-				"app/controllers/users_controller.rb"
+				"about",
+				"app/views/static_pages/about.html.erb"
 			],
 			[
-				"cover",
-				"app/views/static_pages/_cover.html.erb"
+				"lo",
+				"app/views/static_pages/_logged_old.html.erb"
 			],
 			[
-				"cove",
-				"app/views/static_pages/_cover_view.html.erb"
-			],
-			[
-				"re",
-				"app/views/static_pages/_results.html.erb"
-			],
-			[
-				"old",
-				"app/views/games/create_old.js.erb"
-			],
-			[
-				"scss",
+				"scs",
 				"app/assets/stylesheets/application.scss"
 			],
 			[
-				"game_co",
-				"app/controllers/games_controller.rb"
+				"abou",
+				"app/views/static_pages/about.html.erb"
 			],
 			[
-				"ro",
-				"config/routes.rb"
-			],
-			[
-				"sche",
-				"db/schema.rb"
-			],
-			[
-				"game",
-				"app/views/static_pages/_game_info.html.erb"
-			],
-			[
-				"crea",
-				"app/views/games/create.js.erb"
+				"foo",
+				"app/views/layouts/_footer.html.erb"
 			],
 			[
 				"routes",
 				"config/routes.rb"
 			],
 			[
+				"logg",
+				"app/views/static_pages/_logged.html.erb"
+			],
+			[
+				"game_info",
+				"app/views/static_pages/_game_info.html.erb"
+			],
+			[
+				"cov",
+				"app/views/static_pages/_cover_view.html.erb"
+			],
+			[
+				"igd",
+				"app/lib/igdb_query.rb"
+			],
+			[
+				"app",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"_se",
+				"app/views/static_pages/_show_more.js.erb"
+			],
+			[
+				"",
+				"app/views/static_pages/_results.html.erb"
+			],
+			[
+				"sear",
+				"app/views/static_pages/_search_bar.html.erb"
+			],
+			[
+				"a",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"cove",
+				"app/views/static_pages/_cover.html.erb"
+			],
+			[
+				"scss",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"ss",
+				"app/assets/stylesheets/static_pages.scss"
+			],
+			[
+				"re",
+				"app/views/collections/remove_game_search.js.erb"
+			],
+			[
+				"crea",
+				"app/views/games/create.js.erb"
+			],
+			[
+				"gam",
+				"app/views/static_pages/_game_info.html.erb"
+			],
+			[
+				"sta",
+				"app/helpers/static_pages_helper.rb"
+			],
+			[
 				"remo",
-				"app/views/static_pages/_remove_form_no_platform.html.erb"
+				"app/views/collections/remove_game_search.js.erb"
+			],
+			[
+				"addiniti",
+				"db/migrate/20190704143634_add_index_initial_to_collections.rb"
+			],
+			[
+				"coll",
+				"app/models/collection.rb"
+			],
+			[
+				"game_in",
+				"app/views/static_pages/_game_info.html.erb"
+			],
+			[
+				"men",
+				"app/views/layouts/_menu.html.erb"
+			],
+			[
+				"cre",
+				"app/views/games/create.js.erb"
+			],
+			[
+				"games",
+				"app/controllers/games_controller.rb"
+			],
+			[
+				"col",
+				"app/controllers/collections_controller.rb"
+			],
+			[
+				"remov",
+				"app/views/collections/remove_game_search.js.erb"
+			],
+			[
+				"alre",
+				"app/views/static_pages/_already_in_custom.html.erb"
+			],
+			[
+				"cover",
+				"app/views/static_pages/_cover.html.erb"
+			],
+			[
+				"game_",
+				"app/views/static_pages/_game_info.html.erb"
+			],
+			[
+				"show",
+				"app/views/collections/show.html.erb"
+			],
+			[
+				"ses",
+				"app/helpers/sessions_helper.rb"
+			],
+			[
+				"color",
+				"app/controllers/collections_controller.rb"
+			],
+			[
+				"ro",
+				"config/routes.rb"
+			],
+			[
+				"na",
+				"app/views/layouts/_navigation.html.erb"
+			],
+			[
+				"fo",
+				"app/views/layouts/_footer.html.erb"
+			],
+			[
+				"co",
+				"app/models/collection.rb"
+			],
+			[
+				"nav",
+				"app/views/layouts/_navigation.html.erb"
+			],
+			[
+				"hom",
+				"app/views/static_pages/home.html.erb"
+			],
+			[
+				"cr",
+				"app/views/games/create.js.erb"
+			],
+			[
+				"al",
+				"app/views/static_pages/_already_in_custom.html.erb"
+			],
+			[
+				"c",
+				"app/models/collection.rb"
+			],
+			[
+				"alrea",
+				"app/views/static_pages/_already_in_collection.html.erb"
+			],
+			[
+				"game",
+				"app/models/game.rb"
+			],
+			[
+				"gamec",
+				"app/controllers/games_controller.rb"
+			],
+			[
+				"stati",
+				"app/controllers/static_pages_controller.rb"
+			],
+			[
+				"se",
+				"app/views/static_pages/search.js.erb"
+			],
+			[
+				"CREA",
+				"app/views/games/create.js.erb"
+			],
+			[
+				"gamecon",
+				"app/controllers/games_controller.rb"
+			],
+			[
+				"_add",
+				"app/views/games/_add_form_errors.html.erb"
+			],
+			[
+				"creat",
+				"app/views/games/create.js.erb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"add_fo",
+				"app/views/games/_add_form_errors.html.erb"
+			],
+			[
+				"game.",
+				"app/models/game.rb"
+			],
+			[
+				"gan",
+				"app/views/static_pages/_game_info_not_so_old.html.erb"
+			],
+			[
+				"new",
+				"app/views/sessions/new.js.erb"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"pla",
+				"app/views/static_pages/_platform.html.erb"
+			],
+			[
+				"drop",
+				"db/migrate/20190623171611_drop_platforms.rb"
+			],
+			[
+				"old",
+				"app/views/games/create_old.js.erb"
+			],
+			[
+				"game_co",
+				"app/controllers/games_controller.rb"
+			],
+			[
+				"sche",
+				"db/schema.rb"
 			],
 			[
 				"ga",
 				"app/controllers/games_controller.rb"
-			],
-			[
-				"coll",
-				"app/controllers/collections_controller.rb"
 			],
 			[
 				"see",
@@ -1803,28 +1626,8 @@
 				"db/migrate/20190623124253_add_form_column_to_collections.rb"
 			],
 			[
-				"creat",
-				"app/views/games/create.js.erb"
-			],
-			[
-				"games",
-				"app/controllers/games_controller.rb"
-			],
-			[
-				"lo",
-				"app/views/static_pages/_logged.html.erb"
-			],
-			[
 				"rout",
 				"config/routes.rb"
-			],
-			[
-				"co",
-				"app/controllers/collections_controller.rb"
-			],
-			[
-				"gam",
-				"app/views/static_pages/_game_info.html.erb"
 			],
 			[
 				"l",
@@ -1863,10 +1666,6 @@
 				"app/controllers/collections_controller.rb"
 			],
 			[
-				"new",
-				"app/views/collections/new.html.erb"
-			],
-			[
 				"gamescont",
 				"app/controllers/games_controller.rb"
 			],
@@ -1887,16 +1686,8 @@
 				"config/routes.rb"
 			],
 			[
-				"stati",
-				"app/controllers/static_pages_controller.rb"
-			],
-			[
 				"dele",
 				"db/migrate/20190618202410_delete_useless_columns_from_platforms.rb"
-			],
-			[
-				"pla",
-				"db/migrate/20190618181016_create_platforms.rb"
 			],
 			[
 				"add",
@@ -1915,10 +1706,6 @@
 				"config/routes.rb"
 			],
 			[
-				"col",
-				"app/controllers/collections_controller.rb"
-			],
-			[
 				"s",
 				"db/seeds.rb"
 			],
@@ -1929,10 +1716,6 @@
 			[
 				"applicationht",
 				"app/views/layouts/application.html.erb"
-			],
-			[
-				"sear",
-				"app/views/static_pages/_search_bar.html.erb"
 			],
 			[
 				"_co",
@@ -1978,8 +1761,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 508.0,
+	"side_bar_visible": true,
+	"side_bar_width": 420.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

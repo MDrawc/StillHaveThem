@@ -53,7 +53,7 @@
                 <!-- ___ADD -->
                 <% collection = @initial_collections['wishlist'] %>
                 <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: in_initial['wishlist'] ? 'display: none;' : nil) do %>
-                <%= render partial: "add_form_no_platform",
+                <%= render partial: "cover_view/add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'star' } %>
                 <% end %>
                 <!-- ___REMOVE -->
@@ -68,7 +68,7 @@
                 <% collection = @initial_collections['played'] %>
                 <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s,
                 style: in_initial['played'] ? 'display: none;' : nil) do %>
-                <%= render partial: "add_form_no_platform",
+                <%= render partial: "cover_view/add_form_no_platform",
                 locals: { game: game, collection: collection, icon: 'bell' } %>
                 <% end %>
                 <!-- ___REMOVE -->
@@ -126,7 +126,7 @@
                 <% end %>
                 <!-- ALREADY IN -->
                 <div class="already-in">
-                    <%= render(partial: 'already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if in_initial['collection']  %>
+                    <%= render(partial: 'cover_view/already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if in_initial['collection']  %>
                 </div>
             </div>
             <!-- ADD TO CUSTOM COLLECTION -->
@@ -190,7 +190,7 @@
                 <% end %>
                 <!-- ALREADY IN -->
                 <div class="already-in">
-                    <%= render(partial: 'already_in_custom', locals: { game_name: game['name'], igdb_id: game['id'] }) if in_custom %>
+                    <%= render(partial: 'cover_view/already_in_custom', locals: { game_name: game['name'], igdb_id: game['id'] }) if in_custom %>
                 </div>
                 <% else %>
                 <p>Create custom collection first.</p>
