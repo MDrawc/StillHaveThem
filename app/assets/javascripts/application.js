@@ -13,6 +13,7 @@
 //
 //
 //= require jquery3
+//= require textFit
 //= require "uikit"
 //= require uikit/uikit-icons.js
 //= require rails-ujs

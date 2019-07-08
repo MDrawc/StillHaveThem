@@ -3,16 +3,19 @@ $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
-// Remove offcanvas from last search!
-$("[id^=i-]").remove()
-
-if (<%= !@inquiry.errors.any? %>) {
-  $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
-}
-
 // Remove cover placeholder's spinner
 UIkit.util.on(document, 'load', '.game-cover', e => {
     if (!e.target.currentSrc.startsWith('data:')) {
         $(e.target).parent().find(".spinner").remove()
     }
 }, true)
+
+// Remove offcanvas from last search!
+$("[id^=i-]").remove()
+if (<%= !@inquiry.errors.any? %>) {
+  $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
+}
+
+// Fit game title inside no-cover
+textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 26});
+$(".no-cover-game-name").addClass('fitted')
