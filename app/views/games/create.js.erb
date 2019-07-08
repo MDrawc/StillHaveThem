@@ -76,7 +76,7 @@ function resetFormErrors(form) {
 
     var resetElements = ['#game_platform', '.physical', '.digital']
 
-    if (form = 'custom') {
+    if (form === 'custom') {
         resetElements.push('#collection')
     }
 
@@ -84,19 +84,15 @@ function resetFormErrors(form) {
     var errorsPart = '#add-form-errors';
     var element = '#add-' + form + '-form-' + game_id + ' ' + errorsPlace;
 
-
     for (i = 0; i < resetElements.length; i++) {
 
         var formPart = '#add-' + form + '-form-' + game_id + ' ' + resetElements[i];
 
         $(formPart).on('input', function() {
-            if ($(errorsPart).length) {
                 $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
-            }
         });
 
     }
 }
 
-resetFormErrors('collection');
-resetFormErrors('custom');
+resetFormErrors(form);
