@@ -14,7 +14,7 @@
         <p id="info-by">by <%= devs.join(', ') %></p>
         <% end %>
         <!-- COVER -->
-        <%= image_tag('', class: 'game-cover info-cover', width: options[:width], 'data-src' => cover_url, alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" ) if cover_url %>
+        <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" ) if cover %>
         <!-- PLATFORMS -->
         <% if platforms = game["platforms"] %>
         <p id="info-platform">
@@ -197,25 +197,21 @@
                 <% end %>
             </div>
         </div>
-
-
-
-
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
         <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
     </p>
     <script>
     function myFunction(id) {
-    var dots = document.getElementById("dots-" + id);
-    var moreText = document.getElementById("more-" + id);
-    if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    moreText.style.display = "none";
-    } else {
-    dots.style.display = "none";
-    moreText.style.display = "inline";
-    }
+        var dots = document.getElementById("dots-" + id);
+        var moreText = document.getElementById("more-" + id);
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            moreText.style.display = "inline";
+        }
     }
     </script>
     <% end %>

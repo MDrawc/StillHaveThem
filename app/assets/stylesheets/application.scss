@@ -18,6 +18,8 @@
 @import "uikit/uikit-theme.scss";
 
 //VARIABLES
+$no_cover_width: 200px;
+$no_cover_height: 266px;
 $footer_height: 5rem;
 $navbar_height: 5rem;
 $background: #dddddd;
@@ -30,6 +32,12 @@ $lighter: rgba(255, 255, 255, 0.7);
 $lighter_nt: rgb(197, 197, 197);
 $light_grey: #999;
 $dark_grey: #666;
+
+// SCREEN AS IMAGE
+.s-cover {
+    height: $no_cover_height;
+    object-fit: cover;
+}
 
 // HTML, BODY
 html { background-color: $background; }
@@ -144,6 +152,15 @@ a.uk-notification-close {
 }
 
 //OTHER
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .about-link {
     color: $light_grey;
     text-transform: uppercase;
@@ -541,17 +558,14 @@ a.uk-notification-close {
     max-width: 200px;
 }
 
-.game-cover {
-    margin-bottom: 0px; //!important was here do not know why!
-    border-radius: 3px;
-    box-shadow: -2px 4px 9px 1px #0000004a;
-}
+.game-cover { border-radius: 3px; }
 
 .game-cover-effect {
     position: relative;
     transition-duration: 0.3s;
     background: #bababa;
     border-radius: 3px;
+    box-shadow: -2px 4px 9px 1px #0000004a;
 }
 
 .spinner {
@@ -590,38 +604,19 @@ a.uk-notification-close {
 }
 
 .no-cover {
-    width: 200px;
-    height: 266px;
-    margin-bottom: 0px !important;
-    border-radius: 3px;
-
-    border: 1px solid transparent;
-    background-color: transparent;
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.4), inset 0px 0px 120px rgba(158, 158, 158, 0.6);
-    transition-duration: 0.3s;
-    cursor: pointer;
-}
-
-.no-cover:hover {
-    transform: rotate(10deg);
-}
-
-.no-cover-tag {
-    text-align: center;
-    font-size: 18px;
-    text-transform: capitalize;
-    color: #0000004f;
-    text-shadow: 2px 2px 3px #c2c2c2;
-    padding: 50px 10px 0px 10px;
-}
-
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    width: $no_cover_width;
+    height: $no_cover_height;
+    p {
+        color: #6660;
+        background: #4e4e4e;
+        font-size: 26px;
+        font-weight: bold;
+        padding: 20px 10px 0px 10px;
+        text-shadow: 1px 1px 2px #d4d2d282;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+    }
 }
 
 // More Platforms Toggler - - - - - - - - - - - - - - - - - - - - - - - - - - //

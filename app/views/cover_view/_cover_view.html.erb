@@ -2,8 +2,23 @@
   <% @inquiry.results.each do |game| %>
   <div id="gs-<%= game['id'] %>" class="game-space">
     <!-- COVER -->
-    <%= get_game_cover(game) %>
+    <div class="game-cover-effect" uk-toggle="target: #i-<%= game['id'] %>">
+    <% if cover = get_game_cover(game) %>
+      <%= image_tag('', id: "gc-#{ game['id'] }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => '') %>
+      <div class="spinner"><%= render 'svgs/loading' %></div>
+    <% else %>
+      <%= content_tag(:div, content_tag(:p, game["name"], class: 'unselectable'), id: "gc-#{ game['id'] }", class: 'no-cover') %>
+    <% end %>
+    <% if game["xtra"] %>
+    <div class="xtra-info" uk-alert>
+      <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
+      <p><%= game["xtra"] %></p>
+    </div>
+    <% end %>
+    </div>
     <!-- GAME INFO -->
+    <% cover = nil if cover && cover[:from_scrn] %>
+    <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
     <!-- NAME AND WARNING -->
     <p class="game-name">
       <span><%= game["name"] %></span>
