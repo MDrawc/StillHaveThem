@@ -61,11 +61,6 @@ body::-webkit-scrollbar {
     padding-bottom: $footer_height + $navbar_height;
 }
 
-// COVER PLACEHOLDER
-// img[data-src][src*='data:image'] {
-//     background: #c3c3c3;
-// }
-
 // FOOTER
 footer {
     position: absolute;
@@ -621,6 +616,15 @@ a.uk-notification-close {
         -moz-background-clip: text;
         background-clip: text;
     }
+}
+
+.i-no-cover {
+    width: $no_cover_width;
+    background: #bababa;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: #666;
 }
 
 div.fitted { height: auto; }

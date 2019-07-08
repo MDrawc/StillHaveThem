@@ -10,11 +10,15 @@
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-        <% if devs = get_developer(game) %>
-        <p id="info-by">by <%= devs.join(', ') %></p>
-        <% end %>
+        <p id="info-by"><%= (devs = get_developer(game)) ? "by " + devs.join(', ') : '' %></p>
         <!-- COVER -->
-        <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" ) if cover %>
+        <% if cover %>
+            <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" )  %>
+        <% else %>
+            <div class="i-no-cover"><%= render 'svgs/no_image' %>
+            <span>No Cover Available</span>
+            </div>
+        <% end %>
         <!-- PLATFORMS -->
         <% if platforms = game["platforms"] %>
         <p id="info-platform">
