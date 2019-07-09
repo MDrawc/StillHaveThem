@@ -26,11 +26,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore Sublime project files.
-/yvgc.sublime-project
-/yvgc.sublime-workspace
-
 # .env configuration - dotenv gem
 /.env
-
-.DS_Store
