@@ -142,10 +142,5 @@ module StaticPagesHelper
 
     return results.present? ? results : false
   end
-
-  def collection_initial(collection)
-    name = collection.custom_name || collection.name
-    return name.first.capitalize
-  end
 end
 

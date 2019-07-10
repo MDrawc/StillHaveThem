@@ -1,0 +1,24 @@
+<% if logged_in? %>
+<div class="menu-bar">
+    <ul class="menu">
+    <li><%= link_to '', search_url, class: 'menu-btn', 'data-turbolinks': 'false', 'uk-icon': 'search' %><span>Search games</span></li>
+    <li><%= link_to '', new_collection_url, class: 'menu-btn', 'uk-icon': 'plus' %><span>Create collection</span></li>
+    <% collections = current_user.collections %>
+    <% i_colls, c_colls = collections.initial, collections.custom  %>
+    <li><%= link_to '', i_colls.first, class: 'menu-btn', 'uk-icon': 'database' %><span><%= i_colls.first.called %></span></li>
+    <li><%= link_to '', i_colls.second, class: 'menu-btn', 'uk-icon': 'star' %><span><%= i_colls.second.called %></span></li>
+    <li><%= link_to '', i_colls.third, class: 'menu-btn', 'uk-icon': 'bell' %><span><%= i_colls.third.called %></span></li>
+    <li><%= link_to '','', id: 'm-custom', class: 'menu-btn', 'uk-icon': 'cog' if c_colls.present? %><span>Custom collections</span></li>
+    <li><%= link_to '', root_url, class: 'menu-btn', 'uk-icon': 'settings' %><span>Settings</span></li>
+    <li><%= link_to '', logout_path, method: :delete, class: 'menu-btn', 'uk-icon': 'sign-out' %><span>Log out</span></li>
+    </ul>
+
+    <div id="menu-custom" class="uk-navbar-dropdown" uk-dropdown="mode: click; toggle: #m-custom; pos: right-top">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <% c_colls.each do |c_coll| %>
+        <li><%= link_to c_coll.custom_name || c_coll.name, c_coll %></li>
+        <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>

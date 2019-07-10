@@ -8,6 +8,9 @@ def new
 end
 
 def show
+  respond_to do |format|
+    format.js
+  end
 end
 
 def create

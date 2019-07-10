@@ -117,34 +117,77 @@ a.uk-notification-close {
 .uk-notification-message .c:hover { color: $light_grey; }
 
 // MENU
-.main-menu {
+
+.uk-navbar {
+    z-index: 150;
+}
+
+.side-menu {
+    display: flex;
+    height: 100%;
+    align-items: center;
     position: fixed;
-    z-index: 5;
-    top: 200px;
+    z-index: 100;
     ul {
         list-style: none;
         padding-left: 0px;
-        li { padding-bottom: 15px; }
+        margin-bottom: 0px;
     }
 }
 
-.menu-button {
-    background: #00000012;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 0px 5px 5px 0px;
-    display: inline-block;
-    width: 40px;
-    text-align: center;
+.m-coll {
+    font-size: 16px;
     color: $light_grey;
-    svg { color: $light_grey; }
+    padding: 10px 10px 10px 20px;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
 }
 
-.menu-button:hover {
+.m-coll:hover {
+    font-size: 30px;
     color: $dark_grey;
     text-decoration: none;
-    svg { color: $dark_grey; }
+    padding-left: 26px;
 }
+
+.m-coll.active {
+    font-size: 25px;
+    color: #666;
+    border-left: 6px solid $accent_darker;
+}
+
+.m-coll.active:hover {
+    padding-left: 20px;
+}
+
+.m-add {
+    color: $light_grey;
+    padding: 10px 10px 10px 20px;
+    svg {
+        color: $light_grey;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+.m-add:hover {
+    padding-left: 26px;
+    svg {
+        color: $dark_grey;
+        width: 35px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //OTHER
 .unselectable {

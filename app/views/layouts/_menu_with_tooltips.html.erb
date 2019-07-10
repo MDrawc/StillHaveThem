@@ -1,0 +1,24 @@
+<% if logged_in? %>
+<div class="menu-bar">
+    <ul class="menu">
+    <li><%= link_to '', search_url, class: 'menu-btn', 'data-turbolinks': 'false', 'uk-icon': 'search', 'uk-tooltip': "title: Search Games; pos: right"  %></li>
+    <li><%= link_to '', new_collection_url, class: 'menu-btn', 'uk-icon': 'plus', 'uk-tooltip': "title: Create Collection; pos: right"  %></li>
+    <% collections = current_user.collections %>
+    <% i_colls, c_colls = collections.initial, collections.custom  %>
+    <li><%= link_to '', i_colls.first, class: 'menu-btn', 'uk-icon': 'database', 'uk-tooltip': "title: #{ i_colls.first.called }; pos: right" %></li>
+    <li><%= link_to '', i_colls.second, class: 'menu-btn', 'uk-icon': 'star', 'uk-tooltip': "title: #{ i_colls.second.called }; pos: right"  %></li>
+    <li><%= link_to '', i_colls.third, class: 'menu-btn', 'uk-icon': 'bell', 'uk-tooltip': "title: #{ i_colls.third.called }; pos: right"  %></li>
+    <li><%= link_to '','', id: 'm-custom', class: 'menu-btn', 'uk-icon': 'cog', 'uk-tooltip': "title: Custom Collections; pos: right"  if c_colls.present? %></li>
+    <li><%= link_to '', root_url, class: 'menu-btn', 'uk-icon': 'settings', 'uk-tooltip': "title: Settings; pos: right"  %></li>
+    <li><%= link_to '', logout_path, method: :delete, class: 'menu-btn', 'uk-icon': 'sign-out', 'uk-tooltip': "title: Log out; pos: right"  %></li>
+    </ul>
+
+    <div id="menu-custom" class="uk-navbar-dropdown" uk-dropdown="mode: hover; toggle: #m-custom; pos: right-top">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <% c_colls.each do |c_coll| %>
+        <li><%= link_to c_coll.custom_name || c_coll.name, c_coll %></li>
+        <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>

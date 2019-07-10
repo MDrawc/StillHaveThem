@@ -1,34 +1,11 @@
 <% if logged_in? %>
-<div class="main-menu">
-
+<div class="side-menu">
     <ul>
-    <li><%= link_to '', search_url, class: 'menu-button', 'data-turbolinks': 'false', 'uk-icon': 'search' %></li>
-    <li><%= link_to '', new_collection_url, class: 'menu-button', 'uk-icon': 'plus' %></li>
-
     <% current_user.collections.each do |collection| %>
-    <li><%= link_to collection_initial(collection), collection, class: 'menu-button' %></li>
+    <li><%= link_to collection.called, collection, remote: true, class: 'm-coll' %></li>
     <% end %>
-
-    <li><%= link_to '', root_url, class: 'menu-button', 'uk-icon': 'settings' %></li>
-    <li><%= link_to '', logout_path, method: :delete, class: 'menu-button', 'uk-icon': 'sign-out' %></li>
+    <li><%= link_to 'Platinum games', root_url, class: 'm-coll' %></li>
+    <li><%= link_to '', new_collection_url, class: 'm-add', 'uk-icon': 'plus' %></li>
     </ul>
-
-    <div id="menu-dropdown" class="uk-navbar-dropdown" uk-dropdown="mode: hover; toggle: #menu-button; pos: right-bottom">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li>Logged in as:</li>
-            <li>basldalsd</li>
-            <li class="uk-nav-divider"></li>
-            <li><%= link_to 'Home', root_url %></li>
-            <li><%= link_to "Add Games", search_url, 'data-turbolinks' => 'false' %></li>
-            <li class="uk-nav-divider"></li>
-            <% current_user.collections.each do |collection| %>
-            <li><a href="#"><%= collection.custom_name || collection.name %></a></li>
-            <% end %>
-            <li class="uk-nav-divider"></li>
-            <li><a href="#">Settings</a></li>
-            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-        </ul>
-    </div>
-
 </div>
 <% end %>
