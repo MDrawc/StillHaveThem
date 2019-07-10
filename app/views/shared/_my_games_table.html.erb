@@ -3,8 +3,8 @@
     <thead>
         <tr>
             <th>Name</th>
-            <!-- <th>First Release Date</th> -->
-            <!-- <th>Developer</th> -->
+            <th>First Release Date</th>
+            <th>Developers</th>
             <% if needs_p = collection.needs_platform %>
             <th>Platform</th>
             <th>Physical / Digital</th>
@@ -15,6 +15,8 @@
         <% collection.games.each do |game| %>
         <tr>
             <%= content_tag(:td, game.name) %>
+            <%= content_tag(:td, Time.at(game.first_release_date).year) %>
+            <%= content_tag(:td, game.developers.join(', ')) %>
             <% if needs_p %>
                 <%= content_tag(:td, game.platform_name) %>
                 <%= content_tag(:td, game.physical ? 'Physical' : 'Digital') %>
