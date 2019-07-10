@@ -2,9 +2,8 @@
 <div class="side-menu">
     <ul>
     <% current_user.collections.each do |collection| %>
-    <li><%= link_to collection.called, collection, remote: true, class: 'm-coll' %></li>
+    <li><%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-coll' %></li>
     <% end %>
-    <li><%= link_to 'Platinum games', root_url, class: 'm-coll' %></li>
     <li><%= link_to '', new_collection_url, class: 'm-add', 'uk-icon': 'plus' %></li>
     </ul>
 </div>

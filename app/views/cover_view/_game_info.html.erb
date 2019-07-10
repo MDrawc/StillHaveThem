@@ -33,7 +33,7 @@
             <% end %>
         </p>
         <% end %>
-                <!-- CHECK USERS COLLECTIONS -->
+        <!-- CHECK USERS COLLECTIONS -->
         <% in_initial = {} %>
         <% @initial_collections.each_value do |collection| %>
         <% in_initial["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) ? true : false %>
@@ -41,6 +41,8 @@
         <% in_custom = @custom_collections.any? do |custom_c| %>
         <% custom_c.games.find_by(igdb_id: game['id']) %>
         <% end %>
+        <!-- PREPARE SCREENS -->
+        <% screens = get_screenshots(game) %>
         <!-- NAVIGATION -->
         <div class="info-nav">
             <ul class="uk-iconnav">
@@ -58,7 +60,7 @@
                 <% collection = @initial_collections['wishlist'] %>
                 <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: in_initial['wishlist'] ? 'display: none;' : nil) do %>
                 <%= render partial: "cover_view/add_form_no_platform",
-                locals: { game: game, collection: collection, icon: 'star' } %>
+                locals: { game: game, devs: devs, screens: screens, collection: collection, icon: 'star' } %>
                 <% end %>
                 <!-- ___REMOVE -->
                 <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s,  style: !in_initial['wishlist'] ? 'display: none;' : nil) do %>
@@ -73,7 +75,7 @@
                 <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s,
                 style: in_initial['played'] ? 'display: none;' : nil) do %>
                 <%= render partial: "cover_view/add_form_no_platform",
-                locals: { game: game, collection: collection, icon: 'bell' } %>
+                locals: { game: game, devs: devs, screens: screens, collection: collection, icon: 'bell' } %>
                 <% end %>
                 <!-- ___REMOVE -->
                 <%= content_tag(:li, id: "remove-played-form-" + game['id'].to_s, style: !in_initial['played'] ? 'display: none;' : nil) do %>
@@ -104,6 +106,21 @@
                 <%= f.hidden_field :igdb_id, value: game['id'] %>
                 <% scalp_platforms(game).each do |pid| %>
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
+                <% end %>
+                <%= f.hidden_field :first_release_date, value: game['first_release_date'] %>
+                <%= f.hidden_field :summary, value: game['summary'] %>
+                <%= f.hidden_field :status, value: game['status'] %>
+                <%= f.hidden_field :category, value: game['category'] %>
+                <%= f.hidden_field :cover, value: game['cover']['image_id'] if game['cover'] %>
+                <% if devs %>
+                  <% devs.each do |dev| %>
+                    <%= f.hidden_field :developers, value: dev, multiple: true %>
+                  <% end %>
+                <% end %>
+                <% if screens %>
+                  <% screens.each do |screen| %>
+                    <%= f.hidden_field :screenshots, value: screen, multiple: true %>
+                  <% end %>
                 <% end %>
                 <div class="select-platform">
                     <div uk-form-custom="target: > * > span:last-child">
@@ -144,6 +161,21 @@
                 <%= f.hidden_field :igdb_id, value: game['id'] %>
                 <% scalp_platforms(game).each do |pid| %>
                 <%= f.hidden_field :platforms, value: pid, multiple: true %>
+                <% end %>
+                <%= f.hidden_field :first_release_date, value: game['first_release_date'] %>
+                <%= f.hidden_field :summary, value: game['summary'] %>
+                <%= f.hidden_field :status, value: game['status'] %>
+                <%= f.hidden_field :category, value: game['category'] %>
+                <%= f.hidden_field :cover, value: game['cover']['image_id'] if game['cover'] %>
+                <% if devs %>
+                  <% devs.each do |dev| %>
+                    <%= f.hidden_field :developers, value: dev, multiple: true %>
+                  <% end %>
+                <% end %>
+                <% if screens %>
+                  <% screens.each do |screen| %>
+                    <%= f.hidden_field :screenshots, value: screen, multiple: true %>
+                  <% end %>
                 <% end %>
                 <!-- SELECT COLLECTION -->
                 <div class="select-collection">
@@ -221,7 +253,8 @@
     <% end %>
     <% end %>
     <!-- SLIDESHOW -->
-    <% if urls = get_screenshots(game) %>
+    <% if screens %>
+    <% urls = screens_urls(screens) %>
     <div class="uk-position-relative md-slideshow" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
         <ul class="uk-slideshow-items">
             <% no_of_screens = 0 %>

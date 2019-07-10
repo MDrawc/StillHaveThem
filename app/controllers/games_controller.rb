@@ -68,7 +68,7 @@ class GamesController < ApplicationController
 
     def game_params
       params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
-       :status, :category, :needs_platform, :platform, :physical, platforms: [])
+       :status, :category, :needs_platform, :platform, :physical, :cover, platforms: [], developers: [], screenshots: [])
     end
 
     def message(needs_platform = true, duplicate = false)

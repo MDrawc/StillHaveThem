@@ -1,1 +1,3 @@
 $("#big-c").html("<%= escape_javascript(render partial: 'shared/my_games_table', locals: { collection: @collection }) %>");
+$(".m-coll").removeClass('active')
+$("#m-<%= @collection.id %>").addClass('active')

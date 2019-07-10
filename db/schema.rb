@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_04_143634) do
+ActiveRecord::Schema.define(version: 2019_07_10_131839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 2019_07_04_143634) do
     t.string "platform_name"
     t.boolean "physical"
     t.boolean "needs_platform"
+    t.string "developers", default: [], array: true
+    t.string "cover"
+    t.string "screenshots", default: [], array: true
     t.index ["igdb_id"], name: "index_games_on_igdb_id"
   end
 

@@ -3,7 +3,7 @@ require 'net/https'
 module StaticPagesHelper
 
   def get_game_cover(game, width = 200)
-    cover = game["cover"]
+    cover = game['cover']
     if cover.nil? || cover.class != Hash
       screenshots = game['screenshots']
       if screenshots && screenshots.class == Array
@@ -14,10 +14,10 @@ module StaticPagesHelper
         end
       end
     else
-      ratio = cover["height"]/cover["width"].to_f
+      ratio = cover['height']/cover['width'].to_f
       height = (width * ratio).round(2)
       cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
-      cover_url += cover["image_id"].to_s + ".jpg"
+      cover_url += cover['image_id'].to_s + '.jpg'
       return { url: cover_url, width: width, height: height }
     end
   end
@@ -66,26 +66,28 @@ module StaticPagesHelper
 
   def get_screenshots(game)
     screenshots = game['screenshots']
-    urls = []
+    scrns = []
     if screenshots && screenshots.class == Array
       if screenshots.any? { |thing| thing.class == Hash }
-
         filtered = screenshots.map { |thing| thing if thing.class == Hash }
         filtered = filtered.compact
-
         filtered.each do |screen|
-          base_url = 'https://images.igdb.com/igdb/image/upload/'
-          url_big = base_url + 't_original/' + screen['image_id'] + '.jpg'
-          url_small = url_big.sub('original', 'screenshot_med')
-          urls << {big: url_big, small: url_small}
+          scrns << screen['image_id']
         end
-        return urls
-      else
-        return false
+        return scrns
       end
-    else
-      return false
     end
+  end
+
+  def screens_urls(screens)
+    urls = []
+    screens.each do |screen|
+      base_url = 'https://images.igdb.com/igdb/image/upload/'
+      url_big = base_url + 't_original/' + screen + '.jpg'
+      url_small = url_big.sub('original', 'screenshot_med')
+      urls << { big: url_big, small: url_small }
+    end
+    return urls
   end
 
   def convert_status(status_id)

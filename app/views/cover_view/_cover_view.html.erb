@@ -37,8 +37,8 @@
     </p>
     <!-- RELEASE DATE -->
     <p class="game-release-date">
-      <% if game["first_release_date"]%>
-      <%= Time.at(game["first_release_date"]).year %>
+      <% if game['first_release_date']%>
+      <%= Time.at(game['first_release_date']).year %>
       <% else %>
       -
       <% end %>
