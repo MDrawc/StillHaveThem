@@ -18,21 +18,32 @@ class StaticPagesController < ApplicationController
 
   def search
     # First time search:
+
+
     if params[:search]
 
       @inquiry = IgdbQuery.new(params[:search])
-      @inquiry.search
-      # @inquiry.prepare_query
-      # @inquiry.already_asked?
-      # @inquiry.initial_search
-      # @inquiry.save_query
-      # @inquiry.compose_results
-      # @inquiry.full_search
+
+      if @inquiry.validate!
+        @inquiry.search
+        @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
+
+        prepare_user_collections(current_user) if @inquiry.results.present?
+
+      end
 
       respond_to do |format|
         format.html
         format.js
       end
+
+
+
+
+
+
+
+
 
     # Load more:
     elsif params[:last_input]
@@ -51,11 +62,14 @@ class StaticPagesController < ApplicationController
   end
 
   private
+
     def prepare_user_collections(user)
       @initial_collections = {}
+
       user.collections.initial.each do |collection|
         @initial_collections[collection.form] = collection
       end
+
       @custom_collections = user.collections.custom
     end
 end

@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_131839) do
+ActiveRecord::Schema.define(version: 2019_07_11_115305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agames", force: :cascade do |t|
+    t.integer "igdb_id"
+    t.string "name"
+    t.integer "first_release_date"
+    t.text "summary"
+    t.integer "status"
+    t.integer "category"
+    t.string "cover"
+    t.integer "platforms", default: [], array: true
+    t.string "platforms_names", default: [], array: true
+    t.string "developers", default: [], array: true
+    t.string "screenshots", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_agames_on_igdb_id"
+  end
 
   create_table "collection_games", force: :cascade do |t|
     t.bigint "collection_id"
@@ -55,6 +72,16 @@ ActiveRecord::Schema.define(version: 2019_07_10_131839) do
     t.string "cover"
     t.string "screenshots", default: [], array: true
     t.index ["igdb_id"], name: "index_games_on_igdb_id"
+  end
+
+  create_table "queries", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "body"
+    t.integer "results", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body"], name: "index_queries_on_body"
+    t.index ["endpoint"], name: "index_queries_on_endpoint"
   end
 
   create_table "users", force: :cascade do |t|
