@@ -19,7 +19,6 @@ class StaticPagesController < ApplicationController
   def search
     # First time search:
 
-
     if params[:search]
 
       @inquiry = IgdbQuery.new(params[:search])
@@ -36,14 +35,6 @@ class StaticPagesController < ApplicationController
         format.html
         format.js
       end
-
-
-
-
-
-
-
-
 
     # Load more:
     elsif params[:last_input]

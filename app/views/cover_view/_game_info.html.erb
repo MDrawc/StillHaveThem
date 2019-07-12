@@ -1,33 +1,34 @@
-<% i_settings = 'mode: none; bg-close: true' %>
-<div id="i-<%= game['id'] %>" uk-offcanvas="<%= i_settings %>">
-    <div class="uk-offcanvas-bar <%= game['id'] %>">
+<% igdb_id = game[:igdb_id] %>
+<% game_name = game[:name] %>
+<div id="i-<%= igdb_id %>" uk-offcanvas="mode: none; bg-close: true">
+    <div class="uk-offcanvas-bar <%= igdb_id %>">
         <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
         <!-- TITLE & RELEASE YEAR -->
-        <h3 id="info-title"><%= game['name'] %>
-        <% if game["first_release_date"]%>
-        <span id="info-year">(<%= Time.at(game["first_release_date"]).year %>)</span>
+        <h3 id="info-title"><%= game_name %>
+        <% if game[:first_release_date]%>
+        <span id="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
         <% else %>
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-        <p id="info-by"><%= (devs = get_developer(game)) ? "by " + devs.join(', ') : '' %></p>
+        <p id="info-by"><%= (devs = game[:developers]) ? "by " + devs.join(', ') : '' %></p>
         <!-- COVER -->
         <% if cover %>
-            <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ game['id'] }" )  %>
+        <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game_name, 'draggable' => 'false', 'uk-img' => "target: #gc-#{ igdb_id }" ) %>
         <% else %>
-            <div class="i-no-cover"><%= render 'svgs/no_image' %>
+        <div class="i-no-cover"><%= render 'svgs/no_image' %>
             <span>No Cover Available</span>
-            </div>
+        </div>
         <% end %>
         <!-- PLATFORMS -->
-        <% if platforms = game["platforms"] %>
+        <% if platforms = game[:platforms_names] %>
         <p id="info-platform">
             <% platforms.each do |platform| %>
             <span>
                 <% unless platform == platforms.last %>
-                <%= platform['name'] + ', ' %>
+                <%= platform + ', ' %>
                 <% else %>
-                <%= platform['name'] %>
+                <%= platform %>
                 <% end %>
             </span>
             <% end %>
@@ -36,13 +37,13 @@
         <!-- CHECK USERS COLLECTIONS -->
         <% in_initial = {} %>
         <% @initial_collections.each_value do |collection| %>
-        <% in_initial["#{collection.form}"] = collection.games.find_by(igdb_id: game['id']) ? true : false %>
+        <% in_initial["#{collection.form}"] = collection.games.find_by(igdb_id: igdb_id) ? true : false %>
         <% end %>
         <% in_custom = @custom_collections.any? do |custom_c| %>
-        <% custom_c.games.find_by(igdb_id: game['id']) %>
+        <% custom_c.games.find_by(igdb_id: igdb_id) %>
         <% end %>
         <!-- PREPARE SCREENS -->
-        <% screens = get_screenshots(game) %>
+        <% screens = game[:screenshots] %>
         <!-- NAVIGATION -->
         <div class="info-nav">
             <ul class="uk-iconnav">
@@ -51,36 +52,36 @@
                     <% collection = @initial_collections['collection'] %>
                     <% tooltip = 'Add to / Remove from ' + (collection.custom_name || collection.name) %>
                     <% extra_class = in_initial['collection'] ? 'remove' : '' %>
-                    <%= content_tag(:a, '',id: "add-collection-#{ game['id'] }", class: "uk-icon-link " + extra_class,
+                    <%= content_tag(:a, '',id: "add-collection-#{ igdb_id }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'database', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
                     <div class="underlight"></div>
                 </li>
                 <!-- WISHLIST -->
                 <!-- ___ADD -->
                 <% collection = @initial_collections['wishlist'] %>
-                <%= content_tag(:li, id: "add-wishlist-form-" + game['id'].to_s,  style: in_initial['wishlist'] ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "add-wishlist-form-" + igdb_id.to_s,  style: in_initial['wishlist'] ? 'display: none;' : nil) do %>
                 <%= render partial: "cover_view/add_form_no_platform",
                 locals: { game: game, devs: devs, screens: screens, collection: collection, icon: 'star' } %>
                 <% end %>
                 <!-- ___REMOVE -->
-                <%= content_tag(:li, id: "remove-wishlist-form-" + game['id'].to_s,  style: !in_initial['wishlist'] ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "remove-wishlist-form-" + igdb_id.to_s,  style: !in_initial['wishlist'] ? 'display: none;' : nil) do %>
                 <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
-                <%= link_to '', remove_s_url(game_id: game['id'], collection_id: collection.id, id_type: 'igdb'),
+                <%= link_to '', remove_s_url(game_id: igdb_id, collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'star', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
                 <div class="underlight"></div>
                 <% end %>
                 <!-- PLAYED -->
                 <!-- ___ADD -->
                 <% collection = @initial_collections['played'] %>
-                <%= content_tag(:li, id: "add-played-form-" + game['id'].to_s,
+                <%= content_tag(:li, id: "add-played-form-" + igdb_id.to_s,
                 style: in_initial['played'] ? 'display: none;' : nil) do %>
                 <%= render partial: "cover_view/add_form_no_platform",
                 locals: { game: game, devs: devs, screens: screens, collection: collection, icon: 'bell' } %>
                 <% end %>
                 <!-- ___REMOVE -->
-                <%= content_tag(:li, id: "remove-played-form-" + game['id'].to_s, style: !in_initial['played'] ? 'display: none;' : nil) do %>
+                <%= content_tag(:li, id: "remove-played-form-" + igdb_id.to_s, style: !in_initial['played'] ? 'display: none;' : nil) do %>
                 <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
-                <%= link_to '', remove_s_url(game_id: game['id'], collection_id: collection.id, id_type: 'igdb'),
+                <%= link_to '', remove_s_url(game_id: igdb_id, collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'bell', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
                 <div class="underlight"></div>
                 <% end %>
@@ -88,43 +89,47 @@
                 <li>
                     <% tooltip = 'Add to / Remove from Custom Collections' %>
                     <% extra_class = in_custom ? 'remove' : '' %>
-                    <%= content_tag(:a, '',id: "add-custom-#{ game['id'] }", class: "uk-icon-link " + extra_class,
-                    'uk-icon' => 'cog', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
+                    <%= content_tag(:a, '',id: "add-custom-#{ igdb_id }", class: "uk-icon-link " + extra_class,
+                    'uk-icon' => 'cog', 'uk-tooltip' => "title: #{ tooltip }; pos: top-left") %>
                     <div class="underlight"></div>
                 </li>
             </ul>
         </div>
         <!-- ADD GAME TO COLLECTION -->
-        <div class="b-<%= game['id'] %>">
-            <div id="add-collection-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>" >
+        <div class="b-<%= igdb_id %>">
+            <div id="add-collection-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= igdb_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>" >
                 <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
                 <%= form_for(:game, url: games_path, remote: true) do |f| %>
                 <% collection = @initial_collections['collection'] %>
                 <%= hidden_field_tag :collection, collection.id %>
                 <%= f.hidden_field :needs_platform, value: true %>
-                <%= f.hidden_field :name, value: game['name'] %>
-                <%= f.hidden_field :igdb_id, value: game['id'] %>
-                <% scalp_platforms(game).each do |pid| %>
-                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+                <%= f.hidden_field :name, value: game_name %>
+                <%= f.hidden_field :igdb_id, value: igdb_id %>
+                <% if platforms = game[:platforms] %>
+                <% platforms.each do |id| %>
+                <%= f.hidden_field :platforms, value: id, multiple: true %>
                 <% end %>
-                <%= f.hidden_field :first_release_date, value: game['first_release_date'] %>
-                <%= f.hidden_field :summary, value: game['summary'] %>
-                <%= f.hidden_field :status, value: game['status'] %>
-                <%= f.hidden_field :category, value: game['category'] %>
-                <%= f.hidden_field :cover, value: game['cover']['image_id'] if game['cover'] %>
+                <% end %>
+                <%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
+                <%= f.hidden_field :summary, value: game[:summary] %>
+                <%= f.hidden_field :status, value: game[:status] %>
+                <%= f.hidden_field :category, value: game[:category] %>
+                <%= f.hidden_field :cover, value: game[:cover] %>
+                <%= f.hidden_field :cover_width, value: game[:cover_width] %>
+                <%= f.hidden_field :cover_height, value: game[:cover_height] %>
                 <% if devs %>
-                  <% devs.each do |dev| %>
-                    <%= f.hidden_field :developers, value: dev, multiple: true %>
-                  <% end %>
+                <% devs.each do |dev| %>
+                <%= f.hidden_field :developers, value: dev, multiple: true %>
+                <% end %>
                 <% end %>
                 <% if screens %>
-                  <% screens.each do |screen| %>
-                    <%= f.hidden_field :screenshots, value: screen, multiple: true %>
-                  <% end %>
+                <% screens.each do |screen| %>
+                <%= f.hidden_field :screenshots, value: screen, multiple: true %>
+                <% end %>
                 <% end %>
                 <div class="select-platform">
                     <div uk-form-custom="target: > * > span:last-child">
-                        <% if game['platforms'].size > 1 %>
+                        <% if game[:platforms].size > 1 %>
                         <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
                         <span class='bigs'>
                             <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
@@ -147,35 +152,39 @@
                 <% end %>
                 <!-- ALREADY IN -->
                 <div class="already-in">
-                    <%= render(partial: 'cover_view/already_in_collection', locals: { collection: collection, game_name: game['name'], igdb_id: game['id'] }) if in_initial['collection']  %>
+                    <%= render(partial: 'cover_view/already_in_collection', locals: { collection: collection, game_name: game_name, igdb_id: igdb_id }) if in_initial['collection']  %>
                 </div>
             </div>
             <!-- ADD TO CUSTOM COLLECTION -->
-            <div id="add-custom-form-<%= game['id'] %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= game['id'] %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= game['id'] %>">
+            <div id="add-custom-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= igdb_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>">
                 <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
                 <% if @custom_collections.any? %>
                 <%= form_for(:game, url: games_path, remote: true) do |f| %>
                 <%= hidden_field_tag :form, 'custom' %>
                 <!-- GAME -->
-                <%= f.hidden_field :name, value: game['name'] %>
-                <%= f.hidden_field :igdb_id, value: game['id'] %>
-                <% scalp_platforms(game).each do |pid| %>
-                <%= f.hidden_field :platforms, value: pid, multiple: true %>
+                <%= f.hidden_field :name, value: game_name %>
+                <%= f.hidden_field :igdb_id, value: igdb_id %>
+                <% if platforms = game[:platforms] %>
+                <% platforms.each do |id| %>
+                <%= f.hidden_field :platforms, value: id, multiple: true %>
                 <% end %>
-                <%= f.hidden_field :first_release_date, value: game['first_release_date'] %>
-                <%= f.hidden_field :summary, value: game['summary'] %>
-                <%= f.hidden_field :status, value: game['status'] %>
-                <%= f.hidden_field :category, value: game['category'] %>
-                <%= f.hidden_field :cover, value: game['cover']['image_id'] if game['cover'] %>
+                <% end %>
+                <%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
+                <%= f.hidden_field :summary, value: game[:summary] %>
+                <%= f.hidden_field :status, value: game[:status] %>
+                <%= f.hidden_field :category, value: game[:category] %>
+                <%= f.hidden_field :cover, value: game[:cover] %>
+                <%= f.hidden_field :cover_width, value: game[:cover_width] %>
+                <%= f.hidden_field :cover_height, value: game[:cover_height] %>
                 <% if devs %>
-                  <% devs.each do |dev| %>
-                    <%= f.hidden_field :developers, value: dev, multiple: true %>
-                  <% end %>
+                <% devs.each do |dev| %>
+                <%= f.hidden_field :developers, value: dev, multiple: true %>
+                <% end %>
                 <% end %>
                 <% if screens %>
-                  <% screens.each do |screen| %>
-                    <%= f.hidden_field :screenshots, value: screen, multiple: true %>
-                  <% end %>
+                <% screens.each do |screen| %>
+                <%= f.hidden_field :screenshots, value: screen, multiple: true %>
+                <% end %>
                 <% end %>
                 <!-- SELECT COLLECTION -->
                 <div class="select-collection">
@@ -202,7 +211,7 @@
                     <%= f.hidden_field :needs_platform, value: false %>
                     <div class="uk-margin select-platform">
                         <div uk-form-custom="target: > * > span:last-child">
-                            <% if game['platforms'].size > 1 %>
+                            <% if game[:platforms].size > 1 %>
                             <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
                             <span class='bigs'>
                                 <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
@@ -226,7 +235,7 @@
                 <% end %>
                 <!-- ALREADY IN -->
                 <div class="already-in">
-                    <%= render(partial: 'cover_view/already_in_custom', locals: { game_name: game['name'], igdb_id: game['id'] }) if in_custom %>
+                    <%= render(partial: 'cover_view/already_in_custom', locals: { game_name: game_name, igdb_id: igdb_id }) if in_custom %>
                 </div>
                 <% else %>
                 <p>Create custom collection first.</p>
@@ -235,19 +244,19 @@
         </div>
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
-        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= game['id'] %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= game['id'] %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= game['id'] %>)" uk-icon="icon: triangle-up"></button></span>
+        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= igdb_id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= igdb_id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-up"></button></span>
     </p>
     <script>
     function myFunction(id) {
-        var dots = document.getElementById("dots-" + id);
-        var moreText = document.getElementById("more-" + id);
-        if (dots.style.display === "none") {
-            dots.style.display = "inline";
-            moreText.style.display = "none";
-        } else {
-            dots.style.display = "none";
-            moreText.style.display = "inline";
-        }
+    var dots = document.getElementById("dots-" + id);
+    var moreText = document.getElementById("more-" + id);
+    if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+    } else {
+    dots.style.display = "none";
+    moreText.style.display = "inline";
+    }
     }
     </script>
     <% end %>
@@ -260,8 +269,8 @@
             <% no_of_screens = 0 %>
             <% urls.each_with_index do |url, i| %>
             <li>
-                <% img_target = (i == 0) ? "target: #gc-#{ game['id'] }" : "target: #i-#{ game['id'] }" %>
-                <%= image_tag('', 'data-src' => url[:small], alt: game['name'], 'uk-cover' => '', 'uk-img' => img_target ) %>
+                <% img_target = (i == 0) ? "target: #gc-#{ igdb_id }" : "target: #i-#{ igdb_id }" %>
+                <%= image_tag('', 'data-src' => url[:small], alt: game_name, 'uk-cover' => '', 'uk-img' => img_target ) %>
                 <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
             </li>
             <% no_of_screens += 1 %>
@@ -295,100 +304,86 @@
         <!-- LINKS -->
         <hr>
         <div id="info-links">
-            <%= link_to '',"http://www.google.com/search?q=%22#{ game['name'].gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
-            <%= link_to render('svgs/metacritic_icon'),"https://www.metacritic.com/search/game/#{ game['name'].gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
-            <button id='i-flipper-<%= game['id'] %>' class="flip"><%= render 'svgs/flip_icon' %></button>
+            <%= link_to '',"http://www.google.com/search?q=%22#{ game_name.gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+            <%= link_to render('svgs/metacritic_icon'),"https://www.metacritic.com/search/game/#{ game_name.gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+            <button id='i-flipper-<%= igdb_id %>' class="flip"><%= render 'svgs/flip_icon' %></button>
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
 // UNDERLINE OWNED GAMES ON COVER VIEW - - - - - - - - - - - - - - - - - - //
 var in_custom = <%= in_custom %>;
 var in_initial = <%= in_initial.values.any? %>;
-
 if (in_custom || in_initial) {
-    $('#gs-<%= game['id'] %> .game-name span').addClass('owned');
+$('#gs-<%= igdb_id %> .game-name span').addClass('owned');
 }
-
 // FLIP GAME INFO - - - - - - - - - - - - - - - - - - - - - - - - - - //
-$('#i-flipper-<%= game['id'] %>').click(function() {
-    $('body').toggleClass('uk-offcanvas-flip');
-    $('#i-flipper-<%= game['id'] %>').toggleClass('flip-rotate');
-    // Flip scroll-up
-    $('.scroll-up').toggleClass('scroll-flip');
-    // Flip notification
-    if ($('.uk-notification').length) {
-        $('.uk-notification').toggleClass('uk-notification-top-right');
-         $('.uk-notification').toggleClass('uk-notification-top-left');
-    }
+$('#i-flipper-<%= igdb_id %>').click(function() {
+$('body').toggleClass('uk-offcanvas-flip');
+$('#i-flipper-<%= igdb_id %>').toggleClass('flip-rotate');
+// Flip scroll-up
+$('.scroll-up').toggleClass('scroll-flip');
+// Flip notification
+if ($('.uk-notification').length) {
+$('.uk-notification').toggleClass('uk-notification-top-right');
+$('.uk-notification').toggleClass('uk-notification-top-left');
+}
 });
-
 // COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
 function updatePlatformIcon(form_type) {
-
-    var form = '#add-' + form_type + '-form-<%= game['id'] %>';
-    var select_element = form + ' #game_platform';
-
-    $(select_element).on('input', function() {
-
-        var value = $(select_element).val();
-        var icon = form + ' .platform-icon';
-
-        if (value.length > 0) {
-            $(icon).attr('class', 'platform-green');
-        } else {
-            icon = form + ' .platform-green';
-            $(icon).attr('class', 'platform-icon');
-        }
-    });
+var form = '#add-' + form_type + '-form-<%= igdb_id %>';
+var select_element = form + ' #game_platform';
+$(select_element).on('input', function() {
+var value = $(select_element).val();
+var icon = form + ' .platform-icon';
+if (value.length > 0) {
+$(icon).attr('class', 'platform-green');
+} else {
+icon = form + ' .platform-green';
+$(icon).attr('class', 'platform-icon');
 }
-
+});
+}
 updatePlatformIcon('collection')
-
 // CUSTOM COLLECTION FORM - - - - - - - - - - - - - - - - - - - - - - -//
 // IF ONLY ONE CUSTOM COLLECTION PREPARE FORM AFTER AUTOMATICALY SELECTING IT
-if ($('#add-custom-form-<%= game['id'] %> #collection').length){
-    var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
-    var nd = (value.split(",")[1] == 'true');
-    var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
-    var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
-
-    if (nd == true) {
-            $(plat_form_element).show();
-            $(needs_platform).attr('value', 'true');
-        } else if (nd == false) {
-            $(plat_form_element).hide();
-            $(needs_platform).attr('value', 'false');
-        }
+if ($('#add-custom-form-<%= igdb_id %> #collection').length){
+var value = $('#add-custom-form-<%= igdb_id %> #collection').val();
+var nd = (value.split(",")[1] == 'true');
+var plat_form_element = "#add-custom-form-<%= igdb_id %> #platform-option";
+var needs_platform = "#add-custom-form-<%= igdb_id %> #game_needs_platform";
+if (nd == true) {
+$(plat_form_element).show();
+$(needs_platform).attr('value', 'true');
+} else if (nd == false) {
+$(plat_form_element).hide();
+$(needs_platform).attr('value', 'false');
+}
 }
 // CHANGE PLATFORM ICON COLOR AFTER INPUT CHANGE
 updatePlatformIcon('custom')
-
 // SHOW PLATFORM FORM FOR COLLECTION THAT REQUIRE PLATFORM SELECTION FOR GAMES
 // CHANGE COLLECTION ICON COLOR AFTER INPUT CHANGE
-$('#add-custom-form-<%= game['id'] %> #collection').on('input', function() {
-var value = $('#add-custom-form-<%= game['id'] %> #collection').val();
+$('#add-custom-form-<%= igdb_id %> #collection').on('input', function() {
+var value = $('#add-custom-form-<%= igdb_id %> #collection').val();
 var nd = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
-var plat_form_element = "#add-custom-form-<%= game['id'] %> #platform-option";
-var needs_platform = "#add-custom-form-<%= game['id'] %> #game_needs_platform";
-
-var icon = '#add-custom-form-<%= game['id'] %> .collection-icon';
-
+var plat_form_element = "#add-custom-form-<%= igdb_id %> #platform-option";
+var needs_platform = "#add-custom-form-<%= igdb_id %> #game_needs_platform";
+var icon = '#add-custom-form-<%= igdb_id %> .collection-icon';
 if (nd == true) {
-        $(icon).attr('class', 'collection-green');
-        $(plat_form_element).show();
-        $(needs_platform).attr('value', 'true');
-    } else if (nd == false) {
-        $(icon).attr('class', 'collection-green');
-        $(plat_form_element).hide();
-        $(needs_platform).attr('value', 'false');
-    } else if (nd == 'select'){
-        icon = '#add-custom-form-<%= game['id'] %> .collection-green';
-        $(icon).attr('class', 'collection-icon');
-        $(plat_form_element).hide();
-        $(needs_platform).attr('value', 'false');
-    }
+$(icon).attr('class', 'collection-green');
+$(plat_form_element).show();
+$(needs_platform).attr('value', 'true');
+} else if (nd == false) {
+$(icon).attr('class', 'collection-green');
+$(plat_form_element).hide();
+$(needs_platform).attr('value', 'false');
+} else if (nd == 'select'){
+icon = '#add-custom-form-<%= igdb_id %> .collection-green';
+$(icon).attr('class', 'collection-icon');
+$(plat_form_element).hide();
+$(needs_platform).attr('value', 'false');
+}
 });
 </script>

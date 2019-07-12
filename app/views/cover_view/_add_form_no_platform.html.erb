@@ -1,16 +1,20 @@
 <%= form_for(:game, url: games_path, remote: true) do |f| %>
 <%= hidden_field_tag :collection, collection.id %>
 <%= f.hidden_field :needs_platform, value: false %>
-<%= f.hidden_field :name, value: game['name'] %>
-<%= f.hidden_field :igdb_id, value: game['id'] %>
-<% scalp_platforms(game).each do |pid| %>
-<%= f.hidden_field :platforms, value: pid, multiple: true %>
+<%= f.hidden_field :name, value: game[:name] %>
+<%= f.hidden_field :igdb_id, value: game[:igdb_id] %>
+<% if platforms = game[:platforms] %>
+  <% platforms.each do |id| %>
+    <%= f.hidden_field :platforms, value: id, multiple: true %>
+  <% end %>
 <% end %>
-<%= f.hidden_field :first_release_date, value: game['first_release_date'] %>
-<%= f.hidden_field :summary, value: game['summary'] %>
-<%= f.hidden_field :status, value: game['status'] %>
-<%= f.hidden_field :category, value: game['category'] %>
-<%= f.hidden_field :cover, value: game['cover']['image_id'] if game['cover'] %>
+<%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
+<%= f.hidden_field :summary, value: game[:summary] %>
+<%= f.hidden_field :status, value: game[:status] %>
+<%= f.hidden_field :category, value: game[:category] %>
+<%= f.hidden_field :cover, value: game[:cover] %>
+<%= f.hidden_field :cover_width, value: game[:cover_width] %>
+<%= f.hidden_field :cover_height, value: game[:cover_height] %>
 <% if devs %>
   <% devs.each do |dev| %>
     <%= f.hidden_field :developers, value: dev, multiple: true %>
@@ -21,6 +25,5 @@
     <%= f.hidden_field :screenshots, value: screen, multiple: true %>
   <% end %>
 <% end %>
-
 <button class="icon-btn uk-icon-link" type="submit" uk-icon="icon: <%= icon %>" uk-tooltip="title: Add to <%= collection.custom_name || collection.name %>; pos: top-left"></button>
 <% end %>

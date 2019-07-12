@@ -1,4 +1,3 @@
-
 require 'net/https'
 
 class IgdbQuery
@@ -197,10 +196,14 @@ class IgdbQuery
       c[:summary] = g['summary']
       c[:status] = g['status']
       c[:category] = g['category']
-      c[:cover] = g['cover']['image_id'] if g['cover']
+      if g['cover']
+        c[:cover] = g['cover']['image_id']
+        c[:cover_height] = g['cover']['height']
+        c[:cover_width]= g['cover']['width']
+      end
       if g['platforms']
-        c[:platforms] = g['platforms'].collect { |platform| platform['id'] }
-        c[:platforms_names] = g['platforms'].collect { |platform| platform['name'] }
+        c[:platforms] = platforms = g['platforms'].collect { |platform| platform['id'] }
+        c[:platforms_names] = platforms_names = g['platforms'].collect { |platform| platform['name'] }
       end
       c[:developers] = convert_devs(g)
       c[:screenshots] = convert_screenshots(g)
@@ -234,7 +237,7 @@ class IgdbQuery
         filtered.each do |screen|
           scrns << screen['image_id']
         end
-        return scrns
+        return scrns if scrns.present?
       end
     end
   end
@@ -249,8 +252,9 @@ class IgdbQuery
       res_ids = results.collect { |g| g.igdb_id }
       @missing_games = @games_ids - res_ids
       puts ">> missing games: #{ @missing_games }"
-    end
+    else
     puts ">> we have ALL the games"
+    end
   end
 
   def initial_search
@@ -321,7 +325,7 @@ class IgdbQuery
   end
 
   def validate!
-    errors.add(:base, :blank, message: "insert at least one character") if @query.blank?
+    errors.add(:base, :blank, message: "insert at least one character") if @input.blank?
     unless @platforms.values.any?
       errors.add(:base, :blank, message: "choose at least one platform")
     end

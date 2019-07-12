@@ -17,31 +17,26 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    # First time search:
-    if params[:search]
-
+    if params[:search] #First time search:
       @inquiry = IgdbQuery.new(params[:search])
-      @inquiry.search
-      # @inquiry.prepare_query
-      # @inquiry.already_asked?
-      # @inquiry.initial_search
-      # @inquiry.save_query
-      # @inquiry.compose_results
-      # @inquiry.full_search
+
+      if @inquiry.validate!
+        @inquiry.search
+        @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
+        prepare_user_collections(current_user) if @inquiry.results.present?
+      end
 
       respond_to do |format|
         format.html
         format.js
       end
-
-    # Load more:
-    elsif params[:last_input]
+    elsif params[:last_input] #Load more (search with offset):
       @inquiry = IgdbQuery.new(eval(params[:last_input]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
+
       @inquiry.search
       @inquiry.fix_duplicates(@@last_result_ids)
       @@last_result_ids += @inquiry.results.map { |game| game = game["id"] }
-
       prepare_user_collections(current_user) if @inquiry.results.present?
 
       respond_to do |format|

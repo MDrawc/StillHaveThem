@@ -1,15 +1,15 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
   <% @inquiry.results.each do |game| %>
-  <div id="gs-<%= game['id'] %>" class="game-space">
+  <div id="gs-<%= game[:igdb_id] %>" class="game-space">
     <!-- COVER -->
     <% if cover = get_game_cover(game) %>
-      <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= game['id'] %>">
-      <%= image_tag('', id: "gc-#{ game['id'] }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game['name'], 'draggable' => 'false', 'uk-img' => '') %>
+      <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= game[:igdb_id] %>">
+      <%= image_tag('', id: "gc-#{ game[:igdb_id] }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
       <div class="spinner"><%= render 'svgs/loading' %></div>
     <% else %>
-      <div class="game-cover-effect" uk-toggle="target: #i-<%= game['id'] %>">
-      <%= content_tag(:div, id: "gc-#{ game['id'] }", class: 'no-cover') do %>
-        <%= content_tag(:div, game['name'], class: 'no-cover-game-name unselectable') %>
+      <div class="game-cover-effect" uk-toggle="target: #i-<%= game[:igdb_id] %>">
+      <%= content_tag(:div, id: "gc-#{ game[:igdb_id] }", class: 'no-cover') do %>
+        <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
         <%= render 'svgs/no_image' %>
       <% end %>
     <% end %>
@@ -25,43 +25,43 @@
     <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
     <!-- NAME AND WARNING -->
     <p class="game-name">
-      <span><%= game["name"] %></span>
-      <% if (status_id = game["status"]) && status_id != 0 %>
+      <span><%= game[:name] %></span>
+      <% if (status_id = game[:status]) && status_id != 0 %>
       <button class="game-warning", uk-icon="icon: warning"
       uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
       <% end %>
-      <% if (category_id = game["category"]) && category_id != 0 %>
+      <% if (category_id = game[:category]) && category_id != 0 %>
       <button class="game-warning", uk-icon="icon: album"
       uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
       <% end %>
     </p>
     <!-- RELEASE DATE -->
     <p class="game-release-date">
-      <% if game['first_release_date']%>
-      <%= Time.at(game['first_release_date']).year %>
+      <% if game[:first_release_date]%>
+      <%= Time.at(game[:first_release_date]).year %>
       <% else %>
       -
       <% end %>
       <!-- PLATFORMS -->
-      <% if platforms = game["platforms"] %>
+      <% if platforms = game[:platforms_names] %>
       <% if platforms.size > 3 %>
       <% rest = platforms[3..-1] %>
       <%  2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]["name"]%>
+      <p class="game-platform"><%= platforms[i]%>
         <% end %>
-        <p class="game-platform"><%= platforms[2]["name"]%>
+        <p class="game-platform"><%= platforms[2]%>
           <label class="mp-label">
-            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game['id'] %>; animation: uk-animation-fade">
+            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game[:igdb_id] %>; animation: uk-animation-fade">
           </label>
         </p>
-        <div id="mp-<%= game['id'] %>" hidden>
+        <div id="mp-<%= game[:igdb_id] %>" hidden>
           <% rest.each do |platform| %>
-          <p class="game-platform"><%= platform["name"]%></p>
+          <p class="game-platform"><%= platform %></p>
           <% end %>
         </div>
         <% else %>
         <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform["name"]%></p>
+        <p class="game-platform"><%= platform %></p>
         <% end %>
         <% end %>
         <% end %>
@@ -69,6 +69,3 @@
       <% end %>
     </div>
   </div>
-
-
-

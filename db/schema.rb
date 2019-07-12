@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_115305) do
+ActiveRecord::Schema.define(version: 2019_07_12_231510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 2019_07_11_115305) do
     t.integer "status"
     t.integer "category"
     t.string "cover"
-    t.integer "platforms", default: [], array: true
-    t.string "platforms_names", default: [], array: true
-    t.string "developers", default: [], array: true
-    t.string "screenshots", default: [], array: true
+    t.integer "platforms", array: true
+    t.string "platforms_names", array: true
+    t.string "developers", array: true
+    t.string "screenshots", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cover_width"
+    t.integer "cover_height"
     t.index ["igdb_id"], name: "index_agames_on_igdb_id"
   end
 
@@ -63,21 +65,23 @@ ActiveRecord::Schema.define(version: 2019_07_11_115305) do
     t.integer "status"
     t.integer "category"
     t.integer "igdb_id"
-    t.integer "platforms", default: [], array: true
+    t.integer "platforms", array: true
     t.integer "platform"
     t.string "platform_name"
     t.boolean "physical"
     t.boolean "needs_platform"
-    t.string "developers", default: [], array: true
+    t.string "developers", array: true
     t.string "cover"
-    t.string "screenshots", default: [], array: true
+    t.string "screenshots", array: true
+    t.integer "cover_width"
+    t.integer "cover_height"
     t.index ["igdb_id"], name: "index_games_on_igdb_id"
   end
 
   create_table "queries", force: :cascade do |t|
     t.string "endpoint"
     t.string "body"
-    t.integer "results", default: [], array: true
+    t.integer "results", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["body"], name: "index_queries_on_body"
