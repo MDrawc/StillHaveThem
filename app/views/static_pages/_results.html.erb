@@ -1,39 +1,43 @@
 <% if @inquiry.results.present? %>
   <%= render 'cover_view/cover_view' %>
-<% if @inquiry.is_more? %>
-<div id="show-more">
-  <%= form_tag("/search", method: :get, remote: true) do %>
-  <%= hidden_field_tag :last_input, @inquiry.last_input %>
-  <%= hidden_field_tag :last_offset, @inquiry.offset %>
-  <%= submit_tag "Load more...",
-  class: "uk-button uk-button-default md-button",
-  data: { disable_with: "Please wait..." } %>
+  <% if @inquiry.is_more? %>
+  <div id="show-more">
+    <%= form_tag("/search", method: :get, remote: true) do %>
+    <%= hidden_field_tag :last_input, @inquiry.last_input %>
+    <%= hidden_field_tag :last_offset, @inquiry.offset %>
+    <%= submit_tag "Load more...",
+    class: "uk-button uk-button-default md-button",
+    data: { disable_with: "Please wait..." } %>
+    <% end %>
+  </div>
+  <% else %>
+  <% if status = @inquiry.status_id == 2 %>
+  <div>
+    <p>I can't show you more, try to be more precise.</p>
+  </div>
   <% end %>
-</div>
+  <% end %>
 <% else %>
-<% if status = @inquiry.status_id == 2 %>
-<div>
-  <p>I can't show you more, try to be more precise.</p>
-</div>
+  <div class="no-results">
+    <p>0 results for "<%= @inquiry.input %>"</p>
+    <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
+  </div>
 <% end %>
-<% end %>
-<% else %>
-<p>0 results for "<%= @inquiry.query %>"</p>
-<p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
-<% end %>
+
 <div class="scroll-up">
   <a class="scroll-up-button" href="#target"
     uk-icon="icon: arrow-up; ratio: 1.5"
-    uk-scroll="duration: 600" style="display: none"></a>
+  uk-scroll="duration: 600" style="display: none"></a>
 </div>
+
 <script>
 // Show scroll-up-button
 $(window).scroll(function() {
-    if ($(window).scrollTop() > 200) {
-       $('.scroll-up-button').fadeIn()
-    }
-    else {
-       $('.scroll-up-button').fadeOut()
-    }
+if ($(window).scrollTop() > 200) {
+$('.scroll-up-button').fadeIn()
+}
+else {
+$('.scroll-up-button').fadeOut()
+}
 });
 </script>

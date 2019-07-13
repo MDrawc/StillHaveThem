@@ -10,7 +10,7 @@
       <div class="game-cover-effect" uk-toggle="target: #i-<%= game[:igdb_id] %>">
       <%= content_tag(:div, id: "gc-#{ game[:igdb_id] }", class: 'no-cover') do %>
         <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
-        <%= render 'svgs/no_image' %>
+        <%= svg 'no_image' %>
       <% end %>
     <% end %>
     <% if game["xtra"] %>

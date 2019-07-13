@@ -2,10 +2,7 @@ require 'net/https'
 
 class IgdbQuery
   extend ActiveModel::Naming
-  #not sure for what are those:
-  attr_accessor :input, :platforms
-  #not sure if :query will be needed
-  attr_reader :errors, :input, :query, :offset, :results, :last_input
+  attr_reader :errors, :input, :offset, :results, :last_input
 
   FIELDS_GAMES = ["name",
   "first_release_date",
@@ -64,10 +61,11 @@ class IgdbQuery
   # Limit after which old queries will need to be updated.
   DAYS_LIMIT = 1
 
-  def initialize(obj, offset = 0)
+  def initialize(obj, offset = 0, query = nil)
     @errors = ActiveModel::Errors.new(self)
 
     @results = []
+    @response_size = 0
     #Store whole input - important for showing more results which is actually
     #sending request again with other offset parameter.
     @last_input = obj
@@ -112,13 +110,12 @@ class IgdbQuery
     @only_released = !(obj['only_released'].to_i.zero?)
     @where, @search , @sort  = '', '', ''
 
-    @response_size = 0
-
-    puts '>> INITIALIZED'
+    puts '>> Initialized'
     puts ">> input: #{ @input }"
     puts ">> query type: #{ @query_type }"
     puts ">> fixed_input: #{ @fixed_input }"
     puts ">> type: #{ @type }"
+    puts ">> offset: #{ @offset}"
     puts ">> platforms: #{ @platforms }"
     puts ">> categories: #{ @categories }"
     puts ">> erotic: #{ @erotic }"
@@ -127,10 +124,19 @@ class IgdbQuery
 
   def prepare_query
     case @query_type
-    when :game then prepare_game_search
-    when :dev  then prepare_dev_search
-    when :char then prepare_char_search
+    when :game
+      prepare_where
+      prepare_search
+      prepare_sort
+    when :dev
+      start_where
+      end_where
+    when :char then
+      start_where
+      end_where
+      prepare_search
     end
+    finish_query
   end
 
   def recognition_search
@@ -253,7 +259,8 @@ class IgdbQuery
       @missing_games = @games_ids - res_ids
       puts ">> missing games: #{ @missing_games }"
     else
-    puts ">> we have ALL the games"
+      puts ">> we have ALL the games"
+      @response_size = @results.size
     end
   end
 
@@ -305,11 +312,7 @@ class IgdbQuery
   end
 
   def is_more?
-    if @response_size == RESULT_LIMIT && @offset < OFFSET_LIMIT
-      return true
-    else
-      return false
-    end
+    true if @response_size == RESULT_LIMIT && @offset < OFFSET_LIMIT
   end
 
   def status_id
@@ -345,26 +348,6 @@ class IgdbQuery
   end
 
   private
-    def prepare_game_search
-      prepare_where
-      prepare_search
-      prepare_sort
-      finish_query
-    end
-
-    def prepare_dev_search
-      start_where
-      end_where
-      finish_query
-    end
-
-    def prepare_char_search
-      start_where
-      end_where
-      prepare_search
-      finish_query
-    end
-
     def analyze_input(input)
       fixed_input = input.strip.downcase
       fixed_input.gsub!(/\s\s+/, ' ')
@@ -513,8 +496,7 @@ class IgdbQuery
       when :dev then endpoint = "companies"
       when :char then endpoint = "characters"
       end
-      body = @search + @where + @sort + "limit #{RESULT_LIMIT}; "
-       + "offset #{offset};"
+      body = @search + @where + @sort + "limit #{RESULT_LIMIT}; " + "offset #{@offset};"
       @query = { endpoint: endpoint, body: body }
 
       puts '>> IGDBQUERY -> PREPARED QUERY(without fields):'

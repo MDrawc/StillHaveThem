@@ -19,18 +19,18 @@ class StaticPagesController < ApplicationController
   def search
     if params[:search] #First time search:
       @inquiry = IgdbQuery.new(params[:search])
-
       if @inquiry.validate!
         @inquiry.search
         @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
         prepare_user_collections(current_user) if @inquiry.results.present?
       end
-
       respond_to do |format|
         format.html
         format.js
       end
+
     elsif params[:last_input] #Load more (search with offset):
+
       @inquiry = IgdbQuery.new(eval(params[:last_input]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
 

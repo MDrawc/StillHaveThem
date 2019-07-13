@@ -1,5 +1,5 @@
-<?xml version="1.0" ?><svg width="60px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title/>
-  <defs>
+<svg width="60px" height="60px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <defs>
     <filter id="innershadow" x0="-50%" y0="-50%" width="200%" height="200%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"></feGaussianBlur>
       <feOffset dy="0" dx="0"></feOffset>

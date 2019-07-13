@@ -117,7 +117,6 @@ a.uk-notification-close {
 .uk-notification-message .c:hover { color: $light_grey; }
 
 // MENU
-
 .uk-navbar {
     z-index: 150;
 }
@@ -177,14 +176,14 @@ a.uk-notification-close {
     }
 }
 
+//NO RESULTS
 
-
-
-
-
-
-
-
+div.no-results {
+    width: 300px;
+    border: 2px dashed grey;
+    padding: 20px;
+    border-radius: 5px;
+}
 
 
 
@@ -914,7 +913,7 @@ p.header {
 }
 
 #key-icon.warning-icon {
-    @extend #mail-icon.warning-icon;
+    position: absolute;
 }
 
 #s-mail-icon {
@@ -1036,6 +1035,7 @@ p.header {
 
 .info-cover {
     margin-bottom: 10px;
+    box-shadow: -2px 4px 9px 1px #0000004a;
 }
 
 #info-platform {
