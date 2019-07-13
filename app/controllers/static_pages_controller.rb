@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
       @inquiry = IgdbQuery.new(params[:search])
       if @inquiry.validate!
         @inquiry.search
-        @@last_result_ids = @inquiry.results.map { |game| game = game["id"] }
+        @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
         prepare_user_collections(current_user) if @inquiry.results.present?
       end
       respond_to do |format|
@@ -29,14 +29,13 @@ class StaticPagesController < ApplicationController
         format.js
       end
 
-    elsif params[:last_input] #Load more (search with offset):
-
+    elsif params[:last_input]
       @inquiry = IgdbQuery.new(eval(params[:last_input]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
 
       @inquiry.search
       @inquiry.fix_duplicates(@@last_result_ids)
-      @@last_result_ids += @inquiry.results.map { |game| game = game["id"] }
+      @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
       prepare_user_collections(current_user) if @inquiry.results.present?
 
       respond_to do |format|

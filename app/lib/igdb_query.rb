@@ -218,6 +218,8 @@ class IgdbQuery
     puts '>> saving new games'
     Agame.create(converted)
     @results += converted
+    puts ">> first result: #{ @results.first }"
+    puts ">> results size: #{ @results.size }"
   end
 
   def convert_devs(g)
@@ -308,7 +310,7 @@ class IgdbQuery
   end
 
   def fix_duplicates(last_result_ids)
-    @results.reject! { |game| last_result_ids.include?(game["id"])}
+    @results.reject! { |game| last_result_ids.include?(game[:igdb_id]) }
   end
 
   def is_more?
