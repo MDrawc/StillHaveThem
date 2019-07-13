@@ -185,9 +185,6 @@ div.no-results {
     border-radius: 5px;
 }
 
-
-
-
 //OTHER
 .unselectable {
     -webkit-touch-callout: none;
@@ -662,11 +659,11 @@ div.no-results {
 
 .i-no-cover {
     width: $no_cover_width;
-    background: #bababa;
+    border: 2px dashed $dark_grey;
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 10px;
-    color: #666;
+    color: $dark_grey;
 }
 
 div.fitted { height: auto; }
