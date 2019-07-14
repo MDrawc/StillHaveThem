@@ -29,9 +29,10 @@ class StaticPagesController < ApplicationController
         format.js
       end
 
-    elsif params[:last_input]
-      @inquiry = IgdbQuery.new(eval(params[:last_input]),
-                 params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT)
+    elsif params[:last_query]
+      @inquiry = IgdbQuery.new(nil,
+                 params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
+                 eval(params[:last_query]))
 
       @inquiry.search
       @inquiry.fix_duplicates(@@last_result_ids)

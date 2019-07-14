@@ -2,7 +2,12 @@ require 'net/https'
 
 class IgdbQuery
   extend ActiveModel::Naming
-  attr_reader :errors, :input, :offset, :results, :last_input
+  attr_reader :errors, :input, :query, :offset, :results
+
+  RESULT_LIMIT = 50
+  OFFSET_LIMIT = 150
+  LIST_LIMIT = 10
+  DAYS_LIMIT = 1
 
   FIELDS_GAMES = ["name",
   "first_release_date",
@@ -55,71 +60,66 @@ class IgdbQuery
   "computer" => { "category" => [6], "platforms" => []},
   "other" => { "category" => [], "platforms" => [132, 82, 113]}}
 
-  RESULT_LIMIT = 50
-  OFFSET_LIMIT = 150
-  LIST_LIMIT = 10
-  # Limit after which old queries will need to be updated.
-  DAYS_LIMIT = 1
-
-  def initialize(obj, offset = 0, query = nil)
+  def initialize(obj = nil, offset = 0, query = nil)
     @errors = ActiveModel::Errors.new(self)
-
     @results = []
     @response_size = 0
-    #Store whole input - important for showing more results which is actually
-    #sending request again with other offset parameter.
-    @last_input = obj
-
-    #There are three query types in SHT:
-    #:game - for games
-    #:char - for video games characters
-    #:dev - for developers
-    #Three types and three different endpoints we send request to.
-    @query_type = obj['query_type'].to_sym
-
-    @input = obj['inquiry'] #What was written inside search bar
-    @offset = offset
-
-    #Clean input out of necessary spaces and define search type.
-    #Four search types in SHT are:
-    #:search
-    #:prefix
-    #:postfix
-    #:infix
-    @fixed_input, @type = analyze_input(@input)
-    @platforms = obj.slice('console',
-                           'arcade',
-                           'portable',
-                           'pc',
-                           'linux',
-                           'mac',
-                           'mobile',
-                           'computer',
-                           'other')
-
-    @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
-
-    @categories = obj.slice('dlc',
-                           'expansion',
-                           'bundle',
-                           'standalone')
-
-    @categories.each { |k, v| @categories[k] = !(v.to_i.zero?) }
-
-    @erotic = !(obj['erotic'].to_i.zero?)
-    @only_released = !(obj['only_released'].to_i.zero?)
-    @where, @search , @sort  = '', '', ''
 
     puts '>> Initialized'
-    puts ">> input: #{ @input }"
-    puts ">> query type: #{ @query_type }"
-    puts ">> fixed_input: #{ @fixed_input }"
-    puts ">> type: #{ @type }"
-    puts ">> offset: #{ @offset}"
-    puts ">> platforms: #{ @platforms }"
-    puts ">> categories: #{ @categories }"
-    puts ">> erotic: #{ @erotic }"
-    puts ">> only_released: #{ @only_released }"
+    @offset = offset
+    unless query
+      @query_type = obj['query_type'].to_sym
+      @input = obj['inquiry']
+      @fixed_input, @type = analyze_input(@input)
+      @platforms = obj.slice('console',
+                             'arcade',
+                             'portable',
+                             'pc',
+                             'linux',
+                             'mac',
+                             'mobile',
+                             'computer',
+                             'other')
+
+      @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
+
+      @categories = obj.slice('dlc',
+                             'expansion',
+                             'bundle',
+                             'standalone')
+
+      @categories.each { |k, v| @categories[k] = !(v.to_i.zero?) }
+
+      @erotic = !(obj['erotic'].to_i.zero?)
+      @only_released = !(obj['only_released'].to_i.zero?)
+      @where, @search , @sort  = '', '', ''
+
+      puts ">> input: #{ @input }"
+      puts ">> query type: #{ @query_type }"
+      puts ">> fixed_input: #{ @fixed_input }"
+      puts ">> type: #{ @type }"
+      puts ">> offset: #{ @offset}"
+      puts ">> platforms: #{ @platforms }"
+      puts ">> categories: #{ @categories }"
+      puts ">> erotic: #{ @erotic }"
+      puts ">> only_released: #{ @only_released }"
+    else
+      puts ">> last query: #{ @query.inspect }"
+      @query = change_offset(query, @offset)
+      case @query[:endpoint]
+      when 'games' then @query_type = :game
+      when 'companies' then @query_type = :dev
+      when 'characters' then @query_type = :char
+      end
+      puts '>> load more'
+      puts ">> query: #{ @query.inspect }"
+    end
+  end
+
+  def change_offset(query, offset)
+    puts '>> Change Offset'
+    query[:body].sub!("offset #{ @offset - RESULT_LIMIT }", "offset #{ @offset }")
+    query
   end
 
   def prepare_query
@@ -143,7 +143,7 @@ class IgdbQuery
   end
 
   def search
-    prepare_query
+    prepare_query unless @query
     unless already_asked?
       initial_search
       save_query
