@@ -1,6 +1,7 @@
 <% if logged_in? %>
 <div class="side-menu">
     <ul>
+    <li><%= link_to '', search_url, class: 'm-add', 'uk-icon': 'search' %></li>
     <% current_user.collections.each do |collection| %>
     <li><%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-coll' %></li>
     <% end %>

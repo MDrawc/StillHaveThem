@@ -11,6 +11,7 @@ class IgdbQuery
 
   FIELDS_GAMES = ["name",
   "first_release_date",
+  "themes",
   "screenshots.image_id",
   "summary",
   "status",
@@ -20,15 +21,19 @@ class IgdbQuery
   "cover.height",
   "involved_companies.company.name",
   "involved_companies.developer",
+  "platforms.category",
   "platforms.name"].join(',')
 
   FIELDS_DEV = ["name",
   "developed.name",
+  "developed.themes",
   "developed.first_release_date",
   "developed.screenshots.image_id",
   "developed.summary",
   "developed.status",
   "developed.category",
+  "developed.involved_companies.company.name",
+  "developed.involved_companies.developer",
   "developed.cover.image_id",
   "developed.cover.width",
   "developed.cover.height",
@@ -37,6 +42,7 @@ class IgdbQuery
 
   FIELDS_CHAR = ["name",
   "games.name",
+  "games.themes",
   "games.first_release_date",
   "games.screenshots.image_id",
   "games.summary",
@@ -122,26 +128,6 @@ class IgdbQuery
     query
   end
 
-  def prepare_query
-    case @query_type
-    when :game
-      prepare_where
-      prepare_search
-      prepare_sort
-    when :dev
-      start_where
-      end_where
-    when :char then
-      start_where
-      end_where
-      prepare_search
-    end
-    finish_query
-  end
-
-  def recognition_search
-  end
-
   def search
     prepare_query unless @query
     unless already_asked?
@@ -178,11 +164,10 @@ class IgdbQuery
     when :dev then fields = FIELDS_DEV
     when :char then fields = FIELDS_CHAR
     end
+
     results = request(@query[:endpoint], "f #{ fields }; #{ @query[:body] }")
-    unless @query_type == :game
-      results = convert_to_games(@results, @query_type)
-      results = post_filters(results)
-    end
+    results = convert_to_games(results) unless @query_type == :game
+
     puts ">> first result: #{ results.first }"
     puts ">> results size: #{ @response_size = results.size }"
 
@@ -198,6 +183,7 @@ class IgdbQuery
       c = {}
       c[:igdb_id] = g['id']
       c[:name] = g['name']
+      c[:themes] = g['themes']
       c[:first_release_date] = g['first_release_date']
       c[:summary] = g['summary']
       c[:status] = g['status']
@@ -208,15 +194,18 @@ class IgdbQuery
         c[:cover_width]= g['cover']['width']
       end
       if g['platforms']
-        c[:platforms] = platforms = g['platforms'].collect { |platform| platform['id'] }
-        c[:platforms_names] = platforms_names = g['platforms'].collect { |platform| platform['name'] }
+        c[:platforms] = g['platforms'].collect { |platform| platform['id'] }
+        c[:platforms_names] = g['platforms'].collect { |platform| platform['name'] }
+        c[:platforms_categories] = g['platforms'].collect { |platform| platform['category'] }
       end
       c[:developers] = convert_devs(g)
       c[:screenshots] = convert_screenshots(g)
       converted << c
     end
+
     puts '>> saving new games'
     Agame.create(converted)
+    converted = post_filters(converted) unless @query_type == :game
     @results += converted
     puts ">> first result: #{ @results.first }"
     puts ">> results size: #{ @results.size }"
@@ -251,33 +240,46 @@ class IgdbQuery
   end
 
   def compose_results
-    puts '>> IGDBQUERY -> COMPOSE RESULTS:'
+    puts '>> Composing Results'
     @missing_games = []
     results = Agame.where(igdb_id: @games_ids).to_a
     @results += results
     if results.size != @games_ids.size
-      puts ">> we are missing some games"
+      puts ">> DB is MISSING games"
       res_ids = results.collect { |g| g.igdb_id }
       @missing_games = @games_ids - res_ids
       puts ">> missing games: #{ @missing_games }"
     else
-      puts ">> we have ALL the games"
+      puts ">> ALL games are in DB"
       @response_size = @results.size
+      @results = post_filters(@results) unless @query_type == :game
     end
   end
 
   def initial_search
     puts '>> INITIAL SEARCH'
-    results = request(@query[:endpoint], "f id; #{ @query[:body] }")
-    puts ">> games before: #{ @games_ids.inspect }"
-    if results.present?
-      @games_ids = results.collect { |g| g['id']}
+    case @query_type
+    when :game
+      results = request(@query[:endpoint], "f id; #{ @query[:body] }")
+      if results.present?
+        @games_ids = results.collect { |g| g['id']}
+      end
+    when :dev
+      results = request(@query[:endpoint], "f developed; #{ @query[:body] }")
+      if results.present?
+        @games_ids = results.collect { |d| d['developed']}.flatten
+      end
+    when :char
+      results = request(@query[:endpoint], "f games; #{ @query[:body] }")
+      if results.present?
+        @games_ids = results.collect { |c| c['games']}.flatten
+      end
     end
-    puts ">> games after: #{ @games_ids.inspect }"
+    puts ">> received games ids: #{ @games_ids.inspect }"
   end
 
   def save_query
-    puts '>> SAVING QUERY'
+    puts '>> Saving Query'
     query = Query.new(@query)
     query.results = @games_ids
     if query.save
@@ -288,23 +290,23 @@ class IgdbQuery
   end
 
   def already_asked?
-    puts '>> HAVE QUERY ALREADY BEEN ASKED?'
+    puts '>> Checking if such query exists'
     results = Query.where(@query)
     if results.present?
-      print '>> Such query already exists: '
+      print '>> query already exists: '
       p ancestor = results.first
       if (ancestor.updated_at > DAYS_LIMIT.day.ago)
-        puts '>> Found query is fresh!'
-        puts '>> Copying games ids (if there are some)'
+        puts '>> query is fresh'
+        puts '>> copying games ids'
         @games_ids = ancestor.results if ancestor.results
         return true
       else
-        puts '>> Found query is old, will be destroyed'
+        puts '>> found query is old and will be destroyed'
         ancestor.destroy
         return false
       end
     else
-      puts '>> There is no such query!'
+      puts '>> there is no such query'
       return false
     end
   end
@@ -350,6 +352,7 @@ class IgdbQuery
   end
 
   private
+
     def analyze_input(input)
       fixed_input = input.strip.downcase
       fixed_input.gsub!(/\s\s+/, ' ')
@@ -365,6 +368,23 @@ class IgdbQuery
         type = :infix
       end
       return [fixed_input, type]
+    end
+
+    def prepare_query
+      case @query_type
+      when :game
+        prepare_where
+        prepare_search
+        prepare_sort
+      when :dev
+        start_where
+        end_where
+      when :char then
+        start_where
+        end_where
+        prepare_search
+      end
+      finish_query
     end
 
     def prepare_where
@@ -493,6 +513,7 @@ class IgdbQuery
     end
 
     def finish_query
+      puts '>> Preparing Query Hash (without fields):'
       case @query_type
       when :game then endpoint = "games"
       when :dev then endpoint = "companies"
@@ -500,65 +521,50 @@ class IgdbQuery
       end
       body = @search + @where + @sort + "limit #{RESULT_LIMIT}; " + "offset #{@offset};"
       @query = { endpoint: endpoint, body: body }
-
-      puts '>> IGDBQUERY -> PREPARED QUERY(without fields):'
       puts ">> query: #{ @query }"
     end
 
-    def convert_to_games(lists, type)
+    def convert_to_games(results)
       games = []
       key = @query_type == :dev ? "developed" : "games"
-      lists.each do |list|
-        xtra = list["name"]
-        if list[key]
-          list[key].each do |game|
-            game['request'] = @query_type
-            game['xtra'] = xtra unless xtra.nil?
-            games.push game if game.class == Hash
-          end
-        end
+      results.each do |record|
+        record[key].each { |g| games << g if g.class == Hash} if record[key]
       end
       games
     end
 
     def post_filters(results)
-      puts "IGDB -> Applaying filters"
-
-      # Only released games:
+      puts '>> Applaying Post Filters for Dev or Char Search'
       if @only_released
-        results.delete_if { |game| game["first_release_date"].nil?}
+        results.delete_if { |game| game[:first_release_date].nil?}
       end
 
-      # Show Erotic games:
       unless @erotic
-        results.delete_if { |game| game["themes"].include?(42) if game["themes"]}
+        results.delete_if { |game| game[:themes].include?(42) if game[:themes]}
       end
 
-      # Show Dlc, Expansion, Bundle, Standalone:
       unless @categories['dlc']
-        results.delete_if { |game| game["category"] == 1}
+        results.delete_if { |game| game[:category] == 1}
       end
 
       unless @categories['expansion']
-        results.delete_if { |game| game["category"] == 2}
+        results.delete_if { |game| game[:category] == 2}
       end
 
       unless @categories['bundle']
-        results.delete_if { |game| game["category"] == 3}
+        results.delete_if { |game| game[:category] == 3}
       end
 
       unless @categories['standalone']
-        results.delete_if { |game| game["category"] == 4}
+        results.delete_if { |game| game[:category] == 4}
       end
 
       unless @platforms.values.all?
-
-        puts "IGDB -> platforms/platforms.categories filters "
-        puts "IGDB -> Plaforms array: #{@platforms}"
+        puts ">> platforms/platforms_categories filters"
+        puts ">> plaforms array: #{@platforms}"
 
         yes_categories = []
         yes_platforms = []
-
         @platforms.each do |k, v|
           if v
             yes_categories += PLATFORMS[k]["category"]
@@ -566,22 +572,19 @@ class IgdbQuery
           end
         end
 
-        puts "IGDB -> Prepared helper arrays:"
-        puts "IGDB -> keep categories: #{yes_categories}"
-        puts "IGDB -> keep platforms: #{yes_platforms}"
+        puts ">> Prepared helper arrays:"
+        puts ">> - keep categories: #{yes_categories}"
+        puts ">> - keep platforms: #{yes_platforms}"
 
         results.keep_if do |game|
-          a, b = [], []
-          game["platforms"].each do |platform|
-            a.push true if yes_categories.include?(platform["category"])
-            b.push true if yes_platforms.include?(platform["id"])
-          end
-          puts "IGDB -> #{game["name"]}, #{game["platforms"]}"
-          puts "IGDB -> categories: #{a}"
-          puts "IGDB -> platforms #{b}"
-          puts ". "*100
-          puts "IGDB -> DELETE?, #{!(a.any? || b.any?)}"
-          puts ". "*100
+          a = (yes_categories & game[:platforms_categories])
+          b = (yes_platforms & game[:platforms])
+          puts ">> #{ game[:name] }, #{ game[:platforms] }"
+          puts ">> common categories: #{ a }"
+          puts ">> common platforms: #{ b }"
+          puts ". "*40
+          puts ">> DELETE?, #{ !(a.any? || b.any?) ? 'Yes' : 'No' }"
+          puts ". "*40
           a.any? || b.any?
         end
       end
