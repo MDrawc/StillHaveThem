@@ -7,7 +7,7 @@ class IgdbQuery
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
   LIST_LIMIT = 10
-  DAYS_LIMIT = 1
+  DAYS_LIMIT = 7
 
   FIELDS_GAMES = ["name",
   "first_release_date",
@@ -138,23 +138,26 @@ class IgdbQuery
     full_search if @missing_games.present?
   end
 
-  def request(endpoint, body)
-    puts '>> REQUEST'
-    http = Net::HTTP.new('api-v3.igdb.com', 443)
-    http.use_ssl = true
-    request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{ endpoint }"),
-     { 'user-key' => ENV['IGDB_KEY'] })
-    request.body = body
-    puts ">> request: #{ request.body }"
-    begin
-      results = JSON.parse http.request(request).body
-      puts ">> received #{ results.size } records"
-      puts ">> first result: #{ results.first }"
-      puts ">> last result: #{ results.last }"
-      rescue JSON::ParserError
-        results = []
+  def compose_results
+    puts '>> Composing Results'
+
+    res = Agame.where(igdb_id: @games_ids).to_a
+
+    if @query_type == :char
+      res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
     end
-    return results
+
+    @results += res
+    if res.size != @games_ids.size
+      puts ">> DB is MISSING games"
+      res_ids = res.map { |g| g.igdb_id }
+      @missing_games = @games_ids - res_ids
+      puts ">> missing games: #{ @missing_games }"
+    else
+      puts ">> ALL games are in DB"
+      @response_size = @results.size
+      @results = post_filters(@results) unless @query_type == :game
+    end
   end
 
   def full_search
@@ -178,6 +181,7 @@ class IgdbQuery
     puts '>> PREPARE RESULTS'
     new_games = results.select { |g| @missing_games.include?(g['id']) }
     puts '>> converting new games'
+
     converted = []
     new_games.each do |g|
       c = {}
@@ -239,40 +243,23 @@ class IgdbQuery
     end
   end
 
-  def compose_results
-    puts '>> Composing Results'
-    @missing_games = []
-    results = Agame.where(igdb_id: @games_ids).to_a
-    @results += results
-    if results.size != @games_ids.size
-      puts ">> DB is MISSING games"
-      res_ids = results.collect { |g| g.igdb_id }
-      @missing_games = @games_ids - res_ids
-      puts ">> missing games: #{ @missing_games }"
-    else
-      puts ">> ALL games are in DB"
-      @response_size = @results.size
-      @results = post_filters(@results) unless @query_type == :game
-    end
-  end
-
   def initial_search
     puts '>> INITIAL SEARCH'
     case @query_type
     when :game
       results = request(@query[:endpoint], "f id; #{ @query[:body] }")
       if results.present?
-        @games_ids = results.collect { |g| g['id']}
+        @games_ids = results.map { |g| g['id']}
       end
     when :dev
       results = request(@query[:endpoint], "f developed; #{ @query[:body] }")
       if results.present?
-        @games_ids = results.collect { |d| d['developed']}.flatten
+        @games_ids = results.map { |d| d['developed']}.flatten
       end
     when :char
       results = request(@query[:endpoint], "f games; #{ @query[:body] }")
       if results.present?
-        @games_ids = results.collect { |c| c['games']}.flatten
+        @games_ids = results.map { |c| c['games']}.flatten.compact
       end
     end
     puts ">> received games ids: #{ @games_ids.inspect }"
@@ -387,6 +374,25 @@ class IgdbQuery
       finish_query
     end
 
+    def request(endpoint, body)
+      puts '>> REQUEST'
+      http = Net::HTTP.new('api-v3.igdb.com', 443)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{ endpoint }"),
+       { 'user-key' => ENV['IGDB_KEY'] })
+      request.body = body
+      puts ">> request: #{ request.body }"
+      begin
+        results = JSON.parse http.request(request).body
+        puts ">> received #{ results.size } records"
+        puts ">> first result: #{ results.first }"
+        puts ">> last result: #{ results.last }"
+        rescue JSON::ParserError
+          results = []
+      end
+      return results
+    end
+
     def prepare_where
       start_where
       where_platforms
@@ -461,7 +467,6 @@ class IgdbQuery
     def divide_list(list, limit)
       t = (list.size / 11)
       t += 1 if list.size%11 > 0
-
       result = []
       t.times do |_i|
         buf = []
