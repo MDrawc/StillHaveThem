@@ -13,11 +13,13 @@
         <%= svg 'no_image' %>
       <% end %>
     <% end %>
-    <% if game["xtra"] %>
-    <div class="xtra-info" uk-alert>
+
+    <% if game[:addl] %>
+    <div class="addl-info" uk-alert>
       <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
-      <p><%= game["xtra"] %></p>
+      <p><%= game[:addl] %></p>
     </div>
+
     <% end %>
     </div>
     <!-- GAME INFO -->

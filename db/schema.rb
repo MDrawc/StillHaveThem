@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_155022) do
+ActiveRecord::Schema.define(version: 2019_07_16_103628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_07_14_155022) do
     t.integer "results", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "addl", array: true
     t.index ["body"], name: "index_queries_on_body"
     t.index ["endpoint"], name: "index_queries_on_endpoint"
   end
