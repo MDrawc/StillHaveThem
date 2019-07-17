@@ -80,6 +80,76 @@ footer {
     }
 }
 
+// PANELVIEW
+.g-panel {
+    background: #d2d2d2;
+    border-radius: 5px;
+    box-shadow: -3px 3px 3px -2px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+    margin: 0px 20px 15px 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.g-panel:hover {
+    background: #f3f3f3;
+    margin-left: 0px;
+}
+
+.thumb-c { position: relative; }
+
+.game-thumb {
+    border-radius: 3px;
+}
+
+.shadow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-shadow: inset 0px 0px 3px 0px #000000a3;
+    border-radius: 3px;
+    top: 0;
+    left: 0;
+}
+
+.g-info {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.g-title {
+    margin-bottom: 0px;
+}
+
+.g-year {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+}
+
+.g-by {
+ margin-top: 0px;
+}
+
+.g-platform {
+    text-align: right;
+    font-size: 14px;
+    font-style: italic;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.middle p { margin: 0px; }
+
+.g-nav {
+    padding: 0px 10px 0px 20px;
+    line-height: 70px;
+    border-left: 2px solid #00000014;
+    ul {
+        display: inline-flex;
+    }
+}
+
 // NOTIFICATIONS
 .uk-notification-close {
     top: unset;
@@ -1009,22 +1079,21 @@ p.header {
     width: 0 !important;
 }
 
-#info-title {
+.info-title {
     // when no close button
     margin-bottom: 0px;
     margin-top: 0px;
-
     // with close button
     // margin-bottom: 0px;
     // margin-top: 15px;
 }
 
-#info-year {
+.info-year {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
 }
 
-#info-by {
+.info-by {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     margin-top: 0px;
@@ -1035,7 +1104,7 @@ p.header {
     box-shadow: -2px 4px 9px 1px #0000004a;
 }
 
-#info-platform {
+.info-platform {
     @extend .game-platform;
 
     font-style: normal;
@@ -1045,7 +1114,7 @@ p.header {
     }
 }
 
-#info-summary {
+.info-summary {
     font-size: 14px;
     text-align: justify;
 }
@@ -1054,45 +1123,45 @@ p.header {
     margin: 15px 0px;
 }
 
-.uk-iconnav {
+.i-nav {
     padding-top: 20px;
     height: 35px;
 }
 
-.uk-iconnav a {
+.i-nav a {
     background: #444444f7;
     padding: 5px;
     border-radius: 3px;
     transition: position 0.15s ease-out;
 }
 
-.uk-iconnav a:active {
+.i-nav a:active {
     border-radius: 0px 0px 3px 3px;
     position: relative;
     top: 5px;
 }
 
-.uk-iconnav a.uk-open {
+.i-nav a.uk-open {
     border-radius: 0px 0px 3px 3px;
     position: relative;
     top: 5px;
 }
 
-.uk-iconnav button {
+.i-nav button {
     background: #444444f7;
     padding: 5px;
     border-radius: 3px;
     transition: position 0.15s ease-out;
 }
 
-.uk-iconnav button:active {
+.i-nav button:active {
     border-radius: 0px 0px 3px 3px;
     background: #444444f7;
     position: relative;
     top: 5px;
 }
 
-.uk-iconnav li {
+.i-nav li {
     padding-left: 0px !important;
     margin-left: 8px;
     background: #656565;
@@ -1164,8 +1233,9 @@ hr.nav-bottom {
 .add-form {
     border-radius: 5px;
     background-color: #444444f7;
-    box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
-    padding: 15px;
+    // box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
+    box-shadow: -4px 5px 9px 0px #0000004a;
+    padding: 30px 15px 15px 15px;
     font-size: 14px;
     width: 230px;
     color: rgba(255, 255, 255, 0.5);

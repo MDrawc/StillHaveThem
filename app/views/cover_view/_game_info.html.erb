@@ -4,14 +4,14 @@
     <div class="uk-offcanvas-bar <%= igdb_id %>">
         <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
         <!-- TITLE & RELEASE YEAR -->
-        <h3 id="info-title"><%= game_name %>
+        <h3 class="info-title"><%= game_name %>
         <% if game[:first_release_date]%>
-        <span id="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
+        <span class="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
         <% else %>
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-        <p id="info-by"><%= (devs = game[:developers]) ? "by " + devs.join(', ') : '' %></p>
+        <p class="info-by"><%= (devs = game[:developers]) ? "by " + devs.join(', ') : '' %></p>
         <!-- COVER -->
         <% if cover %>
         <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game_name, 'draggable' => 'false', 'uk-img' => "target: #gc-#{ igdb_id }" ) %>
@@ -22,7 +22,7 @@
         <% end %>
         <!-- PLATFORMS -->
         <% if platforms = game[:platforms_names] %>
-        <p id="info-platform">
+        <p class="info-platform">
             <% platforms.each do |platform| %>
             <span>
                 <% unless platform == platforms.last %>
@@ -46,7 +46,7 @@
         <% screens = game[:screenshots] %>
         <!-- NAVIGATION -->
         <div class="info-nav">
-            <ul class="uk-iconnav">
+            <ul class="uk-iconnav i-nav">
                 <!-- COLLECTION -->
                 <li>
                     <% collection = @initial_collections['collection'] %>
@@ -248,13 +248,13 @@
                     <%= render(partial: 'cover_view/already_in_custom', locals: { game_name: game_name, igdb_id: igdb_id }) if in_custom %>
                 </div>
                 <% else %>
-                <p>Create custom collection first.</p>
+                <p style="margin-top: none;">Create custom collection first.</p>
                 <% end %>
             </div>
         </div>
         <!-- SUMMARY -->
         <% if summary = get_summary(game, 280, 50) %>
-        <p id="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= igdb_id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= igdb_id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-up"></button></span>
+        <p class="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= igdb_id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= igdb_id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="myFunction(<%= igdb_id %>)" uk-icon="icon: triangle-up"></button></span>
     </p>
     <script>
     function myFunction(id) {

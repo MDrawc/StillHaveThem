@@ -1,1 +1,6 @@
-<%= render partial: 'shared/my_games_table', locals: { collection: @home_collection } %>
+<%= render partial: 'shared/my_games_panels', locals: { collection: @home_collection } %>
+
+<script>
+  $(".m-coll").removeClass('active')
+  $("#m-<%= @home_collection.id %>").addClass('active')
+</script>

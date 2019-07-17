@@ -18,6 +18,14 @@ module StaticPagesHelper
     end
   end
 
+  def get_game_thumb(game)
+    if cover = game[:cover]
+      cover_url = 'https://images.igdb.com/igdb/image/upload/t_thumb/'
+      cover_url += cover.to_s + '.jpg'
+      image_tag('', id: "gt-#{ game[:igdb_id] }", class: "game-thumb", width: 70, height: 70, 'data-src' => cover_url, alt: game[:name], 'draggable' => 'false', 'uk-img' => '')
+    end
+  end
+
   def get_summary(game, f_max, l_min)
     if game[:summary]
       first, counter = [], 0
