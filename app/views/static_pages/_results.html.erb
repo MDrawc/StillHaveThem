@@ -32,13 +32,18 @@
 </div>
 
 <script>
+// Define scroll-up-button position
+
+if ($('body').hasClass('uk-offcanvas-flip')) {
+  $('.scroll-up').addClass('scroll-flip')
+}
+
 // Show scroll-up-button
 $(window).scroll(function() {
-if ($(window).scrollTop() > 200) {
-$('.scroll-up-button').fadeIn()
-}
-else {
-$('.scroll-up-button').fadeOut()
-}
+    if ($(window).scrollTop() > 200) {
+        $('.scroll-up-button').fadeIn()
+    } else {
+        $('.scroll-up-button').fadeOut()
+    }
 });
 </script>
