@@ -221,7 +221,7 @@ a.uk-notification-close {
 .m-coll {
     font-size: 16px;
     color: $light_grey;
-    padding: 10px 10px 10px 20px;
+    padding: 10px 0px 10px 20px;
     display: inline-block;
     transition: all 0.3s ease-in-out;
 }
@@ -235,13 +235,28 @@ a.uk-notification-close {
 
 .m-coll.active {
     font-size: 25px;
-    color: #666;
+    color: $dark_grey;
     border-left: 6px solid $accent_darker;
 }
 
 .m-coll.active:hover {
     padding-left: 20px;
 }
+
+// .m-coll-edit {
+//     display: none;
+//     svg {
+//         padding-bottom: 7px;
+//     }
+// }
+
+// .m-coll-edit svg path {
+//     fill: #999;
+// }
+
+// .m-coll-edit:hover svg path {
+//     fill: #666;
+// }
 
 .m-add {
     color: $light_grey;
@@ -259,6 +274,26 @@ a.uk-notification-close {
         color: $dark_grey;
         width: 35px;
     }
+}
+
+#m-add-coll.active {
+    padding-left: 26px;
+    svg {
+        color: $dark_grey;
+        width: 35px;
+    }
+}
+
+#m-search.active {
+    border-left: 6px solid $accent_darker;
+    svg {
+        color: $dark_grey;
+        width: 30px;
+    }
+}
+
+#m-search.active:hover {
+    padding-left: 20px;
 }
 
 //NO RESULTS

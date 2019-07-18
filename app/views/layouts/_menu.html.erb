@@ -1,11 +1,32 @@
 <% if logged_in? %>
 <div class="side-menu">
-    <ul>
-    <li><%= link_to '', search_url, class: 'm-add', 'uk-icon': 'search' %></li>
+  <ul>
+    <li><%= link_to '', search_url, id: 'm-search', remote: true, class: 'm-m m-add', 'uk-icon': 'search' %></li>
+
+
     <% current_user.collections.each do |collection| %>
-    <li><%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-coll' %></li>
+
+    <li>
+      <%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-m m-coll' %>
+    </li>
     <% end %>
-    <li><%= link_to '', new_collection_url, class: 'm-add', 'uk-icon': 'plus' %></li>
-    </ul>
+    <li><%= link_to '', new_collection_path, id: 'm-add-coll', remote: true, "uk-toggle": "target: #create-coll-modal", class: 'm-add', 'uk-icon': 'plus' %></li>
+  </ul>
 </div>
 <% end %>
+
+<div id="create-coll-modal" class="uk-flex-top" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="modal-header">
+      <p class="header"><span class="signup-title">Create new custom collection </span><span></p>
+    </div>
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<script>
+UIkit.util.on('#create-coll-modal', 'hide', function() {
+    $('#m-add-coll').removeClass('active')
+});
+</script>

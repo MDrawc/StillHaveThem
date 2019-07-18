@@ -1,5 +1,5 @@
 <div class="search-form">
-  <%= form_for("search", method: :get, remote: true) do |f| %>
+  <%= form_for("search", url: 'search_games', method: :get, remote: true) do |f| %>
   <div class="uk-inline s-inline">
     <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
     <%= content_tag(:span, nil,id: "infc", class: "info-icon", "uk-icon" => "info")%>

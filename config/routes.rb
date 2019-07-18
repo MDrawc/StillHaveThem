@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  get 'search', to: 'static_pages#search'
+  get 'search', to: 'static_pages#search_page'
+  get 'search_games', to: 'static_pages#search'
   get 'about', to: 'static_pages#about'
   get 'terms', to: 'static_pages#terms'
   get 'privacy', to: 'static_pages#privacy'

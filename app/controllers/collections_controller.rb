@@ -5,6 +5,10 @@ before_action :never_those, only: [:destroy]
 
 def new
   @collection = Collection.new
+
+  respond_to do |format|
+    format.js
+  end
 end
 
 def show
