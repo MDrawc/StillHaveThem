@@ -86,13 +86,13 @@ footer {
     border-radius: 5px;
     box-shadow: -3px 3px 3px -2px rgba(0, 0, 0, 0.16);
     padding: 10px;
-    margin: 0px 20px 15px 20px;
+    margin: 0px 20px;
     transition: all 0.2s ease-in-out;
 }
 
 .g-panel:hover {
     background: #f3f3f3;
-    margin-left: 0px;
+    // margin-left: 0px;
 }
 
 .thumb-c { position: relative; }
@@ -148,6 +148,18 @@ footer {
     ul {
         display: inline-flex;
     }
+}
+
+// PANELDROP
+.g-drop { display: none; }
+
+.g-summary {
+    width: 600px;
+    margin-left: 80px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-top: 2px solid #00000014;
+    font-size: 14px;
 }
 
 // NOTIFICATIONS
