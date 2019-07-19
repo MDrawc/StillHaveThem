@@ -81,7 +81,6 @@ function resetFormErrors(form) {
     }
 
     var errorsPlace = '.add-form-errors';
-    var errorsPart = '#add-form-errors';
     var element = '#add-' + form + '-form-' + game_id + ' ' + errorsPlace;
 
     for (i = 0; i < resetElements.length; i++) {
@@ -89,7 +88,7 @@ function resetFormErrors(form) {
         var formPart = '#add-' + form + '-form-' + game_id + ' ' + resetElements[i];
 
         $(formPart).on('input', function() {
-                $(element).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
+                $(element).html('');
         });
 
     }

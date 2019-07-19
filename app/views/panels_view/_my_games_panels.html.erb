@@ -1,0 +1,93 @@
+<script>
+function updateIcon(form_type, name, id) {
+
+    var form = '#' + form_type + '-form-' + id;
+
+    var f_name = name == 'collection' ? name : 'game_platform';
+
+    var select_element = form + ' #' + f_name;
+
+    $(select_element).on('input', function() {
+        var value = $(select_element).val();
+        var icon = form + ' .' + name + '-icon';
+        if (value.length > 0) {
+            $(icon).attr('class', name + '-green');
+        } else {
+            icon = form + ' .' + name + '-green';
+            $(icon).attr('class', name + '-icon');
+        }
+    });
+}
+
+function askPlatforms(form_type, id) {
+    var form = '#' + form_type + '-form-' + id;
+    var select_element = form + ' #collection';
+    var platform_element = form + ' #platform-option';
+    var needs_platform = form + ' #game_needs_platform';
+
+    $(select_element).on('input', function() {
+        var value = $(select_element).val();
+
+        if (value.length != 0) {
+            var cv = value.split(",")[1] == 'true'
+
+            if (cv == true) {
+              $(platform_element).show();
+              $(needs_platform).attr('value', 'true');
+            } else if (cv == false) {
+              $(platform_element).hide();
+              $(needs_platform).attr('value', 'false');
+            }
+        }
+    });
+}
+
+function moreInfo(id) {
+
+    $('#g-' + id).click(function() {
+        if ($('#g-drop-' + id).is(':hidden')) {
+            $('#g-drop-' + id).slideDown('slow');
+        }
+    });
+
+    $('#hide-' + id).click(function() {
+        if ($('#g-drop-' + id).is(':visible')) {
+            $('#g-drop-' + id).slideUp('slow');
+        }
+    });
+}
+
+function shortSummary(id) {
+    var dots = document.getElementById("dots-" + id);
+    var moreText = document.getElementById("more-" + id);
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        moreText.style.display = "none";
+    } else {
+        dots.style.display = "none";
+        moreText.style.display = "inline";
+    }
+}
+
+function resetFormErrors(form, game_id) {
+
+    var reset_elements = ['#collection', '#game_platform', '.physical', '.digital']
+    var errors_place = '.add-form-errors';
+    var element = '#' + form + '-form-' + game_id + ' ' + errors_place;
+
+    for (i = 0; i < reset_elements.length; i++) {
+
+        var formPart = '#' + form + '-form-' + game_id + ' ' + reset_elements[i];
+
+        $(formPart).on('input', function() {
+            $(element).html('');
+        });
+    }
+}
+</script>
+
+<div class="uk-grid-small" uk-grid>
+  <% collection.games.each do |game| %>
+  <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
+  <% end %>
+</div>

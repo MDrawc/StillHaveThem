@@ -91,8 +91,13 @@ module StaticPagesHelper
     return platforms
   end
 
-  def collections_for_select(user)
-    user.collections.custom.collect { |c| [ c.custom_name, "#{c.id},#{c.needs_platform}" ] }
+  def collections_for_select(user, type = 'custom')
+    case type
+    when 'custom'
+      user.collections.custom.collect { |c| [ c.custom_name, "#{c.id},#{c.needs_platform}" ] }
+    when 'all'
+      user.collections.collect { |c| [ c.called, "#{c.id},#{c.needs_platform}" ] }
+    end
   end
 
   def check_for_games(options = {})

@@ -1,0 +1,77 @@
+<% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
+<%= form_for(:game, url: copy_path, remote: true) do |f| %>
+<%= hidden_field_tag :game_id, id %>
+<%= f.hidden_field :name, value: game_name %>
+<%= f.hidden_field :igdb_id, value: igdb_id %>
+<% if platforms = game[:platforms] %>
+<% platforms.each do |id| %>
+<%= f.hidden_field :platforms, value: id, multiple: true %>
+<% end %>
+<% end %>
+<% if p_names = game[:platforms_names] %>
+<% p_names.each do |p_name| %>
+<%= f.hidden_field :platforms_names, value: p_name, multiple: true %>
+<% end %>
+<% end %>
+<%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
+<%= f.hidden_field :summary, value: game[:summary] %>
+<%= f.hidden_field :status, value: game[:status] %>
+<%= f.hidden_field :category, value: game[:category] %>
+<%= f.hidden_field :cover, value: game[:cover] %>
+<%= f.hidden_field :cover_width, value: game[:cover_width] %>
+<%= f.hidden_field :cover_height, value: game[:cover_height] %>
+<% if devs = game.developers %>
+<% devs.each do |dev| %>
+<%= f.hidden_field :developers, value: dev, multiple: true %>
+<% end %>
+<% end %>
+<% if screens = game.screenshots %>
+<% screens.each do |screen| %>
+<%= f.hidden_field :screenshots, value: screen, multiple: true %>
+<% end %>
+<% end %>
+<div class="select-collection">
+    <div uk-form-custom="target: > * > span:last-child">
+        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), prompt: 'Select Collection') %>
+        <span class="bigs">
+            <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
+            <span></span>
+        </span>
+    </div>
+</div>
+<div id="platform-option" style="display: none">
+    <% if game[:platforms] %>
+    <%= f.hidden_field :needs_platform, value: false %>
+    <div class="uk-margin select-platform">
+        <div uk-form-custom="target: > * > span:last-child">
+            <% if game[:platforms].size > 1 %>
+            <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
+            <span class='bigs'>
+                <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
+                <span></span>
+            </span>
+            <% else %>
+            <%= f.select(:platform, platforms_for_select(game)) %>
+            <span class='bigs'>
+                <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
+                <span></span>
+            </span>
+            <% end %>
+        </div>
+    </div>
+    <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
+        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
+        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
+    </div>
+    <% else %>
+    <p>You cant copy game with no platform to collection that needs platform
+    will be fixed soon</p>
+    <% end %>
+</div>
+<button name="button" type="submit" class="add-button">Copy</button><span class="add-form-errors"></span>
+<% end %>
+<script>
+updateIcon('copy', 'collection', <%= id %>);
+updateIcon('copy', 'platform', <%= id %>);
+askPlatforms('copy', <%= id %>);
+</script>

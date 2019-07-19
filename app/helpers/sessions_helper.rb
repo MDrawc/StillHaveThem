@@ -19,7 +19,6 @@ module SessionsHelper
 
   def require_user
     unless logged_in?
-      flash[:danger] = 'Please Sign in'
       redirect_to root_url
     end
   end

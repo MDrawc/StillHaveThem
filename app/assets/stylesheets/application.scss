@@ -61,6 +61,12 @@ body::-webkit-scrollbar {
     padding-bottom: $footer_height + $navbar_height;
 }
 
+// NAVBAR
+
+.user {
+    color: $light_grey;
+}
+
 // FOOTER
 footer {
     position: absolute;
@@ -165,6 +171,8 @@ footer {
 }
 
 // NOTIFICATIONS
+.uk-notification { top: 80px; }
+
 .uk-notification-close {
     top: unset;
     bottom: 13px;

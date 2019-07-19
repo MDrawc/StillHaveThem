@@ -1,6 +1,0 @@
-<div class="uk-grid-small" uk-grid>
-  <% needs_p = collection.needs_platform %>
-  <% collection.games.each do |game| %>
-  <%= render partial: 'shared/game_panel', locals: { game: game, needs_p: needs_p } %>
-  <% end %>
-</div>

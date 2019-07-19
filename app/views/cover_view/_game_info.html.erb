@@ -111,6 +111,11 @@
                             <%= f.hidden_field :platforms, value: id, multiple: true %>
                         <% end %>
                     <% end %>
+                    <% if p_names = game[:platforms_names] %>
+                        <% p_names.each do |p_name| %>
+                            <%= f.hidden_field :platforms_names, value: p_name, multiple: true %>
+                        <% end %>
+                    <% end %>
                     <%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
                     <%= f.hidden_field :summary, value: game[:summary] %>
                     <%= f.hidden_field :status, value: game[:status] %>
@@ -170,9 +175,14 @@
                 <%= f.hidden_field :name, value: game_name %>
                 <%= f.hidden_field :igdb_id, value: igdb_id %>
                 <% if platforms = game[:platforms] %>
-                <% platforms.each do |id| %>
-                <%= f.hidden_field :platforms, value: id, multiple: true %>
+                    <% platforms.each do |id| %>
+                        <%= f.hidden_field :platforms, value: id, multiple: true %>
+                    <% end %>
                 <% end %>
+                <% if p_names = game[:platforms_names] %>
+                    <% p_names.each do |p_name| %>
+                        <%= f.hidden_field :platforms_names, value: p_name, multiple: true %>
+                    <% end %>
                 <% end %>
                 <%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
                 <%= f.hidden_field :summary, value: game[:summary] %>
@@ -195,7 +205,7 @@
                 <div class="select-collection">
                     <% if @custom_collections.size > 1 %>
                     <div uk-form-custom="target: > * > span:last-child">
-                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select custom collection') %>
+                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select Custom Collection') %>
                         <span class="bigs">
                             <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
                             <span></span>

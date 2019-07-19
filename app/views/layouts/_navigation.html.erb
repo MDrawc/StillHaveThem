@@ -1,13 +1,18 @@
-<!-- <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"> -->
 <nav class="uk-navbar-container uk-navbar-transparent uk-dark" uk-navbar>
   <div class="uk-navbar-left">
     <ul class="uk-navbar-nav">
       <li><%= link_to(root_path) do %>
-      > STILL HAVE THEM
-      <% end %>
+        > STILL HAVE THEM
+        <% end %>
       </li>
     </ul>
   </div>
-  <div class="uk-navbar-center">
+
+  <div class="uk-navbar-right">
+    <ul class="uk-navbar-nav">
+      <li><div class="uk-navbar-item user"><%= current_user.email if logged_in? %></div></li>
+      <li><%= link_to "Settings", settings_path %></li>
+      <li><%= link_to "Logout", logout_path, method: :delete %></li>
+    </ul>
   </div>
 </nav>

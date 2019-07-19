@@ -13,6 +13,7 @@ end
 
 def show
   respond_to do |format|
+    # format.html { redirect_to root_url }
     format.js
   end
 end
@@ -50,11 +51,29 @@ end
 def remove_game
   @collection = current_user.collections.find_by_id(params[:collection_id])
   @game = @collection.games.find_by_id(params[:game_id])
-  if @collection.games.delete(@game)
-    flash[:danger] = "Deleted \"#{@game.name}\" from \"#{ @collection.custom_name || @collection.name }\""
-    redirect_to root_url
+  @success = false
+
+  if @game
+    @collection.games.delete(@game)
+
+    #Notification:
+    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
+    @message = "<span class='b'>Removed</span> #{@game.name} "
+    if @collection.needs_platform
+      @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
+    end
+    @message += "from " + collection_link
+
+    @success = true
   else
-    flash[:danger] = "You cant delete this game"
+
+    #Notification:
+    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
+    @message = "Game <span class='b'>does not belong</span> to " + collection_link
+  end
+
+  respond_to do |format|
+    format.js
   end
 end
 
@@ -72,7 +91,7 @@ def remove_game_search
     @collection.games.delete(@game)
 
     #Prepare notification:
-    collection_link = "<a class='c' href='#{collection_url(@collection)}'>#{ @collection.custom_name || @collection.name }</a>"
+    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
@@ -93,7 +112,7 @@ def remove_game_search
     @success = true
   else
     #Notification:
-    collection_link = "<a class='c' href='#{collection_url(@collection)}'>#{ @collection.custom_name || @collection.name }</a>"
+    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
     @message = "Game <span class='b'>does not belong</span> to " + collection_link
   end
 

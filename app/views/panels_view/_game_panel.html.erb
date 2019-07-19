@@ -1,0 +1,75 @@
+<% id = game.id %>
+<div id="g-<%= id %>" class="g-panel uk-width-1-1 uk-grid-collapse" uk-grid>
+  <div class="thumb-c"><%= get_game_thumb(game) %>
+    <div class="shadow"></div>
+  </div>
+  <div class="g-info uk-width-expand">
+    <h4 class="g-title"><%= game.name %>
+    <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %></h4>
+    <%= content_tag(:p, 'by ' + game.developers.join(', '), class: 'g-by') if game.developers %>
+  </div>
+  <% if collection.needs_platform %>
+  <div class="g-platform">
+    <div class="middle">
+      <%= content_tag(:p, game.platform_name) %>
+      <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
+    </div>
+  </div>
+  <% end %>
+  <div class="g-nav uk-text-center">
+    <ul class="uk-iconnav">
+      <li>
+        <%= content_tag(:a, '',id: "g-move-#{ id }", class: "uk-icon-link",
+        'uk-icon' => 'icon: push; ratio: 1.2', 'uk-tooltip' => "title: Move; pos: top-left") %>
+      </li>
+      <li>
+        <%= content_tag(:a, '',id: "g-copy-#{ id }", class: "uk-icon-link ",
+        'uk-icon' => 'icon: copy; ratio: 1.2', 'uk-tooltip' => "title: Copy; pos: top-left") %>
+      </li>
+      <li>
+        <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'icon: trash; ratio: 1.2', 'uk-tooltip': 'title: Delete; pos: top-left') %>
+      </li>
+    </ul>
+  </div>
+  <!-- GAME DROP INFO -->
+  <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">
+    <div class="uk-grid-collapse" uk-grid>
+      <!-- SUMMARY -->
+      <div class="g-summary uk-width-1-2">
+        <% if summary = get_summary(game, 280, 50) %>
+        <p class="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
+      </p>
+      <% end %>
+      <% end %>
+    </div>
+    <!-- SCREENSHOTS -->
+    <div class="g-screens uk-width-1-4">
+      screens
+    </div>
+    <!-- LINKS -->
+    <div class="g-linkse uk-width-1-4">
+      links
+    </div>
+    <!-- HIDE BUTTON -->
+    <div class="g-test">
+      <button id="hide-<%= id %>">hide</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- COPY COPY -->
+<div id="copy-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
+  <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
+  <%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
+</div>
+
+<!-- MOVE MOVE -->
+<div id="move-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-move-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
+  <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
+  <%= render partial: 'panels_view/move_form', locals: { game: game, collection: collection } %>
+</div>
+
+<script>
+// moreInfo(<%= id %>);
+</script>

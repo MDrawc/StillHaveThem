@@ -8,6 +8,11 @@
     <%= f.hidden_field :platforms, value: id, multiple: true %>
   <% end %>
 <% end %>
+<% if p_names = game[:platforms_names] %>
+  <% p_names.each do |p_name| %>
+      <%= f.hidden_field :platforms_names, value: p_name, multiple: true %>
+  <% end %>
+<% end %>
 <%= f.hidden_field :first_release_date, value: game[:first_release_date] %>
 <%= f.hidden_field :summary, value: game[:summary] %>
 <%= f.hidden_field :status, value: game[:status] %>
