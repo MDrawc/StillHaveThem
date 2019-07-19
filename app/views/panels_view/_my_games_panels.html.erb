@@ -28,16 +28,14 @@ function askPlatforms(form_type, id) {
     $(select_element).on('input', function() {
         var value = $(select_element).val();
 
-        if (value.length != 0) {
-            var cv = value.split(",")[1] == 'true'
+        var cv = value.length != 0 ? (value.split(",")[1] == 'true') : false;
 
-            if (cv == true) {
-              $(platform_element).show();
-              $(needs_platform).attr('value', 'true');
-            } else if (cv == false) {
-              $(platform_element).hide();
-              $(needs_platform).attr('value', 'false');
-            }
+        if (cv == true) {
+            $(platform_element).show();
+            $(needs_platform).attr('value', 'true');
+        } else if (cv == false) {
+            $(platform_element).hide();
+            $(needs_platform).attr('value', 'false');
         }
     });
 }

@@ -1,6 +1,9 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
 <%= form_for(:game, url: copy_path, remote: true) do |f| %>
+
+<%= hidden_field_tag :from_coll, collection.id %>
 <%= hidden_field_tag :game_id, id %>
+
 <%= f.hidden_field :name, value: game_name %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 <% if platforms = game[:platforms] %>
@@ -32,7 +35,7 @@
 <% end %>
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
-        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), prompt: 'Select Collection') %>
+        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select Collection') %>
         <span class="bigs">
             <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
             <span></span>
@@ -45,7 +48,7 @@
     <div class="uk-margin select-platform">
         <div uk-form-custom="target: > * > span:last-child">
             <% if game[:platforms].size > 1 %>
-            <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
+            <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
             <span class='bigs'>
                 <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
                 <span></span>

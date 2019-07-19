@@ -64,47 +64,42 @@ class GamesController < ApplicationController
     @errors = []
     @collection = current_user.collections.find_by_id(params[:collection])
     @game_id = params[:game_id]
+    @from_coll = params[:from_coll].to_i
+    needs_plat = @collection.needs_platform
 
-    if @collection && @collection.needs_platform
+    if @collection
 
-      platform, platform_name = game_params[:platform].split(',')
+      if needs_plat
+        platform, platform_name = game_params[:platform].split(',')
+        @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
+      else
+        @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
+      end
 
-      if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
+      if @game
+
         begin
           @collection.games << @game
-          message(true, false)
+          message(needs_plat, false, 'copied')
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in your collection'
         end
+
       else
-        @game = @collection.games.build(game_params.except(:platform))
-        @game.platform, @game.platform_name = platform, platform_name
+
+        if needs_plat
+          @game = @collection.games.build(game_params.except(:platform))
+          @game.platform, @game.platform_name = platform, platform_name
+        else
+          @game = @collection.games.build(game_params.except(:platform, :physical))
+        end
 
         if @game.save
-          message(true, false)
+          message(needs_plat, false, 'copied')
         else
           @errors += @game.errors.full_messages
         end
       end
-
-    elsif @collection
-
-      if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
-        begin
-          @collection.games << @game
-          message(false, false)
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in your collection'
-        end
-      else
-        @game = @collection.games.build(game_params.except(:platform, :physical))
-        if @game.save
-          message(false, false)
-        else
-          @errors += @game.errors.full_messages
-        end
-      end
-
     else
       @errors << 'Select collection'
     end
@@ -121,12 +116,12 @@ class GamesController < ApplicationController
        :status, :category, :needs_platform, :platform, :physical, :cover, :cover_width, :cover_height, platforms: [], platforms_names: [], developers: [], screenshots: [])
     end
 
-    def message(needs_platform = true, duplicate = false)
+    def message(needs_platform = true, duplicate = false, p_verb = 'added')
       collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
 
       if needs_platform
         if !duplicate
-          @message = "<span class='g'>Added</span> #{@game.name}" +
+          @message = "<span class='g'>#{ p_verb.capitalize }</span> #{@game.name}" +
           " <span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span>" +
           " to " + collection_link
         else
@@ -134,7 +129,7 @@ class GamesController < ApplicationController
         end
       else
         if !duplicate
-          @message = "<span class='g'>Added</span> #{@game.name}" +
+          @message = "<span class='g'>#{ p_verb.capitalize }</span> #{@game.name}" +
           " to " + collection_link
         else
           @message = "#{@game.name}" +

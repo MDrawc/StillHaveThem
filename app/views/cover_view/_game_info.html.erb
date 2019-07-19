@@ -136,7 +136,7 @@
                     <div class="select-platform">
                         <div uk-form-custom="target: > * > span:last-child">
                             <% if game[:platforms].size > 1 %>
-                                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
+                                <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
                                 <span class='bigs'>
                                 <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
                                 <span></span>
@@ -205,7 +205,7 @@
                 <div class="select-collection">
                     <% if @custom_collections.size > 1 %>
                     <div uk-form-custom="target: > * > span:last-child">
-                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), prompt: 'Select Custom Collection') %>
+                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), include_blank: 'Select Custom Collection') %>
                         <span class="bigs">
                             <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
                             <span></span>
@@ -228,7 +228,7 @@
                         <div class="uk-margin select-platform">
                             <div uk-form-custom="target: > * > span:last-child">
                                 <% if game[:platforms].size > 1 %>
-                                <%= f.select(:platform, platforms_for_select(game), prompt: 'Select platform') %>
+                                <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
                                 <span class='bigs'>
                                     <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
                                     <span></span>

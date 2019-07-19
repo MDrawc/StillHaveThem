@@ -24,6 +24,9 @@ if (msg) {
 
 if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
+    <% if @from_coll == @collection.id %>
+      $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");
+    <% end %>
 } else {
     $("#copy-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors('copy', game_id);
