@@ -71,13 +71,12 @@ class GamesController < ApplicationController
 
       if needs_plat
         platform, platform_name = game_params[:platform].split(',')
-        @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
+        @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
       else
         @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
       end
 
       if @game
-
         begin
           @collection.games << @game
           message(needs_plat, false, 'copied')
@@ -86,16 +85,20 @@ class GamesController < ApplicationController
         end
 
       else
-
+        @game = Game.find_by(igdb_id: game_params[:igdb_id]).dup
         if needs_plat
-          @game = @collection.games.build(game_params.except(:platform))
           @game.platform, @game.platform_name = platform, platform_name
+          @game.physical = game_params[:physical]
+          @game.needs_platform = true
         else
-          @game = @collection.games.build(game_params.except(:platform, :physical))
+          @game.platform, @game.platform_name = nil, nil
+          @game.physical = nil
+          @game.needs_platform = false
         end
 
         if @game.save
           message(needs_plat, false, 'copied')
+          @collection.games << @game
         else
           @errors += @game.errors.full_messages
         end
