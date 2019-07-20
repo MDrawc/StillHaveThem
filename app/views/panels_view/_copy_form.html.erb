@@ -41,8 +41,10 @@
         </div>
     </div>
     <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
-        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
+        <% physical = true %>
+        <% physical = game.physical if collection.needs_platform %>
+        <label><%= f.radio_button(:physical, true, checked: physical, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
+        <label><%= f.radio_button(:physical, false, checked: !physical, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
     </div>
     <% else %>
     <p>You cant copy game with no platform to collection that needs platform
@@ -51,7 +53,12 @@
 </div>
 <button name="button" type="submit" class="add-button">Copy</button><span class="add-form-errors"></span>
 <% end %>
+
 <script>
-updatePlatformIcon('copy', <%= id %>);
-activateForm('copy', <%= id %>);
+    <% if collection.needs_platform %>
+        preselectPlatform(<%= id %>, <%= game.platform %>)
+    <% end %>
+    changeButton(<%= id %>)
+    updatePlatformIcon('copy', <%= id %>);
+    activateForm('copy', <%= id %>);
 </script>
