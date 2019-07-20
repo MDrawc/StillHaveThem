@@ -2,7 +2,6 @@ class Collection < ApplicationRecord
   belongs_to :user
   has_many :collection_games
   has_many :games, through: :collection_games
-  default_scope -> { order(created_at: :asc) }
   scope :custom, -> { where(initial: false) }
   scope :initial, -> { where(initial: true) }
   validates :user_id, presence: true

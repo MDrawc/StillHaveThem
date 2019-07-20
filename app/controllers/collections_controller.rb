@@ -122,6 +122,11 @@ def remove_game_search
 end
 
 def move_game
+
+
+  respond_to do |format|
+    format.js
+  end
 end
 
 private

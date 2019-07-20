@@ -1,7 +1,7 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
 <%= form_for(:game, url: copy_path, remote: true) do |f| %>
 
-<%= hidden_field_tag :from_coll, collection.id %>
+<%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 
@@ -14,6 +14,12 @@
         </span>
     </div>
 </div>
+
+<div id="cp-mv" class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid" style="display: none;">
+    <label><%= radio_button_tag 'copy', true, checked: true %>Copy</label>
+    <label><%= radio_button_tag 'copy', false %>Move</label>
+</div>
+
 <div id="platform-option" style="display: none">
     <% if game[:platforms] %>
     <%= f.hidden_field :needs_platform, value: false %>
@@ -46,7 +52,6 @@
 <button name="button" type="submit" class="add-button">Copy</button><span class="add-form-errors"></span>
 <% end %>
 <script>
-updateIcon('copy', 'collection', <%= id %>);
-updateIcon('copy', 'platform', <%= id %>);
-askPlatforms('copy', <%= id %>);
+updatePlatformIcon('copy', <%= id %>);
+activateForm('copy', <%= id %>);
 </script>

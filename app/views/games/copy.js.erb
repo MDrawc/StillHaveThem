@@ -1,8 +1,7 @@
-// VARIABLES
 var game_id = '<%= @game_id %>'
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
-var success = <%= !@errors.present? ? true : false %>;
+var success = <%= @errors.empty? %>;
 
 // Notifications position depends on offcanvas position
 if ($('.uk-offcanvas-container').length) {
@@ -13,7 +12,6 @@ if ($('.uk-offcanvas-container').length) {
     }
 }
 
-// NOTIFICATIONS
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
@@ -24,9 +22,11 @@ if (msg) {
 
 if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
-    <% if @from_coll == @collection.id %>
-      $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");
+
+    <% if !@copy || ( @current == @collection )%>
+      $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @current }) %>");
     <% end %>
+
 } else {
     $("#copy-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors('copy', game_id);

@@ -19,7 +19,4 @@ Rails.application.routes.draw do
 
   delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
   delete '/remove_s/:game_id/:collection_id/:id_type', to: 'collections#remove_game_search', as: 'remove_s'
-
-  #need checking!!!!!!!
-  delete '/move/:game_id/:from_id/:to_id', to: 'collections#move_game', as: 'move'
 end

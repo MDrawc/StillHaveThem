@@ -19,12 +19,8 @@
   <div class="g-nav uk-text-center">
     <ul class="uk-iconnav">
       <li>
-        <%= content_tag(:a, '',id: "g-move-#{ id }", class: "uk-icon-link",
-        'uk-icon' => 'icon: push; ratio: 1.2', 'uk-tooltip' => "title: Move; pos: top-left") %>
-      </li>
-      <li>
         <%= content_tag(:a, '',id: "g-copy-#{ id }", class: "uk-icon-link ",
-        'uk-icon' => 'icon: copy; ratio: 1.2', 'uk-tooltip' => "title: Copy; pos: top-left") %>
+        'uk-icon' => 'icon: copy; ratio: 1.2', 'uk-tooltip' => "title: Move / Copy; pos: top-left") %>
       </li>
       <li>
         <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'icon: trash; ratio: 1.2', 'uk-tooltip': 'title: Delete; pos: top-left') %>
@@ -62,12 +58,6 @@
 <div id="copy-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
   <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
   <%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
-</div>
-
-<!-- MOVE MOVE -->
-<div id="move-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-move-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
-  <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
-  <%= render partial: 'panels_view/move_form', locals: { game: game, collection: collection } %>
 </div>
 
 <script>
