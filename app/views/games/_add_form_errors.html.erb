@@ -1,5 +1,5 @@
 <% if errors.any? %>
-  <span id="add-form-errors" class="blink_me"><%= render 'svgs/warning_icon' %></span>
+  <span id="add-form-errors" class="blink_me"><%= svg 'warning_icon' %></span>
   <span class="add-acc-errors blink_me"><%= @errors.join(', ') %></span>
 <% else %>
 <% end %>

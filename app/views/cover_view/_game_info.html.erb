@@ -138,21 +138,21 @@
                             <% if game[:platforms].size > 1 %>
                                 <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
                                 <span class='bigs'>
-                                <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
+                                <span class="platform-icon"><%= svg 'platform_icon' %></span>
                                 <span></span>
                                 </span>
                             <% else %>
                                 <%= f.select(:platform, platforms_for_select(game)) %>
                                 <span class='bigs'>
-                                <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
+                                <span class="platform-green"><%= svg 'platform_icon' %></span>
                                 <span></span>
                                 </span>
                             <% end %>
                         </div>
                     </div>
                     <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-                        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
-                        <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
+                        <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= svg 'gamebox_icon' %> Physical</label>
+                        <label><%= f.radio_button(:physical, false, class: "digital") %><%= svg 'digital_icon' %> Digital</label>
                     </div>
                     <button name="button" type="submit" class="add-button">Add</button><span class="add-form-errors"></span>
                     <% end %>
@@ -205,9 +205,9 @@
                 <div class="select-collection">
                     <% if @custom_collections.size > 1 %>
                     <div uk-form-custom="target: > * > span:last-child">
-                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), include_blank: 'Select Custom Collection') %>
+                        <%= select_tag(:collection, options_for_select(collections_for_select(current_user)), include_blank: 'Select custom collection') %>
                         <span class="bigs">
-                            <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
+                            <span class="collection-icon"><%= svg 'shelf_icon' %></span>
                             <span></span>
                         </span>
                     </div>
@@ -215,7 +215,7 @@
                     <div uk-form-custom="target: > * > span:last-child">
                         <%= select_tag(:collection, options_for_select(collections_for_select(current_user))) %>
                         <span class="bigs">
-                            <span class="collection-green"><%= render 'svgs/shelf_icon' %></span>
+                            <span class="collection-green"><%= svg 'shelf_icon' %></span>
                             <span></span>
                         </span>
                     </div>
@@ -230,21 +230,21 @@
                                 <% if game[:platforms].size > 1 %>
                                 <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
                                 <span class='bigs'>
-                                    <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
+                                    <span class="platform-icon"><%= svg 'platform_icon' %></span>
                                     <span></span>
                                 </span>
                                 <% else %>
                                 <%= f.select(:platform, platforms_for_select(game)) %>
                                 <span class='bigs'>
-                                    <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
+                                    <span class="platform-green"><%= svg 'platform_icon' %></span>
                                     <span></span>
                                 </span>
                                 <% end %>
                             </div>
                         </div>
                         <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
-                            <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
-                            <label><%= f.radio_button(:physical, false, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
+                            <label><%= f.radio_button(:physical, true, checked: true, class: "physical") %><%= svg 'gamebox_icon' %> Physical</label>
+                            <label><%= f.radio_button(:physical, false, class: "digital") %><%= svg 'digital_icon' %> Digital</label>
                         </div>
                     <% else %>
                         <p>You cant add game with no platform to collection that needs platform
@@ -325,8 +325,8 @@
         <hr>
         <div id="info-links">
             <%= link_to '',"http://www.google.com/search?q=%22#{ game_name.gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
-            <%= link_to render('svgs/metacritic_icon'),"https://www.metacritic.com/search/game/#{ game_name.gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
-            <button id='i-flipper-<%= igdb_id %>' class="flip"><%= render 'svgs/flip_icon' %></button>
+            <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game_name.gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+            <button id='i-flipper-<%= igdb_id %>' class="flip"><%= svg 'flip_icon' %></button>
         </div>
     </div>
 </div>

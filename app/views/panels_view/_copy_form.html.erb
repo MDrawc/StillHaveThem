@@ -7,9 +7,9 @@
 
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
-        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select Collection') %>
+        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select collection') %>
         <span class="bigs">
-            <span class="collection-icon"><%= render 'svgs/shelf_icon' %></span>
+            <span class="collection-icon"><%= svg 'shelf_icon' %></span>
             <span></span>
         </span>
     </div>
@@ -28,13 +28,13 @@
             <% if game[:platforms].size > 1 %>
             <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
             <span class='bigs'>
-                <span class="platform-icon"><%= render 'svgs/platform_icon' %></span>
+                <span class="platform-icon"><%= svg 'platform_icon' %></span>
                 <span></span>
             </span>
             <% else %>
             <%= f.select(:platform, platforms_for_select(game)) %>
             <span class='bigs'>
-                <span class="platform-green"><%= render 'svgs/platform_icon' %></span>
+                <span class="platform-green"><%= svg 'platform_icon' %></span>
                 <span></span>
             </span>
             <% end %>
@@ -43,8 +43,8 @@
     <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
         <% physical = true %>
         <% physical = game.physical if collection.needs_platform %>
-        <label><%= f.radio_button(:physical, true, checked: physical, class: "physical") %><%= render 'svgs/gamebox_icon' %> Physical</label>
-        <label><%= f.radio_button(:physical, false, checked: !physical, class: "digital") %><%= render 'svgs/digital_icon' %> Digital</label>
+        <label><%= f.radio_button(:physical, true, checked: physical, class: "physical") %><%= svg 'gamebox_icon' %> Physical</label>
+        <label><%= f.radio_button(:physical, false, checked: !physical, class: "digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
     <% else %>
     <p>You cant copy game with no platform to collection that needs platform
