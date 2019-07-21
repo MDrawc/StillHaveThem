@@ -1,5 +1,6 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <% @inquiry.results.each do |game| %>
+<% already = []%>
+<% @inquiry.results.each do |game| %>
   <div id="gs-<%= game[:igdb_id] %>" class="game-space">
     <!-- COVER -->
     <% if cover = get_game_cover(game) %>
@@ -13,18 +14,19 @@
         <%= svg 'no_image' %>
       <% end %>
     <% end %>
-
-    <% if game[:addl] %>
-    <div class="addl-info" uk-alert>
-      <button class="uk-alert-close uk-icon uk-close" type="button" uk-close></button>
-      <p><%= game[:addl] %></p>
-    </div>
-
-    <% end %>
-    </div>
+      <!-- ADDITIONAL INFO -->
+      <% if game[:addl] %>
+        <div class="addl-info" uk-alert>
+          <p><%= game[:addl] %></p>
+        </div>
+      <% end %>
+      </div>
     <!-- GAME INFO -->
-    <% cover = nil if cover && cover[:from_scrn] %>
-    <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
+    <% unless already.include? game[:igdb_id ]%>
+      <% cover = nil if cover && cover[:from_scrn] %>
+      <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
+      <% already << game[:igdb_id] %>
+    <% end %>
     <!-- NAME AND WARNING -->
     <p class="game-name">
       <span><%= game[:name] %></span>
@@ -39,35 +41,33 @@
     </p>
     <!-- RELEASE DATE -->
     <p class="game-release-date">
-      <% if game[:first_release_date]%>
+      <% if game[:first_release_date] %>
       <%= Time.at(game[:first_release_date]).year %>
       <% else %>
       -
       <% end %>
-      <!-- PLATFORMS -->
-      <% if platforms = game[:platforms_names] %>
+    </p>
+    <!-- PLATFORMS -->
+    <% if platforms = game[:platforms_names] %>
       <% if platforms.size > 3 %>
-      <% rest = platforms[3..-1] %>
-      <%  2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]%>
+        <% rest = platforms[3..-1] %>
+        <% 2.times do |i| %>
+          <p class="game-platform"><%= platforms[i]%></p>
         <% end %>
         <p class="game-platform"><%= platforms[2]%>
-          <label class="mp-label">
-            <input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game[:igdb_id] %>; animation: uk-animation-fade">
-          </label>
+        <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= game[:igdb_id] %>; animation: uk-animation-fade"></label>
         </p>
         <div id="mp-<%= game[:igdb_id] %>" hidden>
-          <% rest.each do |platform| %>
+        <% rest.each do |platform| %>
           <p class="game-platform"><%= platform %></p>
-          <% end %>
+        <% end %>
         </div>
-        <% else %>
+      <% else %>
         <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform %></p>
+          <p class="game-platform"><%= platform %></p>
         <% end %>
-        <% end %>
-        <% end %>
-      </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
+  <% end %>
+</div>

@@ -269,27 +269,23 @@ class IgdbQuery
     end
 
     def get_addl(results)
+      puts '>> [ Creating Additional Info Array ]'
       case @query_type
       when :dev then key = 'developed'
       when :char then key = 'games'
       end
 
-      addl = []
       results.each do |c|
-        c[key].size.times { addl << c['name'] } if c[key]
+          c[key].size.times { addl << c['name'] } if c[key]
       end
 
-      return addl
+      puts ">> Additional info array: #{ addl }"
+      addl
     end
 
     def add_addl_to_games(res)
       puts '>> [ Adding Additional Info to Results ]'
       res.each.with_index { |g, i| g[:addl] = @addl[i] }
-    end
-
-    def add_uniq_id(results)
-      puts '>> [ Adding Unique Identificators for Results ]'
-      results.each { |g| g[:uniq] = rand(36**4).to_s(36) }
     end
 
     def compose_results
@@ -303,8 +299,6 @@ class IgdbQuery
         res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
       end
 
-      # symbolize keys can not be sooner because it then
-      # leads to very strange situation i can not undestand now
       @results = res.as_json.map(&:symbolize_keys)
 
       if res.size == @games_ids.size
@@ -312,13 +306,13 @@ class IgdbQuery
 
         unless @query_type == :game
           @results = add_addl_to_games(@results)
-          @results = add_uniq_id(@results)
           @results = post_filters(@results)
         end
 
         puts '>> DB have all the games. Searching IGDB unnecessary.'
       else
         @missing_games = @games_ids - res.map { |g| g[:igdb_id] }
+
         puts ">> DB is missing games(igdb_id): #{ @missing_games }"
         puts '>> Searching IGDB for full set of information is necessary.'
       end
@@ -403,7 +397,6 @@ class IgdbQuery
 
       unless @query_type == :game
         converted = add_addl_to_games(converted)
-        converted = add_uniq_id(converted)
         converted = post_filters(converted)
       end
 
@@ -493,14 +486,6 @@ class IgdbQuery
           a.any? || b.any?
         end
       end
-
-      puts "hello hell"*300
-
-      results.each {|g| puts g[:addl]}
-      puts '-x'*50
-      results.each {|g| puts g[:uniq]}
-
-
       return results
     end
 
