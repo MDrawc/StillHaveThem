@@ -1,7 +1,8 @@
 <% igdb_id = game[:igdb_id] %>
 <% game_name = game[:name] %>
+<% uniq_id = game[:uniq] %>
 <div id="i-<%= igdb_id %>" uk-offcanvas="mode: none; bg-close: true">
-    <div class="uk-offcanvas-bar <%= igdb_id %>">
+    <div class="uk-offcanvas-bar">
         <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
         <!-- TITLE & RELEASE YEAR -->
         <h3 class="info-title"><%= game_name %>
@@ -52,7 +53,7 @@
                     <% collection = @initial_collections['collection'] %>
                     <% tooltip = 'Add to / Remove from ' + (collection.custom_name || collection.name) %>
                     <% extra_class = in_initial['collection'] ? 'remove' : '' %>
-                    <%= content_tag(:a, '',id: "add-collection-#{ igdb_id }", class: "uk-icon-link " + extra_class,
+                    <%= content_tag(:a, '',id: "add-collection-#{ igdb_id }#{ uniq_id }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'database', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
                     <div class="underlight"></div>
                 </li>
@@ -89,7 +90,7 @@
                 <li>
                     <% tooltip = 'Add to / Remove from Custom Collections' %>
                     <% extra_class = in_custom ? 'remove' : '' %>
-                    <%= content_tag(:a, '',id: "add-custom-#{ igdb_id }", class: "uk-icon-link " + extra_class,
+                    <%= content_tag(:a, '',id: "add-custom-#{ igdb_id }#{ uniq_id }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'cog', 'uk-tooltip' => "title: #{ tooltip }; pos: top-left") %>
                     <div class="underlight"></div>
                 </li>
@@ -97,7 +98,7 @@
         </div>
         <!-- ADD GAME TO COLLECTION -->
         <div class="b-<%= igdb_id %>">
-            <div id="add-collection-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= igdb_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>" >
+            <div id="add-collection-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-collection-<%= igdb_id %><%= uniq_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>" >
                 <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
                 <% if game[:platforms] %>
                     <%= form_for(:game, url: games_path, remote: true) do |f| %>
@@ -166,7 +167,7 @@
                 <% end %>
             </div>
             <!-- ADD TO CUSTOM COLLECTION -->
-            <div id="add-custom-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= igdb_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>">
+            <div id="add-custom-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-custom-<%= igdb_id %><%= uniq_id %>; mode: click; pos: bottom-left; delay-hide: 100; boundary-align: true; boundary: .b-<%= igdb_id %>">
                 <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
                 <% if @custom_collections.any? %>
                 <%= form_for(:game, url: games_path, remote: true) do |f| %>

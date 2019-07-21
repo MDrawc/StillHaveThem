@@ -68,7 +68,6 @@ class IgdbQuery
 
   def initialize(obj = nil, offset = 0, query = nil)
     @errors = ActiveModel::Errors.new(self)
-    @results = []
     @response_size = 0
 
     puts '>> [ Initializing ]'
@@ -283,30 +282,37 @@ class IgdbQuery
       return addl
     end
 
-    def add_addl_to_games(results)
+    def add_addl_to_games(res)
       puts '>> [ Adding Additional Info to Results ]'
-      results.each.with_index { |g, i| g[:addl] = @addl[i] } if @addl
-      results
+      res.each.with_index { |g, i| g[:addl] = @addl[i] }
+    end
+
+    def add_uniq_id(results)
+      puts '>> [ Adding Unique Identificators for Results ]'
+      results.each { |g| g[:uniq] = rand(36**4).to_s(36) }
     end
 
     def compose_results
       puts '>> [ Composing Results ]'
 
       # Finds stored in DB games (ignores duplicates).
-      res = Agame.where(igdb_id: @games_ids).as_json.map(&:symbolize_keys)
+      res = Agame.where(igdb_id: @games_ids)
 
       # Recreate duplicates (needed in character search).
       if @query_type == :char
-        res = @games_ids.map { |id| res.find { |g| g[:igdb_id] == id } }.compact
+        res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
       end
 
-      @results += res
+      # symbolize keys can not be sooner because it then
+      # leads to very strange situation i can not undestand now
+      @results = res.as_json.map(&:symbolize_keys)
 
       if res.size == @games_ids.size
         @response_size = @results.size
 
         unless @query_type == :game
           @results = add_addl_to_games(@results)
+          @results = add_uniq_id(@results)
           @results = post_filters(@results)
         end
 
@@ -397,6 +403,7 @@ class IgdbQuery
 
       unless @query_type == :game
         converted = add_addl_to_games(converted)
+        converted = add_uniq_id(converted)
         converted = post_filters(converted)
       end
 
@@ -486,6 +493,14 @@ class IgdbQuery
           a.any? || b.any?
         end
       end
+
+      puts "hello hell"*300
+
+      results.each {|g| puts g[:addl]}
+      puts '-x'*50
+      results.each {|g| puts g[:uniq]}
+
+
       return results
     end
 

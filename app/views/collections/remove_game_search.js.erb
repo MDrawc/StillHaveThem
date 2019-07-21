@@ -43,8 +43,8 @@ UIkit.notification({
 
         // Change underlight in My collection and Custom Collection
         <% if @all_deleted %>
-        var button = "#add-" + form + "-" + game_id;
-        $(button).removeClass('remove');
+            var button = "add-" + form + "-" + game_id;
+            $('[id^=' + button + ']').removeClass('remove');
         <% end %>
 
         // Reseting error status upon succesful remove
@@ -53,7 +53,6 @@ UIkit.notification({
             var errorsPlace = '#add-' + form + '-form-' + game_id + ' .add-form-errors';
             $(errorsPlace).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
         }
-
     }
 
     // Remove underline from removed game

@@ -1,4 +1,4 @@
-<% if @inquiry.results.present? %>
+<% if @inquiry.results %>
   <%= render 'cover_view/cover_view' %>
   <% if @inquiry.is_more? %>
   <div id="show-more">
@@ -33,7 +33,6 @@
 
 <script>
 // Define scroll-up-button position
-
 if ($('body').hasClass('uk-offcanvas-flip')) {
   $('.scroll-up').addClass('scroll-flip')
 }

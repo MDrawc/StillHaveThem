@@ -36,8 +36,8 @@ if (success) {
         UIkit.dropdown(drop_element).hide();
 
         // Add green mark to button
-        var element = "#add-" + form + "-" + game_id;
-        $(element).addClass('remove');
+        var element = "add-" + form + "-" + game_id;
+        $('[id^=' + element + ']').addClass('remove');
 
         // Render games already in my collection
         var already = "#add-" + form + "-form-" + game_id + " .already-in";
