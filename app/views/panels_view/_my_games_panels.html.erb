@@ -43,16 +43,22 @@ function activateForm(form_type, id) {
 }
 
 function moreInfo(id) {
+    var panel = $('#g-click-' + id);
+    var hidee = $('#g-hide-' + id);
+    var drop = $('#g-drop-' + id);
 
-    $('#g-' + id).click(function() {
-        if ($('#g-drop-' + id).is(':hidden')) {
-            $('#g-drop-' + id).slideDown('slow');
+    panel.click(function() {
+        if (drop.is(':hidden')) {
+            drop.slideDown('fast');
+        } else {
+            drop.slideUp('fast');
         }
     });
 
-    $('#hide-' + id).click(function() {
-        if ($('#g-drop-' + id).is(':visible')) {
-            $('#g-drop-' + id).slideUp('slow');
+
+    hidee.click(function() {
+        if (drop.is(':visible')) {
+            drop.slideUp('fast');
         }
     });
 }

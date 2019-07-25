@@ -1,4 +1,4 @@
-<nav class="uk-navbar-container uk-navbar-transparent uk-dark" uk-navbar>
+<nav class="uk-navbar-container uk-navbar-transparent uk-dark" uk-navbar="mode: click">
   <div class="uk-navbar-left">
     <ul class="uk-navbar-nav">
       <li><%= link_to(root_path) do %>
@@ -7,12 +7,28 @@
       </li>
     </ul>
   </div>
-
+  <% if logged_in? %>
   <div class="uk-navbar-right">
     <ul class="uk-navbar-nav">
-      <li><div class="uk-navbar-item user"><%= current_user.email if logged_in? %></div></li>
-      <li><%= link_to "Settings", settings_path %></li>
-      <li><%= link_to "Logout", logout_path, method: :delete %></li>
+      <li><div id="" class="uk-navbar-item nav-but">Hide Overlays</div></li>
+      <li><div id="" class="uk-navbar-item nav-but">Change View</div></li>
+      <li><div id="g-show-edit" class="uk-navbar-item nav-but">Show Options</div></li>
+      <li><div class="uk-navbar-item nav-but">Dark Theme</div></li>
+      <li>
+        <a href="#" class="user"><%= current_user.email  %></a>
+        <div class="uk-navbar-dropdown user-ops">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li><%= link_to "Settings", settings_path %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
+  <script>
+  $( "#g-show-edit" ).click(function() {
+  $( ".g-menu" ).toggleClass('out');
+  });
+  </script>
+  <% end %>
 </nav>

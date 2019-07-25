@@ -1,65 +1,75 @@
 <% id = game.id %>
-<div id="g-<%= id %>" class="g-panel uk-width-1-1 uk-grid-collapse" uk-grid>
+<div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
+  <div id="g-click-<%= id %>" class="g-click"></div>
   <div class="thumb-c"><%= get_game_thumb(game) %>
     <div class="shadow"></div>
   </div>
   <div class="g-info uk-width-expand">
     <h4 class="g-title"><%= game.name %>
-    <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %></h4>
+    <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %>
+    </h4>
     <%= content_tag(:p, 'by ' + game.developers.join(', '), class: 'g-by') if game.developers %>
   </div>
   <% if collection.needs_platform %>
-  <div class="g-platform">
-    <div class="middle">
+  <div class="g-platforms">
+    <div>
       <%= content_tag(:p, game.platform_name) %>
       <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
     </div>
   </div>
   <% end %>
-  <div class="g-nav uk-text-center">
-    <ul class="uk-iconnav">
-      <li>
-        <%= content_tag(:a, '',id: "g-copy-#{ id }", class: "uk-icon-link ",
-        'uk-icon' => 'icon: copy; ratio: 1.2', 'uk-tooltip' => "title: Move / Copy; pos: top-left") %>
-      </li>
-      <li>
-        <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'icon: trash; ratio: 1.2', 'uk-tooltip': 'title: Delete; pos: top-left') %>
-      </li>
-    </ul>
-  </div>
-  <!-- GAME DROP INFO -->
   <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">
     <div class="uk-grid-collapse" uk-grid>
-      <!-- SUMMARY -->
-      <div class="g-summary uk-width-1-2">
+      <div style="width: 70px;"></div>
+      <div class="g-extra uk-width-expand">
+        <% if screens = game[:screenshots] %>
+        <% urls = screens_urls(screens) %>
+        <div class="uk-position-relative pd-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .full-scrn; animation: fade">
+          <ul class="uk-slideshow-items pd-slide-items">
+            <% urls.each do |url| %>
+            <li>
+              <%= image_tag('', 'data-src' => url[:small], alt: game.name, 'uk-cover': '', 'uk-img': '') %>
+              <%= content_tag(:a, (svg 'full'), href: url[:big], class: 'full-scrn') %>
+              <div class="shadow"></div>
+            </li>
+            <% end %>
+          </ul>
+          <a class="uk-position-center-left uk-position-small pd-arr" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small pd-arr" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        </div>
+        <% end %>
         <% if summary = get_summary(game, 280, 50) %>
-        <p class="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
+        <p class="g-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
       </p>
       <% end %>
       <% end %>
+      <div class="g-links uk-width-expand">
+        <%= link_to '',"http://www.google.com/search?q=%22#{ game.name.gsub(' ', '+') }%22+video+game" , class: "ex-link g-google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+        <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game.name.gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+      </div>
     </div>
-    <!-- SCREENSHOTS -->
-    <div class="g-screens uk-width-1-4">
-      screens
-    </div>
-    <!-- LINKS -->
-    <div class="g-linkse uk-width-1-4">
-      links
-    </div>
-    <!-- HIDE BUTTON -->
-    <div class="g-test">
-      <button id="hide-<%= id %>">hide</button>
-    </div>
+    <div style="width: 70px;"></div>
   </div>
+  <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
 </div>
 </div>
-
-<!-- COPY COPY -->
-<div id="copy-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
-  <button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
-  <%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
+<div class="g-menu">
+<ul >
+  <li>
+    <%= content_tag(:a, '', id: "gasd#{ id }", class: "uk-icon-link ", 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+  </li>
+  <li>
+    <%= content_tag(:a, '', id: "g-copy-#{ id }", class: "uk-icon-link ", 'uk-icon': 'copy', 'uk-tooltip' => "title: Move / Copy; pos: right") %>
+  </li>
+  <li>
+    <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
+  </li>
+</ul>
 </div>
-
 <script>
-// moreInfo(<%= id %>);
+moreInfo(<%= id %>);
 </script>
+<div id="copy-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; pos: bottom-left; delay-hide: 100; ">
+<button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
+<%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
+</div>

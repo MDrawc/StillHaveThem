@@ -285,7 +285,7 @@ class IgdbQuery
 
     def add_addl_to_games(res)
       puts '>> [ Adding Additional Info to Results ]'
-      res.each.with_index { |g, i| g[:addl] = @addl[i] }
+      res.each_with_index { |g, i| g[:addl] = @addl[i] }
     end
 
     def compose_results

@@ -285,8 +285,8 @@
     <!-- SLIDESHOW -->
     <% if screens %>
     <% urls = screens_urls(screens) %>
-    <div class="uk-position-relative md-slideshow" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
-        <ul class="uk-slideshow-items">
+    <div class="uk-position-relative md-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
+        <ul class="uk-slideshow-items md-slide-items">
             <% no_of_screens = 0 %>
             <% urls.each_with_index do |url, i| %>
             <li>

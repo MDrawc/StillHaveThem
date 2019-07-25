@@ -2,10 +2,7 @@
 <div class="side-menu">
   <ul>
     <li><%= link_to '', search_url, id: 'm-search', remote: true, class: 'm-m m-add', 'uk-icon': 'search' %></li>
-
-
     <% current_user.collections.each do |collection| %>
-
     <li>
       <%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-m m-coll' %>
     </li>
@@ -14,7 +11,6 @@
   </ul>
 </div>
 <% end %>
-
 <div id="create-coll-modal" class="uk-flex-top" uk-modal>
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -24,9 +20,8 @@
     <div class="modal-content"></div>
   </div>
 </div>
-
 <script>
 UIkit.util.on('#create-coll-modal', 'hide', function() {
-    $('#m-add-coll').removeClass('active')
+$('#m-add-coll').removeClass('active')
 });
 </script>

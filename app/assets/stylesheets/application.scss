@@ -10,9 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
 @import "uikit/variables-theme.scss";
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
@@ -24,7 +23,7 @@ $footer_height: 5rem;
 $navbar_height: 5rem;
 $background: #dddddd;
 $accent: #75C7AF;
-$accent_darker: #49AB8A;
+$dark_accent: #49AB8A;
 $warning: #e9806e;
 $light: rgba(255, 255, 255, 0.5);
 $light_nt: rgb(154, 154, 154);
@@ -32,6 +31,9 @@ $lighter: rgba(255, 255, 255, 0.7);
 $lighter_nt: rgb(197, 197, 197);
 $light_grey: #999;
 $dark_grey: #666;
+$slide_grey: #393939;
+
+@import "panels_view";
 
 // SCREEN AS IMAGE
 .s-cover {
@@ -64,8 +66,19 @@ body::-webkit-scrollbar {
 // NAVBAR
 
 .user {
+    text-transform: lowercase !important;
+}
+
+.user-ops {
+    border-radius: 5px;
+}
+
+.nav-but {
+    cursor: pointer;
     color: $light_grey;
 }
+
+.nav-but:hover { color: $dark_grey; }
 
 // FOOTER
 footer {
@@ -84,90 +97,6 @@ footer {
             padding-left: 10px;
         }
     }
-}
-
-// PANELVIEW
-.g-panel {
-    background: #d2d2d2;
-    border-radius: 5px;
-    box-shadow: -3px 3px 3px -2px rgba(0, 0, 0, 0.16);
-    padding: 10px 0px 10px 10px;
-    // margin: 0px 20px;
-    transition: all 0.2s ease-in-out;
-}
-
-.g-panel:hover {
-    background: #f3f3f3;
-    // margin-left: 0px;
-}
-
-.thumb-c {
-    position: relative;
-    max-height: 70px;
-}
-
-.game-thumb {
-    border-radius: 3px;
-}
-
-.shadow {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    box-shadow: inset 0px 0px 3px 0px #000000a3;
-    border-radius: 3px;
-    top: 0;
-    left: 0;
-}
-
-.g-info {
-    padding-left: 10px;
-    text-align: left;
-}
-
-.g-title {
-    margin-bottom: 0px;
-}
-
-.g-year {
-    font-style: italic;
-    font-size: 14px;
-    color: #666;
-}
-
-.g-by {
- margin-top: 0px;
-}
-
-.g-platform {
-    text-align: right;
-    font-size: 14px;
-    font-style: italic;
-    padding-right: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.middle p { margin: 0px; }
-
-.g-nav {
-    padding: 0px 10px;
-    line-height: 70px;
-    border-left: 2px solid #00000014;
-    ul {
-        display: inline-flex;
-    }
-}
-
-// PANELDROP
-.g-drop { display: none; }
-
-.g-summary {
-    margin-left: 80px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    border-top: 2px solid #00000014;
-    font-size: 14px;
 }
 
 // NOTIFICATIONS
@@ -193,7 +122,7 @@ a.uk-notification-close {
     font-size: 14px;
     border-radius: 5px;
     padding: 10px 26px 10px 10px;
-    .g { color: $accent_darker; }
+    .g { color: $dark_accent; }
     .b { color: $warning; }
     .d {
         font-style: italic;
@@ -244,7 +173,7 @@ a.uk-notification-close {
 .m-coll.active {
     font-size: 25px;
     color: $dark_grey;
-    border-left: 6px solid $accent_darker;
+    border-left: 6px solid $dark_accent;
 }
 
 .m-coll.active:hover {
@@ -293,7 +222,7 @@ a.uk-notification-close {
 }
 
 #m-search.active {
-    border-left: 6px solid $accent_darker;
+    border-left: 6px solid $dark_accent;
     svg {
         color: $dark_grey;
         width: 30px;
@@ -618,7 +547,7 @@ div.no-results {
 }
 
 .uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
-    background-color: $accent_darker;
+    background-color: $dark_accent;
 }
 
 ::selection {
@@ -1177,10 +1106,6 @@ p.header {
     text-align: justify;
 }
 
-.uk-slideshow {
-    margin: 15px 0px;
-}
-
 .i-nav {
     padding-top: 20px;
     height: 35px;
@@ -1234,9 +1159,8 @@ p.header {
 
 .metacritic {
     border: 3px solid #656565;
-
     svg {
-        max-width: 80%;
+        max-width: 92%;
         fill: #a5a5a5;
     }
 }
@@ -1399,7 +1323,7 @@ button.uk-dropdown-close.uk-close.uk-icon {
 }
 
 // #game_platform:hover + span .platform-green svg {
-//     fill: $accent_darker;
+//     fill: $dark_accent;
 // }
 
 .physical, .digital {
@@ -1446,10 +1370,10 @@ button.uk-dropdown-close.uk-close.uk-icon {
 }
 
 .remove + .underlight {
-    background: $accent_darker;
+    background: $dark_accent;
     position: relative;
     bottom: -6px;
-    border: 2px solid $accent_darker;
+    border: 2px solid $dark_accent;
     border-radius: 1px;
 }
 
@@ -1564,24 +1488,25 @@ span.dots {
 }
 
 // Slideshow border - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-$slideshow: #393939;
 
-.uk-position-relative.uk-slideshow {
-    background: $slideshow;
-    border-radius: 5px;
-    padding-bottom: 3px;
-
-    // box-shadow: -4px 3px 9px 0px #0000004a;
+.md-slide {
+    margin: 15px 0px;
 }
 
-ul.uk-slideshow-items {
+.md-slide {
+    background: $slide_grey;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+ul.md-slide-items {
     border-radius: 3px 3px 0px 0px;
     box-shadow: 0px 10px 10px -8px #00000030;
 }
 
 //Missing first picture fix:
 
-ul.uk-slideshow-items li img {
+ul.md-slide-items li img {
     height: unset !important;
 }
 
