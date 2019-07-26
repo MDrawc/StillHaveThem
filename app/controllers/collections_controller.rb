@@ -5,17 +5,11 @@ before_action :never_those, only: [:destroy]
 
 def new
   @collection = Collection.new
-
-  respond_to do |format|
-    format.js
-  end
+  respond_to :js
 end
 
 def show
-  respond_to do |format|
-    # format.html { redirect_to root_url }
-    format.js
-  end
+  respond_to :js
 end
 
 def create
@@ -23,11 +17,12 @@ def create
   @collection.name = @collection.custom_name
 
   if @collection.save
-    flash[:success] = "Collection created"
-    redirect_to root_url
+    @message = "<span class='g'>Created</span> " + coll_link(@collection) + " collection"
   else
-    render 'new'
+    @message = "<span class='b'>Could not</span> create collection"
   end
+
+  respond_to :js
 end
 
 def edit
@@ -57,19 +52,17 @@ def remove_game
     @collection.games.delete(@game)
 
     #Notification:
-    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
-    @message += "from " + collection_link
+    @message += "from " + coll_link(@collection)
 
     @success = true
   else
 
     #Notification:
-    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
-    @message = "Game <span class='b'>does not belong</span> to " + collection_link
+    @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
 
   respond_to do |format|
@@ -91,12 +84,11 @@ def remove_game_search
     @collection.games.delete(@game)
 
     #Prepare notification:
-    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
-    @message += "from " + collection_link
+    @message += "from " + coll_link(@collection)
 
     #Turn of underlight in My Collection
     if @collection.form == 'collection'
@@ -112,21 +104,9 @@ def remove_game_search
     @success = true
   else
     #Notification:
-    collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
-    @message = "Game <span class='b'>does not belong</span> to " + collection_link
+    @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
-
-  respond_to do |format|
-    format.js
-  end
-end
-
-def move_game
-
-
-  respond_to do |format|
-    format.js
-  end
+  respond_to :js
 end
 
 private
@@ -134,6 +114,10 @@ private
   def collection_params
     params.require(:collection).permit(:name, :default, :custom_name,
      :needs_platform)
+  end
+
+  def coll_link(collection)
+    "<a class='c' data-remote='true' href='#{ collection_path(collection) }' >#{ collection.called }</a>"
   end
 
   def correct_user
