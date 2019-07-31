@@ -53,13 +53,13 @@
   <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
 </div>
 </div>
-<div class="g-menu">
+<div id="g-menu-<%= id %>" class="g-menu">
 <ul >
   <li>
-    <%= content_tag(:a, '', id: "gasd#{ id }", class: "uk-icon-link ", 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+    <%= content_tag(:a, '', id: "g-edit-#{ id }", class: "uk-icon-link ", 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
   </li>
   <li>
-    <%= content_tag(:a, '', id: "g-copy-#{ id }", class: "uk-icon-link ", 'uk-icon': 'copy', 'uk-tooltip' => "title: Move / Copy; pos: right") %>
+    <%= content_tag(:a, '', id: "g-copy-#{ id }", class: "uk-icon-link ", 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
   </li>
   <li>
     <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
@@ -69,7 +69,8 @@
 <script>
 moreInfo(<%= id %>);
 </script>
-<div id="copy-form-<%= id %>" class="add-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; pos: right-top; delay-hide: 100; ">
-<button class="uk-dropdown-close add-form-close" type="button" uk-close></button>
+
+<div id="copy-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
 <%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
 </div>
+

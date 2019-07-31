@@ -5,12 +5,12 @@ function updatePlatformIcon(form_type, id) {
 
     $(select_element).on('input', function() {
         var value = $(select_element).val();
-        var icon = form + ' .platform-icon';
+        var icon = form + ' .cf-platform-icon';
         if (value.length > 0) {
-            $(icon).attr('class', 'platform-green');
+            $(icon).attr('class', 'cf-platform-green');
         } else {
-            icon = form + ' .platform-green';
-            $(icon).attr('class', 'platform-icon');
+            icon = form + ' .cf-platform-green';
+            $(icon).attr('class', 'cf-platform-icon');
         }
     });
 }
@@ -18,25 +18,25 @@ function updatePlatformIcon(form_type, id) {
 function activateForm(form_type, id) {
     var form = '#' + form_type + '-form-' + id;
     var select_element = form + ' #collection';
+    var icon = $(form + ' .cf-collection-icon');
     var platform_element = form + ' #platform-option';
     var needs_platform = form + ' #game_needs_platform';
-    var action_element= form + ' #cp-mv';
 
     $(select_element).on('input', function() {
         var value = $(select_element).val();
         var cv = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
 
         if (cv == true) {
-            $(action_element).show();
             $(platform_element).show();
+            icon.attr('class', 'cf-collection-green');
             $(needs_platform).attr('value', 'true');
         } else if (cv == false) {
-            $(action_element).show();
             $(platform_element).hide();
+            icon.attr('class', 'cf-collection-green');
             $(needs_platform).attr('value', 'false');
         } else {
             $(needs_platform).attr('value', 'false');
-            $(action_element).hide();
+            icon.attr('class', 'cf-collection-icon');
             $(platform_element).hide();
         }
     });
@@ -49,15 +49,15 @@ function moreInfo(id) {
 
     panel.click(function() {
         if (drop.is(':hidden')) {
+            hidee.show();
             drop.slideDown('fast');
         } else {
             drop.slideUp('fast');
         }
     });
-
-
     hidee.click(function() {
         if (drop.is(':visible')) {
+            hidee.hide();
             drop.slideUp('fast');
         }
     });
@@ -77,7 +77,7 @@ function shortSummary(id) {
 
 function resetFormErrors(form, game_id) {
 
-    var reset_elements = ['#collection', '#game_platform', '.physical', '.digital']
+    var reset_elements = ['#collection', '#game_platform', '.cf-physical', '.cf-digital','#copy_true', '#copy_false']
     var errors_place = '.add-form-errors';
     var element = '#' + form + '-form-' + game_id + ' ' + errors_place;
 
@@ -95,16 +95,18 @@ function preselectPlatform(id, platform) {
     var form = '#copy-form-' + id;
     var element = form + " #game_platform option[value^='" + platform + ",']";
     $(element).attr("selected","selected");
-    $(form + ' .platform-icon').attr('class', 'platform-green');
+    $(form + ' .cf-platform-icon').attr('class', 'cf-platform-green');
 }
 
 function changeButton(id) {
     var form = '#copy-form-' + id;
-    var element = form + " #cp-mv input[type='radio']";
-    var button = form + " .add-button";
+    var element = form + " .copy-move input[type='radio']";
+    var button = form + " .cf-add-button";
     $(element).on('input', function() {
         var selected = $(element + ":checked");
         if (selected.length > 0) {
+            $(form + ' .c-m').removeClass('chosen')
+            selected.parent().addClass('chosen');
             selected_val = selected.val();
         }
         b_name = eval(selected_val) ? 'Copy' : 'Move';
@@ -113,7 +115,7 @@ function changeButton(id) {
 }
 </script>
 
-<div class="uk-grid-small" uk-grid>
+<div class="uk-grid-collapse" uk-grid>
   <% collection.games.each do |game| %>
   <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
   <% end %>

@@ -1,6 +1,7 @@
 require 'net/https'
 
 module StaticPagesHelper
+  CHAR_LIMIT = 22
 
   def get_game_cover(game, width = 200)
     if cover = game[:cover]
@@ -119,6 +120,21 @@ module StaticPagesHelper
     end
 
     return results.present? ? results : false
+  end
+
+  def shorter_name(name)
+
+    words = name.split(' ')
+    i, count, short = 0, 0, []
+    while count <= CHAR_LIMIT && i < words.size
+      short << words[i]
+      count += words[i].size
+      i += 1
+    end
+
+    res = short.join(' ')
+    res += '...' if res.size < name.size
+    res
   end
 end
 

@@ -22,7 +22,7 @@ class GamesController < ApplicationController
           @collection.games << @game
           message(@game, true, false)
         rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in your collection'
+          @errors << 'Already in collection'
         end
 
       else
@@ -41,7 +41,7 @@ class GamesController < ApplicationController
           @collection.games << @game
           message(@game, false, false)
         rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in your collection'
+          @errors << 'Already in collection'
           message(@game, false, true) unless @form == 'custom'
         end
       else
@@ -101,7 +101,7 @@ class GamesController < ApplicationController
             @current.games.delete(@game_id)
           end
         rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in your collection'
+          @errors << 'Already in collection'
         end
       else
         game = Game.find_by(igdb_id: game_params[:igdb_id]).dup

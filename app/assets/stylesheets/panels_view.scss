@@ -1,3 +1,147 @@
+.copy-form {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #d2d2d2;
+    box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
+    min-width: 230px;
+
+    hr {
+        border-top: 2px solid #bababa;
+        margin: 0 0 20px 0;
+    }
+}
+
+[class*='uk-dropdown-right'] {
+    margin-left: 15px;
+}
+
+.cf-collection-icon svg rect {
+    stroke-width: 2.5;
+    stroke: $light_nt;
+}
+
+.cf-collection-green svg rect {
+    stroke-width: 2.5;
+    stroke: $dark_accent;
+}
+
+.cf-collection-icon + span, .cf-collection-green + span {
+    position: relative;
+    left: 5px;
+}
+
+.copy-move {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.cf-name {
+    padding-left: 10px;
+    float: right;
+}
+
+.c-m {
+    cursor: pointer;
+    color: $light_grey;
+    font-size: 14px;
+
+    input {
+        display: none;
+    }
+}
+
+.chosen {
+    font-size: 16px;
+    color: $dark_grey;
+    box-shadow: 0px 4px 0 0px #49ab8a;
+    padding-bottom: 13px;
+}
+
+.cf-add-button {
+    background: none;
+    font-size: 14px;
+    color: #999;
+    border: 2px solid #bababa;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+.cf-add-button:hover {
+    color: #666;
+    border: 2px solid #49ab8a;
+}
+
+.cf-add-button:focus {
+    outline: none;
+}
+
+#game_platform:hover + span .cf-platform-icon svg {
+    fill: $dark_grey;
+}
+
+#collection:hover + span .cf-collection-icon svg rect {
+    stroke: $dark_grey;
+}
+
+.cf-collection-icon svg rect {
+    transition: 0.15s ease-in-out;
+}
+
+.cf-platform-green svg {
+    fill: #49ab8a;
+}
+
+.cf-platform-icon svg {
+    fill: $light_grey;
+    transition: 0.15s ease-in-out;
+}
+
+.cf-platform-icon + span, .cf-platform-green + span {
+    position: relative;
+    left: 5px;
+}
+
+.cf-physical, .cf-digital {
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.cf-physical + svg, .cf-digital + svg {
+    cursor: pointer;
+    transition: 0.15s ease-in-out;
+    margin-right: 7px;
+}
+
+.cf-physical + svg path {
+    transition: 0.15s ease-in-out;
+    fill: $light_grey;
+}
+
+.cf-physical:hover + svg path {
+    fill: $dark_grey;
+}
+
+.cf-digital + svg {
+    fill: $light_grey;
+}
+
+.cf-digital:hover + svg {
+    fill: $dark_grey;
+}
+
+.cf-physical:checked + svg path {
+    fill: $dark_accent;
+}
+
+.cf-digital:checked + svg {
+    fill: $dark_accent;
+}
+
 .g-panel {
     position: relative;
     background: #d2d2d2;
@@ -5,6 +149,7 @@
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     padding: 10px 0px 10px 10px;
     z-index: 50;
+    margin-bottom: 15px;
 }
 
 .g-menu {
@@ -19,34 +164,32 @@
     border-radius: 0px 5px 5px 0px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     transition: all 0.3s ease-in-out;
+
     a {
-      color: #666;
+        color: $light_grey;
     }
 }
 
 .g-menu::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 5px;
-  border-right: 1px solid #999;
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    border-right: 1px solid $light_grey;
 }
 
 .g-menu ul {
     list-style: none;
-
-
     position: relative;
     left: -40px;
-transition: all 0.3s ease-in-out;
-
-
+    transition: all 0.3s ease-in-out;
     padding: 0px;
     margin: 0px;
     padding-left: 15px;
+
     li {
-      padding-top: 3px;
+        padding-top: 3px;
     }
 }
 
@@ -56,7 +199,7 @@ transition: all 0.3s ease-in-out;
 }
 
 .g-menu.out {
-  width: 45px;
+    width: 45px;
 }
 
 .g-hide {
@@ -96,7 +239,7 @@ transition: all 0.3s ease-in-out;
 .g-year {
     font-style: italic;
     font-size: 14px;
-    color: #666;
+    color: $dark_grey;
 }
 
 .g-by {

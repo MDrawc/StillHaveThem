@@ -1215,7 +1215,6 @@ hr.nav-bottom {
 .add-form {
     border-radius: 5px;
     background-color: #444444f7;
-    // box-shadow: -4px 5px 9px 0px #0000004a, inset 0px 0px 20px 0px #00000059;
     box-shadow: -4px 5px 9px 0px #0000004a;
     padding: 30px 15px 15px 15px;
     font-size: 14px;
@@ -1302,7 +1301,6 @@ button.uk-dropdown-close.uk-close.uk-icon {
 
 .collection-icon + span, .collection-green + span {
     position: relative;
-    top: 11px;
     left: 5px;
 }
 
@@ -1347,10 +1345,6 @@ button.uk-dropdown-close.uk-close.uk-icon {
 
 .physical:hover + svg path {
     fill: $lighter;
-}
-
-.physical:hover {
-    color: red;
 }
 
 .digital + svg {

@@ -1,26 +1,24 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
 <%= form_for(:game, url: copy_path, remote: true) do |f| %>
-
 <%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
-
+<div class="copy-move">
+<label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %><span class="checkmark"></span></label>
+<label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %><span class="checkmark"></span></label>
+<span class="cf-name"><%= shorter_name(game_name) %></span>
+</div>
+<hr>
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
         <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select collection') %>
         <span class="bigs">
-            <span class="collection-icon"><%= svg 'shelf_icon' %></span>
+            <span class="cf-collection-icon"><%= svg 'shelf_icon' %></span>
             <span></span>
         </span>
     </div>
 </div>
-
-<div id="cp-mv" class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid" style="display: none;">
-    <label><%= radio_button_tag 'copy', true, checked: true %>Copy</label>
-    <label><%= radio_button_tag 'copy', false %>Move</label>
-</div>
-
-<div id="platform-option" style="display: none">
+<div id="platform-option">
     <% if game[:platforms] %>
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
@@ -28,32 +26,31 @@
             <% if game[:platforms].size > 1 %>
             <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
             <span class='bigs'>
-                <span class="platform-icon"><%= svg 'platform_icon' %></span>
+                <span class="cf-platform-icon"><%= svg 'platform_icon' %></span>
                 <span></span>
             </span>
             <% else %>
             <%= f.select(:platform, platforms_for_select(game)) %>
             <span class='bigs'>
-                <span class="platform-green"><%= svg 'platform_icon' %></span>
+                <span class="cf-platform-green"><%= svg 'platform_icon' %></span>
                 <span></span>
             </span>
             <% end %>
         </div>
     </div>
-    <div class="uk-margin uk-grid-small uk-child-width-1-2 uk-grid">
+    <div class="uk-margin uk-grid-small uk-grid">
         <% physical = true %>
         <% physical = game.physical if collection.needs_platform %>
-        <label><%= f.radio_button(:physical, true, checked: physical, class: "physical") %><%= svg 'gamebox_icon' %> Physical</label>
-        <label><%= f.radio_button(:physical, false, checked: !physical, class: "digital") %><%= svg 'digital_icon' %> Digital</label>
+        <label><%= f.radio_button(:physical, true, checked: physical, class: "cf-physical") %><%= svg 'gamebox_icon' %> Physical</label>
+        <label><%= f.radio_button(:physical, false, checked: !physical, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
     <% else %>
     <p>You cant copy game with no platform to collection that needs platform
     will be fixed soon</p>
     <% end %>
 </div>
-<button name="button" type="submit" class="add-button">Copy</button><span class="add-form-errors"></span>
+<button name="button" type="submit" class="cf-add-button">Copy</button><span class="add-form-errors"></span>
 <% end %>
-
 <script>
     <% if collection.needs_platform %>
         preselectPlatform(<%= id %>, <%= game.platform %>)
