@@ -24,7 +24,15 @@ if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
 
     <% if !@copy || ( @current == @collection )%>
-      $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @current }) %>");
+    var ids = [];
+    var arr = $('.g-drop');
+    arr.each(function() {
+        if ($(this).attr('style') == 'display: block;') {
+            ids.push($(this).attr('id'));
+        }
+    });
+    $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @current }) %>");
+    ids.forEach(id => $('#' + id).show());
     <% end %>
 
 } else {

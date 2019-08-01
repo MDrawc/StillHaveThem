@@ -17,5 +17,13 @@ UIkit.notification({
 });
 
 <% if @success %>
+    var ids = [];
+    var arr = $('.g-drop');
+    arr.each(function() {
+      if ( $( this ).attr('style') == 'display: block;' ) {
+        ids.push($( this ).attr('id'));
+      }
+    });
     $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");
+    ids.forEach(id => $('#' + id).show());
 <% end %>

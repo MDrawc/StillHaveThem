@@ -65,9 +65,7 @@ def remove_game
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
 
-  respond_to do |format|
-    format.js
-  end
+  respond_to :js
 end
 
 def remove_game_search
