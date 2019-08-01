@@ -15,19 +15,11 @@
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
         <div uk-form-custom="target: > * > span:last-child">
-            <% if game[:platforms].size > 1 %>
-            <%= f.select(:platform, platforms_for_select(game)) %>
-            <span class='bigs'>
-                <span class="cf-platform-icon"><%= svg 'platform_icon' %></span>
-                <span></span>
-            </span>
-            <% else %>
             <%= f.select(:platform, platforms_for_select(game)) %>
             <span class='bigs'>
                 <span class="cf-platform-green"><%= svg 'platform_icon' %></span>
                 <span></span>
             </span>
-            <% end %>
         </div>
     </div>
     <div class="uk-margin uk-grid-small uk-grid">
@@ -43,11 +35,6 @@
 </div>
 <button name="button" type="submit" class="cf-add-button">Edit</button><span class="add-form-errors"></span>
 <% end %>
-
 <script>
-    <% if collection.needs_platform %>
-        preselectPlatform(<%= id %>, <%= game.platform %>)
-    <% end %>
-    updatePlatformIcon('copy', <%= id %>);
-    activateForm('copy', <%= id %>);
+    preselectPlatform('edit', <%= id %>, <%= game.platform %>)
 </script>

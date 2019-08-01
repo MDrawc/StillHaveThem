@@ -1,5 +1,5 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
-<%= form_for(:game, url: edit_path, remote: true) do |f| %>
+<%= form_for(:game, url: copy_move_path, remote: true) do |f| %>
 <%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
@@ -18,7 +18,8 @@
         </span>
     </div>
 </div>
-<div id="platform-option">
+<% disp = needs_platform ? 'box' : 'none' %>
+<div id="platform-option" style="display: <%= disp %>">
     <% if game[:platforms] %>
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
@@ -52,8 +53,8 @@
 <button name="button" type="submit" class="cf-add-button">Copy</button><span class="add-form-errors"></span>
 <% end %>
 <script>
-    <% if collection.needs_platform %>
-        preselectPlatform(<%= id %>, <%= game.platform %>)
+    <% if needs_platform %>
+        preselectPlatform('copy', <%= id %>, <%= game.platform %>)
     <% end %>
     changeButton(<%= id %>)
     updatePlatformIcon('copy', <%= id %>);

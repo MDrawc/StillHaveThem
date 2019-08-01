@@ -76,9 +76,8 @@ moreInfo(<%= id %>);
 </script>
 
 <div id="copy-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
-<%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
+<%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection, needs_platform: needs_platform } %>
 </div>
-
 <% if needs_platform %>
   <div id="edit-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
   <%= render partial: 'panels_view/edit_form', locals: { game: game, collection: collection } %>
