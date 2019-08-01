@@ -1,4 +1,5 @@
 <% id = game.id %>
+<% needs_platform = collection.needs_platform %>
 <div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
   <div id="g-click-<%= id %>" class="g-click"></div>
   <div class="thumb-c"><%= get_game_thumb(game) %>
@@ -10,7 +11,7 @@
     </h4>
     <%= content_tag(:p, 'by ' + game.developers.join(', '), class: 'g-by') if game.developers %>
   </div>
-  <% if collection.needs_platform %>
+  <% if needs_platform %>
   <div class="g-platforms">
     <div>
       <%= content_tag(:p, game.platform_name) %>
@@ -56,7 +57,11 @@
 <div id="g-menu-<%= id %>" class="g-menu">
 <ul >
   <li>
-    <%= content_tag(:a, '', id: "g-edit-#{ id }", class: "uk-icon-link ", 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+    <% if needs_platform %>
+      <%= content_tag(:a, '', id: "g-edit-#{ id }", class: 'uk-icon-link', 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+    <% else %>
+      <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+    <% end %>
   </li>
   <li>
     <%= content_tag(:a, '', id: "g-copy-#{ id }", class: "uk-icon-link ", 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
@@ -74,3 +79,8 @@ moreInfo(<%= id %>);
 <%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection } %>
 </div>
 
+<% if needs_platform %>
+  <div id="edit-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
+  <%= render partial: 'panels_view/edit_form', locals: { game: game, collection: collection } %>
+  </div>
+<% end %>

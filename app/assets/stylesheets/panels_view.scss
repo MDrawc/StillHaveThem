@@ -31,9 +31,15 @@
     left: 5px;
 }
 
-.copy-move {
+.action {
     margin-bottom: 10px;
     font-size: 16px;
+}
+
+
+.uk-icon-link.cf-disabled {
+    color: #afafaf;
+    cursor: initial;
 }
 
 .cf-name {

@@ -26,9 +26,12 @@
     </ul>
   </div>
   <script>
-  $( "#g-show-edit" ).click(function() {
-  $( ".g-menu" ).toggleClass('out');
+  var g_show = $( "#g-show-edit" );
+
+  g_show.click(function() {
+    $( ".g-menu" ).toggleClass('out');
   });
+
   </script>
   <% end %>
 </nav>

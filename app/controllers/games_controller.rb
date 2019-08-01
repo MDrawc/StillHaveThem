@@ -55,12 +55,47 @@ class GamesController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
-  def copy
+  def edit
+    @errors = []
+    @collection = current_user.collections.find(params[:current].to_i)
+    @game_id = params[:game_id].to_i
+    last_platform, last_physical = params[:last_platform], eval(params[:last_physical])
+
+    platform, platform_name = game_params[:platform].split(',')
+    game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
+
+    if game && (game.id == @game_id)
+      @errors << 'No changes detected'
+    elsif game
+      begin
+        @collection.games.delete(@game_id)
+        @collection.games << game
+        edit_message(last_platform, last_physical, game)
+      rescue ActiveRecord::RecordNotUnique
+        @errors << 'Already in collection'
+      end
+    else
+      game = Game.find_by(igdb_id: game_params[:igdb_id]).dup
+      game.platform, game.platform_name = platform, platform_name
+      game.physical = game_params[:physical]
+      game.needs_platform = true
+
+      if game.save
+        @collection.games.delete(@game_id)
+        @collection.games << game
+        edit_message(last_platform, last_physical, game)
+      else
+        @errors += game.errors.full_messages
+      end
+    end
+
+    respond_to :js
+  end
+
+  def copy_move
     @errors = []
     @game_id = params[:game_id]
     @copy = eval(params[:copy])
@@ -80,11 +115,6 @@ class GamesController < ApplicationController
         @current, @collection = current_user.collections.where(id: coll_ids).order(id: cord)
       end
 
-      puts "coll ids: #{coll_ids}"
-      puts "cord: #{cord}"
-      puts "current: #{@current}"
-      puts "collection: #{@collection}"
-
       if needs_plat = @collection.needs_platform
         platform, platform_name = game_params[:platform].split(',')
         game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
@@ -97,7 +127,6 @@ class GamesController < ApplicationController
           @collection.games << game
           message(game, needs_plat, false, p_verb)
           unless @copy
-            puts 'removing found' + ' *' * 100
             @current.games.delete(@game_id)
           end
         rescue ActiveRecord::RecordNotUnique
@@ -120,7 +149,6 @@ class GamesController < ApplicationController
           @collection.games << game
 
           unless @copy
-            puts 'removing new' + ' *' * 100
             @current.games.delete(@game_id)
           end
 
@@ -129,9 +157,7 @@ class GamesController < ApplicationController
         end
       end
     end
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   private
@@ -161,5 +187,11 @@ class GamesController < ApplicationController
           " <span class='b'>already belongs</span> to " + collection_link
         end
       end
+    end
+
+    def edit_message(last_platform, last_physical, game)
+      @message = "<span class='g'>Edited</span> #{ game.name }: " +
+      "<span class='d'>(#{ last_platform}, #{ last_physical ? 'Physical' : 'Digital'})</span> -> " +
+      "<span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>"
     end
 end

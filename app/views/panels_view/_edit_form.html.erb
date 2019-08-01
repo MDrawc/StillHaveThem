@@ -2,29 +2,21 @@
 <%= form_for(:game, url: edit_path, remote: true) do |f| %>
 <%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>
+<%= hidden_field_tag :last_platform, game.platform_name %>
+<%= hidden_field_tag :last_physical, game.physical %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 <div class="action">
-<label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %><span class="checkmark"></span></label>
-<label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %><span class="checkmark"></span></label>
+<label class="c-m chosen">Edit</span></label>
 <span class="cf-name"><%= shorter_name(game_name) %></span>
 </div>
 <hr>
-<div class="select-collection">
-    <div uk-form-custom="target: > * > span:last-child">
-        <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select collection') %>
-        <span class="bigs">
-            <span class="cf-collection-icon"><%= svg 'shelf_icon' %></span>
-            <span></span>
-        </span>
-    </div>
-</div>
 <div id="platform-option">
     <% if game[:platforms] %>
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
         <div uk-form-custom="target: > * > span:last-child">
             <% if game[:platforms].size > 1 %>
-            <%= f.select(:platform, platforms_for_select(game), include_blank: 'Select platform') %>
+            <%= f.select(:platform, platforms_for_select(game)) %>
             <span class='bigs'>
                 <span class="cf-platform-icon"><%= svg 'platform_icon' %></span>
                 <span></span>
@@ -45,17 +37,17 @@
         <label><%= f.radio_button(:physical, false, checked: !physical, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
     <% else %>
-    <p>You cant copy/move game with no platform to collection that needs platform
+    <p>You cant edit game with no platform to collection that needs platform
     will be fixed soon</p>
     <% end %>
 </div>
-<button name="button" type="submit" class="cf-add-button">Copy</button><span class="add-form-errors"></span>
+<button name="button" type="submit" class="cf-add-button">Edit</button><span class="add-form-errors"></span>
 <% end %>
+
 <script>
     <% if collection.needs_platform %>
         preselectPlatform(<%= id %>, <%= game.platform %>)
     <% end %>
-    changeButton(<%= id %>)
     updatePlatformIcon('copy', <%= id %>);
     activateForm('copy', <%= id %>);
 </script>

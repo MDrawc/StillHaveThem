@@ -1,0 +1,33 @@
+var game_id = '<%= @game_id %>'
+var msg = '<%= @message %>';
+var msg_pos = 'top-right';
+var success = <%= @errors.empty? %>;
+
+// Notifications position depends on offcanvas position
+if ($('.uk-offcanvas-container').length) {
+    var offc_class = $('.uk-offcanvas-container').attr('class');
+
+    if (offc_class.includes('uk-offcanvas-flip')) {
+        msg_pos = 'top-left';
+    }
+}
+
+if (msg) {
+    UIkit.notification({
+        message: $('<div/>').html(msg).text(),
+        pos: msg_pos,
+        timeout: 5000
+    });
+}
+
+if (success) {
+    UIkit.dropdown("#copy-form-" + game_id).hide();
+
+    <% if !@copy || ( @current == @collection )%>
+      $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @current }) %>");
+    <% end %>
+
+} else {
+    $("#copy-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+    resetFormErrors('copy', game_id);
+}

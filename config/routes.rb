@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  post 'copy', to: 'games#copy'
+  post 'copy_move', to: 'games#copy_move'
+  post 'edit', to: 'games#edit'
 
   resources :users, only: [:create, :edit, :update, :destroy]
   resources :collections, except: :index

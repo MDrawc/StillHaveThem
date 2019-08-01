@@ -92,7 +92,7 @@ function resetFormErrors(form, game_id) {
 }
 
 function preselectPlatform(id, platform) {
-    var form = '#copy-form-' + id;
+    var form = '#edit-form-' + id;
     var element = form + " #game_platform option[value^='" + platform + ",']";
     $(element).attr("selected","selected");
     $(form + ' .cf-platform-icon').attr('class', 'cf-platform-green');
@@ -100,7 +100,7 @@ function preselectPlatform(id, platform) {
 
 function changeButton(id) {
     var form = '#copy-form-' + id;
-    var element = form + " .copy-move input[type='radio']";
+    var element = form + " .action input[type='radio']";
     var button = form + " .cf-add-button";
     $(element).on('input', function() {
         var selected = $(element + ":checked");
