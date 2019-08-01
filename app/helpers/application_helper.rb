@@ -10,4 +10,8 @@ module ApplicationHelper
     '(not found)'
   end
 
+  def edit_open
+    return true if cookies[:edit_open] == 'true'
+  end
+
 end

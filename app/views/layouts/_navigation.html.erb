@@ -10,9 +10,10 @@
   <% if logged_in? %>
   <div class="uk-navbar-right">
     <ul class="uk-navbar-nav">
-      <li><div id="" class="uk-navbar-item nav-but">Hide Overlays</div></li>
+      <li><div id="" class="uk-navbar-item nav-but" style="display: none">Hide Overlays</div></li>
+      <% extra = 'active' if edit_open %>
+      <li><div id="g-show-edit" class="uk-navbar-item nav-but <%= extra %>">Show Options</div></li>
       <li><div id="" class="uk-navbar-item nav-but">Change View</div></li>
-      <li><div id="g-show-edit" class="uk-navbar-item nav-but">Show Options</div></li>
       <li><div class="uk-navbar-item nav-but">Dark Theme</div></li>
       <li>
         <a href="#" class="user"><%= current_user.email  %></a>
@@ -26,12 +27,21 @@
     </ul>
   </div>
   <script>
-  var g_show = $( "#g-show-edit" );
-
+  function toggleEditMenu() {
+  var g_show = $("#g-show-edit");
   g_show.click(function() {
-    $( ".g-menu" ).toggleClass('out');
+  if ($(".g-menu").hasClass("out")) {
+  $(".g-menu").removeClass('out');
+  g_show.removeClass('active');
+  Cookies.set("edit_open", "false");
+  } else {
+  $(".g-menu").addClass('out');
+  g_show.addClass('active');
+  Cookies.set("edit_open", "true");
+  }
   });
-
+  }
+  toggleEditMenu();
   </script>
   <% end %>
 </nav>

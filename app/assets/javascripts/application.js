@@ -14,10 +14,10 @@
 //
 //= require jquery3
 //= require textFit
+//= require js-cookie
 //= require "uikit"
 //= require uikit/uikit-icons.js
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-

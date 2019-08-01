@@ -80,6 +80,8 @@ body::-webkit-scrollbar {
 
 .nav-but:hover { color: $dark_grey; }
 
+.nav-but.active { color: $dark_accent; }
+
 // FOOTER
 footer {
     position: absolute;

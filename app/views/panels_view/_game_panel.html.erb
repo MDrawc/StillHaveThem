@@ -54,7 +54,8 @@
   <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
 </div>
 </div>
-<div id="g-menu-<%= id %>" class="g-menu">
+<% extra = 'out' if edit_open %>
+<div id="g-menu-<%= id %>" class="g-menu <%= extra %>">
 <ul >
   <li>
     <% if needs_platform %>
