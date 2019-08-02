@@ -29,7 +29,8 @@
           <ul class="uk-slideshow-items pd-slide-items">
             <% urls.each do |url| %>
             <li>
-              <%= image_tag('', 'data-src' => url[:small], alt: game.name, 'uk-cover': '', 'uk-img': '') %>
+              <div class="spinner g-spin"><%= svg 'loading' %></div>
+              <%= image_tag('', 'data-src' => url[:small], alt: '', 'uk-cover': '', 'uk-img': '') %>
               <%= content_tag(:a, (svg 'full'), href: url[:big], class: 'full-scrn') %>
               <div class="shadow"></div>
             </li>

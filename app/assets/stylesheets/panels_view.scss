@@ -26,6 +26,18 @@
     stroke: $dark_accent;
 }
 
+.spinner.g-spin {
+    width: 40px;
+    top: 50%;
+    margin-top: -20px;
+    left: 50%;
+    margin-left: -20px;
+}
+
+.spinner.g-spin svg {
+    fill: $dark_grey;
+}
+
 .cf-collection-icon + span, .cf-collection-green + span {
     position: relative;
     left: 5px;
@@ -217,6 +229,7 @@
 .thumb-c {
     position: relative;
     max-height: 70px;
+    background: #bdbdbd;
 }
 
 .game-thumb {
@@ -297,13 +310,13 @@
     transition: color 0.1s ease-in-out;
 
     svg {
-        width: 30px;
+        width: 35px;
     }
 }
 
 .full-scrn svg path {
     stroke: #ffffffa3;
-    stroke-width: 4;
+    stroke-width: 4.8;
 }
 
 .full-scrn:hover svg path {
@@ -341,12 +354,18 @@
 
 .pd-slide-items {
     border-radius: 3px;
+    li { background: #bdbdbd; }
 }
 
 .pd-arr {
     display: none;
     color: #ffffffa3;
     z-index: 200;
+}
+
+.pd-arr svg {
+    height: 30px;
+    width: auto;
 }
 
 .pd-arr:focus {
