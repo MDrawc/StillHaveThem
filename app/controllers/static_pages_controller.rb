@@ -17,22 +17,25 @@ class StaticPagesController < ApplicationController
   end
 
   def search_page
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   def search
     if params[:search] #First time search:
       @inquiry = IgdbQuery.new(params[:search])
+
       if @inquiry.validate!
         @inquiry.search
-        @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
-        prepare_user_collections(current_user) if @inquiry.results.present?
+        if @inquiry.results.present?
+          @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
+          prepare_user_collections(current_user)
+        end
       end
+
       respond_to do |format|
         format.js { render partial: "quest" }
       end
+
     elsif params[:last_query] #Load more:
       @inquiry = IgdbQuery.new(nil,
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
@@ -40,11 +43,15 @@ class StaticPagesController < ApplicationController
 
       @inquiry.search
       @inquiry.fix_duplicates(@@last_result_ids)
-      @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
-      prepare_user_collections(current_user) if @inquiry.results.present?
+      if @inquiry.results.present?
+        @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
+        prepare_user_collections(current_user)
+      end
+
       respond_to do |format|
         format.js { render partial: "load_more" }
       end
+
     end
   end
 
