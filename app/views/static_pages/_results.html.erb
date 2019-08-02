@@ -1,4 +1,4 @@
-<% if @inquiry.results %>
+<% if @inquiry.results.present? %>
   <%= render 'cover_view/cover_view' %>
   <% if @inquiry.is_more? %>
   <div id="show-more">
@@ -24,13 +24,11 @@
     <p>Try using "*" for searching (example: *shadd* > El Shaddai: Ascension of the Metatron)</p>
   </div>
 <% end %>
-
 <div class="scroll-up">
   <a class="scroll-up-button" href="#target"
     uk-icon="icon: arrow-up; ratio: 1.5"
   uk-scroll="duration: 600" style="display: none"></a>
 </div>
-
 <script>
 // Define scroll-up-button position
 if ($('body').hasClass('uk-offcanvas-flip')) {

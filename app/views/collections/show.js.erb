@@ -1,3 +1,3 @@
-$("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");
 $(".m-m").removeClass('active')
 $("#m-<%= @collection.id %>").addClass('active')
+$("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");

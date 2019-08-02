@@ -68,6 +68,7 @@ class IgdbQuery
 
   def initialize(obj = nil, offset = 0, query = nil)
     @errors = ActiveModel::Errors.new(self)
+    @results = []
     @response_size = 0
 
     puts '>> [ Initializing ]'
@@ -234,7 +235,6 @@ class IgdbQuery
 
     def initial_search
       puts '>> [ Initial Search ]'
-
       case @query_type
       when :game
         results = request(@query[:endpoint], "f id; #{ @query[:body] }")
@@ -242,7 +242,7 @@ class IgdbQuery
           @games_ids = results.map { |g| g['id']}
         end
       when :dev
-        results = request(@query[:endpoint], "f developed; #{ @query[:body] }")
+        results = request(@query[:endpoint], "f name, developed; #{ @query[:body] }")
         if results.present?
           @games_ids = results.map { |d| d['developed']}.flatten.compact
           @addl = get_addl(results)
@@ -254,10 +254,10 @@ class IgdbQuery
           @addl = get_addl(results)
         end
       end
-
-      puts ">> Received games ids: #{ @games_ids.inspect }"
-      puts ">> Received additional info: #{ @addl.inspect }"
-      puts ">> Additional info's size: #{ @addl.size }"
+      print ">> Received #{ @games_ids.size } games ids: "
+      puts @games_ids.inspect
+      puts ">> Response size: #{ @response_size }"
+      puts ">> Additional info's size: #{ @addl.size }" if @addl
     end
 
     def save_query
@@ -275,6 +275,7 @@ class IgdbQuery
       when :char then key = 'games'
       end
 
+      addl = []
       results.each do |c|
           c[key].size.times { addl << c['name'] } if c[key]
       end
@@ -302,7 +303,6 @@ class IgdbQuery
       @results = res.as_json.map(&:symbolize_keys)
 
       if res.size == @games_ids.size
-        @response_size = @results.size
 
         unless @query_type == :game
           @results = add_addl_to_games(@results)
@@ -332,8 +332,6 @@ class IgdbQuery
         @addl = get_addl(results)
         results = convert_to_games(results)
       end
-
-      @response_size = results.size
 
       puts ">> Received #{ @response_size } results."
 
@@ -379,14 +377,15 @@ class IgdbQuery
       res_to_h = @results.map { |g| g.except(:id, :created_at, :updated_at) }
       to_update = already_exists - res_to_h
 
-      update_ids = to_update.map do |u|
-        results.select {|g| g[:igdb_id] == u[:igdb_id] }.first[:id]
-      end
-
       puts ">> Converted games: #{ converted.map { |g| g[:name] } }"
       puts ">> Already existing games: #{ already_exists.map { |g| g[:name] } }"
       puts ">> New games: #{ new_games.map { |g| g[:name] } }"
       puts ">> Games that needs update: #{ to_update.map { |g| g[:name] } }"
+
+      update_ids = to_update.map do |u|
+        @results.select { |g| g[:igdb_id] == u[:igdb_id] }.first[:id]
+      end
+
       puts ">> Games that needs update - ids: #{ update_ids }"
 
       puts ">> Saving #{new_games.size} new games"
@@ -415,11 +414,10 @@ class IgdbQuery
       puts ">> Full request: #{ request.body }"
       begin
         results = JSON.parse http.request(request).body
-        puts ">> Received #{ results.size } records"
-        puts ">> First result: #{ results.first }"
         rescue JSON::ParserError
           results = []
       end
+      @response_size = results.size
       return results
     end
 
