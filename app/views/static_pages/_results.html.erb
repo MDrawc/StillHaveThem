@@ -13,8 +13,8 @@
   </div>
   <% else %>
   <% if status = @inquiry.status_id == 2 %>
-  <div>
-    <p>I can't show you more, try to be more precise.</p>
+  <div class="no-more">
+    <button class="cf-add-button" uk-scroll>Can't show you more. Try being more precise.</button>
   </div>
   <% end %>
   <% end %>
