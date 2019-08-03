@@ -20,4 +20,7 @@ Rails.application.routes.draw do
 
   delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
   delete '/remove_s/:game_id/:collection_id/:id_type', to: 'collections#remove_game_search', as: 'remove_s'
+
+  get 'edit_form/:game_id/:collection_id', to: 'games#edit_form', as: 'edit_form'
+  get 'cm_form/:game_id/:collection_id', to: 'games#cm_form', as: 'cm_form'
 end

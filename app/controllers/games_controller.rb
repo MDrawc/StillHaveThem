@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :require_user
+  before_action :find_game_and_collection, only: [:edit_form, :cm_form]
 
   def create
     @errors = []
@@ -55,6 +56,14 @@ class GamesController < ApplicationController
       end
     end
 
+    respond_to :js
+  end
+
+  def edit_form
+    respond_to :js
+  end
+
+  def cm_form
     respond_to :js
   end
 
@@ -161,10 +170,14 @@ class GamesController < ApplicationController
   end
 
   private
-
     def game_params
       params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
        :status, :category, :needs_platform, :platform, :physical, :cover, :cover_width, :cover_height, platforms: [], platforms_names: [], developers: [], screenshots: [])
+    end
+
+    def find_game_and_collection
+      @collection = current_user.collections.find_by_id(params[:collection_id])
+      @game = @collection.games.find_by_id(params[:game_id])
     end
 
     def message(game, needs_platform = true, duplicate = false, p_verb = 'added')

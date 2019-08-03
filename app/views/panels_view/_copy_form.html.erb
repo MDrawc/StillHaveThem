@@ -1,4 +1,5 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
+<% needs_platform = collection.needs_platform %>
 <%= form_for(:game, url: copy_move_path, remote: true) do |f| %>
 <%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>

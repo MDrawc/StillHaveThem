@@ -60,13 +60,13 @@
 <ul >
   <li>
     <% if needs_platform %>
-      <%= content_tag(:a, '', id: "g-edit-#{ id }", class: 'uk-icon-link', 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+    <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
     <% else %>
-      <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+    <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
     <% end %>
   </li>
   <li>
-    <%= content_tag(:a, '', id: "g-copy-#{ id }", class: "uk-icon-link ", 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
+    <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
   </li>
   <li>
     <%= link_to('', remove_url(game_id: id, collection_id: collection.id, id_type: 'id'), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
@@ -76,12 +76,11 @@
 <script>
 moreInfo(<%= id %>);
 </script>
-
 <div id="copy-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
-<%= render partial: 'panels_view/copy_form', locals: { game: game, collection: collection, needs_platform: needs_platform } %>
+Loading...
 </div>
 <% if needs_platform %>
-  <div id="edit-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
-  <%= render partial: 'panels_view/edit_form', locals: { game: game, collection: collection } %>
-  </div>
+<div id="edit-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
+Loading...
+</div>
 <% end %>
