@@ -1,1 +1,3 @@
+$(".m-m").removeClass('active');
+$("#m-<%= @collection.id %>").addClass('active');
 $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");

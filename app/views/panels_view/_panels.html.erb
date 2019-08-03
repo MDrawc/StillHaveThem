@@ -31,8 +31,10 @@ function shortSummary(id) {
     }
 }
 </script>
+
 <div class="uk-grid-collapse" uk-grid>
   <% collection.games.each do |game| %>
   <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
   <% end %>
 </div>
+
