@@ -42,7 +42,8 @@ class StaticPagesController < ApplicationController
                  eval(params[:last_query]))
 
       @inquiry.search
-      @inquiry.fix_duplicates(@@last_result_ids)
+      @inquiry.fix_duplicates(@@last_result_ids) unless @inquiry.query_type == :game
+
       if @inquiry.results.present?
         @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
         prepare_user_collections(current_user)

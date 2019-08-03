@@ -2,7 +2,7 @@ require 'net/https'
 
 class IgdbQuery
   extend ActiveModel::Naming
-  attr_reader :errors, :input, :query, :offset, :results
+  attr_reader :errors, :input, :query, :query_type, :offset, :results
 
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
@@ -110,7 +110,7 @@ class IgdbQuery
       puts ">> Erotic: #{ @erotic }"
       puts ">> Only released: #{ @only_released }"
     else
-      puts ">> Using query (load more feature): #{ @query.inspect }"
+      puts ">> Using query (load more feature): #{ query.inspect }"
       @query = change_offset(query, @offset)
       case @query[:endpoint]
       when 'games' then @query_type = :game
