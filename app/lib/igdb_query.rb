@@ -297,8 +297,8 @@ class IgdbQuery
       # Finds stored in DB games (ignores duplicates):
       res = Agame.where(igdb_id: @games_ids)
 
-      # Recreate duplicates (needed in character search):
-      if @query_type == :char
+      # Sort but also recreate duplicates (needed in character search):
+      unless @query_type == :game
         res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
       end
 
@@ -356,11 +356,15 @@ class IgdbQuery
           c[:cover] = g['cover']['image_id']
           c[:cover_height] = g['cover']['height']
           c[:cover_width]= g['cover']['width']
+        else
+          c[:cover], c[:cover_height], c[:cover_width] = nil
         end
         if g['platforms']
           c[:platforms] = g['platforms'].map { |platform| platform['id'] }
           c[:platforms_names] = g['platforms'].map { |platform| platform['name'] }
           c[:platforms_categories] = g['platforms'].map { |platform| platform['category'] }
+        else
+          c[:platforms], c[:platforms_names], c[:platforms_categories] = nil
         end
         c[:developers] = convert_devs(g)
         c[:screenshots] = convert_screenshots(g)
@@ -386,7 +390,6 @@ class IgdbQuery
       end
 
       puts ">> Games that needs update - ids: #{ update_ids }"
-
       puts ">> Saving #{new_games.size} new games"
       Agame.create(new_games)
 
