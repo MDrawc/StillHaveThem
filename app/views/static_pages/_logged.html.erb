@@ -1,5 +1,6 @@
-<%= render partial: 'panels_view/my_games_panels', locals: { collection: @home_collection } %>
 <script>
   $(".m-coll").removeClass('active')
   $("#m-<%= @home_collection.id %>").addClass('active')
 </script>
+<%= render partial: 'panels_view/panels', locals: { collection: @home_collection } %>
+

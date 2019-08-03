@@ -24,4 +24,9 @@
 UIkit.util.on('#create-coll-modal', 'hide', function() {
 $('#m-add-coll').removeClass('active')
 });
+
+$('.m-coll').click(function() {
+  $(".m-m").removeClass('active')
+  $(this).addClass('active')
+});
 </script>
