@@ -1426,15 +1426,15 @@ span.add-form-errors {
     }
 }
 
-.arrow-left a, .arrow-right a {
+.arrow-left a svg, .arrow-right a svg {
     transition: all 0.15s ease-out;
 }
 
-.arrow-left a:active {
+.arrow-left a:active svg {
     transform: translateX(-5px);
 }
 
-.arrow-right a:active {
+.arrow-right a:active svg {
     transform: translateX(5px);
 }
 
