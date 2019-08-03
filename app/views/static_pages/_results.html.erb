@@ -5,8 +5,8 @@
     <%= form_tag("/search_games", method: :get, remote: true) do %>
     <%= hidden_field_tag :last_query, @inquiry.query %>
     <%= hidden_field_tag :last_offset, @inquiry.offset %>
-    <%= submit_tag "Load more...",
-    class: "uk-button uk-button-default md-button",
+    <%= submit_tag "Load more",
+    class: "cf-add-button",
     data: { disable_with: "Please wait..." } %>
     <% end %>
   </div>

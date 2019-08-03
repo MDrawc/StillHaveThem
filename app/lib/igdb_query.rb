@@ -221,6 +221,7 @@ class IgdbQuery
           puts '>> Query is considered actual. Copying results(games ids).'
           @games_ids = ancestor.results if ancestor.results
           @addl = ancestor.addl if ancestor.addl
+          @response_size = ancestor.response if ancestor.response
           return true
         else
           puts '>> Query is too old and will be deleted.'
@@ -254,7 +255,7 @@ class IgdbQuery
           @addl = get_addl(results)
         end
       end
-      print ">> Received #{ @games_ids.size } games ids: "
+      print ">> Received #{ @games_ids.size } games ids: " if @games_ids
       puts @games_ids.inspect
       puts ">> Response size: #{ @response_size }"
       puts ">> Additional info's size: #{ @addl.size }" if @addl
@@ -265,6 +266,7 @@ class IgdbQuery
       query = Query.new(@query)
       query.results = @games_ids
       query.addl = @addl unless @query_type == :game
+      query.response = @response_size
       puts '>> Query saved successfully.' if query.save
     end
 
@@ -292,10 +294,10 @@ class IgdbQuery
     def compose_results
       puts '>> [ Composing Results ]'
 
-      # Finds stored in DB games (ignores duplicates).
+      # Finds stored in DB games (ignores duplicates):
       res = Agame.where(igdb_id: @games_ids)
 
-      # Recreate duplicates (needed in character search).
+      # Recreate duplicates (needed in character search):
       if @query_type == :char
         res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
       end
@@ -303,16 +305,13 @@ class IgdbQuery
       @results = res.as_json.map(&:symbolize_keys)
 
       if res.size == @games_ids.size
-
         unless @query_type == :game
           @results = add_addl_to_games(@results)
           @results = post_filters(@results)
         end
-
         puts '>> DB have all the games. Searching IGDB unnecessary.'
       else
         @missing_games = @games_ids - res.map { |g| g[:igdb_id] }
-
         puts ">> DB is missing games(igdb_id): #{ @missing_games }"
         puts '>> Searching IGDB for full set of information is necessary.'
       end
