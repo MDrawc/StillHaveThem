@@ -36,8 +36,8 @@ class StaticPagesController < ApplicationController
         format.js { render partial: "quest" }
       end
 
-    elsif params[:last_query] #Load more:
-      @inquiry = IgdbQuery.new(nil,
+    elsif params[:last_form] #Load more:
+      @inquiry = IgdbQuery.new(eval(params[:last_form]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
                  eval(params[:last_query]))
 

@@ -3,6 +3,7 @@
   <% if @inquiry.is_more? %>
   <div id="show-more">
     <%= form_tag("/search_games", method: :get, remote: true) do %>
+    <%= hidden_field_tag :last_form, @inquiry.last_form %>
     <%= hidden_field_tag :last_query, @inquiry.query %>
     <%= hidden_field_tag :last_offset, @inquiry.offset %>
     <%= submit_tag "Load more",

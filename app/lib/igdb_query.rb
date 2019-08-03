@@ -2,7 +2,7 @@ require 'net/https'
 
 class IgdbQuery
   extend ActiveModel::Naming
-  attr_reader :errors, :input, :query, :query_type, :offset, :results
+  attr_reader :errors, :input, :query, :query_type, :offset, :results, :last_form
 
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 150
@@ -77,27 +77,7 @@ class IgdbQuery
       @query_type = obj['query_type'].to_sym
       @input = obj['inquiry']
       @fixed_input, @type = analyze_input(@input)
-      @platforms = obj.slice('console',
-                             'arcade',
-                             'portable',
-                             'pc',
-                             'linux',
-                             'mac',
-                             'mobile',
-                             'computer',
-                             'other')
-
-      @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
-
-      @categories = obj.slice('dlc',
-                             'expansion',
-                             'bundle',
-                             'standalone')
-
-      @categories.each { |k, v| @categories[k] = !(v.to_i.zero?) }
-
-      @erotic = !(obj['erotic'].to_i.zero?)
-      @only_released = !(obj['only_released'].to_i.zero?)
+      setup(obj)
       @where, @search , @sort  = '', '', ''
 
       puts ">> Using input: #{ @input }"
@@ -117,6 +97,7 @@ class IgdbQuery
       when 'companies' then @query_type = :dev
       when 'characters' then @query_type = :char
       end
+      setup(obj) unless @query_type == :game
       puts ">> New query: #{ @query.inspect }"
     end
   end
@@ -172,6 +153,29 @@ class IgdbQuery
   end
 
   private
+    def setup(obj)
+      @last_form = obj
+      @platforms = obj.slice('console',
+                             'arcade',
+                             'portable',
+                             'pc',
+                             'linux',
+                             'mac',
+                             'mobile',
+                             'computer',
+                             'other')
+
+      @platforms.each { |k, v| @platforms[k] = !(v.to_i.zero?) }
+      @categories = obj.slice('dlc',
+                             'expansion',
+                             'bundle',
+                             'standalone')
+
+      @categories.each { |k, v| @categories[k] = !(v.to_i.zero?) }
+      @erotic = !(obj['erotic'].to_i.zero?)
+      @only_released = !(obj['only_released'].to_i.zero?)
+    end
+
     def change_offset(query, offset)
       puts '>> [ Changing Offset ]'
       query[:body].sub!("offset #{ @offset - RESULT_LIMIT }", "offset #{ @offset }")
