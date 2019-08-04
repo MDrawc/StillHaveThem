@@ -69,10 +69,13 @@ class GamesController < ApplicationController
 
   def edit
     @errors = []
-    @collection = current_user.collections.find(params[:current].to_i)
+    collection_id = params[:current].to_i
+    @collection = current_user.collections.find(collection_id)
     @game_id = params[:game_id].to_i
-    last_platform, last_physical = params[:last_platform], eval(params[:last_physical])
 
+    created_at = CollectionGame.find_by(collection_id: collection_id, game_id: @game_id).created_at
+
+    last_platform, last_physical = params[:last_platform], eval(params[:last_physical])
     platform, platform_name = game_params[:platform].split(',')
     game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
 
@@ -82,6 +85,12 @@ class GamesController < ApplicationController
       begin
         @collection.games.delete(@game_id)
         @collection.games << game
+
+        new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
+        new_rec.created_at = created_at
+        new_rec.save
+
+
         edit_message(last_platform, last_physical, game)
       rescue ActiveRecord::RecordNotUnique
         @errors << 'Already in collection'
@@ -95,6 +104,11 @@ class GamesController < ApplicationController
       if game.save
         @collection.games.delete(@game_id)
         @collection.games << game
+
+        new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
+        new_rec.created_at = created_at
+        new_rec.save
+
         edit_message(last_platform, last_physical, game)
       else
         @errors += game.errors.full_messages

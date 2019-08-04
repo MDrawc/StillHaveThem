@@ -21,16 +21,20 @@ if (msg) {
 }
 
 if (success) {
-    UIkit.dropdown("#edit-form-" + game_id).hide();
-    var ids = [];
-    var arr = $('.g-drop');
-    arr.each(function() {
-        if ($(this).attr('style') == 'display: block;') {
-            ids.push($(this).attr('id'));
-        }
-    });
-    $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @collection }) %>");
-    ids.forEach(id => $('#' + id).show());
+
+    if ($('em.current').length == 0) {
+        $.ajax({ url: '/collections/<%= @collection.id %>' });
+    } else {
+        var current_page = $('em.current').text();
+
+        $.ajax({
+            url: '/collections/<%= @collection.id %>',
+            data: {
+                page: current_page
+            }
+        });
+    }
+
 } else {
     $("#edit-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors('edit', game_id);
