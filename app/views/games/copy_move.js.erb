@@ -22,17 +22,35 @@ if (msg) {
 
 if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
-
-    <% if !@copy || ( @current == @collection )%>
-    var ids = [];
-    var arr = $('.g-drop');
-    arr.each(function() {
-        if ($(this).attr('style') == 'display: block;') {
-            ids.push($(this).attr('id'));
+    <% if @current == @collection %>
+        if ($('em.current').length == 0) {
+            $.ajax({ url: '/collections/<%= @current.id %>' });
+        } else {
+            var current_page = $('em.current').text();
+            $.ajax({
+                url: '/collections/<%= @current.id %>',
+                data: {
+                    page: current_page
+                }
+            });
         }
-    });
-    $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/my_games_panels', locals: { collection: @current }) %>");
-    ids.forEach(id => $('#' + id).show());
+    <% elsif !@copy %>
+        if ($('em.current').length == 0) {
+            $.ajax({ url: '/collections/<%= @current.id %>' });
+        } else {
+            var current_page = $('em.current').text();
+            var num_of_games = $('.g-panel').length;
+            if (num_of_games == 1) {
+                current_page -= 1;
+            }
+
+            $.ajax({
+                url: '/collections/<%= @current.id %>',
+                data: {
+                    page: current_page
+                }
+            });
+        }
     <% end %>
 
 } else {
