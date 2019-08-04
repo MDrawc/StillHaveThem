@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
-
 # Rails
 gem 'rails', '~> 5.2.3'
 # Bcrypt for users passwords
@@ -22,6 +21,8 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Will paginate
+gem 'will_paginate', '~> 3.1', '>= 3.1.7'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views

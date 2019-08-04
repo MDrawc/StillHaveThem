@@ -9,6 +9,7 @@ def new
 end
 
 def show
+  @games = @collection.games.paginate(page: params[:page], per_page: 3)
   respond_to :js
 end
 
@@ -21,7 +22,6 @@ def create
   else
     @message = "<span class='b'>Could not</span> create collection"
   end
-
   respond_to :js
 end
 

@@ -32,8 +32,10 @@ function shortSummary(id) {
 }
 </script>
 
+<%= js_will_paginate @games %>
+
 <div class="uk-grid-collapse" uk-grid>
-  <% collection.games.each do |game| %>
+  <% @games.each do |game| %>
   <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
   <% end %>
 </div>
