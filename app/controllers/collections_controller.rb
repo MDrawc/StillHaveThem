@@ -10,6 +10,8 @@ end
 
 def show
   @games = @collection.games.paginate(page: params[:page], per_page: 3)
+  @refresh = params[:type] == 'refresh'
+
   respond_to :js
 end
 

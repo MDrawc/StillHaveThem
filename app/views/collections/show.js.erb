@@ -1,3 +1,19 @@
 $(".m-m").removeClass('active');
 $("#m-<%= @collection.id %>").addClass('active');
+
+var refresh = eval('<%= @refresh %>')
+if (refresh) {
+  var ids = [];
+  var arr = $('.g-drop');
+  arr.each(function() {
+      if ($(this).attr('style') == 'display: block;') {
+          ids.push($(this).attr('id'));
+      }
+  });
+}
+
 $("#big-c").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
+
+if (refresh) {
+  ids.forEach(id => $('#' + id).show());
+}

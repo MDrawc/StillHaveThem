@@ -1,4 +1,5 @@
 var game_id = '<%= @game_id %>'
+var new_game_id = '<%= @new_game_id %>'
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
@@ -22,15 +23,28 @@ if (msg) {
 
 if (success) {
 
+    reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;'
+
     if ($('em.current').length == 0) {
-        $.ajax({ url: '/collections/<%= @collection.id %>' });
+        $.ajax({
+            url: '/collections/<%= @collection.id %>',
+            data: { type: 'refresh' },
+            complete: function(data) {
+                if (reopen) {
+                   $('#g-drop-' + new_game_id).show();
+                }
+            }
+        });
     } else {
         var current_page = $('em.current').text();
 
         $.ajax({
             url: '/collections/<%= @collection.id %>',
-            data: {
-                page: current_page
+            data: { page: current_page, type: 'refresh' },
+            complete: function(data) {
+                if (reopen) {
+                   $('#g-drop-' + new_game_id).show();
+                }
             }
         });
     }

@@ -83,17 +83,18 @@ class GamesController < ApplicationController
       @errors << 'No changes detected'
     elsif game
       begin
-        @collection.games.delete(@game_id)
         @collection.games << game
+        @new_game_id = game.id
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
         new_rec.created_at = created_at
         new_rec.save
 
-
         edit_message(last_platform, last_physical, game)
       rescue ActiveRecord::RecordNotUnique
         @errors << 'Already in collection'
+      else
+        @collection.games.delete(@game_id)
       end
     else
       game = Game.find_by(igdb_id: game_params[:igdb_id]).dup
@@ -102,8 +103,10 @@ class GamesController < ApplicationController
       game.needs_platform = true
 
       if game.save
-        @collection.games.delete(@game_id)
+        @new_game_id = game.id
+
         @collection.games << game
+        @collection.games.delete(@game_id)
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
         new_rec.created_at = created_at
