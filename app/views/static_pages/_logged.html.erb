@@ -2,8 +2,7 @@
   $(".m-coll").removeClass('active')
   $("#m-<%= @home_collection.id %>").addClass('active')
 
-  $.ajax({ url: '/collections/<%= @home_collection.id %>' });
+  $.ajax({
+      url: '/collections/<%= @home_collection.id %>',
+  });
 </script>
-
-
-
