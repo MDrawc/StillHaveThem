@@ -25,7 +25,7 @@ if (success) {
 
     reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;'
 
-    if ($('em.current').length == 0) {
+    if ($('.pr em.current').length == 0) {
         $.ajax({
             url: '/collections/<%= @collection.id %>',
             data: { type: 'refresh' },
@@ -36,7 +36,7 @@ if (success) {
             }
         });
     } else {
-        var current_page = $('em.current').text();
+        var current_page = $('.pr em.current').text();
 
         $.ajax({
             url: '/collections/<%= @collection.id %>',

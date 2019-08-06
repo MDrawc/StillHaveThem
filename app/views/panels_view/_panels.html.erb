@@ -3,7 +3,6 @@ function moreInfo(id) {
     var panel = $('#g-click-' + id);
     var hidee = $('#g-hide-' + id);
     var drop = $('#g-drop-' + id);
-
     panel.click(function() {
         if (drop.is(':hidden')) {
             hidee.show();
@@ -19,6 +18,7 @@ function moreInfo(id) {
         }
     });
 }
+
 function shortSummary(id) {
     var dots = document.getElementById("dots-" + id);
     var moreText = document.getElementById("more-" + id);
@@ -32,32 +32,23 @@ function shortSummary(id) {
 }
 </script>
 <div class="uk-grid-collapse panels-grid" uk-grid>
-
-
-
-<div class="uk-width-5-6 page-links-front">
-
-    <div uk-grid>
-        <div class="page-info">
-        <%= page_entries_info @games %>
-        </div>
-
-        <div class="uk-width-expand page-links">
-        <%= js_will_paginate @games, container: false, previous_label: 'Previous', next_label: 'Next' %>
+    <div class="uk-width-5-6 page-info-front">
+        <div uk-grid>
+            <div class="page-info">
+                <%= page_entries_info @games %>
+            </div>
+            <div class="uk-width-expand page-links pr">
+                <%= js_will_paginate @games, container: false, previous_label: 'Previous', next_label: 'Next' %>
+            </div>
         </div>
     </div>
-
-</div>
-
-
-
-  <% @games.each do |game| %>
-  <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
-  <% end %>
-<div class="uk-width-5-6 page-links">
+    <% @games.each do |game| %>
+    <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
+    <% end %>
+    <div class="uk-width-5-6 page-links">
         <%= js_will_paginate @games, container: false,
-     previous_label: 'Previous',
-     next_label: 'Next'
-      %>
-</div>
+        previous_label: 'Previous',
+        next_label: 'Next'
+        %>
+    </div>
 </div>
