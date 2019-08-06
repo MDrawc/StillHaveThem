@@ -22,18 +22,36 @@
     color: $light_grey;
 
     em {
-        color: $dark_accent;
+        background: $dark_accent;
+        color: #fff;
         font-style: normal;
+        padding: 0px 5px;
+        border: 2px solid $dark_accent;
+        border-radius: 3px;
     }
+
+    span { color: #bfbfbf;
+           padding: 0px 5px;
+           border: 2px solid #cacaca;
+           border-radius: 3px;
+     }
 
     a {
         color: $light_grey;
+        padding: 0px 5px;
+        border: 2px solid #bababa;
+        border-radius: 3px;
     }
 
     a:hover {
         text-decoration: none;
         color: $dark_grey;
+        border-color: $dark_accent;
     }
+}
+
+span.gap {
+    border: none;
 }
 
 .copy-form {
