@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+
+  will_paginate:
+    models:
+      game:
+        zero:  games
+        one:   game
+        few:   games
+        other: games
