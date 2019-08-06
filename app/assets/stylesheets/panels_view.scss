@@ -1,3 +1,41 @@
+.panels-grid {
+    position: relative;
+}
+
+.page-links-front {
+    margin: 15px auto;
+}
+
+.page-info {
+    color: $light_grey;
+    font-size: 14px;
+    font-style: italic;
+    b {
+        font-weight: normal;
+    }
+}
+
+.page-links {
+    margin: 0px auto;
+    text-align: right;
+    font-size: 14px;
+    color: $light_grey;
+
+    em {
+        color: $dark_accent;
+        font-style: normal;
+    }
+
+    a {
+        color: $light_grey;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: $dark_grey;
+    }
+}
+
 .copy-form {
     padding: 15px;
     border-radius: 5px;
@@ -47,7 +85,6 @@
     margin-bottom: 10px;
     font-size: 16px;
 }
-
 
 .uk-icon-link.cf-disabled {
     color: #afafaf;
@@ -162,6 +199,7 @@
 
 .g-panel {
     position: relative;
+    left: 1/12 * 100%;
     background: #d2d2d2;
     border-radius: 5px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
@@ -177,7 +215,8 @@
     width: 0px;
     height: 90px;
     position: relative;
-    left: -5px;
+    left: 1/12 * 100%;
+    transform: translateX(-5px);
     z-index: 1;
     border-radius: 0px 5px 5px 0px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
@@ -355,7 +394,10 @@
 
 .pd-slide-items {
     border-radius: 3px;
-    li { background: #bdbdbd; }
+
+    li {
+        background: #bdbdbd;
+    }
 }
 
 .pd-arr {
