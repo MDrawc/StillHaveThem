@@ -17,7 +17,10 @@ def show
     @refresh = params[:type] == 'refresh'
     respond_to :js
   else
-    @games = @q.result().paginate(page: params[:page], per_page: PER_PAGE)
+    @games = @q.result
+    .includes(:developers)
+    .joins(:developers)
+    .paginate(page: params[:page], per_page: PER_PAGE)
       respond_to do |format|
         format.js { render partial: "search" }
       end
@@ -109,7 +112,6 @@ def remove_game_search
 
     # Remove underline from removed game - coverview
     @remove_underline = !check_for_game_in_all(@game.igdb_id)
-
     @success = true
   else
     #Notification:

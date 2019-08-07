@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_192218) do
+ActiveRecord::Schema.define(version: 2019_08_07_170235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 2019_08_02_192218) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "developer_games", force: :cascade do |t|
+    t.bigint "developer_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_developer_games_on_developer_id"
+    t.index ["game_id"], name: "index_developer_games_on_game_id"
+  end
+
+  create_table "developers", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.integer "first_release_date"
@@ -72,7 +85,6 @@ ActiveRecord::Schema.define(version: 2019_08_02_192218) do
     t.string "platform_name"
     t.boolean "physical"
     t.boolean "needs_platform"
-    t.string "developers", array: true
     t.string "cover"
     t.string "screenshots", array: true
     t.integer "cover_width"

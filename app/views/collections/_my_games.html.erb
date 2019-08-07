@@ -1,6 +1,6 @@
 <div class="search-panels">
   <%= search_form_for(@q, url: collection, remote: true) do |f| %>
-    <%= f.search_field(:name_cont, placeholder: "Name/Developer" , autofocus: "true", autocomplete: "off") %>
+    <%= f.search_field(:name_or_developers_name_cont, placeholder: "Name/Developer" , autofocus: "true", autocomplete: "off") %>
  <% end %>
 </div>
 

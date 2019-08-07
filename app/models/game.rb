@@ -8,7 +8,15 @@ class Game < ApplicationRecord
   has_many :collection_games
   has_many :collections, through: :collection_games
 
+  has_many :developer_games
+  has_many :developers, through: :developer_games
+
   def needs_platform
     needs_platform == true
+  end
+
+  amoeba do
+    enable
+    include_association :developer_games
   end
 end

@@ -9,7 +9,7 @@
     <h4 class="g-title"><%= game.name %>
     <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %>
     </h4>
-    <%= content_tag(:p, 'by ' + game.developers.join(', '), class: 'g-by') if game.developers %>
+    <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') if game.developers %>
   </div>
   <% if needs_platform %>
   <div class="g-platforms">

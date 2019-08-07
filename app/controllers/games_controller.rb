@@ -27,8 +27,9 @@ class GamesController < ApplicationController
         end
 
       else
-        @game = @collection.games.build(game_params.except(:platform))
+        @game = @collection.games.build(game_params.except(:platform, :developers))
         @game.platform, @game.platform_name = platform, platform_name
+        add_developers(game_params[:developers])
 
         if @game.save
           message(@game, true, false)
@@ -46,7 +47,8 @@ class GamesController < ApplicationController
           message(@game, false, true) unless @form == 'custom'
         end
       else
-        @game = @collection.games.build(game_params.except(:platform, :physical))
+        @game = @collection.games.build(game_params.except(:platform, :physical, :developers))
+        add_developers(game_params[:developers])
 
         if @game.save
           message(@game, false, false)
@@ -55,7 +57,6 @@ class GamesController < ApplicationController
         end
       end
     end
-
     respond_to :js
   end
 
@@ -97,7 +98,7 @@ class GamesController < ApplicationController
         @collection.games.delete(@game_id)
       end
     else
-      game = Game.find_by(igdb_id: game_params[:igdb_id]).dup
+      game = Game.find_by(igdb_id: game_params[:igdb_id]).amoeba_dup
       game.platform, game.platform_name = platform, platform_name
       game.physical = game_params[:physical]
       game.needs_platform = true
@@ -159,7 +160,7 @@ class GamesController < ApplicationController
           @errors << 'Already in collection'
         end
       else
-        game = Game.find_by(igdb_id: game_params[:igdb_id]).dup
+        game = Game.find_by(igdb_id: game_params[:igdb_id]).amoeba_dup
         if needs_plat
           game.platform, game.platform_name = platform, platform_name
           game.physical = game_params[:physical]
@@ -199,7 +200,6 @@ class GamesController < ApplicationController
 
     def message(game, needs_platform = true, duplicate = false, p_verb = 'added')
       collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
-
       if needs_platform
         if !duplicate
           @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
@@ -223,5 +223,14 @@ class GamesController < ApplicationController
       @message = "<span class='g'>Edited</span> #{ game.name }: " +
       "<span class='d'>(#{ last_platform}, #{ last_physical ? 'Physical' : 'Digital'})</span> -> " +
       "<span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>"
+    end
+
+    def add_developers(devs)
+      if devs
+        found = Developer.where(name: devs)
+        not_found = devs - found.map(&:name)
+        added = Developer.create(not_found.map { |d| { name: d } })
+        @game.developers << (found + added)
+      end
     end
 end

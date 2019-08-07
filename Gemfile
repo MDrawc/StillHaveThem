@@ -33,6 +33,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Ransack
 gem 'ransack', github: 'activerecord-hackery/ransack'
+# Amoeba - easy cloning of active_record objects including associations
+gem 'amoeba'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
