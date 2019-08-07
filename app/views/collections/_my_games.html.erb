@@ -8,3 +8,11 @@
     <%= render partial: 'panels_view/panels', locals: { collection: collection } %>
 </div>
 
+<script>
+$(function() {
+    $("#game_search #q_name_cont").keyup(function() {
+        $.get($("#game_search").attr("action"), $("#game_search").serialize(), null, "script");
+        return false;
+    });
+});
+</script>
