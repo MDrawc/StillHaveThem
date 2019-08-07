@@ -3,15 +3,21 @@ before_action :require_user
 before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :never_those, only: [:destroy]
 
+PER_PAGE = 2
+
 def new
   @collection = Collection.new
   respond_to :js
 end
 
 def show
-  @games = @collection.games.paginate(page: params[:page], per_page: 5)
-  @refresh = params[:type] == 'refresh'
-
+  @q = @collection.games.ransack(params[:q])
+  unless params[:q]
+    @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
+    @refresh = params[:type] == 'refresh'
+  else
+    @games = @q.result().paginate(page: params[:page], per_page: PER_PAGE)
+  end
   respond_to :js
 end
 

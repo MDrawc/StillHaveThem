@@ -4,6 +4,19 @@ GIT
   specs:
     rails-uikit (3.0.3)
 
+GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: aada89548490f98dd3f1a65574ce20551c72d73c
+  specs:
+    polyamorous (2.1.1)
+      activerecord (>= 5.0)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -221,6 +234,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rails-uikit!
+  ransack!
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
