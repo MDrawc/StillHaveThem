@@ -15,10 +15,13 @@ def show
   unless params[:q]
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'
+    respond_to :js
   else
     @games = @q.result().paginate(page: params[:page], per_page: PER_PAGE)
+      respond_to do |format|
+        format.js { render partial: "search" }
+      end
   end
-  respond_to :js
 end
 
 def create

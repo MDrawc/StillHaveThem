@@ -12,7 +12,7 @@ if (refresh) {
   });
 }
 
-$("#big-c").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
+$("#big-c").html("<%= escape_javascript(render partial: 'my_games', locals: { collection: @collection }) %>");
 
 if (refresh) {
   ids.forEach(id => $('#' + id).show());
