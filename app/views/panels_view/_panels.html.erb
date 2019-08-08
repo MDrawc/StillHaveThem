@@ -33,6 +33,11 @@ function shortSummary(id) {
 }
 </script>
 
+<%= sort_link(@q, :name, {}, {remote: true}) %>
+<%= sort_link(@q, :first_release_date, {}, {remote: true}) %>
+
+<%= sort_link(@q, :added,'Added',{} ,{remote: true}) %>
+
 <div class="uk-grid-collapse panels-grid" uk-grid>
     <div class="uk-width-5-6 page-info-front">
         <div uk-grid>
@@ -44,7 +49,7 @@ function shortSummary(id) {
             </div>
         </div>
     </div>
-    <% @games.each do |game| %>
+    <% @games.select('games.*, collection_games.created_at').each do |game| %>
     <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
     <% end %>
     <div class="uk-width-5-6 page-links">

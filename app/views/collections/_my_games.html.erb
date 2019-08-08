@@ -6,8 +6,6 @@
     <label><%= f.radio_button(:physical_eq, false, checked: false, class: "") %> Digital</label>
     <label><%= f.radio_button(:physical_eq, nil, checked: true, class: "") %> All</label>
  <% end %>
-
-<%= sort_link(@q, :name) %>
 </div>
 
 <div id='my-search' style="display: none;"></div>

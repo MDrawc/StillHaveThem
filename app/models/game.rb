@@ -1,5 +1,8 @@
 class Game < ApplicationRecord
   scope :igdb, -> (igdb_id) { where(igdb_id: igdb_id) }
+  scope :sort_by_added_asc, lambda { joins(:collection_games).order('collection_games.created_at ASC') }
+  scope :sort_by_added_desc, lambda { joins(:collection_games).order('collection_games.created_at DESC') }
+
   validates :name, presence: true
   validates :igdb_id, presence: true
   validates :platform, presence: { message: 'must be selected'}, if: :needs_platform?
