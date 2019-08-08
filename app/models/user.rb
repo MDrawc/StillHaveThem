@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   has_many :collections, dependent: :destroy
 
+  has_many :user_platforms
+  has_many :platforms, through: :user_platforms
+
   VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
    format: { with: VALID_EMAIL_FORMAT }, uniqueness: { case_sensitive: false }

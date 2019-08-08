@@ -2,6 +2,10 @@
   <%= search_form_for(@q, url: collection, remote: true) do |f| %>
     <%= f.search_field(:name_dev_cont, placeholder: "Name/Developer" , autofocus: "true", autocomplete: "off") %>
     <%= f.select(:plat_cont, ['xbox', 'playstation'], include_blank: 'Select platform') %>
+    <label><%= f.radio_button(:physical_eq, true, checked: false, class: "") %> Physical</label>
+    <label><%= f.radio_button(:physical_eq, false, checked: false, class: "") %> Digital</label>
+    <label><%= f.radio_button(:all, false, checked: true, class: "") %> All</label>
+
  <% end %>
 </div>
 

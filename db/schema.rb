@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_170235) do
+ActiveRecord::Schema.define(version: 2019_08_08_125828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,13 @@ ActiveRecord::Schema.define(version: 2019_08_07_170235) do
     t.index ["igdb_id"], name: "index_games_on_igdb_id"
   end
 
+  create_table "platforms", force: :cascade do |t|
+    t.integer "igdb_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "queries", force: :cascade do |t|
     t.string "endpoint"
     t.string "body"
@@ -103,6 +110,15 @@ ActiveRecord::Schema.define(version: 2019_08_07_170235) do
     t.integer "response"
     t.index ["body"], name: "index_queries_on_body"
     t.index ["endpoint"], name: "index_queries_on_endpoint"
+  end
+
+  create_table "user_platforms", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "platform_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
+    t.index ["user_id"], name: "index_user_platforms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
