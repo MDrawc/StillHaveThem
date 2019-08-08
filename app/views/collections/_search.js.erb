@@ -1,1 +1,12 @@
+var ids = [];
+var arr = $('.g-drop');
+arr.each(function() {
+    if ($(this).attr('style') == 'display: block;') {
+        ids.push($(this).attr('id'));
+    }
+});
+
 $(".my-games").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
+$('#my-search').text(<%= raw query %>);
+
+ids.forEach(id => $('#' + id).show());

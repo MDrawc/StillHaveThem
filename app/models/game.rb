@@ -11,6 +11,9 @@ class Game < ApplicationRecord
   has_many :developer_games
   has_many :developers, through: :developer_games
 
+  ransack_alias :name_dev, :name_or_developers_name
+  ransack_alias :plat, :platform_name
+
   def needs_platform
     needs_platform == true
   end

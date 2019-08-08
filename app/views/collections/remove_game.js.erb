@@ -17,24 +17,26 @@ UIkit.notification({
 });
 
 <% if @success %>
-    if ($('.pr em.current').length == 0) {
-        $.ajax({
-            url: '/collections/<%= @collection.id %>',
-            data: { type: 'refresh' }
-        });
-    } else {
-        var current_page = $('.pr em.current').text();
-        console.log(current_page);
-        var num_of_games = $('.g-panel').length;
-        if (num_of_games == 1) {
-            current_page -= 1;
-        }
+var data = { type: 'refresh' };
 
-        $.ajax({
-            url: '/collections/<%= @collection.id %>',
-            data: {
-                page: current_page, type: 'refresh'
-            }
-        });
+if ($('#my-search').text().length != 0) {
+    search = $('#my-search').text().split(',');
+    data['q'] = { name_dev_cont: search[0], plat_cont: search[1] }
+}
+
+if ($('.pr em.current').length != 0) {
+    var current_page = $('.pr em.current').text();
+    console.log(current_page);
+    var num_of_games = $('.g-panel').length;
+    if (num_of_games == 1) {
+        current_page -= 1;
     }
+    data['page'] = current_page;
+}
+
+$.ajax({
+    url: '/collections/<%= @collection.id %>',
+    data: data
+});
+
 <% end %>

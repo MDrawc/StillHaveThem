@@ -3,7 +3,7 @@ before_action :require_user
 before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :never_those, only: [:destroy]
 
-PER_PAGE = 2
+PER_PAGE = 3
 
 def new
   @collection = Collection.new
@@ -21,9 +21,9 @@ def show
     .includes(:developers)
     .joins(:developers)
     .paginate(page: params[:page], per_page: PER_PAGE)
-      respond_to do |format|
-        format.js { render partial: "search" }
-      end
+    respond_to do |format|
+      format.js { render partial: "search", locals: { query: params[:q].values } }
+    end
   end
 end
 

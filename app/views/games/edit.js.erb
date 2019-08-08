@@ -23,31 +23,28 @@ if (msg) {
 
 if (success) {
 
-    reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;'
+    reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
+    var data = { type: 'refresh' };
 
-    if ($('.pr em.current').length == 0) {
-        $.ajax({
-            url: '/collections/<%= @collection.id %>',
-            data: { type: 'refresh' },
-            complete: function(data) {
-                if (reopen) {
-                   $('#g-drop-' + new_game_id).show();
-                }
-            }
-        });
-    } else {
-        var current_page = $('.pr em.current').text();
-
-        $.ajax({
-            url: '/collections/<%= @collection.id %>',
-            data: { page: current_page, type: 'refresh' },
-            complete: function(data) {
-                if (reopen) {
-                   $('#g-drop-' + new_game_id).show();
-                }
-            }
-        });
+    if ($('#my-search').text().length != 0) {
+        search = $('#my-search').text().split(',');
+        data['q'] = { name_dev_cont: search[0], plat_cont: search[1] }
     }
+
+    if ($('.pr em.current').length != 0) {
+        var current_page = $('.pr em.current').text();
+        data['page'] = current_page;
+    }
+
+    $.ajax({
+        url: '/collections/<%= @collection.id %>',
+        data: data,
+        complete: function(data) {
+            if (reopen) {
+                $('#g-drop-' + new_game_id).show();
+            }
+        }
+    });
 
 } else {
     $("#edit-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");

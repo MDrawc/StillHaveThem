@@ -37,7 +37,7 @@ function shortSummary(id) {
     <div class="uk-width-5-6 page-info-front">
         <div uk-grid>
             <div class="page-info">
-                <%= page_entries_info @games %>
+                <%= page_entries_info @games, html: false %>
             </div>
             <div class="uk-width-expand page-links pr">
                 <%= js_will_paginate @games, container: false, previous_label: 'Previous', next_label: 'Next' %>
