@@ -18,8 +18,8 @@ def show
     respond_to :js
   else
     @games = @q.result
+    .group('games.id, collection_games.created_at')
     .includes(:developers)
-    .joins(:developers)
     .paginate(page: params[:page], per_page: PER_PAGE)
     respond_to do |format|
       format.js { render partial: "search", locals: { query: params[:q].values } }

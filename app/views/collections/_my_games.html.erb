@@ -4,9 +4,10 @@
     <%= f.select(:plat_eq, user_platforms, include_blank: 'Select platform') %>
     <label><%= f.radio_button(:physical_eq, true, checked: false, class: "") %> Physical</label>
     <label><%= f.radio_button(:physical_eq, false, checked: false, class: "") %> Digital</label>
-    <label><%= f.radio_button(:all, false, checked: true, class: "") %> All</label>
-
+    <label><%= f.radio_button(:physical_eq, nil, checked: true, class: "") %> All</label>
  <% end %>
+
+<%= sort_link(@q, :name) %>
 </div>
 
 <div id='my-search' style="display: none;"></div>
