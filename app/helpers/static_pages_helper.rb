@@ -92,6 +92,10 @@ module StaticPagesHelper
     return platforms
   end
 
+  def user_platforms
+    current_user.platforms.map(&:name)
+  end
+
   def collections_for_select(user, type = 'custom')
     case type
     when 'custom'

@@ -16,22 +16,20 @@ class GamesController < ApplicationController
 
     if @collection && @collection.needs_platform
       platform, platform_name = game_params[:platform].split(',')
-
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
-
         begin
           @collection.games << @game
+          save_platform(platform, platform_name)
           message(@game, true, false)
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
         end
-
       else
         @game = @collection.games.build(game_params.except(:platform, :developers))
         @game.platform, @game.platform_name = platform, platform_name
         add_developers(game_params[:developers])
-
         if @game.save
+          save_platform(platform, platform_name)
           message(@game, true, false)
         else
           @errors += @game.errors.full_messages
@@ -231,6 +229,15 @@ class GamesController < ApplicationController
         not_found = devs - found.map(&:name)
         added = Developer.create(not_found.map { |d| { name: d } })
         @game.developers << (found + added)
+      end
+    end
+
+    def save_platform(id, name)
+      unless current_user.platforms.find_by(igdb_id: id)
+        unless new_platform = Platform.find_by({ igdb_id: id, name: name })
+          new_platform = Platform.create({ igdb_id: id, name: name })
+        end
+        current_user.platforms << new_platform
       end
     end
 end
