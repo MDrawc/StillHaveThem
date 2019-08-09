@@ -19,7 +19,6 @@ function moreInfo(id) {
         }
     });
 }
-
 function shortSummary(id) {
     var dots = document.getElementById("dots-" + id);
     var moreText = document.getElementById("more-" + id);
@@ -32,13 +31,12 @@ function shortSummary(id) {
     }
 }
 </script>
-
-<%= sort_link(@q, :name, {}, {remote: true}) %>
-<%= sort_link(@q, :first_release_date, {}, {remote: true}) %>
-
-<%= sort_link(@q, :added,'Added',{} ,{remote: true}) %>
-
 <div class="uk-grid-collapse panels-grid" uk-grid>
+    <div class="uk-width-5-6 sort-links">
+        <%= sort_link(@q, :name, {}, {remote: true}) %>
+        <%= sort_link(@q, :first_release_date, {}, {remote: true}) %>
+        <%= sort_link(@q, :added,'Added',{} ,{remote: true}) %>
+    </div>
     <div class="uk-width-5-6 page-info-front">
         <div uk-grid>
             <div class="page-info">

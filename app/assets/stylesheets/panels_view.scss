@@ -1,3 +1,115 @@
+.container {
+    color: $light_grey;
+    cursor: pointer;
+    vertical-align: middle;
+    padding-left: 22px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #bababa;
+    border-radius: 50%;
+    background: none;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+    left: 50%;
+    top: 50%;
+    margin: -3px 0 0 -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $light_grey;
+}
+
+.srch-div.first {
+    margin-left: 0px;
+}
+
+.srch-div {
+    display: inline-block;
+    vertical-align: middle;
+    border-right: thin solid #bababa;
+    width: 0px;
+    height: 14px;
+    margin: 0px 20px;
+}
+
+.sort-links {
+    margin: auto;
+}
+
+.my-search {
+    margin: 20px auto;
+    font-size: 14px;
+}
+
+.s-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: $light_grey;
+}
+
+.search-input {
+    padding-left: 30px;
+    background: none;
+    border: none;
+    color: $light_grey;
+}
+
+.search-input:focus {
+    background: none;
+}
+
+.select-input + span {
+    color: $light_grey;
+}
+
+#search-reset {
+    height: 40px;
+    float: right;
+}
+
 .panels-grid {
     position: relative;
 }
@@ -27,11 +139,12 @@
         border-radius: 3px;
     }
 
-    span { color: #bfbfbf;
-           padding: 0px 5px;
-           border: 2px solid #cacaca;
-           border-radius: 3px;
-     }
+    span {
+        color: #bfbfbf;
+        padding: 0px 5px;
+        border: 2px solid #cacaca;
+        border-radius: 3px;
+    }
 
     a {
         color: $light_grey;
@@ -214,7 +327,7 @@ span.gap {
 
 .g-panel {
     position: relative;
-    left: 1/12 * 100%;
+    left: 1 / 12 * 100%;
     background: #d2d2d2;
     border-radius: 5px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
@@ -230,7 +343,7 @@ span.gap {
     width: 0px;
     height: 90px;
     position: relative;
-    left: 1/12 * 100%;
+    left: 1 / 12 * 100%;
     transform: translateX(-5px);
     z-index: 1;
     border-radius: 0px 5px 5px 0px;
