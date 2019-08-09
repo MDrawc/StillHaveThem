@@ -2,8 +2,8 @@
     color: $light_grey;
     cursor: pointer;
     vertical-align: middle;
-    padding-left: 22px;
-    margin-right: 10px;
+    padding-left: 26px;
+    margin-right: 20px;
     position: relative;
     cursor: pointer;
     font-size: 14px;
@@ -106,6 +106,7 @@
 }
 
 #search-reset {
+    display: none;
     height: 40px;
     float: right;
 }
