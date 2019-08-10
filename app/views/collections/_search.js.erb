@@ -7,6 +7,7 @@ arr.each(function() {
 });
 
 $(".my-games").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
-$('#my-search').text(<%= raw query %>);
+$('#r-q').text(<%= raw query %>);
+$('#r-s').text('<%= sort %>');
 
 ids.forEach(id => $('#' + id).show());

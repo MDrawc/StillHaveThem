@@ -21,8 +21,14 @@ def show
     .group('games.id, collection_games.created_at')
     .includes(:developers)
     .paginate(page: params[:page], per_page: PER_PAGE)
+
+    q = params[:q]
+    query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
+    query.map! { |a| a ||= '' }
+    sort = q[:s]
+
     respond_to do |format|
-      format.js { render partial: "search", locals: { query: params[:q].values } }
+      format.js { render partial: "search", locals: { query: query, sort: sort } }
     end
   end
 end

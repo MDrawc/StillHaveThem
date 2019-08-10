@@ -23,31 +23,49 @@ if (msg) {
 if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
 
-    var data = { type: 'refresh' };
+    var data = {
+        type: 'refresh'
+    };
 
-    if ($('#my-search').text().length != 0) {
-        search = $('#my-search').text().split(',');
-        data['q'] = { name_dev_cont: search[0], plat_cont: search[1] }
+    if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
+        search = $('#r-q').text().split(',');
+        data['q'] = {
+            name_dev_cont: search[0],
+            plat_cont: search[1],
+            physical_eq: search[2],
+            s: $('#r-s').text()
+        };
+    } else if ($('#r-q').text().length != 0) {
+        search = $('#r-q').text().split(',');
+        data['q'] = {
+            name_dev_cont: search[0],
+            plat_cont: search[1],
+            physical_eq: search[2]
+        };
+    } else if ($('#r-s').text().length != 0) {
+        data['q'] = {
+            s: $('#r-s').text()
+        };
     }
 
     <% if @current == @collection %>
 
-        if ($('.pr em.current').length != 0) {
-            var current_page = $('.pr em.current').text();
-            data['page'] = current_page;
-        }
+    if ($('.pr em.current').length != 0) {
+        var current_page = $('.pr em.current').text();
+        data['page'] = current_page;
+    }
 
     <% elsif !@copy %>
 
-        if ($('.pr em.current').length != 0) {
-            var current_page = $('.pr em.current').text();
-            var num_of_games = $('.g-panel').length;
-            if (num_of_games == 1) {
-                current_page -= 1;
-            }
-
-            data['page'] = current_page;
+    if ($('.pr em.current').length != 0) {
+        var current_page = $('.pr em.current').text();
+        var num_of_games = $('.g-panel').length;
+        if (num_of_games == 1) {
+            current_page -= 1;
         }
+
+        data['page'] = current_page;
+    }
 
     <% end %>
 
