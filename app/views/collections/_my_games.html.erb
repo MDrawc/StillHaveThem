@@ -1,17 +1,15 @@
 <div>
-    <div class="uk-width-5-6 my-search">
+    <div class="uk-width-1-1 my-search">
         <%= search_form_for(@q, url: collection, remote: true) do |f| %>
-
         <div class="uk-inline">
         <span class="s-icon" uk-icon="icon: search"></span>
         <%= f.search_field(:name_dev_cont, placeholder: "Title or Developer", class: 'uk-input search-input', autofocus: "true", autocomplete: "off") %>
         </div>
 
         <div class="srch-div first"></div>
-
         <div uk-form-custom="target: true">
-        <%= f.select(:plat_eq, user_platforms, {include_blank: 'All Platforms'}, {class: 'select-input'} ) %>
-        <span></span>
+            <%= f.select(:plat_eq, user_platforms, {include_blank: 'All Platforms'}, {class: 'select-input'} ) %>
+            <span></span>
         </div>
 
         <div class="srch-div"></div>
@@ -20,7 +18,6 @@
             <label class="container">Digital<%= f.radio_button(:physical_eq, false, checked: false, class: '') %><span class="checkmark"></span></label>
             <label class="container">Physical<%= f.radio_button(:physical_eq, true, checked: false, class: '') %><span class="checkmark"></span></label>
         </div>
-
         <%= content_tag(:button,'', id: 'search-reset', 'uk-close': '')%>
         <% end %>
     </div>
@@ -32,7 +29,6 @@
 </div>
 <script>
 $(function() {
-
     function showHideClose() {
         var status = [];
         status.push($('#q_name_dev_cont').val().length == 0);
@@ -43,7 +39,6 @@ $(function() {
             })) {
             $('#search-reset').hide();
         } else {
-
             if ($('#search-reset').is(':hidden')) {
                 $('#search-reset').show();
             }
@@ -54,32 +49,24 @@ $(function() {
         $.get($("#game_search").attr("action"), $("#game_search").serialize(), null, "script");
         return false;
     }
-
     $("#q_name_dev_cont").keyup(function() {
         showHideClose()
         refresh();
     });
-
     $('#q_plat_eq').on('input', function() {
         showHideClose()
         refresh();
     });
-
     $("#game_search input[type='radio']").on('input', function() {
         showHideClose()
         refresh();
     });
-
-    $('#search-reset').click(function(){
+    $('#search-reset').click(function() {
         $("#q_name_dev_cont").val("");
-        $('#q_plat_eq').prop('selectedIndex',0)
+        $('#q_plat_eq').prop('selectedIndex', 0)
         $("#q_physical_eq").prop('checked', true);
         $('.select-input ~ span').text('All Platforms');
         $('#search-reset').hide();
     });
-
 });
 </script>
-
-
-

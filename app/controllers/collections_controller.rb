@@ -3,7 +3,7 @@ before_action :require_user
 before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :never_those, only: [:destroy]
 
-PER_PAGE = 3
+PER_PAGE = 2
 
 def new
   @collection = Collection.new

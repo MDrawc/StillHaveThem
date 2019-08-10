@@ -21,6 +21,10 @@
     width: 0;
 }
 
+.container:hover {
+    color: $dark_grey;
+}
+
 .checkmark {
     position: absolute;
     top: 0;
@@ -37,13 +41,13 @@
 }
 
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
 .container input:checked ~ .checkmark:after {
-  display: block;
+    display: block;
 }
 
 .container .checkmark:after {
@@ -70,11 +74,35 @@
 }
 
 .sort-links {
-    margin: auto;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.sort-icon {
+    margin-right: 8px;
+}
+
+.sort_link {
+    position: relative;
+    font-size: 14px;
+    color: $light_grey;
+
+    span {
+        position: absolute;
+        right: -17px;
+        top: 50%;
+        margin-top: -10px;
+    }
+}
+
+.sort_link:hover {
+    color: $dark_grey;
+    text-decoration: none;
 }
 
 .my-search {
-    margin: 20px auto;
+    margin: 20px 0px 10px 0px;
+    text-align: center;
     font-size: 14px;
 }
 
@@ -105,10 +133,20 @@
     color: $light_grey;
 }
 
+.select-input:hover ~ span {
+    color: $dark_grey;
+}
+
+#game_search {
+    position: relative;
+}
+
 #search-reset {
     display: none;
-    height: 40px;
-    float: right;
+    line-height: 40px;
+    position: absolute;
+    border-left: 1px solid #bababa;
+    padding-left: 20px;
 }
 
 .panels-grid {
@@ -120,6 +158,7 @@
 }
 
 .page-info {
+    margin: auto;
     color: $light_grey;
     font-size: 14px;
     font-style: italic;
@@ -127,38 +166,43 @@
 
 .page-links {
     margin: 0px auto;
-    text-align: right;
+    text-align: center;
     font-size: 14px;
     color: $light_grey;
 
     em {
-        background: $dark_accent;
-        color: #fff;
+        color: $dark_grey;
         font-style: normal;
-        padding: 0px 5px;
-        border: 2px solid $dark_accent;
+        background: #ccc;
+        font-size: 17px;
+        padding: 5px;
         border-radius: 3px;
     }
 
     span {
         color: #bfbfbf;
-        padding: 0px 5px;
-        border: 2px solid #cacaca;
-        border-radius: 3px;
+        padding: 5px;
     }
 
     a {
         color: $light_grey;
-        padding: 0px 5px;
-        border: 2px solid #bababa;
-        border-radius: 3px;
+        padding: 5px;
     }
 
     a:hover {
         text-decoration: none;
+        background: #ccc;
+        border-radius: 3px;
         color: $dark_grey;
-        border-color: $dark_accent;
     }
+}
+
+.previous_page {
+    float: left;
+}
+
+.next_page {
+    float: right;
 }
 
 span.gap {

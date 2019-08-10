@@ -12,6 +12,7 @@
 //
 //
 //
+//
 //= require jquery3
 //= require textFit
 //= require js-cookie
@@ -21,6 +22,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
-
-
