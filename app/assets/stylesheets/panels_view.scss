@@ -526,24 +526,10 @@ span.gap {
 }
 
 .full-scrn {
-    display: none;
     position: absolute;
-    bottom: 5px;
-    right: 10px;
-    transition: color 0.1s ease-in-out;
-
-    svg {
-        width: 35px;
-    }
-}
-
-.full-scrn svg path {
-    stroke: #ffffffa3;
-    stroke-width: 4.8;
-}
-
-.full-scrn:hover svg path {
-    stroke: white;
+    width: 100%;
+    height: 100%;
+    z-index: 150;
 }
 
 .g-summary {
@@ -577,7 +563,6 @@ span.gap {
 
 .pd-slide-items {
     border-radius: 3px;
-
     li {
         background: #bdbdbd;
     }
@@ -585,12 +570,28 @@ span.gap {
 
 .pd-arr {
     display: none;
+    position: absolute;
+    bottom: 0;
+    margin: 0px;
+    padding: 6px 10px;
+    background: #666;
     color: #ffffffa3;
     z-index: 200;
 }
 
+.pd-arr.right {
+    border-radius: 3px 0px 3px 0px;
+    right: 0;
+}
+
+.pd-arr.left {
+    border-radius: 0px 3px 0px 3px;
+    left: 0;
+}
+
+
 .pd-arr svg {
-    height: 30px;
+    height: 20px;
     width: auto;
 }
 
@@ -604,11 +605,6 @@ span.gap {
 
 .pd-slide:hover .pd-arr {
     display: block;
-}
-
-.pd-slide:hover .full-scrn {
-    display: block;
-    z-index: 220;
 }
 
 .g-google {

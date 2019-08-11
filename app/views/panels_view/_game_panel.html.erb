@@ -27,23 +27,27 @@
     <div class="uk-grid-collapse" uk-grid>
       <div style="width: 70px;"></div>
       <div class="g-extra uk-width-expand">
+
         <% if screens = game[:screenshots] %>
         <% urls = screens_urls(screens) %>
+
         <div class="uk-position-relative pd-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .full-scrn; animation: fade">
           <ul class="uk-slideshow-items pd-slide-items">
             <% urls.each do |url| %>
             <li>
               <div class="spinner g-spin"><%= svg 'loading' %></div>
               <%= image_tag('', 'data-src' => url[:small], alt: '', 'uk-cover': '', 'uk-img': '') %>
-              <%= content_tag(:a, (svg 'full'), href: url[:big], class: 'full-scrn') %>
+              <%= content_tag(:a, '', href: url[:big], class: 'full-scrn') %>
               <div class="shadow"></div>
             </li>
             <% end %>
           </ul>
-          <a class="uk-position-center-left uk-position-small pd-arr" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-          <a class="uk-position-center-right uk-position-small pd-arr" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+          <a class="pd-arr left" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="pd-arr right" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
+
         <% end %>
+
         <% if summary = get_summary(game, 280, 50) %>
         <p class="g-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
       </p>
