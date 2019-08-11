@@ -394,8 +394,17 @@ class IgdbQuery
       end
 
       puts ">> Games that needs update - ids: #{ update_ids }"
+
+
+
       puts ">> Saving #{new_games.size} new games"
-      Agame.create(new_games)
+
+      # Old - without 'activerecord-import'
+      # Agame.create(new_games)
+
+      #New - with 'activerecord-import'
+      games = new_games.map { |g| Agame.new(g) }
+      Agame.import games, validate: true
 
       puts ">> Updating #{to_update.size} existing games"
       Agame.update(update_ids, to_update)

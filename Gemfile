@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 # Amoeba - easy cloning of active_record objects including associations
 gem 'amoeba'
+# A library for bulk insertion of data into your database using ActiveRecord
+gem 'activerecord-import'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
