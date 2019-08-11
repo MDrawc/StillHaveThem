@@ -10,20 +10,25 @@ module StaticPagesHelper
       cover_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/'
       cover_url += cover.to_s + '.jpg'
       return { url: cover_url, width: width, height: height }
-    else
-      if screenshots = game[:screenshots]
+    elsif screenshots = game[:screenshots]
         base_url = 'https://images.igdb.com/igdb/image/upload/'
-        url = base_url + 't_screenshot_med/' + screenshots.first + '.jpg'
+        url = base_url + 't_screenshot_med/' + screenshots.last + '.jpg'
         return { url: url, width: width, height: 266, from_scrn: 's-cover' }
-      end
     end
   end
 
   def get_game_thumb(game)
-    if cover = game[:cover]
-      cover_url = 'https://images.igdb.com/igdb/image/upload/t_thumb/'
-      cover_url += cover.to_s + '.jpg'
-      image_tag('', id: "gt-#{ game[:igdb_id] }", class: "game-thumb", width: 70, height: 70, 'data-src' => cover_url, alt: game[:name], 'draggable' => 'false', 'uk-img' => '')
+    if (cover = game[:cover]) || (screenshots = game[:screenshots])
+      base_url = 'https://images.igdb.com/igdb/image/upload/t_thumb/'
+      image_hash = cover ? (cover) : (screenshots.last)
+      cover_url = base_url + image_hash + '.jpg'
+
+      content_tag(:div, class: 'thumb-c') do
+        concat image_tag('', id: "gt-#{ game[:igdb_id] }", class: "game-thumb", width: 70, height: 70, 'data-src' => cover_url, alt: game[:name], 'draggable' => 'false', 'uk-img' => '')
+        concat content_tag(:div, '', class: 'shadow')
+      end
+    else
+      content_tag(:div, svg('no_image_i') , class: 'no-thumb')
     end
   end
 

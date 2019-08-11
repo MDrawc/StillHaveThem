@@ -2,9 +2,9 @@
 <% needs_platform = collection.needs_platform %>
 <div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
   <div id="g-click-<%= id %>" class="g-click"></div>
-  <div class="thumb-c"><%= get_game_thumb(game) %>
-    <div class="shadow"></div>
-  </div>
+
+<%= get_game_thumb(game) %>
+
   <div class="g-info uk-width-expand">
     <h4 class="g-title"><%= game.name %>
     <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %>

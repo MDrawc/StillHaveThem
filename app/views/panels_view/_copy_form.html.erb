@@ -5,8 +5,8 @@
 <%= hidden_field_tag :game_id, id %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 <div class="action">
-<label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %><span class="checkmark"></span></label>
-<label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %><span class="checkmark"></span></label>
+<label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %></label>
+<label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %></label>
 <span class="cf-name"><%= shorter_name(game_name) %></span>
 </div>
 <hr>
