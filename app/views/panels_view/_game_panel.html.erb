@@ -11,15 +11,18 @@
     </h4>
     <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') if game.developers %>
   </div>
-  <% if needs_platform %>
-  <div class="g-platforms">
+
+
+  <div class="g-right">
     <div>
+      <% if needs_platform %>
       <%= content_tag(:p, game.platform_name) %>
       <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
-      <%= content_tag(:p, "#{ game.created_at.to_date }" ,class: 'g-added') %>
+      <% end %>
+      <%= content_tag(:div, "#{ game.created_at.to_date }" ,class: 'g-added') %>
     </div>
   </div>
-  <% end %>
+
   <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">
     <div class="uk-grid-collapse" uk-grid>
       <div style="width: 70px;"></div>
