@@ -121,7 +121,9 @@
                     <%= f.hidden_field :summary, value: game[:summary] %>
                     <%= f.hidden_field :status, value: game[:status] %>
                     <%= f.hidden_field :category, value: game[:category] %>
-                    <%= f.hidden_field :cover, value: game[:cover] %>
+                    <% if platforms = game[:cover] %>
+                        <%= f.hidden_field :cover, value: game[:cover] %>
+                    <% end %>
                     <%= f.hidden_field :cover_width, value: game[:cover_width] %>
                     <%= f.hidden_field :cover_height, value: game[:cover_height] %>
                     <% if devs %>
