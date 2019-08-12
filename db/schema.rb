@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_161224) do
+ActiveRecord::Schema.define(version: 2019_08_12_175751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["collection_id", "game_id", "created_at"], name: "by_coll_game_created_at"
     t.index ["collection_id", "game_id"], name: "index_collection_games_on_collection_id_and_game_id", unique: true
     t.index ["collection_id"], name: "index_collection_games_on_collection_id"
     t.index ["game_id"], name: "index_collection_games_on_game_id"
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.boolean "needs_platform", default: false
     t.string "form", default: "custom"
     t.boolean "initial", default: false
-    t.index ["initial"], name: "index_collections_on_initial"
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["developer_id", "game_id"], name: "index_developer_games_on_developer_id_and_game_id", unique: true
     t.index ["developer_id"], name: "index_developer_games_on_developer_id"
     t.index ["game_id"], name: "index_developer_games_on_game_id"
   end
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.integer "cover_width"
     t.integer "cover_height"
     t.string "platforms_names", array: true
+    t.index ["igdb_id", "needs_platform"], name: "index_games_on_igdb_id_and_needs_platform"
     t.index ["igdb_id", "platform", "physical"], name: "index_games_on_igdb_id_and_platform_and_physical", unique: true
     t.index ["igdb_id"], name: "index_games_on_igdb_id", unique: true, where: "((platform IS NULL) AND (physical IS NULL))"
   end
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "index_platforms_on_igdb_id", unique: true
   end
 
   create_table "queries", force: :cascade do |t|
@@ -109,8 +112,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.datetime "updated_at", null: false
     t.string "addl", array: true
     t.integer "response"
-    t.index ["body"], name: "index_queries_on_body"
-    t.index ["endpoint"], name: "index_queries_on_endpoint"
+    t.index ["endpoint", "body"], name: "index_queries_on_endpoint_and_body", unique: true
   end
 
   create_table "user_platforms", force: :cascade do |t|
@@ -118,6 +120,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_161224) do
     t.bigint "platform_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["platform_id", "user_id"], name: "index_user_platforms_on_platform_id_and_user_id", unique: true
     t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
     t.index ["user_id"], name: "index_user_platforms_on_user_id"
   end

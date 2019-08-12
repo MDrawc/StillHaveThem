@@ -271,7 +271,13 @@ class IgdbQuery
       query.results = @games_ids
       query.addl = @addl unless @query_type == :game
       query.response = @response_size
+
+      begin
       puts '>> Query saved successfully.' if query.save
+      rescue ActiveRecord::RecordNotUnique
+      puts '>> Could not save query'
+      end
+
     end
 
     def get_addl(results)
