@@ -28,12 +28,18 @@ class GamesController < ApplicationController
         @game = @collection.games.build(game_params.except(:platform, :developers))
         @game.platform, @game.platform_name = platform, platform_name
         add_developers(game_params[:developers])
+
+        begin
         if @game.save
           save_platform(platform, platform_name)
           message(@game, true, false)
         else
           @errors += @game.errors.full_messages
         end
+        rescue ActiveRecord::RecordNotUnique
+          @errors << 'Please try again in a moment'
+        end
+
       end
     elsif @collection # Does not need platform:
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
@@ -48,11 +54,16 @@ class GamesController < ApplicationController
         @game = @collection.games.build(game_params.except(:platform, :physical, :developers))
         add_developers(game_params[:developers])
 
+        begin
         if @game.save
           message(@game, false, false)
         else
           @errors += @game.errors.full_messages
         end
+        rescue ActiveRecord::RecordNotUnique
+          @errors << 'Please try again in a moment'
+        end
+
       end
     end
     respond_to :js

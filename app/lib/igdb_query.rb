@@ -407,7 +407,7 @@ class IgdbQuery
       #New - with 'activerecord-import'
       games = new_games.map { |g| Agame.new(g) }
       Agame.import games, validate: true
-      rescue ActiveRecord::RecordNotUnique => e
+      rescue ActiveRecord::RecordNotUnique
       end
 
       puts ">> Updating #{to_update.size} existing games"

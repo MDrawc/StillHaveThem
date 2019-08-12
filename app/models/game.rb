@@ -11,7 +11,7 @@ class Game < ApplicationRecord
   validates :platform, absence: { message: 'should not be indicated'}, unless: :needs_platform?
 
   validates :physical, inclusion: { in: [true, false], message: 'or digital must be selected'}, if: :needs_platform?
-  validates :physical, inclusion: { in: [], message: 'or digital should not be indicated'}, unless: :needs_platform?
+  validates :physical, inclusion: { in: [nil], message: 'or digital should not be indicated'}, unless: :needs_platform?
 
   has_many :collection_games
   has_many :collections, through: :collection_games
