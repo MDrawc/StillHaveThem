@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_125828) do
+ActiveRecord::Schema.define(version: 2019_08_12_122329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_125828) do
     t.integer "cover_height"
     t.integer "themes", array: true
     t.integer "platforms_categories", array: true
-    t.index ["igdb_id"], name: "index_agames_on_igdb_id"
+    t.index ["igdb_id"], name: "index_agames_on_igdb_id", unique: true
   end
 
   create_table "collection_games", force: :cascade do |t|

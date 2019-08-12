@@ -399,12 +399,16 @@ class IgdbQuery
 
       puts ">> Saving #{new_games.size} new games"
 
+
+      begin
       # Old - without 'activerecord-import'
       # Agame.create(new_games)
 
       #New - with 'activerecord-import'
       games = new_games.map { |g| Agame.new(g) }
       Agame.import games, validate: true
+      rescue ActiveRecord::RecordNotUnique => e
+      end
 
       puts ">> Updating #{to_update.size} existing games"
       Agame.update(update_ids, to_update)

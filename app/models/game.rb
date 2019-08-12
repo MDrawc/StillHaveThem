@@ -4,9 +4,14 @@ class Game < ApplicationRecord
   scope :sort_by_added_desc, lambda { joins(:collection_games).order('collection_games.created_at DESC') }
 
   validates :name, presence: true
-  validates :igdb_id, presence: true
+
+  validates :igdb_id, presence: true, uniqueness: {scope: [:platform, :physical] }
+
   validates :platform, presence: { message: 'must be selected'}, if: :needs_platform?
   validates :platform, absence: { message: 'should not be indicated'}, unless: :needs_platform?
+
+  validates :physical, inclusion: { in: [true, false], message: 'or digital must be selected'}, if: :needs_platform?
+  validates :physical, inclusion: { in: [], message: 'or digital should not be indicated'}, unless: :needs_platform?
 
   has_many :collection_games
   has_many :collections, through: :collection_games
