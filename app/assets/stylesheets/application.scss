@@ -182,20 +182,24 @@ a.uk-notification-close {
     padding-left: 20px;
 }
 
-// .m-coll-edit {
-//     display: none;
-//     svg {
-//         padding-bottom: 7px;
-//     }
-// }
+.m-coll-o {
+    color: $light_grey;
+}
 
-// .m-coll-edit svg path {
-//     fill: #999;
-// }
+.m-coll-o:hover {
+    color: $dark_grey;
+}
 
-// .m-coll-edit:hover svg path {
-//     fill: #666;
-// }
+.opts {
+    display: none;
+    vertical-align: 6px;
+    padding-right: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.coll-li:hover .m-coll.active ~ .opts {
+    display: inline-block;
+}
 
 .m-add {
     color: $light_grey;

@@ -50,7 +50,6 @@ end
 
 def update
   if @collection.update(collection_params)
-    flash[:success] = 'Collection name changed'
     redirect_to root_url
   else
     render 'edit'
@@ -59,7 +58,6 @@ end
 
 def destroy
     @collection.destroy
-    flash[:success] = "Collection deleted"
     redirect_to root_url
 end
 
@@ -145,7 +143,6 @@ private
   def never_those
     @collection = current_user.collections.find_by(id: params[:id])
     if @collection.initial
-      flash[:danger] = "You can not delete this collection"
       redirect_to root_url
     end
   end

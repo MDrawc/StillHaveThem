@@ -3,8 +3,12 @@
   <ul>
     <li><%= link_to '', search_url, id: 'm-search', remote: true, class: 'm-m m-add', 'uk-icon': 'search' %></li>
     <% current_user.collections.each do |collection| %>
-    <li>
+    <li class="coll-li">
       <%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-m m-coll' %>
+      <span class="opts">
+      <%= link_to '', edit_collection_url(collection), class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', 'uk-tooltip': "title: Edit; pos: top-left" %>
+      <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: "Are you sure?"} %>
+      </span>
     </li>
     <% end %>
     <li><%= link_to '', new_collection_path, id: 'm-add-coll', remote: true, "uk-toggle": "target: #create-coll-modal", class: 'm-add', 'uk-icon': 'plus' %></li>
