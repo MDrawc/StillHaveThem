@@ -1,7 +1,9 @@
 <% id = game.id %>
 <% needs_platform = collection.needs_platform %>
 <div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
-  <div id="g-click-<%= id %>" class="g-click"></div>
+
+  <%= content_tag(:div,nil, class: 'g-click', 'gameid': id ) %>
+
 
 <%= get_game_thumb(game) %>
 
@@ -80,9 +82,6 @@
   </li>
 </ul>
 </div>
-<script>
-moreInfo(<%= id %>);
-</script>
 <div id="copy-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
 Loading...
 </div>
