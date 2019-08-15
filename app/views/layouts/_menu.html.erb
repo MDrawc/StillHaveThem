@@ -6,8 +6,8 @@
     <li class="coll-li">
       <%= link_to collection.called, collection, remote: true, id: "m-#{ collection.id }", class: 'm-m m-coll' %>
       <span class="opts">
-      <%= link_to '', edit_collection_url(collection), class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', 'uk-tooltip': "title: Edit; pos: top-left" %>
-      <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: "Are you sure?"} %>
+        <%= link_to '', edit_collection_url(collection), class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', 'uk-tooltip': "title: Edit; pos: top-left" %>
+        <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: "Are you sure?"} unless collection.initial %>
       </span>
     </li>
     <% end %>
