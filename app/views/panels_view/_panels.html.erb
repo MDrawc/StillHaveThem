@@ -52,7 +52,7 @@ function shortSummary(id) {
     </div>
 
     <% @games.select('games.*, collection_games.created_at').each do |game| %>
-    <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
+        <%= render partial: 'panels_view/game_panel', locals: { game: game, collection: collection } %>
     <% end %>
     <div class="uk-width-5-6 page-links">
         <%= js_will_paginate @games, container: false %>
