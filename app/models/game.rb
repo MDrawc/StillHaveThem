@@ -13,10 +13,10 @@ class Game < ApplicationRecord
   validates :physical, inclusion: { in: [true, false], message: 'or digital must be selected'}, if: :needs_platform?
   validates :physical, inclusion: { in: [nil], message: 'or digital should not be indicated'}, unless: :needs_platform?
 
-  has_many :collection_games
+  has_many :collection_games, dependent: :destroy
   has_many :collections, through: :collection_games
 
-  has_many :developer_games
+  has_many :developer_games, dependent: :destroy
   has_many :developers, through: :developer_games
 
   ransack_alias :name_dev, :name_or_developers_name
