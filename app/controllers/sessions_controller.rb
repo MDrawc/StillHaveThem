@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in(user)
-      redirect_to root_url
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
     else
       respond_to do |format|
         format.js

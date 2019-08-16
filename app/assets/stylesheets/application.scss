@@ -34,6 +34,8 @@ $dark_grey: #666;
 $slide_grey: #393939;
 
 @import "panels_view";
+@import "collections";
+
 
 // SCREEN AS IMAGE
 .s-cover {
@@ -144,6 +146,10 @@ a.uk-notification-close {
     z-index: 150;
 }
 
+.uk-navbar-nav li a {
+    text-transform: none;
+}
+
 .side-menu {
     display: flex;
     height: 100%;
@@ -172,33 +178,52 @@ a.uk-notification-close {
     padding-left: 26px;
 }
 
-.m-coll.active {
+li.active .m-coll {
     font-size: 25px;
     color: $dark_grey;
     border-left: 6px solid $dark_accent;
 }
 
-.m-coll.active:hover {
+li.active .m-coll:hover {
     padding-left: 20px;
 }
 
-.m-coll-o {
-    color: $light_grey;
+li.active .m-add {
+    border-left: 6px solid $dark_accent;
+    svg {
+        color: $dark_grey;
+        width: 30px;
+    }
 }
 
-.m-coll-o:hover {
-    color: $dark_grey;
+li.active .m-add:hover {
+    padding-left: 20px;
 }
 
 .opts {
-    display: none;
     vertical-align: 6px;
     padding-right: 10px;
-    transition: all 0.3s ease-in-out;
+
+    a {
+        color: $light_grey;
+    }
+
+    a:hover {
+        color: $dark_grey;
+    }
 }
 
-.coll-li:hover .m-coll.active ~ .opts {
-    display: inline-block;
+.opts {
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+}
+
+li.active:hover .opts {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s linear;
 }
 
 .m-add {
@@ -225,18 +250,6 @@ a.uk-notification-close {
         color: $dark_grey;
         width: 35px;
     }
-}
-
-#m-search.active {
-    border-left: 6px solid $dark_accent;
-    svg {
-        color: $dark_grey;
-        width: 30px;
-    }
-}
-
-#m-search.active:hover {
-    padding-left: 20px;
 }
 
 //NO RESULTS
@@ -818,7 +831,7 @@ button.game-warning.uk-icon:focus {
 }
 
 span.signup-title {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 span.its-free {

@@ -1,6 +1,16 @@
-<%= form_for(@collection, remote: true) do |f| %>
-  <%= f.text_field :custom_name, class: 'form-control' %>
+<hr class="md">
+
+<%= form_with model: @collection do |f| %>
+  <%= f.text_field :custom_name, class: 'uk-input md-text-input', placeholder: 'Collection\'s name', autocomplete: 'off' %>
+  <div class="uk-margin">
   <%= f.hidden_field(:default, :value => false) if @collection.new_record? %>
-  <label><%= f.radio_button(:needs_platform, true) %>Adding games require you to choose platform</label>
-  <%= f.submit((@collection.new_record? ? 'Create' : 'Update'), class: "btn btn-primary") %>
+  </div>
+
+  <div class="uk-margin">
+  <label><%= f.radio_button(:needs_platform, true, class: 'uk-radio') %> Require platform*</label>
+  </div>
+
+  <%= f.submit((@collection.new_record? ? 'Create' : 'Update'), class: "cf-add-button") %>
+
+
 <% end %>

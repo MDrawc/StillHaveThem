@@ -15,15 +15,8 @@
       <li><div id="g-show-edit" class="uk-navbar-item nav-but <%= extra %>">Show Options</div></li>
       <li><div id="" class="uk-navbar-item nav-but">Change View</div></li>
       <li><div class="uk-navbar-item nav-but">Dark Theme</div></li>
-      <li>
-        <a href="#" class="user"><%= current_user.email  %></a>
-        <div class="uk-navbar-dropdown user-ops">
-          <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li><%= link_to "Settings", settings_path %></li>
-            <li><%= link_to "Logout", logout_path, method: :delete %></li>
-          </ul>
-        </div>
-      </li>
+      <li><%= link_to current_user.email, settings_path %></li>
+      <li><%= link_to '', logout_path, method: :delete, 'uk-icon': 'sign-out' %></li>
     </ul>
   </div>
   <% end %>

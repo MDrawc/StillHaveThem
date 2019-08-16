@@ -216,11 +216,11 @@ span.gap {
     background: #d2d2d2;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     min-width: 230px;
+}
 
-    hr {
-        border-top: 2px solid #bababa;
-        margin: 0 0 20px 0;
-    }
+hr.md {
+    border-top: 2px solid #bababa;
+    margin: 0 0 20px 0;
 }
 
 [class*='uk-dropdown-right'] {
@@ -582,6 +582,7 @@ span.gap {
 
 .pd-slide-items {
     border-radius: 3px;
+
     li {
         background: #bdbdbd;
     }
@@ -607,7 +608,6 @@ span.gap {
     border-radius: 0px 3px 0px 3px;
     left: 0;
 }
-
 
 .pd-arr svg {
     height: 20px;

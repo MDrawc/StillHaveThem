@@ -9,7 +9,7 @@
 <label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %></label>
 <span class="cf-name"><%= shorter_name(game_name) %></span>
 </div>
-<hr>
+<hr class="md">
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
         <%= select_tag(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select collection') %>

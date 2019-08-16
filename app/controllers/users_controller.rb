@@ -12,11 +12,12 @@ class UsersController < ApplicationController
     if @user.save
       create_default_collections(@user)
       log_in(@user)
-      redirect_to root_url
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
     else
       @errors = @user.errors.messages
       respond_to do |format|
-        format.html
         format.js
       end
     end
