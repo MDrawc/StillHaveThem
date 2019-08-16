@@ -1,6 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
-  has_many :collection_games
+  has_many :collection_games, dependent: :destroy
   has_many :games, through: :collection_games
   scope :custom, -> { where(initial: false) }
   scope :initial, -> { where(initial: true) }

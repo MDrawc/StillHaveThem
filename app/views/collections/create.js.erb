@@ -1,6 +1,6 @@
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
-var active_el_id = $('a.active').attr('id');
+var active_el_id = $('li.active').attr('id');
 UIkit.modal($('#create-coll-modal')).hide();
 $(".side-menu").replaceWith("<%= escape_javascript(render partial: 'layouts/menu') %>");
 $('#' + active_el_id).addClass('active');
