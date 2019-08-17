@@ -1,13 +1,13 @@
-$("#signin-modal").find(".modal-content").html("<%= j (render 'new') %>");
+$("#signin-modal").find(".modal-content").html("<%= j(render 'new') %>");
 
 $('#login-input-mail').on('input', function() {
-    $("#s-mail-icon").replaceWith("<%= escape_javascript(render partial: 'login_changed', locals: { type: "mail" }) %>");
-    $("#s-key-icon").replaceWith("<%= escape_javascript(render partial: 'login_changed', locals: { type: "key" }) %>");
+    $("#s-mail-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "mail" }) %>");
+    $("#s-key-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "key" }) %>");
 });
 
 $('#password').on('input', function() {
-    $("#s-mail-icon").replaceWith("<%= escape_javascript(render partial: 'login_changed', locals: { type: "mail" }) %>");
-    $("#s-key-icon").replaceWith("<%= escape_javascript(render partial: 'login_changed', locals: { type: "key" }) %>");
+    $("#s-mail-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "mail" }) %>");
+    $("#s-key-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "key" }) %>");
 });
 
 $('.unmask').on('click', function(){

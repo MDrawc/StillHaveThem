@@ -1,3 +1,3 @@
-$("#big-c").html("<%= escape_javascript(render partial: 'search_page') %>");
+$("#big-c").html("<%= j(render partial: 'search_page') %>");
 $("li.active").removeClass('active')
 $("#m-search").addClass('active')

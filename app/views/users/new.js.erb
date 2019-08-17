@@ -1,14 +1,14 @@
-$("#signup-modal").find(".modal-content").html("<%= j (render 'new') %>");
+$("#signup-modal").find(".modal-content").html("<%= j(render 'new') %>");
 
 $('#login-input-mail').on('input', function() {
 
-    $("#mail-icon").replaceWith("<%= escape_javascript(render partial: 'form_mail_errors', locals: { errors: [] }) %>");
+    $("#mail-icon").replaceWith("<%= j(render partial: 'form_mail_errors', locals: { errors: [] }) %>");
 
 });
 
 $('#password').on('input', function() {
 
-    $("#key-icon").replaceWith("<%= escape_javascript(render partial: 'form_pass_errors', locals: { errors: [] }) %>");
+    $("#key-icon").replaceWith("<%= j(render partial: 'form_pass_errors', locals: { errors: [] }) %>");
 
 });
 

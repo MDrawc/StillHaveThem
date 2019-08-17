@@ -13,16 +13,6 @@ user.email = 'pistolisloaded@gmail.com'
 user.password = 'andy21'
 user.save!
 
-user.collections.create(name: 'My Collection', default: true, initial: true, needs_platform: true, form: 'collection')
-user.collections.create(name: 'Wishlist', default: false, initial: true, form: 'wishlist')
-user.collections.create(name: 'I\'ve Played This', default: false, initial: true, form: 'played')
-
-#My extra user
-user = User.new
-user.email = 'nakedtingle@gmail.com'
-user.password = 'andy21'
-user.save!
-
-user.collections.create(name: 'My Collection', default: true, initial: true, needs_platform: true, form: 'collection')
-user.collections.create(name: 'Wishlist', default: false, initial: true, form: 'wishlist')
-user.collections.create(name: 'I\'ve Played This', default: false, initial: true, form: 'played')
+user.collections.create(name: 'My Collection', initial: true, needs_platform: true, form: 'collection')
+user.collections.create(name: 'Wishlist', initial: true, form: 'wishlist')
+user.collections.create(name: 'I\'ve Played This', initial: true, form: 'played')

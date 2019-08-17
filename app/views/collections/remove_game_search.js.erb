@@ -35,9 +35,9 @@ UIkit.notification({
         var already = "#add-" + form + "-form-" + game_id + " .already-in";
 
         if (form === 'collection') {
-            var proxy = "<%= escape_javascript(render partial: 'cover_view/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+            var proxy = "<%= j(render partial: 'cover_view/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
         } else {
-            var proxy = "<%= escape_javascript(render partial: 'cover_view/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+            var proxy = "<%= j(render partial: 'cover_view/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
         }
         $(already).html(proxy);
 
@@ -51,7 +51,7 @@ UIkit.notification({
         // - both forms (collection and custom)
         if ($('#add-form-errors').length) {
             var errorsPlace = '#add-' + form + '-form-' + game_id + ' .add-form-errors';
-            $(errorsPlace).html("<%= escape_javascript(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
+            $(errorsPlace).html("<%= j(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
         }
     }
 

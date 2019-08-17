@@ -1,7 +1,7 @@
 <% games = collection.games.igdb(igdb_id)%>
 <% if games.any? %>
 <hr>
-<p>"<%= game_name %>" games already in "<%= collection.custom_name || collection.name %>":</p>
+<p>"<%= game_name %>" games already in "<%= collection.name %>":</p>
 <ul>
   <% games.each do |game| %>
   <li>- <%= game.platform_name %> (<%= game.physical ? 'Physical' : 'Digital' %>)

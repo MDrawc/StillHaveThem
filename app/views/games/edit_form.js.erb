@@ -1,1 +1,1 @@
-$("#edit-form-<%= @game.id %>").html("<%= escape_javascript(render partial: 'panels_view/edit_form', locals: { game: @game, collection: @collection }) %>");
+$("#edit-form-<%= @game.id %>").html("<%= j(render partial: 'panels_view/edit_form', locals: { game: @game, collection: @collection }) %>");

@@ -227,14 +227,11 @@ hr.md {
     margin-left: 15px;
 }
 
-.cf-collection-icon svg rect {
-    stroke-width: 2.5;
-    stroke: $light_nt;
-}
 
-.cf-collection-green svg rect {
-    stroke-width: 2.5;
-    stroke: $dark_accent;
+.cf-collection-green {
+    rect, polygon, line {
+       stroke: $dark_accent;
+    }
 }
 
 .spinner.g-spin {
@@ -248,6 +245,8 @@ hr.md {
 .spinner.g-spin svg {
     fill: $dark_grey;
 }
+
+
 
 .cf-collection-icon + span, .cf-collection-green + span {
     position: relative;
@@ -309,12 +308,10 @@ hr.md {
     fill: $dark_grey;
 }
 
-#collection:hover + span .cf-collection-icon svg rect {
-    stroke: $dark_grey;
-}
-
-.cf-collection-icon svg rect {
-    transition: 0.15s ease-in-out;
+#collection:hover + span .cf-collection-icon {
+    rect, polygon, line {
+       stroke: $dark_grey;
+    }
 }
 
 .cf-platform-green svg {
@@ -323,7 +320,6 @@ hr.md {
 
 .cf-platform-icon svg {
     fill: $light_grey;
-    transition: 0.15s ease-in-out;
 }
 
 .cf-platform-icon + span, .cf-platform-green + span {
@@ -341,12 +337,10 @@ hr.md {
 
 .cf-physical + svg, .cf-digital + svg {
     cursor: pointer;
-    transition: 0.15s ease-in-out;
     margin-right: 7px;
 }
 
 .cf-physical + svg path {
-    transition: 0.15s ease-in-out;
     fill: $light_grey;
 }
 

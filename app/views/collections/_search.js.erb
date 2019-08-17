@@ -6,7 +6,7 @@ arr.each(function() {
     }
 });
 
-$(".my-games").html("<%= escape_javascript(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
+$(".my-games").html("<%= j(render partial: 'panels_view/panels', locals: { collection: @collection }) %>");
 $('#r-q').text(<%= raw query %>);
 $('#r-s').text('<%= sort %>');
 

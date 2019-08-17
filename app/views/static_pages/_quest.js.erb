@@ -1,6 +1,6 @@
-$("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
+$("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
 $('#search-igdb-bar').on('input', function() {
-    $("#search-errors").replaceWith("<%= escape_javascript(render partial: 'search_errors', locals: { errors: [] }) %>");
+    $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
 // Remove cover placeholder's spinner
@@ -13,7 +13,7 @@ UIkit.util.on(document, 'load', '.game-cover', e => {
 // Remove offcanvas from last search!
 $("[id^=i-]").remove()
 if (<%= !@inquiry.errors.any? %>) {
-  $("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
+  $("#search-results").html("<%= j(render :partial => 'results') %>");
 }
 
 // Fit game title inside no-cover

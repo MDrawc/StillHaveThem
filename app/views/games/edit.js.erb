@@ -65,6 +65,6 @@ if (success) {
     });
 
 } else {
-    $("#edit-form-" + game_id + " .add-form-errors").html("<%= escape_javascript(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+    $("#edit-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors('edit', game_id);
 }

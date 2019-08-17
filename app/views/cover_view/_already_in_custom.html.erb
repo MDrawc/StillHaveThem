@@ -6,7 +6,7 @@
   <% results.each do |c, g| %>
     <% if c.needs_platform %>
       <li>
-      in "<%= c.custom_name || c.name %>":
+      in "<%= c.name %>":
       <ul>
       <% g.each do |game| %>
         <li>
@@ -19,7 +19,7 @@
       </li>
     <% else %>
       <li>
-      in "<%= c.custom_name || c.name %>" <%= link_to '', remove_s_url(game_id: g.first.id, collection_id: c.id, id_type: 'game_id'),
+      in "<%= c.name %>" <%= link_to '', remove_s_url(game_id: g.first.id, collection_id: c.id, id_type: 'game_id'),
     class: 'uk-icon-link acf-remove', method: :delete, remote: true, 'uk-icon' => 'icon: trash; ratio: 0.8' %>
       </li>
     <% end %>

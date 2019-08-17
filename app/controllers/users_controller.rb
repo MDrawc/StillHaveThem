@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      create_default_collections(@user)
+      create_initial_collections(@user)
       log_in(@user)
       respond_to do |format|
         format.js {render js: 'location.reload();' }

@@ -104,9 +104,9 @@ module StaticPagesHelper
   def collections_for_select(user, type = 'custom')
     case type
     when 'custom'
-      user.collections.custom.collect { |c| [ c.custom_name, "#{c.id},#{c.needs_platform}" ] }
+      user.collections.custom.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
     when 'all'
-      user.collections.collect { |c| [ c.called, "#{c.id},#{c.needs_platform}" ] }
+      user.collections.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
     end
   end
 

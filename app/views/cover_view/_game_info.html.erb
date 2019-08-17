@@ -51,7 +51,7 @@
                 <!-- COLLECTION -->
                 <li>
                     <% collection = @initial_collections['collection'] %>
-                    <% tooltip = 'Add to / Remove from ' + (collection.custom_name || collection.name) %>
+                    <% tooltip = 'Add to / Remove from ' + (collection.name) %>
                     <% extra_class = in_initial['collection'] ? 'remove' : '' %>
                     <%= content_tag(:a, '',id: "add-collection-#{ igdb_id }", class: "uk-icon-link " + extra_class,
                     'uk-icon' => 'database', 'uk-tooltip' => "title: #{tooltip}; pos: top-left") %>
@@ -66,7 +66,7 @@
                 <% end %>
                 <!-- ___REMOVE -->
                 <%= content_tag(:li, id: "remove-wishlist-form-" + igdb_id.to_s,  style: !in_initial['wishlist'] ? 'display: none;' : nil) do %>
-                <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
+                <% tooltip = 'Remove from ' + (collection.name) %>
                 <%= link_to '', remove_s_url(game_id: igdb_id, collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'star', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
                 <div class="underlight"></div>
@@ -81,7 +81,7 @@
                 <% end %>
                 <!-- ___REMOVE -->
                 <%= content_tag(:li, id: "remove-played-form-" + igdb_id.to_s, style: !in_initial['played'] ? 'display: none;' : nil) do %>
-                <% tooltip = 'Remove from ' + (collection.custom_name || collection.name) %>
+                <% tooltip = 'Remove from ' + (collection.name) %>
                 <%= link_to '', remove_s_url(game_id: igdb_id, collection_id: collection.id, id_type: 'igdb'),
                 class: 'uk-icon-link remove', method: :delete, remote: true, 'uk-icon' => 'bell', 'uk-tooltip' => "title: #{tooltip}; pos: top-left" %>
                 <div class="underlight"></div>

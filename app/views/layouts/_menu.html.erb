@@ -4,9 +4,9 @@
     <li id="m-search"><%= link_to '', search_url, remote: true, class: 'm-add', 'uk-icon': 'search' %></li>
     <% current_user.collections.each do |collection| %>
     <li id="m-<%= collection.id %>">
-      <%= link_to collection.called, collection, remote: true , class: 'm-coll' %>
+      <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
       <span class="opts">
-        <%= link_to '', edit_collection_url(collection), class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', 'uk-tooltip': "title: Edit; pos: top-left" %>
+        <%= link_to '', edit_collection_url(collection), remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', "uk-toggle": "target: #edit-coll-modal", 'uk-tooltip': "title: Edit; pos: top-left" %>
         <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: "Are you sure?"} unless collection.initial %>
       </span>
     </li>
@@ -19,7 +19,17 @@
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="modal-header">
-      <p class="header"><span class="signup-title">Create new custom collection </span><span></p>
+      <p class="header">Create custom collection<span class='add-coll-icon'><%= svg 'shelf_icon' %></span></p>
+    </div>
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<div id="edit-coll-modal" class="uk-flex-top" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="modal-header">
+      <p class="header">Edit custom collection<span class='add-coll-icon'><%= svg 'shelf_icon' %></span></p>
     </div>
     <div class="modal-content"></div>
   </div>

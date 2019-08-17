@@ -34,31 +34,37 @@ def show
 end
 
 def create
-  @collection = current_user.collections.build(collection_params.except(:name))
-  @collection.name = @collection.custom_name
+  @collection = current_user.collections.build(collection_params)
+  @errors = nil
 
   if @collection.save
-    @message = "<span class='g'>Created</span> " + coll_link(@collection) + " collection"
+    respond_to :js
   else
-    @message = "<span class='b'>Could not</span> create collection"
+    @error = @collection.errors.full_messages.first
+    respond_to do |format|
+        format.js { render partial: "error" }
+    end
   end
-  respond_to :js
 end
 
 def edit
+  respond_to :js
 end
 
 def update
   if @collection.update(collection_params)
-    redirect_to root_url
+    respond_to :js
   else
-    render 'edit'
+    @error = @collection.errors.full_messages.first
+    respond_to do |format|
+        format.js { render partial: "error" }
+    end
   end
 end
 
 def destroy
-    @collection.destroy
-    redirect_to root_url
+  @collection.destroy
+  redirect_to root_url
 end
 
 def remove_game
@@ -127,12 +133,12 @@ end
 private
 
   def collection_params
-    params.require(:collection).permit(:name, :default, :custom_name,
+    params.require(:collection).permit(:name,
      :needs_platform)
   end
 
   def coll_link(collection)
-    "<a class='c' data-remote='true' href='#{ collection_path(collection) }' >#{ collection.called }</a>"
+    "<a class='c' data-remote='true' href='#{ collection_path(collection) }' >#{ collection.name }</a>"
   end
 
   def correct_user

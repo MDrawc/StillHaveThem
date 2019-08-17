@@ -11,10 +11,10 @@
   <p id="emot-happy">\(^o^)/</p>
 </div>
 <div class="input">
-  <p><%= image_tag('mail.svg', alt: 'mail logo', id: 'mail-icon', draggable: 'false')%><%= f.email_field :email, id: 'login-input-mail', class: 'uk-input login-input uk-form-width-medium', placeholder: 'Email address' %></p>
+  <p><span id="mail-icon"><%= svg 'mail' %></span><%= f.email_field :email, id: 'login-input-mail', class: 'uk-input login-input uk-form-width-medium', placeholder: 'Email address' %></p>
 </div>
 <div class="input">
-  <p class="password"><%= image_tag('key.svg', alt: 'password logo, key', id: 'key-icon', draggable: 'false')%><%= f.password_field :password, id: 'password', class: 'password uk-input login-input uk-form-width-medium', placeholder: 'Password' %>
+  <p class="password"><span id="key-icon"><%= svg 'key' %></span><%= f.password_field :password, id: 'password', class: 'password uk-input login-input uk-form-width-medium', placeholder: 'Password' %>
   <button class="uk-button unmask" type="button"></button></p>
   <p id="password-min">6 characters minimum</p>
 </div>

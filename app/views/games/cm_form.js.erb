@@ -1,1 +1,1 @@
-$("#copy-form-<%= @game.id %>").html("<%= escape_javascript(render partial: 'panels_view/copy_form', locals: { game: @game, collection: @collection }) %>");
+$("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'panels_view/copy_form', locals: { game: @game, collection: @collection }) %>");

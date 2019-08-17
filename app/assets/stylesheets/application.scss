@@ -856,7 +856,7 @@ img.lock-icon {
 
 .login-input:focus {
     outline: none;
-    background-color: #dddddd;
+    background-color: #eaeaea;
     color: #666;
     border-color: #939393;
 }
@@ -969,13 +969,13 @@ p.header {
     width: 30px;
     height: 30px;
     position: absolute;
-    left: 2.5px;
-    top: 5px;
+    left: 4px;
+    top: 6px;
 }
 
 #key-icon {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     left: 4px;
     top: 6px;
@@ -998,8 +998,8 @@ p.header {
 }
 
 .warning-icon {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background: url("warning.svg");
     background-size: 100% 100%;
     background-position: center;
@@ -1009,8 +1009,10 @@ p.header {
 
 .search-warning-icon {
     @extend .warning-icon;
-
-    background-size: 70% 70%;
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    margin-top: -15px;
 }
 
 // Eye (unmask password)- - - - - - - - - - - - - - - - - - - - - - - - - - - //

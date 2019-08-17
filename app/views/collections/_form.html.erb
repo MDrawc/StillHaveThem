@@ -1,16 +1,12 @@
-<hr class="md">
-
+<% new = @collection.new_record? %>
 <%= form_with model: @collection do |f| %>
-  <%= f.text_field :custom_name, class: 'uk-input md-text-input', placeholder: 'Collection\'s name', autocomplete: 'off' %>
-  <div class="uk-margin">
-  <%= f.hidden_field(:default, :value => false) if @collection.new_record? %>
-  </div>
-
-  <div class="uk-margin">
-  <label><%= f.radio_button(:needs_platform, true, class: 'uk-radio') %> Require platform*</label>
-  </div>
-
-  <%= f.submit((@collection.new_record? ? 'Create' : 'Update'), class: "cf-add-button") %>
-
-
+<div class="uk-position-relative uk-margin">
+  <p><span id='coll-icon-input'><%= svg 'label' %></span>
+<%= f.text_field :name, class: 'uk-input login-input', placeholder: 'Name', autocomplete: 'off' %></p>
+</div>
+<div class="uk-margin">
+<label class="<%= new ? nil : 'disabled' %>"><%= f.check_box(:needs_platform, class: 'uk-checkbox search-checkbox', disabled: !new) %> Require platform and format*</label>
+<p class="small">*Games in such collection need to have defined platform and format (physical/digital)</p>
+</div>
+<%= f.submit((new ? 'Create' : 'Update'), class: "uk-button uk-button-default create-button") %>
 <% end %>

@@ -208,7 +208,7 @@ class GamesController < ApplicationController
     end
 
     def message(game, needs_platform = true, duplicate = false, p_verb = 'added')
-      collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.called }</a>"
+      collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.name }</a>"
       if needs_platform
         if !duplicate
           @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
