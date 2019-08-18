@@ -21,6 +21,7 @@ function custom_data_confirm() {
     var confirmed = function(element, result) {
         if (result.value) {
             element.removeAttribute('data-confirm')
+            element.setAttribute('data-remote', true)
             element.click()
         }
         return false

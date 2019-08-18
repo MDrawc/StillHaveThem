@@ -1,0 +1,14 @@
+
+var ids = [];
+$('li[id^=m-]').each(function(){ ids.push(this.id)});
+var index = ids.indexOf('m-<%= @collection.id %>');
+var coll_before_id = ids[index-1].substring(2);
+
+$(".side-menu").replaceWith("<%= j(render partial: 'layouts/menu') %>");
+custom_data_confirm();
+
+$.ajax({
+    url: '/collections/' + coll_before_id
+});
+
+

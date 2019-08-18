@@ -64,7 +64,7 @@ end
 
 def destroy
   @collection.destroy
-  redirect_to root_url
+  respond_to :js
 end
 
 def remove_game
