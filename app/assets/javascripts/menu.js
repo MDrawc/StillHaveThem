@@ -1,4 +1,4 @@
-function lorer() {
+function remove_active_create_coll() {
     UIkit.util.on('#create-coll-modal', 'hide', function() {
         $('#m-add-coll').removeClass('active')
     });
