@@ -900,7 +900,7 @@ img.lock-icon {
     height: 144px;
 }
 
-#password {
+#signup-password, #login-password {
     padding-right: 38px;
 }
 
@@ -965,7 +965,7 @@ p.header {
     position: relative;
 }
 
-#mail-icon {
+#mail-icon, #key-icon {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -973,28 +973,8 @@ p.header {
     top: 6px;
 }
 
-#key-icon {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 4px;
-    top: 6px;
-}
-
-#mail-icon.warning-icon {
-    position: absolute;
-}
-
-#key-icon.warning-icon {
-    position: absolute;
-}
-
-#s-mail-icon {
+#s-mail-icon, #s-key-icon {
     @extend #mail-icon;
-}
-
-#s-key-icon {
-    @extend #key-icon;
 }
 
 .warning-icon {
