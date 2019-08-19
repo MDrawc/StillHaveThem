@@ -230,6 +230,7 @@ hr.md {
 
 .cf-collection-green {
     rect, polygon, line {
+       stroke-width: 2.5px;
        stroke: $dark_accent;
     }
 }
