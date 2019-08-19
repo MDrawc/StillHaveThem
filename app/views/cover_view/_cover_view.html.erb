@@ -1,5 +1,5 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
-<% already = []%>
+<% already = [] %>
 <% @inquiry.results.each do |game| %>
   <div id="gs-<%= game[:igdb_id] %>" class="game-space">
     <!-- COVER -->
@@ -29,7 +29,10 @@
     <% end %>
     <!-- NAME AND WARNING -->
     <p class="game-name">
-      <span><%= game[:name] %></span>
+    <span>
+    <% data = {id: game[:id], igdb_id: game[:igdb_id], name: game[:name], platforms: game[:platforms], platforms_names: game[:platforms_names] } %>
+    <%= link_to game[:name], new_game_url(form_data: data ), id: "add-#{ game[:igdb_id] }", remote: true %>
+    </span>
       <% if (status_id = game[:status]) && status_id != 0 %>
       <button class="game-warning", uk-icon="icon: warning"
       uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
@@ -68,6 +71,11 @@
         <% end %>
       <% end %>
     <% end %>
+  <!-- FORM MODAL -->
+  <div id="add-form-<%= game[:igdb_id] %>" class="add-form" uk-dropdown="toggle: #add-<%= game[:igdb_id] %>; mode: click; delay-hide: 100; pos: right-center">
+  Loading...
+  </div>
+  <!-- END -->
   </div>
   <% end %>
 </div>

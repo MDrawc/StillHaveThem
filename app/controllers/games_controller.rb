@@ -2,70 +2,50 @@ class GamesController < ApplicationController
   before_action :require_user
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
 
+  def new
+    @game = Game.new()
+    @data = params[:form_data]
+    respond_to :js
+  end
+
   def create
+    agame_id = game_params[:id]
+    coll_id = game_params[:collection] .split(',').first.to_i
+
     @errors = []
-    @collection = current_user.collections.find_by_id(params[:collection])
+    @collection = current_user.collections.find_by_id(coll_id)
     @game_igdb_id = game_params[:igdb_id]
 
-    if @collection
-      @form = @collection.form
-    else
-      @errors << 'Select collection'
-      @form = params[:form]
-    end
+    @errors << 'Select collection' unless @collection
 
     if @collection && @collection.needs_platform
       platform, platform_name = game_params[:platform].split(',')
-      if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical ])
+      physical = game_params[:physical]
+      if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: physical)
         begin
           @collection.games << @game
           save_platform(platform, platform_name)
-          message(@game, true, false)
+          message(@game, true)
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
         end
       else
-        @game = @collection.games.build(game_params.except(:platform, :developers))
-        @game.platform, @game.platform_name = platform, platform_name
-        add_developers(game_params[:developers])
-
-        begin
-        if @game.save
-          save_platform(platform, platform_name)
-          message(@game, true, false)
-        else
-          @errors += @game.errors.full_messages
-        end
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Please try again in a moment'
-        end
-
+        create_from_agame(agame_id, true, platform, platform_name, physical)
       end
-    elsif @collection # Does not need platform:
+
+    elsif @collection
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
           @collection.games << @game
-          message(@game, false, false)
+          message(@game, false)
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
-          message(@game, false, true) unless @form == 'custom'
         end
       else
-        @game = @collection.games.build(game_params.except(:platform, :physical, :developers))
-        add_developers(game_params[:developers])
-
-        begin
-        if @game.save
-          message(@game, false, false)
-        else
-          @errors += @game.errors.full_messages
-        end
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Please try again in a moment'
-        end
-
+        create_from_agame(agame_id)
       end
     end
+
     respond_to :js
   end
 
@@ -137,7 +117,6 @@ class GamesController < ApplicationController
     @copy = eval(params[:copy])
     p_verb = @copy ? 'copied' : 'moved'
 
-
     if params[:collection].empty?
       @errors << 'Select collection'
       @current = current_user.collections.find(params[:current].to_i)
@@ -161,7 +140,7 @@ class GamesController < ApplicationController
       if game
         begin
           @collection.games << game
-          message(game, needs_plat, false, p_verb)
+          message(game, needs_plat, p_verb)
           unless @copy
             @current.games.delete(@game_id)
           end
@@ -170,6 +149,7 @@ class GamesController < ApplicationController
         end
       else
         game = Game.find_by(igdb_id: game_params[:igdb_id]).amoeba_dup
+
         if needs_plat
           game.platform, game.platform_name = platform, platform_name
           game.physical = game_params[:physical]
@@ -181,7 +161,7 @@ class GamesController < ApplicationController
         end
 
         if game.save
-          message(game, needs_plat, false, p_verb)
+          message(game, needs_plat, p_verb)
           @collection.games << game
 
           unless @copy
@@ -198,8 +178,7 @@ class GamesController < ApplicationController
 
   private
     def game_params
-      params.require(:game).permit(:name, :igdb_id, :first_release_date, :summary,
-       :status, :category, :needs_platform, :platform, :physical, :cover, :cover_width, :cover_height, platforms: [], platforms_names: [], developers: [], screenshots: [])
+      params.require(:game).permit(:id, :igdb_id, :collection, :needs_platform, :platform, :physical)
     end
 
     def find_game_and_collection
@@ -207,24 +186,44 @@ class GamesController < ApplicationController
       @game = @collection.games.find_by_id(params[:game_id])
     end
 
-    def message(game, needs_platform = true, duplicate = false, p_verb = 'added')
-      collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.name }</a>"
-      if needs_platform
-        if !duplicate
-          @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
-          " <span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>" +
-          " to " + collection_link
+    def create_from_agame(id, needs_platform = false, platform = nil, platform_name = nil, physical = nil)
+      if agame = Agame.find_by_id(id)
+        @game = @collection.games.build(convert_agame(agame))
+        if needs_platform
+          @game.needs_platform = true
+          @game.platform, @game.platform_name = platform, platform_name
+          @game.physical = physical
+        end
+        add_developers(game_params[:developers])
+        begin
+        if @game.save
+          save_platform(platform, platform_name) if needs_platform
+          message(@game, needs_platform)
         else
-          @message = nil
+          @errors += @game.errors.full_messages
+        end
+        rescue ActiveRecord::RecordNotUnique
+          @errors << 'Please try again in a moment'
         end
       else
-        if !duplicate
-          @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
-          " to " + collection_link
-        else
-          @message = "#{ game.name }" +
-          " <span class='b'>already belongs</span> to " + collection_link
-        end
+        @errors << 'Please repeat the search and try again'
+      end
+    end
+
+    def convert_agame(agame)
+      game_data = agame.as_json.symbolize_keys
+      return game_data.except(:id, :created_at, :updated_at, :themes, :developers, :platforms_categories)
+    end
+
+    def message(game, needs_platform = true, p_verb = 'added')
+      collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.name }</a>"
+      if needs_platform
+        @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
+        " <span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>" +
+        " to " + collection_link
+      else
+        @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
+        " to " + collection_link
       end
     end
 

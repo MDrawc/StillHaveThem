@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :edit, :update, :destroy]
   resources :collections, except: :index
-  resources :games, only: [:create]
+  resources :games, only: [:new, :create]
 
   delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
   delete '/remove_s/:game_id/:collection_id/:id_type', to: 'collections#remove_game_search', as: 'remove_s'

@@ -209,10 +209,11 @@ span.gap {
     border: none;
 }
 
-.copy-form {
+.copy-form, .edit-form, .add-form {
     padding: 15px;
     border-radius: 5px;
     font-size: 14px;
+    text-align: left;
     background: #d2d2d2;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     min-width: 230px;
@@ -246,8 +247,6 @@ hr.md {
 .spinner.g-spin svg {
     fill: $dark_grey;
 }
-
-
 
 .cf-collection-icon + span, .cf-collection-green + span {
     position: relative;

@@ -4,7 +4,6 @@
 
   <%= content_tag(:div,nil, class: 'g-click', 'gameid': id ) %>
 
-
 <%= get_game_thumb(game) %>
 
   <div class="g-info uk-width-expand">
@@ -86,7 +85,7 @@
 Loading...
 </div>
 <% if needs_platform %>
-<div id="edit-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
+<div id="edit-form-<%= id %>" class="edit-form" uk-dropdown="toggle: #g-edit-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">
 Loading...
 </div>
 <% end %>

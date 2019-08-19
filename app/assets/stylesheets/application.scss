@@ -33,9 +33,9 @@ $light_grey: #999;
 $dark_grey: #666;
 $slide_grey: #393939;
 
+@import "cover_view";
 @import "panels_view";
 @import "collections";
-
 
 // SCREEN AS IMAGE
 .s-cover {
@@ -653,6 +653,14 @@ div.no-results {
     margin-bottom: 5px;
     max-width: 200px;
     font-weight: 500;
+
+    a {
+        color: $dark_grey;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
 }
 
 .game-release-date {
@@ -1210,21 +1218,15 @@ hr.nav-bottom {
     margin-top: 10px;
 }
 
-.add-form {
-    border-radius: 5px;
-    background-color: #444444f7;
-    box-shadow: -4px 5px 9px 0px #0000004a;
-    padding: 30px 15px 15px 15px;
-    font-size: 14px;
-    width: 230px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@media (min-width: 960px) {
-    .add-form {
-        width: 270px;
-    }
-}
+// .add-form {
+//     border-radius: 5px;
+//     background-color: #444444f7;
+//     box-shadow: -4px 5px 9px 0px #0000004a;
+//     padding: 30px 15px 15px 15px;
+//     font-size: 14px;
+//     width: 230px;
+//     color: rgba(255, 255, 255, 0.5);
+// }
 
 .select-collection {
     margin: 0px 0px 20px 0px;

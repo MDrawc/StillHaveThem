@@ -1,11 +1,8 @@
 // VARIABLES:
 var game_id = '<%= @game_igdb_id %>';
-var form = '<%= @form %>';
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
 var success = <%= !@errors.present? ? true : false %>;
-
-// Notifications position depends on offcanvas position
 
 if ($('.uk-offcanvas-container').length) {
     var offc_class = $('.uk-offcanvas-container').attr('class');
@@ -15,8 +12,6 @@ if ($('.uk-offcanvas-container').length) {
     }
 }
 
-// NOTIFICATIONS:
-// WHEN: warning type messages are shown only for 'wishlist' and 'played'
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
@@ -66,8 +61,8 @@ if (success) {
 }
 <% end %>
 
-// SHOWING ERRORS - BOTH FORMS (COLLECTION AND CUSTOM):
-var element = "#add-" + form + "-form-" + game_id + " .add-form-errors";
+// SHOWING ERRORS:
+var element = "#add-form-" + game_id + " .add-form-errors";
 $(element).html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
 
 // RESETING ERROR STATUS UPON INPUT CHANGE - BOTH FORMS (COLLECTION AND CUSTOM):
