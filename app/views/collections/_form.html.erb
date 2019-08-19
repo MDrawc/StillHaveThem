@@ -8,5 +8,5 @@
 <label class="<%= new ? nil : 'disabled' %>"><%= f.check_box(:needs_platform, class: 'uk-checkbox search-checkbox', disabled: !new) %> Require platform and format*</label>
 <p class="small">*Games in such collection need to have defined platform and format (physical/digital)</p>
 </div>
-<%= f.submit((new ? 'Create' : 'Update'), class: "uk-button uk-button-default create-button") %>
+<%= f.submit((new ? 'Create' : 'Update'), class: "uk-button uk-button-default") %>
 <% end %>

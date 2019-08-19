@@ -30,10 +30,12 @@ function custom_data_confirm() {
     var showConfirmDialog = function(link) {
         var message = $(link).attr('data-confirm');
         UIkit.modal.confirm(message).then(function() {
+
             confirmed(link, {
                 value: true
             });
         });
+        $('.uk-button-primary').html('<span uk-icon="trash"></span>')
     }
     $("a[data-confirm]").on('click', handleConfirm);
 }

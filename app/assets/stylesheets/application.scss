@@ -629,7 +629,7 @@ div.no-results {
     text-align: center;
 }
 
-.md-button {
+.uk-button-default, .uk-button-primary {
     border-radius: 5px;
     text-transform: capitalize;
 }
@@ -944,10 +944,7 @@ p.password {
 }
 
 .create-button {
-    @extend .md-button;
-
     float: left;
-    width: 102.88px;
 }
 
 p.header {
