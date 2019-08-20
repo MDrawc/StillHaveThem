@@ -3,7 +3,6 @@
 
 <div id="i-<%= igdb_id %>" uk-offcanvas="mode: none; bg-close: true">
     <div class="uk-offcanvas-bar">
-        <!-- <button class="uk-offcanvas-close" type="button" uk-close></button> -->
         <!-- TITLE & RELEASE YEAR -->
         <h3 class="info-title"><%= game_name %>
         <% if game[:first_release_date]%>
@@ -45,15 +44,14 @@
     <% if screens = game[:screenshots] %>
     <% urls = screens_urls(screens) %>
     <div class="uk-position-relative md-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
+        <div class="spinner"><%= svg 'loading' %></div>
         <ul class="uk-slideshow-items md-slide-items">
             <% no_of_screens = 0 %>
-            <% urls.each_with_index do |url, i| %>
-            <li>
-                <% img_target = (i == 0) ? "target: #gc-#{ igdb_id }" : "target: #i-#{ igdb_id }" %>
-                <%= image_tag('', 'data-src' => url[:small], alt: game_name, 'uk-cover' => '', 'uk-img' => img_target ) %>
-                <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
-            </li>
-            <% no_of_screens += 1 %>
+            <% urls.each do |url| %>
+                <li>
+                    <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
+                </li>
+                <% no_of_screens += 1 %>
             <% end %>
         </ul>
         <!-- SLIDESHOW NAVIGATION -->
