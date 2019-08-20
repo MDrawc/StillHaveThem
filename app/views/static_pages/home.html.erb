@@ -1,5 +1,10 @@
 <% if logged_in? %>
-  <%= render 'logged' %>
+<script>
+
+$.ajax({
+    url: '/search',
+});
+</script>
 <% else %>
-  <%= render 'not_logged' %>
+<%= render 'not_logged' %>
 <% end %>

@@ -1,13 +1,20 @@
 var ids = [];
-$('li[id^=m-]').each(function(){ ids.push(this.id)});
-var index = ids.indexOf('m-<%= @collection.id %>');
-var coll_before_id = ids[index-1].substring(2);
+$('li[id^=mc-]').each(function(){ ids.push(this.id)});
+var index = ids.indexOf('mc-<%= @collection.id %>');
 
 $(".side-menu").replaceWith("<%= j(render partial: 'layouts/menu') %>");
 custom_data_confirm();
 
-$.ajax({
-    url: '/collections/' + coll_before_id
-});
+var url = ''
+if ((id = ids[index-1]) != null) {
+  url += '/collections/' + id.substring(3)
+} else {
+  if ((id = ids[index+1]) != null) {
+    url += '/collections/' + id.substring(3)
+  } else {
+    url += '/search/'
+  }
+}
 
+$.ajax({ url: url });
 

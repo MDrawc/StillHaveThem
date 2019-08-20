@@ -1,7 +1,6 @@
 class CollectionsController < ApplicationController
 before_action :require_user
 before_action :correct_user, only: [:show, :edit, :update, :destroy]
-before_action :never_those, only: [:destroy]
 
 PER_PAGE = 5
 
@@ -144,13 +143,6 @@ private
   def correct_user
     @collection = current_user.collections.find_by(id: params[:id])
     redirect_to root_url if @collection.nil?
-  end
-
-  def never_those
-    @collection = current_user.collections.find_by(id: params[:id])
-    if @collection.initial
-      redirect_to root_url
-    end
   end
 
   def check_for_game_in_custom(igdb_id)

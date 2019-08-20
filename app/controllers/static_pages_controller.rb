@@ -28,7 +28,6 @@ class StaticPagesController < ApplicationController
         @inquiry.search
         if @inquiry.results.present?
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
-          prepare_user_collections(current_user)
         end
       end
 
@@ -46,7 +45,6 @@ class StaticPagesController < ApplicationController
 
       if @inquiry.results.present?
         @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
-        prepare_user_collections(current_user)
       end
 
       respond_to do |format|
@@ -55,13 +53,4 @@ class StaticPagesController < ApplicationController
 
     end
   end
-
-  private
-    def prepare_user_collections(user)
-      @initial_collections = {}
-      user.collections.initial.each do |collection|
-        @initial_collections[collection.form] = collection
-      end
-      @custom_collections = user.collections.custom
-    end
 end

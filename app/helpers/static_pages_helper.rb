@@ -101,24 +101,14 @@ module StaticPagesHelper
     current_user.platforms.map(&:name)
   end
 
-  def collections_for_select(user, type = 'custom')
-    case type
-    when 'custom'
-      user.collections.custom.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
-    when 'all'
-      user.collections.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
-    end
+  def collections_for_select(user)
+    user.collections.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
   end
 
   def check_for_games(options = {})
     collections = current_user.collections
+    collections = collections.sort_by { |c| [c.needs_platform ? 1 : 0] }
     id = options[:game_id] || options[:igdb_id]
-
-    case options[:type]
-    when 'initial'; collections = collections.initial
-    when 'custom'
-      collections = collections.custom.sort_by { |c| [c.needs_platform ? 1 : 0] }
-    end
 
     results = {}
 

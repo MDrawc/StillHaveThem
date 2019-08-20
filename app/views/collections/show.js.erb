@@ -1,5 +1,5 @@
 $("li.active").removeClass('active');
-$("#m-<%= @collection.id %>").addClass('active');
+$("#mc-<%= @collection.id %>").addClass('active');
 
 var refresh = eval('<%= @refresh %>')
 if (refresh) {

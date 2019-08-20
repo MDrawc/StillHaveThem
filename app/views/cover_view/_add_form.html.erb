@@ -11,7 +11,7 @@
 
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
-        <%= f.select(:collection, options_for_select(collections_for_select(current_user, 'all')), include_blank: 'Select collection') %>
+        <%= f.select(:collection, options_for_select(collections_for_select(current_user)), include_blank: 'Select collection') %>
         <span class="bigs">
             <span class="cf-collection-icon"><%= svg 'shelf_icon' %></span>
             <span></span>

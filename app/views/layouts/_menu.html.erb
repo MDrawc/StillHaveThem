@@ -3,12 +3,12 @@
   <ul>
     <li id="m-search"><%= link_to '', search_url, remote: true, class: 'm-add', 'uk-icon': 'search' %></li>
     <% current_user.collections.each do |collection| %>
-    <li id="m-<%= collection.id %>">
+    <li id="mc-<%= collection.id %>">
       <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
       <span class="opts">
         <%= link_to '', edit_collection_url(collection), remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', "uk-toggle": "target: #edit-coll-modal", 'uk-tooltip': "title: Edit; pos: top-left" %>
         <% tas = "Delete <span class='light-grey'>\"#{ collection.name }\"</span> collection?<span class='add-coll-icon'>#{ svg 'shelf_icon' }</span><p class='del-coll-info blink_me'>All games in this collection will be dropped.</p>" %>
-        <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: tas } unless collection.initial %>
+        <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: tas } %>
       </span>
     </li>
     <% end %>
