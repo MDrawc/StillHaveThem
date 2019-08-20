@@ -1,10 +1,12 @@
 <% if logged_in? %>
-<script>
-
-$.ajax({
-    url: '/search',
-});
-</script>
+  <script>
+  <% if @home_id %>
+    var url = '/collections/<%= @home_id %>'
+  <% else %>
+    var url = '/search'
+  <% end %>
+  $.ajax({ url: url });
+  </script>
 <% else %>
-<%= render 'not_logged' %>
+  <%= render 'not_logged' %>
 <% end %>

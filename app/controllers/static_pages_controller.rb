@@ -4,7 +4,9 @@ class StaticPagesController < ApplicationController
   @@last_result_ids = []
 
   def home
-    @home_collection = current_user.collections.first if logged_in?
+    if logged_in? && !current_user.collections.empty?
+      @home_id = current_user.collections.first.id
+    end
   end
 
   def privacy
