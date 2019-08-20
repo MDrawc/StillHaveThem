@@ -236,7 +236,8 @@ hr.md {
     }
 }
 
-.spinner.g-spin {
+.g-spin {
+    position: absolute;
     width: 40px;
     top: 50%;
     margin-top: -20px;
@@ -244,8 +245,10 @@ hr.md {
     margin-left: -20px;
 }
 
-.spinner.g-spin svg {
+.g-spin svg {
     fill: $dark_grey;
+    animation: 1s infinite normal rotate;
+    animation-timing-function: linear;
 }
 
 .cf-collection-icon + span, .cf-collection-green + span {

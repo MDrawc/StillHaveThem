@@ -368,7 +368,7 @@ div.no-results {
 }
 
 .blink_me {
-    animation: blinker 1s linear infinite;
+    animation: blinker 1s ease-in-out infinite;
 }
 
 @keyframes blinker {

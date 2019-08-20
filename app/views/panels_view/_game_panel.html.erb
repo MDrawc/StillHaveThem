@@ -25,7 +25,7 @@
         <% if screens = game[:screenshots] %>
         <% urls = screens_urls(screens) %>
         <div class="uk-position-relative pd-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .full-scrn; animation: fade">
-          <div class="spinner g-spin"><%= svg 'loading' %></div>
+          <div class="g-spin"><%= svg 'loading' %></div>
           <ul class="uk-slideshow-items pd-slide-items">
             <% urls.each do |url| %>
             <li>
