@@ -122,7 +122,6 @@ module StaticPagesHelper
   end
 
   def shorter_name(name)
-
     words = name.split(' ')
     i, count, short = 0, 0, []
     while count <= CHAR_LIMIT && i < words.size

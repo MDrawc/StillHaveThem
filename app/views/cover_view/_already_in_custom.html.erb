@@ -1,7 +1,7 @@
 <% results = check_for_games(igdb_id: igdb_id) %>
 <% if results %>
   <hr>
-  <p>"<%= game_name %>" in custom collections:</p>
+  <p>"<%= game_name %>" in your collections:</p>
   <ul>
   <% results.each do |c, g| %>
     <% if c.needs_platform %>
