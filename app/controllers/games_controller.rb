@@ -4,7 +4,11 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new()
-    @data = params[:form_data]
+    @data = Agame.find_by(igdb_id: params[:igdb_id]).attributes.slice('id',
+     'igdb_id',
+      'name',
+       'platforms',
+        'platforms_names').symbolize_keys
     respond_to :js
   end
 

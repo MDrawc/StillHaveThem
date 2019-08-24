@@ -31,8 +31,7 @@
       <!-- NAME AND WARNING -->
       <p class="game-name">
         <span>
-          <% data = {id: game[:id], igdb_id: igdb_id, name: game[:name], platforms: game[:platforms], platforms_names: game[:platforms_names] } %>
-          <%= link_to game[:name], new_game_url(form_data: data ), id: "add-#{ igdb_id }", remote: true %>
+          <%= link_to game[:name], new_game_url(igdb_id: igdb_id ), id: "add-#{ igdb_id }", remote: true %>
         </span>
         <% if (status_id = game[:status]) && status_id != 0 %>
         <button class="game-warning", uk-icon="icon: warning"
