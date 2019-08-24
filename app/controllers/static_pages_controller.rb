@@ -30,6 +30,7 @@ class StaticPagesController < ApplicationController
         @inquiry.search
         if @inquiry.results.present?
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
+          @owned = owned(@inquiry.results)
         end
       end
 
@@ -47,12 +48,23 @@ class StaticPagesController < ApplicationController
 
       if @inquiry.results.present?
         @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
+        @owned = owned(@inquiry.results)
       end
 
       respond_to do |format|
         format.js { render partial: "load_more" }
       end
-
     end
   end
+
+  private
+
+    def owned(results)
+      res = []
+      igdb_ids = results.map { |g| g[:igdb_id] }
+      current_user.collections.each do |c|
+        res += c.games.where(igdb_id: igdb_ids).pluck(:igdb_id)
+      end
+      return res.uniq
+    end
 end

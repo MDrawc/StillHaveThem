@@ -11,13 +11,13 @@
     <div class="select-collection">
         <div uk-form-custom="target: > * > span:last-child">
             <% if collections.size > 1 %>
-                <%= f.select(:collection, options_for_select(collections), include_blank: 'Select collection') %>
+                <%= f.select(:collection, options_for_select(collections), { include_blank: 'Select collection' }, { id: 'collection' }) %>
                 <span class="bigs">
                     <span class="cf-collection-icon"><%= svg 'shelf_icon' %></span>
                     <span></span>
                 </span>
             <% else %>
-                <%= f.select(:collection, options_for_select(collections)) %>
+                <%= f.select(:collection, options_for_select(collections), { include_blank: 'Select collection' }, { id: 'collection' }) %>
                 <span class="bigs">
                     <span class="cf-collection-green"><%= svg 'shelf_icon' %></span>
                     <span></span>
@@ -59,7 +59,7 @@
     <button name="button" type="submit" class="cf-add-button">Add</button><span class="add-form-errors"></span>
     <% end %>
     <div class="already-in">
-        <%= render(partial: 'cover_view/already_in_custom', locals: { game_name: data[:name], igdb_id: data[:igdb_id] }) %>
+        <%= render(partial: 'cover_view/already_in', locals: { game_name: data[:name], igdb_id: data[:igdb_id] }) if owned %>
     </div>
 <% else %>
     <span class="italic blink_me"><%= svg 'warning' %> Please add collection first</span>

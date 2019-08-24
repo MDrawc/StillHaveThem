@@ -35,29 +35,3 @@
 </div>
 <button name="button" type="submit" class="cf-add-button">Edit</button><span class="add-form-errors"></span>
 <% end %>
-<script>
-function preselectPlatform(type, id, platform) {
-    var form = '#' + type + '-form-' + id;
-    var element = form + " #game_platform option[value^='" + platform + ",']";
-    $(element).attr("selected", "selected");
-    $(form + ' .cf-platform-icon').attr('class', 'cf-platform-green');
-}
-
-preselectPlatform('edit', <%= id %>, <%= game.platform %>)
-
-function resetFormErrors(form, game_id) {
-
-    var reset_elements = ['#collection', '#game_platform', '.cf-physical', '.cf-digital', '#copy_true', '#copy_false']
-    var errors_place = '.add-form-errors';
-    var element = '#' + form + '-form-' + game_id + ' ' + errors_place;
-
-    for (i = 0; i < reset_elements.length; i++) {
-
-        var formPart = '#' + form + '-form-' + game_id + ' ' + reset_elements[i];
-
-        $(formPart).on('input', function() {
-            $(element).html('');
-        });
-    }
-}
-</script>

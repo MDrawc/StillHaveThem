@@ -1,4 +1,3 @@
-var form = '<%= @collection.form %>';
 var msg_pos = 'top-right'
 
 // Notifications position depends on offcanvas position
@@ -18,47 +17,21 @@ UIkit.notification({
 });
 
 <% if @success %>
-
     var game_id = '<%= @game.igdb_id %>';
+    var already = "#add-form-" + game_id + " .already-in";
+    var proxy = "<%= j(render partial: 'cover_view/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+    $(already).html(proxy);
 
-    // Show add form and hide remove form for Wishlist and Played
-    if ((form === 'wishlist') || (form === 'played')) {
-        var element = "#add-" + form + "-form-" + game_id;
-        $(element).show();
-        element = element.replace("add", "remove");
-        $(element).hide();
+    // Reseting error status upon succesful remove
+    var element = '#add-form-' + game_id + ' .add-form-errors';
+    $(element).html('');
 
-    } else if ((form === 'collection') || (form === 'custom')) {
-
-        // Render games already in My Collection and Custom Collections
-        var drop_element = "#add-" + form + "-form-" + game_id;
-        var already = "#add-" + form + "-form-" + game_id + " .already-in";
-
-        if (form === 'collection') {
-            var proxy = "<%= j(render partial: 'cover_view/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
-        } else {
-            var proxy = "<%= j(render partial: 'cover_view/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
-        }
-        $(already).html(proxy);
-
-        // Change underlight in My collection and Custom Collection
-        <% if @all_deleted %>
-            var button = "#add-" + form + "-" + game_id;
-            $(button).removeClass('remove');
-        <% end %>
-
-        // Reseting error status upon succesful remove
-        // - both forms (collection and custom)
-        if ($('#add-form-errors').length) {
-            var errorsPlace = '#add-' + form + '-form-' + game_id + ' .add-form-errors';
-            $(errorsPlace).html("<%= j(render partial: 'games/add_form_errors', locals: { errors: [] }) %>");
-        }
-    }
-
-    // Remove underline from removed game
+    // Remove underline from removed game and change add-form link
     <% if @remove_underline %>
-    var name_el = '#gs-' + game_id + ' .game-name span'
-    $(name_el).removeClass('owned');
+        var name_el = '#gs-' + game_id + ' .game-name span'
+        $(name_el).removeClass('owned');
+        var href = $('#add-' + game_id).attr('href');
+        $('#add-' + game_id).attr('href', href.replace('true','false'));
     <% end %>
 
 <% end %>

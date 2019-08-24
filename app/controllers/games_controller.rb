@@ -9,6 +9,7 @@ class GamesController < ApplicationController
       'name',
        'platforms',
         'platforms_names').symbolize_keys
+    @owned = eval(params[:owned])
     respond_to :js
   end
 
@@ -199,13 +200,13 @@ class GamesController < ApplicationController
           @game.platform, @game.platform_name = platform, platform_name
           @game.physical = physical
         end
-        add_developers(game_params[:developers])
+        add_developers(agame.developers)
         begin
         if @game.save
           save_platform(platform, platform_name) if needs_platform
           message(@game, needs_platform)
         else
-          @errors += @game.errors.full_messages
+          @errors += @game.errors.messages.values
         end
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Please try again in a moment'

@@ -1,1 +1,7 @@
 $("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'panels_view/copy_form', locals: { game: @game, collection: @collection }) %>");
+<% if @collection.needs_platform %>
+    preselectPlatform('copy', <%= @game.id %>, <%= @game.platform %>);
+<% end %>
+changeButton(<%= @game.id %>);
+activateForm('copy', <%= @game.id %>);
+updatePlatformIcon('copy', <%= @game.id %>);

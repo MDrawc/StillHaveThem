@@ -20,73 +20,22 @@ if (msg) {
     });
 }
 
-// DO NOT DO THIS IF USER HAS NOT SELECTED COLLECTION IN
-// ADD TO CUSTOM COLLECTION FORM
-<% if @collection && @game %>
-if (success) {
-    if ((form === 'collection') || (form === 'custom')) {
-
-        // Hide form dropdown
-        var drop_element = "#add-" + form + "-form-" + game_id;
-        UIkit.dropdown(drop_element).hide();
-
-        // Add green mark to button
-        var element = "#add-" + form + "-" + game_id;
-        $(element).addClass('remove');
-
-        // Render games already in my collection
-        var already = "#add-" + form + "-form-" + game_id + " .already-in";
-
-        if (form === 'collection') {
-        var proxy = "<%= j(render partial: 'cover_view/already_in_collection', locals: { collection: @collection, game_name: @game.name, igdb_id: @game.igdb_id }) %>";
-        } else {
-        var proxy = "<%= j(render partial: 'cover_view/already_in_custom', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
-        }
-
-        UIkit.util.on(drop_element, 'hidden', function () {
-            $(already).html(proxy);
-        });
-
-    } else {
-        var element = "#add-" + form + "-form-" + game_id;
-        $(element).hide();
-        element = element.replace("add", "remove");
-        $(element).show();
-    }
-
+if (success == true) {
+    // Hide form dropdown
+    var drop_element = "#add-form-" + game_id;
+    UIkit.dropdown(drop_element).hide();
     // Underline owned game on cover view
     var name_el = '#gs-' + game_id + ' .game-name span'
     $(name_el).addClass('owned');
+    // Change add-form link
+    var href = $('#add-' + game_id).attr('href');
+    $('#add-' + game_id).attr('href', href.replace('false','true'));
 
-}
-<% end %>
-
-// SHOWING ERRORS:
-var element = "#add-form-" + game_id + " .add-form-errors";
-$(element).html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-
-// RESETING ERROR STATUS UPON INPUT CHANGE - BOTH FORMS (COLLECTION AND CUSTOM):
-
-function resetFormErrors(form) {
-
-    var resetElements = ['#game_platform', '.physical', '.digital']
-
-    if (form === 'custom') {
-        resetElements.push('#collection')
-    }
-
-    var errorsPlace = '.add-form-errors';
-    var element = '#add-' + form + '-form-' + game_id + ' ' + errorsPlace;
-
-    for (i = 0; i < resetElements.length; i++) {
-
-        var formPart = '#add-' + form + '-form-' + game_id + ' ' + resetElements[i];
-
-        $(formPart).on('input', function() {
-                $(element).html('');
-        });
-
-    }
+} else {
+    // Show errors
+    var element = "#add-form-" + game_id + " .add-form-errors";
+    $(element).html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+    // Reset error upon input change
+    resetFormErrors('add', game_id)
 }
 
-resetFormErrors(form);

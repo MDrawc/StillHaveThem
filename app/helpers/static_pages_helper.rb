@@ -105,22 +105,6 @@ module StaticPagesHelper
     user.collections.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
   end
 
-  def check_for_games(options = {})
-    collections = current_user.collections
-    collections = collections.sort_by { |c| [c.needs_platform ? 1 : 0] }
-    id = options[:game_id] || options[:igdb_id]
-
-    results = {}
-
-    collections.each do |collection|
-      games = collection.games
-      findings = options[:igdb_id] ? games.igdb(id) : games.find_by_id(id)
-      results[collection] = findings if findings.present?
-    end
-
-    return results.present? ? results : false
-  end
-
   def shorter_name(name)
     words = name.split(' ')
     i, count, short = 0, 0, []
@@ -133,6 +117,22 @@ module StaticPagesHelper
     res = short.join(' ')
     res += '...' if res.size < name.size
     res
+  end
+
+  def check_for_games(options = {})
+    collections = current_user.collections
+    # collections = collections.sort_by { |c| [c.needs_platform ? 1 : 0] }
+    id = options[:game_id] || options[:igdb_id]
+
+    results = {}
+
+    collections.each do |collection|
+      games = collection.games
+      findings = options[:igdb_id] ? games.igdb(id) : games.find_by_id(id)
+      results[collection] = findings if findings.present?
+    end
+
+    return results.present? ? results : false
   end
 end
 

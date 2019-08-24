@@ -1,5 +1,5 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <% already = [] %>
+  <% already_offcanvas = [] %>
   <% @inquiry.results.each do |game| %>
   <% igdb_id = game[:igdb_id] %>
   <div id="gs-<%= igdb_id %>" class="game-space">
@@ -23,16 +23,17 @@
         <% end %>
       </div>
       <!-- GAME INFO -->
-      <% unless already.include? igdb_id %>
+      <% unless already_offcanvas.include? igdb_id %>
         <% cover = nil if cover && cover[:from_scrn] %>
         <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
-        <% already << igdb_id %>
+        <% already_offcanvas << igdb_id %>
       <% end %>
       <!-- NAME AND WARNING -->
       <p class="game-name">
-        <span>
-          <%= link_to game[:name], new_game_url(igdb_id: igdb_id ), id: "add-#{ igdb_id }", remote: true %>
-        </span>
+        <% name_class = @owned.include?(igdb_id) ? 'owned' : '' %>
+        <%= content_tag(:span, nil, class: name_class) do %>
+          <%= link_to game[:name], new_game_url(igdb_id: igdb_id, owned: !name_class.empty? ), id: "add-#{ igdb_id }", remote: true %>
+        <% end %>
         <% if (status_id = game[:status]) && status_id != 0 %>
         <button class="game-warning", uk-icon="icon: warning"
         uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>

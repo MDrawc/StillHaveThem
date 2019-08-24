@@ -73,21 +73,15 @@ def remove_game
 
   if @game
     @collection.games.delete(@game)
-
-    #Notification:
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
     @message += "from " + coll_link(@collection)
-
     @success = true
   else
-
-    #Notification:
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
-
   respond_to :js
 end
 
@@ -95,35 +89,17 @@ def remove_game_search
   @collection = current_user.collections.find_by_id(params[:collection_id])
   @success = false
 
-  if params[:id_type] == 'igdb'
-    @game = @collection.games.find_by(igdb_id: params[:game_id])
-  else
-    @game = @collection.games.find_by_id(params[:game_id])
-  end
-
-  if @game
+  if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
-
-    #Prepare notification:
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
     @message += "from " + coll_link(@collection)
-
-    #Turn of underlight in My Collection
-    if @collection.form == 'collection'
-      @all_deleted = !@collection.games.igdb(@game.igdb_id).any?
-    #Turn of underlight in Custom Collections
-    elsif @collection.form == 'custom'
-      @all_deleted = !check_for_game_in_custom(@game.igdb_id)
-    end
-
-    # Remove underline from removed game - coverview
-    @remove_underline = !check_for_game_in_all(@game.igdb_id)
     @success = true
+
+    @remove_underline = !owned?(@game.igdb_id)
   else
-    #Notification:
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
   respond_to :js
@@ -145,15 +121,7 @@ private
     redirect_to root_url if @collection.nil?
   end
 
-  def check_for_game_in_custom(igdb_id)
-    results = []
-    current_user.collections.custom.each do |collection|
-      results << collection.games.any? { |game| game.igdb_id == igdb_id }
-    end
-    return results.any?
-  end
-
-  def check_for_game_in_all(igdb_id)
+  def owned?(igdb_id)
     results = []
     current_user.collections.each do |collection|
       results << collection.games.any? { |game| game.igdb_id == igdb_id }
