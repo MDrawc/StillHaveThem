@@ -5,6 +5,12 @@
   <%= get_game_thumb(game) %>
   <div class="g-info uk-width-expand">
     <h4 class="g-title"><%= game.name %>
+    <% if (status_id = game[:status]) && status_id != 0 %>
+    <button class='gw-b'><%= convert_status(status_id) %></button>
+    <% end %>
+    <% if (category_id = game[:category]) && category_id != 0 %>
+    <button class='gw-b'><%= convert_category(category_id) %></button>
+    <% end %>
     <%= content_tag(:span, "(#{ Time.at(game.first_release_date).year })", class: 'g-year') if game.first_release_date %>
     </h4>
     <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') unless game.developers.empty? %>
