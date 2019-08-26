@@ -16,6 +16,15 @@
 @import "uikit/mixins-theme.scss";
 @import "uikit/uikit-theme.scss";
 
+//MIXINS
+@mixin unselectable() {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    cursor: default;
+}
+
 //VARIABLES
 $no_cover_width: 200px;
 $no_cover_height: 266px;
@@ -36,6 +45,7 @@ $slide_grey: #393939;
 @import "cover_view";
 @import "panels_view";
 @import "collections";
+@import "game_info";
 
 // SCREEN AS IMAGE
 .s-cover {
@@ -636,122 +646,6 @@ div.no-results {
 }
 
 // Cover View (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
-.cover-view {
-    margin-bottom: 0px;
-}
-
-.owned {
-    box-shadow: 0px 3px 0px -1px #00000028;
-    padding-bottom: 2px;
-}
-
-.game-space {
-    padding-bottom: 30px !important;
-}
-
-.game-name {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    max-width: 200px;
-    font-weight: 500;
-
-    a {
-        color: $dark_grey;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-}
-
-.game-release-date {
-    margin: 0px;
-    font-size: 14px;
-    font-style: italic;
-}
-
-.game-platform {
-    margin: 0px;
-    font-size: 12px;
-    font-style: italic;
-    max-width: 200px;
-}
-
-.game-cover { border-radius: 3px; }
-
-.game-cover-effect {
-    position: relative;
-    transition-duration: 0.3s;
-    background: #bababa;
-    border-radius: 3px;
-    box-shadow: -2px 4px 9px 1px #0000004a;
-    img { height: inherit; }
-}
-
-.spinner {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    bottom: 25px;
-}
-
-.spinner svg {
-    fill: $light_grey;
-    animation: 1s infinite normal rotate;
-    animation-timing-function: linear;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(180deg); }
-}
-
-.game-cover-effect:hover {
-    transform: rotate(10deg);
-    cursor: pointer;
-}
-
-.game-cover-effect::after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 90px;
-    border-radius: 3px;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to left top, rgba(75, 235, 236, 0) 50%, rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.28) 100%);
-}
-
-.no-cover {
-    width: $no_cover_width;
-    height: $no_cover_height;
-    overflow: hidden;
-    div {
-        height: 188px;
-        width: 100%;
-    }
-    span {
-        color: #6660;
-        background: #4e4e4e;
-        font-weight: bold;
-        padding: 20px 10px 10px 10px;
-        text-shadow: 1px 1px 2px #d4d2d282;
-        -webkit-background-clip: text;
-        -moz-background-clip: text;
-        background-clip: text;
-    }
-}
-
-.i-no-cover {
-    width: $no_cover_width;
-    border: 2px dashed $dark_grey;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    color: $dark_grey;
-}
-
-div.fitted { height: auto; }
 
 // More Platforms Toggler - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .more-platforms {
@@ -781,20 +675,6 @@ div.fitted { height: auto; }
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
-}
-
-// Game Warning (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - //
-.game-warning {
-    color: #999999;
-    cursor: default !important;
-
-    :hover {
-        color: #666;
-    }
-}
-
-button.game-warning.uk-icon:focus {
-    outline: none;
 }
 
 // Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//
@@ -1060,160 +940,6 @@ p.header {
     margin-left: 10px;
 }
 
-// Game Info  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.uk-offcanvas-bar {
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 20px;
-}
-
-.uk-offcanvas-bar::-webkit-scrollbar {
-    width: 0 !important;
-}
-
-.info-title {
-    // when no close button
-    margin-bottom: 0px;
-    margin-top: 0px;
-    // with close button
-    // margin-bottom: 0px;
-    // margin-top: 15px;
-}
-
-.info-year {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.info-by {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 0px;
-}
-
-.info-cover {
-    margin-bottom: 10px;
-    box-shadow: -2px 4px 9px 1px #0000004a;
-}
-
-.info-platform {
-    @extend .game-platform;
-
-    font-style: normal;
-
-    span {
-        white-space: nowrap;
-    }
-}
-
-.info-summary {
-    font-size: 14px;
-    text-align: justify;
-}
-
-.i-nav {
-    padding-top: 20px;
-    height: 35px;
-}
-
-.i-nav a {
-    background: #444444f7;
-    padding: 5px;
-    border-radius: 3px;
-    transition: position 0.15s ease-out;
-}
-
-.i-nav a:active {
-    border-radius: 0px 0px 3px 3px;
-    position: relative;
-    top: 5px;
-}
-
-.i-nav a.uk-open {
-    border-radius: 0px 0px 3px 3px;
-    position: relative;
-    top: 5px;
-}
-
-.i-nav button {
-    background: #444444f7;
-    padding: 5px;
-    border-radius: 3px;
-    transition: position 0.15s ease-out;
-}
-
-.i-nav button:active {
-    border-radius: 0px 0px 3px 3px;
-    background: #444444f7;
-    position: relative;
-    top: 5px;
-}
-
-.i-nav li {
-    padding-left: 0px !important;
-    margin-left: 8px;
-    background: #656565;
-    height: 30px;
-    width: 30px;
-    border-radius: 3px;
-}
-
-#info-links {
-    margin-top: 20px;
-}
-
-.metacritic {
-    border: 3px solid #656565;
-    svg {
-        max-width: 92%;
-        fill: #a5a5a5;
-    }
-}
-
-.ex-link {
-    width: 30px;
-    height: 30px;
-}
-
-.metacritic:hover svg {
-    fill: #c9c9c9;
-}
-
-.google svg {
-    max-width: unset;
-    width: 24px;
-}
-
-// Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.flip {
-    background: none;
-    padding: 0px;
-    border: none;
-    cursor: pointer;
-    width: 30px;
-    float: right;
-    transform: rotate(0deg);
-
-    svg path {
-        stroke: $light !important;
-    }
-}
-
-.flip:hover svg path {
-    stroke: $lighter !important;
-}
-
-.flip:focus {
-    outline: none;
-}
-
-.flip-rotate {
-    transform: rotate(180deg);
-}
-
 // Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
 hr.nav-bottom {
     margin-top: 10px;
@@ -1376,136 +1102,4 @@ span.add-form-errors {
     height: 25px;
     position: relative;
     top: -1px;
-}
-
-// Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.already-in {
-    font-size: 12px;
-    margin-top: 0px;
-
-    p, hr {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    ul {
-        padding-left: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        list-style-type: none;
-        width: 230px;
-        float: left;
-
-        li {
-            height: 20px;
-            font-style: italic;
-            clear: left;
-        }
-    }
-
-    a {
-        position: relative;
-        top: -2px;
-    }
-}
-
-// Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.t-scr {
-    min-width: 100%;
-
-    td {
-        text-align: center;
-        letter-spacing: 10px;
-    }
-
-    .arrow-left, .arrow-right {
-        width: 20px;
-    }
-}
-
-.arrow-left a svg, .arrow-right a svg {
-    transition: all 0.15s ease-out;
-}
-
-.arrow-left a:active svg {
-    transform: translateX(-5px);
-}
-
-.arrow-right a:active svg {
-    transform: translateX(5px);
-}
-
-.hor-cen-list {
-    display: table;
-    margin: 0 auto;
-}
-
-#screen-nav {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-#screen-nav li {
-    display: inline;
-}
-
-.md-scrnav {
-    width: 40px;
-    height: 40px;
-    background: url("img.svg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-}
-
-// Show more summary  - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.more {
-    display: none;
-}
-
-span.dots {
-    white-space: nowrap;
-}
-
-.ms-b-down {
-    position: relative;
-    top: 1px;
-}
-
-.ms-b-up {
-    position: relative;
-    top: -4px;
-}
-
-// Slideshow border - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.md-slide {
-    margin: 15px 0px;
-}
-
-.md-slide {
-    background: $slide_grey;
-    border-radius: 5px;
-    padding-bottom: 3px;
-}
-
-ul.md-slide-items {
-    border-radius: 3px 3px 0px 0px;
-    box-shadow: 0px 10px 10px -8px #00000030;
-}
-
-//Missing first picture fix:
-
-ul.md-slide-items li img {
-    height: unset !important;
-}
-
-// Table view - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-.uk-table-hover > tr:hover, .uk-table-hover tbody tr:hover {
-    background: $accent;
 }

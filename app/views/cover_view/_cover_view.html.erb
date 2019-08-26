@@ -24,57 +24,61 @@
       </div>
       <!-- GAME INFO -->
       <% unless already_offcanvas.include? igdb_id %>
-        <% cover = nil if cover && cover[:from_scrn] %>
-        <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
-        <% already_offcanvas << igdb_id %>
+      <% cover = nil if cover && cover[:from_scrn] %>
+      <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
+      <% already_offcanvas << igdb_id %>
       <% end %>
       <!-- NAME AND WARNING -->
       <p class="game-name">
         <% name_class = @owned.include?(igdb_id) ? 'owned' : '' %>
-        <%= content_tag(:span, nil, class: name_class) do %>
-          <%= link_to game[:name], new_game_url(igdb_id: igdb_id, owned: !name_class.empty? ), id: "add-#{ igdb_id }", remote: true %>
+        <%= content_tag(:span, nil, class: 'name ' + name_class) do %>
+        <%= game[:name] %>
         <% end %>
-        <% if (status_id = game[:status]) && status_id != 0 %>
-        <button class="game-warning", uk-icon="icon: warning"
-        uk-tooltip="title: <%= convert_status(status_id) %>; pos: right"></button>
-        <% end %>
-        <% if (category_id = game[:category]) && category_id != 0 %>
-        <button class="game-warning", uk-icon="icon: album"
-        uk-tooltip="title: <%= convert_category(category_id) %>; pos: right"></button>
-        <% end %>
+        <%= link_to '', new_game_url(igdb_id: igdb_id, owned: !name_class.empty? ), class: 'plus', id: "add-#{ igdb_id }", remote: true, 'uk-icon': 'plus' %>
       </p>
-      <!-- RELEASE DATE -->
-      <p class="game-release-date">
-        <% if game[:first_release_date] %>
-        <%= Time.at(game[:first_release_date]).year %>
+      <div class="fade">
+        <!-- WARNING -->
+        <p class="game-warning">
+          <% if (status_id = game[:status]) && status_id != 0 %>
+          <button><%= convert_status(status_id) %></button>
+          <% end %>
+          <% if (category_id = game[:category]) && category_id != 0 %>
+          <button><%= convert_category(category_id) %></button>
+          <% end %>
+        </p>
+        <!-- RELEASE DATE -->
+        <p class="game-release-date">
+          <% if game[:first_release_date] %>
+          <%= Time.at(game[:first_release_date]).year %>
+          <% else %>
+          -
+          <% end %>
+        </p>
+        <!-- PLATFORMS -->
+        <% if platforms = game[:platforms_names] %>
+        <% if platforms.size > 3 %>
+        <% rest = platforms[3..-1] %>
+        <% 2.times do |i| %>
+        <p class="game-platform"><%= platforms[i]%></p>
+        <% end %>
+        <p class="game-platform"><%= platforms[2]%>
+          <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= igdb_id %>; animation: uk-animation-fade"></label>
+        </p>
+        <div id="mp-<%= igdb_id %>" hidden>
+          <% rest.each do |platform| %>
+          <p class="game-platform"><%= platform %></p>
+          <% end %>
+        </div>
         <% else %>
-        -
-        <% end %>
-      </p>
-      <!-- PLATFORMS -->
-      <% if platforms = game[:platforms_names] %>
-      <% if platforms.size > 3 %>
-      <% rest = platforms[3..-1] %>
-      <% 2.times do |i| %>
-      <p class="game-platform"><%= platforms[i]%></p>
-      <% end %>
-      <p class="game-platform"><%= platforms[2]%>
-        <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= igdb_id %>; animation: uk-animation-fade"></label>
-      </p>
-      <div id="mp-<%= igdb_id %>" hidden>
-        <% rest.each do |platform| %>
+        <% platforms.each do |platform| %>
         <p class="game-platform"><%= platform %></p>
         <% end %>
+        <% end %>
+        <% end %>
       </div>
-      <% else %>
-      <% platforms.each do |platform| %>
-      <p class="game-platform"><%= platform %></p>
-      <% end %>
-      <% end %>
-      <% end %>
       <!-- FORM MODAL -->
       <div id="add-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-<%= igdb_id %>; mode: click; boundary: #gs-<%= igdb_id %>; boundary-align: true;  delay-hide: 100;  pos: right-top">
-      Loading...
+        Loading...
       </div>
       <!-- END -->
     </div>

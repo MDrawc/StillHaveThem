@@ -71,17 +71,17 @@ module StaticPagesHelper
   def convert_status(status_id)
     status = [ nil,
       nil,
-     'in alpha state',
-     'in beta state',
-     'in early access',
-     'game or/and online modes are shut down',
-     'cancelled']
+     'Alpha state',
+     'Beta state',
+     'Early access',
+     'Shut down',
+     'Cancelled']
     return status[status_id]
   end
 
   def convert_category(category_id)
-    category = [ 'main game',
-      'DLC addon',
+    category = [ 'Main game',
+      'DLC',
       'Expansion',
       'Bundle',
       'Standalone expansion']

@@ -59,7 +59,7 @@
     <button name="button" type="submit" class="cf-add-button">Add</button><span class="add-form-errors"></span>
     <% end %>
     <div class="already-in">
-        <%= render(partial: 'cover_view/already_in', locals: { game_name: data[:name], igdb_id: data[:igdb_id] }) if owned %>
+        <%= render(partial: 'cover_view/already_in', locals: { igdb_id: data[:igdb_id] }) if owned %>
     </div>
 <% else %>
     <span class="italic blink_me"><%= svg 'warning' %> Please add collection first</span>
