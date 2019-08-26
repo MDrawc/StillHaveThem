@@ -45,6 +45,7 @@
 
 .game-warning {
     margin: 0;
+    margin-bottom: 2px;
     button {
         background: none;
         border: 2px solid #bababa;
@@ -206,15 +207,6 @@
         -moz-background-clip: text;
         background-clip: text;
     }
-}
-
-.i-no-cover {
-    width: $no_cover_width;
-    border: 2px dashed $dark_grey;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    color: $dark_grey;
 }
 
 div.fitted {
