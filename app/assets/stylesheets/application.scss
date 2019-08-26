@@ -645,9 +645,8 @@ div.no-results {
     text-transform: capitalize;
 }
 
-// Cover View (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - //
-
 // More Platforms Toggler - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 .more-platforms {
     max-width: 200px;
 }
@@ -941,161 +940,14 @@ p.header {
 }
 
 // Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
-hr.nav-bottom {
-    margin-top: 10px;
-}
-
-// .add-form {
-//     border-radius: 5px;
-//     background-color: #444444f7;
-//     box-shadow: -4px 5px 9px 0px #0000004a;
-//     padding: 30px 15px 15px 15px;
-//     font-size: 14px;
-//     width: 230px;
-//     color: rgba(255, 255, 255, 0.5);
-// }
 
 .select-collection {
     margin: 0px 0px 20px 0px;
 }
 
-.add-button {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
-    padding: 2px 8px;
-    cursor: pointer;
-    height: 28px;
-}
-
-.add-button:hover {
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.add-button:focus {
-    outline: none;
-}
-
-.add-button:active {
-    box-shadow: inset 0px 0px 6px;
-}
-
-button.uk-dropdown-close.uk-close.uk-icon {
-    position: absolute;
-    z-index: 1000;
-    top: 20px;
-    right: 20px;
-    padding: 5px;
-}
-
-// Butrons
-
-.icon-btn {
-    display: inline-flex;
-    align-items: center;
-}
-
-.add + .underlight {
-    display: none;
-}
-
-.platform-icon svg {
-    fill: $light;
-}
-
-.platform-green svg {
-    fill: $accent;
-}
-
-.platform-icon + span, .platform-green + span {
-    position: relative;
-    top: 11px;
-    left: 5px;
-}
-
-.collection-icon svg rect {
-    stroke-width: 2.5;
-    stroke: $light_nt;
-}
-
-.collection-green svg rect {
-    stroke-width: 2.5;
-    stroke: $accent;
-}
-
-.collection-icon + span, .collection-green + span {
-    position: relative;
-    left: 5px;
-}
-
-.add-form-close {
-    top: 8px !important;
-    right: 8px !important;
-    padding: 5px !important;
-    width: 22px;
-}
-
 .add-acc-errors {
     font-size: 12px;
     font-style: italic;
-}
-
-#game_platform:hover + span .platform-icon svg {
-    fill: $lighter;
-}
-
-// #game_platform:hover + span .platform-green svg {
-//     fill: $dark_accent;
-// }
-
-.physical, .digital {
-    -webkit-appearance: none;
-    display: inline-block;
-    vertical-align: middle;
-    box-sizing: border-box;
-    margin: 0;
-    transition: 0.2s ease-in-out;
-    transition-property: background-color, border;
-}
-
-.physical + svg, .digital + svg {
-    cursor: pointer;
-    margin-right: 7px;
-}
-
-.physical + svg path {
-    fill: $light;
-}
-
-.physical:hover + svg path {
-    fill: $lighter;
-}
-
-.digital + svg {
-    fill: $light;
-}
-
-.digital:hover + svg {
-    fill: $lighter;
-}
-
-.physical:checked + svg path {
-    fill: $accent;
-}
-
-.digital:checked + svg {
-    fill: $accent;
-}
-
-.remove + .underlight {
-    background: $dark_accent;
-    position: relative;
-    bottom: -6px;
-    border: 2px solid $dark_accent;
-    border-radius: 1px;
 }
 
 span.add-form-errors {

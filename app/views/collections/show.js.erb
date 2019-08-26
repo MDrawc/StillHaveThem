@@ -17,3 +17,6 @@ $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @colle
 if (refresh) {
   ids.forEach(id => $('#' + id).show());
 }
+
+filter();
+moreInfo();

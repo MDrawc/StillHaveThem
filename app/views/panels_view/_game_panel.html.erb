@@ -1,7 +1,7 @@
 <% id = game.id %>
 <% needs_platform = collection.needs_platform %>
 <div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
-  <%= content_tag(:div,nil, class: 'g-click', 'gameid': id ) %>
+  <%= content_tag(:div,nil, class: 'g-click', 'gameid': id) %>
   <%= get_game_thumb(game) %>
   <div class="g-info uk-width-expand">
     <h4 class="g-title"><%= game.name %>
