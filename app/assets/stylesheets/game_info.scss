@@ -1,0 +1,246 @@
+.uk-offcanvas-bar {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 20px;
+}
+
+.uk-offcanvas-bar::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+.info-title {
+    // when no close button
+    margin-bottom: 0px;
+    margin-top: 0px;
+    // with close button
+    // margin-bottom: 0px;
+    // margin-top: 15px;
+}
+
+.info-year {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.info-by {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0px;
+}
+
+.info-cover {
+    margin-bottom: 10px;
+    box-shadow: -2px 4px 9px 1px #0000004a;
+}
+
+.info-platform {
+    @extend .game-platform;
+
+    font-style: normal;
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+.info-summary {
+    font-size: 14px;
+    text-align: justify;
+}
+
+.i-nav {
+    padding-top: 20px;
+    height: 35px;
+}
+
+.i-nav a {
+    background: #444444f7;
+    padding: 5px;
+    border-radius: 3px;
+    transition: position 0.15s ease-out;
+}
+
+.i-nav a:active {
+    border-radius: 0px 0px 3px 3px;
+    position: relative;
+    top: 5px;
+}
+
+.i-nav a.uk-open {
+    border-radius: 0px 0px 3px 3px;
+    position: relative;
+    top: 5px;
+}
+
+.i-nav button {
+    background: #444444f7;
+    padding: 5px;
+    border-radius: 3px;
+    transition: position 0.15s ease-out;
+}
+
+.i-nav button:active {
+    border-radius: 0px 0px 3px 3px;
+    background: #444444f7;
+    position: relative;
+    top: 5px;
+}
+
+.i-nav li {
+    padding-left: 0px !important;
+    margin-left: 8px;
+    background: #656565;
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+}
+
+#info-links {
+    margin-top: 20px;
+}
+
+.metacritic {
+    border: 3px solid #656565;
+    svg {
+        max-width: 92%;
+        fill: #a5a5a5;
+    }
+}
+
+.ex-link {
+    width: 30px;
+    height: 30px;
+}
+
+.metacritic:hover svg {
+    fill: #c9c9c9;
+}
+
+.google svg {
+    max-width: unset;
+    width: 24px;
+}
+
+// Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.flip {
+    background: none;
+    padding: 0px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    float: right;
+    transform: rotate(0deg);
+
+    svg path {
+        stroke: $light !important;
+    }
+}
+
+.flip:hover svg path {
+    stroke: $lighter !important;
+}
+
+.flip:focus {
+    outline: none;
+}
+
+.flip-rotate {
+    transform: rotate(180deg);
+}
+
+// Screenshots Dot Nav- - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.t-scr {
+    min-width: 100%;
+
+    td {
+        text-align: center;
+        letter-spacing: 10px;
+    }
+
+    .arrow-left, .arrow-right {
+        width: 20px;
+    }
+}
+
+.arrow-left a svg, .arrow-right a svg {
+    transition: all 0.15s ease-out;
+}
+
+.arrow-left a:active svg {
+    transform: translateX(-5px);
+}
+
+.arrow-right a:active svg {
+    transform: translateX(5px);
+}
+
+.hor-cen-list {
+    display: table;
+    margin: 0 auto;
+}
+
+#screen-nav {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#screen-nav li {
+    display: inline;
+}
+
+.md-scrnav {
+    width: 40px;
+    height: 40px;
+    background: url("img.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+}
+
+// Show more summary  - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.more {
+    display: none;
+}
+
+span.dots {
+    white-space: nowrap;
+}
+
+.ms-b-down {
+    position: relative;
+    top: 1px;
+}
+
+.ms-b-up {
+    position: relative;
+    top: -4px;
+}
+
+// Slideshow border - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+.md-slide {
+    margin: 15px 0px;
+}
+
+.md-slide {
+    background: $slide_grey;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+ul.md-slide-items {
+    border-radius: 3px 3px 0px 0px;
+    box-shadow: 0px 10px 10px -8px #00000030;
+}
+
+//Missing first picture fix:
+
+ul.md-slide-items li img {
+    height: unset !important;
+}
