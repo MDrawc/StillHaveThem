@@ -11,7 +11,6 @@ function shortSummary(id) {
 }
 
 function moreInfo() {
-
     $('.g-click').each(function() {
         var id = $(this).attr('gameid');
         var hidee = $('#g-hide-' + id);
@@ -33,3 +32,4 @@ function moreInfo() {
         });
     });
 }
+

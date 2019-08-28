@@ -122,7 +122,6 @@
 }
 
 // Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
 .flip {
     background: none;
     padding: 0px;
@@ -135,17 +134,17 @@
     svg path {
         stroke: $light !important;
     }
+
+    &:hover svg path {
+        stroke: $lighter !important;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 
-.flip:hover svg path {
-    stroke: $lighter !important;
-}
-
-.flip:focus {
-    outline: none;
-}
-
-.flip-rotate {
+.flip-right {
     transform: rotate(180deg);
 }
 
