@@ -11,7 +11,7 @@
 .name {
     color: $dark_grey;
     opacity: 1;
-    transition: opacity 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .plus {
@@ -25,7 +25,7 @@
     margin-top: -16px;
     opacity: 0;
     box-shadow: -1px 2px 8px -1px #0000004a;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
 
     svg {
         color: #fff;
@@ -37,10 +37,13 @@
     background: $dark_accent;
 }
 
+.plus.disabled {
+    z-index: -1;
+}
+
 .fade {
     @include unselectable;
-
-    transition: opacity 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .game-warning {
@@ -52,19 +55,45 @@
         border-radius: 3px;
         color: #969696;
         font-size: 13px;
+        transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
     }
 }
 
 .game-name:hover .name {
-    opacity: 0.4;
+    color: $disabled;
 }
 
 .game-name:hover ~ .fade {
-    opacity: 0.4;
+    color: $disabled;
+    button {
+        border-color: #c7c7c7;
+        color: $disabled;
+    }
 }
 
 .game-name:hover .plus {
     opacity: 1;
+}
+
+.game-name.disabled:hover .plus {
+    opacity: 0;
+}
+
+.game-name.disabled .name {
+    color: $disabled;
+}
+
+.game-name.disabled ~ .fade {
+    color: $disabled;
+    button {
+        border-color: #c7c7c7;
+        color: $disabled;
+    }
+}
+
+.bw {
+    filter: grayscale(1);
+    opacity: 0.6;
 }
 
 .cv-opts {

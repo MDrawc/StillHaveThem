@@ -1,3 +1,5 @@
 $("#add-form-<%= @data[:igdb_id] %>").html("<%= j(render partial: 'cover_view/add_form', locals: { data: @data, owned: @owned }) %>");
+
+paintItBlack('<%= @data[:igdb_id] %>')
 activateForm('add', '<%= @data[:igdb_id] %>');
 updatePlatformIcon('add', '<%= @data[:igdb_id] %>');
