@@ -11,6 +11,6 @@ module ApplicationHelper
   end
 
   def edit_open?
-    return true if cookies[:edit_open] == 'true'
+    cookies[:edit_open] == 'true'
   end
 end

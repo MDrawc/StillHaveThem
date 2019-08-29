@@ -1,11 +1,19 @@
 class StaticPagesController < ApplicationController
-  before_action :require_user, only: [:search]
+  before_action :require_user, only: [:search_page]
   # For duplicates removal:
   @@last_result_ids = []
 
   def home
-    if logged_in? && !current_user.collections.empty?
-      @home_id = current_user.collections.first.id
+    if logged_in?
+      if (last = cookies["#{ current_user.id }-last"]).present?
+        case last
+        when 'search'
+        else
+          @home_id = last
+        end
+      else
+        @home_id = current_user.collections.first.id if !current_user.collections.empty?
+      end
     end
   end
 

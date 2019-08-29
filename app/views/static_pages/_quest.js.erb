@@ -16,7 +16,7 @@ if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= j(render :partial => 'results') %>");
 }
 
-flip_offc();
+flip_offc('<%= current_user.id %>');
 
 // Fit game title inside no-cover
 textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 26});

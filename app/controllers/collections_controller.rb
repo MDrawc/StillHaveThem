@@ -14,6 +14,7 @@ def show
   unless params[:q]
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'
+    cookies["#{ current_user.id }-last"] = { value: params[:id], expires: 30.days }
     respond_to :js
   else
     @games = @q.result
