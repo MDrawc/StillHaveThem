@@ -11,11 +11,16 @@
 </div>
 <hr class="md">
 <div id="platform-option">
+
     <% if game[:platforms] %>
+        <% select_platforms = platforms_for_select(game) %>
+    <% else %>
+        <% select_platforms = user_platforms_for_select %>
+    <% end %>
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
         <div uk-form-custom="target: > * > span:last-child">
-            <%= f.select(:platform, platforms_for_select(game)) %>
+            <%= f.select(:platform, select_platforms) %>
             <span class='bigs'>
                 <span class="cf-platform-green"><%= svg 'platform_icon' %></span>
                 <span></span>
@@ -28,10 +33,6 @@
         <label><%= f.radio_button(:physical, true, checked: physical, class: "cf-physical") %><%= svg 'gamebox_icon' %> Physical</label>
         <label><%= f.radio_button(:physical, false, checked: !physical, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
-    <% else %>
-    <p>You cant edit game with no platform to collection that needs platform
-    will be fixed soon</p>
-    <% end %>
 </div>
 <button name="button" type="submit" class="cf-add-button">Edit</button><span class="add-form-errors"></span>
 <% end %>

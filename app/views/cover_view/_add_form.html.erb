@@ -27,16 +27,20 @@
     </div>
     <div id="platform-option">
         <% if data[:platforms] %>
+            <% select_platforms = platforms_for_select(data) %>
+        <% else %>
+            <% select_platforms = user_platforms_for_select %>
+        <% end %>
         <div class="uk-margin select-platform">
             <div uk-form-custom="target: > * > span:last-child">
-                <% if data[:platforms].size > 1 %>
-                <%= f.select(:platform, platforms_for_select(data), include_blank: 'Select platform') %>
+                <% if select_platforms.size > 1 %>
+                <%= f.select(:platform, select_platforms, include_blank: 'Select platform') %>
                 <span class='bigs'>
                     <span class="cf-platform-icon"><%= svg 'platform_icon' %></span>
                     <span></span>
                 </span>
                 <% else %>
-                <%= f.select(:platform, platforms_for_select(data)) %>
+                <%= f.select(:platform, select_platforms) %>
                 <span class='bigs'>
                     <span class="cf-platform-green"><%= svg 'platform_icon' %></span>
                     <span></span>
@@ -49,11 +53,6 @@
             <label><%= f.radio_button(:physical, true, checked: true, class: "cf-physical") %><%= svg 'gamebox_icon' %> Physical</label>
             <label><%= f.radio_button(:physical, false, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
         </div>
-
-        <% else %>
-        <p>You cant copy/move game with no platform to collection that needs platform
-        will be fixed soon</p>
-        <% end %>
     </div>
 
     <button name="button" type="submit" class="cf-add-button">Add</button><span class="add-form-errors"></span>
