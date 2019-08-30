@@ -21,13 +21,11 @@
 </div>
 <% disp = needs_platform ? 'box' : 'none' %>
 <div id="platform-option" style="display: <%= disp %>">
-
     <% if game[:platforms] %>
         <% select_platforms = platforms_for_select(game) %>
     <% else %>
         <% select_platforms = user_platforms_for_select %>
     <% end %>
-
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
         <div uk-form-custom="target: > * > span:last-child">

@@ -133,7 +133,7 @@ class GamesController < ApplicationController
       if coll_ids.uniq.size == 1
         @collection = @current = current_user.collections.find(coll_ids.first)
       else
-        @current, @collection = current_user.collections.where(id: coll_ids).order(id: cord)
+        @current, @collection = current_user.collections.where(id: coll_ids).unscope(:order).order(id: cord)
       end
 
       if needs_plat = @collection.needs_platform
