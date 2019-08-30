@@ -400,11 +400,7 @@ class IgdbQuery
       end
 
       puts ">> Games that needs update - ids: #{ update_ids }"
-
-
-
       puts ">> Saving #{new_games.size} new games"
-
 
       begin
       # Old - without 'activerecord-import'
