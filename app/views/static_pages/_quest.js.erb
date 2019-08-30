@@ -3,13 +3,6 @@ $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
-// Remove cover placeholder's spinner
-UIkit.util.on(document, 'load', '.game-cover', e => {
-    if (!e.target.currentSrc.startsWith('data:')) {
-        $(e.target).parent().find(".spinner").remove()
-    }
-}, true)
-
 // Remove offcanvas from last search!
 $("[id^=i-]").remove()
 if (<%= !@inquiry.errors.any? %>) {

@@ -18,5 +18,6 @@ if (refresh) {
   ids.forEach(id => $('#' + id).show());
 }
 
+changeView("<%= j(render partial: 'my_games/covers') %>");
 filter();
 moreInfo();

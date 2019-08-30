@@ -1,16 +1,28 @@
-<div class="uk-grid uk-text-center uk-flex uk-flex-center">
+<div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
+
+    <div class="uk-width-1-1 page-info-front">
+        <div class="page-links pr cover-mod top">
+            <%= js_will_paginate @games, container: false %>
+        </div>
+    </div>
+
   <% already_offcanvas = [] %>
-  <% @results.each do |game| %>
-  <% igdb_id = game[:igdb_id] %>
-  <div id="gs-<%= igdb_id %>" class="game-space">
+  <% @games.each do |game| %>
+  <% id = game[:id] %>
+  <div id="gs-<%= id %>" class="game-space">
     <!-- COVER -->
     <% if cover = get_game_cover(game) %>
-    <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
+    <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= id %>">
+
+
       <div class="spinner"><%= svg 'loading' %></div>
-      <%= image_tag('', id: "gc-#{ igdb_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
+
+      <%= image_tag('', id: "gc-#{ id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
+
+
       <% else %>
-      <div class="game-cover-effect" uk-toggle="target: #i-<%= igdb_id %>">
-        <%= content_tag(:div, id: "gc-#{ igdb_id }", class: 'no-cover') do %>
+      <div class="game-cover-effect" uk-toggle="target: #i-<%= id %>">
+        <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
         <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
         <%= svg 'no_image' %>
         <% end %>
@@ -23,18 +35,16 @@
         <% end %>
       </div>
       <!-- GAME INFO -->
-      <% unless already_offcanvas.include? igdb_id %>
+      <% unless already_offcanvas.include? id %>
       <% cover = nil if cover && cover[:from_scrn] %>
       <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
-      <% already_offcanvas << igdb_id %>
+      <% already_offcanvas << id %>
       <% end %>
       <!-- NAME AND WARNING -->
       <p class="game-name">
-        <% name_class = @owned.include?(igdb_id) ? 'owned' : '' %>
-        <%= content_tag(:span, nil, class: 'name ' + name_class) do %>
+        <%= content_tag(:span, nil, class: 'name') do %>
         <%= game[:name] %>
         <% end %>
-        <%= link_to '', new_game_url(igdb_id: igdb_id, owned: !name_class.empty? ), class: 'plus', id: "add-#{ igdb_id }", remote: true, 'uk-icon': 'plus' %>
       </p>
       <div class="fade">
         <!-- WARNING -->
@@ -62,9 +72,9 @@
         <p class="game-platform"><%= platforms[i]%></p>
         <% end %>
         <p class="game-platform"><%= platforms[2]%>
-          <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= igdb_id %>; animation: uk-animation-fade"></label>
+          <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= id %>; animation: uk-animation-fade"></label>
         </p>
-        <div id="mp-<%= igdb_id %>" hidden>
+        <div id="mp-<%= id %>" hidden>
           <% rest.each do |platform| %>
           <p class="game-platform"><%= platform %></p>
           <% end %>
@@ -75,12 +85,12 @@
         <% end %>
         <% end %>
         <% end %>
-      </div>
-      <!-- FORM MODAL -->
-      <div id="add-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-<%= igdb_id %>; mode: click; boundary: #gs-<%= igdb_id %>; boundary-align: true;  delay-hide: 100;  pos: right-top">
-        Loading...
-      </div>
-      <!-- END -->
+    </div>
     </div>
     <% end %>
+
+
+  <div class="uk-width-1-1 page-links cover-mod bottom">
+      <%= js_will_paginate @games, container: false %>
   </div>
+</div>

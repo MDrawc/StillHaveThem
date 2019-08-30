@@ -205,6 +205,20 @@
     float: right;
 }
 
+.page-links.cover-mod {
+    .previous_page, .next_page {
+        float: none;
+    }
+}
+
+.page-links.cover-mod.top {
+    margin-bottom: 20px;
+}
+
+.page-links.cover-mod.bottom {
+    margin-top: 20px;
+}
+
 span.gap {
     border: none;
 }
@@ -232,11 +246,10 @@ hr.md {
     margin-left: 15px;
 }
 
-
 .cf-collection-green {
     rect, polygon, line {
-       stroke-width: 2.5px;
-       stroke: $dark_accent;
+        stroke-width: 2.5px;
+        stroke: $dark_accent;
     }
 }
 

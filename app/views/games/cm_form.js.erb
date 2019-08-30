@@ -1,4 +1,4 @@
-$("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'panels_view/copy_form', locals: { game: @game, collection: @collection }) %>");
+$("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/copy_form', locals: { game: @game, collection: @collection }) %>");
 <% if @collection.needs_platform %>
     preselectPlatform('copy', <%= @game.id %>, <%= @game.platform %>);
 <% end %>

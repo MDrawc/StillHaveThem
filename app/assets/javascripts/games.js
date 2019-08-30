@@ -33,3 +33,14 @@ function moreInfo() {
     });
 }
 
+function removeCoverSpinner() {
+    UIkit.util.on(document, 'load', '.game-cover', e => {
+        if (!e.target.currentSrc.startsWith('data:')) {
+            $(e.target).parent().find(".spinner").remove()
+        }
+    }, true)
+}
+
+$(function(){
+  removeCoverSpinner();
+});
