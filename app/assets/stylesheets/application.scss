@@ -606,6 +606,7 @@ div.no-results {
 
 // Scroll Up Button (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - //
 .scroll-up {
+    display: none;
     position: fixed;
     bottom: 10%;
     right: 0;

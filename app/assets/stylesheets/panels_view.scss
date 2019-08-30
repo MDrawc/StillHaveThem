@@ -313,6 +313,7 @@ hr.md {
     margin-top: 20px;
     text-align: center;
     transition: color 0.2s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         color: $dark_grey;

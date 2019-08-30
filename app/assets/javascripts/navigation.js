@@ -22,3 +22,18 @@ $(function() {
     toggleEditMenu();
 
 });
+
+function showHideScroll() {
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 200) {
+            $('.scroll-up').fadeIn()
+        } else {
+            $('.scroll-up').fadeOut()
+        }
+    });
+}
+
+$(function(){
+  showHideScroll();
+});
+
