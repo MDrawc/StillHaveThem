@@ -411,8 +411,9 @@ class IgdbQuery
       # Agame.create(new_games)
 
       #New - with 'activerecord-import'
-      games = new_games.map { |g| Agame.new(g) }
+      games = new_games.uniq.map { |g| Agame.new(g) }
       Agame.import games, validate: true
+
       rescue ActiveRecord::RecordNotUnique
       end
 
