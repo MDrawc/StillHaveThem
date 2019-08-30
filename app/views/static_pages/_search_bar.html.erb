@@ -67,23 +67,3 @@
   </div>
   <% end %>
 </div>
-
-<script>
-//Change search bar placeholder:
-$("input[type='radio']").on('input', function() {
-var selectedVal = "";
-var selected = $("input[type='radio']:checked");
-if (selected.length > 0) {
-    selectedVal = selected.val();
-}
-
-if (selectedVal === 'char') {
-  $('#search-igdb-bar').attr('placeholder', 'Search video game characters...')
-} else if (selectedVal === 'dev') {
-  $('#search-igdb-bar').attr('placeholder', 'Search video game developers...')
-} else if (selectedVal === 'game') {
-  $('#search-igdb-bar').attr('placeholder', 'Search video games...')
-}
-
-});
-</script>

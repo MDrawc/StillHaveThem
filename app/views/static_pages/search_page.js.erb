@@ -2,4 +2,5 @@ $("#big-c").html("<%= j(render partial: 'search_page') %>");
 $("li.active").removeClass('active');
 $("#m-search").addClass('active');
 $('input#search-igdb-bar').focus();
+changeSearchBar();
 Cookies.set('<%= current_user.id %>-last', 'search', { expires: 30 });
