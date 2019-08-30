@@ -1,22 +1,31 @@
-<% if @inquiry.results.present? %>
+<% if @results.present? %>
   <%= render 'cover_view/cover_view' %>
-  <% if @inquiry.is_more? %>
+  <% if @more_in_req %>
   <div id="show-more">
     <%= form_tag("/search_games", method: :get, remote: true) do %>
-    <%= hidden_field_tag :last_form, @inquiry.last_form %>
-    <%= hidden_field_tag :last_query, @inquiry.query %>
-    <%= hidden_field_tag :last_offset, @inquiry.offset %>
+    <%= hidden_field_tag :cut, true %>
     <%= submit_tag "Load more",
     class: "cf-add-button",
     data: { disable_with: "Please wait..." } %>
     <% end %>
   </div>
+  <% elsif @more_in_off %>
+    <div id="show-more">
+      <%= form_tag("/search_games", method: :get, remote: true) do %>
+      <%= hidden_field_tag :last_form, @inquiry.last_form %>
+      <%= hidden_field_tag :last_query, @inquiry.query %>
+      <%= hidden_field_tag :last_offset, @inquiry.offset %>
+      <%= submit_tag "Load more",
+      class: "cf-add-button",
+      data: { disable_with: "Please wait..." } %>
+      <% end %>
+    </div>
   <% else %>
-  <% if status = @inquiry.status_id == 2 %>
-  <div class="no-more">
-    <button class="cf-add-button" uk-scroll>Can't show you more. Try being more precise.</button>
-  </div>
-  <% end %>
+    <% if status = @inquiry.status_id == 2 %>
+      <div class="no-more">
+        <button class="cf-add-button" uk-scroll>Can't show you more. Try being more precise.</button>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <div class="no-results">

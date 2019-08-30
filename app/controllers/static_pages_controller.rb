@@ -1,7 +1,10 @@
 class StaticPagesController < ApplicationController
   before_action :require_user, only: [:search_page]
+  LIMIT = 50
   # For duplicates removal:
   @@last_result_ids = []
+  # For more games than limit (mainly developers search)
+  @@more = []
 
   def home
     if logged_in?
@@ -31,7 +34,9 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    if params[:search] #First time search:
+    @more_in_req, @more_in_off = false, false
+    #Search:
+    if params[:search]
       @inquiry = IgdbQuery.new(params[:search])
 
       if @inquiry.validate!
@@ -39,14 +44,36 @@ class StaticPagesController < ApplicationController
         if @inquiry.results.present?
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
           @owned = owned(@inquiry.results)
+
+          if @inquiry.is_more?
+            @more_in_off = true
+          end
+
+          @results = @inquiry.results
+          unless @inquiry.query_type == :game
+            if @results.size > LIMIT
+              @@more = @results.slice!(LIMIT...)
+              @more_in_req = true
+            end
+          end
+
         end
       end
-
       respond_to do |format|
         format.js { render partial: "quest" }
       end
 
-    elsif params[:last_form] #Load more:
+    #Load more - more games in the same request(developers/characters):
+    elsif params[:cut]
+      @results = @@more.slice!(0...LIMIT)
+      @more_in_req = !@@more.empty?
+      @owned = owned(@results)
+      respond_to do |format|
+        format.js { render partial: "load_more" }
+      end
+
+    #Load more - more games in offset:
+    elsif params[:last_form]
       @inquiry = IgdbQuery.new(eval(params[:last_form]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
                  eval(params[:last_query]))
@@ -58,7 +85,6 @@ class StaticPagesController < ApplicationController
         @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
         @owned = owned(@inquiry.results)
       end
-
       respond_to do |format|
         format.js { render partial: "load_more" }
       end

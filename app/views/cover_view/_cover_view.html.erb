@@ -1,6 +1,6 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
   <% already_offcanvas = [] %>
-  <% @inquiry.results.each do |game| %>
+  <% @results.each do |game| %>
   <% igdb_id = game[:igdb_id] %>
   <div id="gs-<%= igdb_id %>" class="game-space">
     <!-- COVER -->
