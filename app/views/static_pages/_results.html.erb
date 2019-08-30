@@ -5,7 +5,7 @@
     <%= form_tag("/search_games", method: :get, remote: true) do %>
     <%= hidden_field_tag :cut, true %>
     <%= submit_tag "Load more",
-    class: "cf-add-button",
+    class: "more-button",
     data: { disable_with: "Please wait..." } %>
     <% end %>
   </div>
@@ -16,14 +16,14 @@
       <%= hidden_field_tag :last_query, @more_in_off[:query] %>
       <%= hidden_field_tag :last_offset, @more_in_off[:offset] %>
       <%= submit_tag "Load more",
-      class: "cf-add-button",
+      class: "more-button",
       data: { disable_with: "Please wait..." } %>
       <% end %>
     </div>
   <% else %>
     <% if @status == 2 %>
       <div class="no-more">
-        <button class="cf-add-button" uk-scroll>Can't show you more. Try being more precise.</button>
+        <button class="more-button" uk-scroll>Can't show you more.<br/>Try being more precise.</button>
       </div>
     <% end %>
   <% end %>

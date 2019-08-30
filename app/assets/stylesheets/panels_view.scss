@@ -302,6 +302,27 @@ hr.md {
     margin-bottom: 2px;
 }
 
+.more-button {
+    background: none;
+    font-size: 14px;
+    color: $light_grey;
+    border: none;
+    border-top: 1px solid #bababa;
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+        color: $dark_grey;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .cf-add-button:hover {
     color: #666;
     border: 2px solid #49ab8a;
