@@ -32,7 +32,7 @@ if (success) {
         search = $('#r-q').text().split(',');
         data['q'] = {
             name_dev_cont: search[0],
-            plat_cont: search[1],
+            plat_eq: search[1],
             physical_eq: search[2],
             s: $('#r-s').text()
         };
@@ -40,7 +40,7 @@ if (success) {
         search = $('#r-q').text().split(',');
         data['q'] = {
             name_dev_cont: search[0],
-            plat_cont: search[1],
+            plat_eq: search[1],
             physical_eq: search[2]
         };
     } else if ($('#r-s').text().length != 0) {
