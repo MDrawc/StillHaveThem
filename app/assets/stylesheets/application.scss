@@ -604,37 +604,22 @@ div.no-results {
     margin-top: 80px;
 }
 
-// Scroll Up Button (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - //
-.scroll-up {
-    display: none;
+// ToolBar
+.toolbar {
     position: fixed;
-    bottom: 10%;
-    right: 0;
+    top: 50%;
+    right: 20px;
     z-index: 150;
-}
-
-.scroll-flip {
-    left: 0;
-    border-radius: 0px 5px 5px 0px;
-}
-
-.scroll-up-button {
-    background: rgba(0, 0, 0, 0.07);
+    border: 1px solid #bababa;
+    padding: 10px;
+    height: 166px;
     box-sizing: border-box;
-    border-radius: 5px 0px 0px 5px;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    svg {
-        color: #999;
+    margin-top: -83px;
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
     }
-}
-
-.scroll-up-button:hover svg {
-    color: #666;
 }
 
 // Show More Button (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - //

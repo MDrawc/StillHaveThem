@@ -1,5 +1,19 @@
-<div class="scroll-up">
-  <a class="scroll-up-button" href="#target"
-    uk-icon="icon: arrow-up; ratio: 1.5"
-  uk-scroll="duration: 600"></a>
+<div class="toolbar">
+  <ul>
+  <!-- cover view -->
+  <li><%= content_tag :a, nil, id: 'view-covers', 'uk-icon':'thumbnails' %></li></li>
+  <!-- panels view -->
+  <li><%= content_tag :a, nil, id: 'view-panels', 'uk-icon':'list' %></li></li>
+  <!-- list view -->
+  <li><%= content_tag :a, nil, id: 'view-list', 'uk-icon':'table' %></li></li>
+  <!-- hide overlays -->
+  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon':'close' %></li>
+  <!-- show options -->
+  <% extra = 'active' if edit_open? %>
+  <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>
+  <!-- scroll up -->
+  <li><a class="" href="#target"
+    uk-icon="icon: arrow-up; ratio: 1"
+    uk-scroll="duration: 600"></a></li>
+  </ul>
 </div>
