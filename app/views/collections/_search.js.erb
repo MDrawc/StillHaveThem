@@ -6,10 +6,18 @@ arr.each(function() {
     }
 });
 
-$(".my-games").html("<%= j(render partial: 'my_games/hub', locals: { collection: @collection }) %>");
+console.log("inside search.js");
+console.log("<%= @view %>");
+
+$(".my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection }) %>');
+$('.game_search #view').attr('value', '<%= @view %>')
+$('.game_search h2').text('<%= @view %>')
+
+
 $('#r-q').text(<%= raw query %>);
 $('#r-s').text('<%= sort %>');
 
 ids.forEach(id => $('#' + id).show());
 
+// this should only apply to panels
 moreInfo();

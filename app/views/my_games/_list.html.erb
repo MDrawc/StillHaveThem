@@ -1,0 +1,28 @@
+<div class="sort-links">
+    <span class="sort-icon"><%= svg 'sort' %></span>
+    <%= sort_link(@q, :name,'Title', {}, {remote: true}) %>
+    <div class="srch-div"></div>
+    <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
+    <div class="srch-div"></div>
+    <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
+</div>
+
+<div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
+
+    <div class="uk-width-1-1 page-info-front">
+        <div class="page-links pr cover-mod top">
+            <%= js_will_paginate @games, container: false %>
+        </div>
+    </div>
+
+  <ul>
+  <% @games.select('games.*, collection_games.created_at').each do |game| %>
+  <li><%= game.name %></li>
+  <% end %>
+  </ul>
+
+  <div class="uk-width-1-1 page-links cover-mod bottom">
+      <%= js_will_paginate @games, container: false %>
+  </div>
+</div>
+

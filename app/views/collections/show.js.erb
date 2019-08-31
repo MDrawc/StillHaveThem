@@ -12,11 +12,15 @@ if (refresh) {
   });
 }
 
-$("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection }) %>");
+console.log("inside show.js");
+console.log("<%= @view %>");
+
+$("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view }) %>");
 
 if (refresh) {
   ids.forEach(id => $('#' + id).show());
 }
+
 
 // Read cookies and define partial
 //
@@ -29,6 +33,5 @@ if (refresh) {
 // Function for changing views
 
 
-changeView("<%= j(render partial: 'my_games/covers') %>");
 filter();
 moreInfo();

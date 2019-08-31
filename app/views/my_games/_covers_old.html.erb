@@ -1,12 +1,3 @@
-<div class="sort-links">
-    <span class="sort-icon"><%= svg 'sort' %></span>
-    <%= sort_link(@q, :name,'Title', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
-</div>
-
 <div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
 
     <div class="uk-width-1-1 page-info-front">
@@ -16,7 +7,7 @@
     </div>
 
   <% already_offcanvas = [] %>
-  <% @games.select('games.*, collection_games.created_at').each do |game| %>
+  <% @games.each do |game| %>
   <% id = game[:id] %>
   <div id="gs-<%= id %>" class="game-space">
     <!-- COVER -->
@@ -103,4 +94,3 @@
       <%= js_will_paginate @games, container: false %>
   </div>
 </div>
-

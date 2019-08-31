@@ -33,18 +33,6 @@ function showHideScroll() {
     });
 }
 
-function changeView(dong) {
-
-    $('#change-view').click(function(){
-
-        $(".panels-grid").replaceWith(dong);
-        // $("#coll-icon-input").replaceWith("<%= j(render partial: 'warning', locals: { error: @error }) %>");
-
-    });
-
-
-}
-
 $(function(){
   showHideScroll();
 });

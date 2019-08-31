@@ -1,13 +1,15 @@
 <div class="toolbar">
   <ul>
   <!-- cover view -->
-  <li><%= content_tag :a, nil, id: 'view-covers', 'uk-icon':'thumbnails' %></li></li>
+  <li><%= link_to '', change_view_url(collection.id, 'covers'), remote: true, id: 'v-covers', 'uk-icon': 'thumbnails' %></li>
   <!-- panels view -->
-  <li><%= content_tag :a, nil, id: 'view-panels', 'uk-icon':'list' %></li></li>
+  <li><%= link_to '', change_view_url(collection.id, 'panels'), remote: true, id: 'v-panels', 'uk-icon': 'list' %></li>
   <!-- list view -->
-  <li><%= content_tag :a, nil, id: 'view-list', 'uk-icon':'table' %></li></li>
+  <li><%= link_to '', change_view_url(collection.id, 'list'), remote: true, id: 'v-list', 'uk-icon': 'table' %></li>
+  <!-- change theme -->
+  <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'clock' %></li>
   <!-- hide overlays -->
-  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon':'close' %></li>
+  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
   <!-- show options -->
   <% extra = 'active' if edit_open? %>
   <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>
@@ -17,3 +19,7 @@
     uk-scroll="duration: 600"></a></li>
   </ul>
 </div>
+
+
+
+
