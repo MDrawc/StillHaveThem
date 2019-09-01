@@ -77,6 +77,7 @@ end
 def remove_game
   @collection = current_user.collections.find_by_id(params[:collection_id])
   @game = @collection.games.find_by_id(params[:game_id])
+  @view = params[:view]
   @success = false
 
   if @game

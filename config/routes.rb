@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :collections, except: :index
   resources :games, only: [:new, :create]
 
-  delete '/remove/:game_id/:collection_id', to: 'collections#remove_game', as: 'remove'
-  delete '/remove_s/:game_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
+  delete '/rm/:game_id/:collection_id/:view', to: 'collections#remove_game', as: 'remove'
+  delete '/rm_s/:game_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
 
   get 'edit_form/:game_id/:collection_id', to: 'games#edit_form', as: 'edit_form'
   get 'cm_form/:game_id/:collection_id', to: 'games#cm_form', as: 'cm_form'

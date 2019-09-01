@@ -17,7 +17,7 @@ UIkit.notification({
 });
 
 <% if @success %>
-var data = { type: 'refresh' };
+var data = { type: 'refresh', view: '<%= @view %>' };
 
     if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
         search = $('#r-q').text().split(',');
