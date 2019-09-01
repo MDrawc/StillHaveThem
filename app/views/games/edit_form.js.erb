@@ -1,2 +1,2 @@
-$("#edit-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/edit_form', locals: { game: @game, collection: @collection }) %>");
+$("#edit-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/edit_form', locals: { game: @game, collection: @collection, view: @view }) %>");
 preselectPlatform('edit', <%= @game.id %>, <%= @game.platform %>);

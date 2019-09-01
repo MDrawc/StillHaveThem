@@ -3,6 +3,7 @@
 <%= form_for(:game, url: copy_move_path, remote: true) do |f| %>
 <%= hidden_field_tag :current, collection.id %>
 <%= hidden_field_tag :game_id, id %>
+<%= hidden_field_tag :view, view %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 <div class="action">
 <label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %></label>

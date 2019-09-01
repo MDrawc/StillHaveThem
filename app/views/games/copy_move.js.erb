@@ -24,7 +24,7 @@ if (success) {
     UIkit.dropdown("#copy-form-" + game_id).hide();
 
     var data = {
-        type: 'refresh'
+        type: 'refresh', view: '<%= @view %>'
     };
 
     if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {

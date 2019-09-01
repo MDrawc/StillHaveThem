@@ -4,15 +4,6 @@ var msg = '<%= @message %>';
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
 
-// Notifications position depends on offcanvas position
-if ($('.uk-offcanvas-container').length) {
-    var offc_class = $('.uk-offcanvas-container').attr('class');
-
-    if (offc_class.includes('uk-offcanvas-flip')) {
-        msg_pos = 'top-left';
-    }
-}
-
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
@@ -24,9 +15,7 @@ if (msg) {
 if (success) {
 
     reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
-    var data = {
-        type: 'refresh'
-    };
+    var data = { type: 'refresh', view: '<%= @view %>' };
 
     if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
         search = $('#r-q').text().split(',');

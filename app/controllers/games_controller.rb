@@ -56,10 +56,12 @@ class GamesController < ApplicationController
   end
 
   def edit_form
+    @view = params[:view]
     respond_to :js
   end
 
   def cm_form
+    @view = params[:view]
     respond_to :js
   end
 
@@ -68,6 +70,7 @@ class GamesController < ApplicationController
     collection_id = params[:current].to_i
     @collection = current_user.collections.find(collection_id)
     @game_id = params[:game_id].to_i
+    @view = params[:view]
 
     created_at = CollectionGame.find_by(collection_id: collection_id, game_id: @game_id).created_at
 
@@ -120,6 +123,7 @@ class GamesController < ApplicationController
   def copy_move
     @errors = []
     @game_id = params[:game_id]
+    @view = params[:view]
     @copy = eval(params[:copy])
     p_verb = @copy ? 'copied' : 'moved'
 
