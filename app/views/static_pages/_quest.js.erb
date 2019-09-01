@@ -9,6 +9,6 @@ if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= j(render :partial => 'results') %>");
 }
 
-flip_offc('<%= current_user.id %>');
+flip_offc(<%= user_id %>);
 
 fitNameInNoCover();

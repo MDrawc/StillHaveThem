@@ -61,8 +61,10 @@
           <% end %>
         </p>
         <!-- PLATFORMS -->
+        <% if needs_platform %>
         <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
         <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
+        <% end %>
         <!-- ADDED AT -->
         <%= content_tag(:div, game.created_at.to_date ,class: 'g-added italic') %>
       </div>

@@ -21,7 +21,10 @@ def show
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'
     cookies["#{ current_user.id }-last"] = { value: params[:id], expires: 30.days }
-    respond_to :js
+
+    respond_to do |format|
+      format.js { render partial: "show", locals: { user_id: current_user.id } }
+    end
   else
     @games = @q.result
     .group('games.id, collection_games.created_at')
@@ -34,7 +37,7 @@ def show
     sort = q[:s]
 
     respond_to do |format|
-      format.js { render partial: "search", locals: { query: query, sort: sort } }
+      format.js { render partial: "search", locals: { query: query, sort: sort, user_id: current_user.id } }
     end
   end
 end

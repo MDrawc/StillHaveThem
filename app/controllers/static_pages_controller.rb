@@ -75,7 +75,7 @@ class StaticPagesController < ApplicationController
         end
       end
       respond_to do |format|
-        format.js { render partial: "quest" }
+        format.js { render partial: "quest", locals: { user_id: current_user.id } }
       end
 
     #LOAD MORE - more games in new offset request:
