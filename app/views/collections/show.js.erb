@@ -12,8 +12,7 @@ if (refresh) {
   });
 }
 
-console.log("inside show.js");
-console.log("<%= @view %>");
+cleanOffcanvas();
 
 $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view }) %>");
 
@@ -21,17 +20,8 @@ if (refresh) {
   ids.forEach(id => $('#' + id).show());
 }
 
-
-// Read cookies and define partial
-//
-//
-
-// Render proper partial and corresponding functions
-//
-//
-
-// Function for changing views
-
-
 filter();
 moreInfo();
+toggleEditMenu();
+fitNameInNoCover();
+

@@ -18,3 +18,7 @@ function flip_offc(user_id) {
         $('.flip').toggleClass('flip-right');
     });
 }
+
+function cleanOffcanvas() {
+    $("[id^=i-]").remove();
+}

@@ -33,10 +33,15 @@ function moreInfo() {
     });
 }
 
+function fitNameInNoCover() {
+    textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 25});
+    $(".no-cover-game-name").addClass('fitted');
+}
+
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
         if (!e.target.currentSrc.startsWith('data:')) {
-            $(e.target).parent().find(".spinner").remove()
+            $(e.target).parent().find(".spinner").remove();
         }
     }, true)
 }
@@ -44,3 +49,4 @@ function removeCoverSpinner() {
 $(function(){
   removeCoverSpinner();
 });
+

@@ -3,14 +3,12 @@ $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
-// Remove offcanvas from last search!
-$("[id^=i-]").remove()
+cleanOffcanvas();
+
 if (<%= !@inquiry.errors.any? %>) {
   $("#search-results").html("<%= j(render :partial => 'results') %>");
 }
 
 flip_offc('<%= current_user.id %>');
 
-// Fit game title inside no-cover
-textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 26});
-$(".no-cover-game-name").addClass('fitted')
+fitNameInNoCover();

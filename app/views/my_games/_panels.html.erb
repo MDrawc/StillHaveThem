@@ -36,7 +36,7 @@
                 <%= content_tag(:p, game.platform_name) %>
                 <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
                 <% end %>
-                <%= content_tag(:div, "#{ game.created_at.to_date }" ,class: 'g-added') %>
+                <%= content_tag(:div, game.created_at.to_date ,class: 'g-added normal') %>
             </div>
         </div>
         <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">

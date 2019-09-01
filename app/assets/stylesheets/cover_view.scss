@@ -2,7 +2,7 @@
     @include unselectable;
 
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     max-width: 200px;
     font-weight: 500;
     position: relative;
@@ -135,6 +135,10 @@
     font-style: italic;
 }
 
+.normal {
+    font-style: normal;
+}
+
 .cover-view {
     margin-bottom: 0px;
 }
@@ -149,7 +153,7 @@
 }
 
 .game-release-date {
-    margin: 0px;
+    margin: 0px 0px 5px;
     font-size: 14px;
     font-style: italic;
 }

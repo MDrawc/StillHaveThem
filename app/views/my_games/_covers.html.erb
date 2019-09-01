@@ -1,53 +1,40 @@
 <div class="sort-links">
-    <span class="sort-icon"><%= svg 'sort' %></span>
-    <%= sort_link(@q, :name,'Title', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
+  <span class="sort-icon"><%= svg 'sort' %></span>
+  <%= sort_link(@q, :name,'Title', {}, {remote: true}) %>
+  <div class="srch-div"></div>
+  <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
+  <div class="srch-div"></div>
+  <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
 </div>
-
 <div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
-
-    <div class="uk-width-1-1 page-info-front">
-        <div class="page-links pr cover-mod top">
-            <%= js_will_paginate @games, container: false %>
-        </div>
+  <div class="uk-width-1-1 page-info-front">
+    <div class="page-links pr cover-mod top">
+      <%= js_will_paginate @games, container: false %>
     </div>
-
+  </div>
   <% already_offcanvas = [] %>
   <% @games.select('games.*, collection_games.created_at').each do |game| %>
-  <% id = game[:id] %>
+  <% id, igdb_id = game[:id], igdb_id = game[:igdb_id] %>
+  <% needs_platform = collection.needs_platform %>
   <div id="gs-<%= id %>" class="game-space">
     <!-- COVER -->
     <% if cover = get_game_cover(game) %>
-    <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= id %>">
-
-
+    <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
       <div class="spinner"><%= svg 'loading' %></div>
-
       <%= image_tag('', id: "gc-#{ id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
-
-
       <% else %>
-      <div class="game-cover-effect" uk-toggle="target: #i-<%= id %>">
+      <div class="game-cover-effect" uk-toggle="target: #i-<%= igdb_id %>">
         <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
         <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
         <%= svg 'no_image' %>
         <% end %>
         <% end %>
-        <!-- ADDITIONAL INFO -->
-        <% if game[:addl] %>
-        <div class="addl-info" uk-alert>
-          <p><%= game[:addl] %></p>
-        </div>
-        <% end %>
       </div>
       <!-- GAME INFO -->
-      <% unless already_offcanvas.include? id %>
+      <% unless already_offcanvas.include? igdb_id %>
       <% cover = nil if cover && cover[:from_scrn] %>
-      <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
-      <% already_offcanvas << id %>
+      <%= render partial: "my_games/covers_info", locals: { game: game, id: id, igdb_id: igdb_id, cover: cover } %>
+      <% already_offcanvas << igdb_id %>
       <% end %>
       <!-- NAME AND WARNING -->
       <p class="game-name">
@@ -74,33 +61,14 @@
           <% end %>
         </p>
         <!-- PLATFORMS -->
-        <% if platforms = game[:platforms_names] %>
-        <% if platforms.size > 3 %>
-        <% rest = platforms[3..-1] %>
-        <% 2.times do |i| %>
-        <p class="game-platform"><%= platforms[i]%></p>
-        <% end %>
-        <p class="game-platform"><%= platforms[2]%>
-          <label class="mp-label"><input class="mp" type="checkbox" uk-icon="triangle-down" uk-toggle="target: #mp-<%= id %>; animation: uk-animation-fade"></label>
-        </p>
-        <div id="mp-<%= id %>" hidden>
-          <% rest.each do |platform| %>
-          <p class="game-platform"><%= platform %></p>
-          <% end %>
-        </div>
-        <% else %>
-        <% platforms.each do |platform| %>
-        <p class="game-platform"><%= platform %></p>
-        <% end %>
-        <% end %>
-        <% end %>
-    </div>
+        <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
+        <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
+        <!-- ADDED AT -->
+        <%= content_tag(:div, game.created_at.to_date ,class: 'g-added italic') %>
+      </div>
     </div>
     <% end %>
-
-
-  <div class="uk-width-1-1 page-links cover-mod bottom">
+    <div class="uk-width-1-1 page-links cover-mod bottom">
       <%= js_will_paginate @games, container: false %>
+    </div>
   </div>
-</div>
-
