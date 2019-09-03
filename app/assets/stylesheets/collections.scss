@@ -11,12 +11,8 @@
     color: $light_grey;
 }
 
-.uk-modal-body {
-    border-radius: 5px 5px 0px 0px !important;
-    padding: 20px;
-    font-size: 20px;
-    width: 450px;
-    color: $dark_grey;
+#edit-coll-modal .uk-modal-body {
+    border-radius: 5px;
 }
 
 .uk-modal-footer {
@@ -47,6 +43,8 @@
 }
 
 #create-coll-modal .uk-modal-body {
+
+border-radius: 5px;
 
 .header {
     font-size: 20px;

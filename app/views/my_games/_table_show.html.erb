@@ -1,0 +1,46 @@
+<% game_name = game.name %>
+<div class="uk-grid uk-grid-collapse">
+    <div class="uk-width-1-2 cover-col">
+        <% if cover = get_game_cover(game) %>
+        <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game_name, 'draggable' => 'false', 'uk-img' => '') %>
+        <% else %>
+        <div class="i-no-cover">
+            <div>
+                <%= svg 'no_image_i' %>
+                <p>No Cover Available</p>
+            </div>
+        </div>
+        <% end %>
+        <!-- PLATFORMS -->
+        <% if platforms = game[:platforms_names] %>
+        <p class="info-platform">
+            <% platforms.each do |platform| %>
+            <span>
+                <% unless platform == platforms.last %>
+                <%= platform + ', ' %>
+                <% else %>
+                <%= platform %>
+                <% end %>
+            </span>
+            <% end %>
+        </p>
+        <% end %>
+    </div>
+    <div class="uk-width-expand">
+        <h3 class="info-title"><%= game_name %>
+        <% if (status_id = game[:status]) && status_id != 0 %>
+        <button class='gw-b'><%= convert_status(status_id) %></button>
+        <% end %>
+        <% if (category_id = game[:category]) && category_id != 0 %>
+        <button class='gw-b'><%= convert_category(category_id) %></button>
+        <% end %>
+        <% if game[:first_release_date]%>
+        <span class="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
+        <% else %>
+        <% end %>
+        </h3>
+        <% unless game.developers.empty? %>
+            <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+        <% end %>
+    </div>
+</div>

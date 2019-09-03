@@ -7,7 +7,7 @@
   <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
 </div>
 <div class="uk-grid-collapse">
-  <div class="uk-width-1-1 page-links top pr">
+  <div class="uk-width-1-1 page-links pr">
     <%= js_will_paginate @games, container: false %>
   </div>
   <% needs_platform = collection.needs_platform %>
@@ -32,10 +32,24 @@
       <%= content_tag :td, game.physical ? 'Physical' : 'Digital', class: 't-format' %>
       <% end %>
       <%= content_tag :td, game.created_at.to_date, class: 't-added' %>
+      <td>
+        <%= link_to('modal', table_show_url(game.id), class: 't-trigger',
+          remote: true, 'uk-toggle': 'target: .t-game-show') %>
+      </td>
+
     </tr>
     <% end %>
   </table>
   <div class="uk-width-1-1 page-links bottom ">
     <%= js_will_paginate @games, container: false %>
+  </div>
+</div>
+
+<div class="t-game-show" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="modal-content">
+      Loading...
+    </div>
   </div>
 </div>

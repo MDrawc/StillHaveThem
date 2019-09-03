@@ -390,7 +390,7 @@ div.no-results {
 
 @keyframes blinker {
     50% {
-        opacity: 0.1;
+        opacity: 0.2;
     }
 }
 
@@ -708,7 +708,11 @@ div.no-results {
 
 .uk-modal-body {
     background-color: white;
-    border-radius: 5px;
+    border-radius: 5px 5px 0px 0px;
+    padding: 20px;
+    font-size: 20px;
+    width: 450px;
+    color: $dark_grey;
 }
 
 span.signup-title {

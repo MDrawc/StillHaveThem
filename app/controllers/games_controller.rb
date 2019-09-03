@@ -65,6 +65,11 @@ class GamesController < ApplicationController
     respond_to :js
   end
 
+  def table_show
+    @game = Game.find_by_id(params[:game_id])
+    respond_to :js
+  end
+
   def edit
     @errors = []
     collection_id = params[:current].to_i

@@ -15,7 +15,9 @@
         <% end %>
         </h3>
         <!-- DEVELOPER -->
-        <p class="info-by"><%= (devs = game[:developers]) ? "by " + devs.join(', ') : '' %></p>
+        <% unless game.developers.empty? %>
+            <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+        <% end %>
         <!-- COVER -->
         <% if cover %>
         <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game_name, 'draggable' => 'false', 'uk-img' => "target: #gc-#{ id }" ) %>
