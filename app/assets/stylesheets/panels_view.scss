@@ -211,12 +211,16 @@
     }
 }
 
-.page-links.cover-mod.top {
-    margin-bottom: 20px;
+.page-links.cover-mod-top {
+    margin-bottom: 30px;
 }
 
-.page-links.cover-mod.bottom {
-    margin-top: 20px;
+.page-links.cover-mod-bottom {
+    margin-top: 0px;
+}
+
+.page-links.bottom {
+    padding-top: 7px;
 }
 
 span.gap {

@@ -7,10 +7,8 @@
   <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
 </div>
 <div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
-  <div class="uk-width-1-1 page-info-front">
-    <div class="page-links pr cover-mod top">
-      <%= js_will_paginate @games, container: false %>
-    </div>
+  <div class="uk-width-1-1 page-links pr cover-mod cover-mod-top">
+    <%= js_will_paginate @games, container: false %>
   </div>
   <% already_offcanvas = [] %>
   <% @games.select('games.*, collection_games.created_at').each do |game| %>
@@ -70,7 +68,7 @@
       </div>
     </div>
     <% end %>
-    <div class="uk-width-1-1 page-links cover-mod bottom">
+    <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
       <%= js_will_paginate @games, container: false %>
     </div>
   </div>

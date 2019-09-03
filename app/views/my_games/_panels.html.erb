@@ -6,6 +6,7 @@
     <div class="srch-div"></div>
     <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
 </div>
+
 <div class="uk-grid-collapse panels-grid" uk-grid>
     <div class="uk-width-5-6 page-info-front">
         <div class="page-links pr">
@@ -102,7 +103,7 @@
 </div>
 <% end %>
 <% end %>
-<div class="uk-width-5-6 page-links">
+<div class="uk-width-5-6 page-links bottom">
     <%= js_will_paginate @games, container: false %>
 </div>
 </div>
