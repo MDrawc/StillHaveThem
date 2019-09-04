@@ -74,12 +74,17 @@
 .t-game-show {
     .uk-modal-body {
         border-radius: 5px;
-        width: 800px;
-        padding-right: 40px;
+        width: 900px;
+        background-color: #ececec;
+    }
+
+    .info-title {
+        padding-right: 24px;
     }
 
     .info-by {
         color: $dark_grey;
+        margin-bottom: 0px;
     }
 
     .info-year {
@@ -93,15 +98,81 @@
     }
 
     hr {
-        margin: 15px 0px;
+        margin: 15px 0px 10px;
+        border-color: #bababa
     }
 
-    .info-platform {
-        color:red;
+    .i-no-cover {
+        background: #dcdcdc;
+        color: #999;
+        border-color: #a9a9a9
+    }
+
+    .i-no-cover svg path {
+        fill: #a9a9a9 !important;
+    }
+
+    .g-google {
+        background: #dcdcdc;
+        color: #a9a9a9;
+    }
+
+    .g-google:hover {
+        background: #cccccc;
+        color: #666;
+    }
+
+    .g-metacritic {
+        border-color: #d0d0d0;
+        background: #a9a9a9;
+    }
+
+.g-metacritic:hover {
+        border-color: #b4b4b4;
+        background: #666;
+    }
+
+    .g-metacritic svg {
+        fill: #dcdcdc;
+    }
+}
+
+.uk-slider {
+    margin-top: 20px;
+}
+
+.uk-slider-items li {
+
+    height: 114.25px;
+
+    img {
+      border-radius: 3px;
     }
 }
 
 .cover-col {
     width: 200px;
     margin-right: 20px;
+}
+
+.t-links {
+    margin-top: 10px;
+}
+
+.t-cover {
+    background: #dcdcdc;
+    border-radius: 3px;
+    margin-bottom: 12px;
+    position: relative;
+
+    .spinner {
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+    }
+
+    .info-cover {
+        position: relative;
+    }
 }

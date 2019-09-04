@@ -1,8 +1,12 @@
 <% game_name, id = game.name, game.id %>
 <div class="uk-grid uk-grid-collapse">
-    <div class="uk-width-1-2 cover-col">
-        <% if cover = get_game_cover(game) %>
-        <%= image_tag('', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], alt: game_name, 'draggable' => 'false', 'uk-img' => '') %>
+    <div class="cover-col">
+        <% cover = get_game_cover(game) %>
+        <% if cover && cover[:from_scrn].nil? %>
+        <div class="t-cover" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px">
+        <div class="spinner"><%= svg 'loading' %></div>
+        <%= image_tag('', alt: '', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => '') %>
+        </div>
         <% else %>
         <div class="i-no-cover">
             <div>
@@ -11,7 +15,6 @@
             </div>
         </div>
         <% end %>
-        <!-- PLATFORMS -->
         <% if platforms = game[:platforms_names] %>
         <p class="info-platform">
             <% platforms.each do |platform| %>
@@ -25,6 +28,10 @@
             <% end %>
         </p>
         <% end %>
+        <div class="t-links">
+        <%= link_to '',"http://www.google.com/search?q=%22#{ game.name.gsub(' ', '+') }%22+video+game" , class: "ex-link g-google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+        <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game.name.gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+        </div>
     </div>
     <div class="uk-width-expand">
         <h3 class="info-title"><%= game_name %>
@@ -40,19 +47,24 @@
         <% end %>
         </h3>
         <% unless game.developers.empty? %>
-            <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+        <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
         <% end %>
         <hr>
-
-
-
-               <% if summary = get_summary(game, 280, 50) %>
-                    <p class="g-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
-                </p>
+        <%= content_tag :p, game[:summary], class: 'g-summary' if game[:summary] %>
+        <% if screens = game[:screenshots] %>
+        <% urls = screens_urls(screens) %>
+        <div class="uk-position-relative uk-light" uk-slider uk-lightbox="toggle: .full-scrn; animation: fade">
+            <ul class="uk-slider-items uk-child-width-1-3 uk-grid uk-grid-small">
+                <% urls.each do |url| %>
+                <li>
+                    <%= image_tag(url[:small], alt: '') %>
+                    <%= content_tag(:a, '', href: url[:big], class: 'full-scrn') %>
+                </li>
                 <% end %>
-                <% end %>
-
-
-
+            </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+        <% end %>
     </div>
 </div>

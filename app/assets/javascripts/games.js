@@ -49,4 +49,3 @@ function removeCoverSpinner() {
 $(function(){
   removeCoverSpinner();
 });
-
