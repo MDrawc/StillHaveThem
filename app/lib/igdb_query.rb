@@ -372,6 +372,7 @@ class IgdbQuery
         if g['platforms']
           c[:platforms] = g['platforms'].map { |platform| platform['id'] }
           c[:platforms_names] = g['platforms'].map { |platform| platform['name'] }
+          c[:platforms_names] = shorten_platform_names(c[:platforms_names])
           c[:platforms_categories] = g['platforms'].map { |platform| platform['category'] }
         else
           c[:platforms], c[:platforms_names], c[:platforms_categories] = nil
@@ -669,5 +670,12 @@ class IgdbQuery
       body = @search + @where + @sort + "limit #{RESULT_LIMIT}; " + "offset #{@offset};"
       @query = { endpoint: endpoint, body: body }
       puts ">> Query: #{ @query }"
+    end
+
+    def shorten_platform_names(p_names)
+      repl = { 'Super Nintendo Entertainment System (SNES)'=> 'SNES',
+               'Nintendo Entertainment System (NES)'=> 'NES',
+               'PC (Microsoft Windows)'=> 'PC (Windows)' }
+      p_names.map {|n| repl[n] || n }
     end
 end
