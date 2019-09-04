@@ -75,6 +75,7 @@
     .uk-modal-body {
         border-radius: 5px;
         width: 800px;
+        padding-right: 40px;
     }
 
     .info-by {
@@ -83,11 +84,20 @@
 
     .info-year {
         color: #333333;
+        margin-bottom: 0px;
     }
 
     .gw-b {
         color: #999;
         border-color: #c3c3c3;
+    }
+
+    hr {
+        margin: 15px 0px;
+    }
+
+    .info-platform {
+        color:red;
     }
 }
 

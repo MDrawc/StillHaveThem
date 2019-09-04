@@ -1,4 +1,4 @@
-<% game_name = game.name %>
+<% game_name, id = game.name, game.id %>
 <div class="uk-grid uk-grid-collapse">
     <div class="uk-width-1-2 cover-col">
         <% if cover = get_game_cover(game) %>
@@ -42,5 +42,17 @@
         <% unless game.developers.empty? %>
             <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
         <% end %>
+        <hr>
+
+
+
+               <% if summary = get_summary(game, 280, 50) %>
+                    <p class="g-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= id %>)" uk-icon="icon: triangle-up"></button></span>
+                </p>
+                <% end %>
+                <% end %>
+
+
+
     </div>
 </div>
