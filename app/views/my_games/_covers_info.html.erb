@@ -20,7 +20,9 @@
         <% end %>
         <!-- COVER -->
         <% if cover %>
-        <%= image_tag('', alt: '', class: 'game-cover info-cover', width: cover[:width], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ id }" ) %>
+        <div class="c-cover" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px">
+        <%= image_tag('', alt: '', class: 'game-cover', width: cover[:width], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => "target: #gc-#{ id }" ) %>
+        </div>
         <% else %>
         <div class="i-no-cover">
             <div>

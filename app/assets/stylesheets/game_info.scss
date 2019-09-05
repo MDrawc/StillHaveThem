@@ -23,7 +23,7 @@
     height: $no_cover_height;
     border: 2px dashed $dark_grey;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 20px 0px 10px;
     color: $dark_grey;
     box-sizing: border-box;
     position: relative;
@@ -61,12 +61,7 @@
 .info-by {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
-    margin-top: 0px;
-}
-
-.info-cover {
-    margin-bottom: 10px;
-    box-shadow: -2px 4px 9px 1px #0000004a;
+    margin: 0px;
 }
 
 .info-platform {

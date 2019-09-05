@@ -652,7 +652,7 @@ hr.md {
     opacity: 1;
 }
 
-.g-google {
+.g-google, .g-google:active, .g-google:focus {
     @extend .google;
 
     background: #c7c7c7;
@@ -668,7 +668,7 @@ hr.md {
     margin-right: 0px !important;
 }
 
-.g-metacritic {
+.g-metacritic, .g-metacritic:active, .g-metacritic:focus {
     background: #8e8e8e;
     border: 3px solid #bdbdbd;
     transition-property: color, background-color, border-color;

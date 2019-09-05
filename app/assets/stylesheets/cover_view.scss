@@ -1,3 +1,7 @@
+.c-cover {
+    margin: 20px 0px 10px;
+}
+
 .game-name {
     @include unselectable;
 
@@ -47,8 +51,7 @@
 }
 
 .game-warning {
-    margin: 0;
-    margin-bottom: 2px;
+    margin: 5px 0px;
     button {
         background: none;
         border: 2px solid #bababa;

@@ -89,7 +89,6 @@
 
     .info-year {
         color: #333333;
-        margin-bottom: 0px;
     }
 
     .gw-b {
@@ -99,13 +98,13 @@
 
     hr {
         margin: 15px 0px 10px;
-        border-color: #bababa
+        border-color: #bababa;
     }
 
     .i-no-cover {
         background: #dcdcdc;
         color: #999;
-        border-color: #a9a9a9
+        border-color: #a9a9a9;
     }
 
     .i-no-cover svg path {
@@ -127,7 +126,7 @@
         background: #a9a9a9;
     }
 
-.g-metacritic:hover {
+    .g-metacritic:hover {
         border-color: #b4b4b4;
         background: #666;
     }
@@ -142,11 +141,18 @@
 }
 
 .uk-slider-items li {
-
     height: 114.25px;
 
     img {
-      border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .spinner {
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+        width: 18%;
     }
 }
 
@@ -175,4 +181,8 @@
     .info-cover {
         position: relative;
     }
+}
+
+.cover-shadow {
+    box-shadow: -2px 4px 9px 1px #0000004a;
 }
