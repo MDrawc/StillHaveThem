@@ -50,14 +50,13 @@
 
 
             <% if needs_platform %>
-         <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+         <%= link_to('edit', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
             <% else %>
-            <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+            <%= content_tag(:a, 'edit', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
             <% end %>
-            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
-            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
+            <%= link_to('copy/move', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
+            <%= link_to('remove', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
 
- <div class="ron"></div>
 </div>
 
 
@@ -72,7 +71,7 @@
 
 <% end %>
 
-<div class="uk-width-1-1 page-links bottom">
+<div class="uk-width-5-6 page-links bottom">
     <%= js_will_paginate @games, container: false %>
 </div>
 </div>
