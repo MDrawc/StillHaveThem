@@ -1,7 +1,20 @@
-$("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/copy_form', locals: { game: @game, collection: @collection, view: @view }) %>");
-<% if @collection.needs_platform %>
-    preselectPlatform('copy', <%= @game.id %>, <%= @game.platform %>);
-<% end %>
-changeButton(<%= @game.id %>);
-activateForm('copy', <%= @game.id %>);
-updatePlatformIcon('copy', <%= @game.id %>);
+var view = "<%= @view %>";
+var needs_platform = <%= @collection.needs_platform %>;
+var form_type;
+
+
+if (view === 'list') {
+    $("#t-ops .modal-content").html("<%= j(render partial: 'my_games/copy_form', locals: { game: @game, collection: @collection, view: @view }) %>");
+    form_type = 'list';
+} else {
+    $("#copy-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/copy_form', locals: { game: @game, collection: @collection, view: @view }) %>");
+    form_type = 'copy'
+}
+
+if (needs_platform) {
+    preselectPlatform(form_type, <%= @game.id %>, <%= @game.platform %>);
+}
+
+changeButton(form_type, <%= @game.id %>);
+activateForm(form_type, <%= @game.id %>);
+updatePlatformIcon(form_type, <%= @game.id %>);

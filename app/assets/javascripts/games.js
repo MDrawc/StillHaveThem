@@ -38,6 +38,16 @@ function fitNameInNoCover() {
     $(".no-cover-game-name").addClass('fitted');
 }
 
+function listHover() {
+    if ($('.list-grid').length != 0) {
+        $('.t-game').hover(function() {
+            $(this).addClass('hover-fill');
+        }, function() {
+            $(this).removeClass('hover-fill');
+        });
+    }
+}
+
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
         if (!e.target.currentSrc.startsWith('data:')) {

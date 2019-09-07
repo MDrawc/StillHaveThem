@@ -1,14 +1,33 @@
+#t-ops {
+    .uk-modal-body {
+        background: #ececec;
+        font-size: 14px;
+        width: 350px;
+        border-radius: 5px;
+    }
+}
+
+a.t-trigger {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
 .t-game {
     margin-bottom: 10px;
+    border-radius: 3px 0px 0px 3px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.11);
     font-size: 14px;
-    color: $light_grey;
+    color: $dark_grey;
     position: relative;
 
     div {
         box-sizing: border-box;
         padding-top: 10px;
         padding-bottom: 10px;
+        background: #d2d2d2;
+        line-height: 24px;
     }
 
     .gw-b {
@@ -16,11 +35,15 @@
         font-size: 12px;
         border: none;
         border-radius: 0px;
-        color: #9e9e9e;
+        color: #929292;
         padding: 0px;
         margin-left: 5px;
         vertical-align: text-bottom;
     }
+}
+
+.t-game.hover-fill div.t {
+    background-color: #ebebeb;
 }
 
 .t-menu {
@@ -30,17 +53,17 @@
     top: 0;
     right: 0px;
     padding-right: 10px;
-    background: #f7f7f7;
     border-radius: 0px 3px 3px 0px;
     text-align: right;
-    transition: 0.3s;
+    transition: right 0.3s;
 }
 
 .t-menu.out {
     right: -83px;
 }
 
-.menu-shadow {
+div.menu-shadow {
+    background: none;
     position: absolute;
     width: 0%;
     height: 100%;
@@ -48,7 +71,7 @@
     right: 0;
     z-index: -1;
     box-shadow: -6px 4px 3px -2px rgba(0, 0, 0, 0.11);
-    transition: 0.3s;
+    transition: width 0.3s, box-shadow 0.3s;
 }
 
 .menu-shadow.out {
@@ -56,52 +79,46 @@
 }
 
 .t-added {
-    width: 10%;
+    width: 12%;
     z-index: 1;
-    background: #f7f7f7;
     padding-right: 10px;
-    border-right: 1px solid #f7f7f7;
+    border-right: 1px solid #d2d2d2;
     border-radius: 0px 3px 3px 0px;
     text-align: right;
-    transition: 0.3s;
+    transition: border-radius 0.3s, border 0.3s;
 }
 
 .t-added.out {
-    border-right: 1px solid #bababa;
+    border-right: 1px solid #a7a7a7;
     border-radius: 0px;
 }
 
 .t-name {
     padding-left: 10px;
     border-radius: 3px 0px 0px 3px;
-    background: #f7f7f7;
     font-size: 16px;
-    color: $dark_grey;
-    width: 35%;
+    color: #444;
+    width: 25%;
 }
 
 .t-release {
-    background: #f7f7f7;
-    width: 5%;
+    width: 10%;
     text-align: center;
 }
 
 .t-developer {
-    background: #f7f7f7;
-    width: 30%;
+    width: 25%;
 }
 
 .t-platform {
-    background: #f7f7f7;
-    width: 15%;
+    width: 18%;
 
 }
 
 .t-format {
-width: 5%;
+    width: 10%;
     text-align: center;
     z-index: 2;
-    background: #f7f7f7;
 }
 
 .t-game-show {
