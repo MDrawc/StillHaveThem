@@ -70,7 +70,6 @@ function removeCoverSpinner() {
             $(e.target).parent().find(".spinner").remove();
         }
     }, true)
-
 }
 
 $(function(){

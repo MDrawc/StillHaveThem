@@ -31,7 +31,7 @@
         <% release = game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
         <%= content_tag :div, release, class: 't-release t' %>
         <% developer = !game.developers.empty? ? game.developers.map(&:name).join(', ') : '-' %>
-        <%= content_tag :div, developer, class: 't-developer t' %>
+        <%= content_tag :div, developer, class: 't-developer t' + (needs_platform ? '' : ' no-plat') %>
         <% if needs_platform %>
         <%= content_tag :div, game.platform_name, class: 't-platform t' %>
         <%= content_tag :div, game.physical ? 'Physical' : 'Digital', class: 't-format t' %>
