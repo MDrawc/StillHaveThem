@@ -1,20 +1,20 @@
-var ids = [];
-var arr = $('.g-drop');
-arr.each(function() {
-    if ($(this).attr('style') == 'display: block;') {
-        ids.push($(this).attr('id'));
-    }
-});
+var view = '<%= @view %>';
+
+if (view === 'panels') {
+  var ids = getIdsOfOpenPanels();
+}
 
 cleanOffcanvas();
 
 $(".my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection }) %>');
-$('.game_search #view').attr('value', '<%= @view %>')
 
+$('.game_search #view').attr('value', view);
 $('#r-q').text(<%= raw query %>);
 $('#r-s').text('<%= sort %>');
 
-ids.forEach(id => $('#' + id).show());
+if (view === 'panels') {
+  openPanels(ids);
+}
 
 flip_offc(<%= user_id %>);
 moreInfo();

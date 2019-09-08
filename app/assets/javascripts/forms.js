@@ -1,15 +1,14 @@
-function resetFormErrors(form, game_id) {
-
+function resetFormErrors(form_type, id) {
+    var form_selector = form_type === 'list' ? "#t-ops .modal-content" : '#' + form_type + '-form-' + id;
     var reset_elements = ['#collection', '#game_platform', '.cf-physical', '.cf-digital','#copy_true', '#copy_false']
-    var errors_place = '.add-form-errors';
-    var element = '#' + form + '-form-' + game_id + ' ' + errors_place;
+    var errors = form_selector + ' ' + '.add-form-errors';
 
     for (i = 0; i < reset_elements.length; i++) {
 
-        var formPart = '#' + form + '-form-' + game_id + ' ' + reset_elements[i];
+        var formPart = form_selector + ' ' + reset_elements[i];
 
         $(formPart).on('input', function() {
-            $(element).html('');
+            $(errors).html('');
         });
     }
 }

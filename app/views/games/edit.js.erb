@@ -1,8 +1,11 @@
-var game_id = '<%= @game_id %>'
-var new_game_id = '<%= @new_game_id %>'
+var game_id = '<%= @game_id %>';
+var new_game_id = '<%= @new_game_id %>';
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
+var view = '<%= @view %>';
+var reopen = false;
+var form_type;
 
 if (msg) {
     UIkit.notification({
@@ -14,8 +17,11 @@ if (msg) {
 
 if (success) {
 
-    reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
-    var data = { type: 'refresh', view: '<%= @view %>' };
+    if (view === 'panels') {
+        reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
+    }
+
+    var data = { type: 'refresh', view: view };
 
     if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
         search = $('#r-q').text().split(',');
@@ -54,6 +60,13 @@ if (success) {
     });
 
 } else {
-    $("#edit-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors('edit', game_id);
+    if (view === 'list') {
+        $("#t-ops .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        form_type = 'list';
+    } else {
+        $("#edit-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        form_type = 'edit';
+    }
+
+    resetFormErrors(form_type, game_id);
 }

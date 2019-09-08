@@ -2,6 +2,8 @@ var game_id = '<%= @game_id %>'
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
+var view = '<%= @view %>';
+var form_type;
 
 if (msg) {
     UIkit.notification({
@@ -12,10 +14,13 @@ if (msg) {
 }
 
 if (success) {
-    UIkit.dropdown("#copy-form-" + game_id).hide();
+
+    if (view != 'list') {
+        UIkit.dropdown("#copy-form-" + game_id).hide();
+    }
 
     var data = {
-        type: 'refresh', view: '<%= @view %>'
+        type: 'refresh', view: view
     };
 
     if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
@@ -66,6 +71,13 @@ if (success) {
     });
 
 } else {
-    $("#copy-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors('copy', game_id);
+    if (view === 'list') {
+        $("#t-ops .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        form_type = 'list';
+    } else {
+        $("#copy-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        form_type = 'copy';
+    }
+
+    resetFormErrors(form_type, game_id);
 }

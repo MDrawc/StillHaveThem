@@ -1,23 +1,18 @@
 $("li.active").removeClass('active');
 $("#mc-<%= @collection.id %>").addClass('active');
+var view = '<%= @view %>';
+var refresh = <%= @refresh %>;
 
-var refresh = eval('<%= @refresh %>')
-if (refresh) {
-  var ids = [];
-  var arr = $('.g-drop');
-  arr.each(function() {
-      if ($(this).attr('style') == 'display: block;') {
-          ids.push($(this).attr('id'));
-      }
-  });
+if (refresh && view === 'panels') {
+  var ids = getIdsOfOpenPanels();
 }
 
 cleanOffcanvas();
 
 $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view }) %>");
 
-if (refresh) {
-  ids.forEach(id => $('#' + id).show());
+if (refresh && view === 'panels') {
+  openPanels(ids);
 }
 
 flip_offc(<%= user_id %>);

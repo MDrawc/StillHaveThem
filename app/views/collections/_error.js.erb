@@ -3,7 +3,6 @@ $("#coll-icon-input").replaceWith("<%= j(render partial: 'warning', locals: { er
 $('#collection_name').on('input', function() {
 
     if ($('#coll-icon-input').hasClass('warning-icon')) {
-        console.log('input')
         $("#coll-icon-input").replaceWith("<span id='coll-icon-input'><%= j(svg 'label') %></span>");
     }
 

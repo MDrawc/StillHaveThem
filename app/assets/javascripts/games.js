@@ -48,6 +48,21 @@ function listHover() {
     }
 }
 
+function getIdsOfOpenPanels() {
+    var ids = [];
+    var arr = $('.g-drop');
+    arr.each(function() {
+        if ($(this).attr('style') == 'display: block;') {
+            ids.push($(this).attr('id'));
+        }
+    });
+    return ids;
+}
+
+function openPanels(ids) {
+  ids.forEach(id => $('#' + id).show());
+}
+
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
         if (!e.target.currentSrc.startsWith('data:')) {
