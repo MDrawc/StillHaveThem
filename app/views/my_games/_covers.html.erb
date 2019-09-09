@@ -34,22 +34,6 @@
       <%= render partial: "my_games/covers_info", locals: { game: game, id: id, igdb_id: igdb_id, cover: cover } %>
       <% already_offcanvas << igdb_id %>
       <% end %>
-      <!-- OPTIONS -->
-      <div class="c-menu">
-        <ul class="uk-iconnav">
-          <li>
-            <% if needs_platform %>
-            <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
-          </li>
-          <li>
-            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
-          </li>
-        </ul>
-      </div>
       <!-- NAME AND WARNING -->
       <div class="c-game-name">
         <%= content_tag(:span, nil, class: 'name') do %>
@@ -73,15 +57,35 @@
         -
         <% end %>
       </p>
+      <!-- OPTIONS -->
+      <% style = 'display: block;' if edit_open? %>
+      <%= content_tag :div , class: "c-menu", style: style do %>
+        <ul class="uk-iconnav">
+          <li>
+            <% if needs_platform %>
+              <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
+            <% else %>
+              <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
+          </li>
+          <li>
+            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
+          </li>
+        </ul>
+      <% end %>
       <!-- PLATFORMS -->
-      <div class="uc-s">
+      <% style = ucs_close? ? 'display: none;' : '' %>
+      <%= content_tag :div , class: "uc-s", style: style do %>
         <% if needs_platform %>
         <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
         <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
         <% end %>
         <!-- ADDED AT -->
         <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
-      </div>
+      <% end %>
     </div>
     <% end %>
     <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">

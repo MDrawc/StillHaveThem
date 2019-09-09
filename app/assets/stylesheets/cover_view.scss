@@ -1,18 +1,11 @@
-.c-fake {
-
-}
-
-
-
 .c-menu {
-
-    border: 1px solid #bababa;
-    border-top: 0;
-    border-radius: 0px 0px 3px 3px;
+    display: none;
     height: 35px;
     line-height: 35px;
-    box-sizing: border-box;
     overflow-y: hidden;
+    border-top: 1px solid #bababa;
+    margin: 0 auto 5px;
+    // width: 150px;
 
     ul {
         display: inline-flex;

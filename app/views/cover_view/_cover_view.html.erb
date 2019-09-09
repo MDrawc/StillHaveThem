@@ -7,7 +7,7 @@
     <% if cover = get_game_cover(game) %>
     <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
       <div class="spinner"><%= svg 'loading' %></div>
-      <%= image_tag('', id: "gc-#{ igdb_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
+      <%= image_tag('', id: "gc-#{ igdb_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: '', 'draggable' => 'false', 'uk-img' => '') %>
       <% else %>
       <div class="game-cover-effect" uk-toggle="target: #i-<%= igdb_id %>">
         <%= content_tag(:div, id: "gc-#{ igdb_id }", class: 'no-cover') do %>

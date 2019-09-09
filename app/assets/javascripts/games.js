@@ -34,9 +34,18 @@ function moreInfo() {
 }
 
 function underCover() {
-  $("#undercover").unbind('click');
-  $('#undercover').click(function() {
-      $('.uc-s').slideToggle();
+  var uc = $('#undercover');
+  uc.unbind('click');
+  uc.click(function() {
+
+    var ucs = $('.uc-s');
+    if (ucs.attr('style') != 'display: none;') {
+        $('.uc-s').slideUp();
+        Cookies.set('ucs_close', 'true');
+    } else {
+        $('.uc-s').slideDown();
+        Cookies.set('ucs_close', 'false');
+    }
   });
 }
 
@@ -72,10 +81,8 @@ function openPanels(ids) {
 
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
-        console.log(e);
         if (!e.target.currentSrc.startsWith('data:')) {
-
-            $(e.target).addClass('cover-shadow');
+            // $(e.target).addClass('cover-shadow');
             $(e.target).parent().find(".spinner").remove();
         }
     }, true)

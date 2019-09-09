@@ -5,54 +5,47 @@ function toggleAddlInfo() {
 }
 
 function toggleEditMenu() {
-    var g_show = $("#g-show-edit");
+    var show = $("#g-show-edit");
+    var menu;
 
-    g_show.click(function() {
-        var g_menu = $(".g-menu");
-        if (g_menu.length != 0) {
-            if (g_menu.hasClass("out")) {
-                g_menu.removeClass('out');
-                g_show.removeClass('active');
+    show.click(function() {
+        if ((menu = $(".g-menu")).length != 0) {
+            if (menu.hasClass("out")) {
+                menu.removeClass('out');
+                show.removeClass('active');
                 Cookies.set("edit_open", "false");
             } else {
-                g_menu.addClass('out');
-                g_show.addClass('active');
+                menu.addClass('out');
+                show.addClass('active');
+                Cookies.set("edit_open", "true");
+            }
+        } else if ((menu = $(".t-menu")).length != 0) {
+            var added = $(".t-added")
+            var menu_shadow = $(".menu-shadow")
+            if (menu.hasClass("out")) {
+                menu.removeClass('out');
+                added.removeClass('out');
+                menu_shadow.removeClass('out');
+                show.removeClass('active');
+                Cookies.set("edit_open", "false");
+            } else {
+                menu.addClass('out');
+                added.addClass('out');
+                menu_shadow.addClass('out');
+                show.addClass('active');
                 Cookies.set("edit_open", "true");
             }
         } else {
-            var t_menu = $(".t-menu");
-            if (t_menu.length != 0) {
-                var t_added = $(".t-added")
-                var menu_shadow = $(".menu-shadow")
-                if (t_menu.hasClass("out")) {
-                    t_menu.removeClass('out');
-                    t_added.removeClass('out');
-                    menu_shadow.removeClass('out');
-                    g_show.removeClass('active');
-                    Cookies.set("edit_open", "false");
-                } else {
-                    t_menu.addClass('out');
-                    t_added.addClass('out');
-                    menu_shadow.addClass('out');
-                    g_show.addClass('active');
-                    Cookies.set("edit_open", "true");
-                }
+            menu = $(".c-menu");
+            if (menu.attr('style') === 'display: block;') {
+                menu.slideUp();
+                show.removeClass('active');
+                Cookies.set("edit_open", "false");
+            } else {
+                menu.slideDown();
+                show.addClass('active');
+                Cookies.set("edit_open", "true");
             }
         }
     });
 }
-
-// function showHideScroll() {
-//     $(window).scroll(function() {
-//         if ($(window).scrollTop() > 200) {
-//             $('.scroll-up').fadeIn()
-//         } else {
-//             $('.scroll-up').fadeOut()
-//         }
-//     });
-// }
-
-// $(function(){
-//   showHideScroll();
-// });
-

@@ -15,10 +15,12 @@ if (refresh && view === 'panels') {
   openPanels(ids);
 }
 
+toggleEditMenu();
+
 flip_offc(<%= user_id %>);
 filter();
 moreInfo();
-toggleEditMenu();
+
 fitNameInNoCover();
 listHover();
 underCover();
