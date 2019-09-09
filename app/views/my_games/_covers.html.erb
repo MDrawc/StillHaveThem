@@ -34,37 +34,53 @@
       <%= render partial: "my_games/covers_info", locals: { game: game, id: id, igdb_id: igdb_id, cover: cover } %>
       <% already_offcanvas << igdb_id %>
       <% end %>
+      <!-- OPTIONS -->
+      <div class="c-menu">
+        <ul class="uk-iconnav">
+          <li>
+            <% if needs_platform %>
+            <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
+          </li>
+          <li>
+            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
+          </li>
+        </ul>
+      </div>
       <!-- NAME AND WARNING -->
-      <p class="game-name">
+      <div class="c-game-name">
         <%= content_tag(:span, nil, class: 'name') do %>
         <%= game[:name] %>
         <% end %>
+      </div>
+      <!-- WARNING -->
+      <p class="game-warning">
+        <% if (status_id = game[:status]) && status_id != 0 %>
+        <button><%= convert_status(status_id) %></button>
+        <% end %>
+        <% if (category_id = game[:category]) && category_id != 0 %>
+        <button><%= convert_category(category_id) %></button>
+        <% end %>
       </p>
-      <div class="fade">
-        <!-- WARNING -->
-        <p class="game-warning">
-          <% if (status_id = game[:status]) && status_id != 0 %>
-          <button><%= convert_status(status_id) %></button>
-          <% end %>
-          <% if (category_id = game[:category]) && category_id != 0 %>
-          <button><%= convert_category(category_id) %></button>
-          <% end %>
-        </p>
-        <!-- RELEASE DATE -->
-        <p class="game-release-date">
-          <% if game[:first_release_date] %>
-          <%= Time.at(game[:first_release_date]).year %>
-          <% else %>
-          -
-          <% end %>
-        </p>
-        <!-- PLATFORMS -->
+      <!-- RELEASE DATE -->
+      <p class="game-release-date">
+        <% if game[:first_release_date] %>
+        <%= Time.at(game[:first_release_date]).year %>
+        <% else %>
+        -
+        <% end %>
+      </p>
+      <!-- PLATFORMS -->
+      <div class="uc-s">
         <% if needs_platform %>
         <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
         <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
         <% end %>
         <!-- ADDED AT -->
-        <%= content_tag(:div, game.created_at.to_date ,class: 'g-added italic') %>
+        <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
       </div>
     </div>
     <% end %>

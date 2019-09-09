@@ -1,3 +1,35 @@
+.c-fake {
+
+}
+
+
+
+.c-menu {
+
+    border: 1px solid #bababa;
+    border-top: 0;
+    border-radius: 0px 0px 3px 3px;
+    height: 35px;
+    line-height: 35px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+
+    ul {
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            padding-left: 20px;
+        }
+
+        li:first-child{
+            padding-left: 0;
+        }
+    }
+}
+
 .covers-grid {
     padding-top: 15px;
 }
@@ -6,9 +38,8 @@
     margin: 20px 0px 10px;
 }
 
-.game-name {
+.game-name, .c-game-name {
     @include unselectable;
-
     margin-top: 15px;
     margin-bottom: 0px;
     max-width: 200px;
@@ -51,11 +82,13 @@
 
 .fade {
     @include unselectable;
+
     transition: color 0.2s ease-in-out;
 }
 
 .game-warning {
     margin: 5px 0px;
+
     button {
         background: none;
         border: 2px solid #bababa;
@@ -72,6 +105,7 @@
 
 .game-name:hover ~ .fade {
     color: $disabled;
+
     button {
         border-color: #c7c7c7;
         color: $disabled;
@@ -91,7 +125,10 @@
 }
 
 .game-name.disabled ~ .fade {
-    color: $disabled;
+    p {
+        color: $disabled;
+    }
+
     button {
         border-color: #c7c7c7;
         color: $disabled;
@@ -257,7 +294,6 @@ div.fitted {
 // Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .already-in {
-
     color: #999;
 
     .title {

@@ -7,9 +7,11 @@
   <!-- list view -->
   <li><%= link_to '', change_view_url(collection.id, 'list'), remote: true, id: 'v-list', 'uk-icon': 'table' %></li>
   <!-- change theme -->
-  <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'clock' %></li>
+  <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
   <!-- hide overlays -->
   <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
+  <!-- hide cover view info -->
+  <li><%= content_tag :a, nil, id: 'undercover', 'uk-icon': 'question' %></li>
   <!-- show options -->
   <% extra = 'active' if edit_open? %>
   <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>

@@ -48,6 +48,3 @@ function filter() {
         $('#search-reset').hide();
     });
 }
-
-
-
