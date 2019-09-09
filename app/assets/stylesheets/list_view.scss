@@ -56,7 +56,7 @@ a.t-trigger {
     padding-right: 10px;
     border-radius: 0px 3px 3px 0px;
     text-align: right;
-    transition: right 0.3s;
+    transition: right 0.3s ease-in-out;
 }
 
 .t-menu.out {
@@ -72,7 +72,7 @@ div.menu-shadow {
     right: 0;
     z-index: -1;
     box-shadow: -6px 4px 3px -2px rgba(0, 0, 0, 0.11);
-    transition: width 0.3s, box-shadow 0.3s;
+    transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .menu-shadow.out {
