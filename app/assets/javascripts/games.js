@@ -50,7 +50,7 @@ function underCover() {
 }
 
 function fitNameInNoCover() {
-    textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 25});
+    textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 24});
     $(".no-cover-game-name").addClass('fitted');
 }
 
