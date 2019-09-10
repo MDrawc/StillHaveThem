@@ -397,12 +397,9 @@ hr.md {
 }
 
 .g-panel {
-    position: relative;
-    left: 1 / 12 * 100%;
     background: #d2d2d2;
-    border-radius: 5px;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
-    margin-bottom: 15px;
+    margin: 0px auto 15px;
 }
 
 .g-menu {
@@ -565,6 +562,7 @@ hr.md {
 
 .g-drop {
     display: none;
+    padding-bottom: 20px;
 }
 
 .g-click {
@@ -578,7 +576,7 @@ hr.md {
 }
 
 .g-extra {
-    margin: 0px 10px 20px 10px;
+    margin: 0px 90px 0px 90px;
     padding-top: 8px;
     border-top: 2px solid #00000026;
 }
