@@ -79,6 +79,12 @@ function openPanels(ids) {
   ids.forEach(id => $('#' + id).show());
 }
 
+function presentShadow() {
+    $("#ts-img").one("load", function() {
+        $(this).addClass('cover-shadow');
+    });
+}
+
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
         if (!e.target.currentSrc.startsWith('data:')) {
