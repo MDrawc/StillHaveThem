@@ -15,6 +15,7 @@
     <% @games.select('games.*, collection_games.created_at').each do |game| %>
     <% id = game.id %>
     <% needs_platform = collection.needs_platform %>
+    <% extra = 'out' if edit_open? %>
     <div id="g-<%= id %>" class="g-panel uk-width-5-6 uk-grid-collapse" uk-grid>
         <%= content_tag(:div,nil, class: 'g-click', 'gameid': id) %>
         <%= get_game_thumb(game) %>
@@ -30,18 +31,18 @@
             </h4>
             <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') unless game.developers.empty? %>
         </div>
-        <div class="g-right">
-            <div>
-                <% if needs_platform %>
-                <%= content_tag(:p, game.platform_name) %>
-                <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
-                <% end %>
-                <%= content_tag(:div, game.created_at.to_date ,class: 'g-added normal') %>
-            </div>
+        <%= content_tag :div, class: "g-right #{ extra }" do %>
+        <div>
+            <% if needs_platform %>
+            <%= content_tag(:p, game.platform_name) %>
+            <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
+            <% end %>
+            <%= content_tag(:div, game.created_at.to_date ,class: 'g-added normal') %>
         </div>
+        <% end %>
         <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">
             <div class="uk-grid-collapse" uk-grid>
-                <div style="width: 70px;"></div>
+                <div style="width: 80px;"></div>
                 <div class="g-extra uk-width-expand">
                     <% if screens = game[:screenshots] %>
                     <% urls = screens_urls(screens) %>
@@ -70,28 +71,27 @@
                     <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game.name.gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
                 </div>
             </div>
-            <div style="width: 70px;"></div>
+            <div style="width: 80px;"></div>
         </div>
         <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
     </div>
-    <% extra = 'out' if edit_open? %>
     <%= content_tag :div, id: "g-menu-#{ id }", class: "g-menu #{ extra }" do %>
-        <ul >
-            <li>
-                <% if needs_platform %>
-                <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
-                <% else %>
-                <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
-                <% end %>
-            </li>
-            <li>
-                <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
-            </li>
-            <li>
-                <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
-            </li>
-        </ul>
-        <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
+    <ul >
+        <li>
+            <% if needs_platform %>
+            <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
+            <% else %>
+            <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+            <% end %>
+        </li>
+        <li>
+            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
+        </li>
+        <li>
+            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
+        </li>
+    </ul>
+    <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
     <% end %>
 </div>
 <div id="copy-form-<%= id %>" class="copy-form" uk-dropdown="toggle: #g-copy-<%= id %>; mode: click; delay-hide: 100; boundary: #g-menu-<%= id %>; boundary-align: true; pos: right-top">

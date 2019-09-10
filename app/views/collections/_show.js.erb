@@ -15,6 +15,13 @@ if (refresh && view === 'panels') {
   openPanels(ids);
 }
 
+$(function() {
+    resizeGMenu();
+    $(window).resize(function() {
+        resizeGMenu();
+    });
+});
+
 toggleEditMenu();
 
 flip_offc(<%= user_id %>);

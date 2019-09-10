@@ -16,6 +16,10 @@ if (view === 'panels') {
   openPanels(ids);
 }
 
+$(function() {
+    resizeGMenu();
+});
+
 flip_offc(<%= user_id %>);
 moreInfo();
 fitNameInNoCover();

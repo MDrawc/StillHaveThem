@@ -43,11 +43,11 @@ $dark_grey: #666;
 $slide_grey: #393939;
 $disabled: #b4b4b4;
 
-@import "cover_view";
-@import "panels_view";
-@import "list_view";
+@import "covers";
+@import "panels";
+@import "list";
 @import "collections";
-@import "game_info";
+@import "game_offc";
 
 // SCREEN AS IMAGE
 .s-cover {
