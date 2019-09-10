@@ -1,0 +1,3 @@
+$("#i-lone .uk-offcanvas-bar").html("<%= j(render partial: 'my_games/cover_show', locals: { game: @game }) %>");
+presentShadow();
+flip_offc(<%= @user_id %>);

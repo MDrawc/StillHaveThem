@@ -1,0 +1,108 @@
+<% game_name = game[:name] %>
+<% cover = get_game_cover(game) %>
+<% cover = nil if cover && cover[:from_scrn] %>
+<!-- TITLE & RELEASE YEAR -->
+<h3 class="info-title"><%= game_name %>
+<% if (status_id = game[:status]) && status_id != 0 %>
+<button class='gw-b'><%= convert_status(status_id) %></button>
+<% end %>
+<% if (category_id = game[:category]) && category_id != 0 %>
+<button class='gw-b'><%= convert_category(category_id) %></button>
+<% end %>
+<% if game[:first_release_date]%>
+<span class="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
+<% else %>
+<% end %>
+</h3>
+<!-- DEVELOPER -->
+<% unless game.developers.empty? %>
+<%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+<% end %>
+<!-- COVER -->
+<% if cover %>
+<div class="c-cover" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px">
+    <%= content_tag :div, svg('loading'), class: 'spinner' %>
+    <%= image_tag('', alt: '', id: 'ts-img', class: 'game-cover', width: cover[:width], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => '') %>
+</div>
+<% else %>
+<div class="i-no-cover">
+    <div>
+        <%= svg 'no_image_i' %>
+        <p>No Cover Available</p>
+    </div>
+</div>
+<% end %>
+<!-- PLATFORMS -->
+<% if platforms = game[:platforms_names] %>
+<p class="info-platform">
+    <% platforms.each do |platform| %>
+    <span>
+        <% unless platform == platforms.last %>
+        <%= platform + ', ' %>
+        <% else %>
+        <%= platform %>
+        <% end %>
+    </span>
+    <% end %>
+</p>
+<% end %>
+<!-- DIVIDER -->
+<% summary = get_summary(game, 280, 50) %>
+<% screens = game[:screenshots] %>
+<% if summary || screens %>
+<% extra_class = summary ? 'btm-m15' : '' %>
+<%= content_tag(:hr, nil, class: extra_class ) %>
+<% end %>
+<!-- SUMMARY -->
+<% if summary %>
+<p class="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-lone"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary('lone')" uk-icon="icon: triangle-down"></button></span> <span id="more-lone" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary('lone')" uk-icon="icon: triangle-up"></button></span>
+</p>
+<% end %>
+<% end %>
+<!-- SLIDESHOW -->
+<% if screens %>
+<% urls = screens_urls(screens) %>
+<div class="uk-position-relative md-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
+<div class="a-spin"><%= svg 'loading' %></div>
+<ul class="uk-slideshow-items md-slide-items">
+    <% no_of_screens = 0 %>
+    <% urls.each do |url| %>
+    <li>
+        <%= image_tag('', alt: '', 'data-src' => url[:small], 'uk-cover' => '', 'uk-img': '') %>
+        <%= content_tag(:a, '', href: url[:big], class: 'uk-position-cover') %>
+    </li>
+    <% no_of_screens += 1 %>
+    <% end %>
+</ul>
+<!-- SLIDESHOW NAVIGATION -->
+<% if no_of_screens > 1 %>
+<table class="t-scr">
+    <tr>
+        <td class="arrow-left">
+            <a class="uk-icon-link" href="#" uk-slideshow-item="previous" uk-icon='chevron-left'>
+            </td>
+            <td>
+                <div class="hor-cen-list">
+                    <ul id="screen-nav">
+                        <% no_of_screens.times do |t| %>
+                        <li uk-slideshow-item="<%= t %>"><%= content_tag(:a, '', href: '#',
+                        class: 'uk-icon-link', 'uk-icon' => 'image') %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </td>
+            <td class="arrow-right">
+                <a class="uk-icon-link" href="#" uk-slideshow-item="next" uk-icon='chevron-right'></a>
+            </td>
+        </tr>
+    </table>
+    <% end %>
+</div>
+<% end %>
+<!-- LINKS -->
+<hr>
+<div id="info-links">
+    <%= link_to '',"http://www.google.com/search?q=%22#{ game_name.gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+    <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game_name.gsub(' ', '%20') }/results" , class: "ex-link metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+    <%= content_tag(:button, svg('flip_icon'), class: 'flip') %>
+</div>

@@ -5,7 +5,12 @@
   <% else %>
     var url = '/search'
   <% end %>
-  $.ajax({ url: url });
+  $.ajax({
+      url: url
+  });
+  $(function() {
+      set_offc(<%= current_user.id %>);
+  });
   </script>
 <% else %>
   <%= render 'not_logged' %>

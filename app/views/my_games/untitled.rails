@@ -1,4 +1,0 @@
-   <td>
-        <%= link_to('modal', table_show_url(game.id), class: 't-trigger',
-          remote: true, 'uk-toggle': 'target: .t-game-show') %>
-      </td>

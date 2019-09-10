@@ -10,85 +10,85 @@
   <div class="uk-width-1-1 page-links pr cover-mod cover-mod-top">
     <%= js_will_paginate @games, container: false %>
   </div>
-  <% already_offcanvas = [] %>
   <% @games.select('games.*, collection_games.created_at').each do |game| %>
-  <% id, igdb_id = game[:id], igdb_id = game[:igdb_id] %>
+  <% id = game[:id] %>
   <% needs_platform = collection.needs_platform %>
-  <div id="gs-<%= id %>" class="game-space">
-    <!-- COVER -->
-    <% if cover = get_game_cover(game) %>
-    <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
-      <div class="spinner"><%= svg 'loading' %></div>
-      <%= image_tag('', id: "gc-#{ id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: game[:name], 'draggable' => 'false', 'uk-img' => '') %>
-      <% else %>
-      <div class="game-cover-effect" uk-toggle="target: #i-<%= igdb_id %>">
-        <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
-        <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
-        <%= svg 'no_image' %>
-        <% end %>
-        <% end %>
-      </div>
-      <!-- GAME INFO -->
-      <% unless already_offcanvas.include? igdb_id %>
-      <% cover = nil if cover && cover[:from_scrn] %>
-      <%= render partial: "my_games/covers_info", locals: { game: game, id: id, igdb_id: igdb_id, cover: cover } %>
-      <% already_offcanvas << igdb_id %>
-      <% end %>
-      <!-- NAME AND WARNING -->
-      <div class="c-game-name">
-        <%= content_tag(:span, nil, class: 'name') do %>
-        <%= game[:name] %>
-        <% end %>
-      </div>
-      <!-- WARNING -->
-      <p class="game-warning">
-        <% if (status_id = game[:status]) && status_id != 0 %>
-        <button><%= convert_status(status_id) %></button>
-        <% end %>
-        <% if (category_id = game[:category]) && category_id != 0 %>
-        <button><%= convert_category(category_id) %></button>
-        <% end %>
-      </p>
-      <!-- RELEASE DATE -->
-      <p class="game-release-date">
-        <% if game[:first_release_date] %>
-        <%= Time.at(game[:first_release_date]).year %>
-        <% else %>
-        -
-        <% end %>
-      </p>
-      <!-- OPTIONS -->
-      <% style = 'display: block;' if edit_open? %>
-      <%= content_tag :div , class: "c-menu", style: style do %>
-        <ul class="uk-iconnav">
-          <li>
-            <% if needs_platform %>
-              <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
-            <% else %>
-              <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
-          </li>
-          <li>
-            <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
-          </li>
-        </ul>
-      <% end %>
-      <!-- PLATFORMS -->
-      <% style = ucs_close? ? 'display: none;' : '' %>
-      <%= content_tag :div , class: "uc-s", style: style do %>
-        <% if needs_platform %>
-        <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
-        <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
-        <% end %>
-        <!-- ADDED AT -->
-        <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
-      <% end %>
-    </div>
+  <%= content_tag :div, id: "gs-#{ id }", class: 'game-space' do %>
+  <!-- COVER -->
+  <% if cover = get_game_cover(game) %>
+  <%= link_to(cover_show_url(id), class: 'game-cover-effect', style: "width: #{ cover[:width] }px; height: #{ cover[:height] }px", remote: true, 'uk-toggle': "target: #i-lone") do %>
+  <%= content_tag :div, svg('loading'), class: 'spinner' %>
+  <%= image_tag('', alt: '', id: "gc-#{ id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => '') %>
+  <% end %>
+  <% else %>
+  <%= link_to(cover_show_url(id), class: 'game-cover-effect', remote: true, 'uk-toggle': "target: #i-lone") do %>
+  <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
+  <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
+  <%= svg 'no_image' %>
+  <% end %>
+  <% end %>
+  <% end %>
+  <!-- NAME AND WARNING -->
+  <div class="c-game-name">
+    <%= content_tag(:span, nil, class: 'name') do %>
+    <%= game[:name] %>
     <% end %>
-    <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
-      <%= js_will_paginate @games, container: false %>
-    </div>
   </div>
+  <!-- WARNING -->
+  <p class="game-warning">
+    <% if (status_id = game[:status]) && status_id != 0 %>
+    <button><%= convert_status(status_id) %></button>
+    <% end %>
+    <% if (category_id = game[:category]) && category_id != 0 %>
+    <button><%= convert_category(category_id) %></button>
+    <% end %>
+  </p>
+  <!-- RELEASE DATE -->
+  <p class="game-release-date">
+    <% if game[:first_release_date] %>
+    <%= Time.at(game[:first_release_date]).year %>
+    <% else %>
+    -
+    <% end %>
+  </p>
+  <!-- OPTIONS -->
+  <% style = 'display: block;' if edit_open? %>
+  <%= content_tag :div , class: "c-menu", style: style do %>
+  <ul class="uk-iconnav">
+    <li>
+      <% if needs_platform %>
+      <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
+      <% else %>
+      <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
+    </li>
+    <li>
+      <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
+    </li>
+  </ul>
+  <% end %>
+  <!-- PLATFORMS -->
+  <% style = ucs_close? ? 'display: none;' : '' %>
+  <%= content_tag :div , class: "uc-s", style: style do %>
+  <% if needs_platform %>
+  <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
+  <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
+  <% end %>
+  <!-- ADDED AT -->
+  <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
+  <% end %>
+  <% end %>
+  <% end %>
+  <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
+    <%= js_will_paginate @games, container: false %>
+  </div>
+</div>
+<!-- GAME INFO -->
+<div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
+  <div class="uk-offcanvas-bar">
+    Loading...
+  </div>
+</div>
