@@ -35,7 +35,7 @@ function moreInfo() {
 
 function underCover() {
   var uc = $('#undercover');
-  uc.unbind('click');
+  uc.off();
   uc.click(function() {
 
     var ucs = $('.uc-s');

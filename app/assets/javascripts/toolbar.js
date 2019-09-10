@@ -4,16 +4,6 @@ function toggleAddlInfo() {
     });
 }
 
-function resizeGMenu() {
-    var elements = $('.g-menu');
-    if (elements.length != 0) {
-        elements.each(function() {
-            var gid = $(this).attr('id').slice(7);
-            $(this).height($('#g-' + gid + ' .g-info').height() + 20);
-        });
-    }
-}
-
 function toggleEditMenu() {
     var show = $("#g-show-edit");
     var menu;

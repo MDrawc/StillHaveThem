@@ -410,7 +410,7 @@ hr.md {
     top: 0;
     right: 5px;
     width: 45px;
-    height: 90px;
+    height: 100%;
     padding: 0 0 0 5px;
     background: #d2d2d2;
     border-radius: 0px 5px 5px 0px;
@@ -505,8 +505,12 @@ hr.md {
 }
 
 .g-info {
-    padding: 10px;
+    position: relative;
     text-align: left;
+}
+
+.hold-title {
+    padding: 10px;
 }
 
 .g-title {
