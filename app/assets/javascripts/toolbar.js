@@ -43,11 +43,26 @@ function toggleEditMenu() {
             }
         } else {
             menu = $(".c-menu");
+            var shr = $('.shr');
+
+
             if (menu.attr('style') === 'display: block;') {
                 menu.slideUp();
+
+                var ucs = $('.uc-s');
+                if (ucs.is(':hidden')) {
+                    shr.addClass('hidden');
+                }
+
                 show.removeClass('active');
                 Cookies.set("edit_open", "false");
             } else {
+
+
+                if (shr.hasClass('hidden')) {
+                    shr.removeClass('hidden');
+                }
+
                 menu.slideDown();
                 show.addClass('active');
                 Cookies.set("edit_open", "true");

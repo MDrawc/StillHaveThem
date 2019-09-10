@@ -38,11 +38,24 @@ function underCover() {
   uc.off();
   uc.click(function() {
 
+    var shr = $('.shr');
     var ucs = $('.uc-s');
     if (ucs.attr('style') != 'display: none;') {
         $('.uc-s').slideUp();
+
+        var menu = $('.c-menu');
+        if (menu.is(':hidden')) {
+            shr.addClass('hidden');
+        }
+
         Cookies.set('ucs_close', 'true');
+
     } else {
+
+        if (shr.hasClass('hidden')) {
+            shr.removeClass('hidden');
+        }
+
         $('.uc-s').slideDown();
         Cookies.set('ucs_close', 'false');
     }

@@ -1,11 +1,18 @@
+.shr {
+    border-color: #bababa;
+    width: 150px;
+    margin: 0 auto 5px;
+    transition: width 0.3s;
+}
+
+.shr.hidden {
+    width: 0px;
+}
+
 .c-menu {
     display: none;
-    height: 35px;
-    line-height: 35px;
     overflow-y: hidden;
-    border-top: 1px solid #bababa;
-    margin: 0 auto 5px;
-    width: 150px;
+    margin: 0 auto 9px;
 
     ul {
         display: inline-flex;
