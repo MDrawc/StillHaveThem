@@ -35,19 +35,12 @@ function moreInfo() {
 
 function underCover() {
     var uc = $('#undercover');
-
-    console.log('function on');
-
     uc.off();
     uc.click(function() {
-
-console.log('clicked');
 
         var shr = $('.shr');
         var ucs = $('.uc-s');
         if (ucs.hasClass('hidden')) {
-
-            console.log('is hidden');
 
             if (shr.hasClass('hidden')) {
                 shr.removeClass('hidden');
@@ -57,8 +50,6 @@ console.log('clicked');
             Cookies.set('ucs_closed', 'false');
 
         } else {
-
-console.log('is visible');
 
             ucs.addClass('hidden');
 

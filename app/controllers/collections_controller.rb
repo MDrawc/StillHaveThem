@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
 before_action :require_user
 before_action :correct_user, only: [:show, :change_view, :edit, :update, :destroy]
 
-PER_PAGE = 12
+PER_PAGE = 15
 
 def new
   @collection = Collection.new
