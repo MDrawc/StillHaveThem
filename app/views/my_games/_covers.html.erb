@@ -51,12 +51,12 @@
     -
     <% end %>
   </p>
-<% ucs_style, ucs_hid = ucs_close? ? ['display: none;', true] : [nil, false]  %>
-<% cm_style, cm_hid =  edit_open? ? ['display: block;', false] : [nil, true] %>
+<% ucs_class, ucs_hid = ucs_closed? ? ['hidden', true] : [nil, false]  %>
+<% cm_class, cm_hid =  edit_open? ? [nil, false] : ['hidden', true] %>
 <% extra = 'hidden' if ucs_hid && cm_hid %>
   <%= content_tag :hr, nil, class: "shr #{ extra }" %>
   <!-- OPTIONS -->
-  <%= content_tag :div , class: "c-menu", style: cm_style do %>
+  <%= content_tag :div , class: "c-menu #{ cm_class }" do %>
   <ul class="uk-iconnav">
     <li>
       <% if needs_platform %>
@@ -74,7 +74,7 @@
   </ul>
   <% end %>
   <!-- PLATFORMS -->
-  <%= content_tag :div , class: "uc-s", style: ucs_style do %>
+  <%= content_tag :div , class: "uc-s #{ ucs_class }" do %>
   <% if needs_platform %>
   <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
   <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>

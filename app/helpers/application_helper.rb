@@ -14,7 +14,7 @@ module ApplicationHelper
     cookies[:edit_open] == 'true'
   end
 
-  def ucs_close?
-    cookies[:ucs_close] == 'true'
+  def ucs_closed?
+    cookies[:ucs_closed] == 'true'
   end
 end

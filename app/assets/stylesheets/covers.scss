@@ -1,18 +1,30 @@
+.uc-s {
+    height: 57px;
+    transition: height 0.3s;
+    overflow-y: hidden;
+
+    &.hidden {
+        height: 0;
+    }
+}
+
 .shr {
     border-top: thin solid #bababa;
     width: 150px;
     margin: 0 auto 5px;
     transition: width 0.3s;
-}
 
-.shr.hidden {
-    width: 0px;
+    &.hidden {
+        width: 0px;
+    }
 }
 
 .c-menu {
-    display: none;
+    height: 24px;
     overflow-y: hidden;
-    margin: 0 auto 9px;
+    margin: 0 auto;
+    transition: height 0.3s, padding-bottom 0.3s;
+    padding-bottom: 9px;
 
     ul {
         display: inline-flex;
@@ -24,10 +36,15 @@
             padding-left: 20px;
         }
 
-        li:first-child{
+        li:first-child {
             padding-left: 0;
         }
     }
+}
+
+.c-menu.hidden {
+    height: 0;
+    padding-bottom: 0;
 }
 
 .covers-grid {
@@ -43,6 +60,7 @@
 
 .game-name, .c-game-name {
     @include unselectable;
+
     margin-top: 15px;
     margin-bottom: 0px;
     max-width: 200px;
@@ -100,8 +118,9 @@
         font-size: 13px;
         transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
 
-    &:focus {
-        outline: none; }
+        &:focus {
+            outline: none;
+        }
     }
 }
 

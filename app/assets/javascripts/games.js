@@ -34,36 +34,49 @@ function moreInfo() {
 }
 
 function underCover() {
-  var uc = $('#undercover');
-  uc.off();
-  uc.click(function() {
+    var uc = $('#undercover');
 
-    var shr = $('.shr');
-    var ucs = $('.uc-s');
-    if (ucs.attr('style') != 'display: none;') {
-        $('.uc-s').slideUp();
+    console.log('function on');
 
-        var menu = $('.c-menu');
-        if (menu.is(':hidden')) {
-            shr.addClass('hidden');
+    uc.off();
+    uc.click(function() {
+
+console.log('clicked');
+
+        var shr = $('.shr');
+        var ucs = $('.uc-s');
+        if (ucs.hasClass('hidden')) {
+
+            console.log('is hidden');
+
+            if (shr.hasClass('hidden')) {
+                shr.removeClass('hidden');
+            }
+
+            $('.uc-s').removeClass('hidden');
+            Cookies.set('ucs_closed', 'false');
+
+        } else {
+
+console.log('is visible');
+
+            ucs.addClass('hidden');
+
+            var menu = $('.c-menu');
+            if (menu.hasClass('hidden')) {
+                shr.addClass('hidden');
+            }
+
+            Cookies.set('ucs_closed', 'true');
         }
-
-        Cookies.set('ucs_close', 'true');
-
-    } else {
-
-        if (shr.hasClass('hidden')) {
-            shr.removeClass('hidden');
-        }
-
-        $('.uc-s').slideDown();
-        Cookies.set('ucs_close', 'false');
-    }
-  });
+    });
 }
 
 function fitNameInNoCover() {
-    textFit(document.getElementsByClassName("no-cover-game-name"), {minFontSize:18, maxFontSize: 24});
+    textFit(document.getElementsByClassName("no-cover-game-name"), {
+        minFontSize: 18,
+        maxFontSize: 24
+    });
     $(".no-cover-game-name").addClass('fitted');
 }
 
@@ -89,7 +102,7 @@ function getIdsOfOpenPanels() {
 }
 
 function openPanels(ids) {
-  ids.forEach(id => $('#' + id).show());
+    ids.forEach(id => $('#' + id).show());
 }
 
 function presentShadow() {
@@ -106,6 +119,6 @@ function removeCoverSpinner() {
     }, true)
 }
 
-$(function(){
-  removeCoverSpinner();
+$(function() {
+    removeCoverSpinner();
 });
