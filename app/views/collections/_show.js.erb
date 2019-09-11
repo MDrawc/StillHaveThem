@@ -3,6 +3,8 @@ $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
 var refresh = <%= @refresh %>;
 
+var scroll = '<%= @scroll %>';
+
 if (refresh && view === 'panels') {
   var ids = getIdsOfOpenPanels();
 }
@@ -10,6 +12,12 @@ if (refresh && view === 'panels') {
 cleanOffcanvas();
 
 $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view }) %>");
+
+if (scroll) {
+    $(function() {
+        $(document).scrollTop(scroll);
+    });
+}
 
 if (refresh && view === 'panels') {
   openPanels(ids);

@@ -49,6 +49,8 @@ if (success) {
         data['page'] = current_page;
     }
 
+    data['scroll'] = $(document).scrollTop().valueOf();
+
     $.ajax({
         url: '/collections/<%= @collection.id %>',
         data: data,

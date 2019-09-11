@@ -65,6 +65,8 @@ if (success) {
 
     <% end %>
 
+    data['scroll'] = $(document).scrollTop().valueOf();
+
     $.ajax({
         url: '/collections/<%= @current.id %>',
         data: data
