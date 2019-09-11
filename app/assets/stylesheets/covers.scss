@@ -2,6 +2,7 @@
     height: 57px;
     transition: height 0.3s;
     overflow-y: hidden;
+    font-weight: 300;
 
     &.hidden {
         height: 0;
@@ -224,6 +225,7 @@
 .game-release-date {
     margin: 0px 0px 5px;
     font-size: 14px;
+    font-weight: 300;
     font-style: italic;
 }
 
