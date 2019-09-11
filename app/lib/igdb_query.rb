@@ -8,6 +8,7 @@ class IgdbQuery
   OFFSET_LIMIT = 150
   LIST_LIMIT = 10
   DAYS_LIMIT = 7
+  SR_HEX = 2
 
   FIELDS_GAMES = ["name",
   "first_release_date",
@@ -301,6 +302,11 @@ class IgdbQuery
       res.each_with_index { |g, i| g[:addl] = @addl[i] }
     end
 
+    def add_uniq_to_games(res)
+      puts '>> [ Adding Uniq Id to Results ]'
+      res.each { |g| g[:uniq] = SecureRandom.hex(SR_HEX) }
+    end
+
     def compose_results
       puts '>> [ Composing Results ]'
 
@@ -317,6 +323,7 @@ class IgdbQuery
       if res.size == @games_ids.size
         unless @query_type == :game
           @results = add_addl_to_games(@results)
+          @results = add_uniq_to_games(@results)
           @results = post_filters(@results)
         end
         puts '>> DB have all the games. Searching IGDB unnecessary.'
@@ -419,6 +426,7 @@ class IgdbQuery
 
       unless @query_type == :game
         converted = add_addl_to_games(converted)
+        converted = add_uniq_to_games(converted)
         converted = post_filters(converted)
       end
 

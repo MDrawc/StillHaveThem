@@ -3,11 +3,11 @@
 <span class="cf-name"><%= shorter_name(data[:name]) %></span>
 </div>
 <hr class="md">
-
 <% unless (collections = collections_for_select(current_user)).empty? %>
     <%= form_with model: @game do |f| %>
     <%= f.hidden_field :id, value: data[:id] %>
     <%= f.hidden_field :igdb_id, value: data[:igdb_id] %>
+    <%= hidden_field_tag 'x_id', x_id %>
     <div class="select-collection">
         <div uk-form-custom="target: > * > span:last-child">
             <% if collections.size > 1 %>
@@ -48,17 +48,15 @@
                 <% end %>
             </div>
         </div>
-
         <div class="uk-margin uk-grid-small uk-grid">
             <label><%= f.radio_button(:physical, true, checked: true, class: "cf-physical") %><%= svg 'gamebox_icon' %> Physical</label>
             <label><%= f.radio_button(:physical, false, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
         </div>
     </div>
-
     <button name="button" type="submit" class="cf-add-button">Add</button><span class="add-form-errors"></span>
     <% end %>
     <div class="already-in">
-        <%= render(partial: 'cover_view/already_in', locals: { igdb_id: data[:igdb_id] }) if owned %>
+        <%= render(partial: 'cover_view/already_in', locals: { igdb_id: data[:igdb_id], x_id: x_id }) if owned %>
     </div>
 <% else %>
     <span class="italic blink_me"><%= svg 'warning' %> Please add collection first</span>

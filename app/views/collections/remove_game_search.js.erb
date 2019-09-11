@@ -1,3 +1,5 @@
+var success = <%= @success %>;
+var remove_underline = <%= @remove_underline %>;
 var msg_pos = 'top-right'
 
 UIkit.notification({
@@ -7,22 +9,30 @@ UIkit.notification({
     timeout: 5000
 });
 
-<% if @success %>
+if (success) {
     var game_id = '<%= @game.igdb_id %>';
-    var already = "#add-form-" + game_id + " .already-in";
-    var proxy = "<%= j(render partial: 'cover_view/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id }) %>";
+    var x_id = '<%= @x_id %>';
+
+    var already = "#add-form-" + x_id + " .already-in";
+    var proxy = "<%= j(render partial: 'cover_view/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id, x_id: @x_id }) %>";
     $(already).html(proxy);
 
     // Reseting error status upon succesful remove
-    var element = '#add-form-' + game_id + ' .add-form-errors';
+    var element = '#add-form-' + x_id + ' .add-form-errors';
     $(element).html('');
 
     // Remove underline from removed game and change add-form link
-    <% if @remove_underline %>
-        var name_el = '#gs-' + game_id + ' .game-name span'
-        $(name_el).removeClass('owned');
-        var href = $('#add-' + game_id).attr('href');
-        $('#add-' + game_id).attr('href', href.replace('true','false'));
-    <% end %>
+    if (remove_underline) {
 
-<% end %>
+        var name_el = $('[id^=gs-' + game_id + ']').find('.game-name span');
+        name_el.removeClass('owned');
+
+        // Change add-form link
+        $('[id^=add-' + game_id + ']').each(function() {
+            var href = $(this).attr('href');
+            $(this).attr('href', href.replace('true', 'false'));
+        });
+
+    }
+}
+

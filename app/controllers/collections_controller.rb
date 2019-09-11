@@ -97,6 +97,7 @@ def remove_game
 end
 
 def remove_game_search
+  @x_id = params[:x_id]
   @collection = current_user.collections.find_by_id(params[:collection_id])
   @success = false
 

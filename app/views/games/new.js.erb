@@ -1,5 +1,5 @@
-$("#add-form-<%= @data[:igdb_id] %>").html("<%= j(render partial: 'cover_view/add_form', locals: { data: @data, owned: @owned }) %>");
+$("#add-form-<%= @x_id %>").html("<%= j(render partial: 'cover_view/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>");
 
-paintItBlack('<%= @data[:igdb_id] %>')
-activateForm('add', '<%= @data[:igdb_id] %>');
-updatePlatformIcon('add', '<%= @data[:igdb_id] %>');
+paintItBlack('<%= @x_id %>')
+activateForm('add', '<%= @x_id %>');
+updatePlatformIcon('add', '<%= @x_id %>');

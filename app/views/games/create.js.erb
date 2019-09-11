@@ -1,8 +1,9 @@
 // VARIABLES:
+var x_id = '<%= @x_id %>';
 var game_id = '<%= @game_igdb_id %>';
 var msg = '<%= @message %>';
 var msg_pos = 'top-right';
-var success = <%= !@errors.present? ? true : false %>;
+var success = <%= @errors.empty? %>;
 
 if (msg) {
     UIkit.notification({
@@ -12,22 +13,29 @@ if (msg) {
     });
 }
 
-if (success == true) {
+if (success) {
+
     // Hide form dropdown
-    var drop_element = "#add-form-" + game_id;
+    var drop_element = "#add-form-" + x_id;
     UIkit.dropdown(drop_element).hide();
+
     // Underline owned game on cover view
-    var name_el = '#gs-' + game_id + ' .game-name span'
-    $(name_el).addClass('owned');
+    var name_el = $('[id^=gs-' + game_id + ']').find('.game-name span');
+    name_el.addClass('owned');
+
     // Change add-form link
-    var href = $('#add-' + game_id).attr('href');
-    $('#add-' + game_id).attr('href', href.replace('false','true'));
+    $('[id^=add-' + game_id + ']').each(function(){
+        var href = $(this).attr('href');
+        $(this).attr('href', href.replace('false','true'));
+    });
 
 } else {
+
     // Show errors
-    var element = "#add-form-" + game_id + " .add-form-errors";
+    var element = "#add-form-" + x_id + " .add-form-errors";
     $(element).html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+
     // Reset error upon input change
-    resetFormErrors('add', game_id)
+    resetFormErrors('add', x_id)
 }
 

@@ -1,14 +1,20 @@
 class GamesController < ApplicationController
   before_action :require_user
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
+  SR_HEX = 2
 
   def new
     @game = Game.new()
-    @data = Agame.find_by(igdb_id: params[:igdb_id]).attributes.slice('id',
+    x_id = params[:x_id]
+    igdb_id = x_id.include?('-') ?  x_id.slice(0..-(2*SR_HEX+1)) : x_id
+
+    @data = Agame.find_by(igdb_id: igdb_id).attributes.slice('id',
      'igdb_id',
       'name',
        'platforms',
         'platforms_names').symbolize_keys
+
+    @x_id = x_id
     @owned = eval(params[:owned])
     respond_to :js
   end
@@ -16,6 +22,7 @@ class GamesController < ApplicationController
   def create
     agame_id = game_params[:id]
     coll_id = game_params[:collection] .split(',').first.to_i
+    @x_id = params['x_id']
 
     @errors = []
     @collection = current_user.collections.find_by_id(coll_id)

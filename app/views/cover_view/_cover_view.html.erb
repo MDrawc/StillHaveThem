@@ -1,13 +1,13 @@
 <div class="uk-grid uk-text-center uk-flex uk-flex-center">
-  <% already_offcanvas = [] %>
+<% already_offcanvas = [] %>
   <% @results.each do |game| %>
-  <% igdb_id = game[:igdb_id] %>
-  <div id="gs-<%= igdb_id %>" class="game-space">
-    <!-- COVER -->
+    <% igdb_id = game[:igdb_id] %>
+    <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
+    <%= content_tag(:div, id: "gs-#{ x_id}", class: 'game-space') do %>
     <% if cover = get_game_cover(game) %>
     <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
       <div class="spinner"><%= svg 'loading' %></div>
-      <%= image_tag('', id: "gc-#{ igdb_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: '', 'draggable' => 'false', 'uk-img' => '') %>
+      <%= image_tag('', id: "gc-#{ x_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: '', 'draggable' => 'false', 'uk-img' => '') %>
       <% else %>
       <div class="game-cover-effect" uk-toggle="target: #i-<%= igdb_id %>">
         <%= content_tag(:div, id: "gc-#{ igdb_id }", class: 'no-cover') do %>
@@ -34,7 +34,7 @@
         <%= content_tag(:span, nil, class: 'name ' + name_class) do %>
         <%= game[:name] %>
         <% end %>
-        <%= link_to '', new_game_url(igdb_id: igdb_id, owned: !name_class.empty? ), class: 'plus', id: "add-#{ igdb_id }", remote: true, 'uk-icon': 'plus' %>
+        <%= link_to '', new_game_url(x_id: x_id, owned: !name_class.empty?), class: 'plus', id: "add-#{ x_id }", remote: true, 'uk-icon': 'plus' %>
       </p>
       <div class="fade">
         <!-- WARNING -->
@@ -76,11 +76,7 @@
         <% end %>
         <% end %>
       </div>
-      <!-- FORM MODAL -->
-      <div id="add-form-<%= igdb_id %>" class="add-form" uk-dropdown="toggle: #add-<%= igdb_id %>; mode: click; boundary: #gs-<%= igdb_id %>; boundary-align: true;  delay-hide: 100;  pos: right-top">
-        Loading...
-      </div>
-      <!-- END -->
-    </div>
-    <% end %>
-  </div>
+      <%= content_tag(:div, 'Loading...', id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #gs-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") %>
+      <% end %>
+      <% end %>
+</div>
