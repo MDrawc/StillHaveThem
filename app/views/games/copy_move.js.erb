@@ -53,10 +53,23 @@ if (success) {
             var current_page = $('.pr em.current').text();
 
             if (!copy) {
-                var num_of_games = $('.g-panel').length;
+
+                switch (view) {
+                    case 'covers':
+                        var selector = '.game-space';
+                        break;
+                    case 'panels':
+                        var selector = '.g-panel';
+                        break;
+                    case 'list':
+                        var selector = '.t-game';
+                        break;
+                }
+                var num_of_games = $(selector).length;
                 if (num_of_games == 1) {
                     current_page -= 1;
                 }
+
             }
 
             data['page'] = current_page;

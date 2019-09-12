@@ -9,6 +9,7 @@ UIkit.notification({
 });
 
 if (success) {
+
     var data = {
         type: 'refresh',
         view: '<%= @view %>'
@@ -37,10 +38,23 @@ if (success) {
 
     if ($('.pr em.current').length != 0) {
         var current_page = $('.pr em.current').text();
-        var num_of_games = $('.g-panel').length;
+
+        switch(view) {
+            case 'covers':
+                var selector = '.game-space';
+                break;
+            case 'panels':
+                var selector = '.g-panel';
+                break;
+            case 'list':
+                var selector = '.t-game';
+                break;
+        }
+        var num_of_games = $(selector).length;
         if (num_of_games == 1) {
             current_page -= 1;
         }
+
         data['page'] = current_page;
     }
 
