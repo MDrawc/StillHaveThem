@@ -1,8 +1,10 @@
 var game_id = '<%= @game_id %>'
 var msg = '<%= @message %>';
+var view = '<%= @view %>';
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
-var view = '<%= @view %>';
+var wi_same_coll = <%= @wi_same_coll %>;
+var copy = <%= @copy %>;
 var form_type;
 
 if (msg) {
@@ -19,65 +21,74 @@ if (success) {
         UIkit.dropdown("#copy-form-" + game_id).hide();
     }
 
-    var data = {
-        type: 'refresh', view: view
-    };
+    if (wi_same_coll || !copy) {
 
-    if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-        search = $('#r-q').text().split(',');
-        data['q'] = {
-            name_dev_cont: search[0],
-            plat_eq: search[1],
-            physical_eq: search[2],
-            s: $('#r-s').text()
+        var data = {
+            type: 'refresh',
+            view: view
         };
-    } else if ($('#r-q').text().length != 0) {
-        search = $('#r-q').text().split(',');
-        data['q'] = {
-            name_dev_cont: search[0],
-            plat_eq: search[1],
-            physical_eq: search[2]
-        };
-    } else if ($('#r-s').text().length != 0) {
-        data['q'] = {
-            s: $('#r-s').text()
-        };
-    }
 
-    <% if @current == @collection %>
-
-    if ($('.pr em.current').length != 0) {
-        var current_page = $('.pr em.current').text();
-        data['page'] = current_page;
-    }
-
-    <% elsif !@copy %>
-
-    if ($('.pr em.current').length != 0) {
-        var current_page = $('.pr em.current').text();
-        var num_of_games = $('.g-panel').length;
-        if (num_of_games == 1) {
-            current_page -= 1;
+        if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
+            search = $('#r-q').text().split(',');
+            data['q'] = {
+                name_dev_cont: search[0],
+                plat_eq: search[1],
+                physical_eq: search[2],
+                s: $('#r-s').text()
+            };
+        } else if ($('#r-q').text().length != 0) {
+            search = $('#r-q').text().split(',');
+            data['q'] = {
+                name_dev_cont: search[0],
+                plat_eq: search[1],
+                physical_eq: search[2]
+            };
+        } else if ($('#r-s').text().length != 0) {
+            data['q'] = {
+                s: $('#r-s').text()
+            };
         }
 
-        data['page'] = current_page;
+        if ($('.pr em.current').length != 0) {
+            var current_page = $('.pr em.current').text();
+
+            if (!copy) {
+                var num_of_games = $('.g-panel').length;
+                if (num_of_games == 1) {
+                    current_page -= 1;
+                }
+            }
+
+            data['page'] = current_page;
+        }
+
+        var scroll = $(document).scrollTop().valueOf();
+
+        $.ajax({
+            url: '/collections/<%= @current.id %>',
+            data: data,
+            complete: function(data) {
+                $(document).scrollTop(scroll);
+            }
+        });
+
+    } else {
+
+        if (view === 'list') {
+            UIkit.modal("#t-ops").hide();
+        }
     }
 
-    <% end %>
-
-    $.ajax({
-        url: '/collections/<%= @current.id %>',
-        data: data
-    });
-
 } else {
+
     if (view === 'list') {
-        $("#t-ops .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        var errors = $("#t-ops .add-form-errors");
         form_type = 'list';
     } else {
-        $("#copy-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        var errors = $("#copy-form-" + game_id + " .add-form-errors");
         form_type = 'copy';
     }
 
+    errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
 }

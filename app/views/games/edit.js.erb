@@ -65,13 +65,15 @@ if (success) {
     });
 
 } else {
-    if (view === 'list') {
-        $("#t-ops .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+
+     if (view === 'list') {
+        var errors = $("#t-ops .add-form-errors");
         form_type = 'list';
     } else {
-        $("#edit-form-" + game_id + " .add-form-errors").html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+        var errors = $("#edit-form-" + game_id + " .add-form-errors");
         form_type = 'edit';
     }
 
+    errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
 }

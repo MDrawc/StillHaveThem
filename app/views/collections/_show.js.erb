@@ -3,8 +3,6 @@ $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
 var refresh = <%= @refresh %>;
 
-// var scroll = '<%= @scroll %>';
-
 if (refresh && view === 'panels') {
   var ids = getIdsOfOpenPanels();
 }

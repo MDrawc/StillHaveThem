@@ -144,6 +144,7 @@ class GamesController < ApplicationController
     @view = params[:view]
     @copy = eval(params[:copy])
     p_verb = @copy ? 'copied' : 'moved'
+    @wi_same_coll = false;
 
     if params[:collection].empty?
       @errors << 'Select collection'
@@ -154,6 +155,7 @@ class GamesController < ApplicationController
 
       if coll_ids.uniq.size == 1
         @collection = @current = current_user.collections.find(coll_ids.first)
+        @wi_same_coll = true
       else
         @current, @collection = current_user.collections.where(id: coll_ids).unscope(:order).order(id: cord)
       end
