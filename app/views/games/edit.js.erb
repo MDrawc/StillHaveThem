@@ -49,12 +49,15 @@ if (success) {
         data['page'] = current_page;
     }
 
-    data['scroll'] = $(document).scrollTop().valueOf();
+    var scroll = $(document).scrollTop().valueOf();
 
     $.ajax({
         url: '/collections/<%= @collection.id %>',
         data: data,
         complete: function(data) {
+
+            $(document).scrollTop(scroll);
+
             if (reopen) {
                 $('#g-drop-' + new_game_id).show();
             }
