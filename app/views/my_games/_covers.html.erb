@@ -6,10 +6,13 @@
   <div class="srch-div"></div>
   <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
 </div>
+
 <div class="uk-grid uk-text-center uk-flex uk-flex-center covers-grid">
+
   <div class="uk-width-1-1 page-links pr cover-mod cover-mod-top">
     <%= js_will_paginate @games, container: false %>
   </div>
+
   <% @games.select('games.*, collection_games.created_at').each do |game| %>
   <% id = game[:id] %>
   <% needs_platform = collection.needs_platform %>
@@ -83,11 +86,17 @@
   <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
   <% end %>
   <% end %>
+  <%= content_tag :div, 'Loading...', id: "copy-form-#{ id }", class: 'copy-form white-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  %>
+  <% if needs_platform %>
+  <%= content_tag :div, 'Loading...', id: "edit-form-#{ id }", class: 'edit-form white-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  %>
   <% end %>
+  <% end %>
+
   <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
     <%= js_will_paginate @games, container: false %>
   </div>
 </div>
+
 <!-- GAME INFO -->
 <div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
   <div class="uk-offcanvas-bar">

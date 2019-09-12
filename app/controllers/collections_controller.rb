@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
 before_action :require_user
 before_action :correct_user, only: [:show, :change_view, :edit, :update, :destroy]
 
-PER_PAGE = 2
+PER_PAGE = 15
 
 def new
   @collection = Collection.new
@@ -16,7 +16,7 @@ end
 
 def show
   @q = @collection.games.ransack(params[:q])
-  @view = params[:view] || 'list'
+  @view = params[:view] || 'covers'
   unless params[:q]
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'
