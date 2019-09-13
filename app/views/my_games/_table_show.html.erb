@@ -54,7 +54,7 @@
         <% if screens = game[:screenshots] %>
         <% urls = screens_urls(screens) %>
         <div class="uk-position-relative uk-light" uk-slider uk-lightbox="toggle: .full-scrn; animation: fade">
-            <ul class="uk-slider-items uk-child-width-1-3 uk-grid uk-grid-small">
+            <ul class="uk-slider-items uk-grid uk-grid-small">
                 <% urls.each do |url| %>
                 <li>
                     <%= image_tag(url[:small], alt: '') %>
