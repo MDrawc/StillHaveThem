@@ -4,7 +4,7 @@
     <div class="srch-div"></div>
     <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
     <div class="srch-div"></div>
-    <%= sort_link(@q, :added,'Date Added', {}, {remote: true}) %>
+    <%= sort_link(@q, :added,'Added', {}, {remote: true}) %>
 </div>
 <div class="uk-grid-collapse panels-grid" uk-grid>
     <div class="uk-width-5-6 page-info-front">
@@ -98,7 +98,8 @@
 <%= content_tag :div, 'Loading...', id: "edit-form-#{ id }", class: 'edit-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  %>
 <% end %>
 <% end %>
-<div class="uk-width-5-6 page-links bottom">
-    <%= js_will_paginate @games, container: false %>
+    <div class="uk-width-5-6 page-links bottom">
+        <%= js_will_paginate @games, container: false %>
+    </div>
 </div>
 </div>

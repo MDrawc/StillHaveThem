@@ -16,7 +16,7 @@ end
 
 def show
   @q = @collection.games.ransack(params[:q])
-  @view = params[:view] || 'list'
+  @view = params[:view] || 'panels'
   unless params[:q]
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'

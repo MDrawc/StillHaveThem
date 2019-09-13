@@ -408,7 +408,7 @@ hr.md {
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     margin: 0px auto 15px;
     position: relative;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px;
 }
 
 .g-menu {
@@ -420,7 +420,7 @@ hr.md {
     padding: 0 0 0 5px;
     background: #d2d2d2;
     border-radius: 0px 5px 5px 0px;
-    transition: right 0.3s ease-in-out;
+    transition: right 0.3s linear;
 
     a {
         color: $light_grey;
@@ -440,7 +440,7 @@ hr.md {
     right: 0;
     z-index: -1;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
-    transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: width 0.3s linear, box-shadow 0.3s linear;
 }
 
 .g-menu-shadow.out {
@@ -554,10 +554,10 @@ hr.md {
     text-align: right;
     padding: 10px 15px 10px 0px;
     background: #d2d2d2;
-    border-right: 1px solid #d2d2d2;
+    border-right: thin solid #d2d2d2;
     border-radius: 0px 5px 5px 0px;
     z-index: 1;
-    transition: border-radius 0.3s, border 0.3s;
+    transition: border-radius 0.3s linear, border 0.3s linear;
     font-weight: 300;
 
     p {
