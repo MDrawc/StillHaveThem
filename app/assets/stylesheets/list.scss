@@ -15,6 +15,17 @@ a.t-trigger {
     z-index: 3;
 }
 
+
+.gw-b {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #929292;
+    margin-left: 2px;
+    white-space: nowrap;
+}
+
+
 .t-game {
     margin-bottom: 10px;
     border-radius: 3px 0px 0px 3px;
@@ -31,16 +42,6 @@ a.t-trigger {
         line-height: 24px;
     }
 
-    .gw-b {
-        background: none;
-        font-size: 12px;
-        border: none;
-        border-radius: 0px;
-        color: #929292;
-        padding: 0px;
-        margin-left: 5px;
-        vertical-align: text-bottom;
-    }
 }
 
 .t-game.hover-fill div.t {
@@ -147,8 +148,7 @@ div.menu-shadow {
     }
 
     .gw-b {
-        color: #999;
-        border-color: #c3c3c3;
+        font-size: 18px;
     }
 
     hr {

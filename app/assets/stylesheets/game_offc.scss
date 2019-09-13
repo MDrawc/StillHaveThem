@@ -10,12 +10,12 @@
 }
 
 .info-title {
-    // when no close button
     margin-bottom: 0px;
     margin-top: 0px;
-    // with close button
-    // margin-bottom: 0px;
-    // margin-top: 15px;
+
+    .gw-b {
+        font-size: 16px;
+    }
 }
 
 .i-no-cover {
@@ -42,19 +42,6 @@
     p {
         margin-top: 10px;
     }
-}
-
-.gw-b {
-    background: none;
-    border-radius: 3px;
-    font-size: 13px;
-    border: 2px solid #808080;
-    color: #969696;
-    vertical-align: text-bottom;
-}
-
-.gw-b:focus {
-    outline: none;
 }
 
 .info-year {

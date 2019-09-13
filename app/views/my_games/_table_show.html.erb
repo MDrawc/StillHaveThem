@@ -36,10 +36,10 @@
     <div class="uk-width-expand">
         <h3 class="info-title"><%= game_name %>
         <% if (status_id = game[:status]) && status_id != 0 %>
-        <button class='gw-b'><%= convert_status(status_id) %></button>
+        <span class='gw-b'>/ <%= convert_status(status_id) %></span>
         <% end %>
         <% if (category_id = game[:category]) && category_id != 0 %>
-        <button class='gw-b'><%= convert_category(category_id) %></button>
+        <span class='gw-b'>/ <%= convert_category(category_id) %></span>
         <% end %>
         <% if game[:first_release_date]%>
         <span class="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>

@@ -22,10 +22,10 @@
         <%= content_tag :div, class: 't-name t' do %>
         <%= game.name %>
         <% if (status_id = game[:status]) && status_id != 0 %>
-        <%= content_tag :button, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
+        <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
         <% end %>
         <% if (category_id = game[:category]) && category_id != 0 %>
-        <%= content_tag :button, "/ #{ convert_category(category_id) }", class: 'gw-b' %>
+        <%= content_tag :span, "/ #{ convert_category(category_id) }", class: 'gw-b' %>
         <% end %>
         <% end %>
         <% release = game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
