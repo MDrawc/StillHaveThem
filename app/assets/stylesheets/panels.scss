@@ -172,7 +172,6 @@
 }
 
 .page-links {
-    margin: 0px auto;
     text-align: center;
     font-size: 14px;
     color: $light_grey;
@@ -227,6 +226,8 @@
 }
 
 .page-links.bottom {
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 7px;
 }
 

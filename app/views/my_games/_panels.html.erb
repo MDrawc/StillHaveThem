@@ -7,10 +7,8 @@
     <%= sort_link(@q, :added,'Added', {}, {remote: true}) %>
 </div>
 <div class="uk-grid-collapse panels-grid" uk-grid>
-    <div class="uk-width-5-6 page-info-front">
-        <div class="page-links pr">
-            <%= js_will_paginate @games, container: false %>
-        </div>
+    <div class="uk-width-5-6 page-info-front page-links pr">
+        <%= js_will_paginate @games, container: false %>
     </div>
     <% @games.select('games.*, collection_games.created_at').each do |game| %>
     <% id = game.id %>
@@ -51,11 +49,11 @@
             <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
             <% end %>
             <%= content_tag :div, class: "g-right #{ extra }" do %>
-                <% if needs_platform %>
-                <%= content_tag(:p, game.platform_name) %>
-                <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
-                <% end %>
-                <%= content_tag(:p, game.created_at.to_date ,class: 'g-added') %>
+            <% if needs_platform %>
+            <%= content_tag(:p, game.platform_name) %>
+            <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>
+            <% end %>
+            <%= content_tag(:p, game.created_at.to_date ,class: 'g-added') %>
             <% end %>
         </div>
         <div id="g-drop-<%= id %>" class="g-drop uk-width-1-1">
@@ -83,7 +81,7 @@
             <% end %>
             <% end %>
             <% if platforms = game[:platforms_names] %>
-                <p class="g-platforms">Platforms: <%= platforms.join(', ') %></p>
+            <p class="g-platforms">Platforms: <%= platforms.join(', ') %></p>
             <% end %>
             <div class="g-links">
                 <%= link_to '',"http://www.google.com/search?q=%22#{ game.name.gsub(' ', '+') }%22+video+game" , class: "ex-link g-google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
@@ -98,8 +96,8 @@
 <%= content_tag :div, 'Loading...', id: "edit-form-#{ id }", class: 'edit-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  %>
 <% end %>
 <% end %>
-    <div class="uk-width-5-6 page-links bottom">
-        <%= js_will_paginate @games, container: false %>
-    </div>
+<div class="uk-width-5-6 page-links bottom">
+    <%= js_will_paginate @games, container: false %>
+</div>
 </div>
 </div>

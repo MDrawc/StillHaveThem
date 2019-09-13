@@ -1,3 +1,7 @@
+.page-links.bottom.l-mod {
+    padding-top: 12px;
+}
+
 @media (min-width: 1440px) {
     .t-name {
         width: 35%;
@@ -10,6 +14,7 @@
     .t-release {
         width: 5%;
     }
+
     .t-developer {
         width: 25%;
     }
@@ -163,11 +168,11 @@ a.t-trigger {
     padding-right: 10px;
     border-radius: 0px 3px 3px 0px;
     text-align: right;
-    transition: right 0.3s linear;
+    transition: border 0.3s linear, right 0.3s linear;
 }
 
 .t-menu.out {
-    right: -82px;
+    right: -83px;
 }
 
 div.menu-shadow {
@@ -191,6 +196,7 @@ div.menu-shadow {
     z-index: 1;
     padding-right: 10px;
     border-radius: 0px 3px 3px 0px;
+    border-right: thin solid #d2d2d2;
     font-size: 13px;
     text-align: right;
     transition: border-radius 0.3s linear;
@@ -198,6 +204,7 @@ div.menu-shadow {
 
 .t-added.out {
     border-radius: 0px;
+    border-right: thin solid #a7a7a7;
 }
 
 div.t-name {
