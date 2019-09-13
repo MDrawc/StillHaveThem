@@ -1,3 +1,109 @@
+@media (min-width: 1440px) {
+    .t-name {
+        width: 35%;
+    }
+
+    .t-name.no-plat {
+        width: 45%;
+    }
+
+    .t-release {
+        width: 5%;
+    }
+    .t-developer {
+        width: 25%;
+    }
+
+    .t-developer.no-plat {
+        width: 38%;
+    }
+
+    .t-platform {
+        width: 18%;
+    }
+    .t-format {
+        width: 5%;
+    }
+    .t-added {
+        width: 12%;
+    }
+
+    .t-added.no-plat {
+        width: 12%;
+    }
+}
+
+@media (max-width: 1440px) {
+    .t-name {
+        width: 25%;
+    }
+
+    .t-name.no-plat {
+        width: 40%;
+    }
+
+    .t-release {
+        width: 10%;
+    }
+    .t-developer {
+        width: 23%;
+    }
+
+    .t-developer.no-plat {
+        width: 32%;
+    }
+
+    .t-platform {
+        width: 20%;
+    }
+    .t-format {
+        width: 10%;
+    }
+    .t-added {
+        width: 12%;
+    }
+
+    .t-added.no-plat {
+        width: 18%;
+    }
+}
+
+@media (max-width: 840px) {
+    .t-name {
+        width: 25%;
+    }
+
+    .t-name.no-plat {
+        width: 40%;
+    }
+
+    .t-release {
+        width: 10%;
+    }
+    .t-developer {
+        width: 17%;
+    }
+
+    .t-developer.no-plat {
+        width: 32%;
+    }
+
+    .t-platform {
+        width: 20%;
+    }
+    .t-format {
+        width: 16%;
+    }
+    .t-added {
+        width: 12%;
+    }
+
+    .t-added.no-plat {
+        width: 18%;
+    }
+}
+
+
 #t-ops {
     .uk-modal-body {
         background: #ececec;
@@ -14,7 +120,6 @@ a.t-trigger {
     height: 100%;
     z-index: 3;
 }
-
 
 .gw-b {
     background: none;
@@ -40,12 +145,13 @@ a.t-trigger {
         padding-bottom: 10px;
         background: #d2d2d2;
         line-height: 24px;
+        font-weight: 300;
     }
 
 }
 
 .t-game.hover-fill div.t {
-    background-color: #ebebeb;
+    background-color: #c5c5c5;
 }
 
 .t-menu {
@@ -81,48 +187,45 @@ div.menu-shadow {
 }
 
 .t-added {
-    width: 12%;
+    padding-left: 5px;
     z-index: 1;
     padding-right: 10px;
-    border-right: 1px solid #d2d2d2;
+    // border-right: 1px solid #d2d2d2;
     border-radius: 0px 3px 3px 0px;
+    font-size: 13px;
     text-align: right;
     transition: border-radius 0.3s, border 0.3s;
 }
 
 .t-added.out {
-    border-right: 1px solid #a7a7a7;
+    // border-right: 1px solid #a7a7a7;
     border-radius: 0px;
 }
 
-.t-name {
+div.t-name {
     padding-left: 10px;
     border-radius: 3px 0px 0px 3px;
     font-size: 16px;
     color: #444;
-    width: 25%;
+    font-weight: 400;
 }
 
 .t-release {
-    width: 10%;
     text-align: center;
+    padding-left: 5px;
 }
 
 .t-developer {
-    width: 25%;
-}
-
-.t-developer.no-plat {
-    width: 53%;
+    padding-left: 5px;
+    z-index: 2;
 }
 
 .t-platform {
-    width: 18%;
-
+    padding-left: 5px;
 }
 
 .t-format {
-    width: 10%;
+    padding-left: 5px;
     text-align: center;
     z-index: 2;
 }

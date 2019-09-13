@@ -408,6 +408,7 @@ hr.md {
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     margin: 0px auto 15px;
     position: relative;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .g-menu {
@@ -548,7 +549,7 @@ hr.md {
 }
 
 .g-right {
-    font-size: 14px;
+    font-size: 13px;
     font-style: italic;
     text-align: right;
     padding: 10px 15px 10px 0px;
@@ -557,6 +558,7 @@ hr.md {
     border-radius: 0px 5px 5px 0px;
     z-index: 1;
     transition: border-radius 0.3s, border 0.3s;
+    font-weight: 300;
 
     p {
         margin: 0;
@@ -564,7 +566,7 @@ hr.md {
 }
 
 .g-right.out {
-    border-right: 1px solid #a7a7a7;
+    border-right: thin solid #a7a7a7;
     border-radius: 0px;
 }
 
