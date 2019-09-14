@@ -1,7 +1,7 @@
 var view = '<%= @view %>';
 
 if (view === 'panels') {
-  var ids = getIdsOfOpenPanels();
+    var ids = getIdsOfOpenPanels();
 }
 
 cleanOffcanvas();
@@ -12,13 +12,18 @@ $('.game_search #view').attr('value', view);
 $('#r-q').text(<%= raw query %>);
 $('#r-s').text('<%= sort %>');
 
-if (view === 'panels') {
-  openPanels(ids);
+switch (view) {
+    case 'list':
+        listHover();
+        break;
+    case 'covers':
+        underCover();
+        fitNameInNoCover();
+        break;
+    case 'panels':
+        openPanels(ids);
+        moreInfo();
+        break;
 }
-
-moreInfo();
-fitNameInNoCover();
-listHover();
-underCover();
 
 $('#q_name_dev_cont').focus();

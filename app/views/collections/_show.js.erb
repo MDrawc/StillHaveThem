@@ -4,24 +4,30 @@ var view = '<%= @view %>';
 var refresh = <%= @refresh %>;
 
 if (refresh && view === 'panels') {
-  var ids = getIdsOfOpenPanels();
+    var ids = getIdsOfOpenPanels();
 }
 
 cleanOffcanvas();
 
 $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view }) %>");
 
-if (refresh && view === 'panels') {
-  openPanels(ids);
+switch (view) {
+    case 'list':
+        listHover();
+        break;
+    case 'covers':
+        underCover();
+        fitNameInNoCover();
+        break;
+    case 'panels':
+        if (refresh) {
+            openPanels(ids);
+        }
+        moreInfo();
+        break;
 }
 
-toggleEditMenu();
-
 filter();
-moreInfo();
-
-fitNameInNoCover();
-listHover();
-underCover();
+toggleEditMenu();
 
 $('#q_name_dev_cont').focus();
