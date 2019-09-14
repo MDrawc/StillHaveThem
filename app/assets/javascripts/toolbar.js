@@ -1,3 +1,15 @@
+function changeTheme() {
+    $('#change-theme').click(function() {
+        if (Cookies.get('theme') === 'theme_dark') {
+            Cookies.set("theme", "theme_default");
+            location.reload();
+        } else {
+            Cookies.set("theme", "theme_dark");
+            location.reload();
+        }
+    });
+}
+
 function toggleAddlInfo() {
     $('#addl-hide').click(function() {
         $('.addl-info').slideToggle();

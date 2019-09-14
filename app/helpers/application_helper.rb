@@ -17,4 +17,9 @@ module ApplicationHelper
   def ucs_closed?
     cookies[:ucs_closed] == 'true'
   end
+
+  def current_theme
+    cookies[:theme] || 'theme_default'
+  end
+
 end
