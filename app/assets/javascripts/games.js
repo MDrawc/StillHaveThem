@@ -64,9 +64,9 @@ function underCover() {
 }
 
 function listLight(game_id, el_id) {
-    $('#t-' + game_id).addClass('hover-fill');
+    $('#t-' + game_id).addClass('focus-fill');
     UIkit.util.on('#' + el_id, 'hide', function() {
-      $('#t-' + game_id).removeClass('hover-fill');
+      $('#t-' + game_id).removeClass('focus-fill');
     });
 }
 
