@@ -63,6 +63,13 @@ function underCover() {
     });
 }
 
+function listLight(game_id, el_id) {
+    $('#t-' + game_id).addClass('hover-fill');
+    UIkit.util.on('#' + el_id, 'hide', function() {
+      $('#t-' + game_id).removeClass('hover-fill');
+    });
+}
+
 function fitNameInNoCover() {
     textFit(document.getElementsByClassName("no-cover-game-name"), {
         minFontSize: 18,
@@ -101,6 +108,9 @@ function presentShadow() {
         $(this).addClass('cover-shadow');
     });
 }
+
+
+
 
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {

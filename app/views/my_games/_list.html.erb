@@ -15,44 +15,52 @@
     <% needs_platform = collection.needs_platform %>
     <% mw_class = needs_platform ? '' : ' no-plat' %>
     <% extra = 'out' if edit_open? %>
-    <div class="t-game uk-width-1-1 uk-grid-collapse" uk-grid>
-        <%= link_to('', table_show_url(game.id), class: 't-trigger',
-        remote: true, 'uk-toggle': 'target: .t-game-show') %>
-        <%= content_tag :div, class: 't-name t' + mw_class do %>
-        <%= game.name %>
-        <% if (status_id = game[:status]) && status_id != 0 %>
-        <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
-        <% end %>
-        <% if (category_id = game[:category]) && category_id != 0 %>
-        <%= content_tag :span, "/ #{ convert_category(category_id) }", class: 'gw-b' %>
-        <% end %>
-        <% end %>
-        <% release = game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
-        <%= content_tag :div, release, class: 't-release t' %>
-        <% developer = !game.developers.empty? ? game.developers.map(&:name).join(', ') : '-' %>
-        <%= content_tag :div, developer, class: 't-developer t uk-text-truncate' + mw_class %>
-        <% if needs_platform %>
-        <%= content_tag :div, game.platform_name, class: 't-platform t' %>
-        <%= content_tag :div, game.physical ? 'Physical' : 'Digital', class: 't-format t' %>
-        <% end %>
-        <%= content_tag :div, game.created_at.to_date, class: "t-added t #{ extra }" + mw_class %>
-        <%= content_tag :div, class: "t-menu t #{ extra }" do %>
-        <% if needs_platform %>
-        <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Edit; pos: top") %>
-        <% else %>
-        <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
-        <% end %>
-        <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Copy / Move; pos: top") %>
-        <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top') %>
-        <%= content_tag :div,nil, class: "menu-shadow #{ extra }" %>
-        <% end %>
-    </div>
+    <%= content_tag :div, id: "t-#{ id }", class: 't-game uk-width-1-1 uk-grid-collapse', 'uk-grid': ''  do %>
+
+
+
+
+    <%= content_tag :div, class: 't-name t' + mw_class do %>
+    <%= game.name %>
+    <% if (status_id = game[:status]) && status_id != 0 %>
+    <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
+    <% end %>
+    <% if (category_id = game[:category]) && category_id != 0 %>
+    <%= content_tag :span, "/ #{ convert_category(category_id) }", class: 'gw-b' %>
+    <% end %>
+    <% end %>
+    <% release = game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
+    <%= content_tag :div, release, class: 't-release t' %>
+    <% developer = !game.developers.empty? ? game.developers.map(&:name).join(', ') : '-' %>
+    <%= content_tag :div, developer, class: 't-developer t uk-text-truncate' + mw_class %>
+    <% if needs_platform %>
+    <%= content_tag :div, game.platform_name, class: 't-platform t' %>
+    <%= content_tag :div, game.physical ? 'Physical' : 'Digital', class: 't-format t' %>
+    <% end %>
+    <%= content_tag :div, game.created_at.to_date, class: "t-added t #{ extra }" + mw_class %>
+
+
+    <%= link_to('', table_show_url(game.id), class: 't-trigger',
+    remote: true, 'uk-toggle': 'target: #t-game-show') %>
+
+
+    <%= content_tag :div, class: "t-menu t #{ extra }" do %>
+    <% if needs_platform %>
+    <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Edit; pos: top") %>
+    <% else %>
+    <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
+    <% end %>
+    <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Copy / Move; pos: top") %>
+    <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top') %>
+    <%= content_tag :div,nil, class: "menu-shadow #{ extra }" %>
+    <% end %>
+    <% end %>
     <% end %>
     <div class="uk-width-1-1 page-links bottom l-mod">
         <%= js_will_paginate @games, container: false %>
     </div>
 </div>
-<div class="t-game-show" uk-modal ="container: .my-games">
+<div id="t-game-show" uk-modal ="container: .my-games">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="modal-content">
