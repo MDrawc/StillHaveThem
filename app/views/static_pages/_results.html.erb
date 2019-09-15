@@ -1,5 +1,5 @@
 <% if @results.present? %>
-  <%= render 'search/cover_view' %>
+  <%= render 'search/list_view' %>
   <% if @more_in_req %>
   <div id="show-more">
     <%= form_tag("/search_games", method: :get, remote: true) do %>

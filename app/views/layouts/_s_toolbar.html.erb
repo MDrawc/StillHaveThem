@@ -10,9 +10,6 @@
   <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
   <!-- hide overlays -->
   <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
-  <!-- show options -->
-  <% extra = 'active' if edit_open? %>
-  <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>
   <!-- scroll up -->
   <li><a class="" href="#target"
     uk-icon="icon: arrow-up; ratio: 1"

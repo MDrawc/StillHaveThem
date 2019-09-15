@@ -34,7 +34,7 @@
     <%= content_tag :div, game.physical ? 'Physical' : 'Digital', class: 't-format t' %>
     <% end %>
     <%= content_tag :div, game.created_at.to_date, class: "t-added t #{ extra }" + mw_class %>
-    <%= link_to('', table_show_url(game.id), class: 't-trigger',
+    <%= link_to('', table_show_url(id), class: 't-trigger',
     remote: true, 'uk-toggle': 'target: #t-game-show') %>
     <%= content_tag :div, class: "t-menu t #{ extra }" do %>
     <% if needs_platform %>
