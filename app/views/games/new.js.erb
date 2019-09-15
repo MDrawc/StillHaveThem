@@ -1,4 +1,4 @@
-$("#add-form-<%= @x_id %>").html("<%= j(render partial: 'cover_view/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>");
+$("#add-form-<%= @x_id %>").html("<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>");
 
 paintItBlack('<%= @x_id %>')
 activateForm('add', '<%= @x_id %>');

@@ -14,7 +14,7 @@ if (success) {
     var x_id = '<%= @x_id %>';
 
     var already = "#add-form-" + x_id + " .already-in";
-    var proxy = "<%= j(render partial: 'cover_view/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id, x_id: @x_id }) %>";
+    var proxy = "<%= j(render partial: 'search/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id, x_id: @x_id }) %>";
     $(already).html(proxy);
 
     // Reseting error status upon succesful remove

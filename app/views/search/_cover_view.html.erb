@@ -25,7 +25,7 @@
       <!-- GAME INFO -->
       <% unless already_offcanvas.include? igdb_id %>
       <% cover = nil if cover && cover[:from_scrn] %>
-      <%= render partial: "cover_view/game_info", locals: { game: game, cover: cover } %>
+      <%= render partial: "search/game_info", locals: { game: game, cover: cover } %>
       <% already_offcanvas << igdb_id %>
       <% end %>
       <!-- NAME AND WARNING -->

@@ -1,0 +1,21 @@
+<div class="toolbar">
+  <ul>
+  <!-- cover view -->
+  <li><%= link_to '', root_url, remote: true, id: 'v-covers', 'uk-icon': 'thumbnails' %></li>
+  <!-- panels view -->
+  <li><%= link_to '', root_url, remote: true, id: 'v-panels', 'uk-icon': 'list' %></li>
+  <!-- list view -->
+  <li><%= link_to '', root_url, remote: true, id: 'v-list', 'uk-icon': 'table' %></li>
+  <!-- change theme -->
+  <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
+  <!-- hide overlays -->
+  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
+  <!-- show options -->
+  <% extra = 'active' if edit_open? %>
+  <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>
+  <!-- scroll up -->
+  <li><a class="" href="#target"
+    uk-icon="icon: arrow-up; ratio: 1"
+    uk-scroll="duration: 600"></a></li>
+  </ul>
+</div>

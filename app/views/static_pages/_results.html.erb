@@ -1,5 +1,5 @@
 <% if @results.present? %>
-  <%= render 'cover_view/cover_view' %>
+  <%= render 'search/cover_view' %>
   <% if @more_in_req %>
   <div id="show-more">
     <%= form_tag("/search_games", method: :get, remote: true) do %>
@@ -32,4 +32,4 @@
     <p>No results</p>
   </div>
 <% end %>
-
+<%= render partial: 'layouts/s_toolbar' %>
