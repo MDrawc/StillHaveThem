@@ -1,5 +1,13 @@
-$("#add-form-<%= @x_id %>").html("<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>");
+var form_partial = "<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>";
 
+
+//do things differently based on view
+
+if ($('.add-form').lenght > 0) {
+  $("#add-form-<%= @x_id %>").html(form_partial);
+} else {
+  $("#t-ops .modal-content").html(form_partial);
+}
 
 //covers_view
 paintItBlack('<%= @x_id %>')
