@@ -46,8 +46,8 @@
         <% else %>
         <% end %>
         </h3>
-        <% unless game.developers.empty? %>
-        <%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+        <% if game.developers %>
+        <%= content_tag :p, "by #{ game.developers.join(', ') }", class: 'info-by'  %>
         <% end %>
         <hr>
         <%= content_tag :p, game[:summary], class: 'g-summary' if game[:summary] %>

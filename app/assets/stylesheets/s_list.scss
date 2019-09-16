@@ -1,5 +1,5 @@
 
-.s-name {
+.s-info {
     width: 30%;
 }
 
@@ -40,6 +40,14 @@
 
     tr.no-shadow {
         box-shadow: none;
+    }
+
+    tr.focus-fill td {
+        background: #c5c5c5;
+    }
+
+    tr.owned td:first-child {
+        background: red;
     }
 
     tr:hover td {

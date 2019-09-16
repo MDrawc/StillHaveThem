@@ -73,6 +73,11 @@
     color: $dark_grey;
     opacity: 1;
     transition: color 0.2s ease-in-out;
+
+    &.owned {
+        box-shadow: 0px 2px 0px 0px #bebebe;
+        padding-bottom: 2px;
+    }
 }
 
 .plus {
@@ -212,11 +217,6 @@
 
 .cover-view {
     margin-bottom: 0px;
-}
-
-.owned {
-    box-shadow: 0px 3px 0px -1px #00000028;
-    padding-bottom: 2px;
 }
 
 .game-space {

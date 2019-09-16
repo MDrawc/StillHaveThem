@@ -3,6 +3,8 @@
   <% @results.each do |game| %>
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
+    <% owned_class = @owned.include?(igdb_id) ? ' owned' : '' %>
+
     <%= content_tag(:div, id: "gs-#{ x_id}", class: 'game-space') do %>
     <% if cover = get_game_cover(game) %>
     <div class="game-cover-effect" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px" uk-toggle="target: #i-<%= igdb_id %>">
@@ -30,11 +32,10 @@
       <% end %>
       <!-- NAME AND WARNING -->
       <p class="game-name">
-        <% name_class = @owned.include?(igdb_id) ? 'owned' : '' %>
-        <%= content_tag(:span, nil, class: 'name ' + name_class) do %>
+        <%= content_tag(:span, nil, class: 'name' + owned_class) do %>
         <%= game[:name] %>
         <% end %>
-        <%= link_to '', new_game_url(x_id: x_id, owned: !name_class.empty?), class: 'plus', id: "add-#{ x_id }", remote: true, 'uk-icon': 'plus' %>
+        <%= link_to '', new_game_url(x_id: x_id, owned: !owned_class.empty?), class: 'plus', id: "add-#{ x_id }", remote: true, 'uk-icon': 'plus' %>
       </p>
       <div class="fade">
         <!-- WARNING -->

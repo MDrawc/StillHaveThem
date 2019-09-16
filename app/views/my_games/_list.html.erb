@@ -34,7 +34,7 @@
     <%= content_tag :div, game.physical ? 'Physical' : 'Digital', class: 't-format t' %>
     <% end %>
     <%= content_tag :div, game.created_at.to_date, class: "t-added t #{ extra }" + mw_class %>
-    <%= link_to('', list_show_url(id), class: 't-trigger',
+    <%= link_to('', list_show_url(game.igdb_id, id), class: 't-trigger',
     remote: true, 'uk-toggle': 'target: #t-game-show') %>
     <%= content_tag :div, class: "t-menu t #{ extra }" do %>
     <% if needs_platform %>
@@ -53,7 +53,7 @@
     </div>
 </div>
 <div id="t-game-show" uk-modal ="container: .my-games">
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" uk-overflow-auto>
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="modal-content">
             Loading...

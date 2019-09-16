@@ -1,11 +1,13 @@
 <%= content_tag :table, class: 's-table uk-table' do %>
     <% @results.each do |game| %>
     <% igdb_id = game[:igdb_id] %>
-    <%= content_tag :tr, id: "s-#{ igdb_id }" do %>
+    <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
 
-        <%= content_tag :td, class: 's-name' do %>
-            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
-            <%= game[:name] %>
+    <%= content_tag :tr, id: "t-#{ igdb_id }" do %>
+
+        <%= content_tag :td, class: 's-info' do %>
+            <%= link_to('', list_show_url(igdb_id, igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= content_tag :span, game[:name], class: 's-name' %>
             <% if (status_id = game[:status]) && status_id != 0 %>
                 <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
             <% end %>
@@ -15,22 +17,23 @@
         <% end %>
 
         <%= content_tag :td, class: 's-release' do %>
-            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', list_show_url(igdb_id, igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
         <% end %>
 
         <%= content_tag :td, class: 's-developer uk-text-truncate' do %>
-            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', list_show_url(igdb_id, igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:developers] ? game[:developers].join(', ') : '-' %>
         <% end %>
 
         <%= content_tag :td, class: 's-platform uk-table-expand' do %>
-            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', list_show_url(igdb_id, igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:platforms_names] ? game[:platforms_names].join(', ') : '-' %>
         <% end %>
 
         <%= content_tag :td, class: 's-add' do %>
-            <%= link_to '', root_url, remote: true, 'uk-icon': 'plus' %>
+           <% add_icon = @owned.include?(igdb_id) ? 'check' : 'plus' %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add_icon == 'check'), remote: true, 'uk-icon': add_icon, 'uk-toggle': 'target: #t-ops', 'uk-tooltip': 'title: Add; pos: right' %>
         <% end %>
 
     <% end %>
@@ -38,9 +41,8 @@
     <% end %>
 <% end %>
 
-<!-- CHANGE CONTAINERS!!!! -->
-<div id="t-game-show" uk-modal ="container: .my-games">
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+<div id="t-game-show" uk-modal="container: #search-results">
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" uk-overflow-auto>
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="modal-content">
             Loading...
@@ -48,8 +50,7 @@
     </div>
 </div>
 
-<!-- CHANGE CONTAINERS!!!! -->
-<div id="t-ops" uk-modal ="container: .my-games">
+<div id="t-ops" uk-modal ="container: #search-results">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <div class="modal-content">
             Loading...

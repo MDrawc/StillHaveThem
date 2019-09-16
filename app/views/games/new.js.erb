@@ -1,5 +1,12 @@
 $("#add-form-<%= @x_id %>").html("<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>");
 
+
+//covers_view
 paintItBlack('<%= @x_id %>')
+
+//list_view
+
+//panels_view
+
 activateForm('add', '<%= @x_id %>');
 updatePlatformIcon('add', '<%= @x_id %>');
