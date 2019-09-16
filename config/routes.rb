@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get 'c_show/:game_id', to: 'games#cover_show', as: 'cover_show'
 
   get 'chg_v/:id/:view', to: 'collections#change_view', as: 'change_view'
+  get 's_chg_v/:view', to: 'static_pages#s_change_view', as: 's_change_view'
 end

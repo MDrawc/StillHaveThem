@@ -24,6 +24,11 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def s_change_view
+    @view = params[:view]
+    respond_to :js
+  end
+
   def privacy
   end
 
@@ -40,10 +45,11 @@ class StaticPagesController < ApplicationController
   def search
     @more_in_req, @more_in_off = false
 
+    view = params[:view] || 'list_view'
+
     #SEARCH
     if params[:search]
       @inquiry = IgdbQuery.new(params[:search])
-
       if @inquiry.validate!
         @inquiry.search
         if @inquiry.results.present?
@@ -74,8 +80,9 @@ class StaticPagesController < ApplicationController
           end
         end
       end
+
       respond_to do |format|
-        format.js { render partial: "quest", locals: { user_id: current_user.id } }
+        format.js { render partial: "quest", locals: { user_id: current_user.id, view: view } }
       end
 
     #LOAD MORE - more games in new offset request:

@@ -1,11 +1,7 @@
-<div class="sort-links">
-    <span class="sort-icon"><%= svg 'sort' %></span>
-    <%= sort_link(@q, :name,'Title', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :first_release_date,'Release Date', {}, {remote: true}) %>
-    <div class="srch-div"></div>
-    <%= sort_link(@q, :added,'Added', {}, {remote: true}) %>
-</div>
+
+
+
+
 <div class="uk-grid-collapse panels-grid" uk-grid>
     <div class="uk-width-5-6 page-info-front page-links pr">
         <%= js_will_paginate @games, container: false %>

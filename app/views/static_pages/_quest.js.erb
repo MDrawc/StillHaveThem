@@ -1,3 +1,6 @@
+var no_errors = <%= !@inquiry.errors.any? %>;
+var user_id = '<%= user_id %>';
+
 $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
 $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
@@ -5,9 +8,9 @@ $('#search-igdb-bar').on('input', function() {
 
 cleanOffcanvas();
 
-if (<%= !@inquiry.errors.any? %>) {
-  $("#search-results").html("<%= j(render :partial => 'results') %>");
+if (no_errors) {
+  $("#search-results").html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
 }
 
-flip_offc(<%= user_id %>);
+flip_offc(user_id);
 fitNameInNoCover();

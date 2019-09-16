@@ -3,7 +3,7 @@ var form_partial = "<%= j(render partial: 'search/add_form', locals: { data: @da
 
 //do things differently based on view
 
-if ($('.add-form').lenght > 0) {
+if ($('.add-form').length > 0) {
   $("#add-form-<%= @x_id %>").html(form_partial);
 } else {
   $("#t-ops .modal-content").html(form_partial);

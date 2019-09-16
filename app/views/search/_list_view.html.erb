@@ -32,8 +32,8 @@
         <% end %>
 
         <%= content_tag :td, class: 's-add' do %>
-           <% add_icon = @owned.include?(igdb_id) ? 'check' : 'plus' %>
-           <%= link_to '', new_game_url(x_id: x_id, owned: add_icon == 'check'), remote: true, 'uk-icon': add_icon, 'uk-toggle': 'target: #t-ops', 'uk-tooltip': 'title: Add; pos: right' %>
+           <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), remote: true, 'uk-icon': add.first, 'uk-toggle': 'target: #t-ops', 'uk-tooltip': "title: #{ add.last }; pos: right" %>
         <% end %>
 
     <% end %>
