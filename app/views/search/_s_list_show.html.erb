@@ -1,0 +1,70 @@
+<% game_name, id = game.name, game.id %>
+<div class="uk-grid uk-grid-collapse">
+    <div class="cover-col">
+        <% cover = get_game_cover(game) %>
+        <% if cover && cover[:from_scrn].nil? %>
+        <div class="t-cover" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px">
+        <div class="spinner"><%= svg 'loading' %></div>
+        <%= image_tag('', alt: '',id: 'ts-img' , class: 'game-cover', width: cover[:width], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => '') %>
+        </div>
+        <% else %>
+        <div class="i-no-cover">
+            <div>
+                <%= svg 'no_image_i' %>
+                <p>No Cover Available</p>
+            </div>
+        </div>
+        <% end %>
+        <% if platforms = game[:platforms_names] %>
+        <p class="info-platform">
+            <% platforms.each do |platform| %>
+            <span>
+                <% unless platform == platforms.last %>
+                <%= platform + ', ' %>
+                <% else %>
+                <%= platform %>
+                <% end %>
+            </span>
+            <% end %>
+        </p>
+        <% end %>
+        <div class="t-links">
+        <%= link_to '',"http://www.google.com/search?q=%22#{ game.name.gsub(' ', '+') }%22+video+game" , class: "ex-link g-google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+        <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game.name.gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+        </div>
+    </div>
+    <div class="uk-width-expand">
+        <h3 class="info-title"><%= game_name %>
+        <% if (status_id = game[:status]) && status_id != 0 %>
+        <span class='gw-b'>/ <%= convert_status(status_id) %></span>
+        <% end %>
+        <% if (category_id = game[:category]) && category_id != 0 %>
+        <span class='gw-b'>/ <%= convert_category(category_id) %></span>
+        <% end %>
+        <% if game[:first_release_date]%>
+        <span class="info-year">(<%= Time.at(game[:first_release_date]).year %>)</span>
+        <% else %>
+        <% end %>
+        </h3>
+        <% if game.developers %>
+        <%= content_tag :p, "by #{ game.developers.join(', ') }", class: 'info-by'  %>
+        <% end %>
+        <hr>
+        <%= content_tag :p, game[:summary], class: 'g-summary' if game[:summary] %>
+        <% if screens = game[:screenshots] %>
+        <% urls = screens_urls(screens) %>
+        <div class="uk-position-relative uk-light" uk-slider uk-lightbox="toggle: .full-scrn; animation: fade">
+            <ul class="uk-slider-items uk-grid uk-grid-small">
+                <% urls.each do |url| %>
+                <li>
+                    <%= image_tag(url[:small], alt: '') %>
+                    <%= content_tag(:a, '', href: url[:big], class: 'full-scrn') %>
+                </li>
+                <% end %>
+            </ul>
+            <a class="pd-arr left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="pd-arr right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+        <% end %>
+    </div>
+</div>

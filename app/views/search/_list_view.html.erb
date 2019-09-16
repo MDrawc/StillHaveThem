@@ -4,7 +4,7 @@
     <%= content_tag :tr, id: "s-#{ igdb_id }" do %>
 
         <%= content_tag :td, class: 's-name' do %>
-            <%= link_to('', list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:name] %>
             <% if (status_id = game[:status]) && status_id != 0 %>
                 <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
@@ -15,17 +15,17 @@
         <% end %>
 
         <%= content_tag :td, class: 's-release' do %>
-            <%= link_to('', list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:first_release_date] ? Time.at(game[:first_release_date]).year : '-' %>
         <% end %>
 
         <%= content_tag :td, class: 's-developer uk-text-truncate' do %>
-            <%= link_to('', list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:developers] ? game[:developers].join(', ') : '-' %>
         <% end %>
 
         <%= content_tag :td, class: 's-platform uk-table-expand' do %>
-            <%= link_to('', list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
+            <%= link_to('', s_list_show_url(igdb_id), class: 's-trigger', remote: true, 'uk-toggle': 'target: #t-game-show') %>
             <%= game[:platforms_names] ? game[:platforms_names].join(', ') : '-' %>
         <% end %>
 

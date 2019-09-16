@@ -1,0 +1,3 @@
+$("#t-game-show .modal-content").html("<%= j(render partial: 'search/s_list_show', locals: { game: @game }) %>");
+listLight('<%= @game.igdb_id %>', 't-game-show');
+presentShadow();

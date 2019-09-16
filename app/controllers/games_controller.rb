@@ -72,6 +72,13 @@ class GamesController < ApplicationController
     respond_to :js
   end
 
+  def s_list_show
+    @game = Agame.find_by(igdb_id: params[:game_igdb_id])
+    # debugger
+    respond_to :js
+  end
+
+
   def list_show
     @game = Game.find_by_id(params[:game_id])
     respond_to :js
