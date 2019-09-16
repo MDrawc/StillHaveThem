@@ -72,7 +72,7 @@ class GamesController < ApplicationController
     respond_to :js
   end
 
-  def table_show
+  def list_show
     @game = Game.find_by_id(params[:game_id])
     respond_to :js
   end

@@ -1,0 +1,3 @@
+$("#t-game-show .modal-content").html("<%= j(render partial: 'my_games/list_show', locals: { game: @game }) %>");
+listLight('<%= @game.id %>', 't-game-show');
+presentShadow();
