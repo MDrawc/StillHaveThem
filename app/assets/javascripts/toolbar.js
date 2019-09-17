@@ -1,11 +1,11 @@
 function changeTheme() {
     $('#change-theme').click(function() {
         if (Cookies.get('theme') === 'theme_dark') {
-            Cookies.set("theme", "theme_default");
-            location.reload();
+            Cookies.set("theme", "theme_default", { expires: 365 });
+            $('#theme-control').attr('href', '/assets/theme_default.self.css');
         } else {
-            Cookies.set("theme", "theme_dark");
-            location.reload();
+            Cookies.set("theme", "theme_dark", { expires: 365 });
+            $('#theme-control').attr('href', '/assets/theme_dark.self.css');
         }
     });
 }
