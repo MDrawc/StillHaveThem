@@ -27,5 +27,5 @@ function flip_offc(user_id) {
 }
 
 function cleanOffcanvas() {
-    $("[id^=i-]").remove();
+    $("#i-lone").remove();
 }

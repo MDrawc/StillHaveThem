@@ -73,13 +73,14 @@ class GamesController < ApplicationController
   end
 
   def list_show
-    @game = Agame.find_by(igdb_id: params[:game_igdb_id])
+    @game = Agame.find_by(igdb_id: params[:igdb_id])
     @hg_id = params[:hg_id]
     respond_to :js
   end
 
   def cover_show
-    @game = Game.find_by_id(params[:game_id])
+    @game = Agame.find_by(igdb_id: params[:igdb_id])
+    # @game = Game.find_by_id(params[:game_id])
     @user_id  = current_user.id
     respond_to :js
   end

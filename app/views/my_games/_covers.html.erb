@@ -11,30 +11,27 @@
     <%= js_will_paginate @games, container: false %>
   </div>
   <% @games.select('games.*, collection_games.created_at').each do |game| %>
-  <% id = game[:id] %>
+  <% id, igdb_id = game[:id], game[:igdb_id] %>
   <% needs_platform = collection.needs_platform %>
   <%= content_tag :div, id: "gs-#{ id }", class: 'game-space' do %>
-  <!-- COVER -->
   <% if cover = get_game_cover(game) %>
-  <%= link_to(cover_show_url(id), class: 'game-cover-effect', style: "width: #{ cover[:width] }px; height: #{ cover[:height] }px", remote: true, 'uk-toggle': "target: #i-lone") do %>
+  <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', style: "width: #{ cover[:width] }px; height: #{ cover[:height] }px", remote: true, 'uk-toggle': "target: #i-lone") do %>
   <%= content_tag :div, svg('loading'), class: 'spinner' %>
   <%= image_tag('', alt: '', id: "gc-#{ id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], 'draggable' => 'false', 'uk-img' => '') %>
   <% end %>
   <% else %>
-  <%= link_to(cover_show_url(id), class: 'game-cover-effect', remote: true, 'uk-toggle': "target: #i-lone") do %>
+  <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', remote: true, 'uk-toggle': "target: #i-lone") do %>
   <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
   <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
   <%= svg 'no_image' %>
   <% end %>
   <% end %>
   <% end %>
-  <!-- NAME AND WARNING -->
   <div class="c-game-name">
     <%= content_tag(:span, nil, class: 'name') do %>
     <%= game[:name] %>
     <% end %>
   </div>
-  <!-- WARNING -->
   <p class="game-warning">
     <% if (status_id = game[:status]) && status_id != 0 %>
     <button><%= convert_status(status_id) %></button>
@@ -43,7 +40,6 @@
     <button><%= convert_category(category_id) %></button>
     <% end %>
   </p>
-  <!-- RELEASE DATE -->
   <p class="game-release-date">
     <% if game[:first_release_date] %>
     <%= Time.at(game[:first_release_date]).year %>
@@ -55,7 +51,6 @@
   <% cm_class, cm_hid =  edit_open? ? [nil, false] : ['hidden', true] %>
   <% extra = 'hidden' if ucs_hid && cm_hid %>
   <%= content_tag :hr, nil, class: "shr #{ extra }" %>
-  <!-- OPTIONS -->
   <%= content_tag :div , class: "c-menu #{ cm_class }" do %>
   <ul class="uk-iconnav">
     <li>
@@ -73,13 +68,11 @@
     </li>
   </ul>
   <% end %>
-  <!-- PLATFORMS -->
   <%= content_tag :div , class: "uc-s #{ ucs_class }" do %>
   <% if needs_platform %>
   <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
   <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
   <% end %>
-  <!-- ADDED AT -->
   <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
   <% end %>
   <% end %>
@@ -92,7 +85,6 @@
     <%= js_will_paginate @games, container: false %>
   </div>
 </div>
-<!-- GAME INFO -->
 <div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
   <div class="uk-offcanvas-bar">
     Loading...

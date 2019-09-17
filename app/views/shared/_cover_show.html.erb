@@ -14,11 +14,9 @@
 <% else %>
 <% end %>
 </h3>
-<!-- DEVELOPER -->
-<% unless game.developers.empty? %>
-<%= content_tag :p, "by #{ game.developers.map(&:name).join(', ') }", class: 'info-by'  %>
+<% if game.developers %>
+<%= content_tag :p, "by #{ game.developers.join(', ') }", class: 'info-by'  %>
 <% end %>
-<!-- COVER -->
 <% if cover %>
 <div class="c-cover" style="width: <%= cover[:width] %>px; height: <%= cover[:height] %>px">
     <%= content_tag :div, svg('loading'), class: 'spinner' %>
@@ -32,7 +30,6 @@
     </div>
 </div>
 <% end %>
-<!-- PLATFORMS -->
 <% if platforms = game[:platforms_names] %>
 <p class="info-platform">
     <% platforms.each do |platform| %>
@@ -46,20 +43,17 @@
     <% end %>
 </p>
 <% end %>
-<!-- DIVIDER -->
 <% summary = get_summary(game, 280, 50) %>
 <% screens = game[:screenshots] %>
 <% if summary || screens %>
 <% extra_class = summary ? 'btm-m15' : '' %>
 <%= content_tag(:hr, nil, class: extra_class ) %>
 <% end %>
-<!-- SUMMARY -->
 <% if summary %>
 <p class="info-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-lone"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary('lone')" uk-icon="icon: triangle-down"></button></span> <span id="more-lone" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary('lone')" uk-icon="icon: triangle-up"></button></span>
 </p>
 <% end %>
 <% end %>
-<!-- SLIDESHOW -->
 <% if screens %>
 <% urls = screens_urls(screens) %>
 <div class="uk-position-relative md-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .uk-position-cover; animation: fade">
@@ -74,7 +68,6 @@
     <% no_of_screens += 1 %>
     <% end %>
 </ul>
-<!-- SLIDESHOW NAVIGATION -->
 <% if no_of_screens > 1 %>
 <table class="t-scr">
     <tr>
@@ -99,7 +92,6 @@
     <% end %>
 </div>
 <% end %>
-<!-- LINKS -->
 <hr>
 <div id="info-links">
     <%= link_to '',"http://www.google.com/search?q=%22#{ game_name.gsub(' ', '+') }%22+video+game" , class: "ex-link google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
