@@ -19,15 +19,14 @@
                 </h4>
                 <%= content_tag(:p, 'by ' + game[:developers].join(', '), class: 'g-by') if game[:developers] %>
             </div>
+
+
+            <%= content_tag :div, game[:addl], class: 'p-addl' if game[:addl] %>
         <% end %>
-
-                    <%= content_tag :div, class: "g-right-add" do %>
-               <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
-               <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first, 'uk-tooltip': "title: #{ add.last }; pos: right" %>
-            <% end %>
-
-
-
+        <%= content_tag :div, class: "g-right-add" do %>
+           <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first, 'uk-tooltip': "title: #{ add.last }; pos: right" %>
+        <% end %>
         <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop uk-width-1-1' do %>
         <div class="g-extra">
             <% if screens = game[:screenshots] %>
