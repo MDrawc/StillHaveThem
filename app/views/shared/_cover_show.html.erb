@@ -1,7 +1,6 @@
 <% game_name = game[:name] %>
 <% cover = get_game_cover(game) %>
 <% cover = nil if cover && cover[:from_scrn] %>
-<!-- TITLE & RELEASE YEAR -->
 <h3 class="info-title"><%= game_name %>
 <% if (status_id = game[:status]) && status_id != 0 %>
 <span class='gw-b'>/ <%= convert_status(status_id) %></span>

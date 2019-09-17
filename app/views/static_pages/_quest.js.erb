@@ -6,11 +6,28 @@ $('#search-igdb-bar').on('input', function() {
     $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
+
+
+//do things differently based on view
+
+//covers_view
 cleanOffcanvas();
 
 if (no_errors) {
-  $("#search-results").html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
+  $("#search-results").html("<%= j(render partial:'results', locals: { view: view }) %>");
+  $("#search-results").append("<%= j(render partial: 'layouts/s_toolbar', locals: { last_form: @inquiry.last_form.values }) %>");
 }
 
+
+
+
+//do things differently based on view
+
+//covers_view
 flip_offc(user_id);
 fitNameInNoCover();
+
+//list_view
+
+//panels_view
+moreInfo();

@@ -15,6 +15,7 @@
       <%= hidden_field_tag :last_form, @more_in_off[:last_form] %>
       <%= hidden_field_tag :last_query, @more_in_off[:query] %>
       <%= hidden_field_tag :last_offset, @more_in_off[:offset] %>
+      <%= hidden_field_tag :view, view %>
       <%= submit_tag "Load more",
       class: "more-button",
       data: { disable_with: "Please wait..." } %>
@@ -32,4 +33,3 @@
     <p>No results</p>
   </div>
 <% end %>
-<%= render partial: 'layouts/s_toolbar', locals: { last_form: @inquiry.last_form.values } %>

@@ -1,5 +1,18 @@
-$("#show-more").html("<%= j(render :partial => 'results') %>");
+$("#show-more").html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
 $("#show-more").attr('id', 'showed_more');
 
+
+
+
+//do things differently based on view
+
+//covers_view
+cleanOffcanvas()
 flip_offc('<%= current_user.id %>');
 fitNameInNoCover();
+
+
+//list_view
+
+//panels_view
+moreInfo();

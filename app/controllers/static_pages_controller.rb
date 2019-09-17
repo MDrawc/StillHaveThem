@@ -125,7 +125,7 @@ class StaticPagesController < ApplicationController
         end
       end
       respond_to do |format|
-        format.js { render partial: "load_more" }
+        format.js { render partial: "load_more", locals: { view: view } }
       end
 
     #LOAD MORE - more games in the same request(developers/characters):
@@ -138,7 +138,7 @@ class StaticPagesController < ApplicationController
       @more_in_off = @@new_offset_r if !@@new_offset_r.empty?
 
       respond_to do |format|
-        format.js { render partial: "load_more" }
+        format.js { render partial: "load_more", locals: { view: view } }
       end
     end
   end
