@@ -114,6 +114,8 @@
 }
 
 .game-warning {
+
+    max-width: 200px;
     margin: 5px 0px;
 
     button {
@@ -324,7 +326,7 @@ div.fitted {
 // Already In - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 .already-in {
-    color: #999;
+    color: #777;
 
     .title {
         font-size: 14px;

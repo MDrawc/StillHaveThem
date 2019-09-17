@@ -1,3 +1,15 @@
+.g-right-add {
+    padding: 10px 12px;
+
+    a {
+        color: #999;
+
+        &:hover {
+            color: #666;
+        }
+    }
+}
+
 .g-platforms {
     font-size: 12px;
     color: #666;

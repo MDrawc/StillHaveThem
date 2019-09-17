@@ -5,11 +5,7 @@
     <%= content_tag :div, id: "g-#{ x_id }", class: 'g-panel uk-width-5-6 uk-grid-collapse', 'uk-grid': '' do %>
         <%= get_game_thumb(game) %>
         <%= content_tag :div, class: 'g-info uk-width-expand uk-grid-collapse', 'uk-grid': '' do %>
-
-
-<%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
-
-
+            <%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
 
             <div class="hold-title uk-width-expand">
                 <h4 class="g-title"><%= game[:name] %>
@@ -23,14 +19,15 @@
                 </h4>
                 <%= content_tag(:p, 'by ' + game[:developers].join(', '), class: 'g-by') if game[:developers] %>
             </div>
+        <% end %>
 
-            <%= content_tag :div, class: "g-right" do %>
+                    <%= content_tag :div, class: "g-right-add" do %>
                <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
                <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first, 'uk-tooltip': "title: #{ add.last }; pos: right" %>
             <% end %>
 
 
-        <% end %>
+
         <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop uk-width-1-1' do %>
         <div class="g-extra">
             <% if screens = game[:screenshots] %>
