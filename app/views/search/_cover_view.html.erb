@@ -3,9 +3,7 @@
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
     <% owned_class = @owned.include?(igdb_id) ? ' owned' : '' %>
-
     <%= content_tag(:div, id: "gs-#{ x_id }", class: 'game-space') do %>
-
       <% if cover = get_game_cover(game) %>
         <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', style: "width: #{ cover[:width] }px; height: #{ cover[:height] }px", remote: true, 'uk-toggle': "target: #i-lone") do %>
           <%= content_tag :div, svg('loading'), class: 'spinner' %>

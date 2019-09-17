@@ -4,8 +4,13 @@
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
     <%= content_tag :div, id: "g-#{ x_id }", class: 'g-panel uk-width-5-6 uk-grid-collapse', 'uk-grid': '' do %>
         <%= get_game_thumb(game) %>
-        <div class="g-info uk-width-expand uk-grid-collapse" uk-grid>
-            <%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
+        <%= content_tag :div, class: 'g-info uk-width-expand uk-grid-collapse', 'uk-grid': '' do %>
+
+
+<%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
+
+
+
             <div class="hold-title uk-width-expand">
                 <h4 class="g-title"><%= game[:name] %>
                 <% if (status_id = game[:status]) && status_id != 0 %>
@@ -18,12 +23,14 @@
                 </h4>
                 <%= content_tag(:p, 'by ' + game[:developers].join(', '), class: 'g-by') if game[:developers] %>
             </div>
+
             <%= content_tag :div, class: "g-right" do %>
-                add link
-                also
-                hello
+               <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
+               <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first, 'uk-tooltip': "title: #{ add.last }; pos: right" %>
             <% end %>
-        </div>
+
+
+        <% end %>
         <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop uk-width-1-1' do %>
         <div class="g-extra">
             <% if screens = game[:screenshots] %>
@@ -59,5 +66,6 @@
         <%= content_tag :button, '', id: "g-hide-#{ x_id }", class: 'g-hide uk-icon-link', 'uk-icon': 'chevron-up' %>
         <% end %>
     <% end %>
+    <%= content_tag(:div, 'Loading...', id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #g-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") %>
 <% end %>
 </div>
