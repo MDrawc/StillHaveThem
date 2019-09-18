@@ -1,3 +1,24 @@
+tr.l-addl {
+    @include unselectable;
+    box-shadow: none !important;
+    font-size: 12px;
+    color: #555;
+    font-style: italic;
+
+    &:hover td {
+        background: none !important;
+    }
+
+    td {
+        background: none;
+        padding: 0 !important;
+    }
+}
+
+.l-addl-hide {
+    padding: 3px 1px;
+}
+
 #last-form {
     display: none;
 }

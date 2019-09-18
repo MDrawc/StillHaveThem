@@ -3,6 +3,12 @@
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
 
+    <% if game[:addl] %>
+        <%= content_tag :tr, class: 'l-addl' do %>
+            <%= content_tag :td, content_tag(:div, game[:addl], class: 'l-addl-hide') %>
+        <% end %>
+    <% end %>
+
     <%= content_tag :tr, id: "t-#{ igdb_id }" do %>
 
         <%= content_tag :td, class: 's-info' do %>
