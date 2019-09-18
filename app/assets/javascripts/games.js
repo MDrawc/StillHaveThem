@@ -10,6 +10,21 @@ function shortSummary(id) {
     }
 }
 
+function morePlatforms() {
+    $('.mp').each(function() {
+        var id = $(this).attr('gameid');
+        var p_drop = $('#mp-' + id);
+        $(this).off();
+        $(this).click(function() {
+            if (p_drop.is(':hidden')) {
+                p_drop.slideDown('fast');
+            } else {
+                p_drop.slideUp('fast');
+            }
+        });
+    });
+}
+
 function moreInfo() {
     $('.g-click').each(function() {
         var id = $(this).attr('gameid');
@@ -68,7 +83,7 @@ function underCover() {
 function listLight(game_id, el_id) {
     $('#t-' + game_id).addClass('focus-fill');
     UIkit.util.on('#' + el_id, 'hide', function() {
-      $('#t-' + game_id).removeClass('focus-fill');
+        $('#t-' + game_id).removeClass('focus-fill');
     });
 }
 

@@ -45,7 +45,7 @@ class StaticPagesController < ApplicationController
   def search
     @more_in_req, @more_in_off = false
 
-    view = params[:view] || 'list_view'
+    view = params[:view] || 'cover_view'
 
     #SEARCH
     if params[:search]
