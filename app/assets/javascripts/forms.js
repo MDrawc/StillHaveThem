@@ -83,19 +83,16 @@ function updatePlatformIcon(form_type, id) {
 }
 
 function paintItBlack(id) {
-  var add_form_link = $('#gs-' + id + ' .plus');
-  var game_name = $('#gs-' + id + ' .game-name');
-  var other_covers = $('.game-cover').not('#gc-' + id).addClass('bw');
+    var add_form_link = $('#gs-' + id + ' .plus');
+    var game_name = $('#gs-' + id + ' .game-name');
 
-  add_form_link.addClass('disabled');
-  game_name.addClass('disabled');
-  other_covers.addClass('bw');
+    add_form_link.addClass('disabled');
+    game_name.addClass('focused');
 
-  UIkit.util.on('#add-form-' + id, 'hide', function() {
-    add_form_link.removeClass('disabled');
-    game_name.removeClass('disabled');
-    other_covers.removeClass('bw');
-  });
+    UIkit.util.on('#add-form-' + id, 'hide', function() {
+        add_form_link.removeClass('disabled');
+        game_name.removeClass('focused');
+    });
 }
 
 function changeSearchBar() {

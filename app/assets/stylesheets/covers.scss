@@ -72,7 +72,7 @@
 .name {
     color: #555;
     opacity: 1;
-    transition: color 0.2s ease-in-out;
+    transition: opacity 0.2s;
 
     &.owned {
         box-shadow: 0px 2px 0px 0px #bebebe;
@@ -91,7 +91,7 @@
     margin-top: -16px;
     opacity: 0;
     box-shadow: -1px 2px 8px -1px #0000004a;
-    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: opacity 0.2s, color 0.2s;
 
     svg {
         color: #fff;
@@ -110,11 +110,10 @@
 .fade {
     @include unselectable;
 
-    transition: color 0.2s ease-in-out;
+    transition: opacity 0.2s;
 }
 
 .game-warning {
-
     max-width: 200px;
     margin: 5px 0px;
 
@@ -125,7 +124,6 @@
         color: #666666;
         font-size: 13px;
         font-weight: 300;
-        transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
 
         &:focus {
             outline: none;
@@ -133,45 +131,32 @@
     }
 }
 
-.game-name:hover .name {
-    color: $disabled;
-}
+.game-name:hover {
+    .name {
+        opacity: 0.4;
+    }
 
-.game-name:hover ~ .fade {
-    color: $disabled;
+    .plus {
+        opacity: 1;
+    }
 
-    button {
-        border-color: #c7c7c7;
-        color: $disabled;
+    ~ .fade {
+        opacity: 0.4;
     }
 }
 
-.game-name:hover .plus {
-    opacity: 1;
-}
-
-.game-name.disabled:hover .plus {
-    opacity: 0;
-}
-
-.game-name.disabled .name {
-    color: $disabled;
-}
-
-.game-name.disabled ~ .fade {
-    p {
-        color: $disabled;
+.game-name.focused:hover {
+    .name {
+        opacity: 1;
     }
 
-    button {
-        border-color: #c7c7c7;
-        color: $disabled;
+    .plus {
+        opacity: 0;
     }
-}
 
-.bw {
-    filter: grayscale(1);
-    opacity: 0.6;
+    ~ .fade {
+        opacity: 1;
+    }
 }
 
 .cv-opts {
