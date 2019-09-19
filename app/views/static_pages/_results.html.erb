@@ -4,6 +4,7 @@
   <div id="show-more">
     <%= form_tag("/search_games", method: :get, remote: true) do %>
     <%= hidden_field_tag :cut, true %>
+    <%= hidden_field_tag :view, view %>
     <%= submit_tag "Load more",
     class: "more-button",
     data: { disable_with: "Please wait..." } %>
