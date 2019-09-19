@@ -17,7 +17,7 @@
                     <span></span>
                 </span>
             <% else %>
-                <%= f.select(:collection, options_for_select(collections), { include_blank: 'Select collection' }, { id: 'collection' }) %>
+                <%= f.select(:collection, options_for_select(collections), { id: 'collection' }) %>
                 <span class="bigs">
                     <span class="cf-collection-green"><%= svg 'shelf_icon' %></span>
                     <span></span>
@@ -59,7 +59,7 @@
         <%= render(partial: 'search/already_in', locals: { igdb_id: data[:igdb_id], x_id: x_id }) if owned %>
     </div>
 <% else %>
-    <span class="italic blink_me"><%= svg 'warning' %> Please add collection first</span>
+    <span class="italic blink_me"><%= svg 'warning' %> Please create collection first</span>
 <% end %>
 
 
