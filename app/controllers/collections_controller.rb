@@ -9,14 +9,9 @@ def new
   respond_to :js
 end
 
-def change_view
-  @view = params[:view]
-  respond_to :js
-end
-
 def show
   @q = @collection.games.ransack(params[:q])
-  @view = params[:view] || 'list'
+  @view = params[:view] || cookies['my_view'] || 'covers'
   unless params[:q]
     @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
     @refresh = params[:type] == 'refresh'

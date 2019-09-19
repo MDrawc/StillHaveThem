@@ -1,11 +1,11 @@
 <div class="toolbar">
   <ul>
   <!-- cover view -->
-  <li><%= link_to '', change_view_url(collection.id, 'covers'), remote: true, id: 'v-covers', 'uk-icon': 'thumbnails' %></li>
+  <li><%= content_tag :a, nil, class: 'change-my-view', 'view': 'covers', 'coll_id': collection.id, 'uk-icon': 'thumbnails' %></li>
   <!-- panels view -->
-  <li><%= link_to '', change_view_url(collection.id, 'panels'), remote: true, id: 'v-panels', 'uk-icon': 'list' %></li>
+  <li><%= content_tag :a, nil, class: 'change-my-view', 'view': 'panels', 'coll_id': collection.id, 'uk-icon': 'list' %></li>
   <!-- list view -->
-  <li><%= link_to '', change_view_url(collection.id, 'list'), remote: true, id: 'v-list', 'uk-icon': 'table' %></li>
+  <li><%= content_tag :a, nil, class: 'change-my-view', 'view': 'list', 'coll_id': collection.id, 'uk-icon': 'table' %></li>
   <!-- change theme -->
   <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
   <!-- hide overlays -->
