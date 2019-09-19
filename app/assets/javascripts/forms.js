@@ -46,6 +46,15 @@ function activateForm(form_type, id) {
     var platform_element = form.find('#platform-option');
     var needs_platform = form.find('#game_needs_platform');
 
+    // Check auto-chosen collection:
+    var value = select_element.val();
+    var cv = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
+    if (cv == false) {
+            platform_element.hide();
+            icon.attr('class', 'cf-collection-green');
+            needs_platform.attr('value', 'false');
+    }
+
     select_element.on('input', function() {
         var value = select_element.val();
         var cv = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';

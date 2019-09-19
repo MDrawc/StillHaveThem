@@ -10,19 +10,11 @@
     <%= hidden_field_tag 'x_id', x_id %>
     <div class="select-collection">
         <div uk-form-custom="target: > * > span:last-child">
-            <% if collections.size > 1 %>
-                <%= f.select(:collection, options_for_select(collections), { include_blank: 'Select collection' }, { id: 'collection' }) %>
-                <span class="bigs">
-                    <span class="cf-collection-icon"><%= svg 'shelf_icon' %></span>
-                    <span></span>
-                </span>
-            <% else %>
-                <%= f.select(:collection, options_for_select(collections), { id: 'collection' }) %>
+                <%= f.select(:collection, options_for_select(collections), {}, { id: 'collection' }) %>
                 <span class="bigs">
                     <span class="cf-collection-green"><%= svg 'shelf_icon' %></span>
                     <span></span>
                 </span>
-            <% end %>
         </div>
     </div>
     <div id="platform-option">
@@ -33,19 +25,11 @@
         <% end %>
         <div class="uk-margin select-platform">
             <div uk-form-custom="target: > * > span:last-child">
-                <% if select_platforms.size > 1 %>
-                <%= f.select(:platform, select_platforms, include_blank: 'Select platform') %>
-                <span class='bigs'>
-                    <span class="cf-platform-icon"><%= svg 'platform_icon' %></span>
-                    <span></span>
-                </span>
-                <% else %>
                 <%= f.select(:platform, select_platforms) %>
                 <span class='bigs'>
                     <span class="cf-platform-green"><%= svg 'platform_icon' %></span>
                     <span></span>
                 </span>
-                <% end %>
             </div>
         </div>
         <div class="uk-margin uk-grid-small uk-grid">
@@ -61,6 +45,3 @@
 <% else %>
     <span class="italic blink_me"><%= svg 'warning' %> Please create collection first</span>
 <% end %>
-
-
-
