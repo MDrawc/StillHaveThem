@@ -1,10 +1,14 @@
 function changeTheme() {
     $('#change-theme').click(function() {
         if (Cookies.get('theme') === 'theme_dark') {
-            Cookies.set("theme", "theme_default", { expires: 365 });
+            Cookies.set("theme", "theme_default", {
+                expires: 365
+            });
             $('#theme-control').attr('href', '/assets/theme_default.self.css');
         } else {
-            Cookies.set("theme", "theme_dark", { expires: 365 });
+            Cookies.set("theme", "theme_dark", {
+                expires: 365
+            });
             $('#theme-control').attr('href', '/assets/theme_dark.self.css');
         }
     });
@@ -51,6 +55,51 @@ function changeMyView() {
             url: '/collections/' + coll_id,
             data: data
         });
+    });
+}
+
+function changeSearchView() {
+    $('.change-s-view').off();
+    $('.change-s-view').click(function() {
+
+        var view = $(this).attr('view');
+
+        var data = {
+            view: view
+        };
+
+        var last_form = $('#last-form');
+
+        if (last_form.length > 0) {
+
+            last_form = eval(last_form.text());
+
+            data['search'] = {
+                inquiry: last_form[0],
+                query_type: last_form[1],
+                console: last_form[2],
+                arcade: last_form[3],
+                portable: last_form[4],
+                pc: last_form[5],
+                linux: last_form[6],
+                mac: last_form[7],
+                mobile: last_form[8],
+                computer: last_form[9],
+                other: last_form[10],
+                only_released: last_form[11],
+                dlc: last_form[12],
+                expansion: last_form[13],
+                bundle: last_form[14],
+                standalone: last_form[15],
+                erotic: last_form[16]
+            }
+        }
+
+        $.ajax({
+            url: '/search_games',
+            data: data
+        });
+
     });
 }
 

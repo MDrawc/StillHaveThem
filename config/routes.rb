@@ -28,5 +28,4 @@ Rails.application.routes.draw do
 
   get 'c_show/:igdb_id', to: 'games#cover_show', as: 'cover_show'
 
-  get 's_chg_v/:view', to: 'static_pages#s_change_view', as: 's_change_view'
 end

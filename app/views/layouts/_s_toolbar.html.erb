@@ -2,11 +2,11 @@
     <%= content_tag :span, last_form, id: 'last-form' %>
   <ul>
   <!-- cover view -->
-  <li><%= link_to '', s_change_view_url('cover_view'), remote: true, id: 'v-covers', 'uk-icon': 'thumbnails' %></li>
+  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'cover_view', 'uk-icon': 'thumbnails' %></li>
   <!-- panels view -->
-  <li><%= link_to '', s_change_view_url('panel_view'), remote: true, id: 'v-panels', 'uk-icon': 'list' %></li>
+  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'panel_view', 'uk-icon': 'list' %></li>
   <!-- list view -->
-  <li><%= link_to '', s_change_view_url('list_view'), remote: true, id: 'v-list', 'uk-icon': 'table' %></li>
+  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'list_view', 'uk-icon': 'table' %></li>
   <!-- change theme -->
   <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
   <!-- hide overlays -->

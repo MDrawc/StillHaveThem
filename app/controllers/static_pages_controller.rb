@@ -24,11 +24,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def s_change_view
-    @view = params[:view]
-    respond_to :js
-  end
-
   def privacy
   end
 
