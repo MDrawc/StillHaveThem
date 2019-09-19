@@ -1,5 +1,4 @@
 var no_errors = <%= !@inquiry.errors.any? %>;
-var user_id = '<%= user_id %>';
 
 $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
 $('#search-igdb-bar').on('input', function() {
@@ -25,7 +24,7 @@ if (no_errors) {
 //do things differently based on view
 
 //covers_view
-flip_offc(user_id);
+flip_offc();
 fitNameInNoCover();
 morePlatforms();
 

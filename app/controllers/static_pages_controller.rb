@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      if (last = cookies["#{ current_user.id }-last"]).present?
+      if (last = cookies['last']).present?
         case last
         when 'search'
         else

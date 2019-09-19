@@ -1,10 +1,10 @@
-function set_offc(user_id) {
-    if (Cookies.get(user_id + '-offc_right') === 'true') {
+function set_offc() {
+    if (Cookies.get('offc_right') === 'true') {
         $('body').addClass('uk-offcanvas-flip');
     }
 }
 
-function flip_offc(user_id) {
+function flip_offc() {
 
     if ($('body').hasClass('uk-offcanvas-flip')) {
         $('.flip').addClass('flip-right');
@@ -13,12 +13,12 @@ function flip_offc(user_id) {
     $('.flip').click(function() {
         if ($(this).hasClass('flip-right')) {
             $('body').removeClass('uk-offcanvas-flip');
-            Cookies.set(user_id + '-offc_right', 'false', {
+            Cookies.set('offc_right', 'false', {
                 expires: 365
             });
         } else {
             $('body').addClass('uk-offcanvas-flip');
-            Cookies.set(user_id + '-offc_right', 'true', {
+            Cookies.set('offc_right', 'true', {
                 expires: 365
             });
         }

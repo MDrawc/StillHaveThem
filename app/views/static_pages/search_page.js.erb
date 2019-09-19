@@ -3,4 +3,4 @@ $("li.active").removeClass('active');
 $("#m-search").addClass('active');
 $('input#search-igdb-bar').focus();
 changeSearchBar();
-Cookies.set('<%= current_user.id %>-last', 'search', { expires: 30 });
+Cookies.set('last', 'search', { expires: 30 });
