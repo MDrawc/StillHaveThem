@@ -14,6 +14,8 @@ if (msg) {
 }
 
 if (success) {
+    // Save last used collection to cookies
+    Cookies.set('last_coll', '<%= @collection.id %>')
 
     // Hide form dropdown
     var drop_element = "#add-form-" + x_id;
