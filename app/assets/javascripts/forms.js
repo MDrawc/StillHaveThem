@@ -38,6 +38,17 @@ function changeButton(form_type, id) {
     });
 }
 
+function selectLastColl(form_type, id) {
+    var coll_id = Cookies.get('last_coll');
+
+    if (coll_id) {
+        var selector = form_type === 'list' ? "#t-ops .modal-content" : '#' + form_type + '-form-' + id;
+        var form_select = $(selector).find('#collection')
+        var element = form_select.find("option[value^='" + coll_id + ",']");
+        element.attr("selected", "selected");
+    }
+}
+
 function activateForm(form_type, id) {
     var selector = form_type === 'list' ? "#t-ops .modal-content" : '#' + form_type + '-form-' + id;
     var form = $(selector);
@@ -46,13 +57,15 @@ function activateForm(form_type, id) {
     var platform_element = form.find('#platform-option');
     var needs_platform = form.find('#game_needs_platform');
 
-    // Check auto-chosen collection:
-    var value = select_element.val();
-    var cv = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
-    if (cv == false) {
+    // Check auto-chosen collection in add-form:
+    if (form_type === 'add') {
+        var value = select_element.val();
+        var cv = value.length != 0 ? (value.split(",")[1] == 'true') : 'select';
+        if (cv == false) {
             platform_element.hide();
             icon.attr('class', 'cf-collection-green');
             needs_platform.attr('value', 'false');
+        }
     }
 
     select_element.on('input', function() {

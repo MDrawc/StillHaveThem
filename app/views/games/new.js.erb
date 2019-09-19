@@ -5,8 +5,10 @@ var form_partial = "<%= j(render partial: 'search/add_form', locals: { data: @da
 
 if ($('.add-form').length > 0) {
   $("#add-form-<%= @x_id %>").html(form_partial);
+  selectLastColl('add','<%= @x_id %>');
 } else {
   $("#t-ops .modal-content").html(form_partial);
+  selectLastColl('list','<%= @x_id %>');
 }
 
 //covers_view
@@ -18,5 +20,6 @@ paintItBlack('<%= @x_id %>')
 
 
 // all
+
 activateForm('add', '<%= @x_id %>');
 updatePlatformIcon('add', '<%= @x_id %>');
