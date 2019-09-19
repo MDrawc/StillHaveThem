@@ -21,6 +21,10 @@ function changeMyView() {
         var view = $(this).attr('view');
         var coll_id = $(this).attr('coll_id');
 
+        Cookies.set("my_view", view, {
+            expires: 365
+        });
+
         var data = {
             view: view
         };
@@ -63,6 +67,10 @@ function changeSearchView() {
     $('.change-s-view').click(function() {
 
         var view = $(this).attr('view');
+
+        Cookies.set("s_view", view, {
+            expires: 365
+        });
 
         var data = {
             view: view
