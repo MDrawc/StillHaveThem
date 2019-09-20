@@ -1,18 +1,17 @@
+var view = '<%= view %>';
+
 $("#show-more").html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
 $("#show-more").attr('id', 'showed_more');
 
-
-
-
-//do things differently based on view
-
-//covers_view
-cleanOffcanvas()
-flip_offc();
-fitNameInNoCover();
-morePlatforms();
-
-//list_view
-
-//panels_view
-moreInfo();
+switch (view) {
+    case 'list_view':
+        break;
+    case 'cover_view':
+        cleanOffcanvas()
+        fitNameInNoCover();
+        morePlatforms();
+        break;
+    case 'panel_view':
+        moreInfo();
+        break;
+}

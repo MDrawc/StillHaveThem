@@ -26,11 +26,14 @@ function morePlatforms() {
 }
 
 function moreInfo() {
+
     $('.g-click').each(function() {
         var id = $(this).attr('gameid');
         var hidee = $('#g-hide-' + id);
         var drop = $('#g-drop-' + id);
+
         $(this).off();
+
         $(this).click(function() {
             if (drop.is(':hidden')) {
                 hidee.show();
@@ -40,6 +43,7 @@ function moreInfo() {
                 drop.slideUp('fast');
             }
         });
+
         hidee.off();
         hidee.click(function() {
             if (drop.is(':visible')) {
