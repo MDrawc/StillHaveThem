@@ -26,13 +26,13 @@ function morePlatforms() {
 }
 
 function moreInfo() {
-
     $('.g-click').each(function() {
         var id = $(this).attr('gameid');
         var hidee = $('#g-hide-' + id);
         var drop = $('#g-drop-' + id);
 
         $(this).off();
+        hidee.off();
 
         $(this).click(function() {
             if (drop.is(':hidden')) {
@@ -44,7 +44,7 @@ function moreInfo() {
             }
         });
 
-        hidee.off();
+
         hidee.click(function() {
             if (drop.is(':visible')) {
                 hidee.hide();
@@ -52,6 +52,7 @@ function moreInfo() {
             }
         });
     });
+    // $('.g-drop').slideUp();
 }
 
 function underCover() {

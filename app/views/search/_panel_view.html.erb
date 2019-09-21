@@ -2,12 +2,12 @@
 <% @results.each do |game| %>
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
-    <%= content_tag :div, id: "g-#{ x_id }", class: 'g-panel uk-width-5-6 uk-grid-collapse', 'uk-grid': '' do %>
-        <%= get_game_thumb(game) %>
-        <%= content_tag :div, class: 'g-info uk-width-expand uk-grid-collapse', 'uk-grid': '' do %>
-            <%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
+    <%= content_tag :div, id: "g-#{ x_id }", class: 'g-panel uk-width-5-6' do %>
 
-            <div class="hold-title uk-width-expand">
+    <div class="not-drop">
+        <%= get_game_thumb(game) %>
+        <%= content_tag :div, class: 'g-info s-mod' do %>
+        <%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
                 <h4 class="g-title"><%= game[:name] %>
                 <% if (status_id = game[:status]) && status_id != 0 %>
                     <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>
@@ -23,14 +23,13 @@
                     <%= content_tag :div, nil, class: 'p-addl-spacer' %>
                     <%= content_tag :div, game[:addl], class: 'p-addl' %>
                 <% end %>
-            </div>
-
         <% end %>
         <%= content_tag :div, class: "g-right-add" do %>
            <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
-           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first, 'uk-tooltip': "title: #{ add.last }; pos: right" %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first %>
         <% end %>
-        <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop uk-width-1-1' do %>
+        </div>
+        <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop s-mod' do %>
         <div class="g-extra">
             <% if screens = game[:screenshots] %>
                 <% urls = screens_urls(screens) %>
@@ -62,8 +61,8 @@
                 <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game[:name].gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
             </div>
         </div>
-        <%= content_tag :button, '', id: "g-hide-#{ x_id }", class: 'g-hide uk-icon-link', 'uk-icon': 'chevron-up' %>
         <% end %>
+        <%= content_tag :button, '', id: "g-hide-#{ x_id }", class: 'g-hide uk-icon-link', 'uk-icon': 'chevron-up' %>
     <% end %>
     <%= content_tag(:div, 'Loading...', id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #g-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") %>
 <% end %>
