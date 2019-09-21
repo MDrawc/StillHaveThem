@@ -7,7 +7,7 @@
     <div class="not-drop">
         <%= get_game_thumb(game) %>
         <%= content_tag :div, class: 'g-info s-mod' do %>
-        <%= content_tag(:div, nil, class: 'g-click', 'gameid': x_id) %>
+        <%= content_tag(:div, nil, class: 'g-click s-mod', 'gameid': x_id) %>
                 <h4 class="g-title"><%= game[:name] %>
                 <% if (status_id = game[:status]) && status_id != 0 %>
                     <%= content_tag :span, "/ #{ convert_status(status_id) }", class: 'gw-b' %>

@@ -498,7 +498,7 @@ hr.md {
 
 .no-thumb {
     position: relative;
-    width: 70px;
+    min-width: 70px;
     height: 70px;
     margin: 10px 0px 10px 10px;
     border-radius: 3px;
@@ -623,13 +623,18 @@ hr.md {
 }
 
 .g-click {
-    width: calc(100% + 80px);
+    width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
-    left: -80px;
+    left: 0;
     z-index: 2;
     cursor: pointer;
+}
+
+.g-click.s-mod {
+    width: calc(100% + 80px);
+    left: -80px;
 }
 
 .g-extra {
