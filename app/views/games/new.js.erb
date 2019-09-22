@@ -1,19 +1,21 @@
 var form_partial = "<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>";
 var view = $('#view-container').attr('view');
+var form;
 
 switch (view) {
     case 'covers':
         paintItBlack('<%= @x_id %>');
         $("#add-form-<%= @x_id %>").html(form_partial);
-        selectLastColl('add', '<%= @x_id %>');
+        form = 'add';
         break;
     case 'panels':
         $("#add-form-<%= @x_id %>").html(form_partial);
-        selectLastColl('add', '<%= @x_id %>');
+        form = 'add';
         break;
     default:
         $("#t-ops .modal-content").html(form_partial);
-        selectLastColl('list', '<%= @x_id %>');
+        form = 'list';
 }
 
-activateForm('add', '<%= @x_id %>');
+activateForm(form, '<%= @x_id %>');
+selectLastColl(form, '<%= @x_id %>');
