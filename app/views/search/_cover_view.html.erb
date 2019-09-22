@@ -1,4 +1,4 @@
-<div class="uk-grid uk-text-center uk-flex uk-flex-center">
+<div id="view-container" class="uk-grid uk-text-center uk-flex uk-flex-center" view="covers">
   <% @results.each do |game| %>
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>

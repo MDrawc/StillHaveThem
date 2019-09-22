@@ -131,9 +131,6 @@ function presentShadow() {
     });
 }
 
-
-
-
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', e => {
         if (!e.target.currentSrc.startsWith('data:')) {

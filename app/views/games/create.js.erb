@@ -1,7 +1,7 @@
-// VARIABLES:
 var x_id = '<%= @x_id %>';
 var game_id = '<%= @game_igdb_id %>';
 var msg = '<%= @message %>';
+var view = $('#view-container').attr('view');
 var msg_pos = 'top-right';
 var success = <%= @errors.empty? %>;
 
@@ -14,30 +14,42 @@ if (msg) {
 }
 
 if (success) {
-    // Save last used collection to cookies
+
     Cookies.set('last_coll', '<%= @collection.id %>')
+    switch (view) {
+        case 'covers':
+            var drop_element = "#add-form-" + x_id;
+            UIkit.dropdown(drop_element).hide();
+            var name_el = $('[id^=gs-' + game_id + ']').find('.game-name span');
+            name_el.addClass('owned');
+            break;
+        case 'panels':
+            var drop_element = "#add-form-" + x_id;
+            UIkit.dropdown(drop_element).hide();
+            break;
+        default:
+            UIkit.modal("#t-ops").hide();
+    }
 
-    // Hide form dropdown
-    var drop_element = "#add-form-" + x_id;
-    UIkit.dropdown(drop_element).hide();
-
-    // Underline owned game on cover view
-    var name_el = $('[id^=gs-' + game_id + ']').find('.game-name span');
-    name_el.addClass('owned');
-
-    // Change add-form link
-    $('[id^=add-' + game_id + ']').each(function(){
+    $('[id^=add-' + game_id + ']').each(function() {
         var href = $(this).attr('href');
-        $(this).attr('href', href.replace('false','true'));
+        $(this).attr('href', href.replace('false', 'true'));
+        $(this).attr('uk-icon', 'check');
     });
 
 } else {
 
-    // Show errors
-    var element = "#add-form-" + x_id + " .add-form-errors";
-    $(element).html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+    var errors = "<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>";
 
-    // Reset error upon input change
-    resetFormErrors('add', x_id)
+    switch (view) {
+        case 'list':
+            var element = "#t-ops .add-form-errors";
+            $(element).html(errors);
+            resetFormErrors('list', x_id)
+            break;
+        default:
+            var element = "#add-form-" + x_id + " .add-form-errors";
+            $(element).html(errors);
+            resetFormErrors('add', x_id)
+    }
 }
-

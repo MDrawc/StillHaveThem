@@ -24,8 +24,6 @@ Rails.application.routes.draw do
   get 'edit_form/:game_id/:collection_id/:view', to: 'games#edit_form', as: 'edit_form'
   get 'cm_form/:game_id/:collection_id/:view', to: 'games#cm_form', as: 'cm_form'
 
-  get 'l_show/:igdb_id/:hg_id', to: 'games#list_show', as: 'list_show'
-
-  get 'c_show/:igdb_id', to: 'games#cover_show', as: 'cover_show'
-
+  get 'ls/:igdb_id/:hg_id', to: 'games#list_show', as: 'list_show'
+  get 'cs/:igdb_id', to: 'games#cover_show', as: 'cover_show'
 end

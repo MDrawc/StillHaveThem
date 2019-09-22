@@ -1,4 +1,4 @@
-<%= content_tag :table, class: 's-table uk-table' do %>
+<%= content_tag :table, id: 'view-container', class: 's-table uk-table', 'view': 'list' do %>
 <% @results.each do |game| %>
     <% igdb_id = game[:igdb_id] %>
     <% x_id = game[:uniq] ? igdb_id.to_s + '-' + game[:uniq] : igdb_id %>
@@ -39,7 +39,7 @@
 
         <%= content_tag :td, class: 's-add' do %>
            <% add = @owned.include?(igdb_id) ? 'check' : 'plus' %>
-           <%= link_to '', new_game_url(x_id: x_id, owned: add == 'check'), remote: true, 'uk-icon': add, 'uk-toggle': 'target: #t-ops' %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add == 'check'),id: "add-#{ x_id }", remote: true, 'uk-icon': add, 'uk-toggle': 'target: #t-ops' %>
         <% end %>
 
     <% end %>
