@@ -1,12 +1,9 @@
-<div class="search-form">
-  <%= form_for("search", url: 'search_games', method: :get, remote: true) do |f| %>
-  <div class="uk-inline s-inline">
+  <%= form_for("search", url: 'search_games', method: :get, html: {remote: true, class: 'search-form'} ) do |f| %>
     <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
-    <%= content_tag(:span, nil,id: "infc", class: "info-icon", "uk-icon" => "info")%>
+    <%= content_tag(:span, nil, id: "infc", class: "info-icon", "uk-icon": "info")%>
     <%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
-  </div>
   <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
-  <p><%= svg 'igdb_icon' %> IGDB: Free Video Game Database</p>
+  <%= svg 'igdb_icon' %> IGDB: Free Video Game Database
 </div>
     <div class="search-dropdown" uk-dropdown="toggle: #search-igdb-bar; pos: bottom-center; mode: click">
       <div class="strike"><span>Search by:</span></div>
@@ -66,4 +63,3 @@
     </div>
   </div>
   <% end %>
-</div>

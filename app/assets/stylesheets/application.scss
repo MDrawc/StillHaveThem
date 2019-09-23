@@ -59,7 +59,6 @@ $disabled: #b4b4b4;
 @import "game_offc";
 
 // NO GAMES
-
 .not-active {
   pointer-events: none;
   cursor: default;
@@ -93,6 +92,13 @@ $disabled: #b4b4b4;
     a:hover {
         color: #666;
     }
+}
+
+// NO RESULTS
+.no-results {
+    @extend .no-games;
+    width: 366px;
+    margin-left: -183px;
 }
 
 // SCREEN AS IMAGE
@@ -333,15 +339,6 @@ li.active:hover .opts {
     }
 }
 
-//NO RESULTS
-
-div.no-results {
-    width: 300px;
-    border: 2px dashed grey;
-    padding: 20px;
-    border-radius: 5px;
-}
-
 //OTHER
 
 #r-q, #r-s {
@@ -394,8 +391,10 @@ div.no-results {
 
 // Search Form (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - //
 .search-form {
-    margin-top: 20px;
-    text-align: center;
+    position: relative;
+    width: 400px;
+    margin: 20px auto 0;
+    z-index: 150;
 }
 
 .search-bar {
@@ -411,26 +410,23 @@ div.no-results {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
 }
 
-.search-icon {
-    left: 20px;
-}
-
 .info-icon {
-    position: relative;
-    left: 390px;
-    color: #999999;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: $light_grey;
 
     svg {
-        fill: #999999;
+        fill: $light_grey;
     }
 }
 
 .info-icon:hover {
-    color: #666;
+    color: $dark_grey;
 }
 
 .info-icon:hover svg {
-    fill: #666;
+    fill: $dark_grey;
 }
 
 .info-icon:hover ~ .search-bar {
@@ -441,13 +437,8 @@ div.no-results {
     box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
 }
 
-.s-inline {
-    font-size: 0px;
-}
-
 // Errors (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
 .warning-icon {
-    @extend .search-icon;
 
     pointer-events: all !important;
     color: #999999;
@@ -491,33 +482,9 @@ div.no-results {
 
 .api-status {
     @extend .errors;
-
-    .status-label {
-        font-size: 14px;
-        border-bottom: 1px solid #fff;
-    }
-
-    .status-label + td {
-        border-bottom: 1px solid #fff;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    td {
-        font-size: 12px;
-        color: #fff;
-    }
-
-    td.values {
-        text-align: right;
-    }
-
-    hr {
-        margin: 3px 0px 3px 0px;
-    }
+    width: 227px;
+    font-size: 12px;
+    color: #fff;
 }
 
 .api-status.uk-dropdown.uk-open.uk-dropdown-right-center {
@@ -949,7 +916,7 @@ p.header {
     @extend .warning-icon;
 
     position: absolute;
-    left: 25px;
+    left: 5px;
     top: 50%;
     margin-top: -15px;
 }
