@@ -2,6 +2,7 @@ $("li.active").removeClass('active');
 $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
 var refresh = <%= @refresh %>;
+var no_games = <%= @games.empty? %>;
 
 if (refresh && view === 'panels') {
     var ids = getIdsOfOpenPanels();
@@ -31,5 +32,8 @@ filter();
 changeTheme();
 toggleEditMenu();
 changeMyView();
+if (no_games) {
+    disableSortLinks();
+}
 
 $('#q_name_dev_cont').focus();

@@ -85,6 +85,10 @@ function underCover() {
     });
 }
 
+function disableSortLinks() {
+    $('a.sort_link').addClass('not-active');
+}
+
 function listLight(game_id, el_id) {
     $('#t-' + game_id).addClass('focus-fill');
     UIkit.util.on('#' + el_id, 'hide', function() {

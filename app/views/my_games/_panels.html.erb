@@ -6,6 +6,7 @@
     <div class="srch-div"></div>
     <%= sort_link(@q, :added,'Added', {}, {remote: true}) %>
 </div>
+<% if !@games.empty? %>
 <div class="uk-grid-collapse" uk-grid>
     <div class="uk-width-5-6 page-info-front page-links pr">
         <%= js_will_paginate @games, container: false %>
@@ -100,3 +101,6 @@
     <%= js_will_paginate @games, container: false %>
 </div>
 </div>
+<% else %>
+<%= render partial: 'my_games/no_games' %>
+<% end %>

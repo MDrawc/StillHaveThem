@@ -17,11 +17,19 @@
 @import "uikit/uikit-theme.scss";
 
 //MIXINS
-@mixin unselectable() {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+@mixin unselectable {
+    -webkit-user-select: none;
+
+    /* Safari */
+    -moz-user-select: none;
+
+    /* Firefox */
+    -ms-user-select: none;
+
+    /* IE10+/Edge */
+    user-select: none;
+
+    /* Standard */
     cursor: default;
 }
 
@@ -50,6 +58,43 @@ $disabled: #b4b4b4;
 @import "collections";
 @import "game_offc";
 
+// NO GAMES
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+}
+
+.uk-input:disabled {
+    background: none;
+}
+
+.no-games {
+    width: 202px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -101px;
+    text-align: center;
+    font-size: 40px;
+    color: #adadad;
+    font-weight: 300;
+
+    p {
+        font-size: 14px;
+        color: #999;
+        border-top: thin solid #bababa;
+        padding-top: 10px;
+    }
+
+    a:hover {
+        color: #666;
+    }
+}
+
 // SCREEN AS IMAGE
 .s-cover {
     height: $no_cover_height;
@@ -57,7 +102,9 @@ $disabled: #b4b4b4;
 }
 
 // HTML, BODY
-html { background-color: $background; }
+html {
+    background-color: $background;
+}
 
 body {
     overflow-y: scroll;
@@ -93,9 +140,13 @@ body::-webkit-scrollbar {
     color: $light_grey;
 }
 
-.nav-but:hover { color: $dark_grey; }
+.nav-but:hover {
+    color: $dark_grey;
+}
 
-.nav-but.active { color: $dark_accent; }
+.nav-but.active {
+    color: $dark_accent;
+}
 
 // FOOTER
 footer {
@@ -105,6 +156,7 @@ footer {
     width: 100%;
     height: $footer_height;
     font-size: 12px;
+
     ul {
         margin: 0px 35px 0px 0px;
         list-style: none;
@@ -127,7 +179,10 @@ a.uk-notification-close {
     svg {
         width: 12px;
         height: 12px;
-        line { stroke-width: 1.4; }
+
+        line {
+            stroke-width: 1.4;
+        }
     }
 }
 
@@ -137,12 +192,20 @@ a.uk-notification-close {
     font-size: 14px;
     border-radius: 5px;
     padding: 10px 26px 10px 10px;
-    .g { color: $dark_accent; }
-    .b { color: $warning; }
+
+    .g {
+        color: $dark_accent;
+    }
+
+    .b {
+        color: $warning;
+    }
+
     .d {
         font-style: italic;
         font-weight: 300;
     }
+
     .c {
         color: $dark_grey;
         display: inline-flex;
@@ -150,7 +213,9 @@ a.uk-notification-close {
     }
 }
 
-.uk-notification-message .c:hover { color: $light_grey; }
+.uk-notification-message .c:hover {
+    color: $light_grey;
+}
 
 // MENU
 .uk-navbar {
@@ -167,6 +232,7 @@ a.uk-notification-close {
     align-items: center;
     position: fixed;
     z-index: 100;
+
     ul {
         list-style: none;
         padding-left: 0px;
@@ -201,6 +267,7 @@ li.active .m-coll:hover {
 
 li.active .m-add {
     border-left: 6px solid $dark_accent;
+
     svg {
         color: $dark_grey;
         width: 30px;
@@ -232,15 +299,16 @@ li.active .m-add:hover {
 }
 
 li.active:hover .opts {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s linear;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s linear;
 }
 
 .m-add {
     color: $light_grey;
     padding: 10px 10px 10px 20px;
     transition: all 0.3s ease-in-out;
+
     svg {
         color: $light_grey;
         transition: all 0.3s ease-in-out;
@@ -249,6 +317,7 @@ li.active:hover .opts {
 
 .m-add:hover {
     padding-left: 26px;
+
     svg {
         color: $dark_grey;
         width: 35px;
@@ -257,6 +326,7 @@ li.active:hover .opts {
 
 #m-add-coll.active {
     padding-left: 26px;
+
     svg {
         color: $dark_grey;
         width: 35px;
@@ -620,6 +690,7 @@ div.no-results {
     height: 214px;
     box-sizing: border-box;
     margin-top: -107px;
+
     ul {
         list-style: none;
         padding: 0px;
@@ -876,6 +947,7 @@ p.header {
 
 .search-warning-icon {
     @extend .warning-icon;
+
     position: absolute;
     left: 25px;
     top: 50%;
