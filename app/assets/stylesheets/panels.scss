@@ -19,6 +19,7 @@
     font-size: 12px;
     color: #666;
     margin: 8px 0 0;
+
     // line-height: 15px;
 }
 
@@ -88,6 +89,14 @@
     margin-left: 0px;
 }
 
+.my-search.left-no-p {
+    margin-left: 14px;
+}
+
+.my-search.left-p {
+    margin-left: -5px;
+}
+
 .srch-div {
     display: inline-block;
     vertical-align: middle;
@@ -99,6 +108,8 @@
 
 .sort-links {
     margin-bottom: 40px;
+    // margin-left: -8.5px;
+    margin-left: -16px;
     text-align: center;
 }
 
@@ -222,15 +233,25 @@
 
 .previous_page {
     float: left;
+    width: 71.5px;
 }
 
 .next_page {
     float: right;
+    width: 46px;
+    margin-left: 25.45px;
+    text-align: right;
 }
 
 .page-links.cover-mod {
-    .previous_page, .next_page {
+    .previous_page {
         float: none;
+    }
+
+    .next_page {
+        float: none;
+        margin-left: 0px;
+        margin-right: 25.45px;
     }
 }
 
