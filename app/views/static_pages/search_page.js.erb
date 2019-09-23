@@ -3,4 +3,7 @@ $("li.active").removeClass('active');
 $("#m-search").addClass('active');
 $('input#search-igdb-bar').focus();
 changeSearchBar();
+
+searchWait();
+
 Cookies.set('last', 'search', { expires: 30 });

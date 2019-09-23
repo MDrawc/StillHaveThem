@@ -52,7 +52,6 @@ function moreInfo() {
             }
         });
     });
-    // $('.g-drop').slideUp();
 }
 
 function underCover() {
