@@ -19,7 +19,9 @@ module SessionsHelper
 
   def require_user
     unless logged_in?
-      redirect_to root_url
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
     end
   end
 end

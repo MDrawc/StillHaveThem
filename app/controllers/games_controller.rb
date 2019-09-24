@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_action :require_user
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
+  before_action :find_collection_for_create, only: [:create]
   SR_HEX = 2
 
   def new
@@ -21,11 +22,9 @@ class GamesController < ApplicationController
 
   def create
     agame_id = game_params[:id]
-    coll_id = game_params[:collection] .split(',').first.to_i
     @x_id = params['x_id']
-
     @errors = []
-    @collection = current_user.collections.find_by_id(coll_id)
+
     @game_igdb_id = game_params[:igdb_id]
 
     if @collection && @collection.needs_platform
@@ -84,9 +83,9 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @errors = []
     collection_id = params[:current].to_i
     @collection = current_user.collections.find(collection_id)
+    @errors = []
     @game_id = params[:game_id].to_i
     @view = params[:view]
 
@@ -213,7 +212,21 @@ class GamesController < ApplicationController
 
     def find_game_and_collection
       @collection = current_user.collections.find_by_id(params[:collection_id])
-      @game = @collection.games.find_by_id(params[:game_id])
+      if @collection.nil?
+        respond_to do |format|
+          format.js {render js: 'location.reload();' }
+        end
+      else
+        @game = @collection.games.find_by_id(params[:game_id])
+      end
+    end
+
+    def find_collection_for_create
+      coll_id = game_params[:collection] .split(',').first.to_i
+      @collection = current_user.collections.find_by_id(coll_id)
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
     end
 
     def create_from_agame(id, needs_platform = false, platform = nil, platform_name = nil, physical = nil)

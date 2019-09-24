@@ -7,7 +7,7 @@
       <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
       <span class="opts">
         <%= link_to '', edit_collection_url(collection), remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', "uk-toggle": "target: #edit-coll-modal", 'uk-tooltip': "title: Edit; pos: top-left" %>
-        <% tas = "Delete <span class='light-grey'>\"#{ collection.name }\"</span> collection?<span class='add-coll-icon'>#{ svg 'shelf_icon' }</span><p class='del-coll-info blink_me'>All games in this collection will be dropped.</p>" %>
+        <% tas = "Delete <span class='light-grey'>\"#{ collection.name }\"</span> collection?<span class='add-coll-icon'>#{ svg 'shelf_icon' }</span><p class='del-coll-info blink_me'>All games in this collection will be lost!</p>" %>
         <%= link_to '', collection, method: :delete, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left", data: { confirm: tas } %>
       </span>
     </li>

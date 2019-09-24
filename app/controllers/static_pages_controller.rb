@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :require_user, only: [:search_page]
+  before_action :require_user, only: [:search_page, :search]
   LIMIT = 50
   # For duplicates removal:
   @@last_result_ids = []

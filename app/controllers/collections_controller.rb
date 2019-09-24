@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
 before_action :require_user
-before_action :correct_user, only: [:show, :change_view, :edit, :update, :destroy]
+before_action :correct_user, only: [:show, :edit, :update, :destroy]
+before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
 PER_PAGE = 15
 
@@ -72,7 +73,6 @@ def destroy
 end
 
 def remove_game
-  @collection = current_user.collections.find_by_id(params[:collection_id])
   @game = @collection.games.find_by_id(params[:game_id])
   @view = params[:view]
   @success = false
@@ -93,7 +93,6 @@ end
 
 def remove_game_search
   @x_id = params[:x_id]
-  @collection = current_user.collections.find_by_id(params[:collection_id])
   @success = false
 
   if @game = @collection.games.find_by_id(params[:game_id])
@@ -125,7 +124,20 @@ private
 
   def correct_user
     @collection = current_user.collections.find_by(id: params[:id])
-    redirect_to root_url if @collection.nil?
+    if @collection.nil?
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
+    end
+  end
+
+  def correct_user_for_rm
+    @collection = current_user.collections.find_by_id(params[:collection_id])
+     if @collection.nil?
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
+    end
   end
 
   def owned?(igdb_id)

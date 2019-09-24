@@ -144,19 +144,19 @@ div#search-results.mask2:after {
 
 @keyframes dots {
     0% {
-        content: "";
-    }
-
-    25% {
-        content: ".";
-    }
-
-    50% {
         content: "..";
     }
 
-    75% {
+    25% {
         content: "...";
+    }
+
+    50% {
+        content: "";
+    }
+
+    75% {
+        content: ".";
     }
 }
 
