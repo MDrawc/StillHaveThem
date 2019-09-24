@@ -372,10 +372,12 @@ hr.md {
 .more-button {
     background: none;
     font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
     color: $light_grey;
     border: none;
     border-top: 1px solid #bababa;
-    width: 200px;
+    min-width: 200px;
     padding: 10px;
     margin-top: 20px;
     text-align: center;

@@ -313,8 +313,11 @@ class IgdbQuery
       # Finds stored in DB games (ignores duplicates):
       res = Agame.where(igdb_id: @games_ids)
 
-      # Sort but also recreate duplicates (needed in character search):
-      unless @query_type == :game
+      if @query_type == :game
+        # Sort
+        res = res.sort_by { |g| @games_ids.index(g.igdb_id) }
+      else
+        # Sort but also recreate duplicates (needed in character search):
         res = @games_ids.map { |id| res.find { |g| g.igdb_id == id } }.compact
       end
 
