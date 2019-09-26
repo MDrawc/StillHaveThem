@@ -19,8 +19,6 @@
     font-size: 12px;
     color: #666;
     margin: 8px 0 0;
-
-    // line-height: 15px;
 }
 
 .container {
@@ -31,7 +29,6 @@
     margin-right: 20px;
     position: relative;
     cursor: pointer;
-    font-size: 14px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -90,11 +87,11 @@
 }
 
 .my-search.left-no-p {
-    margin-left: 14px;
+    margin-left: 23px;
 }
 
 .my-search.left-p {
-    margin-left: -5px;
+    margin-left: 11px;
 }
 
 .srch-div {
@@ -108,9 +105,9 @@
 
 .sort-links {
     margin-bottom: 40px;
-    // margin-left: -8.5px;
     margin-left: -16px;
     text-align: center;
+    font-weight: 300;
 }
 
 .sort-icon {
@@ -119,7 +116,7 @@
 
 .sort_link {
     position: relative;
-    font-size: 14px;
+    font-size: 15px;
     color: $light_grey;
 
     span {
@@ -138,7 +135,7 @@
 .my-search {
     margin: 20px 0px 10px 0px;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .s-icon {
@@ -178,6 +175,7 @@
 
 #game_search {
     position: relative;
+    font-weight: 300;
 }
 
 #search-reset {
@@ -202,6 +200,7 @@
 .page-links {
     text-align: center;
     font-size: 14px;
+    font-weight: 300;
     color: $light_grey;
 
     em {

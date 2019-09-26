@@ -58,6 +58,48 @@ $disabled: #b4b4b4;
 @import "collections";
 @import "game_offc";
 
+// NAVIGATION
+#logo, #settings, #logout {
+    position: fixed;
+}
+
+#logo {
+    color: #777;
+    left: 20px;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    background: #cccccc;
+    padding: 15px 10px 5px 10px;
+    border-radius: 0 0 3px 3px;
+}
+
+#settings {
+    top: 15px;
+    right: 65px;
+    font-size: 15px;
+    font-weight:300;
+    color: $light_grey;
+
+    &:hover {
+        color: $dark_grey;
+        text-decoration: none;
+    }
+}
+
+#logout {
+    top: 12px;
+    right: 20px;
+    svg {
+        width: 25px;
+        fill: #a7a7a7;
+    }
+    &:hover svg {
+        fill: $dark_grey;
+    }
+}
+
 // SEARCH WAIT
 div#search-results.mask1:after {
     position: absolute;
@@ -234,27 +276,8 @@ body::-webkit-scrollbar {
     padding-bottom: $footer_height + $navbar_height;
 }
 
-// NAVBAR
-
-.user {
-    text-transform: lowercase !important;
-}
-
-.user-ops {
-    border-radius: 5px;
-}
-
-.nav-but {
-    cursor: pointer;
-    color: $light_grey;
-}
-
-.nav-but:hover {
-    color: $dark_grey;
-}
-
-.nav-but.active {
-    color: $dark_accent;
+#big-c {
+    margin-top: 80px;
 }
 
 // FOOTER
@@ -267,7 +290,7 @@ footer {
     font-size: 12px;
 
     ul {
-        margin: 0px 35px 0px 0px;
+        margin: 0px 27px 0px 0px;
         list-style: none;
 
         li {

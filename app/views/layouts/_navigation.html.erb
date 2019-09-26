@@ -1,18 +1,5 @@
-<nav class="uk-navbar-container uk-navbar-transparent uk-dark" uk-navbar="mode: click">
-  <div class="uk-navbar-left">
-    <ul class="uk-navbar-nav">
-      <li><%= link_to(root_path) do %>
-        > STILL HAVE THEM
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  <% if logged_in? %>
-  <div class="uk-navbar-right">
-    <ul class="uk-navbar-nav">
-      <li><%= link_to current_user.email, settings_path %></li>
-      <li><%= link_to '', logout_path, method: :delete, 'uk-icon': 'sign-out' %></li>
-    </ul>
-  </div>
-  <% end %>
-</nav>
+<div id="logo">STILL HAVE THEM</div>
+<% if logged_in? %>
+  <%= link_to current_user.email, settings_path, id: 'settings' %>
+  <%= link_to svg('off'), logout_path, id: 'logout', method: :delete %>
+<% end %>
