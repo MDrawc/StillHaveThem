@@ -1,4 +1,4 @@
-<div id="logo">STILL HAVE THEM</div>
+<%= content_tag :div, title, id: 'logo' %>
 <% if logged_in? %>
   <%= link_to current_user.email, settings_path, id: 'settings' %>
   <%= link_to svg('off'), logout_path, id: 'logout', method: :delete %>

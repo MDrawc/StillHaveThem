@@ -59,26 +59,41 @@ $disabled: #b4b4b4;
 @import "game_offc";
 
 // NAVIGATION
-#logo, #settings, #logout {
+#logo, #logo-edit, #settings, #logout {
     position: fixed;
 }
 
-#logo {
+#logo, #logo-edit {
     color: #777;
     left: 20px;
     letter-spacing: 0.5px;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     background: #cccccc;
     padding: 15px 10px 5px 10px;
     border-radius: 0 0 3px 3px;
+    z-index: 110;
+}
+
+#logo-edit input {
+    background: #cccccc;
+    border: none;
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    padding-bottom: 2px;
+    &:focus {
+        outline: none;
+        border-bottom: 1px solid #999;
+    }
 }
 
 #settings {
     top: 15px;
     right: 65px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight:300;
     color: $light_grey;
 

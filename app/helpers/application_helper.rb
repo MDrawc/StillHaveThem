@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def title
-    logged_in? ? 'My Video Games' : 'Still Have Them'
+    cookies[:title] || 'Still Have Them'
   end
 
   def svg(name)
