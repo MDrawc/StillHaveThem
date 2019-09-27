@@ -229,13 +229,10 @@ div#search-results.mask2:after {
 }
 
 .no-games {
-    width: 202px;
-    height: 100px;
+    transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -101px;
     text-align: center;
     font-size: 40px;
     color: #adadad;

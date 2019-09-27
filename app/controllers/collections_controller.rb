@@ -22,6 +22,7 @@ def show
       format.js { render partial: "show", locals: { user_id: current_user.id } }
     end
   else
+    @in_search = true
     @games = @q.result
     .group('games.id, collection_games.created_at')
     .includes(:developers)
@@ -31,7 +32,6 @@ def show
     query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
     query.map! { |a| a ||= '' }
     sort = q[:s]
-
     respond_to do |format|
       format.js { render partial: "search", locals: { query: query, sort: sort, user_id: current_user.id } }
     end

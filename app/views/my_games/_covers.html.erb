@@ -92,5 +92,5 @@
   </div>
 </div>
 <% else %>
-<%= render partial: 'my_games/no_games' %>
+  <%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

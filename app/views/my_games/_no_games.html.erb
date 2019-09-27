@@ -1,4 +1,12 @@
-<div class="no-games">
-NO GAMES
-<p>use <%= link_to '', search_url, remote: true, 'uk-icon': 'search' %> to find and add games</p>
-</div>
+<%= content_tag :div, class: 'no-games' do %>
+  <% if my_search %>
+    NO RESULTS
+    <p>sadly, you do not have such games</p>
+  <% else %>
+    NO GAMES
+    <p>use <%= link_to '', search_url, remote: true, 'uk-icon': 'search' %> to find and add games</p>
+  <% end %>
+<% end %>
+
+
+
