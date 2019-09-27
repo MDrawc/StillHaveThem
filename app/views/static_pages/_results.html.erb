@@ -17,9 +17,9 @@
       <%= hidden_field_tag :last_query, @more_in_off[:query] %>
       <%= hidden_field_tag :last_offset, @more_in_off[:offset] %>
       <%= hidden_field_tag :view, view %>
-      <%= submit_tag "Load more",
+      <%= button_tag "Load more", type: 'submit',
       class: "more-button",
-      data: { disable_with: "Please wait..." } %>
+      data: { disable_with: "<span id=\"please_wait\">Please wait<span/>" } %>
       <% end %>
     </div>
   <% else %>

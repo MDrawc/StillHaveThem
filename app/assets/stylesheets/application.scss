@@ -158,7 +158,7 @@ div#search-results.mask2:after {
     }
 
     p:after {
-    content: "";
+    content: "..";
     animation: 2.5s infinite dots linear;
     }
 }
@@ -201,20 +201,27 @@ div#search-results.mask2:after {
 
 @keyframes dots {
     0% {
-        content: "..";
-    }
-
-    25% {
-        content: "...";
-    }
-
-    50% {
         content: "";
     }
 
-    75% {
+    25% {
         content: ".";
     }
+
+    50% {
+        content: "..";
+    }
+
+    75% {
+        content: "...";
+    }
+}
+
+// PLEASE WAIT
+
+#please_wait:after {
+    content: "";
+    animation: 1.5s infinite dots linear;
 }
 
 // NO GAMES

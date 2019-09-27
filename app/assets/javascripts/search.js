@@ -51,7 +51,6 @@ function clearNoResults() {
     var $search_form = $('.search-form input');
 
     $search_form.on('input', function() {
-        console.log('input');
         var $no_results = $('#no-results');
         if ($no_results.length != 0) {
             $no_results.remove();

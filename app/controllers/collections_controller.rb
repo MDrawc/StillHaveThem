@@ -133,7 +133,7 @@ private
 
   def correct_user_for_rm
     @collection = current_user.collections.find_by_id(params[:collection_id])
-     if @collection.nil?
+    if @collection.nil?
       respond_to do |format|
         format.js {render js: 'location.reload();' }
       end

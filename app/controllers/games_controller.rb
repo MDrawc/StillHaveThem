@@ -224,8 +224,10 @@ class GamesController < ApplicationController
     def find_collection_for_create
       coll_id = game_params[:collection] .split(',').first.to_i
       @collection = current_user.collections.find_by_id(coll_id)
-      respond_to do |format|
-        format.js {render js: 'location.reload();' }
+      if @collection.nil?
+        respond_to do |format|
+          format.js {render js: 'location.reload();' }
+        end
       end
     end
 
