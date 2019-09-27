@@ -228,7 +228,7 @@ div#search-results.mask2:after {
     background: none;
 }
 
-.no-games {
+#no-games, #no-results {
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -248,14 +248,6 @@ div#search-results.mask2:after {
     a:hover {
         color: #666;
     }
-}
-
-// NO RESULTS
-.no-results {
-    @extend .no-games;
-
-    width: 366px;
-    margin-left: -183px;
 }
 
 // SCREEN AS IMAGE
