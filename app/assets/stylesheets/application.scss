@@ -219,7 +219,7 @@ div#search-results.mask2:after {
 
 // PLEASE WAIT
 
-#please_wait:after {
+.loading:after {
     content: "";
     animation: 1.5s infinite dots linear;
 }

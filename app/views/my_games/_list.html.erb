@@ -57,17 +57,17 @@
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" uk-overflow-auto>
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="modal-content">
-            Loading...
+            <span class="loading">Loading</span>
         </div>
     </div>
 </div>
 <div id="t-ops" uk-modal ="container: .my-games">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <div class="modal-content">
-            Loading...
+            <span class="loading">Loading</span>
         </div>
     </div>
 </div>
 <% else %>
-<%= render partial: 'my_games/no_games' %>
+<%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

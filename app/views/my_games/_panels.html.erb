@@ -92,9 +92,15 @@
 <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
 <% end %>
 <% end %>
-<%= content_tag :div, 'Loading...', id: "copy-form-#{ id }", class: 'copy-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  %>
+<%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  do %>
+    <span class="loading">Loading</span>
+<% end %>
+
 <% if needs_platform %>
-<%= content_tag :div, 'Loading...', id: "edit-form-#{ id }", class: 'edit-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  %>
+
+<%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top" do %>
+    <span class="loading">Loading</span>
+<% end %>
 <% end %>
 <% end %>
 <div class="uk-width-5-6 page-links bottom">
@@ -102,5 +108,5 @@
 </div>
 </div>
 <% else %>
-<%= render partial: 'my_games/no_games' %>
+<%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

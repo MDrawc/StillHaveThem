@@ -19,7 +19,7 @@
       <%= hidden_field_tag :view, view %>
       <%= button_tag "Load more", type: 'submit',
       class: "more-button",
-      data: { disable_with: "<span id=\"please_wait\">Please wait<span/>" } %>
+      data: { disable_with: "<span class=\"loading\">Please wait<span/>" } %>
       <% end %>
     </div>
   <% else %>

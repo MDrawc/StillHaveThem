@@ -68,12 +68,14 @@
           <% end %>
         <% end %>
       </div>
-      <%= content_tag(:div, 'Loading...', id: "add-form-#{ x_id }", class: 'add-form white-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #gs-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") %>
+      <%= content_tag(:div, id: "add-form-#{ x_id }", class: 'add-form white-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #gs-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") do %>
+        <span class="loading">Loading</span>
+      <% end %>
       <% end %>
       <% end %>
 </div>
 <div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
   <div class="uk-offcanvas-bar">
-    Loading...
+      <span class="loading">Loading</span>
   </div>
 </div>
