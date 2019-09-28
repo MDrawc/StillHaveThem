@@ -24,7 +24,7 @@
                     <%= content_tag :div, game[:addl], class: 'p-addl' %>
                 <% end %>
         <% end %>
-        <%= content_tag :div, class: "g-right-add" do %>
+        <%= content_tag :div, id: "gr-#{ x_id }", class: 'g-right-add' do %>
            <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
            <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first %>
         <% end %>
@@ -64,7 +64,7 @@
         <% end %>
         <%= content_tag :button, '', id: "g-hide-#{ x_id }", class: 'g-hide uk-icon-link', 'uk-icon': 'chevron-up' %>
     <% end %>
-    <%= content_tag(:div, id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #g-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") do %>
+    <%= content_tag(:div, id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #gr-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") do %>
         <span class="loading">Loading</span>
     <% end %>
 <% end %>
