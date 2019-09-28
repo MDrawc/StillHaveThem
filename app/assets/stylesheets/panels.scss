@@ -87,11 +87,13 @@
 }
 
 .my-search.left-no-p {
-    margin-left: 23px;
+    // margin-left: 23px;
+    margin-left: 14px;
 }
 
 .my-search.left-p {
-    margin-left: 11px;
+    // margin-left: 11px;
+    margin-left: -5px;
 }
 
 .srch-div {
@@ -116,7 +118,7 @@
 
 .sort_link {
     position: relative;
-    font-size: 15px;
+    font-size: 14px;
     color: $light_grey;
 
     span {
@@ -135,7 +137,7 @@
 .my-search {
     margin: 20px 0px 10px 0px;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .s-icon {
