@@ -25,10 +25,14 @@
   <% else %>
     <% if @status == 2 %>
       <div class="no-more">
-        <button class="more-button" uk-scroll>Can't show you more.<br/>Please try a more precise query.</button>
+        <button class="more-button" uk-scroll>Can't show you more<br/>Please try a more precise query</button>
       </div>
     <% end %>
   <% end %>
+<% elsif @inquiry.offset > 0 %>
+  <div class="no-more">
+    <button class="more-button" uk-scroll>There must have been a mistake, nothing more to load</button>
+  </div>
 <% else %>
 <%= render partial: 'search/no_results' %>
 <% end %>

@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def title
-    cookies[:title] || 'Still Have Them'
+    cookies[:title] || 'STILL HAVE THEM'
   end
 
   def svg(name)
