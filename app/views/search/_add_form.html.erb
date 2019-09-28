@@ -1,6 +1,10 @@
-<div class="action">
-<label class="c-m chosen">Add</span></label>
-<span class="cf-name"><%= shorter_name(data[:name]) %></span>
+<div class="action uk-grid-collapse" uk-grid>
+    <div class="inputs">
+        <label class="c-m chosen">Add</label>
+    </div>
+    <div class="cf-name uk-text-truncate uk-width-expand">
+        <%= data[:name] %>
+    </div>
 </div>
 <hr class="md">
 <% unless (collections = collections_for_select(current_user)).empty? %>

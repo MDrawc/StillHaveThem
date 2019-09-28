@@ -282,6 +282,7 @@ span.gap {
     background: #d2d2d2;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
     min-width: 270px;
+    max-width: 330px;
 }
 
 .white-form {
@@ -326,7 +327,6 @@ hr.md {
 
 .action {
     margin-bottom: 10px;
-    font-size: 16px;
 }
 
 .uk-icon-link.cf-disabled {
@@ -339,8 +339,9 @@ hr.md {
 }
 
 .cf-name {
-    padding-left: 10px;
-    float: right;
+    font-size: 16px;
+    text-align: right;
+    margin-left: 10px;
 }
 
 .c-m {
