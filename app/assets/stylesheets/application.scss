@@ -36,8 +36,7 @@
 //VARIABLES
 $no_cover_width: 200px;
 $no_cover_height: 266px;
-$footer_height: 5rem;
-$navbar_height: 5rem;
+
 $background: #dddddd;
 $accent: #75C7AF;
 $dark_accent: #49AB8A;
@@ -59,63 +58,60 @@ $disabled: #b4b4b4;
 @import "game_offc";
 
 // NAVIGATION
-#logo, #logo-edit, #settings, #logout {
+#logo {
     position: fixed;
-}
-
-#logo, #logo-edit {
-    color: #777;
     left: 20px;
+    top: 15px;
+    z-index: 110;
+    color: #999;
     letter-spacing: 0.5px;
     font-weight: 300;
     font-size: 16px;
-    line-height: 24px;
-    background: #cccccc;
-    padding: 15px 10px 5px 10px;
-    border-radius: 0 0 3px 3px;
-    z-index: 110;
+    box-shadow: 0px 2px #cacaca;
 }
 
-#logo-edit input {
-    background: #cccccc;
+#logo input {
     border: none;
-    color: #777;
+    background: #dddddd;
+    color: #999;
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 0.5px;
-    padding-bottom: 2px;
+
     &:focus {
         outline: none;
-        border-bottom: 1px solid #999;
     }
 }
 
-#settings {
-    top: 15px;
-    right: 65px;
-    font-size: 14px;
-    font-weight:300;
+#logout, #settings, #social {
+    position: fixed;
+    top: 20px;
     color: $light_grey;
 
     &:hover {
         color: $dark_grey;
-        text-decoration: none;
     }
+}
+
+#social {
+    right: 110px;
+}
+
+#settings {
+    right: 65px;
 }
 
 #logout {
-    top: 11px;
     right: 20px;
-    svg {
-        width: 25px;
-        fill: #a7a7a7;
-    }
-    &:hover svg {
-        fill: $dark_grey;
-    }
 }
 
 // SEARCH WAIT
+//
+//
+
+
+
+
 div#search-results.mask1:after {
     position: absolute;
     content: "";
@@ -139,7 +135,7 @@ div#search-results.mask2:after {
 }
 
 #search-wait {
-    position: absolute;
+    position: fixed;
     top: 50vh;
     left: 50%;
     width: 120px;
@@ -149,18 +145,22 @@ div#search-results.mask2:after {
     z-index: -1;
 
     p {
-    font-size: 22px;
-    font-weight: 300;
-    margin-left: 8px;
-    color: #999;
-    margin-top: 5px;
-    letter-spacing: 0.3px;
+        // font-size: 22px;
+        font-size: 20px;
+
+        // font-weight: 300;
+        margin-left: 8px;
+
+        // color: #999;
+        color: #afafaf;
+        margin-top: 5px;
+        letter-spacing: 0.3px;
     }
 
     p:after {
-    position: absolute;
-    content: "";
-    animation: 2s infinite dots linear;
+        position: absolute;
+        content: "";
+        animation: 2s infinite dots linear;
     }
 }
 
@@ -174,20 +174,14 @@ div#search-results.mask2:after {
     margin: 0 auto;
     border-radius: 50%;
     animation: 2s infinite search linear;
-    animation-direction: reverse;
 }
 
-.glass {
-    color: $light_grey;
+.rotor svg {
+    fill: #bbbbbb;
     animation: 2s infinite search linear;
-
-    svg circle {
-        stroke-width: 0.6;
-    }
-
-    svg path {
-        stroke-width: 0.6;
-    }
+    animation-direction: reverse;
+    width: 80px;
+    height: auto;
 }
 
 @keyframes search {
@@ -221,6 +215,7 @@ div#search-results.mask2:after {
 // PLEASE WAIT
 
 .loading:after {
+    position: absolute;
     content: "";
     animation: 1.5s infinite dots linear;
 }
@@ -284,30 +279,39 @@ body::-webkit-scrollbar {
     min-height: 100vh;
 }
 
-.content-wrap {
-    padding-bottom: $footer_height + $navbar_height;
-}
-
 #big-c {
     margin-top: 80px;
+    padding-bottom: 160px;
 }
 
 // FOOTER
 footer {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     background: none;
-    width: 100%;
-    height: $footer_height;
+    right: 24px;
     font-size: 12px;
 
     ul {
-        margin: 0px 27px 0px 0px;
         list-style: none;
+        margin: 0;
+        padding: 0;
 
         li {
             float: right;
             padding-left: 10px;
+            height: 15px;
+        }
+
+        a {
+            color: $light_grey;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: $dark_grey;
+            outline: none;
+            text-decoration: none;
         }
     }
 }
@@ -490,22 +494,6 @@ li.active:hover .opts {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.about-link {
-    color: $light_grey;
-    text-transform: uppercase;
-    transition: 0.1s ease-in-out;
-    transition-property: color, background-color;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-.about-link:hover {
-    color: $dark_grey;
-    outline: none;
-    text-decoration: none;
 }
 
 .uk-radio {

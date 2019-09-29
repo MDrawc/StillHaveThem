@@ -15,6 +15,7 @@ switch (view) {
     default:
         $("#t-ops .modal-content").html(form_partial);
         form = 'list';
+        listLight('<%= @data[:igdb_id]%>', 't-ops');
 }
 
 selectLastColl(form, '<%= @x_id %>');

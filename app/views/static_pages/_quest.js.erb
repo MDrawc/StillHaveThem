@@ -12,7 +12,6 @@ if (no_errors) {
   $("#search-results").html("<%= j(render partial:'results', locals: { view: view }) %>");
   $("#search-results").append("<%= j(render partial: 'layouts/s_toolbar', locals: { last_form: @inquiry.last_form.values }) %>");
 
-
   changeTheme();
   changeSearchView();
 
@@ -33,4 +32,3 @@ if (no_errors) {
 $(function() {
     clearSearchWait();
 });
-

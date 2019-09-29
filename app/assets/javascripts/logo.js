@@ -3,7 +3,6 @@ function changeLogo() {
     $('#logo').click(function() {
         var $el = $(this);
         var $input = $('<input type="text">').val($el.text());
-        $el.attr('id', 'logo-edit')
         $el.html($input);
 
         function transformTitle(input) {
@@ -23,7 +22,7 @@ function changeLogo() {
         var save = function() {
 
             if ($input.val() === '') {
-                var logo = 'STILL HAVE THEM';
+                var logo = 'Still have them';
                 Cookies.remove('title');
             } else {
                 var logo = $input.val();

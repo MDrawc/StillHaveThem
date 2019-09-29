@@ -30,9 +30,6 @@ class StaticPagesController < ApplicationController
   def terms
   end
 
-  def about
-  end
-
   def search_page
     respond_to :js
   end
