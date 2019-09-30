@@ -31,19 +31,23 @@ class StaticPagesController < ApplicationController
   end
 
   def search_page
+    @records = current_user.records
     respond_to :js
   end
 
   def search
     @more_in_req, @more_in_off = false
-
     view = params[:view] || cookies['s_view'] || 'cover_view'
 
     #SEARCH
     if params[:search]
       @inquiry = IgdbQuery.new(params[:search])
+      search_record = build_record(params[:search])
       if @inquiry.validate!
         @inquiry.search
+
+        search_record.results = @inquiry.results.size
+        search_record.save
         if @inquiry.results.present?
           #Prepare data for fix_duplicates with new offset request:
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
@@ -144,5 +148,13 @@ class StaticPagesController < ApplicationController
         res += c.games.where(igdb_id: igdb_ids).pluck(:igdb_id)
       end
       return res.uniq
+    end
+
+    def build_record(s_par)
+      data = { inquiry: s_par[:inquiry].strip.downcase,
+       query_type: s_par[:query_type],
+       filters: s_par.values[2..] }
+
+      record = current_user.records.build(data)
     end
 end

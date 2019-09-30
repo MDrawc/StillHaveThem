@@ -1,3 +1,8 @@
 <%= render 'search_bar' %>
 <%= content_tag :div, nil, id: 'search-results' %>
 <%= content_tag :div, nil, id: 'search-wait' %>
+
+<%= content_tag :div, id: 'search-history' do %>
+  Last queries:
+    <%= render @records %>
+<% end %>

@@ -1,0 +1,14 @@
+<%= form_with scope: "search", url: 'search_games', method: :get do |f| %>
+  <%= f.hidden_field :inquiry, value: record.inquiry %>
+  <%= f.hidden_field :query_type, value: record.query_type %>
+
+  <% filters = [:console, :arcade, :portable, :pc, :linux, :mac, :mobile,
+    :computer, :other, :only_released, :dlc, :expansion, :bundle, :standalone,
+    :erotic] %>
+
+  <% filters.each_with_index do |t, i| %>
+    <%= f.hidden_field t, value: record.filters[i] %>
+  <% end %>
+
+  <%= f.submit "#{record.inquiry} : #{record.query_type} : #{record.results}" %>
+<% end %>

@@ -10,8 +10,8 @@ class Game < ApplicationRecord
   validates :platform, presence: { message: 'Select platform'}, if: :needs_platform?
   validates :platform, absence: { message: 'Platform should not be indicated'}, unless: :needs_platform?
 
-  validates :physical, inclusion: { in: [true, false], message: 'Select game\'s form'}, if: :needs_platform?
-  validates :physical, inclusion: { in: [nil], message: 'Game\'s form should not be indicated'}, unless: :needs_platform?
+  validates :physical, inclusion: { in: [true, false], message: 'Select game\'s format'}, if: :needs_platform?
+  validates :physical, inclusion: { in: [nil], message: 'Game\'s format should not be indicated'}, unless: :needs_platform?
 
   has_many :collection_games, dependent: :destroy
   has_many :collections, through: :collection_games
