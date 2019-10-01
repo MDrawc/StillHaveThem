@@ -1,46 +1,49 @@
-  <%= form_for("search", url: 'search_games', method: :get, html: {remote: true, class: 'search-form'} ) do |f| %>
-    <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
-    <%= content_tag(:span, nil, id: "infc", class: "info-icon", "uk-icon": "info")%>
-    <%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
-  <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
+<%= form_for("search", url: 'search_games', method: :get, html: {remote: true, class: 'search-form'} ) do |f| %>
+<span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
+<%= content_tag(:span, nil, id: "infc", class: "info-icon", "uk-icon": "info")%>
+<%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>
+<div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
   <%= svg 'igdb_icon' %> IGDB: Free Video Game Database
 </div>
-
-
-
-
-
-
-    <div class="search-dropdown" uk-dropdown="toggle: #search-igdb-bar; pos: bottom-center; mode: click">
-      <div class="strike"><span>Search by:</span></div>
-      <div class="uk-margin uk-grid-small uk-grid drop-grid">
-        <label class="searchby-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Title</span></label>
-        <label class="searchby-labels"><%= f.radio_button :query_type, "char", class: "uk-radio" %><span>Character</span></label>
-        <label class="searchby-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
+<div class="search-dropdown" uk-dropdown="toggle: #search-igdb-bar; pos: bottom-center; mode: click">
+  <ul class="nav">
+    <li><%= content_tag :a, nil, 'uk-icon': 'settings' %></li>
+    <li><%= content_tag :a, nil, 'uk-icon': 'clock' %></li>
+  </ul>
+  <div id="bar-search">
+    <div class="strike"><span>Search by:</span></div>
+    <div class="uk-margin uk-grid-small uk-grid drop-grid">
+      <label class="searchby-labels"><%= f.radio_button :query_type, "game", checked: true, class: "uk-radio" %><span>Title</span></label>
+      <label class="searchby-labels"><%= f.radio_button :query_type, "char", class: "uk-radio" %><span>Character</span></label>
+      <label class="searchby-labels"><%= f.radio_button :query_type, "dev", class: "uk-radio" %><span>Developer</span></label>
+    </div>
+    <div class="strike"><span>Platforms:</span></div>
+    <div class="uk-margin uk-grid-small uk-grid platforms-grid">
+      <div class="none-all">
+        <%= content_tag :a, 'none', id: 'p-none' %>
+        <%= content_tag :a, 'all', id: 'plat-all' %>
       </div>
-      <div class="strike"><span>Platforms:</span></div>
-      <div class="uk-margin uk-grid-small uk-grid drop-grid">
-        <label class="platforms-labels"><%= f.check_box(:console, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Consoles</span></label>
-        <label class="platforms-labels"><%= f.check_box(:arcade, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Arcade</span></label>
-        <label class="platforms-labels"><%= f.check_box(:portable, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Portable</span></label>
-        <label class="platforms-labels"><%= f.check_box(:pc, checked: "checked", class: "uk-checkbox search-checkbox") %><span>PC</span></label>
-        <label class="platforms-labels"><%= f.check_box(:linux, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Linux</span></label>
-        <label class="platforms-labels"><%= f.check_box(:mac, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mac</span></label>
-        <label class="platforms-labels"><%= f.check_box(:mobile, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mobile</span></label>
-        <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Computers</span></label>
-        <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Other</span></label>
-      </div>
-      <div class="strike"><span>Show: </span></div>
-      <div class="uk-margin uk-grid-small uk-grid drop-grid">
-        <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %><span>Only with release date</span></label>
-        <label class="options-labels"><%= f.check_box(:dlc, checked: "checked", class: "uk-checkbox") %><span>DLCs</span></label>
-        <label class="options-labels"><%= f.check_box(:expansion, checked: "checked", class: "uk-checkbox") %><span>Expansions</span></label>
-        <label class="options-labels"><%= f.check_box(:bundle, checked: "checked", class: "uk-checkbox") %><span>Bundles</span></label>
-        <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %><span>Standalone expansions</span></label>
-        <label class="options-labels"><%= f.check_box(:erotic, checked: "checked", class: "uk-checkbox") %><span>Erotic games</span></label>
-      </div>
-      <div class="search-tip">
-        <a uk-toggle="target: #examples; animation: uk-animation-fade">Tip: Use * wildcard</a>
+      <label class="platforms-labels"><%= f.check_box(:console, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Consoles</span></label>
+      <label class="platforms-labels"><%= f.check_box(:arcade, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Arcade</span></label>
+      <label class="platforms-labels"><%= f.check_box(:portable, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Portable</span></label>
+      <label class="platforms-labels"><%= f.check_box(:pc, checked: "checked", class: "uk-checkbox search-checkbox") %><span>PC</span></label>
+      <label class="platforms-labels"><%= f.check_box(:linux, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Linux</span></label>
+      <label class="platforms-labels"><%= f.check_box(:mac, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mac</span></label>
+      <label class="platforms-labels"><%= f.check_box(:mobile, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Mobile</span></label>
+      <label class="platforms-labels"><%= f.check_box(:computer, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Computers</span></label>
+      <label class="platforms-labels"><%= f.check_box(:other, checked: "checked", class: "uk-checkbox search-checkbox") %><span>Other</span></label>
+    </div>
+    <div class="strike"><span>Show: </span></div>
+    <div class="uk-margin uk-grid-small uk-grid drop-grid">
+      <label class="options-labels"><%= f.check_box(:only_released, checked: "checked", class: "uk-checkbox") %><span>Only with release date</span></label>
+      <label class="options-labels-short"><%= f.check_box(:dlc, checked: "checked", class: "uk-checkbox") %><span>DLCs</span></label>
+      <label class="options-labels"><%= f.check_box(:expansion, checked: "checked", class: "uk-checkbox") %><span>Expansions</span></label>
+      <label class="options-labels-short"><%= f.check_box(:bundle, checked: "checked", class: "uk-checkbox") %><span>Bundles</span></label>
+      <label class="options-labels"><%= f.check_box(:standalone, checked: "checked", class: "uk-checkbox") %><span>Standalone expansions</span></label>
+      <label class="options-labels-short"><%= f.check_box(:erotic, checked: "checked", class: "uk-checkbox") %><span>Erotic games</span></label>
+    </div>
+    <div class="search-tip">
+      <a uk-toggle="target: #examples; animation: uk-animation-fade">Tip: Use * wildcard</a>
       <div id="examples" hidden>
         <table>
           <tr>
@@ -66,9 +69,8 @@
       <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
     </div>
   </div>
-
-
-
-
-
-  <% end %>
+  <div id="bar-history">
+    <%= render partial: 'records/records_in_bar' %>
+  </div>
+</div>
+<% end %>

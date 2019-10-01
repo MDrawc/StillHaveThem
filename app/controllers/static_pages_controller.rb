@@ -41,6 +41,7 @@ class StaticPagesController < ApplicationController
 
     #SEARCH
     if params[:search]
+
       @inquiry = IgdbQuery.new(params[:search])
       search_record = build_record(params[:search])
       if @inquiry.validate!

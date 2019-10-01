@@ -629,16 +629,68 @@ li.active:hover .opts {
 
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
 .search-dropdown {
-    // background: #d4d4d4;
     background: #d4d4d4f0;
     box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
-    padding: 10px;
+    padding: 0px;
     border-radius: 5px;
     font-size: 14px;
     width: 400px;
     text-align: left;
     z-index: 999;
     color: #666;
+}
+
+.search-dropdown.uk-dropdown.uk-open {
+    display: flex;
+}
+
+.nav {
+    border-right: thin solid #afafaf;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    min-width: 20px;
+
+    li {
+        &:first-child {
+            padding: 0;
+        }
+        padding-top: 10px;
+    }
+}
+
+#bar-search, #bar-history {
+    padding: 10px;
+}
+
+#bar-search {
+    display: none;
+}
+
+#bar-history {
+    display: block;
+    background: red;
+}
+
+.none-all {
+    position: absolute;
+    right: 1px;
+    bottom: -18px;
+    font-size: 13px;
+    font-weight: 300;
+
+    a {
+        color: #999;
+    }
+
+    a:first-child {
+        padding-right: 5px;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #666;
+    }
 }
 
 [class*='uk-dropdown-bottom'] {
@@ -662,6 +714,12 @@ li.active:hover .opts {
     margin-top: 10px !important;
 }
 
+.platforms-grid {
+    margin-bottom: 10px;
+    margin-top: 10px !important;
+    position: relative;
+}
+
 .platforms-labels {
     width: 100px;
     font-size: 14px;
@@ -673,14 +731,16 @@ li.active:hover .opts {
 
 .options-labels {
     @extend .platforms-labels;
+    width: 177px;
+}
 
-    width: 180px;
+.options-labels-short {
+    @extend .platforms-labels;
+    width: 110px;
 }
 
 .searchby-labels {
     @extend .platforms-labels;
-
-    width: 100px;
 }
 
 .drop-buttons {
