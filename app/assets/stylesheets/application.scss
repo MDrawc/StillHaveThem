@@ -67,7 +67,7 @@ $disabled: #b4b4b4;
     letter-spacing: 0.5px;
     font-weight: 300;
     font-size: 16px;
-    box-shadow: 0px 2px #cacaca;
+    border-bottom: 2px solid #cacaca;
 }
 
 #logo input {
@@ -496,12 +496,14 @@ li.active:hover .opts {
     user-select: none;
 }
 
-.uk-radio {
-    border: 1px solid #cccccc;
+.uk-radio, .uk-checkbox {
+    border: 1px solid #a0a0a0;
+    background: #dadada;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 
 .uk-checkbox {
-    border: 1px solid #cccccc;
     border-radius: 2px;
 }
 
@@ -529,30 +531,34 @@ li.active:hover .opts {
     border-radius: 5px;
     height: 40px;
     width: 400px;
+    font-weight: 300;
     font-size: 18px;
+    background: #d4d4d4;
+}
+
+.search-icon {
+    color: #888;
+}
+
+.search-bar::placeholder {
+    color: #888;
+    font-weight: 300;
 }
 
 .search-bar:hover, .search-bar:focus {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+   box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
 }
 
 .info-icon {
     position: absolute;
     right: 10px;
     top: 10px;
-    color: $light_grey;
+    color: #888
 
-    svg {
-        fill: $light_grey;
-    }
 }
 
 .info-icon:hover {
     color: $dark_grey;
-}
-
-.info-icon:hover svg {
-    fill: $dark_grey;
 }
 
 .info-icon:hover ~ .search-bar {
@@ -623,14 +629,16 @@ li.active:hover .opts {
 
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
 .search-dropdown {
-    background-color: #fff;
-    box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.16);
+    // background: #d4d4d4;
+    background: #d4d4d4f0;
+    box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
     padding: 10px;
     border-radius: 5px;
     font-size: 14px;
     width: 400px;
     text-align: left;
     z-index: 999;
+    color: #666;
 }
 
 [class*='uk-dropdown-bottom'] {
@@ -683,12 +691,12 @@ li.active:hover .opts {
     float: right;
     width: 60px;
     box-shadow: none;
-    background: transparent;
+    background: none;
     border: 0px;
     transition-duration: 0.8s;
     font-size: 15px;
     text-transform: capitalize;
-    color: #666666;
+    color: #666;
     padding: 0px 5px 0px 0px;
     height: 35px;
 }
@@ -713,14 +721,14 @@ li.active:hover .opts {
     @extend .reset-button;
 }
 
-.tip {
-    font-size: 14px;
-}
-
 .search-tip {
     font-size: 12px;
     font-style: italic;
-    color: #999;
+    color: #777;
+
+    a {
+        color: #777;
+    }
 
     table {
         border-collapse: collapse;
@@ -737,11 +745,13 @@ li.active:hover .opts {
 
 .uk-radio:focus, .uk-checkbox:focus {
     outline: none;
-    border-color: $accent;
+    border-color: initial;
+    // border-color: $dark_accent;
+    border-color: #a0a0a0;
 }
 
 .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
-    background-color: $accent;
+    background-color: $dark_accent;
     border-color: transparent;
 }
 
@@ -1093,7 +1103,7 @@ p.header {
     top: 50%;
     width: 9999px;
     height: 1px;
-    background: #C8C8C8;
+    background: #afafaf;
 }
 
 .add-form .strike > span:after {

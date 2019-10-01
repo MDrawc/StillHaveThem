@@ -5,6 +5,12 @@
   <div class="api-status" uk-dropdown="toggle: #infc; pos: right-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
   <%= svg 'igdb_icon' %> IGDB: Free Video Game Database
 </div>
+
+
+
+
+
+
     <div class="search-dropdown" uk-dropdown="toggle: #search-igdb-bar; pos: bottom-center; mode: click">
       <div class="strike"><span>Search by:</span></div>
       <div class="uk-margin uk-grid-small uk-grid drop-grid">
@@ -34,9 +40,7 @@
         <label class="options-labels"><%= f.check_box(:erotic, checked: "checked", class: "uk-checkbox") %><span>Erotic games</span></label>
       </div>
       <div class="search-tip">
-        <a class="uk-link-muted" uk-toggle="target: #examples; animation: uk-animation-fade">Use * for wildcard search.
-        </a>
-      </label>
+        <a uk-toggle="target: #examples; animation: uk-animation-fade">Tip: Use * wildcard</a>
       <div id="examples" hidden>
         <table>
           <tr>
@@ -62,4 +66,9 @@
       <%= f.submit('Reset', class: "uk-button uk-button-default reset-button", type: "reset" )%>
     </div>
   </div>
+
+
+
+
+
   <% end %>
