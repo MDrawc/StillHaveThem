@@ -1,4 +1,4 @@
-<%= form_for("search", url: 'search_games', method: :get, html: {remote: true, class: 'search-form'} ) do |f| %>
+<%= form_for("search", url: 'search_games', method: :get, html: {remote: true, id: 'search-form'} ) do |f| %>
 <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
 <%= content_tag(:span, nil, id: "infc", class: "info-icon", "uk-icon": "info")%>
 <%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>

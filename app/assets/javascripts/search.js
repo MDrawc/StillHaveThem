@@ -1,4 +1,7 @@
 function changeSearchBar() {
+
+    var bar = $('#search-igdb-bar');
+
     $("[id^=search_query_type]").on('input', function() {
         var selectedVal = "";
         var selected = $("input[type='radio']:checked");
@@ -7,11 +10,11 @@ function changeSearchBar() {
         }
 
         if (selectedVal === 'char') {
-            $('#search-igdb-bar').attr('placeholder', 'Search video game characters...')
+            bar.attr('placeholder', 'Search video game characters...')
         } else if (selectedVal === 'dev') {
-            $('#search-igdb-bar').attr('placeholder', 'Search video game developers...')
+            bar.attr('placeholder', 'Search video game developers...')
         } else if (selectedVal === 'game') {
-            $('#search-igdb-bar').attr('placeholder', 'Search video games...')
+            bar.attr('placeholder', 'Search video games...')
         }
 
     });
@@ -50,7 +53,7 @@ function clearSearchWait() {
 }
 
 function clearNoResults() {
-    var $search_form = $('.search-form input');
+    var $search_form = $('#search-igdb-bar');
 
     $search_form.on('input', function() {
         var $no_results = $('#no-results');
@@ -94,4 +97,39 @@ function manipulatePlatforms() {
     $all.click(function() {
         $('#platforms-grid').find('input').prop('checked', true)
     });
+}
+
+function activateSearchRecords() {
+
+    $('.record').click(function() {
+        var input = $(this).attr('i');
+        var endpoint = $(this).attr('e');
+        var custom = $(this).attr('cf');
+
+        var form = document.getElementById('search-form');
+        form.reset();
+
+
+        if (custom === 'true') {
+
+            var ids = ['console', 'arcade', 'portable', 'pc', 'linux', 'mac', 'mobile',
+                'computer', 'other', 'only_released', 'dlc', 'expansion', 'bundle', 'standalone',
+                'erotic'
+            ];
+
+            var filters = $(this).attr('f').split(' ');
+
+            filters.forEach(function(e, i) {
+                if (e === '0')  {
+                    $('#search_' + ids[i]).prop('checked', false)
+                }
+            });
+        }
+
+        $('#search-igdb-bar').val(input);
+        $('#search_query_type_' + endpoint).prop('checked', true)
+
+        Rails.fire(form, 'submit');
+    });
+
 }
