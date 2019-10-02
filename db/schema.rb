@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_155709) do
+ActiveRecord::Schema.define(version: 2019_10_02_094127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_155709) do
     t.string "filters", array: true
     t.bigint "user_id"
     t.integer "results"
+    t.boolean "custom_filters"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 

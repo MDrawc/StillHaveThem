@@ -59,3 +59,39 @@ function clearNoResults() {
         }
     });
 }
+
+function switchSearchBarTabs() {
+    var $f_switch = $('#switch_to_f');
+    var $h_switch = $('#switch_to_h');
+
+    var $filters = $('#bar-search');
+    var $history = $('#bar-history');
+
+    $h_switch.click(function() {
+        $f_switch.removeClass('active');
+        $(this).addClass('active');
+        $filters.hide();
+        $history.show();
+    });
+
+    $f_switch.click(function() {
+        $h_switch.removeClass('active');
+        $(this).addClass('active');
+        $history.hide();
+        $filters.show();
+    });
+
+}
+
+function manipulatePlatforms() {
+    var $none = $('#p-none');
+    var $all = $('#p-all');
+
+    $none.click(function() {
+        $('#platforms-grid').find('input').prop('checked', false)
+    });
+
+    $all.click(function() {
+        $('#platforms-grid').find('input').prop('checked', true)
+    });
+}

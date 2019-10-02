@@ -123,5 +123,29 @@ module StaticPagesHelper
 
     return results.present? ? results : false
   end
+
+  def present_bar_record(record)
+    case record.query_type
+    when 'game' then endpoint = 'Game'
+    when 'char' then endpoint = 'Character'
+    when 'dev' then  endpoint = 'Developer'
+    end
+
+    ago = time_ago_in_words(record.created_at)
+
+    results = pluralize(record.results, 'result')
+
+    results += ' (filters)' if record.custom_filters
+
+    results = results.sub('50', '50+')
+
+    extr = ago + content_tag(:span, results)
+
+    content_tag :div, class: 'record' do
+      concat endpoint
+      concat content_tag :span, record.inquiry, class: 'input uk-text-truncate'
+      concat content_tag :div, extr.html_safe, class: 'extr'
+    end
+  end
 end
 

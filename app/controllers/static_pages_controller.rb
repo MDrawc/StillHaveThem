@@ -152,9 +152,13 @@ class StaticPagesController < ApplicationController
     end
 
     def build_record(s_par)
+
+      f_values = s_par.values[2..]
+
       data = { inquiry: s_par[:inquiry].strip.downcase,
        query_type: s_par[:query_type],
-       filters: s_par.values[2..] }
+       filters: f_values,
+       custom_filters: !f_values.map {|f| f == '1'}.all? }
 
       record = current_user.records.build(data)
     end
