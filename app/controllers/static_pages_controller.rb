@@ -78,6 +78,8 @@ class StaticPagesController < ApplicationController
         end
       end
 
+      @records = current_user.records
+
       respond_to do |format|
         format.js { render partial: "quest", locals: { user_id: current_user.id, view: view } }
       end
