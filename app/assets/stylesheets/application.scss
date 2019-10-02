@@ -477,18 +477,17 @@ li.active:hover .opts {
 
 //OTHER
 
+::selection {
+    background: $accent;
+    color: #fff;
+    text-shadow: none;
+}
+
 #r-q, #r-s {
     display: none;
 }
 
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+//RADIO, CHECKBOX
 
 .uk-radio, .uk-checkbox {
     border: 1px solid #a0a0a0;
@@ -499,6 +498,32 @@ li.active:hover .opts {
 
 .uk-checkbox {
     border-radius: 2px;
+}
+
+input.coll-form {
+    background-color: transparent;
+    border: 1px solid #cccccc;
+}
+
+.uk-checkbox:disabled:checked {
+    background-color: #eaeaea;
+}
+
+.uk-radio:focus, .uk-checkbox:focus {
+    outline: none;
+    border-color: initial;
+    box-shadow: none;
+    // border-color: $dark_accent;
+    border-color: #a0a0a0;
+}
+
+.uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: $dark_accent;
+    border-color: transparent;
+}
+
+.uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
+    background-color: $dark_accent;
 }
 
 // Landing Page- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -783,10 +808,6 @@ li.active:hover .opts {
     margin-top: 20px;
 }
 
-.uk-checkbox:focus {
-    box-shadow: none;
-}
-
 .drop-label {
     margin-bottom: 2px;
     width: 100%;
@@ -874,30 +895,6 @@ li.active:hover .opts {
             padding: 0px 5px 0px 5px;
         }
     }
-}
-
-// Radios and checkboxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-.uk-radio:focus, .uk-checkbox:focus {
-    outline: none;
-    border-color: initial;
-    // border-color: $dark_accent;
-    border-color: #a0a0a0;
-}
-
-.uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
-    background-color: $dark_accent;
-    border-color: transparent;
-}
-
-.uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
-    background-color: $dark_accent;
-}
-
-::selection {
-    background: $accent;
-    color: #fff;
-    text-shadow: none;
 }
 
 // Other (Search IGDB) - - - - - - - - - - - - - - - - - - - - - - - - - - - //

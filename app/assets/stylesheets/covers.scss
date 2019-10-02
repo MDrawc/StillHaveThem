@@ -305,6 +305,10 @@
     }
 }
 
+.no-cover-game-name {
+    @include unselectable;
+}
+
 div.fitted {
     height: auto;
 }

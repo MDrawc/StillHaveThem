@@ -23,7 +23,7 @@
   <% else %>
   <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', remote: true, 'uk-toggle': "target: #i-lone") do %>
   <%= content_tag(:div, id: "gc-#{ id }", class: 'no-cover') do %>
-  <%= content_tag(:div, game[:name], class: 'no-cover-game-name unselectable') %>
+  <%= content_tag(:div, game[:name], class: 'no-cover-game-name') %>
   <%= svg 'no_image' %>
   <% end %>
   <% end %>
