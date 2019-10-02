@@ -540,7 +540,8 @@ li.active:hover .opts {
 }
 
 .search-bar:hover, .search-bar:focus {
-   box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
+   // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
+   box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
 .info-icon {
@@ -624,7 +625,8 @@ li.active:hover .opts {
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
 .search-dropdown {
     background: #d4d4d4f0;
-    box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
+    // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
+    box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
     padding: 0px;
     border-radius: 5px;
     font-size: 14px;
