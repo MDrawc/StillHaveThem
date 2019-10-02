@@ -126,12 +126,12 @@ module StaticPagesHelper
 
   def present_bar_record(record)
     case record.query_type
-    when 'game' then endpoint = 'Game'
-    when 'char' then endpoint = 'Character'
-    when 'dev' then  endpoint = 'Developer'
+    when 'game' then endpoint = 'game'
+    when 'char' then endpoint = 'character'
+    when 'dev' then  endpoint = 'developer'
     end
 
-    ago = time_ago_in_words(record.created_at)
+    ago = time_ago_in_words(record.created_at) + ' ago'
 
     results = pluralize(record.results, 'result')
 

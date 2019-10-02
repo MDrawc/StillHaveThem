@@ -1,6 +1,5 @@
 <%= render 'search_bar' %>
 <%= content_tag :div, id: 'search-results' do %>
-  Last queries:
-    <%= render @records %>
+    <%= render partial: 'search_history' %>
 <% end %>
 <%= content_tag :div, nil, id: 'search-wait' %>
