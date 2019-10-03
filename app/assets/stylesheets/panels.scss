@@ -5,9 +5,8 @@
     padding: 3px 10px;
     position: absolute;
     bottom: 0px;
-    font-size: 12px;
+    font-size: 13px;
     color: #555;
-    font-style: italic;
     border-radius: 3px 3px 0px 0px;
     text-align: right;
 }
@@ -279,7 +278,7 @@ span.gap {
 .copy-form, .edit-form, .add-form {
     padding: 15px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     background: #d2d2d2;
     box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.16);
@@ -288,7 +287,7 @@ span.gap {
 }
 
 .white-form {
-    background: #f9f9f9f2;
+    background: #ecececf0;;
 }
 
 hr.md {
@@ -399,7 +398,7 @@ hr.md {
 
 .cf-add-button:hover {
     color: #666;
-    border: 2px solid #49ab8a;
+    border: 2px solid #999;
 }
 
 .cf-add-button:focus {

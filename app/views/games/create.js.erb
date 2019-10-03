@@ -15,12 +15,28 @@ if (msg) {
 
 if (success) {
 
+    var uniq_results = x_id === game_id;
+
     Cookies.set('last_coll', '<%= @collection.id %>')
     switch (view) {
         case 'covers':
             var drop_element = "#add-form-" + x_id;
             UIkit.dropdown(drop_element).hide();
-            var name_el = $('[id^=gs-' + game_id + ']').find('.game-name span');
+
+            console.log(x_id)
+            console.log(typeof x_id)
+
+            console.log(game_id)
+            console.log(typeof game_id)
+
+            console.log(x_id === game_id)
+
+            if (uniq_results) {
+                var name_el = $('#gs-' + game_id).find('.game-name span');
+            } else {
+                var name_el = $('[id^=gs-' + game_id + '-]').find('.game-name span');
+            }
+
             name_el.addClass('owned');
             break;
         case 'panels':
@@ -31,7 +47,13 @@ if (success) {
             UIkit.modal("#t-ops").hide();
     }
 
-    $('[id^=add-' + game_id + ']').each(function() {
+    if (uniq_results) {
+        var add_links = $('#add-' + game_id);
+    } else {
+        var add_links = $('[id^=add-' + game_id + '-]');
+    }
+
+    add_links.each(function() {
         var href = $(this).attr('href');
         $(this).attr('href', href.replace('false', 'true'));
         $(this).attr('uk-icon', 'check');
