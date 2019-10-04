@@ -111,6 +111,16 @@ function changeSearchView() {
     });
 }
 
+function showHideToolbar() {
+    var $switch = $('#tool-show');
+    var $toolbar = $('#toolbar');
+
+    $switch.click(function(){
+        $switch.toggleClass('open');
+        $toolbar.toggleClass('open');
+    });
+}
+
 function toggleAddlInfo() {
     $('#addl-hide').click(function() {
         $('.addl-info').slideToggle();
