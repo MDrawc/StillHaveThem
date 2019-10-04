@@ -919,14 +919,15 @@ input.coll-form {
 #toolbar {
     position: fixed;
     top: 50%;
-    right: -30px;
+    right: -50px;
     z-index: 150;
+    padding-right: 15px;
     box-sizing: border-box;
     transform: translateY(-50%);
     transition: right 0.3s;
 
     &.open {
-        right: 15px;
+        right: 0px;
     }
 
     li {
@@ -936,6 +937,7 @@ input.coll-form {
     ul {
         list-style: none;
         margin: 0px;
+        padding: 0px;
     }
 
     a {
@@ -953,14 +955,14 @@ input.coll-form {
 }
 
 #tool-show {
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: -5px;
-    margin-top: -10px;
-}
-
-#tool-show.open {
-    transform: rotate(180deg);
+    right: 5px;
+    width: 4px;
+    height: 100px;
+    margin-top: -50px;
+    border-radius: 2px;
+    background: #bbb;
 }
 
 // Show More Button (Search IGDB)

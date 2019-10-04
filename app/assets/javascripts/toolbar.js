@@ -115,9 +115,16 @@ function showHideToolbar() {
     var $switch = $('#tool-show');
     var $toolbar = $('#toolbar');
 
-    $switch.click(function(){
-        $switch.toggleClass('open');
-        $toolbar.toggleClass('open');
+    $switch.mouseenter(function(){
+        console.log('in')
+        $switch.hide();
+        $toolbar.addClass('open');
+
+        $toolbar.mouseleave(function(){
+            $switch.show();
+            $toolbar.removeClass('open');
+            $toolbar.off();
+        });
     });
 }
 
