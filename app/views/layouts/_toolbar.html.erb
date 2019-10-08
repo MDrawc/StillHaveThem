@@ -1,18 +1,25 @@
 <%= content_tag :div, id: 'toolbar', class: tb_open? do %>
-  <%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
-  <ul>
+<%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
+<ul>
+  <li><%= content_tag :a, svg('chart'), id: 'chart', class: 'uk-icon' %></li>
+  <li>
+    <% change = current_theme == 'theme_dark' ? ['sun', ' sun'] : ['moon', ''] %>
+    <%= content_tag :a, svg(change[0]), id: 'change-theme', class: 'uk-icon' + change[1] %>
+  </li>
+  <hr>
   <li><%= content_tag :a, nil, id: 'covers', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'thumbnails' %></li>
   <li><%= content_tag :a, nil, id: 'panels', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'list' %></li>
   <li><%= content_tag :a, nil, id: 'list', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'table' %></li>
   <%= content_tag :li do %>
-    <% uc_change = 'active' unless ucs_closed? %>
-    <%= content_tag :a, nil, id: 'undercover', class: uc_change, 'uk-icon': 'info' %>
+  <% uc_change = 'active' unless ucs_closed? %>
+  <%= content_tag :a, nil, id: 'undercover', class: uc_change, 'uk-icon': 'info' %>
   <% end %>
   <%= content_tag :li do %>
-    <%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %>
+  <%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %>
   <% end %>
   <% edit_change = 'active' if edit_open? %>
-  <li><%= content_tag :a, nil, id: 'g-show-edit', class: edit_change, 'uk-icon':'cog' %></li>
-  <li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>
+<li><%= content_tag :a, nil, id: 'g-show-edit', class: edit_change, 'uk-icon':'cog' %></li>
+<hr>
+<li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>
 </ul>
 <% end %>

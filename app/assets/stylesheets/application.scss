@@ -83,7 +83,7 @@ $disabled: #b4b4b4;
     }
 }
 
-#logout, #settings, #social, #change-theme, #chart {
+#logout, #settings, #social {
     position: absolute;
     top: 20px;
     color: $light_grey;
@@ -93,21 +93,8 @@ $disabled: #b4b4b4;
     }
 }
 
-#change-theme {
-    right: 112px;
-    top: 18.5px;
-}
-
-#change-theme.sun {
-    color: #afafaf;
-}
-
-#chart {
-    right: 207px;
-}
-
 #social {
-    right: 159px;
+    right: 110px;
 }
 
 #settings {
@@ -942,7 +929,8 @@ input.coll-form {
     z-index: 150;
     padding-right: 16px;
     box-sizing: border-box;
-    transform: translateY(-50%);
+    height: 308px;
+    margin-top: -154px;
     transition: right 0.3s;
 
     &.open {
@@ -1010,6 +998,11 @@ input.coll-form {
 .uk-button-default, .uk-button-primary {
     border-radius: 5px;
     text-transform: capitalize;
+}
+
+#change-theme.sun {
+    color: #afafaf;
+    padding: 3px;
 }
 
 // More Platforms Toggler - - - - - - - - - - - - - - - - - - - - - - - - - - //
