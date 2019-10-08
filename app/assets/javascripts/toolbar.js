@@ -1,16 +1,95 @@
-function changeTheme() {
-    $('#change-theme').click(function() {
-        if (Cookies.get('theme') === 'theme_dark') {
-            Cookies.set("theme", "theme_default", {
-                expires: 365
-            });
-            $('#theme-control').attr('href', '/assets/theme_default.self.css');
+function modifyToolbar(view) {
+    $('.change-my-view').removeClass('active');
+    $('#' + view).addClass('active');
+
+    switch (view) {
+        case 'covers':
+            $('#close-panels').parent().hide();
+            $('#undercover').parent().show();
+            break;
+        case 'panels':
+            $('#undercover').parent().hide();
+            $('#close-panels').parent().show();
+            break;
+        default:
+            $('#undercover').parent().hide();
+            $('#close-panels').parent().hide();
+    }
+}
+
+function activateSearchToolbar(view, type) {
+    $('#toolbar').removeClass('waiting');
+    $('.change-s-view').removeClass('active');
+    $('#' + view).addClass('active');
+    if (view == 'panel_view') {
+        $('#close-panels').parent().show();
+    } else {
+        $('#close-panels').parent().hide();
+    }
+
+    if (type != 'game') {
+        var $addl = $('#addl-hide');
+        $addl.parent().show();
+        $addl.off();
+
+        $addl.click(function() {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                var $addl_info = $('.xif');
+                $addl_info.slideDown();
+                Cookies.set('addl_hidden', 'false')
+            } else {
+                $(this).addClass('active');
+                var $addl_info = $('.xif');
+                $addl_info.slideUp();
+                Cookies.set('addl_hidden', 'true')
+            }
+        });
+    } else {
+        var $addl = $('#addl-hide');
+        $addl.off();
+        $addl.parent().hide();
+    }
+}
+
+function underCover() {
+    var uc = $('#undercover');
+    uc.off();
+    uc.click(function() {
+        var shr = $('.shr');
+        var ucs = $('.uc-s');
+        if (ucs.hasClass('hidden')) {
+
+            if (shr.hasClass('hidden')) {
+                shr.removeClass('hidden');
+            }
+
+            $('.uc-s').removeClass('hidden');
+            uc.addClass('active');
+            Cookies.set('ucs_closed', 'false');
+
         } else {
-            Cookies.set("theme", "theme_dark", {
-                expires: 365
-            });
-            $('#theme-control').attr('href', '/assets/theme_dark.self.css');
+
+            ucs.addClass('hidden');
+
+            var menu = $('.c-menu');
+            if (menu.hasClass('hidden')) {
+                shr.addClass('hidden');
+            }
+            uc.removeClass('active');
+            Cookies.set('ucs_closed', 'true');
         }
+    });
+}
+
+function closeAllPanels() {
+    var $switch = $('#close-panels');
+    $switch.off();
+    $switch.click(function() {
+        var $arrows = $('.g-hide');
+        var $drops = $('.g-drop');
+        $arrows.hide();
+        $drops.slideUp('fast');
     });
 }
 
@@ -18,7 +97,7 @@ function changeMyView() {
     $('.change-my-view').off();
     $('.change-my-view').click(function() {
 
-        var view = $(this).attr('view');
+        var view = $(this).attr('id');
         var coll_id = $(this).attr('coll_id');
 
         Cookies.set("my_view", view, {
@@ -66,7 +145,7 @@ function changeSearchView() {
     $('.change-s-view').off();
     $('.change-s-view').click(function() {
 
-        var view = $(this).attr('view');
+        var view = $(this).attr('id');
 
         Cookies.set("s_view", view, {
             expires: 365
@@ -80,7 +159,7 @@ function changeSearchView() {
 
         if (last_form.length > 0) {
 
-            last_form = eval(last_form.text());
+            last_form = last_form.text().split(',');
 
             data['search'] = {
                 inquiry: last_form[0],
@@ -112,26 +191,22 @@ function changeSearchView() {
 }
 
 function showHideToolbar() {
-    var $switch = $('#tool-show');
+    var $on = $('#tool-show');
+    var $off = $('#tool-hide');
     var $toolbar = $('#toolbar');
 
-    $switch.mouseenter(function(){
-        console.log('in')
-        $switch.hide();
+    $on.click(function() {
+        $on.hide();
         $toolbar.addClass('open');
-
-        $toolbar.mouseleave(function(){
-            $switch.show();
-            $toolbar.removeClass('open');
-            $toolbar.off();
-        });
+        Cookies.set('tb_open', 'open')
     });
-}
 
-function toggleAddlInfo() {
-    $('#addl-hide').click(function() {
-        $('.addl-info').slideToggle();
+    $off.click(function() {
+        $on.show();
+        $toolbar.removeClass('open');
+        Cookies.set('tb_open', '')
     });
+
 }
 
 function toggleEditMenu() {

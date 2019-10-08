@@ -1,4 +1,5 @@
 var no_errors = <%= !@inquiry.errors.any? %>;
+var search_type = '<%= @inquiry.query_type %>';
 var view = '<%= view %>';
 
 $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
@@ -9,12 +10,11 @@ $('#search-igdb-bar').on('input', function() {
 cleanOffcanvas();
 
 if (no_errors) {
-  $("#search-results").html("<%= j(render partial:'results', locals: { view: view }) %>");
-  $("#search-results").append("<%= j(render partial: 'layouts/s_toolbar', locals: { last_form: @inquiry.last_form.values }) %>");
-  $("#bar-history").html("<%= j(render partial:'records/bar_records') %>");
-  activateSearchRecords();
-  changeTheme();
-  changeSearchView();
+    $("#search-results").html("<%= j(render partial:'results', locals: { view: view }) %>");
+    $("#search-results").append("<%= j(content_tag :span, @inquiry.last_form.values.join(','), id: 'last-form') %>");
+    $("#bar-history").html("<%= j(render partial:'records/bar_records') %>");
+    activateSearchRecords();
+
 
     switch (view) {
         case 'list_view':
@@ -25,11 +25,15 @@ if (no_errors) {
             break;
         case 'panel_view':
             moreInfo();
+            closeAllPanels();
             $('.g-drop').slideUp(0);
             break;
     }
 }
 
 $(function() {
+    activateSearchToolbar(view, search_type);
+    changeSearchView();
+    showHideToolbar();
     clearSearchWait();
 });

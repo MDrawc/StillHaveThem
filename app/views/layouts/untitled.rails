@@ -1,0 +1,5 @@
+  <!-- scroll up -->
+  <li><a class="" href="#target"
+    uk-icon="icon: arrow-up; ratio: 1"
+    uk-scroll="duration: 600"></a></li>
+  </ul>

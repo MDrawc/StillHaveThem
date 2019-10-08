@@ -35,4 +35,4 @@
 <div class="my-games">
     <%= render partial: "my_games/#{ view }", locals: { collection: collection } %>
 </div>
-<%= render partial: 'layouts/toolbar', locals: { collection: collection } %>
+<%= render partial: 'layouts/toolbar', locals: { collection_id: collection.id, view: view } %>

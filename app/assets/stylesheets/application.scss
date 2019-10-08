@@ -59,7 +59,7 @@ $disabled: #b4b4b4;
 
 // NAVIGATION
 #logo {
-    position: fixed;
+    position: absolute;
     left: 20px;
     top: 15px;
     z-index: 110;
@@ -83,8 +83,8 @@ $disabled: #b4b4b4;
     }
 }
 
-#logout, #settings, #social {
-    position: fixed;
+#logout, #settings, #social, #change-theme, #chart {
+    position: absolute;
     top: 20px;
     color: $light_grey;
 
@@ -93,8 +93,21 @@ $disabled: #b4b4b4;
     }
 }
 
+#change-theme {
+    right: 112px;
+    top: 18.5px;
+}
+
+#change-theme.sun {
+    color: #afafaf;
+}
+
+#chart {
+    right: 207px;
+}
+
 #social {
-    right: 110px;
+    right: 159px;
 }
 
 #settings {
@@ -526,7 +539,7 @@ input.coll-form {
     background-color: $dark_accent;
 }
 
-// Landing Page- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Landing Page
 
 .still {
     margin-top: 50px;
@@ -536,7 +549,12 @@ input.coll-form {
     @extend .still;
 }
 
-// Search Form (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - //
+// Additional info
+.xif.hidden {
+    display: none;
+}
+
+// Search Form (Search IGDB)
 #search-form {
     position: relative;
     width: 400px;
@@ -772,8 +790,9 @@ input.coll-form {
     .input {
         font-weight: 400;
         font-style: italic;
-        max-width: 240px;
+        max-width: 238px;
         font-size: 14px;
+        padding-right: 2px;
     }
 
 }
@@ -921,13 +940,26 @@ input.coll-form {
     top: 50%;
     right: -50px;
     z-index: 150;
-    padding-right: 15px;
+    padding-right: 16px;
     box-sizing: border-box;
     transform: translateY(-50%);
     transition: right 0.3s;
 
     &.open {
         right: 0px;
+    }
+
+    &.waiting {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    hr {
+        border-color: #bdbdbd;
+        margin: 10px 0;
     }
 
     li {
@@ -955,14 +987,19 @@ input.coll-form {
 }
 
 #tool-show {
-    position: fixed;
+    position: absolute;
     top: 50%;
-    right: 5px;
-    width: 4px;
-    height: 100px;
-    margin-top: -50px;
-    border-radius: 2px;
-    background: #bbb;
+    margin-top: -14px;
+    left: -40px;
+
+    &.open {
+        display: none;
+    }
+}
+
+.change-my-view.active {
+    pointer-events: none;
+    cursor: default;
 }
 
 // Show More Button (Search IGDB)
@@ -1010,37 +1047,6 @@ input.coll-form {
 
 .mp-more {
     display: none;
-}
-
-// Developers, Characers - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-
-.addl-info {
-    box-sizing: border-box;
-    width: 100%;
-    max-height: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 99;
-    margin: 0px;
-    background: #c5c5c5;
-    border-radius: 0px 0px 3px 3px;
-    color: #555;
-    font-size: 14px;
-    word-wrap: break-word;
-    padding: 10px;
-
-    .uk-alert-close {
-        top: 14px;
-        position: unset;
-        float: right;
-        width: 20px;
-        transform: translateY(3px);
-    }
-
-    p {
-        margin: 0px;
-    }
 }
 
 // Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

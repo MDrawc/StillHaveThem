@@ -1,5 +1,8 @@
 <%= content_tag :div, title, id: 'logo' %>
 <% if logged_in? %>
+  <%= content_tag :a, svg('chart'), id: 'chart', class: 'uk-icon' %>
+  <% change = current_theme == 'theme_dark' ? ['sun', ' sun'] : ['moon', ''] %>
+  <%= content_tag :a, svg(change[0]), id: 'change-theme', class: 'uk-icon' + change[1] %>
   <%= link_to '', settings_path, id: 'social', 'uk-icon': 'social' %>
   <%= link_to '', settings_path, id: 'settings', 'uk-icon': 'settings' %>
   <%= link_to '', logout_path, id: 'logout', method: :delete, 'uk-icon': 'sign-out' %>

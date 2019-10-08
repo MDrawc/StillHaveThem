@@ -54,36 +54,6 @@ function moreInfo() {
     });
 }
 
-function underCover() {
-    var uc = $('#undercover');
-    uc.off();
-    uc.click(function() {
-
-        var shr = $('.shr');
-        var ucs = $('.uc-s');
-        if (ucs.hasClass('hidden')) {
-
-            if (shr.hasClass('hidden')) {
-                shr.removeClass('hidden');
-            }
-
-            $('.uc-s').removeClass('hidden');
-            Cookies.set('ucs_closed', 'false');
-
-        } else {
-
-            ucs.addClass('hidden');
-
-            var menu = $('.c-menu');
-            if (menu.hasClass('hidden')) {
-                shr.addClass('hidden');
-            }
-
-            Cookies.set('ucs_closed', 'true');
-        }
-    });
-}
-
 function disableSortLinks() {
     $('a.sort_link').addClass('not-active');
 }

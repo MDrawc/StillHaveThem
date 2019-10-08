@@ -22,7 +22,7 @@ function changeLogo() {
         var save = function() {
 
             if ($input.val() === '') {
-                var logo = 'Still have them';
+                var logo = 'still have them';
                 Cookies.remove('title');
             } else {
                 var logo = $input.val();

@@ -3,7 +3,7 @@ before_action :require_user
 before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
-PER_PAGE = 50
+PER_PAGE = 30
 
 def new
   @collection = Collection.new

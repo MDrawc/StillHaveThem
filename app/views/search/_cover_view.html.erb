@@ -8,7 +8,10 @@
         <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', style: "width: #{ cover[:width] }px; height: #{ cover[:height] }px", remote: true, 'uk-toggle': "target: #i-lone") do %>
           <%= content_tag :div, svg('loading'), class: 'spinner' %>
           <%= image_tag('', id: "gc-#{ x_id }", class: "game-cover #{ cover[:from_scrn] }", width: cover[:width], height: cover[:height], 'data-src' => cover[:url], alt: '', 'draggable' => 'false', 'uk-img' => '') %>
-          <%= content_tag :div, game[:addl], class: 'addl-info' if game[:addl] %>
+
+          <% if game[:addl] %>
+            <%= content_tag :div, game[:addl], class: "c-addl xif #{ addl_hidden? ? 'hidden' : '' }"%>
+          <% end %>
         <% end %>
       <% else %>
         <%= link_to(cover_show_url(igdb_id), class: 'game-cover-effect', remote: true, 'uk-toggle': "target: #i-lone") do %>
@@ -16,7 +19,9 @@
             <%= content_tag(:div, game[:name], class: 'no-cover-game-name') %>
             <%= svg 'no_image' %>
           <% end %>
-          <%= content_tag :div, game[:addl], class: 'addl-info' if game[:addl] %>
+          <% if game[:addl] %>
+            <%= content_tag :div, game[:addl], class: "c-addl xif #{ addl_hidden? ? 'hidden' : '' }"%>
+          <% end %>
         <% end %>
       <% end %>
       <p class="game-name">

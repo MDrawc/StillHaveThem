@@ -1,3 +1,32 @@
+.c-addl {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    margin: 0px;
+    background: #c5c5c5;
+    border-radius: 0px 0px 3px 3px;
+    color: #555;
+    font-size: 14px;
+    word-wrap: break-word;
+    padding: 10px;
+
+    .uk-alert-close {
+        top: 14px;
+        position: unset;
+        float: right;
+        width: 20px;
+        transform: translateY(3px);
+    }
+
+    p {
+        margin: 0px;
+    }
+}
+
 .uc-s {
     height: 57px;
     transition: height 0.3s;

@@ -24,13 +24,14 @@ switch (view) {
         if (refresh) {
             openPanels(ids);
         }
+        closeAllPanels()
         moreInfo();
         break;
 }
 
 filter();
 showHideToolbar();
-changeTheme();
+modifyToolbar(view);
 toggleEditMenu();
 changeMyView();
 

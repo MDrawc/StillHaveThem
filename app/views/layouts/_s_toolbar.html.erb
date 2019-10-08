@@ -1,19 +1,12 @@
-<div class="toolbar">
-    <%= content_tag :span, last_form, id: 'last-form' %>
+<%= content_tag :div, id: 'toolbar', class: "waiting #{ tb_open? }" do %>
+  <%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
   <ul>
-  <!-- cover view -->
-  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'cover_view', 'uk-icon': 'thumbnails' %></li>
-  <!-- panels view -->
-  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'panel_view', 'uk-icon': 'list' %></li>
-  <!-- list view -->
-  <li><%= content_tag :a, nil, class: 'change-s-view', 'view': 'list_view', 'uk-icon': 'table' %></li>
-  <!-- change theme -->
-  <li><%= content_tag :a, nil, id: 'change-theme', 'uk-icon': 'paint-bucket' %></li>
-  <!-- hide overlays -->
-  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
-  <!-- scroll up -->
-  <li><a class="" href="#target"
-    uk-icon="icon: arrow-up; ratio: 1"
-    uk-scroll="duration: 600"></a></li>
+    <li><%= content_tag :a, nil, id: 'cover_view', class: 'change-s-view', 'uk-icon': 'thumbnails' %></li>
+    <li><%= content_tag :a, nil, id: 'panel_view', class: 'change-s-view', 'uk-icon': 'list' %></li>
+    <li><%= content_tag :a, nil, id: 'list_view', class: 'change-s-view', 'uk-icon': 'table' %></li>
+    <li class="hidden"><%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %></li>
+    <% addl_change = addl_hidden? ? 'active' : '' %>
+    <li class="hidden"><%= content_tag :a, nil, id: 'addl-hide', class: addl_change, 'uk-icon': 'close' %></li>
+    <li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>
   </ul>
-</div>
+<% end %>

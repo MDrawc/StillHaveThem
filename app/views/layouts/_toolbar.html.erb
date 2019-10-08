@@ -1,24 +1,18 @@
-<%= content_tag :a, nil, id: 'tool-show' %>
-<div id="toolbar">
+<%= content_tag :div, id: 'toolbar', class: tb_open? do %>
+  <%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
   <ul>
-  <!-- cover view -->
-  <li><%= content_tag :a, nil, class: 'change-my-view', 'view': 'covers', 'coll_id': collection.id, 'uk-icon': 'thumbnails' %></li>
-  <!-- panels view -->
-  <li><%= content_tag :a, nil, class: 'change-my-view active', 'view': 'panels', 'coll_id': collection.id, 'uk-icon': 'list' %></li>
-  <!-- list view -->
-  <li><%= content_tag :a, nil, class: 'change-my-view active', 'view': 'list', 'coll_id': collection.id, 'uk-icon': 'table' %></li>
-  <!-- change theme -->
-  <li><%= content_tag :a, svg('moon'), id: 'change-theme', class: 'active uk-icon' %></li>
-  <!-- hide overlays -->
-  <li><%= content_tag :a, nil, id: 'addl-hide', 'uk-icon': 'close' %></li>
-  <!-- hide cover view info -->
-  <li><%= content_tag :a, nil, id: 'undercover', 'uk-icon': 'question' %></li>
-  <!-- show options -->
-  <% extra = 'active' if edit_open? %>
-  <li><%= content_tag :a, nil, id: 'g-show-edit', class: extra, 'uk-icon':'cog' %></li>
-  <!-- scroll up -->
-  <li><a class="" href="#target"
-    uk-icon="icon: arrow-up; ratio: 1"
-    uk-scroll="duration: 600"></a></li>
-  </ul>
-</div>
+  <li><%= content_tag :a, nil, id: 'covers', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'thumbnails' %></li>
+  <li><%= content_tag :a, nil, id: 'panels', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'list' %></li>
+  <li><%= content_tag :a, nil, id: 'list', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'table' %></li>
+  <%= content_tag :li do %>
+    <% uc_change = 'active' unless ucs_closed? %>
+    <%= content_tag :a, nil, id: 'undercover', class: uc_change, 'uk-icon': 'info' %>
+  <% end %>
+  <%= content_tag :li do %>
+    <%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %>
+  <% end %>
+  <% edit_change = 'active' if edit_open? %>
+  <li><%= content_tag :a, nil, id: 'g-show-edit', class: edit_change, 'uk-icon':'cog' %></li>
+  <li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>
+</ul>
+<% end %>

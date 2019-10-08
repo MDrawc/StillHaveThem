@@ -5,7 +5,7 @@
 
     <% if game[:addl] %>
         <%= content_tag :tr, class: 'l-addl' do %>
-            <%= content_tag :td, content_tag(:div, game[:addl], class: 'l-addl-hide') %>
+            <%= content_tag :td, content_tag(:div, game[:addl], class: "l-addl-hide xif #{ addl_hidden? ? 'hidden' : '' }") %>
         <% end %>
     <% end %>
 

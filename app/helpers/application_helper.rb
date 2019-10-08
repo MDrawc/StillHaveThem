@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def title
-    cookies[:title] || 'Still have them'
+    cookies[:title] || 'still have them'
   end
 
   def svg(name)
@@ -16,6 +16,14 @@ module ApplicationHelper
 
   def ucs_closed?
     cookies[:ucs_closed] == 'true'
+  end
+
+  def tb_open?
+    cookies[:tb_open] || ''
+  end
+
+  def addl_hidden?
+    cookies[:addl_hidden] == 'true'
   end
 
   def current_theme

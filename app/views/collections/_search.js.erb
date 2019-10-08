@@ -21,9 +21,12 @@ switch (view) {
         fitNameInNoCover();
         break;
     case 'panels':
+        closeAllPanels();
         openPanels(ids);
         moreInfo();
         break;
 }
+
+modifyToolbar(view);
 
 $('#q_name_dev_cont').focus();
