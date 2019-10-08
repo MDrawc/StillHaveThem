@@ -1000,9 +1000,8 @@ input.coll-form {
     text-transform: capitalize;
 }
 
-#change-theme.sun {
-    color: #afafaf;
-    padding: 3px;
+#change-theme svg {
+    transform: rotate(45deg);
 }
 
 // More Platforms Toggler - - - - - - - - - - - - - - - - - - - - - - - - - - //
