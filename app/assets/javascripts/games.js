@@ -95,7 +95,9 @@ function getIdsOfOpenPanels() {
 }
 
 function openPanels(ids) {
-    ids.forEach(id => $('#' + id).show());
+    ids.forEach(function(id) {
+        $('#' + id).show();
+    });
 }
 
 function presentShadow() {
@@ -105,7 +107,9 @@ function presentShadow() {
 }
 
 function removeCoverSpinner() {
-    UIkit.util.on(document, 'load', '.game-cover', e => {
+    UIkit.util.on(document, 'load', '.game-cover', function(e) {
+
+
         if (!e.target.currentSrc.startsWith('data:')) {
             $(e.target).parent().find(".spinner").remove();
         }
