@@ -145,6 +145,7 @@ function changeSearchView() {
     $('.change-s-view').off();
     $('.change-s-view').click(function() {
 
+        searchWait('change-view');
         var view = $(this).attr('id');
 
         Cookies.set("s_view", view, {

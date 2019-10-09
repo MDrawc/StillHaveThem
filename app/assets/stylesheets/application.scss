@@ -139,13 +139,10 @@ div#search-results.mask2:after {
     z-index: -1;
 
     p {
-        // font-size: 22px;
         font-size: 20px;
 
-        // font-weight: 300;
         margin-left: 8px;
 
-        // color: #999;
         color: #afafaf;
         margin-top: 5px;
         letter-spacing: 0.3px;
@@ -203,6 +200,17 @@ div#search-results.mask2:after {
 
     75% {
         content: "...";
+    }
+}
+
+.csv_spin {
+    width: 50px;
+    margin: 10px auto;
+
+    svg {
+        fill: #bbbbbb;
+        animation: 1s infinite normal rotate;
+        animation-timing-function: linear;
     }
 }
 
