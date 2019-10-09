@@ -21,28 +21,29 @@ function changeSearchBar() {
 }
 
 function searchWait() {
-    $('#search').click(function() {
+    $('#no-results').remove();
+    var thingy = $('#search-wait');
+    var search_anim = '<div class="rotor"><svg id="Layer_1" version="1.1" viewBox="15 15 70 70" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M64.5,44.6c0-11.6-9.4-20.9-20.9-20.9c-11.6,0-20.9,9.4-20.9,20.9  c0,11.6,9.4,20.9,20.9,20.9C55.1,65.6,64.5,56.2,64.5,44.6z M80,79.3l-1.8,1.8l-19-19c-4.2,3.7-9.6,6-15.7,6  c-13,0-23.5-10.5-23.5-23.5c0-13,10.5-23.5,23.5-23.5c13,0,23.5,10.5,23.5,23.5c0,6-2.3,11.5-6,15.7L80,79.3z"/></svg></div><p>Searching</p>';
+    var view_c = $('#view-container');
 
-        $('#no-results').remove();
-        var thingy = $('#search-wait');
-        var search_anim = '<div class="rotor"><svg id="Layer_1" version="1.1" viewBox="15 15 70 70" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M64.5,44.6c0-11.6-9.4-20.9-20.9-20.9c-11.6,0-20.9,9.4-20.9,20.9  c0,11.6,9.4,20.9,20.9,20.9C55.1,65.6,64.5,56.2,64.5,44.6z M80,79.3l-1.8,1.8l-19-19c-4.2,3.7-9.6,6-15.7,6  c-13,0-23.5-10.5-23.5-23.5c0-13,10.5-23.5,23.5-23.5c13,0,23.5,10.5,23.5,23.5c0,6-2.3,11.5-6,15.7L80,79.3z"/></svg></div><p>Searching</p>';
-        var view_c = $('#view-container');
-
-        if (view_c.length != 0) {
-            switch (view_c.attr('view')) {
-                case 'covers':
-                    $('#search-results').addClass('mask2');
-                    break;
-                default:
-                    $('#search-results').addClass('mask1');
-            }
-        } else {
-            $('#search-results').addClass('mask1');
+    if (view_c.length != 0) {
+        switch (view_c.attr('view')) {
+            case 'covers':
+                $('#search-results').addClass('mask2');
+                break;
+            default:
+                $('#search-results').addClass('mask1');
         }
+    } else {
+        $('#search-results').addClass('mask1');
+    }
 
-        thingy.html(search_anim);
-        thingy.addClass('front');
-    });
+    thingy.html(search_anim);
+    thingy.addClass('front');
+}
+
+function activateSearchWait() {
+    $('#search').click(function() { searchWait() });
 }
 
 function clearSearchWait() {
@@ -102,6 +103,8 @@ function manipulatePlatforms() {
 function activateSearchRecords() {
 
     $('.record').click(function() {
+
+        searchWait();
         var input = $(this).attr('i');
         var endpoint = $(this).attr('e');
         var custom = $(this).attr('cf');
@@ -120,7 +123,7 @@ function activateSearchRecords() {
             var filters = $(this).attr('f').split(' ');
 
             filters.forEach(function(e, i) {
-                if (e === '0')  {
+                if (e === '0') {
                     $('#search_' + ids[i]).prop('checked', false)
                 }
             });
