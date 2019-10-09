@@ -135,7 +135,11 @@ div#search-results.mask2:after {
     width: 120px;
     height: 178px;
     margin-left: -60px;
-    margin-top: -89px;
+
+    // margin-top: -89px;
+
+    margin-top: 40px;
+
     z-index: -1;
 
     p {
@@ -143,7 +147,7 @@ div#search-results.mask2:after {
 
         margin-left: 8px;
 
-        color: #afafaf;
+        color: #a1a1a1;
         margin-top: 5px;
         letter-spacing: 0.3px;
     }
@@ -168,7 +172,7 @@ div#search-results.mask2:after {
 }
 
 .rotor svg {
-    fill: #bbbbbb;
+    fill: #aaa;
     animation: 2s infinite search linear;
     animation-direction: reverse;
     width: 80px;
@@ -208,7 +212,7 @@ div#search-results.mask2:after {
     margin: 10px auto;
 
     svg {
-        fill: #bbbbbb;
+        fill: #aaa;
         animation: 1s infinite normal rotate;
         animation-timing-function: linear;
     }
