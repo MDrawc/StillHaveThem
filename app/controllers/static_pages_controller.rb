@@ -12,14 +12,13 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      if (last = cookies['last']).present?
-        case last
-        when 'search'
-        else
-          @home_id = last
-        end
+      last = cookies['last']
+      if current_user.collection_ids.include?(last.to_i)
+        @home_id = last
       else
-        @home_id = current_user.collections.first.id if !current_user.collections.empty?
+        unless last == 'search'
+          @home_id = current_user.collections.first.id if !current_user.collections.empty?
+        end
       end
     end
   end
