@@ -1,6 +1,6 @@
 <%= content_tag :div, title, id: 'logo' %>
 <% if logged_in? %>
-  <%= link_to '', settings_path, id: 'social', 'uk-icon': 'social' %>
-  <%= link_to '', settings_path, id: 'settings', 'uk-icon': 'settings' %>
-  <%= link_to '', logout_path, id: 'logout', method: :delete, 'uk-icon': 'sign-out' %>
+  <%= link_to '', settings_path, id: 'social', class: 'nav-icon', 'uk-icon': 'social' %>
+  <%= link_to '', settings_path, id: 'settings', class: 'nav-icon', 'uk-icon': 'settings' %>
+  <%= link_to '', logout_path, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out' %>
 <% end %>

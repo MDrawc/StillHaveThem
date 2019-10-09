@@ -1,3 +1,85 @@
+// Colors
+
+
+
+
+
+
+
+// Logo
+#logo, .srch-div {
+    border-color: #666;
+}
+
+// Navigation
+.nav-icon {
+  color: #888;
+  &:hover {
+    color: #ccc;
+  }
+}
+// Footer
+footer ul a {
+  color: #888;
+  &:hover {
+    color: #ccc;
+  }
+}
+// Menu
+li.active .m-coll {
+  color: #bbb;
+  border-color: #5759a9;
+}
+// Toolbar
+#toolbar {
+    a {
+      color: #888;
+    }
+    a:hover {
+      color: #ccc;
+    }
+    hr {
+        border-color: #666;
+    }
+    a.active {
+        background: #444;
+    }
+}
+
+
+
+
+
+
+// Covers
+.name {
+    color: #ddd;
+}
+
+.game-cover-effect {
+    background-color: #3c3c3c;
+}
+
+
+
+
+
+
+
+
+// Search My Games
+.srch-div {
+    border-color: #666;
+}
+
+
+
+
+// Other
 html {
-  background-color: #2d2d2d;
+    background-color: #2d2d2d;
+    color: #999;
+}
+::selection {
+    background-color: #a4a6f2;
 }
