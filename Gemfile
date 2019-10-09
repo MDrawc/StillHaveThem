@@ -35,6 +35,11 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'amoeba'
 # A library for bulk insertion of data into your database using ActiveRecord
 gem 'activerecord-import'
+
+# Remediation
+# Upgrade nokogiri to version 1.10.4 or later. For example:
+gem "nokogiri", ">= 1.10.4"
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
