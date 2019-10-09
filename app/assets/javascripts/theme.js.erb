@@ -1,0 +1,17 @@
+function changeTheme() {
+    $('#change-theme').click(function() {
+        if (Cookies.get('theme') == 'theme_dark') {
+            $(this).removeClass('active');
+            Cookies.set('theme', 'theme_default', {
+                expires: 365
+            });
+            $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
+        } else {
+            $(this).addClass('active');
+            Cookies.set('theme', 'theme_dark', {
+                expires: 365
+            });
+            $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
+        }
+    });
+}
