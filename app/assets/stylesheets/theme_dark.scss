@@ -1,85 +1,298 @@
-// Colors
-
-
-
-
-
-
-
 // Logo
-#logo, .srch-div {
-    border-color: #666;
+#logo {
+    color: #888;
+    border-color: #555;
+
+    input {
+        background: #2d2d2d;
+    }
 }
 
 // Navigation
 .nav-icon {
-  color: #888;
-  &:hover {
-    color: #ccc;
-  }
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
 }
+
 // Footer
 footer ul a {
-  color: #888;
-  &:hover {
-    color: #ccc;
-  }
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
 }
+
 // Menu
 li.active .m-coll {
-  color: #bbb;
-  border-color: #5759a9;
+    color: #bbb;
+    border-color: #5759a9;
 }
+
+.m-coll {
+    color: #888;
+    border-color: #5759a9;
+
+    &:hover {
+        color: #bbb;
+    }
+}
+
+li.active .m-add {
+    border-color: #5759a9;
+}
+
+.m-add {
+    color: #888;
+    border-color: #5759a9;
+
+    &:hover svg {
+        color: #bbb;
+    }
+}
+
+#m-add-coll.active svg {
+    color: #bbb;
+}
+
+li.active .m-add svg {
+    color: #bbb;
+}
+
+.opts a {
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
 // Toolbar
 #toolbar {
     a {
-      color: #888;
+        color: #888;
     }
+
     a:hover {
-      color: #ccc;
+        color: #ccc;
     }
+
     hr {
         border-color: #666;
     }
+
     a.active {
         background: #444;
     }
 }
 
+// Search (My Games)
+.s-icon {
+    color: #888;
+}
 
+.search-input {
+    color: #888;
 
+    &:focus {
+        color: #ccc;
+    }
 
+    &::placeholder {
+        color: #888;
+    }
+}
 
+.srch-div {
+    border-color: #666;
+}
 
-// Covers
+#search-reset {
+    border-color: #666;
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
+.select-input + span {
+    color: #888;
+}
+
+.select-input:hover ~ span {
+    color: #ccc;
+}
+
+.container {
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #3e3e3e;
+}
+
+.container .checkmark:after {
+    background: #888;
+}
+
+.checkmark {
+    border-color: #666;
+}
+
+.sort-icon svg path {
+    stroke: #888;
+}
+
+.sort_link {
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
+// Search History (Page)
+
+// Covers (Search IGDB)
+.name.owned {
+    box-shadow: 0px 2px 0px 0px #666;
+}
+
+.plus {
+    background: #666;
+
+    &:hover {
+        background: #5759a9;
+    }
+}
+
+.spinner svg {
+    fill: #777;
+}
+
+.game-warning button {
+    color: #bbb;
+}
+
+.game-cover-effect::after {
+    background: linear-gradient(to left top, rgba(75, 235, 236, 0) 50%, rgba(255, 255, 255, 0.07) 80%, rgba(255, 255, 255, 0.14) 100%);
+}
+
+// Covers (My Games)
 .name {
-    color: #ddd;
+    color: #ccc;
 }
 
 .game-cover-effect {
     background-color: #3c3c3c;
 }
 
-
-
-
-
-
-
-
-// Search My Games
-.srch-div {
+.shr {
     border-color: #666;
 }
 
+.uk-iconnav > * > a {
+    color: #888;
 
+    &:hover {
+        color: #ccc;
+    }
 
+    &:focus {
+        color: #ccc;
+    }
+}
+
+// List (My Games)
+
+.t-game {
+
+    color: #aaa;
+
+    div {
+        background: #444;
+    }
+}
+
+div.t-name {
+    color: #ccc;
+}
+
+.t-game.hover-fill div.t, .t-game.focus-fill div.t {
+    background-color: #333;
+}
+
+// No Games, No Results (My Games)
+#no-games, #no-results {
+    color: #666;
+
+    p {
+        color: #777;
+        border-color: #777;
+    }
+}
+
+// Pagination
+
+.page-links {
+    span {
+        color: #666;
+    }
+
+    a {
+        color: #888;
+
+        &:hover {
+            background: #444;
+            color: #ccc;
+        }
+    }
+
+    em {
+        color: #bbb;
+        background: #444;
+    }
+}
+
+// No Results (Search IGDB)
+
+// Notifications
+
+// No Cover
+.no-cover span {
+    color: #888;
+    text-shadow: -2px 3px 2px #00000080;
+}
+
+.no-cover svg {
+    -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.5));
+
+    path {
+        filter: none;
+        fill: #888 !important;
+    }
+}
 
 // Other
 html {
     background-color: #2d2d2d;
-    color: #999;
+    color: #888;
 }
+
 ::selection {
     background-color: #a4a6f2;
+}
+
+.uk-tooltip {
+    background: #444;
+    color: #eee;
 }
