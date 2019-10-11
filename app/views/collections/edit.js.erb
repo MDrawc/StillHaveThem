@@ -1,2 +1,4 @@
-$("#edit-coll-modal").find(".modal-content").html("<%= j(render 'form') %>");
-$('input#collection_name').focus();
+var $modal = $("#coll-modal");
+$modal.find('#coll-action').text('Edit');
+$modal.find(".modal-content").html("<%= j(render 'form') %>");
+$('#collection_name').focus();

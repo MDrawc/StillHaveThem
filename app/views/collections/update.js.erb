@@ -1,4 +1,4 @@
-UIkit.modal($('#edit-coll-modal')).hide();
+UIkit.modal($('#coll-modal')).hide();
 $(".side-menu").replaceWith("<%= j(render partial: 'layouts/menu') %>");
 $('#mc-<%= @collection.id %>').addClass('active');
 custom_data_confirm();

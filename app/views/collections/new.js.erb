@@ -1,6 +1,4 @@
-$("#create-coll-modal").find(".modal-content").html("<%= j(render 'form') %>");
-$('input#collection_name').focus();
+$("#coll-modal").find(".modal-content").html("<%= j(render 'form') %>");
+$('#collection_name').focus();
 $("#m-add-coll").addClass('active');
 remove_active_create_coll();
-
-

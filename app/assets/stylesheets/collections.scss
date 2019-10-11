@@ -2,17 +2,15 @@
     background: none;
 }
 
-.light-grey { color: $light_grey; }
+.light-grey {
+    color: $light_grey;
+}
 
 .destroy-coll-icon {
     position: relative;
     top: -3px;
     left: 7px;
     color: $light_grey;
-}
-
-#edit-coll-modal .uk-modal-body {
-    border-radius: 5px;
 }
 
 .uk-modal-footer {
@@ -22,7 +20,7 @@
     width: 450px;
 }
 
-.del-coll-info  {
+.del-coll-info {
     color: $light_grey;
     font-size: 14px;
     font-style: italic;
@@ -42,24 +40,18 @@
     background: $warning;
 }
 
-#create-coll-modal .uk-modal-body {
+#coll-modal .uk-modal-body {
+    border-radius: 5px;
 
-border-radius: 5px;
+    .header {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
 
-.header {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-padding: 20px;
-font-size: 14px;
-width: 450px;
-color: $dark_grey;
-
-}
-
-#edit-coll-modal {
-  @extend #create-coll-modal;
+    padding: 20px;
+    font-size: 14px;
+    width: 450px;
+    color: $dark_grey;
 }
 
 #coll-icon-input {
@@ -69,9 +61,9 @@ color: $dark_grey;
 }
 
 .small {
- font-size: 12px;
- font-style: italic;
- color: $light_grey;
+    font-size: 12px;
+    font-style: italic;
+    color: $light_grey;
 }
 
 .add-coll-icon {
@@ -85,5 +77,5 @@ color: $dark_grey;
 }
 
 label.disabled {
-  color: $light_grey;
+    color: $light_grey;
 }
