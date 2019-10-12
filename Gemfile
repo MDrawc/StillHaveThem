@@ -15,6 +15,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'jquery-rails'
 # UIKit 3 for Ruby on Rails
 gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
+# Gem for charts
+gem "chartkick"
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

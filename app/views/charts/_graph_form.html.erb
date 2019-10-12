@@ -1,0 +1,13 @@
+<%= form_with(url: "/graphs", method: "get") do %>
+    <div class="uk-margin">
+        <div uk-form-custom="target: true">
+            <%= select_tag(:collection, options_for_select(collections_for_graph_form(current_user)) ) %>
+            <span></span>
+        </div>
+    </div>
+  <%= submit_tag("Render graphs") %>
+<% end %>
+<hr>
+<div id="graphs">asdas</div>
+
+

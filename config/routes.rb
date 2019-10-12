@@ -26,4 +26,7 @@ Rails.application.routes.draw do
 
   get 'ls/:igdb_id/:hg_id', to: 'games#list_show', as: 'list_show'
   get 'cs/:igdb_id', to: 'games#cover_show', as: 'cover_show'
+
+  get 'graph_form/:id', to: 'charts#graph_form', as: 'graph_form'
+  get 'graphs', to: 'charts#graphs', as: 'graphs'
 end

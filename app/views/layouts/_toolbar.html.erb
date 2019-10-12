@@ -1,7 +1,9 @@
 <%= content_tag :div, id: 'toolbar', class: tb_open? do %>
 <%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
 <ul>
-  <li><%= content_tag :a, svg('chart'), id: 'chart', class: 'uk-icon' %></li>
+  <li>
+  <%= link_to svg('chart'), graph_form_url(collection_id), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal' %>
+  </li>
   <li>
     <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }"  %>
   </li>

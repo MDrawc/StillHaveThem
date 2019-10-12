@@ -15,6 +15,8 @@
 //
 //= require jquery3
 //= require textFit
+//= require chartkick
+//= require Chart.bundle
 //= require js-cookie
 //= require "uikit"
 //= require uikit/uikit-icons.js

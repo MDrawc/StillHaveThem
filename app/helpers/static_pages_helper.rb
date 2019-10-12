@@ -104,6 +104,10 @@ module StaticPagesHelper
     current_user.platforms.map { |p| [p.name, "#{ p.igdb_id }, #{ p.name }"]}
   end
 
+  def collections_for_graph_form(user)
+    [['Overall', 'all']] + current_user.collections.collect { |c| [c.name, c.id] }
+  end
+
   def collections_for_select(user)
     user.collections.collect { |c| [ c.name, "#{c.id},#{c.needs_platform}" ] }
   end
