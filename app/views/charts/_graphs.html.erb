@@ -1,4 +1,12 @@
-<%= pie_chart data[0] %>
-<%= pie_chart data[1] %>
-<%= pie_chart data[2] %>
+<%= pie_chart data[0], donut: true %>
+<hr>
+
+<% if needs_platform %>
+  <%= pie_chart data[1], donut: true %>
+  <hr>
+  <%= pie_chart data[2], donut: true %>
+  <hr>
+<% end %>
+
 <%= column_chart data[3] %>
+<%= bar_chart data[4] %>

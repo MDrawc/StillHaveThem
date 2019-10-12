@@ -1,1 +1,1 @@
-$('#graphs').html("<%= j(render partial: 'graphs', locals: { data: @data }) %>");
+$('#graphs').html("<%= j(render partial: 'graphs', locals: { data: @data, needs_platform: @needs_platform }) %>");
