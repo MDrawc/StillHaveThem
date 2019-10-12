@@ -48,7 +48,13 @@ class Collection < ApplicationRecord
       chart3 = all_platforms.to_a
       chart4 = all_years.to_a
 
-      return chart1, chart2, chart3, chart4
+      #Chart 5: Developers
+      coll_ids = User.find(1).collection_ids.join(', ')
+      sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id IN (#{coll_ids});"
+      r = ActiveRecord::Base.connection.execute(sql).values.flatten.sort
+      chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }.to_a
+
+      return chart1, chart2, chart3, chart4, chart5
   end
 
   def data_for_graphs
@@ -92,7 +98,7 @@ class Collection < ApplicationRecord
     end
 
     #Chart 5: Developers
-    sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{user_id}';"
+    sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{self.id}';"
     r = ActiveRecord::Base.connection.execute(sql).values.flatten.sort
     chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }.to_a
     return chart1, chart2, chart3, chart4, chart5
