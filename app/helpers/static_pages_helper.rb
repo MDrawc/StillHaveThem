@@ -161,5 +161,71 @@ module StaticPagesHelper
       end
     end
   end
+
+  def get_colors(number, theme = :default)
+    paletts = { default: {
+      0 => nil,
+      1 => nil,
+      2 => ["#b560a4", "#a19543"],
+      3 => ["#82a84d", "#a267be", "#cd614c"],
+      5 => ["#63ad58", "#886ecd", "#b69536", "#cc5491", "#ce5940"],
+      10 => ["#9ad58e", "#d748fa", "#5fb500", "#ff5ec5", "#00b99a", "#d60029",
+           "#73ada9", "#ffb74c", "#acaeff", "#344f00"],
+      12 => ["#7728d8", "#dbb700", "#0171aa", "#c33700", "#01ca75", "#d50035",
+           "#01857f", "#ff9b52", "#0e4900", "#e1bae2", "#492539", "#d6c592"],
+      20 => ["#67b292", "#7347d8", "#5abb49", "#cd4ece", "#a9ac3c", "#6e369c",
+           "#d7893b", "#6a7dd3", "#d7493c", "#75a8c4", "#d34586", "#497132",
+           "#c484c4", "#ad9764", "#5e3e7c", "#8b472a", "#475a75", "#c98e95",
+           "#53543f", "#81384f"],
+      30 => ["#974028", "#7343d4", "#73ca45", "#cf4ed1", "#638b2c", "#4c298e",
+           "#c8b63c", "#717edf", "#df502b", "#68c886", "#d94391", "#407644",
+           "#963d91", "#b7b780", "#474a8d", "#d78d48", "#4e2554", "#70c3b9",
+           "#d7415a", "#7fb0d7", "#5a2d28", "#cc90d5", "#374023", "#d47a91",
+           "#507d77", "#8b3554", "#866e3e", "#6e7297", "#c69e9c", "#353d4d"]
+      },
+      dark: {
+      0 => nil,
+      1 => nil,
+      2 => ["#7d69ff", "#77ff44"],
+      3 => ["#00c65c", "#9d45f5", "#fb388d"],
+      5 => ["#4d2bab", "#d9ff6c", "#ff52d5", "#56a700", "#c5b000"],
+      10 => ["#02e8b6", "#0247d8", "#c0f800", "#9e7bff", "#00e671", "#8d0075",
+           "#01f9fb", "#ff88e3", "#a59100", "#d3e699"],
+      12 => ["#73ed24", "#576cff", "#fcff5f", "#0055d6", "#339c00", "#9b009c",
+           "#7dffbd", "#e90081", "#01ae75", "#cf0111", "#e38000", "#ff6640"],
+      20 => ["#5f327f", "#cfff55", "#ff4bf6", "#00b777", "#af66ff", "#ff8406",
+           "#028ae9", "#b07600", "#b80191", "#beffdb", "#ff61c1", "#017c65",
+          "#ff7568", "#005876", "#ffe8da", "#772f3e", "#f1ffff", "#514720",
+          "#b0beff", "#f4d5ff"],
+      30 => ["#5b3f49", "#caff19", "#4b65ff", "#7cff65", "#8e00a2", "#81c800",
+           "#ff60e0", "#009e31", "#5d2d91", "#e2ff86", "#83195c", "#b0b000",
+           "#aa98ff", "#ff5018", "#02ede6", "#b20c00", "#75deff", "#8f3900",
+           "#0177bf", "#ffe78c", "#017e9e", "#ff7f5e", "#009463", "#ff93a9",
+           "#2b5b00", "#d1daff", "#7d7300", "#fff9e4", "#753321", "#2d4f27"]
+      }
+    }
+
+    max_key = paletts[theme].keys.max
+    if paletts[theme].include?(number)
+      paletts[theme][number]
+    elsif number < max_key
+      paletts[theme].each do |k, v|
+        return v[0...number] if k > number
+      end
+    else
+      result = paletts[theme][max_key]
+      (number - max_key).times { result.append random_color }
+      return result
+    end
+  end
+
+  private
+
+    def random_color()
+      generator = ColorGenerator.new saturation: rand(0.1..0.95), lightness: rand(0.3..0.8)
+      color = generator.create_hex
+    end
 end
+
+
 

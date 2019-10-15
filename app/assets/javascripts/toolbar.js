@@ -277,3 +277,11 @@ function toggleEditMenu() {
         }
     });
 }
+
+
+function activateGraphForm() {
+    $('#graph_collection').on('input', function(){
+        var form = document.getElementById('graph-form');
+        Rails.fire(form, 'submit');
+    });
+}

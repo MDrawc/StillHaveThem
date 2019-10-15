@@ -1,1 +1,7 @@
 $('#f-modal').find('.modal-content').html("<%= j(render partial: 'graph_form') %>");
+var coll_id = '<%= @coll_id %>';
+var option = $('option[value=' + coll_id +']');
+option.attr("selected", "selected");
+var form = document.getElementById('graph-form');
+Rails.fire(form, 'submit');
+activateGraphForm();

@@ -1,13 +1,9 @@
-<%= form_with(url: "/graphs", method: "get") do %>
-    <div class="uk-margin">
-        <div uk-form-custom="target: true">
-            <%= select_tag(:collection, options_for_select(collections_for_graph_form(current_user)) ) %>
-            <span></span>
-        </div>
-    </div>
-  <%= submit_tag("Render graphs") %>
+<%= form_with(url: "/graphs", method: "get", id: 'graph-form') do %>
+  <div uk-form-custom="target: true">
+    <%= select_tag(:graph_collection, options_for_select(collections_for_graph_form(current_user)) ) %>
+    <span class="coll-name"></span><%= content_tag :span, svg('chart'), class: 'uk-icon' %>
+  </div>
+  <%= submit_tag('render') %>
 <% end %>
-<hr>
-<div id="graphs">asdas</div>
 
-
+<div id="graphs"></div>

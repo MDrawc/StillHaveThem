@@ -139,14 +139,11 @@ div#search-results.mask2:after {
     // margin-top: -89px;
 
     margin-top: 40px;
-
     z-index: -1;
 
     p {
         font-size: 20px;
-
         margin-left: 8px;
-
         color: #a1a1a1;
         margin-top: 5px;
         letter-spacing: 0.3px;
@@ -526,6 +523,7 @@ input.coll-form {
     outline: none;
     border-color: initial;
     box-shadow: none;
+
     // border-color: $dark_accent;
     border-color: #a0a0a0;
 }
@@ -583,16 +581,15 @@ input.coll-form {
 }
 
 .search-bar:hover, .search-bar:focus {
-   // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
-   box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
+    // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
+    box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
 .info-icon {
     position: absolute;
     right: 10px;
     top: 10px;
-    color: #888
-
+    color: #888;
 }
 
 .info-icon:hover {
@@ -668,6 +665,7 @@ input.coll-form {
 // Search Dropodown (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - //
 .search-dropdown {
     background: #d4d4d4f0;
+
     // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
     box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
     padding: 0px;
@@ -694,6 +692,7 @@ input.coll-form {
         &:first-child {
             padding: 0;
         }
+
         padding-top: 10px;
     }
 
@@ -734,6 +733,7 @@ input.coll-form {
     .record {
         background: none;
         margin-bottom: 8px;
+
         &:hover {
             background: #d4d4d4;
         }
@@ -794,7 +794,6 @@ input.coll-form {
         font-size: 14px;
         padding-right: 2px;
     }
-
 }
 
 .record:hover {
@@ -981,6 +980,7 @@ input.coll-form {
         &:hover {
             color: #666;
         }
+
         &.active {
             background: #d4d4d4;
         }
@@ -1231,7 +1231,7 @@ p.header {
     margin-top: -15px;
 }
 
-// Eye (unmask password)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Eye (unmask password)
 
 .password + .unmask {
     width: 40px;
@@ -1257,7 +1257,7 @@ p.header {
     padding: 0px;
 }
 
-// Strike - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Strike
 .strike {
     display: block;
     text-align: left;
@@ -1298,8 +1298,7 @@ p.header {
     margin-left: 10px;
 }
 
-// Adding Games to Collections- - - - - - - - - - - - - - - - - - - - - - - - //
-
+// Adding Games to Collections
 .select-collection {
     margin: 0px 0px 20px 0px;
 }
@@ -1313,4 +1312,96 @@ span.add-form-errors {
     height: 25px;
     position: relative;
     top: -1px;
+}
+
+// F-modal and Charts
+
+#f-modal .uk-modal-body {
+    width: 900px;
+    border-radius: 5px;
+    background: #ececec;
+
+    hr {
+        border-color: #bababa;
+    }
+}
+
+#graph-form {
+    input {
+        display: none;
+    }
+
+    .coll-name {
+        font-size: 24px;
+        color: #333;
+    }
+
+    .uk-icon {
+        padding-left: 10px;
+        vertical-align: text-bottom;
+    }
+
+    .uk-icon svg {
+        color: #777;
+        height: 25px;
+        width: 25px;
+    }
+}
+
+#graphs {
+    margin-top: 20px;
+
+    hr {
+        margin-top: 5px;
+    }
+
+    #first-chart {
+        float: right;
+        position: relative;
+        top: -15px;
+    }
+
+    .uk-accordion-content {
+        margin: 0;
+    }
+}
+
+[id^=m-chart-] {
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+
+.stats {
+    font-size: 14px;
+    color: #333;
+
+    td {
+        vertical-align: top;
+    }
+
+    tr td:last-child {
+        font-style: italic;
+        padding-left: 20px;
+        color: #777;
+
+        width: 230px;
+    }
+}
+
+.uk-accordion {
+    color: #999;
+
+    li.uk-open a {
+        color: #333;
+    }
+
+    a {
+        font-size: 18px;
+        color: inherit;
+
+        &:focus {
+            color: #666;
+        }
+    }
 }

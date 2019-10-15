@@ -96,6 +96,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    color-generator (0.0.4)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     dotenv (2.7.5)
@@ -230,6 +231,7 @@ DEPENDENCIES
   chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
+  color-generator (~> 0.0.4)
   dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails

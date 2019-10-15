@@ -1,12 +1,112 @@
-<%= pie_chart data[0], donut: true %>
+
+<div class="uk-child-width-1-2 uk-grid-collapse" uk-grid>
+  <div>
+    <table class='stats'>
+      <tr>
+        <td>Created on:</td>
+        <td>2019:06:04</td>
+      </tr>
+      <tr>
+        <td>Requires platform, format:</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Total number of games:</td>
+        <td>489</td>
+      </tr>
+      <tr>
+        <td>Dominant format:</td>
+        <td>physical (290 games)</td>
+      </tr>
+      <tr>
+        <td>Dominant platform:</td>
+        <td>Playstation 4</td>
+      </tr>
+      <tr>
+        <td>Dominant developer:</td>
+        <td>Platinum Games (3 games)</td>
+      </tr>
+      <tr>
+        <td>Last game added:</td>
+        <td>Gears of war 2</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <% options = { legend: { position: 'right'},
+                  plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+                  tooltips: {enabled: true},
+                  layout: { padding: { top: 15, bottom: 15 } }
+                  } %>
+    <% colors = ['#49AB8a', '#bababa'] %>
+    <% dataset_options = { datalabels: { backgroundColor: colors } } %>
+    <%= pie_chart data[0],
+      id: 'first-chart',
+      donut: true,
+      width: '400px', height: '200px',
+      dataset: dataset_options,
+      library: options,
+      colors: colors %>
+  </div>
+</div>
 <hr>
-
-<% if needs_platform %>
-  <%= pie_chart data[1], donut: true %>
-  <hr>
-  <%= pie_chart data[2], donut: true %>
-  <hr>
-<% end %>
-
-<%= column_chart data[3] %>
-<%= bar_chart data[4] %>
+<ul uk-accordion>
+  <% if needs_platform %>
+  <li>
+    <a class="uk-accordion-title" href="#">Games by format</a>
+    <div class="uk-accordion-content">
+      <% options[:legend][:position] = 'left' %>
+      <% options[:layout][:padding] = { top: 15, bottom: 15, right: 15 } %>
+      <% colors = ['#f16481', '#bababa'] %>
+      <% dataset_options = { datalabels: { backgroundColor: colors } } %>
+      <%= pie_chart data[1],
+      id: 'm-chart-1',
+      donut: true,
+      height: '250px',
+      dataset: dataset_options,
+      library: options,
+      colors: colors %>
+    </div>
+  </li>
+  <li>
+    <a class="uk-accordion-title" href="#">Games by platform</a>
+    <div class="uk-accordion-content">
+      <% colors = get_colors data[2].size %>
+      <% height = 2*15 + 2*8 + data[2].size*(15 + 8) - 7 %>
+      <% height = 600 if height > 600 %>
+      <% height = 250 if height < 250 %>
+      <!-- do not show all labels (based on total games) -->
+      <% dataset_options = { datalabels: { backgroundColor: colors } } %>
+      <%= pie_chart data[2],
+      id: 'm-chart-2',
+      donut: true,
+      height: height.to_s + 'px',
+      dataset: dataset_options,
+      library: options,
+      colors: colors %>
+    </div>
+  </li>
+  <% end %>
+  <li>
+    <a class="uk-accordion-title" href="#">Games by release year</a>
+    <div class="uk-accordion-content">
+      <% dataset = { borderWidth: 0, backgroundColor: 'red'} %>
+      <% options = { scales: { xAxes: [{ barThickness: 5 }] },
+                     layout: { padding: { top: 20 } } } %>
+      <%= column_chart data[3], dataset: dataset, library: options %>
+    </div>
+  </li>
+  <li>
+    <a class="uk-accordion-title" href="#">Games by developer</a>
+    <div class="uk-accordion-content">
+      <% height = 7 + 31 + data[4].size * 20 %>
+      <%
+      dataset = { borderWidth: 0, backgroundColor: 'green'}
+      options = { scales: { yAxes: [{ barThickness: 5 }]} }
+      options = { scales: { xAxes: [{ ticks: { stepSize: 1 } }]} }
+      options = { tooltips: { backgroundColor: 'blue' }}
+      %>
+      <%= bar_chart data[4], height: "#{height}px", dataset: dataset, library: options %>
+    </div>
+  </li>
+</ul>

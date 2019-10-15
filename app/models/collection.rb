@@ -43,7 +43,7 @@ class Collection < ApplicationRecord
       end
 
       chart2 = [['Physical', all_physical], ['Digital', all_digital]]
-      chart2.append ['No format', all_games - all_physical - all_digital]
+      chart2.append ['Not defined', all_games - all_physical - all_digital]
       all_platforms['No platform'] = no_platform
       chart3 = all_platforms.to_a
       chart4 = all_years.to_a
@@ -100,7 +100,38 @@ class Collection < ApplicationRecord
     #Chart 5: Developers
     sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{self.id}';"
     r = ActiveRecord::Base.connection.execute(sql).values.flatten.sort
-    chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }.to_a
+    chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }
+    # chart5 = chart5.select {|k,v| v > 1}.to_a
+    # chart5.append ['Rest...', 1]
     return chart1, chart2, chart3, chart4, chart5
+  end
+
+  def get_colors(n)
+
+  palette = [
+    '#1f77b4',
+    '#aec7e8',
+    '#ff7f0e',
+    '#ffbb78',
+    '#2ca02c',
+    '#98df8a',
+    '#d62728',
+    '#ff9896',
+    '#9467bd',
+    '#c5b0d5',
+    '#8c564b',
+    '#c49c94',
+    '#e377c2',
+    '#f7b6d2',
+    '#7f7f7f',
+    '#c7c7c7',
+    '#bcbd22',
+    '#dbdb8d',
+    '#17becf',
+    '#9edae5']
+
+
+
+
   end
 end
