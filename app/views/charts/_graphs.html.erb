@@ -36,7 +36,8 @@
     <% options = { legend: { position: 'right'},
                   plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
                   tooltips: {enabled: true},
-                  layout: { padding: { top: 15, bottom: 15 } }
+                  layout: { padding: { top: 15, bottom: 15 } },
+                  rotation: -3
                   } %>
     <% colors = ['#49AB8a', '#bababa'] %>
     <% dataset_options = { datalabels: { backgroundColor: colors } } %>
@@ -57,7 +58,7 @@
     <div class="uk-accordion-content">
       <% options[:legend][:position] = 'left' %>
       <% options[:layout][:padding] = { top: 15, bottom: 15, right: 15 } %>
-      <% colors = ['#f16481', '#bababa'] %>
+      <% colors = ['#49AB8a', '#ab496a'] %>
       <% dataset_options = { datalabels: { backgroundColor: colors } } %>
       <%= pie_chart data[1],
       id: 'm-chart-1',
@@ -90,21 +91,57 @@
   <li>
     <a class="uk-accordion-title" href="#">Games by release year</a>
     <div class="uk-accordion-content">
-      <% dataset = { borderWidth: 0, backgroundColor: 'red'} %>
-      <% options = { scales: { xAxes: [{ barThickness: 5 }] },
-                     layout: { padding: { top: 20 } } } %>
-      <%= column_chart data[3], dataset: dataset, library: options %>
+      <% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
+                     layout: { padding: { top: 20 } },
+                     tooltips: { mode: 'index', intersect: false }
+                     } %>
+      <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff' } } %>
+
+      <% if needs_platform %>
+
+        <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)'] %>
+        <%= column_chart data[3][:data], stacked: true,
+         dataset: dataset_options, library: options, colors: colors %>
+        <%= javascript_tag do %>
+          var p_labels = <%= raw data[3][:p_labels] %>;
+          var d_labels = <%= raw data[3][:d_labels] %>;
+          var chart = Chartkick.charts["chart-1"].getChartObject();
+          chart.data.datasets[0].datalabels = { display: p_labels, color: '#fff' }
+          chart.data.datasets[1].datalabels = { display: d_labels, color: '#fff'}
+          chart.update();
+        <% end %>
+
+      <% else %>
+        <% dataset_options[:datalabels][:display] = data[3][:labels] %>
+        <% dataset_options[:backgroundColor] = '#49AB8a' %>
+        <%= column_chart data[3][:data], stacked: true, dataset: dataset_options,
+         library: options %>
+      <% end %>
     </div>
   </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <li>
     <a class="uk-accordion-title" href="#">Games by developer</a>
     <div class="uk-accordion-content">
       <% height = 7 + 31 + data[4].size * 20 %>
       <%
-      dataset = { borderWidth: 0, backgroundColor: 'green'}
-      options = { scales: { yAxes: [{ barThickness: 5 }]} }
+      dataset = { borderWidth: 0, backgroundColor: '#bababa'}
       options = { scales: { xAxes: [{ ticks: { stepSize: 1 } }]} }
-      options = { tooltips: { backgroundColor: 'blue' }}
       %>
       <%= bar_chart data[4], height: "#{height}px", dataset: dataset, library: options %>
     </div>

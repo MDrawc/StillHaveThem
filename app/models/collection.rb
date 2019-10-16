@@ -20,7 +20,7 @@ class Collection < ApplicationRecord
         games = c.games.pluck(:first_release_date, :platform_name, :physical)
 
         num_of_games = games.size
-        chart1.append [c.name, num_of_games]
+        chart1 << [c.name, num_of_games]
         all_games += num_of_games
 
         if c.needs_platform
@@ -43,7 +43,7 @@ class Collection < ApplicationRecord
       end
 
       chart2 = [['Physical', all_physical], ['Digital', all_digital]]
-      chart2.append ['Not defined', all_games - all_physical - all_digital]
+      chart2 << ['Not defined', all_games - all_physical - all_digital]
       all_platforms['No platform'] = no_platform
       chart3 = all_platforms.to_a
       chart4 = all_years.to_a
@@ -62,6 +62,10 @@ class Collection < ApplicationRecord
     num_of_games = games.size
     user_id = self.user_id
 
+    #Stats
+
+
+
     #Chart 1: Against the rest
     overall = 0
 
@@ -70,68 +74,86 @@ class Collection < ApplicationRecord
     end
 
     chart1 = [[self.name, num_of_games]]
-    chart1.append ['Other collections', overall - num_of_games]
+    chart1 << ['Other collections', overall - num_of_games]
 
     if self.needs_platform
       #Chart 2: Physical games vs digital
       physical = games.count {|g| g[2] == true}
       chart2 = [['Physical', physical]]
-      chart2.append ['Digital', num_of_games - physical]
+      chart2 << ['Digital', num_of_games - physical]
 
       #Chart 3: Games per platform
       platforms = games.map(&:second)
       chart3 = []
 
       platforms.uniq.each do |p|
-        chart3.append [p, platforms.count(p)]
+        chart3 << [p, platforms.count(p)]
       end
     else
       char2, chart3 = nil, nil
     end
 
     #Chart 4: Games per release year
-    years = games.map { |g| Time.at(g.first).year }
-    chart4 = []
+    if self.needs_platform
+      p_years, d_years = [],[]
+      games.each do |g|
+        if g[2] == true
+          p_years << Time.at(g.first).year
+        else
+          d_years << Time.at(g.first).year
+        end
+      end
 
-    years.uniq.each do |y|
-      chart4.append [y, years.count(y)]
+      datasets = [ { name: "Physical", data: [] },
+        { name: "Digital", data: [] }]
+
+      all_years = p_years.union(d_years).sort
+      counts = []
+
+      all_years.each do |y|
+        val = p_years.count(y)
+        datasets.first[:data] << [y, val]
+        counts << val
+      end
+
+      all_years.each do |y|
+        val = d_years.count(y)
+        datasets.last[:data] << [y, val]
+        counts << val
+      end
+
+      limit = (counts.max * 0.08).round unless counts.empty?
+      p_labels = datasets.first[:data].map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels = datasets.last[:data].map { |g| g[1] >= limit && g[1] != 0 }
+      chart4 = { data: datasets, p_labels: p_labels, d_labels: d_labels }
+    else
+      years = games.map { |g| Time.at(g.first).year }
+      data = []
+      counts = []
+
+      years.uniq.sort.each do |y|
+        val = years.count(y)
+        data << [y, val]
+        counts << val
+      end
+
+      limit = (counts.max * 0.08).round unless counts.empty?
+      labels = data.map { |g| g[1] >= limit && g[1] != 0 }
+      chart4 = { data: data, labels: labels }
     end
+
+
 
     #Chart 5: Developers
     sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{self.id}';"
     r = ActiveRecord::Base.connection.execute(sql).values.flatten.sort
     chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }
     # chart5 = chart5.select {|k,v| v > 1}.to_a
-    # chart5.append ['Rest...', 1]
+    # chart5 <<  ['Rest...', 1]
+
+
+
+
     return chart1, chart2, chart3, chart4, chart5
-  end
-
-  def get_colors(n)
-
-  palette = [
-    '#1f77b4',
-    '#aec7e8',
-    '#ff7f0e',
-    '#ffbb78',
-    '#2ca02c',
-    '#98df8a',
-    '#d62728',
-    '#ff9896',
-    '#9467bd',
-    '#c5b0d5',
-    '#8c564b',
-    '#c49c94',
-    '#e377c2',
-    '#f7b6d2',
-    '#7f7f7f',
-    '#c7c7c7',
-    '#bcbd22',
-    '#dbdb8d',
-    '#17becf',
-    '#9edae5']
-
-
-
-
   end
 end

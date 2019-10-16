@@ -204,7 +204,6 @@ module StaticPagesHelper
            "#2b5b00", "#d1daff", "#7d7300", "#fff9e4", "#753321", "#2d4f27"]
       }
     }
-
     max_key = paletts[theme].keys.max
     if paletts[theme].include?(number)
       paletts[theme][number]
@@ -214,17 +213,15 @@ module StaticPagesHelper
       end
     else
       result = paletts[theme][max_key]
-      (number - max_key).times { result.append random_color }
+      (number - max_key).times { result.append "##{ random_color(rand(0.1..0.95),rand(0.3..0.8)) }" }
       return result
     end
   end
 
-  private
-
-    def random_color()
-      generator = ColorGenerator.new saturation: rand(0.1..0.95), lightness: rand(0.3..0.8)
-      color = generator.create_hex
-    end
+  def random_color(sat, light)
+    generator = ColorGenerator.new saturation: sat, lightness: light
+    color = generator.create_hex
+  end
 end
 
 
