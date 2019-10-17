@@ -111,20 +111,15 @@ class Collection < ApplicationRecord
       counts = []
 
       all_years.each do |y|
-        val = p_years.count(y)
-        datasets.first[:data] << [y, val]
-        counts << val
-      end
-
-      all_years.each do |y|
-        val = d_years.count(y)
-        datasets.last[:data] << [y, val]
-        counts << val
+        val = p_years.count(y), d_years.count(y)
+        datasets[0][:data] << [y, val[0]]
+        datasets[1][:data] << [y, val[1]]
+        counts += val
       end
 
       limit = (counts.max * 0.08).round unless counts.empty?
-      p_labels = datasets.first[:data].map { |g| g[1] >= limit && g[1] != 0 }
-      d_labels = datasets.last[:data].map { |g| g[1] >= limit && g[1] != 0 }
+      p_labels = datasets[0][:data].map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels = datasets[1][:data].map { |g| g[1] >= limit && g[1] != 0 }
       chart4 = { data: datasets, p_labels: p_labels, d_labels: d_labels }
     else
       years = games.map { |g| Time.at(g.first).year }
@@ -142,17 +137,85 @@ class Collection < ApplicationRecord
       chart4 = { data: data, labels: labels }
     end
 
+    #Chart 5: Developerss
+    if self.needs_platform
+      sql = "SELECT developers.name, games.physical FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id INNER JOIN games ON collection_games.game_id = games.id WHERE collection_id = '#{self.id}';"
+      r = ActiveRecord::Base.connection.execute(sql).values
+      p_devs, d_devs = [], []
+      all_devs = []
+      r.each do |r|
+        all_devs << r.first
+        if r.last
+          p_devs << r.first
+        else
+          d_devs << r.first
+        end
+      end
+      all_devs.uniq!
+      p_dataset, d_dataset = [], []
 
+      total_values = []
+      single_values = []
 
-    #Chart 5: Developers
-    sql = "SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{self.id}';"
-    r = ActiveRecord::Base.connection.execute(sql).values.flatten.sort
-    chart5 = r.inject(Hash.new(0)) {|hash, arr_element| hash[arr_element] += 1; hash }
-    # chart5 = chart5.select {|k,v| v > 1}.to_a
-    # chart5 <<  ['Rest...', 1]
+      all_devs.sort.each do |d|
+        values = p_devs.count(d), d_devs.count(d)
+        d = d[0...31] + '...' if d.size >= 35
+        p_dataset << [d, values[0]]
+        d_dataset << [d, values[1]]
+        single_values += values
+        total_values << values.sum
+      end
 
+      num_of_devs = all_devs.size
+      sep = (num_of_devs / 2.0).round
 
+      p_1 = p_dataset.slice(0...sep)
+      p_2 = p_dataset.slice(sep..)
+      d_1 = d_dataset.slice(0...sep)
+      d_2 = d_dataset.slice(sep..)
 
+      limit = (single_values.max * 0.04).round unless counts.empty?
+      p_labels_1 = p_1.map { |g| g[1] > limit && g[1] != 0 }
+      p_labels_2 = p_2.map { |g| g[1] > limit && g[1] != 0 }
+      d_labels_1 = d_1.map { |g| g[1] > limit && g[1] != 0 }
+      d_labels_2 = d_2.map { |g| g[1] > limit && g[1] != 0 }
+
+      chart5 = { data_1: [{ name: "Physical", data: p_1 }, { name: "Digital", data: d_1 }],
+                 data_2: [{ name: "Physical", data: p_2 }, { name: "Digital", data: d_2 }],
+                 p_labels_1: p_labels_1,
+                 p_labels_2: p_labels_2,
+                 d_labels_1: d_labels_1,
+                 d_labels_2: d_labels_2,
+                 height_1: 7 + 31 + 32 + sep * 20,
+                 height_2: 7 + 31 + 32 + (num_of_devs - sep) * 20,
+                 max: total_values.max
+               }
+    else
+      sql ="SELECT developers.name FROM collection_games INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id INNER JOIN developers ON developer_games.developer_id=developers.id WHERE collection_id='#{self.id}' ORDER BY developers.name ASC;"
+      r = ActiveRecord::Base.connection.execute(sql).values.flatten
+
+      data = []
+      r.uniq.each do |d|
+        val = r.count(d)
+        d = d[0...31] + '...' if d.size >= 35
+        data << [d, val]
+      end
+
+      num_of_devs = data.size
+      sep = (num_of_devs / 2.0).round
+      max = data.map(&:last).max
+
+      limit = (counts.max * 0.08).round unless counts.empty?
+      labels = data.map { |g| g[1] >= limit && g[1] != 0 }
+
+      chart5 = { data_1: data.slice(0...sep),
+                 data_2: data.slice(sep..),
+                 labels_1: labels.slice(0...sep),
+                 labels_2: labels.slice(sep..),
+                 height_1: 7 + 31 + 20 + sep * 20,
+                 height_2: 7 + 31 + 20 + (num_of_devs - sep) * 20,
+                 max: max}
+    end
 
     return chart1, chart2, chart3, chart4, chart5
   end

@@ -92,7 +92,6 @@
     <a class="uk-accordion-title" href="#">Games by release year</a>
     <div class="uk-accordion-content">
       <% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
-                     layout: { padding: { top: 20 } },
                      tooltips: { mode: 'index', intersect: false }
                      } %>
       <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff' } } %>
@@ -114,36 +113,77 @@
       <% else %>
         <% dataset_options[:datalabels][:display] = data[3][:labels] %>
         <% dataset_options[:backgroundColor] = '#49AB8a' %>
-        <%= column_chart data[3][:data], stacked: true, dataset: dataset_options,
+        <% options[:layout] = { padding: { top: 20 } } %>
+        <%= column_chart data[3][:data], dataset: dataset_options,
          library: options %>
       <% end %>
     </div>
   </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <li>
     <a class="uk-accordion-title" href="#">Games by developer</a>
     <div class="uk-accordion-content">
-      <% height = 7 + 31 + data[4].size * 20 %>
-      <%
-      dataset = { borderWidth: 0, backgroundColor: '#bababa'}
-      options = { scales: { xAxes: [{ ticks: { stepSize: 1 } }]} }
-      %>
-      <%= bar_chart data[4], height: "#{height}px", dataset: dataset, library: options %>
+      <div class="uk-grid-collapse" uk-grid>
+
+      <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff' } }  %>
+
+      <% data = data[4] %>
+      <% options = { scales: { xAxes: [{ ticks: { max: data[:max], stepSize: 1 } }]} } %>
+      <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)'] %>
+
+
+      <% if needs_platform %>
+      <% else %>
+      <% dataset_options[:datalabels][:display] = data[:labels_1] %>
+      <% options[:layout] = { padding: { top: 20 } } %>
+      <% end %>
+
+      <%= bar_chart data[:data_1],
+        id: 'dev_a',
+        height: "#{ data[:height_1] }px",
+        width: '430px',
+        stacked: true,
+        dataset: dataset_options,
+        library: options,
+        colors: colors
+        %>
+
+      <% if needs_platform %>
+        <% options[:layout] = { padding: { top: 32 } } %>
+      <% else %>
+        <% dataset_options[:datalabels][:display] = data[:labels_2] %>
+      <% end %>
+
+      <% options[:legend] = { display: false } %>
+
+      <%= bar_chart data[:data_2],
+        id: 'dev_b',
+        height: "#{ data[:height_2] }px",
+        width: '430px',
+        stacked: true,
+        dataset: dataset_options,
+        library: options,
+        colors: colors
+        %>
+
+      <% if needs_platform %>
+        <%= javascript_tag do %>
+          var p_labels_1 = <%= raw data[:p_labels_1] %>;
+          var p_labels_2 = <%= raw data[:p_labels_2] %>;
+          var d_labels_1 = <%= raw data[:d_labels_1] %>;
+          var d_labels_2 = <%= raw data[:d_labels_2] %>;
+
+          var chart = Chartkick.charts["dev_a"].getChartObject();
+          chart.data.datasets[0].datalabels = { display: p_labels_1, color: '#fff' }
+          chart.data.datasets[1].datalabels = { display: d_labels_1, color: '#fff'}
+          chart.update();
+
+          var chart = Chartkick.charts["dev_b"].getChartObject();
+          chart.data.datasets[0].datalabels = { display: p_labels_2, color: '#fff' }
+          chart.data.datasets[1].datalabels = { display: d_labels_2, color: '#fff'}
+          chart.update();
+        <% end %>
+      <% end %>
+      </div>
     </div>
   </li>
 </ul>
