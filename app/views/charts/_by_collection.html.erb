@@ -1,14 +1,20 @@
-<% options = { legend: { position: 'left'},
-              plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
-              layout: { padding: { top: 15, bottom: 15, right: 15 } }
-              } %>
-<% colors = get_colors(data[:data].size) %>
-<% dataset_options = { datalabels: { backgroundColor: colors } } %>
-<%= pie_chart data[:data],
-id: 'moved-by-collection',
-donut: true,
-height: data[:height].to_s + 'px',
-dataset: dataset_options,
-library: options,
-colors: colors,
-messages: { empty: "No data" } %>
+<% no_data = data[:data].empty? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-collection' %>
+  <% options = { legend: { position: 'left'},
+                plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+                layout: { padding: { top: 15, bottom: 15, right: 15 } }
+                } %>
+  <% colors = get_colors(data[:data].size) %>
+  <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 } } %>
+  <%= pie_chart data[:data],
+  id: 'moved-by-collection',
+  donut: true,
+  height: data[:height].to_s + 'px',
+  dataset: dataset_options,
+  library: options,
+  colors: colors,
+  messages: { empty: "No data" } %>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
+<% end %>

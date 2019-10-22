@@ -1,79 +1,82 @@
-<%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'dev_a, dev_b' %>
-<%= content_tag :div, class: 'uk-grid-collapse', 'uk-grid' => '' do %>
+<% no_data = needs_platform ? data[:data_1].first[:data].empty? : data[:data_1].empty? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'dev_a, dev_b' %>
+  <%= content_tag :div, class: 'uk-grid-collapse', 'uk-grid' => '' do %>
 
-  <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } }  %>
-  <% options = { scales: { xAxes: [{ ticks: { max: data[:max], stepSize: 1 } }]} } %>
-  <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)'] %>
+    <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } }  %>
+    <% options = { scales: { xAxes: [{ ticks: { max: data[:max], stepSize: 1 } }]} } %>
+    <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)'] %>
 
-  <% unless needs_platform %>
-    <% dataset_options[:datalabels][:display] = data[:labels_1] %>
-    <% options[:layout] = { padding: { top: 20 } } %>
+    <% unless needs_platform %>
+      <% dataset_options[:datalabels][:display] = data[:labels_1] %>
+      <% options[:layout] = { padding: { top: 20 } } %>
+    <% end %>
+
+    <%= bar_chart data[:data_1],
+      id: 'dev_a',
+      height: "#{ data[:height_1] }px",
+      width: '430px',
+      stacked: true,
+      dataset: dataset_options,
+      library: options,
+      colors: colors
+      %>
+
+    <% if needs_platform %>
+      <% options[:layout] = { padding: { top: 32 } } %>
+    <% else %>
+      <% dataset_options[:datalabels][:display] = data[:labels_2] %>
+    <% end %>
+
+    <% options[:legend] = { display: false } %>
+
+    <%= bar_chart data[:data_2],
+      id: 'dev_b',
+      height: "#{ data[:height_2] }px",
+      width: '430px',
+      stacked: true,
+      dataset: dataset_options,
+      library: options,
+      colors: colors
+      %>
+
+    <% if needs_platform %>
+      <script type="text/javascript">
+        var ids = ['dev_a', 'dev_b'];
+        var p_labels = [<%= raw data[:p_labels_1] %>, <%= raw data[:p_labels_2] %>];
+        var d_labels = [<%= raw data[:d_labels_1] %>, <%= raw data[:d_labels_2] %>];
+
+        var labels = [p_labels, d_labels]
+
+        for (var i in ids) {
+            var chart = Chartkick.charts[ids[i]].getChartObject();
+
+            for (var k in labels) {
+                chart.data.datasets[k].datalabels = {
+                    display: labels[k][i],
+                    color: '#fff',
+                    opacity: 1
+                };
+            }
+
+            if (i == 0) {
+                chart.options.legend.onClick = function(e, legendItem) {
+                    var dev_charts = ['dev_a', 'dev_b'];
+                    var index = legendItem.datasetIndex;
+
+                    for (var i in dev_charts) {
+                        var c = Chartkick.charts[dev_charts[i]].getChartObject();
+                        var meta = c.getDatasetMeta(index);
+                        meta.hidden = meta.hidden === null ? !c.data.datasets[index].hidden : null;
+                        c.update();
+                    }
+                }
+            }
+            chart.update();
+        }
+      </script>
+    <% end %>
   <% end %>
-
-  <%= bar_chart data[:data_1],
-    id: 'dev_a',
-    height: "#{ data[:height_1] }px",
-    width: '430px',
-    stacked: true,
-    dataset: dataset_options,
-    library: options,
-    colors: colors,
-    messages: { empty: "No data" }
-    %>
-
-  <% if needs_platform %>
-    <% options[:layout] = { padding: { top: 32 } } %>
-  <% else %>
-    <% dataset_options[:datalabels][:display] = data[:labels_2] %>
-  <% end %>
-
-  <% options[:legend] = { display: false } %>
-
-  <%= bar_chart data[:data_2],
-    id: 'dev_b',
-    height: "#{ data[:height_2] }px",
-    width: '430px',
-    stacked: true,
-    dataset: dataset_options,
-    library: options,
-    colors: colors,
-    messages: { empty: "No data" }
-    %>
-
-  <% if needs_platform %>
-    <script type="text/javascript">
-      var ids = ['dev_a', 'dev_b'];
-      var p_labels = [<%= raw data[:p_labels_1] %>, <%= raw data[:p_labels_2] %>];
-      var d_labels = [<%= raw data[:d_labels_1] %>, <%= raw data[:d_labels_2] %>];
-
-      var labels = [p_labels, d_labels]
-
-      for (var i in ids) {
-          var chart = Chartkick.charts[ids[i]].getChartObject();
-
-          for (var k in labels) {
-              chart.data.datasets[k].datalabels = {
-                  display: labels[k][i],
-                  color: '#fff',
-                  opacity: 1
-              };
-          }
-
-          if (i == 0) {
-              chart.options.legend.onClick = function(e, legendItem) {
-                  var dev_charts = ['dev_a', 'dev_b'];
-                  var index = legendItem.datasetIndex;
-
-                  for (var i in dev_charts) {
-                      var c = Chartkick.charts[dev_charts[i]].getChartObject();
-                      var meta = c.getDatasetMeta(index);
-                      meta.hidden = meta.hidden === null ? !c.data.datasets[index].hidden : null;
-                      c.update();
-                  }
-              }
-          }
-          chart.update();
-      }
-    </script>
-  <% end %>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
 <% end %>

@@ -1,17 +1,21 @@
-<%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-platform' %>
+<% no_data = data[:data].empty? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-platform' %>
 
-<% options = { legend: { position: 'left'},
-              plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
-              layout: { padding: { top: 15, bottom: 15, right: 15 } }
-              } %>
-<% colors = get_colors(data[:data].size) %>
-<% colors[colors.size - 1] = '#bababa' if overall %>
-<% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1} } %>
-<%= pie_chart data[:data],
-id: 'moved-by-platform',
-donut: true,
-height: data[:height].to_s + 'px',
-dataset: dataset_options,
-library: options,
-colors: colors,
-messages: { empty: "No data" } %>
+  <% options = { legend: { position: 'left'},
+                plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+                layout: { padding: { top: 15, bottom: 15, right: 15 } }
+                } %>
+  <% colors = get_colors(data[:data].size) %>
+  <% colors[colors.size - 1] = '#bababa' if overall %>
+  <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1} } %>
+  <%= pie_chart data[:data],
+  id: 'moved-by-platform',
+  donut: true,
+  height: data[:height].to_s + 'px',
+  dataset: dataset_options,
+  library: options,
+  colors: colors %>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
+<% end %>

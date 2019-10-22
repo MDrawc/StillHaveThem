@@ -1,23 +1,29 @@
-<% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
-               tooltips: { mode: 'index', intersect: false } } %>
-<% dataset_options = { borderWidth: 0, datalabels: { color: '#fff' } } %>
-<% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
+<% no_data = data[:data].first[:data].empty? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'by-release-overall' %>
+  <% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
+                 tooltips: { mode: 'index', intersect: false } } %>
+  <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } } %>
+  <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
 
-<%= column_chart data[:data],
-                 id: 'by-release-overall',
-                 stacked: true,
-                 dataset: dataset_options,
-                 library: options,
-                 colors: colors,
-                 messages: { empty: "No data" } %>
+  <%= column_chart data[:data],
+                   id: 'by-release-overall',
+                   stacked: true,
+                   dataset: dataset_options,
+                   library: options,
+                   colors: colors,
+                   messages: { empty: "No data" } %>
 
-<%= javascript_tag do %>
-  var p_labels = <%= raw data[:p_labels] %>;
-  var d_labels = <%= raw data[:d_labels] %>;
-  var nd_labels = <%= raw data[:nd_labels] %>;
-  var chart = Chartkick.charts["by-release-overall"].getChartObject();
-  chart.data.datasets[0].datalabels = { display: p_labels, color: '#fff' };
-  chart.data.datasets[1].datalabels = { display: d_labels, color: '#fff'};
-  chart.data.datasets[2].datalabels = { display: nd_labels, color: '#fff'};
-  chart.update();
+  <script type="text/javascript">
+    var p_labels = <%= raw data[:p_labels] %>;
+    var d_labels = <%= raw data[:d_labels] %>;
+    var nd_labels = <%= raw data[:nd_labels] %>;
+    var chart = Chartkick.charts["by-release-overall"].getChartObject();
+    chart.data.datasets[0].datalabels = { display: p_labels, color: '#fff', opacity: 1 };
+    chart.data.datasets[1].datalabels = { display: d_labels, color: '#fff', opacity: 1 };
+    chart.data.datasets[2].datalabels = { display: nd_labels, color: '#fff', opacity: 1 };
+    chart.update();
+  </script>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
 <% end %>

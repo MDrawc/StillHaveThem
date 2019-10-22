@@ -1,17 +1,20 @@
-<%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-format' %>
+<% no_data = data.nil? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-format' %>
 
-<% options = { legend: { position: 'left'},
-              plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
-              layout: { padding: { top: 15, bottom: 15, right: 15 } }
-              } %>
-<% colors = ['#49AB8a', '#ab496a', '#bababa'] %>
-<% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 } } %>
-<%= pie_chart data,
-id: 'moved-by-format',
-donut: true,
-height: '250px',
-dataset: dataset_options,
-library: options,
-colors: colors,
-messages: { empty: "No data" }
-%>
+  <% options = { legend: { position: 'left'},
+                plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+                layout: { padding: { top: 15, bottom: 15, right: 15 } }
+                } %>
+  <% colors = ['#49AB8a', '#ab496a', '#bababa'] %>
+  <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 } } %>
+  <%= pie_chart data,
+  id: 'moved-by-format',
+  donut: true,
+  height: '250px',
+  dataset: dataset_options,
+  library: options,
+  colors: colors %>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
+<% end %>

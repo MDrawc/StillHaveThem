@@ -1,71 +1,76 @@
-<%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'dev_a_over, dev_b_over' %>
-<%= content_tag :div, class: 'uk-grid-collapse', 'uk-grid' => '' do %>
+<% no_data = data[:data_1].first[:data].empty? %>
+<% unless no_data %>
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'dev_a_over, dev_b_over' %>
+  <%= content_tag :div, class: 'uk-grid-collapse', 'uk-grid' => '' do %>
 
-  <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } }  %>
-  <% options = { scales: { xAxes: [{ ticks: { max: data[:max], stepSize: 1 } }]} } %>
-  <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
+    <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } }  %>
+    <% options = { scales: { xAxes: [{ ticks: { max: data[:max], stepSize: 1 } }]} } %>
+    <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
 
-  <%= bar_chart data[:data_1],
-    id: 'dev_a_over',
-    height: "#{ data[:height_1] }px",
-    width: '430px',
-    stacked: true,
-    dataset: dataset_options,
-    library: options,
-    colors: colors,
-    messages: { empty: "No data" }
-    %>
+    <%= bar_chart data[:data_1],
+      id: 'dev_a_over',
+      height: "#{ data[:height_1] }px",
+      width: '430px',
+      stacked: true,
+      dataset: dataset_options,
+      library: options,
+      colors: colors,
+      messages: { empty: "No data" }
+      %>
 
-  <% options[:layout] = { padding: { top: 32 } } %>
-  <% options[:legend] = { display: false } %>
+    <% options[:layout] = { padding: { top: 32 } } %>
+    <% options[:legend] = { display: false } %>
 
-  <%= bar_chart data[:data_2],
-    id: 'dev_b_over',
-    height: "#{ data[:height_2] }px",
-    width: '430px',
-    stacked: true,
-    dataset: dataset_options,
-    library: options,
-    colors: colors,
-    messages: { empty: "No data" }
-    %>
+    <%= bar_chart data[:data_2],
+      id: 'dev_b_over',
+      height: "#{ data[:height_2] }px",
+      width: '430px',
+      stacked: true,
+      dataset: dataset_options,
+      library: options,
+      colors: colors,
+      messages: { empty: "No data" }
+      %>
 
-    <script type="text/javascript">
-      var ids = ['dev_a_over', 'dev_b_over'];
-      var p_labels = [<%= raw data[:p_labels_1] %>, <%= raw data[:p_labels_2] %>];
-      var d_labels = [<%= raw data[:d_labels_1] %>, <%= raw data[:d_labels_2] %>];
-      var nd_labels = [<%= raw data[:nd_labels_1] %>, <%= raw data[:nd_labels_2] %>];
+      <script type="text/javascript">
+        var ids = ['dev_a_over', 'dev_b_over'];
+        var p_labels = [<%= raw data[:p_labels_1] %>, <%= raw data[:p_labels_2] %>];
+        var d_labels = [<%= raw data[:d_labels_1] %>, <%= raw data[:d_labels_2] %>];
+        var nd_labels = [<%= raw data[:nd_labels_1] %>, <%= raw data[:nd_labels_2] %>];
 
-      var labels = [p_labels, d_labels, nd_labels]
+        var labels = [p_labels, d_labels, nd_labels]
 
-      for (var i in ids) {
+        for (var i in ids) {
 
-          var chart = Chartkick.charts[ids[i]].getChartObject();
+            var chart = Chartkick.charts[ids[i]].getChartObject();
 
-          for (var k in labels) {
-              chart.data.datasets[k].datalabels = {
-                  display: labels[k][i],
-                  color: '#fff',
-                  opacity: 1
-              };
-          }
+            for (var k in labels) {
+                chart.data.datasets[k].datalabels = {
+                    display: labels[k][i],
+                    color: '#fff',
+                    opacity: 1
+                };
+            }
 
-          if (i == 0) {
-              chart.options.legend.onClick = function(e, legendItem) {
-                  var dev_charts = ['dev_a_over', 'dev_b_over'];
-                  var index = legendItem.datasetIndex;
+            if (i == 0) {
+                chart.options.legend.onClick = function(e, legendItem) {
+                    var dev_charts = ['dev_a_over', 'dev_b_over'];
+                    var index = legendItem.datasetIndex;
 
-                  for (var i in dev_charts) {
-                      var c = Chartkick.charts[dev_charts[i]].getChartObject();
-                      var meta = c.getDatasetMeta(index);
-                      meta.hidden = meta.hidden === null ? !c.data.datasets[index].hidden : null;
-                      c.update();
-                  }
-              }
+                    for (var i in dev_charts) {
+                        var c = Chartkick.charts[dev_charts[i]].getChartObject();
+                        var meta = c.getDatasetMeta(index);
+                        meta.hidden = meta.hidden === null ? !c.data.datasets[index].hidden : null;
+                        c.update();
+                    }
+                }
 
-          }
+            }
 
-          chart.update();
-      }
-    </script>
+            chart.update();
+        }
+      </script>
+  <% end %>
+<% else %>
+  <%= content_tag :span, '- no data -', class: 'chart-no-data' %>
 <% end %>

@@ -44,7 +44,7 @@ class Collection < ApplicationRecord
       else
         res = ''
         chart_1.each { |k,v| res += (k + '-') if v == max }
-        stats[3] = "tie #{ res[0...-1] } (#{ max })"
+        stats[3] = "tie #{ res[0...-1] } (#{ max })".downcase
       end
 
       #Chart 2: Games by collection
@@ -81,7 +81,7 @@ class Collection < ApplicationRecord
         data << [p, val]
       end
 
-      data.last[0] = 'Not defined' if data.last[0] == '~~~'
+      data.last[0] = 'Not defined' if !data.empty? && data.last[0] == '~~~'
       dominant[0] = 'Not defined' if dominant[0] == '~~~'
 
       height = 2*15 + 2*8 + data.size*(15 + 8) - 7
