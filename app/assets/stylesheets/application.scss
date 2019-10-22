@@ -1323,7 +1323,18 @@ span.add-form-errors {
 
     hr {
         border-color: #bababa;
+        margin-top: 10px;
     }
+}
+
+#f-modal {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#f-modal::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 #graph-form {
@@ -1340,41 +1351,22 @@ span.add-form-errors {
         padding-left: 10px;
         vertical-align: text-bottom;
     }
-
-    .uk-icon svg {
-        color: #777;
-        height: 25px;
-        width: 25px;
-    }
 }
 
-#graphs {
-    margin-top: 20px;
-
-    hr {
-        margin-top: 5px;
-    }
-
-    #first-chart {
-        float: right;
-        position: relative;
-        top: -15px;
-    }
-
-    .uk-accordion-content {
-        margin: 0;
-    }
+#first-chart {
+    float: right;
 }
 
-[id^=m-chart-] {
+[id^=moved-] {
     position: relative;
-    top: -10px;
     left: -10px;
 }
 
 .stats {
     font-size: 14px;
     color: #333;
+    padding-top: 10px;
+    height: 200px;
 
     td {
         vertical-align: top;
@@ -1391,6 +1383,7 @@ span.add-form-errors {
 
 .uk-accordion {
     color: #999;
+    margin-bottom: 0;
 
     li.uk-open a {
         color: #333;
@@ -1404,4 +1397,8 @@ span.add-form-errors {
             color: #666;
         }
     }
+}
+
+.uk-accordion-content {
+    margin: 0;
 }

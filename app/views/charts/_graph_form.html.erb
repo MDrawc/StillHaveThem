@@ -1,9 +1,71 @@
 <%= form_with(url: "/graphs", method: "get", id: 'graph-form') do %>
-  <div uk-form-custom="target: true">
-    <%= select_tag(:graph_collection, options_for_select(collections_for_graph_form(current_user)) ) %>
-    <span class="coll-name"></span><%= content_tag :span, svg('chart'), class: 'uk-icon' %>
-  </div>
-  <%= submit_tag('render') %>
+<div uk-form-custom="target: true">
+  <%= select_tag(:graph_collection, options_for_select(collections_for_graph_form(current_user))) %>
+  <span class="coll-name"></span><%= content_tag :span, svg('big_chart'), class: 'uk-icon' %>
+</div>
+<%= submit_tag('render') %>
 <% end %>
-
-<div id="graphs"></div>
+  <div class="uk-child-width-1-2 uk-grid-collapse" uk-grid>
+    <div>
+      <table class='stats'>
+        <tr>
+          <td class="chg-stats">Created:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td class="chg-stats">Requires platform, format:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td class="chg-stats">Number of games:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td>Dominant format:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td>Dominant platform:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td>Dominant developer:</td>
+          <td class="stat"></td>
+        </tr>
+        <tr>
+          <td>Last game added:</td>
+          <td class="stat"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="in-comparison" class="chrt-holder">
+    </div>
+  </div>
+  <hr>
+  <ul uk-accordion>
+    <li id="li-by-collection">
+      <a class="uk-accordion-title" href="#">Games by collection</a>
+      <div id="by-collection" class="chrt-holder uk-accordion-content">
+      </div>
+    </li>
+    <li id="li-by-format">
+      <a class="uk-accordion-title" href="#">Games by format</a>
+      <div id="by-format" class="chrt-holder uk-accordion-content">
+      </div>
+    </li>
+    <li id="li-by-platform">
+      <a class="uk-accordion-title" href="#">Games by platform</a>
+      <div id="by-platform" class="chrt-holder uk-accordion-content">
+      </div>
+    </li>
+    <li>
+      <a class="uk-accordion-title" href="#">Games by release year</a>
+      <div id="by-release" class="chrt-holder uk-accordion-content">
+      </div>
+    </li>
+    <li>
+      <a class="uk-accordion-title" href="#">Games by developer</a>
+      <div id="by-developer" class="chrt-holder uk-accordion-content">
+      </div>
+    </li>
+  </ul>

@@ -1,1 +1,76 @@
-$('#graphs').html("<%= j(render partial: 'graphs', locals: { data: @data, needs_platform: @needs_platform }) %>");
+<% if @overall %>
+var first_chart = "<%= j(render partial: 'by_format_overall', locals: { data: @charts_data[:chart_1] }) %>";
+var by_collection = "<%= j(render partial: 'by_collection', locals: { data: @charts_data[:chart_2] }) %>";
+var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: true }) %>";
+var by_release = "<%= j(render partial: 'by_release_overall', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform }) %>";
+var by_developer = "<%= j(render partial: 'by_developer_overall', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform }) %>";
+<% else %>
+var first_chart = "<%= j(render partial: 'in_comparison', locals: { data: @charts_data[:chart_1] }) %>";
+<% if @needs_platform %>
+var by_format = "<%= j(render partial: 'by_format', locals: { data: @charts_data[:chart_2] }) %>";
+var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: false }) %>";
+<% end %>
+var by_release = "<%= j(render partial: 'by_release', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform }) %>";
+var by_developer = "<%= j(render partial: 'by_developer', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform }) %>";
+<% end %>
+
+var overall = <%= @overall %>;
+var needs_platform = <%= @needs_platform %>;
+var stats = <%= raw @charts_data[:stats] %>;
+
+for (var chart in Chartkick.charts) {
+    Chartkick.charts[chart].destroy();
+}
+$('.chrt-holder').empty();
+
+var $li_by_format = $('#li-by-format');
+var $li_by_platform = $('#li-by-platform');
+var $li_by_collection = $('#li-by-collection');
+
+var $chg_stats = $('.chg-stats');
+var overall_text = ['Account created:', 'Total number of games:', 'Largest collection:'];
+var single_coll_text = ['Created:', 'Requires platform, format:', 'Number of games:'];
+
+$('.stat').each(function(i) {
+    if (i == 0) {
+        var d = new Date(stats[i]);
+        $(this).text(d.toLocaleDateString());
+    } else {
+        $(this).text(stats[i]);
+    }
+});
+
+if (overall) {
+
+    $chg_stats.each(function(i) {
+        $(this).text(overall_text[i]);
+    });
+
+    $li_by_collection.show();
+    $li_by_platform.show();
+    $li_by_format.hide();
+
+    $('#by-collection').html(by_collection);
+    $('#by-platform').html(by_platform);
+} else {
+    $chg_stats.each(function(i) {
+        $(this).text(single_coll_text[i]);
+    });
+    $li_by_collection.hide();
+
+    if (needs_platform) {
+        $li_by_format.show();
+        $li_by_platform.show();
+
+        $('#by-format').html(by_format);
+        $('#by-platform').html(by_platform);
+
+    } else {
+        $li_by_format.hide();
+        $li_by_platform.hide();
+    }
+}
+
+$('#in-comparison').html(first_chart);
+$('#by-release').html(by_release);
+$('#by-developer').html(by_developer);

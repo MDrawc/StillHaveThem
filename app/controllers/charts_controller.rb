@@ -7,11 +7,12 @@ class ChartsController < ApplicationController
   end
 
   def graphs
+    @overall, @needs_platform = false, false
     if params[:graph_collection] == 'all'
-      @data = Collection.data_for_overall_graphs(current_user)
-      @needs_platform = true
+      @charts_data = Collection.data_for_overall_graphs(current_user)
+      @overall = true
     elsif coll = current_user.collections.find_by_id(params[:graph_collection])
-      @data = coll.data_for_graphs
+      @charts_data = coll.data_for_graphs
       @needs_platform = coll.needs_platform
     else
       respond_to do |format|
@@ -20,5 +21,4 @@ class ChartsController < ApplicationController
     end
     respond_to :js
   end
-
 end

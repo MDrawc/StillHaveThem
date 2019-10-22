@@ -1,0 +1,15 @@
+<% options = { legend: { position: 'right'},
+              plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+              layout: { padding: { top: 15, bottom: 15, right: 0 } }
+              } %>
+<% colors = ['#49AB8a', '#ab496a', '#bababa'] %>
+<% dataset_options = { datalabels: { backgroundColor: colors } } %>
+<%= pie_chart data,
+id: 'first-chart',
+donut: true,
+height: '200px',
+dataset: dataset_options,
+library: options,
+colors: colors,
+messages: { empty: "No data" }
+%>
