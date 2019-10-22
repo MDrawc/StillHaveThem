@@ -1359,6 +1359,7 @@ span.add-form-errors {
 
 [id^=moved-] {
     position: relative;
+    top: -8px;
     left: -10px;
 }
 
@@ -1385,11 +1386,11 @@ span.add-form-errors {
     color: #999;
     margin-bottom: 0;
 
-    li.uk-open a {
+    li.uk-open a.uk-accordion-title {
         color: #333;
     }
 
-    a {
+    a.uk-accordion-title {
         font-size: 17px;
         color: inherit;
 
@@ -1405,7 +1406,15 @@ span.add-form-errors {
 
 a.hide-labels {
     font-size: 12px;
-    color: #999 !important;
+    color: #999;
+    border: thin solid #bababa;
+    padding: 2px 5px;
+    border-radius: 3px;
+    &:hover {
+        text-decoration: none;
+        color: #666;
+        border-color: #777;
+    }
 }
 
 .chart-no-data {
