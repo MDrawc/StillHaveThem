@@ -278,10 +278,38 @@ function toggleEditMenu() {
     });
 }
 
-
 function activateGraphForm() {
     $('#graph_collection').on('input', function(){
         var form = document.getElementById('graph-form');
         Rails.fire(form, 'submit');
+    });
+}
+
+function labelsHiders() {
+    var $hiders = $('.hide-labels')
+
+    $hiders.click(function() {
+        var chart_ids = $(this).attr('chart_id').split(', ');
+
+        for (var i in chart_ids) {
+            var chart = Chartkick.charts[chart_ids[i]].getChartObject();
+            var datasets = chart.data.datasets;
+            disp = datasets[0].datalabels['opacity'];
+
+            if (disp == 1) {
+
+                for (var i = 0; i < datasets.length; i++) {
+                    datasets[i].datalabels['opacity'] = 0;
+                }
+                $(this).text('show labels');
+            } else {
+
+                for (var i = 0; i < datasets.length; i++) {
+                    datasets[i].datalabels['opacity'] = 1;
+                }
+                $(this).text('hide labels');
+            }
+            chart.update();
+        }
     });
 }

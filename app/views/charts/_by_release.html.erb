@@ -1,7 +1,8 @@
+<%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'chart-1' %>
 <% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
                tooltips: { mode: 'index', intersect: false }
                } %>
-<% dataset_options = { borderWidth: 0, datalabels: { color: '#fff' } } %>
+<% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } } %>
 <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)'] %>
 <% if needs_platform %>
   <%= column_chart data[:data], stacked: true,
@@ -10,8 +11,8 @@
     var p_labels = <%= raw data[:p_labels] %>;
     var d_labels = <%= raw data[:d_labels] %>;
     var chart = Chartkick.charts["chart-1"].getChartObject();
-    chart.data.datasets[0].datalabels = { display: p_labels, color: '#fff' };
-    chart.data.datasets[1].datalabels = { display: d_labels, color: '#fff'};
+    chart.data.datasets[0].datalabels = { display: p_labels, color: '#fff', opacity: 1 };
+    chart.data.datasets[1].datalabels = { display: d_labels, color: '#fff', opacity: 1 };
     chart.update();
   <% end %>
 <% else %>
