@@ -111,23 +111,29 @@ class Collection < ApplicationRecord
 
       all_years = p_years.union(d_years).union(nd_years).sort
 
-      counts = []
+      total_values = []
       all_years.each do |y|
         val = p_years.count(y), d_years.count(y), nd_years.count(y)
         datasets[0][:data] << [y, val[0]]
         datasets[1][:data] << [y, val[1]]
         datasets[2][:data] << [y, val[2]]
-        counts += val
+        total_values << val.sum
       end
 
-      limit = (counts.max * 0.08).round unless counts.empty?
-      p_labels = datasets[0][:data].map { |g| g[1] >= limit && g[1] != 0 }
-      d_labels = datasets[1][:data].map { |g| g[1] >= limit && g[1] != 0 }
-      nd_labels = datasets[2][:data].map { |g| g[1] >= limit && g[1] != 0 }
+      unless total_values.empty?
+        max = total_values.max
+        chrt_max = round_to(max, 5)
+        limit = (chrt_max * 0.08).round
+        p_labels = datasets[0][:data].map { |g| g[1] >= limit && g[1] != 0 }
+        d_labels = datasets[1][:data].map { |g| g[1] >= limit && g[1] != 0 }
+        nd_labels = datasets[2][:data].map { |g| g[1] >= limit && g[1] != 0 }
+      end
+
       chart_4 = { data: datasets,
                   p_labels: p_labels,
                   d_labels: d_labels,
-                  nd_labels: nd_labels }
+                  nd_labels: nd_labels,
+                  max: chrt_max }
 
       #Chart 5: Games by developer
       sql = """SELECT developers.name, games.physical
@@ -156,8 +162,6 @@ class Collection < ApplicationRecord
       p_dataset, d_dataset, nd_dataset = [], [], []
 
       total_values = []
-      single_values = []
-
       dominant = ['', 0]
       all_devs.sort.each do |d|
         values = p_devs.count(d), d_devs.count(d), nd_devs.count(d)
@@ -165,7 +169,6 @@ class Collection < ApplicationRecord
         p_dataset << [d, values[0]]
         d_dataset << [d, values[1]]
         nd_dataset << [d, values[2]]
-        single_values += values
         sum = values.sum
         total_values << sum
         dominant = [d, sum] if sum > dominant.last
@@ -184,13 +187,14 @@ class Collection < ApplicationRecord
       nd_1 = nd_dataset.slice(0...sep)
       nd_2 = nd_dataset.slice(sep..)
 
-      limit = (single_values.max * 0.04).round unless counts.empty?
-      p_labels_1 = p_1.map { |g| g[1] > limit && g[1] != 0 }
-      p_labels_2 = p_2.map { |g| g[1] > limit && g[1] != 0 }
-      d_labels_1 = d_1.map { |g| g[1] > limit && g[1] != 0 }
-      d_labels_2 = d_2.map { |g| g[1] > limit && g[1] != 0 }
-      nd_labels_1 = nd_1.map { |g| g[1] > limit && g[1] != 0 }
-      nd_labels_2 = nd_2.map { |g| g[1] > limit && g[1] != 0 }
+      max = total_values.max
+      limit = (max * 0.08).round unless total_values.empty?
+      p_labels_1 = p_1.map { |g| g[1] >= limit && g[1] != 0 }
+      p_labels_2 = p_2.map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels_1 = d_1.map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels_2 = d_2.map { |g| g[1] >= limit && g[1] != 0 }
+      nd_labels_1 = nd_1.map { |g| g[1] >= limit && g[1] != 0 }
+      nd_labels_2 = nd_2.map { |g| g[1] >= limit && g[1] != 0 }
 
       chart_5 = { data_1: [{ name: "Physical", data: p_1 },
                            { name: "Digital", data: d_1 },
@@ -206,7 +210,7 @@ class Collection < ApplicationRecord
                  nd_labels_2: nd_labels_2,
                  height_1: 7 + 31 + 32 + sep * 20,
                  height_2: 7 + 31 + 32 + (num_of_devs - sep) * 20,
-                 max: total_values.max
+                 max: max
                }
 
       return {
@@ -306,33 +310,43 @@ class Collection < ApplicationRecord
         { name: "Digital", data: [] }]
 
       all_years = p_years.union(d_years).sort
-      counts = []
 
+      total_values = []
       all_years.each do |y|
         val = p_years.count(y), d_years.count(y)
         datasets[0][:data] << [y, val[0]]
         datasets[1][:data] << [y, val[1]]
-        counts += val
+        total_values << val.sum
       end
 
-      limit = (counts.max * 0.08).round unless counts.empty?
-      p_labels = datasets[0][:data].map { |g| g[1] >= limit && g[1] != 0 }
-      d_labels = datasets[1][:data].map { |g| g[1] >= limit && g[1] != 0 }
-      chart_4 = { data: datasets, p_labels: p_labels, d_labels: d_labels }
+      unless total_values.empty?
+        max = total_values.max
+        chrt_max = round_to(max, 5)
+        limit = (chrt_max * 0.08).round
+        p_labels = datasets[0][:data].map { |g| g[1] >= limit && g[1] != 0 }
+        d_labels = datasets[1][:data].map { |g| g[1] >= limit && g[1] != 0 }
+      end
+
+      chart_4 = { data: datasets, p_labels: p_labels, d_labels: d_labels, max: chrt_max }
     else
+
       years = games.map { |g| Time.at(g.first).year }
       data = []
-      counts = []
-
+      values = []
       years.uniq.sort.each do |y|
         val = years.count(y)
         data << [y, val]
-        counts << val
+        values << val
       end
 
-      limit = (counts.max * 0.08).round unless counts.empty?
-      labels = data.map { |g| g[1] >= limit && g[1] != 0 }
-      chart_4 = { data: data, labels: labels }
+      unless values.empty?
+        max = values.max
+        chrt_max = round_to(max, 5)
+        limit = (chrt_max * 0.08).round
+        labels = data.map { |g| g[1] >= limit && g[1] != 0 }
+      end
+
+      chart_4 = { data: data, labels: labels, max: chrt_max }
     end
 
     #Chart 5: Developerss
@@ -361,15 +375,12 @@ class Collection < ApplicationRecord
       p_dataset, d_dataset = [], []
 
       total_values = []
-      single_values = []
-
       dominant = ['', 0]
       all_devs.sort.each do |d|
         values = p_devs.count(d), d_devs.count(d)
         d = d[0...31] + '...' if d.size >= 35
         p_dataset << [d, values[0]]
         d_dataset << [d, values[1]]
-        single_values += values
         sum = values.sum
         total_values << sum
         dominant = [d, sum] if sum > dominant.last
@@ -386,11 +397,13 @@ class Collection < ApplicationRecord
       d_1 = d_dataset.slice(0...sep)
       d_2 = d_dataset.slice(sep..)
 
-      limit = (single_values.max * 0.04).round unless counts.empty?
-      p_labels_1 = p_1.map { |g| g[1] > limit && g[1] != 0 }
-      p_labels_2 = p_2.map { |g| g[1] > limit && g[1] != 0 }
-      d_labels_1 = d_1.map { |g| g[1] > limit && g[1] != 0 }
-      d_labels_2 = d_2.map { |g| g[1] > limit && g[1] != 0 }
+      max = total_values.max
+
+      limit = (max * 0.08).round unless total_values.empty?
+      p_labels_1 = p_1.map { |g| g[1] >= limit && g[1] != 0 }
+      p_labels_2 = p_2.map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels_1 = d_1.map { |g| g[1] >= limit && g[1] != 0 }
+      d_labels_2 = d_2.map { |g| g[1] >= limit && g[1] != 0 }
 
       chart_5 = { data_1: [{ name: "Physical", data: p_1 }, { name: "Digital", data: d_1 }],
                  data_2: [{ name: "Physical", data: p_2 }, { name: "Digital", data: d_2 }],
@@ -400,7 +413,7 @@ class Collection < ApplicationRecord
                  d_labels_2: d_labels_2,
                  height_1: 7 + 31 + 32 + sep * 20,
                  height_2: 7 + 31 + 32 + (num_of_devs - sep) * 20,
-                 max: total_values.max
+                 max: max
                }
     else
       sql ="""SELECT developers.name
@@ -414,8 +427,10 @@ class Collection < ApplicationRecord
 
       data = []
       dominant = ['', 0]
+      values = []
       r.uniq.each do |d|
         val = r.count(d)
+        values << val
         d = d[0...31] + '...' if d.size >= 35
         data << [d, val]
         dominant = [d, val] if val > dominant.last
@@ -426,9 +441,9 @@ class Collection < ApplicationRecord
 
       num_of_devs = data.size
       sep = (num_of_devs / 2.0).round
-      max = data.map(&:last).max
+      max = values.max
 
-      limit = (counts.max * 0.08).round unless counts.empty?
+      limit = (max * 0.08).round unless values.empty?
       labels = data.map { |g| g[1] >= limit && g[1] != 0 }
 
       chart_5 = { data_1: data.slice(0...sep),
@@ -451,5 +466,19 @@ class Collection < ApplicationRecord
              chart_4: chart_4,
              chart_5: chart_5
            }
+  end
+
+private
+
+  def self.round_to(a, const)
+    res = (a / const) * const
+    res += const if a % const > 0
+    res
+  end
+
+  def round_to(a, const)
+    res = (a / const) * const
+    res += const if a % const > 0
+    res
   end
 end

@@ -1,8 +1,12 @@
 <% no_data = data[:data].first[:data].empty? %>
 <% unless no_data %>
   <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'by-release-overall' %>
-  <% options = { scales: { xAxes: [{ maxBarThickness: 40 }] },
-                 tooltips: { mode: 'index', intersect: false } } %>
+
+  <% options = { scales: { xAxes: [{ maxBarThickness: 40 }],
+                           yAxes: [ticks: { max: data[:max] }] },
+                 tooltips: { mode: 'index', intersect: false }
+                 } %>
+
   <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } } %>
   <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
 
