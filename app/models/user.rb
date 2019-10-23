@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_platforms
   has_many :platforms, through: :user_platforms
   has_many :records, dependent: :destroy
+  has_many :shares, dependent: :destroy
 
   VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
