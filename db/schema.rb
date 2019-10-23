@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_094127) do
+ActiveRecord::Schema.define(version: 2019_10_23_153012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,16 @@ ActiveRecord::Schema.define(version: 2019_10_02_094127) do
     t.integer "results"
     t.boolean "custom_filters"
     t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
+  create_table "shares", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "key"
+    t.integer "shared", array: true
+    t.integer "times_visited"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
   create_table "user_platforms", force: :cascade do |t|
