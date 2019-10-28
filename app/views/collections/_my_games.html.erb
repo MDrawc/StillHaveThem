@@ -11,7 +11,8 @@
     <% if needs_platform %>
     <div class="srch-div first"></div>
     <div uk-form-custom="target: true">
-        <%= f.select(:plat_eq, user_platforms, {include_blank: 'All Platforms'}, {class: "select-input #{ not_active }", disabled: empty} ) %>
+        <% platforms = logged_in? ? user_platforms : guest_platforms %>
+        <%= f.select(:plat_eq, platforms, {include_blank: 'All Platforms'}, {class: "select-input #{ not_active }", disabled: empty} ) %>
         <span></span>
     </div>
     <div class="srch-div"></div>

@@ -11,6 +11,8 @@ class StaticPagesController < ApplicationController
   @@status = nil
 
   def home
+    kill_guest
+
     if logged_in?
       last = cookies['last']
       if current_user.collection_ids.include?(last.to_i)

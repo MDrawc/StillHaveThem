@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
-before_action :require_user
-before_action :correct_user, only: [:show, :edit, :update, :destroy]
+before_action :require_user, except: [:show]
+before_action :correct_user, only: [:edit, :update, :destroy]
+before_action :correct_user_for_show, only: [:show]
 before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
 PER_PAGE = 30
@@ -19,7 +20,7 @@ def show
     cookies['last'] = { value: params[:id], expires: 30.days }
 
     respond_to do |format|
-      format.js { render partial: "show", locals: { user_id: current_user.id } }
+      format.js { render partial: "show" }
     end
   else
     @in_search = true
@@ -33,7 +34,7 @@ def show
     query.map! { |a| a ||= '' }
     sort = q[:s]
     respond_to do |format|
-      format.js { render partial: "search", locals: { query: query, sort: sort, user_id: current_user.id } }
+      format.js { render partial: "search", locals: { query: query, sort: sort } }
     end
   end
 end
@@ -124,6 +125,24 @@ private
 
   def correct_user
     @collection = current_user.collections.find_by(id: params[:id])
+    if @collection.nil?
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
+    end
+  end
+
+  def correct_user_for_show
+    if logged_in?
+      @collection = current_user.collections.find_by(id: params[:id])
+    elsif guest_logged?
+      @collection = shared_collections.find_by_id(params[:id])
+    else
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
+    end
+
     if @collection.nil?
       respond_to do |format|
         format.js {render js: 'location.reload();' }

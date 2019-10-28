@@ -100,6 +100,10 @@ module StaticPagesHelper
     current_user.platforms.map(&:name)
   end
 
+  def guest_platforms
+    User.find_by_id(guest.user_id).platforms.map(&:name)
+  end
+
   def user_platforms_for_select
     current_user.platforms.map { |p| [p.name, "#{ p.igdb_id }, #{ p.name }"]}
   end
