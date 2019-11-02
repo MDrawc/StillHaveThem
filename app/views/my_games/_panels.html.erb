@@ -14,7 +14,7 @@
     <% @games.select('games.*, collection_games.created_at').each do |game| %>
     <% id = game.id %>
     <% needs_platform = collection.needs_platform %>
-    <% extra = 'out' if edit_open? %>
+    <% extra = 'out' if edit_open? && !shared %>
     <%= content_tag :div, id: "g-#{ id }", class: 'g-panel uk-width-5-6' do %>
     <div class="not-drop uk-position-relative">
         <%= get_game_thumb(game) %>
@@ -31,6 +31,7 @@
             </h4>
             <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') unless game.developers.empty? %>
         </div>
+        <% unless shared %>
         <%= content_tag :div, id: "g-menu-#{ id }", class: "g-menu #{ extra }" do %>
         <ul >
             <li>
@@ -48,6 +49,7 @@
             </li>
         </ul>
         <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
+        <% end %>
         <% end %>
         <%= content_tag :div, class: "g-right #{ extra }" do %>
         <% if needs_platform %>
@@ -92,12 +94,14 @@
 <button id="g-hide-<%= id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>
 <% end %>
 <% end %>
+<% unless shared %>
 <%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top"  do %>
 <span class="loading">Loading</span>
 <% end %>
 <% if needs_platform %>
 <%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #g-menu-#{ id }; boundary-align: true; pos: right-top" do %>
 <span class="loading">Loading</span>
+<% end %>
 <% end %>
 <% end %>
 <% end %>

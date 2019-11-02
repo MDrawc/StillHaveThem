@@ -15,7 +15,7 @@
     <% id = game.id %>
     <% needs_platform = collection.needs_platform %>
     <% mw_class = needs_platform ? '' : ' no-plat' %>
-    <% extra = 'out' if edit_open? %>
+    <% extra = 'out' if edit_open? && !shared %>
     <%= content_tag :div, id: "t-#{ id }", class: 't-game uk-width-1-1 uk-grid-collapse', 'uk-grid': ''  do %>
     <%= content_tag :div, class: 't-name t' + mw_class do %>
     <%= game.name %>
@@ -37,6 +37,7 @@
     <%= link_to('', list_show_url(game.igdb_id, id), class: 't-trigger',
     remote: true, 'uk-toggle': 'target: #t-game-show') %>
     <%= content_tag :div, game.created_at.to_date, class: "t-added t #{ extra }" + mw_class %>
+    <% unless shared %>
     <%= content_tag :div, class: "t-menu t #{ extra }" do %>
     <% if needs_platform %>
     <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Edit; pos: top") %>
@@ -46,6 +47,7 @@
     <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-toggle': 'target: #t-ops', 'uk-tooltip' => "title: Copy / Move; pos: top") %>
     <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top') %>
     <%= content_tag :div,nil, class: "menu-shadow #{ extra }" %>
+    <% end %>
     <% end %>
     <% end %>
     <% end %>
@@ -61,6 +63,7 @@
         </div>
     </div>
 </div>
+<% unless shared %>
 <div id="t-ops" uk-modal ="container: .my-games">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <div class="modal-content">
@@ -68,6 +71,7 @@
         </div>
     </div>
 </div>
+<% end %>
 <% else %>
 <%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

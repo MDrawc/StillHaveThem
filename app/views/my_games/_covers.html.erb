@@ -49,6 +49,7 @@
     <% end %>
   </p>
   <% ucs_class, ucs_hid = ucs_closed? ? ['hidden', true] : [nil, false]  %>
+  <% unless shared %>
   <% cm_class, cm_hid =  edit_open? ? [nil, false] : ['hidden', true] %>
   <% extra = 'hidden' if ucs_hid && cm_hid %>
   <%= content_tag :hr, nil, class: "shr #{ extra }" %>
@@ -69,6 +70,11 @@
     </li>
   </ul>
   <% end %>
+  <% else %>
+  <% extra = 'hidden' if ucs_hid %>
+  <%= content_tag :hr, nil, class: "shr #{ extra }" %>
+  <%= content_tag :div, nil, class: "c-menu hidden"%>
+  <% end %>
   <%= content_tag :div , class: "uc-s #{ ucs_class }" do %>
   <% if needs_platform %>
   <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
@@ -77,12 +83,14 @@
   <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
   <% end %>
   <% end %>
+  <% unless shared %>
   <%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form white-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top" do %>
-    <span class="loading">Loading</span>
+  <span class="loading">Loading</span>
   <% end %>
   <% if needs_platform %>
   <%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form white-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  do %>
-    <span class="loading">Loading</span>
+  <span class="loading">Loading</span>
+  <% end %>
   <% end %>
   <% end %>
   <% end %>
@@ -96,5 +104,5 @@
   </div>
 </div>
 <% else %>
-  <%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
+<%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

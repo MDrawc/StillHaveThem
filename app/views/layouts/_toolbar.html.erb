@@ -1,8 +1,9 @@
-<%= content_tag :div, id: 'toolbar', class: tb_open? do %>
+<%= content_tag :div, id: 'toolbar', class: "#{tb_open?} #{'guest' if shared}" do %>
 <%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
 <ul>
   <li>
-    <%= link_to svg('chart'), graph_form_url(collection_id), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal' %>
+    <% graph_form_url = shared ? guest_graph_form_url(collection_id) : graph_form_url(collection_id) %>
+    <%= link_to svg('chart'), graph_form_url, id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal' %>
   </li>
   <li>
     <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }"  %>
@@ -18,9 +19,10 @@
   <%= content_tag :li do %>
   <%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %>
   <% end %>
-  <% edit_change = 'active' if edit_open? %>
-  <%= content_tag :li do %>
-  <%= content_tag :a, nil, id: 'g-show-edit', class: edit_change, 'uk-icon':'cog' %>
+  <% unless shared %>
+    <%= content_tag :li do %>
+    <%= content_tag :a, nil, id: 'g-show-edit', class: ('active' if edit_open?), 'uk-icon':'cog' %>
+    <% end %>
   <% end %>
   <hr>
   <li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>

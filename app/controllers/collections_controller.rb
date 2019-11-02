@@ -141,10 +141,7 @@ private
       cookies['last'] = { value: params[:id], expires: 30.days }
 
       respond_to do |format|
-        format.js { render partial: "show",
-         locals: { shared: shared,
-          partial: shared ? 'sh_games' : 'my_games'}
-           }
+        format.js { render partial: "show", locals: { shared: shared } }
       end
     else
       @in_search = true
@@ -159,8 +156,7 @@ private
       sort = q[:s]
       respond_to do |format|
         format.js { render partial: "search",
-          locals: { query: query, sort: sort,
-           partial: "my_games/#{(shared ? 'sh_' : '') + @view }" }
+          locals: { query: query, sort: sort, shared: shared }
         }
       end
     end

@@ -10,7 +10,7 @@ if (refresh && view === 'panels') {
 
 cleanOffcanvas();
 
-$("#big-c").html("<%= j(render partial: partial, locals: { collection: @collection, view: @view }) %>");
+$("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view, shared: shared }) %>");
 
 switch (view) {
     case 'list':
