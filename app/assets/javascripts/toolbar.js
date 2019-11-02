@@ -52,7 +52,8 @@ function activateSearchToolbar(view, type) {
     }
 }
 
-function underCover() {
+function underCover(shared) {
+    var cookie = shared ? 'sh_ucs_closed' : 'ucs_closed';
     var uc = $('#undercover');
     uc.off();
     uc.click(function() {
@@ -66,7 +67,7 @@ function underCover() {
 
             $('.uc-s').removeClass('hidden');
             uc.addClass('active');
-            Cookies.set('ucs_closed', 'false');
+            Cookies.set(cookie, 'false');
 
         } else {
 
@@ -77,7 +78,7 @@ function underCover() {
                 shr.addClass('hidden');
             }
             uc.removeClass('active');
-            Cookies.set('ucs_closed', 'true');
+            Cookies.set(cookie, 'true');
         }
     });
 }
@@ -94,8 +95,13 @@ function closeAllPanels() {
 }
 
 function changeMyView(shared) {
-
-    var url = shared ? '/sh_collections/' : '/collections/' ;
+    if (shared) {
+        var url = '/sh_collections/';
+        var cookie = 'shared_view';
+    } else {
+        var url = '/collections/';
+        var cookie = 'my_view';
+    }
 
     $('.change-my-view').off();
     $('.change-my-view').click(function() {
@@ -103,7 +109,7 @@ function changeMyView(shared) {
         var view = $(this).attr('id');
         var coll_id = $(this).attr('coll_id');
 
-        Cookies.set("my_view", view, {
+        Cookies.set(cookie, view, {
             expires: 365
         });
 
@@ -194,7 +200,8 @@ function changeSearchView() {
     });
 }
 
-function showHideToolbar() {
+function showHideToolbar(shared) {
+    var cookie = shared ? 'sh_tb_open' : 'tb_open';
     var $on = $('#tool-show');
     var $off = $('#tool-hide');
     var $toolbar = $('#toolbar');
@@ -202,13 +209,13 @@ function showHideToolbar() {
     $on.click(function() {
         $on.hide();
         $toolbar.addClass('open');
-        Cookies.set('tb_open', 'open')
+        Cookies.set(cookie, 'open')
     });
 
     $off.click(function() {
         $on.show();
         $toolbar.removeClass('open');
-        Cookies.set('tb_open', '')
+        Cookies.set(cookie, '')
     });
 
 }

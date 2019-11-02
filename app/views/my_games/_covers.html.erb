@@ -48,7 +48,7 @@
     -
     <% end %>
   </p>
-  <% ucs_class, ucs_hid = ucs_closed? ? ['hidden', true] : [nil, false]  %>
+  <% ucs_class, ucs_hid = ucs_closed?(shared) ? ['hidden', true] : [nil, false]  %>
   <% unless shared %>
   <% cm_class, cm_hid =  edit_open? ? [nil, false] : ['hidden', true] %>
   <% extra = 'hidden' if ucs_hid && cm_hid %>

@@ -39,24 +39,6 @@ function custom_data_confirm() {
     $("a[data-confirm]").on('click', handleConfirm);
 }
 
-function changeTheme() {
-    $('#change-theme').click(function() {
-        if (Cookies.get('theme') == 'theme_dark') {
-            $(this).removeClass('active');
-            Cookies.set('theme', 'theme_default', {
-                expires: 365
-            });
-            $('#theme-control').attr('href', '/assets/theme_default.self.css');
-        } else {
-            $(this).addClass('active');
-            Cookies.set('theme', 'theme_dark', {
-                expires: 365
-            });
-            $('#theme-control').attr('href', '/assets/theme_dark.self.css');
-        }
-    });
-}
-
 $(function(){
   custom_data_confirm();
 });

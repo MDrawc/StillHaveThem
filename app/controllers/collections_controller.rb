@@ -134,7 +134,8 @@ private
 
   def show_or_search(shared)
     @q = @collection.games.ransack(params[:q])
-    @view = params[:view] || cookies['my_view'] || 'covers'
+    cookie = shared ? 'shared_view' : 'my_view'
+    @view = params[:view] || cookies[cookie] || 'covers'
     unless params[:q]
       @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
       @refresh = params[:type] == 'refresh'

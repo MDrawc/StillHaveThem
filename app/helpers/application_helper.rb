@@ -14,12 +14,14 @@ module ApplicationHelper
     cookies[:edit_open] == 'true'
   end
 
-  def ucs_closed?
-    cookies[:ucs_closed] == 'true'
+  def ucs_closed?(shared)
+    cookie = shared ? :sh_ucs_closed : :ucs_closed
+    cookies[cookie] == 'true'
   end
 
-  def tb_open?
-    cookies[:tb_open] || ''
+  def tb_open?(shared)
+    cookie = shared ? :sh_tb_open : :tb_open
+    cookies[cookie] || ''
   end
 
   def addl_hidden?
@@ -28,6 +30,10 @@ module ApplicationHelper
 
   def current_theme
     cookies[:theme] || 'theme_default'
+  end
+
+  def current_sh_theme
+    cookies[:sh_theme] || 'theme_default'
   end
 
 end

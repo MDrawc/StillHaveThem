@@ -1,5 +1,5 @@
-<%= content_tag :div, id: 'toolbar', class: "#{tb_open?} #{'guest' if shared}" do %>
-<%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
+<%= content_tag :div, id: 'toolbar', class: "#{tb_open?(shared)} #{'guest' if shared}" do %>
+<%= content_tag :a, nil, id: 'tool-show', class: tb_open?(shared), 'uk-icon': 'chevron-left' %>
 <ul>
   <li>
     <% graph_form_url = shared ? guest_graph_form_url(collection_id) : graph_form_url(collection_id) %>
@@ -13,7 +13,7 @@
   <li><%= content_tag :a, nil, id: 'panels', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'list' %></li>
   <li><%= content_tag :a, nil, id: 'list', class: "change-my-view", 'coll_id': collection_id, 'uk-icon': 'table' %></li>
   <%= content_tag :li do %>
-  <% uc_change = 'active' unless ucs_closed? %>
+  <% uc_change = 'active' unless ucs_closed?(shared) %>
   <%= content_tag :a, nil, id: 'undercover', class: uc_change, 'uk-icon': 'info' %>
   <% end %>
   <%= content_tag :li do %>

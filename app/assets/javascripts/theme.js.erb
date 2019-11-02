@@ -1,14 +1,15 @@
-function changeTheme() {
+function changeTheme(shared) {
+    var cookie = shared ? 'sh_theme' : 'theme';
     $('#change-theme').click(function() {
-        if (Cookies.get('theme') == 'theme_dark') {
+        if (Cookies.get(cookie) == 'theme_dark') {
             $(this).removeClass('active');
-            Cookies.set('theme', 'theme_default', {
+            Cookies.set(cookie, 'theme_default', {
                 expires: 365
             });
             $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
         } else {
             $(this).addClass('active');
-            Cookies.set('theme', 'theme_dark', {
+            Cookies.set(cookie, 'theme_dark', {
                 expires: 365
             });
             $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
