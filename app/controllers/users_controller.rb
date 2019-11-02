@@ -12,9 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       create_initial_collections(@user)
       log_in(@user)
-      respond_to do |format|
-        format.js {render js: 'location.reload();' }
-      end
+      reload
     else
       @errors = @user.errors.messages
       respond_to do |format|

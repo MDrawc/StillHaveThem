@@ -6,7 +6,7 @@ if (view === 'panels') {
 
 cleanOffcanvas();
 
-$(".my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection }) %>');
+$(".my-games").html('<%= j(render partial: partial, locals: { collection: @collection }) %>');
 
 $('.game_search #view').attr('value', view);
 $('#r-q').text(<%= raw query %>);

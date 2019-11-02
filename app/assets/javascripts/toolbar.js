@@ -93,7 +93,10 @@ function closeAllPanels() {
     });
 }
 
-function changeMyView() {
+function changeMyView(shared) {
+
+    var url = shared ? '/sh_collections/' : '/collections/' ;
+
     $('.change-my-view').off();
     $('.change-my-view').click(function() {
 
@@ -135,7 +138,7 @@ function changeMyView() {
         }
 
         $.ajax({
-            url: '/collections/' + coll_id,
+            url: url + coll_id,
             data: data
         });
     });

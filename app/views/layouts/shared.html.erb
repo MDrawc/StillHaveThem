@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shared | Still Have Them</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag "#{current_theme}", id: 'theme-control', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0' %>
+  </head>
+  <body>
+    <%= render 'layouts/sh_menu' %>
+    <div class="main-container">
+      <%= render 'layouts/sh_navigation' %>
+      <div class="uk-grid-match uk-grid-collpase" uk-grid>
+        <div class="uk-width-1-6"></div>
+        <div class="uk-width-2-3">
+          <div id="big-c" class="uk-container uk-container-expand">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="uk-width-1-6"></div>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+    <div id="f-modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="modal-content">
+                <span class="loading">Loading</span>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -31,25 +31,7 @@
             </h4>
             <%= content_tag(:p, 'by ' + game.developers.map(&:name).join(', '), class: 'g-by') unless game.developers.empty? %>
         </div>
-        <%= content_tag :div, id: "g-menu-#{ id }", class: "g-menu #{ extra }" do %>
-        <ul >
-            <li>
-                <% if needs_platform %>
-                <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: right") %>
-                <% else %>
-                <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
-                <% end %>
-            </li>
-            <li>
-                <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", class: 'uk-icon-link', remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: right") %>
-            </li>
-            <li>
-                <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
-            </li>
-        </ul>
-        <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
-        <% end %>
-        <%= content_tag :div, class: "g-right #{ extra }" do %>
+        <%= content_tag :div, class: "g-right" do %>
         <% if needs_platform %>
         <%= content_tag(:p, game.platform_name) %>
         <%= content_tag(:p, game.physical ? 'Physical' : 'Digital') %>

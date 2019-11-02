@@ -28,8 +28,14 @@ Rails.application.routes.draw do
   get 'ls/:igdb_id/:hg_id', to: 'games#list_show', as: 'list_show'
   get 'cs/:igdb_id', to: 'games#cover_show', as: 'cover_show'
 
-  get 'graph_form/:id', to: 'charts#graph_form', as: 'graph_form'
+  get 'graph_form/:id', to: 'charts#form', as: 'graph_form'
+  get 'g_graph_form/:id', to: 'charts#guest_form', as: 'guest_graph_form'
+
   get 'graphs', to: 'charts#graphs', as: 'graphs'
+  get 'g_graphs', to: 'charts#graphs_for_guest', as: 'guest_graphs'
 
   get 'shared/:share_id/:key', to: 'shares#shared', as: 'shared'
+
+  delete 'logout_guest', to: 'shares#destroy'
+  get '/sh_collections/:id/', to: 'collections#show_guest', as: 'show_guest'
 end

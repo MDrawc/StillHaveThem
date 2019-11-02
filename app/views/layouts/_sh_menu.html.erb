@@ -1,0 +1,9 @@
+<div class="side-menu">
+  <ul>
+    <% shared_collections.each do |collection| %>
+    <li id="mc-<%= collection.id %>">
+      <%= link_to collection.name, show_guest_url(collection.id), remote: true , class: 'm-coll' %>
+    </li>
+    <% end %>
+  </ul>
+</div>

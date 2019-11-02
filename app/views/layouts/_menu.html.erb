@@ -24,14 +24,4 @@
       <div class="modal-content"></div>
     </div>
   </div>
-<% elsif guest_logged? %>
-  <div class="side-menu">
-    <ul>
-      <% shared_collections.each do |collection| %>
-      <li id="mc-<%= collection.id %>">
-        <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
 <% end %>

@@ -2,7 +2,7 @@
 <% empty = @games.empty? %>
 <% not_active = empty ? 'not-active' : '' %>
 <%= content_tag :div, class: "uk-width-1-1 my-search #{ !needs_platform ? 'left-no-p' : 'left-p' }" do %>
-    <%= search_form_for(@q, url: collection, remote: true) do |f| %>
+    <%= search_form_for(@q, url: show_guest_url, remote: true) do |f| %>
     <%= content_tag :div, class: 'uk-inline' do %>
         <span class="s-icon" uk-icon="icon: search"></span>
         <%= f.search_field(:name_dev_cont, placeholder: "Title or Developer", class: 'uk-input search-input', autofocus: "true", autocomplete: "off", disabled: empty) %>
@@ -11,7 +11,7 @@
     <% if needs_platform %>
     <div class="srch-div first"></div>
     <div uk-form-custom="target: true">
-        <%= f.select(:plat_eq, user_platforms, {include_blank: 'All Platforms'}, {class: "select-input #{ not_active }", disabled: empty} ) %>
+        <%= f.select(:plat_eq, guest_platforms, {include_blank: 'All Platforms'}, {class: "select-input #{ not_active }", disabled: empty} ) %>
         <span></span>
     </div>
     <div class="srch-div"></div>
@@ -33,6 +33,6 @@
 <div id='r-q'>,,on</div>
 <div id='r-s'></div>
 <div class="my-games">
-    <%= render partial: "my_games/#{ view }", locals: { collection: collection } %>
+    <%= render partial: "my_games/sh_#{ view }", locals: { collection: collection } %>
 </div>
-<%= render partial: 'layouts/toolbar', locals: { collection_id: collection.id, view: view } %>
+<%= render partial: 'layouts/sh_toolbar', locals: { collection_id: collection.id, view: view } %>

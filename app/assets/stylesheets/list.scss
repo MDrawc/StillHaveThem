@@ -201,7 +201,7 @@ div.menu-shadow {
     z-index: 1;
     padding-right: 10px;
     border-radius: 0px 3px 3px 0px;
-    border-right: thin solid #d2d2d2;
+    // border-right: thin solid #d2d2d2;
     font-size: 13px;
     text-align: right;
     transition: border-radius 0.3s linear;
@@ -209,7 +209,7 @@ div.menu-shadow {
 
 .t-added.out {
     border-radius: 0px;
-    border-right: thin solid #a7a7a7;
+    // border-right: thin solid #a7a7a7;
 }
 
 div.t-name {

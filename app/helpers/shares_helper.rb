@@ -8,7 +8,7 @@ module SharesHelper
   end
 
   def shared_collections
-     collections = Collection.where('id IN (?)', guest.shared)
+     collections = Collection.where(id: guest.shared)
   end
 
   def log_guest(share)
@@ -18,5 +18,13 @@ module SharesHelper
   def kill_guest
     session.delete(:share_id)
     @share = nil
+  end
+
+  def require_guest
+    unless guest_logged?
+      respond_to do |format|
+        format.js {render js: 'location.reload();' }
+      end
+    end
   end
 end

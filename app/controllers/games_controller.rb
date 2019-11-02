@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :require_user
+  before_action :require_user, except: [:cover_show, :list_show]
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
   before_action :find_collection_for_create, only: [:create]
   SR_HEX = 2
@@ -213,9 +213,7 @@ class GamesController < ApplicationController
     def find_game_and_collection
       @collection = current_user.collections.find_by_id(params[:collection_id])
       if @collection.nil?
-        respond_to do |format|
-          format.js {render js: 'location.reload();' }
-        end
+        reload
       else
         @game = @collection.games.find_by_id(params[:game_id])
       end
@@ -224,11 +222,7 @@ class GamesController < ApplicationController
     def find_collection_for_create
       coll_id = game_params[:collection] .split(',').first.to_i
       @collection = current_user.collections.find_by_id(coll_id)
-      if @collection.nil?
-        respond_to do |format|
-          format.js {render js: 'location.reload();' }
-        end
-      end
+      reload if @collection.nil?
     end
 
     def create_from_agame(id, needs_platform = false, platform = nil, platform_name = nil, physical = nil)

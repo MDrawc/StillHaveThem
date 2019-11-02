@@ -58,7 +58,7 @@ $disabled: #b4b4b4;
 @import "game_offc";
 
 // NAVIGATION
-#logo {
+.logo {
     position: absolute;
     left: 20px;
     top: 15px;
@@ -70,7 +70,7 @@ $disabled: #b4b4b4;
     border-bottom: 2px solid #cacaca;
 }
 
-#logo input {
+.logo input {
     border: none;
     background: #dddddd;
     color: #999;
@@ -985,6 +985,11 @@ input.coll-form {
             background: #d4d4d4;
         }
     }
+}
+
+#toolbar.guest {
+    height: 274px;
+    margin-top: -134px;
 }
 
 #tool-show {
