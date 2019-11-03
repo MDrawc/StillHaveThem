@@ -70,6 +70,27 @@ $disabled: #b4b4b4;
     border-bottom: 2px solid #cacaca;
 }
 
+.shared-logo {
+    @extend .logo;
+    border-bottom: none;
+
+    p {
+        margin: 0px;
+    }
+
+    p:first-child {
+        border-bottom: 2px solid #cacaca;
+    }
+
+    p:nth-child(2) {
+        font-size: 20px;
+        color: #ababab;
+        padding-left: 1px;
+        letter-spacing: 7px;
+        width: 110.5px;
+    }
+}
+
 .logo input {
     border: none;
     background: #dddddd;
@@ -1394,7 +1415,6 @@ span.add-form-errors {
         font-style: italic;
         padding-left: 20px;
         color: #777;
-
         width: 230px;
     }
 }
@@ -1427,6 +1447,7 @@ a.hide-labels {
     border: thin solid #bababa;
     padding: 2px 5px;
     border-radius: 3px;
+
     &:hover {
         text-decoration: none;
         color: #666;

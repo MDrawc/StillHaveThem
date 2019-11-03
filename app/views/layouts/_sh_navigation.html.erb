@@ -1,2 +1,5 @@
-<%= content_tag :div, 'still have them', class: 'logo' %>
+<%= content_tag :div, class: 'shared-logo' do %>
+<p>still have them</p>
+<p>SHARED</p>
+<% end %>
 <%= link_to('', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out') if guest_logged? %>
