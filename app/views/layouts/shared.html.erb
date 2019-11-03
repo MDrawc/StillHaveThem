@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0' %>
   </head>
   <body>
-    <%= render 'layouts/sh_menu' %>
+    <%= render 'layouts/sh_menu' if guest_logged? %>
     <div class="main-container">
       <%= render 'layouts/sh_navigation' %>
       <div class="uk-grid-match uk-grid-collpase" uk-grid>

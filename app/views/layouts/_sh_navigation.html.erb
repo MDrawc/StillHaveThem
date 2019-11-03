@@ -1,2 +1,2 @@
 <%= content_tag :div, 'still have them', class: 'logo' %>
-<%= link_to '', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out' %>
+<%= link_to('', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out') if guest_logged? %>
