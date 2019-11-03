@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "#{current_sh_theme}", id: 'theme-control', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0' %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
   <body>
     <% if guest_logged? %>

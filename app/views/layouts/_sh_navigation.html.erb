@@ -2,12 +2,4 @@
 <p>still have them</p>
 <p>SHARED</p>
 <% end %>
-
-
-<%= content_tag :div, class: 'shared-info' do %>
-<p>Shared by: Diplodok667</p>
-<p>Message: I hope you like my collection</p>
-<% end %>
-
-
 <%= link_to('', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out') if guest_logged? %>

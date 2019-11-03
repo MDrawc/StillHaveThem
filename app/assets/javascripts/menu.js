@@ -39,6 +39,17 @@ function custom_data_confirm() {
     $("a[data-confirm]").on('click', handleConfirm);
 }
 
+function hideShowBackToTop() {
+    var $button = $('#scroll-up');
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 200) {
+            $button.fadeIn()
+        } else {
+            $button.fadeOut()
+        }
+    });
+}
+
 $(function(){
   custom_data_confirm();
 });

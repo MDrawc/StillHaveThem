@@ -351,6 +351,29 @@ footer {
         }
     }
 }
+// SCROLL-UP
+#scroll-up {
+    display: none;
+    padding: 5px 10px 10px 10px;
+    color: #999;
+    border: thin solid #bababa;
+    border-radius: 3px;
+    position: fixed;
+    top: 80%;
+    right: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    width: 41px;
+    text-align: center;
+
+    &:hover {
+        text-decoration: none;
+        background: #ccc;
+        color: #666;
+    }
+}
+
 
 // NOTIFICATIONS
 .uk-notification-close {
