@@ -8,7 +8,7 @@ module SharesHelper
   end
 
   def shared_collections
-     collections = Collection.where(id: guest.shared)
+     Collection.where(id: guest.shared)
   end
 
   def log_guest(share)

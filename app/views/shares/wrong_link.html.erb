@@ -1,5 +1,5 @@
 <%= content_tag :div, id: 'no-games' do %>
     SHARED PAGE DOES NOT EXIST
-    <p class="link">"<%= @link %>"</p>
-    <p class="no-border-top">The link is not valid, or the owner has stopped sharing. You can go back home now <%= link_to '', root_url, 'uk-icon' => 'home' %></p>
+    <p>Either the link is not valid, or the owner has stopped sharing. You can go back home now <%= link_to '', root_url, class: 'home-link', 'uk-icon' => 'home' %></p>
+    <p class="wrong-link">"<%= @link %>"</p>
 <% end %>

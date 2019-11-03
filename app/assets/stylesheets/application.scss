@@ -255,21 +255,17 @@ div#search-results.mask2:after {
         color: #666;
     }
 
-    p.link {
+    p.wrong-link {
+        padding: 0px;
         margin: 0px;
-        color: #888;
+        border-top: none;
         font-size: 16px;
         font-style: italic;
     }
+}
 
-    p.no-border-top {
-        border-top: none;
-        margin: 0px;
-        padding-top: 5px;
-        svg {
-            vertical-align: text-bottom;
-        }
-    }
+.home-link svg {
+    vertical-align: text-bottom;
 }
 
 // SCREEN AS IMAGE
