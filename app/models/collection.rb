@@ -7,18 +7,29 @@ class Collection < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :user_id,
     message: "is used by another collection", case_sensitive: false }, length: { maximum: 50 }
 
-  def self.data_for_overall_graphs(user)
+  def self.data_for_overall_graphs(obj)
+
+      shared = obj.class.name == 'Share'
+
       chart_1, chart_2 = [], []
 
       #Stats:
       stats = []
-      stats[0] = user.created_at.to_f * 1000
+      stats[0] = obj.created_at.to_f * 1000
+
+      unless shared
+        where_part = "WHERE collections.user_id='#{ obj.id }'"
+        collections = obj.collections.pluck(:name)
+      else
+        where_part = "WHERE collections.id IN (#{ obj.shared.join(', ') })"
+        collections = Collection.where(id: obj.shared).pluck(:name)
+      end
 
       sql = """SELECT collections.name, games.first_release_date, games.platform_name, games.physical, games.name, collection_games.created_at
                FROM collections
                INNER JOIN collection_games ON collections.id = collection_games.collection_id
                INNER JOIN games ON collection_games.game_id = games.id
-               WHERE collections.user_id='#{ user.id }'
+               #{ where_part }
                ORDER BY collection_games.created_at DESC;"""
 
       games = ActiveRecord::Base.connection.execute(sql).values
@@ -48,7 +59,6 @@ class Collection < ApplicationRecord
       end
 
       #Chart 2: Games by collection
-      collections = user.collections.pluck(:name)
       coll_data = games.map(&:first)
 
       largest = ['', 0]
@@ -142,7 +152,7 @@ class Collection < ApplicationRecord
                INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id
                INNER JOIN developers ON developer_games.developer_id=developers.id
                INNER JOIN games ON collection_games.game_id = games.id
-               WHERE collections.user_id='#{user.id}';"""
+               #{ where_part };"""
 
       r = ActiveRecord::Base.connection.execute(sql).values
 

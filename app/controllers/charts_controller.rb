@@ -37,7 +37,7 @@ class ChartsController < ApplicationController
   def graphs_for_guest
     @overall, @needs_platform = false, false
     if params[:graph_collection] == 'all'
-      @charts_data = Collection.data_for_overall_graphs(current_user)
+      @charts_data = Collection.data_for_overall_graphs(guest)
       @overall = true
     elsif guest.shared.include?(params[:graph_collection].to_i)
       if coll = Collection.find_by_id(params[:graph_collection])
