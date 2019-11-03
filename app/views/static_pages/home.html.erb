@@ -1,16 +1,13 @@
 <% if logged_in? %>
   <script>
   <% if @home_id %>
-    var url = '/collections/<%= @home_id %>'
+    var url = '/collections/<%= @home_id %>';
   <% else %>
-    var url = '/search'
+    var url = '/search';
   <% end %>
   $.ajax({
       url: url
-  });
-  $(function() {
-      set_offc();
-  });
+  }).done(set_offc());
   </script>
 <% else %>
   <%= render 'not_logged' %>

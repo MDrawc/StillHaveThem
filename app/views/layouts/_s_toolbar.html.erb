@@ -1,5 +1,5 @@
-<%= content_tag :div, id: 'toolbar', class: "waiting #{ tb_open? }" do %>
-<%= content_tag :a, nil, id: 'tool-show', class: tb_open?, 'uk-icon': 'chevron-left' %>
+<%= content_tag :div, id: 'toolbar', class: "waiting #{ tb_open?(false) }" do %>
+<%= content_tag :a, nil, id: 'tool-show', class: tb_open?(false), 'uk-icon': 'chevron-left' %>
 <ul>
   <li>
   <%= link_to svg('chart'), graph_form_url('all'), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal' %>

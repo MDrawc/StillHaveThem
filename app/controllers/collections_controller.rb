@@ -113,7 +113,7 @@ private
   def correct_guest
     @collection = shared_collections.find_by_id(params[:id])
     if @collection.nil?
-      reload
+      redirect_to root_url
     end
   end
 

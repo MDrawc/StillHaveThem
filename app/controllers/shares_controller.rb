@@ -13,6 +13,7 @@ class SharesController < ApplicationController
     if share && params[:key] == share.key
       share.note_visit
       log_guest(share)
+      @first_id = share.shared.first
     else
       redirect_to root_url
     end

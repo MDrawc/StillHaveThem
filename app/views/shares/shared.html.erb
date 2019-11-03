@@ -1,2 +1,6 @@
-<h1>Welcome Guest</h1>
-<p>message from collection owner: Howdy!</p>
+<script>
+  var url = '/sh_collections/<%= @first_id %>';
+  $.ajax({
+      url: url
+  }).done(set_offc());
+</script>
