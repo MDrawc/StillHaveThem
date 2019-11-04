@@ -1064,6 +1064,11 @@ input.coll-form {
     cursor: default;
 }
 
+.change-s-view.active {
+    pointer-events: none;
+    cursor: default;
+}
+
 // Show More Button (Search IGDB)
 #show-more, .no-more {
     text-align: center;

@@ -2,4 +2,4 @@
 <p>still have them</p>
 <p>SHARED</p>
 <% end %>
-<%= link_to('', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out') if guest_logged? %>
+<%= link_to('', logout_guest_url, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out', 'uk-tooltip' => 'title: Leave; pos: left') if guest_logged? %>

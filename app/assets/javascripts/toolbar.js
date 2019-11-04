@@ -103,8 +103,10 @@ function changeMyView(shared) {
         var cookie = 'my_view';
     }
 
-    $('.change-my-view').off();
-    $('.change-my-view').click(function() {
+    $changers = $('.change-my-view');
+
+    $changers.off();
+    $changers.click(function() {
 
         var view = $(this).attr('id');
         var coll_id = $(this).attr('coll_id');
@@ -151,10 +153,15 @@ function changeMyView(shared) {
 }
 
 function changeSearchView() {
-    $('.change-s-view').off();
-    $('.change-s-view').click(function() {
+    $changers = $('.change-s-view')
+    $changers.off();
+    $changers.click(function() {
 
         searchWait('change-view');
+
+        $changers.removeClass('active');
+        $(this).addClass('active');
+
         var view = $(this).attr('id');
 
         Cookies.set("s_view", view, {

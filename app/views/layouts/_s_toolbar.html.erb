@@ -2,18 +2,24 @@
 <%= content_tag :a, nil, id: 'tool-show', class: tb_open?(false), 'uk-icon': 'chevron-left' %>
 <ul>
   <li>
-  <%= link_to svg('chart'), graph_form_url('all'), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal' %>
+  <%= link_to svg('chart'), graph_form_url('all'), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal', 'uk-tooltip' => 'title: Graphs; pos: left' %>
   </li>
   <li>
-  <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }"  %>
+  <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }",
+   'uk-tooltip' => 'title: Change Theme; pos: left' %>
   </li>
   <hr>
-  <li><%= content_tag :a, nil, id: 'cover_view', class: 'change-s-view', 'uk-icon': 'thumbnails' %></li>
-  <li><%= content_tag :a, nil, id: 'panel_view', class: 'change-s-view', 'uk-icon': 'list' %></li>
-  <li><%= content_tag :a, nil, id: 'list_view', class: 'change-s-view', 'uk-icon': 'table' %></li>
-  <li class="hidden"><%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink' %></li>
+  <li><%= content_tag :a, nil, id: 'cover_view', class: 'change-s-view', 'uk-icon': 'thumbnails',
+   'uk-tooltip' => 'title: Covers; pos: left' %></li>
+  <li><%= content_tag :a, nil, id: 'panel_view', class: 'change-s-view', 'uk-icon': 'list',
+   'uk-tooltip' => 'title: Panels; pos: left' %></li>
+  <li><%= content_tag :a, nil, id: 'list_view', class: 'change-s-view', 'uk-icon': 'table',
+   'uk-tooltip' => 'title: List; pos: left' %></li>
+  <li class="hidden"><%= content_tag :a, nil, id: 'close-panels', 'uk-icon': 'shrink',
+  'uk-tooltip' => 'title: Collapse Panels; pos: left' %></li>
   <% addl_change = addl_hidden? ? 'active' : '' %>
-  <li class="hidden"><%= content_tag :a, nil, id: 'addl-hide', class: addl_change, 'uk-icon': 'close' %></li>
+  <li class="hidden"><%= content_tag :a, nil, id: 'addl-hide', class: addl_change, 'uk-icon': 'close',
+  'uk-tooltip' => 'title: Toggle Extra Info; pos: left' %></li>
   <hr>
   <li><%= content_tag :a, nil, id: 'tool-hide', 'uk-icon': 'chevron-right' %></li>
 </ul>
