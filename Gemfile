@@ -23,7 +23,7 @@ gem "chartkick"
 
 
 # Use Puma as the app server
-# gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.11'
 
 
 
