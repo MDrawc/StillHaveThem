@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_160114) do
+ActiveRecord::Schema.define(version: 2019_11_04_172126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,11 +125,14 @@ ActiveRecord::Schema.define(version: 2019_10_23_160114) do
 
   create_table "shares", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "key"
+    t.string "token"
     t.integer "shared", array: true
     t.integer "times_visited", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "message"
+    t.index ["token"], name: "index_shares_on_token", unique: true
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 

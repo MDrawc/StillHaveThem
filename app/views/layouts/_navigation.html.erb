@@ -1,6 +1,7 @@
 <%= content_tag :div, title, id: 'logo', class: 'logo' %>
 <% if logged_in? %>
-  <%= link_to '', settings_path, id: 'social', class: 'nav-icon', 'uk-icon': 'social',
+  <%= link_to '', new_share_url, id: 'social', class: 'nav-icon', remote: true,
+  'uk-toggle': 'target: #f-modal', 'uk-icon': 'social',
   'uk-tooltip' => 'title: Share; pos: left' %>
   <%= link_to '', settings_path, id: 'settings', class: 'nav-icon', 'uk-icon': 'settings',
   'uk-tooltip' => 'title: Settings; pos: bottom-right' %>

@@ -105,23 +105,17 @@ private
 
   def correct_user
     @collection = current_user.collections.find_by(id: params[:id])
-    if @collection.nil?
-      reload
-    end
+    reload if @collection.nil?
   end
 
   def correct_guest
     @collection = shared_collections.find_by_id(params[:id])
-    if @collection.nil?
-      redirect_to root_url
-    end
+    redirect_to root_url if @collection.nil?
   end
 
   def correct_user_for_rm
     @collection = current_user.collections.find_by_id(params[:collection_id])
-    if @collection.nil?
-      reload
-    end
+    reload if @collection.nil?
   end
 
   def owned?(igdb_id)

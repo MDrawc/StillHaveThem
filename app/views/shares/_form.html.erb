@@ -1,0 +1,13 @@
+<h2>share form</h2>
+<%= form_with model: @share, id: 'share-form' do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :message %>
+  <%= f.collection_check_boxes :shared, current_user.collections, :id, :name, class: "" do |c| %>
+    <% c.label(class: "form-check-label") { c.check_box(class: "form-check-input", type: "checkbox") + c.text } %>
+  <% end %>
+
+  <%= f.submit 'Generate share link', class: "uk-button uk-button-default" %>
+<% end %>
+
+<hr>
+<div id="active-shares"></div>
