@@ -1,24 +1,32 @@
 <p><%= share.title %></p>
-<input id="token" value="<%= share.token %>"/>
-<p><%= share.message %></p>
+<p><span uk-icon="comment"></span> <%= share.message %></p>
+
+
+
+<%= content_tag :input, nil, id: "share-link-#{ share.id }", value: shared_url(share.token), disabled: true %>
+
+
+
+
+
 
 <p><%= share.shared %></p>
 <p><%= share.created_at %></p>
 <p>Last visited/updated: <%= share.updated_at %></p>
 <p>Times visited: <%= share.times_visited %></p>
 <!-- update without changing updatated_at -->
-<%= content_tag :a, 'Copy link', id: 'copy-share-link' %>
 
-<%= link_to 'open', shared_url(share.token), target: '_blank' %>
-<%= link_to 'edit', share, method: :delete, remote: true %>
-<%= link_to 'delete', share, method: :delete, remote: true %>
+
+
+
+<%= content_tag :a, 'Copy link', class: "cp-share-link", target: "share-link-#{ share.id }" %>
+
+
+
+
+<%= link_to 'Open', shared_url(share.token), target: '_blank' %>
+<%= link_to 'Edit', share, method: :delete, remote: true %>
+<%= link_to 'Delete', share, method: :delete, remote: true %>
 <hr>
 
-<script>
 
-$('#copy-share-link').click(function(){
-    $('#token').select();
-    document.execCommand("copy");
-});
-
-</script>

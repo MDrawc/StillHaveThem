@@ -16,15 +16,18 @@ class Share < ApplicationRecord
     update(times_visited: times_visited + 1)
   end
 
-  def prepare_shared
-    self.shared.compact!
-    self.shared.sort!
-  end
 
-  def generate_token
-    begin
-      self.token = SecureRandom.urlsafe_base64(20, false)
-    end while self.class.find_by(token: token)
-  end
+  private
+
+    def prepare_shared
+      self.shared.compact!
+      self.shared.sort!
+    end
+
+    def generate_token
+      begin
+        self.token = SecureRandom.urlsafe_base64(20, false)
+      end while self.class.find_by(token: token)
+    end
 end
 

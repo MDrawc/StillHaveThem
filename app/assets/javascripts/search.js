@@ -86,16 +86,17 @@ function switchSearchBarTabs() {
 
 }
 
-function manipulatePlatforms() {
-    var $none = $('#p-none');
-    var $all = $('#p-all');
+function checkAllNone(form_id, button_id) {
+    var $form = $('#' + form_id);
+    var $none = $('#' + button_id + '-none');
+    var $all = $('#' + button_id + '-all');
 
     $none.click(function() {
-        $('#platforms-grid').find('input').prop('checked', false)
+        $form.find('input').prop('checked', false)
     });
 
     $all.click(function() {
-        $('#platforms-grid').find('input').prop('checked', true)
+        $form.find('input').prop('checked', true)
     });
 }
 

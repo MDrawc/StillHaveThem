@@ -1,2 +1,4 @@
 $("#f-modal").find(".modal-content").html("<%= j(render 'form') %>");
 $("#active-shares").html("<%= j(render 'active_shares') %>");
+checkAllNone('share-form', 'share');
+copyShareLinks();

@@ -6,7 +6,12 @@
     <% c.label(class: "form-check-label") { c.check_box(class: "form-check-input", type: "checkbox") + c.text } %>
   <% end %>
 
-  <%= f.submit 'Generate share link', class: "uk-button uk-button-default" %>
+  <%= content_tag :a, 'none', id: 'share-none' %>
+  <%= content_tag :a, 'all', id: 'share-all' %>
+
+        <%= f.submit 'Generate share link', class: "uk-button uk-button-default" %>
+        <%= f.submit('Reset', class: "uk-button uk-button-default", type: "reset" )%>
+
 <% end %>
 
 <hr>
