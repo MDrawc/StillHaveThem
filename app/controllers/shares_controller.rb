@@ -5,14 +5,14 @@ class SharesController < ApplicationController
 
   def new
     @share = Share.new
-    get_shares
+    get_shares_with_coll_names
     respond_to :js
   end
 
   def create
     @share = current_user.shares.build(share_params)
     if @share.save
-      get_shares
+      get_shares_with_coll_names
       respond_to :js
     else
       respond_to do |format|
@@ -28,6 +28,7 @@ class SharesController < ApplicationController
   def update
     @share.attributes = share_params
     if @share.save(touch: false)
+      find_coll_name
       respond_to :js
     else
       respond_to do |format|
@@ -73,11 +74,18 @@ class SharesController < ApplicationController
       reload if @share.nil?
     end
 
-    def get_shares
+    def get_shares_with_coll_names
       @shares = current_user.shares
       colls = current_user.collections.pluck(:id, :name).to_h
       @shares_coll_names = @shares.map { |s|
-        res = [s.id, s.shared.map { |id| colls[id] }]
+        res = [s.id, s.shared.map { |i| colls[i] }]
+      }.to_h
+    end
+
+    def find_coll_name
+      colls = current_user.collections.pluck(:id, :name).to_h
+      @shares_coll_names = {
+        @share.id => @share.shared.map { |i| colls[i] }
       }.to_h
     end
 end
