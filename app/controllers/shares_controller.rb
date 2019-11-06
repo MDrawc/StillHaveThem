@@ -1,7 +1,7 @@
 class SharesController < ApplicationController
   layout 'shared'
   before_action :require_user, except: [:shared, :wrong_link, :leave]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @share = Share.new
@@ -17,6 +17,21 @@ class SharesController < ApplicationController
     else
       respond_to do |format|
           format.js { render partial: "error", locals: { errors: @share.errors } }
+      end
+    end
+  end
+
+  def edit
+    respond_to :js
+  end
+
+  def update
+    @share.attributes = share_params
+    if @share.save(touch: false)
+      respond_to :js
+    else
+      respond_to do |format|
+          format.js { render partial: "error", locals: { errors: @share.errors }  }
       end
     end
   end
@@ -60,5 +75,9 @@ class SharesController < ApplicationController
 
     def get_shares
       @shares = current_user.shares
+      colls = current_user.collections.pluck(:id, :name).to_h
+      @shares_coll_names = @shares.map { |s|
+        res = [s.id, s.shared.map { |id| colls[id] }]
+      }.to_h
     end
 end

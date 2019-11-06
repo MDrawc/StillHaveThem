@@ -1,32 +1,42 @@
-<p><%= share.title %></p>
-<p><span uk-icon="comment"></span> <%= share.message %></p>
+<%= content_tag :div, id: "share-#{ share.id }", class: 'share' do %>
+
+
+  <p><%= share.title %></p>
+  <p><span uk-icon="comment"></span> <%= share.message %></p>
 
 
 
-<%= content_tag :input, nil, id: "share-link-#{ share.id }", value: shared_url(share.token), disabled: true %>
+  <%= content_tag :input, nil, id: "share-link-#{ share.id }", value: shared_url(share.token), disabled: true %>
+
+
+
+  <% @shares_coll_names[share.id].each do |coll_name| %>
+   <p><%= coll_name.nil? ? 'Collection no longer exists' : coll_name %></p>
+  <% end %>
+
+
+  <p><%= share.shared %></p>
+  <p><%= share.created_at %></p>
+  <p>Last visited: <%= share.updated_at %></p>
+  <p>Times visited: <%= share.times_visited %></p>
 
 
 
 
 
-
-<p><%= share.shared %></p>
-<p><%= share.created_at %></p>
-<p>Last visited/updated: <%= share.updated_at %></p>
-<p>Times visited: <%= share.times_visited %></p>
-<!-- update without changing updatated_at -->
+  <%= content_tag :a, 'Copy link', class: "cp-share-link", target: "share-link-#{ share.id }" %>
 
 
 
 
-<%= content_tag :a, 'Copy link', class: "cp-share-link", target: "share-link-#{ share.id }" %>
+  <%= link_to 'Open', shared_url(share.token), target: '_blank' %>
+
+
+  <%= link_to 'Edit', edit_share_url(share), remote: true %>
+
+
+  <%= link_to 'Delete', share, method: :delete, remote: true %>
 
 
 
-
-<%= link_to 'Open', shared_url(share.token), target: '_blank' %>
-<%= link_to 'Edit', share, method: :delete, remote: true %>
-<%= link_to 'Delete', share, method: :delete, remote: true %>
-<hr>
-
-
+<% end %>

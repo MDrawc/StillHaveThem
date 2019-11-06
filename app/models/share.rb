@@ -1,8 +1,6 @@
 class Share < ApplicationRecord
-  before_validation(on: :create) do
-    prepare_shared
-    generate_token
-  end
+  before_validation :prepare_shared
+  before_validation :generate_token, on: :create
   belongs_to :user
   validates :token, :shared, presence: true
   validates :token, uniqueness: true
@@ -15,7 +13,6 @@ class Share < ApplicationRecord
   def note_visit
     update(times_visited: times_visited + 1)
   end
-
 
   private
 

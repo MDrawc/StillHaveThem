@@ -1,0 +1,4 @@
+var share_id = '<%= @share.id %>';
+$('#' + 'ed-share-form-' + share_id).html("<%= j(render @share) %>");
+copyShareLinks()
+disableEnableForm(false, 'share-form');

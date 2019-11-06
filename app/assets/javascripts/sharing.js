@@ -16,3 +16,18 @@ function copyShareLinks() {
         $link.prop('disabled', true);
     });
 }
+
+function disableEnableForm(disable, form_id) {
+    var $form = $('#' + form_id);
+    disable ? $form.addClass('disabled') : $form.removeClass('disabled');
+    $(':input', $form).prop('disabled', disable);
+}
+
+function cancelEditForm(share_id){
+    var $btn = $('#sh-ud-cancel-' + share_id);
+    $btn.click(function() {
+        var $form = $btn.parent();
+        $form.trigger('reset');
+        Rails.fire($form[0], 'submit');
+    });
+}

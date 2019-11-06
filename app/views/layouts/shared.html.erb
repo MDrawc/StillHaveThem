@@ -11,12 +11,8 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
   <body>
-    <% if guest_logged? %>
-      <% if shared_collections.empty? %>
-        <%= render 'shares/no_collections' %>
-      <% else %>
+    <% if guest_logged? && !shared_collections.empty? %>
         <%= render 'layouts/sh_menu' %>
-      <% end %>
     <% end %>
     <div class="main-container">
       <%= render 'layouts/sh_navigation' %>
@@ -24,6 +20,7 @@
         <div class="uk-width-1-6"></div>
         <div class="uk-width-2-3">
           <div id="big-c" class="uk-container uk-container-expand">
+            <%= render 'shares/no_collections' if guest_logged? && shared_collections.empty? %>
             <%= yield %>
           </div>
         </div>

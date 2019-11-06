@@ -1,18 +1,28 @@
-<h2>share form</h2>
-<%= form_with model: @share, id: 'share-form' do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :message %>
-  <%= f.collection_check_boxes :shared, current_user.collections, :id, :name, class: "" do |c| %>
-    <% c.label(class: "form-check-label") { c.check_box(class: "form-check-input", type: "checkbox") + c.text } %>
-  <% end %>
-
-  <%= content_tag :a, 'none', id: 'share-none' %>
-  <%= content_tag :a, 'all', id: 'share-all' %>
-
-        <%= f.submit 'Generate share link', class: "uk-button uk-button-default" %>
-        <%= f.submit('Reset', class: "uk-button uk-button-default", type: "reset" )%>
-
+<% if new = @share.new_record? %>
+  <% form_id = 'share-form' %>
+  <% id_prefix = 'share_shared_' %>
+  <% submit_text = 'Generate' %>
+  <% check_btn_prefix = 'share' %>
+<% else %>
+  <% form_id = "ed-share-form-#{ @share.id }" %>
+  <% id_prefix = "ed_sh_#{ @share.id }_" %>
+  <% submit_text = 'Update'  %>
+  <% check_btn_prefix = "ed-share-#{ @share.id }" %>
 <% end %>
 
-<hr>
-<div id="active-shares"></div>
+<%= form_with model: @share, id: form_id do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :message %>
+
+  <%= f.collection_check_boxes :shared, current_user.collections, :id, :name do |c| %>
+    <% id = id_prefix + c.object.id.to_s %>
+    <% c.label(for: id, class: "form-check-label") { c.check_box(id: id, class: "form-check-input", type: "checkbox") + c.text } %>
+  <% end %>
+
+  <%= content_tag :a, 'none', id: check_btn_prefix + '-none' %>
+  <%= content_tag :a, 'all', id: check_btn_prefix + '-all' %>
+
+  <%= f.submit submit_text, class: "uk-button uk-button-default" %>
+  <%= f.submit('Reset', class: "uk-button uk-button-default", type: "reset" ) %>
+  <%= content_tag :a, 'Cancel', id: "sh-ud-cancel-#{ @share.id }" unless new %>
+<% end %>

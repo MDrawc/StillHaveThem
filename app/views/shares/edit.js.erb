@@ -1,0 +1,5 @@
+var share_id = '<%= @share.id %>';
+$('#' + 'share-' + share_id).html("<%= j(render 'form') %>");
+checkAllNone('ed-share-form-' + share_id, 'ed-share-' + share_id);
+cancelEditForm(share_id);
+disableEnableForm(true, 'share-form');
