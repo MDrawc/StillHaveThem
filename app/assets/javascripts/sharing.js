@@ -26,7 +26,7 @@ function disableEnableForm(disable, form_id) {
 function cancelEditForm(share_id){
     var $btn = $('#sh-ud-cancel-' + share_id);
     $btn.click(function() {
-        var $form = $btn.parent();
+        var $form = $btn.parent().parent();
         $form.trigger('reset');
         Rails.fire($form[0], 'submit');
     });

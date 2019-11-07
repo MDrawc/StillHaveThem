@@ -1,6 +1,11 @@
 div.share {
     border: thin solid #bababa;
     border-radius: 5px;
+    padding: 10px;
+}
+
+.sh_form {
+    margin: 10px 0px;
 }
 
 #share-form {
@@ -13,6 +18,7 @@ div.share {
     width: 100%;
     height: 100%;
     background: #ecececb5;
+    z-index: 1;
 }
 
 #f-modal p.header {
@@ -20,7 +26,7 @@ div.share {
     color: #333;
 
     span {
-        color: #666;
+        color: #999;
         vertical-align: text-bottom;
     }
 }
@@ -30,6 +36,138 @@ p.discription {
     margin-top: 10px;
 }
 
-.part span {
-    font-size: 16px;
+.part {
+    margin-bottom: 10px;
+
+    span {
+        font-size: 16px;
+    }
+}
+
+.sh-coll-select {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.sh-form-check-label {
+    padding-bottom: 6px;
+
+    &:last-child {
+        padding-bottom: 0px;
+    }
+}
+
+#share_message {
+    height: 80px;
+}
+
+.share-input {
+    background: none;
+    border: thin solid #afafaf;
+    border-radius: 5px;
+    font-size: 14px;
+    padding-left: 36px;
+}
+
+.share-input:focus {
+    outline: none;
+    background-color: #ddd;
+    color: #666;
+    border-color: #999;
+}
+
+.share-input:focus ~ span {
+    color: #666;
+}
+
+.sh-label-info, .sh-none-all {
+    font-size: 12px;
+    padding-left: 5px;
+    color: #999;
+    padding-top: 5px;
+}
+
+.sh-none-all {
+    text-align: right;
+
+    a {
+        padding-right: 5px;
+        color: #999;
+    }
+}
+
+.sh-form-buttons {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.sh-small-button {
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: #999;
+    padding: 0px;
+    padding-left: 5px;
+    position: relative;
+    top: 10px;
+
+    &:hover {
+        color: #666;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.sh-input-icon {
+    position: absolute;
+    left: 8px;
+    top: 11px;
+    color: #999;
+}
+
+.sh-check-container {
+    border: thin solid #afafaf;
+    border-radius: 5px;
+    padding: 0px 10px 10px 10px;
+    min-height: 141px;
+}
+
+.sh-check-title {
+    font-size: 14px;
+    color: #999;
+    line-height: 40px;
+
+    span {
+        padding-right: 9px;
+    }
+}
+
+input.sh-check {
+    border-color: #afafaf;
+    background-color: #ececec;
+}
+
+input.sh-check:checked, input.sh-check:indeterminate {
+    background-color: #75c7af;
+}
+
+input.sh-check:checked:focus, input.sh-check:indeterminate:focus {
+    background-color: #75c7af;
+}
+
+.sh-button {
+    background-color: transparent;
+    color: #666;
+    border: thin solid #afafaf;
+    border-radius: 5px;
+
+    &:hover {
+        color: #333;
+        border-color: #999;
+        background-color: #ddd;
+    }
 }
