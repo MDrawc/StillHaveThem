@@ -31,3 +31,14 @@ function cancelEditForm(share_id){
         Rails.fire($form[0], 'submit');
     });
 }
+
+function resetShWarningIcon(name, input) {
+    var no_error = "<span id='" + name + "-icon' class='sh-input-icon' uk-icon='tag'>";
+    var $error_icon = $('#' + name + '-icon');
+
+    $(input).on('input', function() {
+        if ($error_icon.hasClass('warning-icon')) {
+            $error_icon.replaceWith(no_error);
+        }
+    });
+}

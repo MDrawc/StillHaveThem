@@ -2,12 +2,13 @@ class Share < ApplicationRecord
   before_validation :prepare_shared
   before_validation :generate_token, on: :create
   belongs_to :user
-  validates :token, :shared, presence: true
+  validates :token, presence: true
+  validates :shared, presence: { message: 'You must select at least one collection' }
   validates :token, uniqueness: true
   validates :shared, uniqueness: { scope: :user_id,
-    message: "already shared" }
-  validates :title, length: { maximum: 50 }
-  validates :message, length: { maximum: 300 }
+    message: 'You already share this combination of collections' }
+  validates :title, length: { maximum: 5 }
+  validates :message, length: { maximum: 3 }
   default_scope { order(created_at: :desc) }
 
   def note_visit

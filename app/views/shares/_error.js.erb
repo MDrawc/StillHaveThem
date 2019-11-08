@@ -1,0 +1,17 @@
+<% unless errors[:title].empty? %>
+    <% error = "Title #{ errors[:title][0] }" %>
+    $("#title-icon").replaceWith("<%= j(render partial: 'warning', locals: { id: 'title-icon', error: error  }) %>");
+    resetShWarningIcon('title', '#share_title');
+<% end %>
+
+<% unless errors[:message].empty? %>
+    <% error = "Message #{ errors[:message][0] }" %>
+    $("#message-icon").replaceWith("<%= j(render partial: 'warning', locals: { id: 'message-icon', error: error }) %>");
+    resetShWarningIcon('message', '#share_message');
+<% end %>
+
+<% unless errors[:shared].empty? %>
+    <% error = "#{ errors[:shared][0] }" %>
+    $("#shared-icon").replaceWith("<%= j(render partial: 'warning', locals: { id: 'shared-icon', error: error }) %>");
+    resetShWarningIcon('shared', '.sh-check');
+<% end %>

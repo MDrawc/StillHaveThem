@@ -140,10 +140,7 @@ p.discription {
     font-size: 14px;
     color: #999;
     line-height: 40px;
-
-    span {
-        padding-right: 9px;
-    }
+    padding-left: 26px;
 }
 
 input.sh-check {
@@ -170,4 +167,9 @@ input.sh-check:checked:focus, input.sh-check:indeterminate:focus {
         border-color: #999;
         background-color: #ddd;
     }
+}
+
+.sh-warning {
+    top: 5px;
+    left: 3px;
 }

@@ -17,20 +17,20 @@
         <%= f.text_field :title, class: 'uk-input share-input',
          placeholder: 'Title of shared page',
          autocomplete: 'off' %>
-         <span class="sh-input-icon" uk-icon="heart"></span>
+         <span id="title-icon" class="sh-input-icon" uk-icon="heart"></span>
          <div class="sh-label-info">optional, max 50 characters</div>
       </div>
       <div class="uk-position-relative uk-margin-small">
         <%= f.text_area :message, class: 'uk-input share-input',
          placeholder: 'Leave a message',
          autocomplete: 'off' %>
-         <span class="sh-input-icon" uk-icon="comment"></span>
+         <span id="message-icon" class="sh-input-icon" uk-icon="comment"></span>
          <div class="sh-label-info">optional, max 300 characters</div>
       </div>
     </div>
     <div>
       <div class="uk-position-relative sh-check-container">
-        <span class="sh-check-title"><span uk-icon="tag"></span>Collections to share</span>
+        <span class="sh-check-title"><span id="shared-icon" class="sh-input-icon" uk-icon="tag"></span>Collections to share</span>
         <div class="sh-coll-select uk-grid-small uk-child-width-auto uk-grid">
           <%= f.collection_check_boxes :shared, current_user.collections, :id, :name do |c| %>
             <% id = id_prefix + c.object.id.to_s %>

@@ -55,7 +55,7 @@ class SharesController < ApplicationController
 
   def destroy
     @share.destroy
-    get_shares
+    get_shares_with_coll_names
     respond_to :js
   end
 
