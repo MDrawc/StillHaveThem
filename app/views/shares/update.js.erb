@@ -1,4 +1,4 @@
 var share_id = '<%= @share.id %>';
 $('#' + 'share-' + share_id).replaceWith("<%= j(render @share) %>");
 copyShareLinks()
-disableEnableForm(false, 'share-form');
+activateEditShLink();

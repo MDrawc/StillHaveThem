@@ -1,42 +1,71 @@
 <%= content_tag :div, id: "share-#{ share.id }", class: 'share' do %>
-
-
-  <p><%= share.title %></p>
-  <p><span uk-icon="comment"></span> <%= share.message %></p>
-
-
-
-  <%= content_tag :input, nil, id: "share-link-#{ share.id }", value: shared_url(share.token), disabled: true %>
-
-
-
-  <% @shares_coll_names[share.id].each do |coll_name| %>
-   <p><%= coll_name.nil? ? 'Collection no longer exists' : coll_name %></p>
-  <% end %>
-
-
-  <p><%= share.shared %></p>
-  <p><%= share.created_at %></p>
-  <p>Last visited: <%= share.updated_at %></p>
-  <p>Times visited: <%= share.times_visited %></p>
-
-
-
-
-
-  <%= content_tag :a, 'Copy link', class: "cp-share-link", target: "share-link-#{ share.id }" %>
-
-
-
-
-  <%= link_to 'Open', shared_url(share.token), target: '_blank' %>
-
-
-  <%= link_to 'Edit', edit_share_url(share), remote: true %>
-
-
-  <%= link_to 'Delete', share, method: :delete, remote: true %>
-
-
-
+<table class="share-toolbar">
+  <tr>
+    <td class="uk-table-shrink btn">
+      <%= content_tag :a, 'Copy', class: 'cp-share-link', target: "share-link-#{ share.id }" %>
+    </td>
+    <td class="uk-position-relative link"><%= content_tag :input, nil, id: "share-link-#{ share.id }", class: 'share-link', value: shared_url(share.token), disabled: true %><span class="sh-input-icon world-icon" uk-icon='world'></span></td>
+    <td class="uk-table-shrink btn">
+      <%= link_to 'Open', shared_url(share.token), target: '_blank' %>
+    </td>
+    <td class="uk-table-shrink btn">
+      <%= link_to 'Edit', edit_share_url(share), id: "sh-edit-#{ share.id }",
+       class: 'sh-edit', remote: true %>
+    </td>
+    <td class="uk-table-shrink btn">
+      <%= link_to 'Delete', share, method: :delete, remote: true %>
+    </td>
+  </tr>
+</table>
+<div class="share-info">
+  <div class="uk-child-width-1-2 uk-grid-small uk-grid">
+    <div>
+      <p class='uk-position-relative sh-done'>
+        <% if share.title.empty? %>
+        <%= content_tag :span, '- no title -', class: 'no-sh' %>
+        <% else %>
+          <%= share.title %>
+        <% end %>
+        <span class="sh-input-icon" uk-icon="heart"></span>
+      </p>
+      <p class='uk-position-relative sh-done'>
+        <% if share.message.empty? %>
+        <%= content_tag :span, '- no message -', class: 'no-sh' %>
+        <% else %>
+          <%= share.message %>
+        <% end %>
+        <span class="sh-input-icon" uk-icon="comment"></span>
+      </p>
+      <table class="sh-time-info">
+        <tr>
+          <td>Created:</td>
+          <td class='time'><%= share.created_at.to_f * 1000 %></td>
+        </tr>
+        <tr>
+          <td>Last visited:</td>
+          <% if visited = share.last_visit %>
+            <%= content_tag :td, visited.to_f * 1000, class: 'time' %>
+          <% else %>
+            <%= content_tag :td, '-' %>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Times visited:</td>
+          <td><%= share.times_visited %></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="sh-shared-box">
+        <span class="sh-box-title"><span id="shared-icon" class="sh-input-icon" uk-icon="tag"></span>Shared collections:</span>
+        <p class="sh-coll-shared">
+          <% @shares_coll_names[share.id].each do |coll_name| %>
+            <% content = coll_name.nil? ? '- no longer exists -' : coll_name %>
+            <%= content_tag :span, content %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>

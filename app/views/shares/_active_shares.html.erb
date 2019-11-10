@@ -1,2 +1,7 @@
 <div class="strike part"><span>Manage links:</span></div>
-<%= render @shares %>
+
+<% unless @shares.empty? %>
+  <%= render @shares %>
+<% else %>
+  <%= content_tag :span, '- No links to manage -', class: 'no-sh' %>
+<% end %>

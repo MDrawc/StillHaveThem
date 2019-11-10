@@ -1,4 +1,6 @@
 $("#f-modal").find(".modal-content").html("<%= j(render 'share_window') %>");
 $("#active-shares").html("<%= j(render 'active_shares') %>");
+convertTimeToLocal('.time');
 checkAllNone('share-form', 'share');
 copyShareLinks();
+activateEditShLink();

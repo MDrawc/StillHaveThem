@@ -1,5 +1,15 @@
+var $open_edit_forms = $('.sh_edit_form');
+if ($open_edit_forms.length != 0) {
+  var old_share_id = $open_edit_forms.attr('share_id');
+  $open_edit_forms.remove();
+  $old_share = $('#share-' + old_share_id);
+  $old_share.find('#sh-edit-' + old_share_id).parent().removeClass('disabled');
+  $old_share.find('.share-info').show();
+}
+
 var share_id = '<%= @share.id %>';
-$('#' + 'share-' + share_id).html("<%= j(render 'form') %>");
+var $share = $('#share-' + share_id);
+$share.find('.share-info').hide();
+$share.append("<%= j(render 'form') %>");
 checkAllNone('ed-share-form-' + share_id, 'ed-share-' + share_id);
 cancelEditForm(share_id);
-disableEnableForm(true, 'share-form');

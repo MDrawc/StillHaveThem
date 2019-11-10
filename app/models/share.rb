@@ -7,12 +7,16 @@ class Share < ApplicationRecord
   validates :token, uniqueness: true
   validates :shared, uniqueness: { scope: :user_id,
     message: 'You already share this combination of collections' }
-  validates :title, length: { maximum: 5 }
-  validates :message, length: { maximum: 3 }
+  validates :title, length: { maximum: 50 }
+  validates :message, length: { maximum: 300 }
   default_scope { order(created_at: :desc) }
 
   def note_visit
     update(times_visited: times_visited + 1)
+  end
+
+  def last_visit
+    updated_at == created_at ? false : updated_at
   end
 
   private

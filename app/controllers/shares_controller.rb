@@ -16,7 +16,8 @@ class SharesController < ApplicationController
       respond_to :js
     else
       respond_to do |format|
-          format.js { render partial: "error", locals: { errors: @share.errors } }
+          format.js { render partial: "error", locals: { errors: @share.errors,
+            form: '#share-form', type: ''} }
       end
     end
   end
@@ -32,7 +33,7 @@ class SharesController < ApplicationController
       respond_to :js
     else
       respond_to do |format|
-          format.js { render partial: "error", locals: { errors: @share.errors }  }
+          format.js { render partial: "error", locals: { errors: @share.errors, form: "#ed-share-form-#{ @share.id }", type: 'ed-'}  }
       end
     end
   end

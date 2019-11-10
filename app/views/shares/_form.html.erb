@@ -1,36 +1,44 @@
 <% if new = @share.new_record? %>
   <% form_id = 'share-form' %>
+  <% form_class = 'sh_form' %>
   <% id_prefix = 'share_shared_' %>
   <% submit_text = 'Generate' %>
   <% check_btn_prefix = 'share' %>
+  <% extra = {} %>
+  <% ic_pref = '' %>
 <% else %>
   <% form_id = "ed-share-form-#{ @share.id }" %>
+  <% form_class = 'sh_edit_form' %>
   <% id_prefix = "ed_sh_#{ @share.id }_" %>
   <% submit_text = 'Update'  %>
   <% check_btn_prefix = "ed-share-#{ @share.id }" %>
+  <% extra = { 'share_id' => @share.id } %>
+  <% ic_pref = 'ed-' %>
 <% end %>
 
-<%= form_with model: @share, id: form_id, class: 'sh_form' do |f| %>
+<%= form_with model: @share, id: form_id, class: form_class, html: extra do |f| %>
   <div class="uk-child-width-1-2 uk-grid-small uk-grid">
     <div>
       <div class="uk-position-relative uk-margin-small">
         <%= f.text_field :title, class: 'uk-input share-input',
          placeholder: 'Title of shared page',
          autocomplete: 'off' %>
-         <span id="title-icon" class="sh-input-icon" uk-icon="heart"></span>
+        <%= content_tag :span, nil, id: ic_pref + 'title-icon', class: 'sh-input-icon', 'uk-icon' => 'heart' %>
          <div class="sh-label-info">optional, max 50 characters</div>
       </div>
       <div class="uk-position-relative uk-margin-small">
         <%= f.text_area :message, class: 'uk-input share-input',
          placeholder: 'Leave a message',
          autocomplete: 'off' %>
-         <span id="message-icon" class="sh-input-icon" uk-icon="comment"></span>
+         <%= content_tag :span, nil, id: ic_pref + 'message-icon', class: 'sh-input-icon', 'uk-icon' => 'comment' %>
          <div class="sh-label-info">optional, max 300 characters</div>
       </div>
     </div>
     <div>
       <div class="uk-position-relative sh-check-container">
-        <span class="sh-check-title"><span id="shared-icon" class="sh-input-icon" uk-icon="tag"></span>Collections to share</span>
+        <span class="sh-check-title">
+        <%= content_tag :span, nil, id: ic_pref + 'shared-icon', class: 'sh-input-icon', 'uk-icon' => 'tag' %>
+        Collections to share</span>
         <div class="sh-coll-select uk-grid-small uk-child-width-auto uk-grid">
           <%= f.collection_check_boxes :shared, current_user.collections, :id, :name do |c| %>
             <% id = id_prefix + c.object.id.to_s %>
@@ -43,7 +51,7 @@
   </div>
   <div class="sh-form-buttons">
     <%= f.submit submit_text, class: "uk-button sh-button" %>
-    <%= f.submit('Reset', class: "sh-small-button", type: "reset" ) %>
-    <%= content_tag :a, 'Cancel', id: "sh-ud-cancel-#{ @share.id }", class: 'sh-small-button' unless new %>
+    <%= content_tag :a, 'Cancel', id: "sh-ud-cancel", class: 'sh-small-button' unless new %>
+    <%= f.submit('Reset', id: ic_pref + 'sh-reset', class: "sh-small-button", type: "reset" ) %>
   </div>
 <% end %>
