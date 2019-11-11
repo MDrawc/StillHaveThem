@@ -19,6 +19,10 @@ class Share < ApplicationRecord
     updated_at == created_at ? false : updated_at
   end
 
+  def title_or_message?
+    !title.empty? || !message.empty?
+  end
+
   private
 
     def prepare_shared

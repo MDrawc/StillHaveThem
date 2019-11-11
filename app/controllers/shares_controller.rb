@@ -44,6 +44,7 @@ class SharesController < ApplicationController
       share.note_visit
       log_guest(share)
       @first_id = share.shared.first
+      @no_message = share.message.empty?
     else
       redirect_to action: 'wrong_link', token: params[:token]
     end

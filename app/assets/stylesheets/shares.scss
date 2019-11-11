@@ -205,7 +205,7 @@ table.share-toolbar {
     }
 
     td.btn {
-        transition:background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
     }
 
     td.btn:hover {
@@ -217,10 +217,11 @@ table.share-toolbar {
         background-color: #d4d4d4;
         pointer-events: none;
         cursor: default;
+
         a {
-           pointer-events: none;
-           cursor: default;
-           color: #999;
+            pointer-events: none;
+            cursor: default;
+            color: #999;
         }
     }
 
@@ -228,7 +229,7 @@ table.share-toolbar {
         color: #666;
         display: block;
         padding: 10px;
-        transition:color 0.1s ease-in-out;
+        transition: color 0.1s ease-in-out;
     }
 
     td a:hover {
@@ -271,6 +272,7 @@ div.share-info {
 
 .sh-box-title {
     @extend .sh-check-title;
+
     line-height: unset;
 }
 
@@ -280,6 +282,7 @@ div.share-info {
 
     span {
         font-style: italic;
+
         &:after {
             content: ', ';
         }
@@ -303,6 +306,7 @@ table.sh-time-info {
 
 .cp-share-link.copied {
     color: $dark_accent;
+
     &:hover {
         color: $dark_accent;
     }

@@ -12,7 +12,18 @@
   </head>
   <body>
     <% if guest_logged? && !shared_collections.empty? %>
-        <%= render 'layouts/sh_menu' %>
+      <%= render 'layouts/sh_menu' %>
+
+
+      <div id="message-modal" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+              <button class="uk-modal-close-default" type="button" uk-close></button>
+              <div class="modal-content">
+                  <%= guest.message %>
+              </div>
+          </div>
+      </div>
+
     <% end %>
     <div class="main-container">
       <%= render 'layouts/sh_navigation' %>
@@ -28,6 +39,9 @@
       </div>
       <%= render 'layouts/footer' %>
     </div>
+
+
+
     <div id="f-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <button class="uk-modal-close-default" type="button" uk-close></button>
