@@ -39,12 +39,12 @@
       <table class="sh-time-info">
         <tr>
           <td>Created:</td>
-          <td class='time'><%= share.created_at.to_f * 1000 %></td>
+          <td class='time need-converting'><%= share.created_at.to_f * 1000 %></td>
         </tr>
         <tr>
           <td>Last visited:</td>
           <% if visited = share.last_visit %>
-            <%= content_tag :td, visited.to_f * 1000, class: 'time' %>
+            <%= content_tag :td, visited.to_f * 1000, class: 'time need-converting' %>
           <% else %>
             <%= content_tag :td, '-' %>
           <% end %>

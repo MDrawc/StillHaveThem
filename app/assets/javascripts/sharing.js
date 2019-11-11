@@ -86,8 +86,11 @@ function activateEditShLink() {
 
 function convertTimeToLocal(selector) {
     $(selector).each(function() {
-        var val = $(this).text();
-        var d = new Date(parseFloat(val));
-        $(this).text(d.toLocaleString());
+
+        if ($(this).hasClass('need-converting')) {
+            var val = $(this).text();
+            var d = new Date(parseFloat(val));
+            $(this).text(d.toLocaleString()).removeClass('need-converting');
+        }
     });
 }
