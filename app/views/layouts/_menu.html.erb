@@ -15,13 +15,4 @@
       <li><%= link_to '', new_collection_path, id: 'm-add-coll', remote: true, "uk-toggle": "target: #coll-modal", class: 'm-add', 'uk-icon': 'plus' %></li>
     </ul>
   </div>
-  <div id="coll-modal" class="uk-flex-top" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-      <button class="uk-modal-close-default" type="button" uk-close></button>
-      <div class="modal-header">
-        <p class="header"><span id="coll-action">Create</span> custom collection<span class='add-coll-icon'><%= svg 'shelf_icon' %></span></p>
-      </div>
-      <div class="modal-content"></div>
-    </div>
-  </div>
 <% end %>

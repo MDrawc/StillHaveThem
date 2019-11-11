@@ -3,7 +3,8 @@
   <%= link_to '', new_share_url, id: 'social', class: 'nav-icon', remote: true,
   'uk-toggle': 'target: #f-modal', 'uk-icon': 'social',
   'uk-tooltip' => 'title: Share; pos: left' %>
-  <%= link_to '', settings_path, id: 'settings', class: 'nav-icon', 'uk-icon': 'settings',
+  <%= link_to '', settings_url, id: 'settings', class: 'nav-icon', remote: true,
+  'uk-toggle': 'target: #f-modal', 'uk-icon': 'settings',
   'uk-tooltip' => 'title: Settings; pos: bottom-right' %>
   <%= link_to '', logout_path, id: 'logout', class: 'nav-icon', method: :delete, 'uk-icon': 'sign-out',
   'uk-tooltip' => 'title: Log Out; pos: bottom-right' %>
