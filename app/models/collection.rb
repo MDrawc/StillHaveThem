@@ -7,6 +7,10 @@ class Collection < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :user_id,
     message: "is used by another collection", case_sensitive: false }, length: { maximum: 50 }
 
+  def is_shared?()
+    !user.shares.where('? = ANY(shared)', id).empty?
+  end
+
   def self.data_for_overall_graphs(obj)
 
       shared = obj.class.name == 'Share'
