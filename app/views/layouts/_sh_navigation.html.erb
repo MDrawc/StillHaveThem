@@ -5,14 +5,7 @@
       <p class="shared">SHARED</p>
     </div>
     <div class="uk-text-truncate">
-
-
-
       <%= content_tag :span, guest.title, class: "title #{ 'only_title' if guest.message.empty? }" %>
-
-
-
-
       <% unless guest.message.empty? %>
         <%= content_tag :a, class: 'message uk-text-truncate', 'uk-toggle' => 'target: #message-modal' do %>
           <%= content_tag :span, nil, 'uk-icon' => 'comment' %>

@@ -311,3 +311,25 @@ table.sh-time-info {
         color: $dark_accent;
     }
 }
+
+#message-modal .uk-modal-body {
+    background: #ececec;
+    border-radius: 5px;
+
+    p {
+        font-size: 16px;
+        font-style: italic;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        font-weight: 300;
+        text-align: justify;
+        position: relative;
+        padding-left: 26px;
+
+        span {
+            position: absolute;
+            top: 4px;
+            left: 0px;
+        }
+    }
+}
