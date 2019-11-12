@@ -1,0 +1,44 @@
+#f-modal p.header.set span {
+    padding-left: 4px;
+}
+
+table.set-platform {
+    border-spacing: 0px 0px;
+    margin: 5px;
+    font-size: 14px;
+
+    td {
+        border: thin solid #afafaf;
+        border-right: none;
+        background: #e3e3e3;
+    }
+
+    td.btn {
+        transition: background-color 0.1s ease-in-out;
+    }
+
+    td.btn:hover {
+        background-color: #d4d4d4;
+        cursor: pointer;
+    }
+
+    td a {
+        color: #666;
+        display: block;
+        transition: color 0.1s ease-in-out;
+    }
+
+    td a:hover {
+        text-decoration: none;
+        color: #333;
+    }
+
+    td:first-child {
+        border-radius: 5px 0px 0px 5px;
+    }
+
+    td:last-child {
+        border-radius: 0px 5px 5px 0px;
+        border-right: thin solid #afafaf;
+    }
+}

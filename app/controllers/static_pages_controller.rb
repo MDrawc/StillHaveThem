@@ -23,12 +23,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def privacy
-  end
-
-  def terms
-  end
-
   def search_page
     @records = current_user.records
     respond_to :js

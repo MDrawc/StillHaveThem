@@ -36,6 +36,7 @@ function custom_data_confirm() {
         });
         $('.uk-button-primary').html('<span uk-icon="trash"></span>')
     }
+
     $("a[data-confirm]").on('click', handleConfirm);
 }
 

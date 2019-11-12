@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'search', to: 'static_pages#search_page'
   get 'search_games', to: 'static_pages#search'
-  get 'about', to: 'static_pages#about'
-  get 'terms', to: 'static_pages#terms'
-  get 'privacy', to: 'static_pages#privacy'
-  get 'settings', to: 'static_pages#settings'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'signin', to: 'sessions#new'
@@ -18,6 +14,7 @@ Rails.application.routes.draw do
   resources :collections, except: :index
   resources :games, only: [:new, :create]
   resources :shares, only: [:new, :edit, :create, :update, :destroy]
+  resources :platforms, only: [:destroy]
 
   delete '/rm/:game_id/:collection_id/:view', to: 'collections#remove_game', as: 'remove'
   delete '/rm_s/:game_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
@@ -39,4 +36,6 @@ Rails.application.routes.draw do
 
   delete 'logout_guest', to: 'shares#leave'
   get '/sh_collections/:id/', to: 'collections#show_guest', as: 'show_guest'
+
+  get '/settings/', to: 'users#settings', as: 'settings'
 end

@@ -1,5 +1,3 @@
-// $('.uk-modal:not([id])').remove();
-
 var ids = [];
 $('li[id^=mc-]').each(function(){ ids.push(this.id)});
 var index = ids.indexOf('mc-<%= @collection.id %>');

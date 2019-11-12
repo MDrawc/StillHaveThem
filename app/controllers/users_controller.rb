@@ -21,6 +21,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  def settings
+    respond_to :js
+  end
+
   private
 
   def user_params
