@@ -1,0 +1,14 @@
+<div id="list-of-platforms" class="uk-flex uk-flex-wrap">
+  <% unless (user_platforms = current_user.platforms).empty? %>
+    <% user_platforms.each do |p| %>
+      <table class="set-platform">
+        <tr>
+          <%= content_tag :td, p.name %>
+          <%= content_tag :td, link_to('Delete', p, method: :delete, remote: true), class: 'btn' %>
+        </tr>
+      </table>
+    <% end %>
+  <% else %>
+    <span class="no-sh">- no platforms -</span>
+  <% end %>
+</div>

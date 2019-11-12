@@ -25,6 +25,7 @@ table.set-platform {
     td a {
         color: #666;
         display: block;
+        padding: 0px 5px;
         transition: color 0.1s ease-in-out;
     }
 
@@ -34,11 +35,13 @@ table.set-platform {
     }
 
     td:first-child {
-        border-radius: 5px 0px 0px 5px;
+        border-radius: 3px 0px 0px 3px;
+        background: none;
+        padding: 0px 5px;
     }
 
     td:last-child {
-        border-radius: 0px 5px 5px 0px;
+        border-radius: 0px 3px 3px 0px;
         border-right: thin solid #afafaf;
     }
 }

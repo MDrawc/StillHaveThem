@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:destroy]
+  before_action :require_same_user, only: [:destroy]
+
   def new
     @user = User.new
     respond_to do |format|
@@ -28,6 +31,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    redirect_to root_url
   end
 
   def settings
@@ -36,7 +41,18 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def require_same_user
+      if current_user != @user
+        reload
+      end
+    end
+
 end
