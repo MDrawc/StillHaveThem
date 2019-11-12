@@ -8,8 +8,25 @@
 
 <p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
 <%= render 'platforms/platforms' %>
-<div class="strike part"><span>Other:</span></div>
-
+<div class="strike part"><span>Games per page:</span></div>
+<p class="discription">Define how many games you want to see per page. Only applies to your collections.</p>
+<table class="range-holder">
+  <tr>
+    <td class="rng-lab">min</td>
+    <td><p id="gpp-counter">30</p></td>
+    <td class="rng-lab">max</td>
+  </tr>
+  <tr>
+    <td class="rng-mima">5</td>
+    <td><input id="gpp-range" type="range" value="30" min="5" max="50" step="1"></td>
+    <td class="rng-mima">50</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= link_to 'Confirm', root_url, class: 'uk-button sh-button rng-button' %></td>
+    <td></td>
+  </tr>
+</table>
 <div class="strike part"><span>Remove Account:</span></div>
 <p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
 <%= link_to current_user, class: 'uk-button sh-button del-user-btn', method: :delete do %>
@@ -17,3 +34,14 @@
 Delete Account
 <%= content_tag :span, svg('warning') %>
 <% end %>
+
+<script>
+var $slider = $('#gpp-range');
+var $counter = $('#gpp-counter')
+
+$slider.on('input', function() {
+    var val = $(this).val();
+    $counter.text(val);
+});
+
+</script>
