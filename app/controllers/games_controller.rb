@@ -27,7 +27,7 @@ class GamesController < ApplicationController
 
     @game_igdb_id = game_params[:igdb_id]
 
-    if @collection && @collection.needs_platform
+    if @collection.needs_platform
       platform, platform_name = game_params[:platform].split(',')
       physical = game_params[:physical]
 
@@ -42,8 +42,7 @@ class GamesController < ApplicationController
       else
         create_from_agame(agame_id, true, platform, platform_name, physical)
       end
-
-    elsif @collection
+    else
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
           @collection.games << @game
@@ -54,8 +53,6 @@ class GamesController < ApplicationController
       else
         create_from_agame(agame_id)
       end
-    else
-      @errors << 'Select collection'
     end
 
     respond_to :js
