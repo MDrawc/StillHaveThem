@@ -13,4 +13,10 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  validates :games_per_view, inclusion: { in: (5..50).to_a }
+
+  def gpv
+    games_per_view
+  end
 end

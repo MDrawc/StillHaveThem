@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:destroy]
   before_action :require_same_user, only: [:destroy]
 
+
+
+  before_action :require_user, only: [:change_gpv]
+
   def new
     @user = User.new
     respond_to do |format|
@@ -30,6 +34,11 @@ class UsersController < ApplicationController
   def update
   end
 
+  def change_gpv
+    current_user.update(user_params)
+    respond_to :js
+  end
+
   def destroy
     @user.destroy
     redirect_to root_url
@@ -42,7 +51,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :games_per_view)
     end
 
     def set_user

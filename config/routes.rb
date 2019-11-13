@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'copy_move', to: 'games#copy_move'
   post 'edit', to: 'games#edit'
 
-  resources :users, only: [:create, :edit, :update, :destroy]
+  resources :users, only: [:destroy]
   resources :collections, except: :index
   resources :games, only: [:new, :create]
   resources :shares, only: [:new, :edit, :create, :update, :destroy]
@@ -37,5 +37,6 @@ Rails.application.routes.draw do
   delete 'logout_guest', to: 'shares#leave'
   get '/sh_collections/:id/', to: 'collections#show_guest', as: 'show_guest'
 
-  get '/settings/', to: 'users#settings', as: 'settings'
+  get '/settings', to: 'users#settings', as: 'settings'
+  post '/change_gpv', to: 'users#change_gpv', as: 'change_gpv'
 end

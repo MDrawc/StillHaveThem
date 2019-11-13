@@ -16,7 +16,7 @@
   <% ic_pref = 'ed-' %>
 <% end %>
 
-<%= form_with model: @share, id: form_id, class: form_class, html: extra do |f| %>
+<%= f.range_field :w1, :min=>0, :max=>200, :class=>"slide", :id=>"slider1"%>
   <div class="uk-child-width-1-2 uk-grid-small uk-grid">
     <div>
       <div class="uk-position-relative uk-margin-small">

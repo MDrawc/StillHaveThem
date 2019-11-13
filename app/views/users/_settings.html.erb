@@ -10,23 +10,29 @@
 <%= render 'platforms/platforms' %>
 <div class="strike part"><span>Games per page:</span></div>
 <p class="discription">Define how many games you want to see per page. Only applies to your collections.</p>
+<%= form_with(url: change_gpv_url) do %>
 <table class="range-holder">
   <tr>
     <td class="rng-lab">min</td>
-    <td><p id="gpp-counter">30</p></td>
+    <td>
+    <%= content_tag :p, gpv = current_user.gpv, id: 'gpv-counter' %>
+    </td>
     <td class="rng-lab">max</td>
   </tr>
   <tr>
     <td class="rng-mima">5</td>
-    <td><input id="gpp-range" type="range" value="30" min="5" max="50" step="1"></td>
+    <td>
+      <%= range_field(:user, :games_per_view, in: 5..50, step: 1, value: gpv) %>
+    </td>
     <td class="rng-mima">50</td>
   </tr>
   <tr>
     <td></td>
-    <td><%= link_to 'Confirm', root_url, class: 'uk-button sh-button rng-button' %></td>
+    <td><%= submit_tag 'Confirm', class: 'uk-button sh-button rng-button' %></td>
     <td></td>
   </tr>
 </table>
+ <% end %>
 <div class="strike part"><span>Remove Account:</span></div>
 <p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
 <%= link_to current_user, class: 'uk-button sh-button del-user-btn', method: :delete do %>
@@ -36,12 +42,11 @@ Delete Account
 <% end %>
 
 <script>
-var $slider = $('#gpp-range');
-var $counter = $('#gpp-counter')
+var $slider = $('#user_games_per_view');
+var $counter = $('#gpv-counter')
 
 $slider.on('input', function() {
     var val = $(this).val();
     $counter.text(val);
 });
-
 </script>
