@@ -24,10 +24,10 @@ class GamesController < ApplicationController
     agame_id = game_params[:id]
     @x_id = params['x_id']
     @errors = []
-
     @game_igdb_id = game_params[:igdb_id]
 
     if @collection.needs_platform
+
       platform, platform_name = game_params[:platform].split(',')
       physical = game_params[:physical]
 
@@ -42,6 +42,7 @@ class GamesController < ApplicationController
       else
         create_from_agame(agame_id, true, platform, platform_name, physical)
       end
+
     else
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
@@ -280,8 +281,8 @@ class GamesController < ApplicationController
 
     def save_platform(id, name)
       unless current_user.platforms.find_by(igdb_id: id)
-        unless new_platform = Platform.find_by({ igdb_id: id, name: name })
-          new_platform = Platform.create({ igdb_id: id, name: name })
+        unless new_platform = Platform.find_by(igdb_id: id)
+          new_platform = Platform.create(igdb_id: id, name: name)
         end
         current_user.platforms << new_platform
       end
