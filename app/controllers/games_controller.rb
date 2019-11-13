@@ -98,6 +98,7 @@ class GamesController < ApplicationController
     elsif game
       begin
         @collection.games << game
+        save_platform(platform, platform_name)
         @new_game_id = game.id
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
@@ -120,6 +121,8 @@ class GamesController < ApplicationController
         @new_game_id = game.id
 
         @collection.games << game
+        save_platform(platform, platform_name)
+
         @collection.games.delete(@game_id)
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
@@ -167,6 +170,8 @@ class GamesController < ApplicationController
       if game
         begin
           @collection.games << game
+          save_platform(platform, platform_name) if needs_plat
+
           message(game, needs_plat, p_verb)
           unless @copy
             @current.games.delete(@game_id)
@@ -190,6 +195,7 @@ class GamesController < ApplicationController
         if game.save
           message(game, needs_plat, p_verb)
           @collection.games << game
+          save_platform(platform, platform_name) if needs_plat
 
           unless @copy
             @current.games.delete(@game_id)
@@ -199,6 +205,7 @@ class GamesController < ApplicationController
           @errors += game.errors.full_messages
         end
       end
+
     end
     respond_to :js
   end
