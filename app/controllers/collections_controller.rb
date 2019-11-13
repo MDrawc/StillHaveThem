@@ -4,7 +4,7 @@ before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :correct_guest, only: [:show_guest]
 before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
-PER_PAGE = 30
+PER_PAGE = 100
 
 def new
   @collection = Collection.new
@@ -130,8 +130,13 @@ private
     @q = @collection.games.ransack(params[:q])
     cookie = shared ? 'shared_view' : 'my_view'
     @view = params[:view] || cookies[cookie] || 'covers'
+
+    @games = @q.result
+      .group('games.id, collection_games.created_at')
+      .includes(:developers)
+      .paginate(page: params[:page], per_page: PER_PAGE)
+
     unless params[:q]
-      @games = @collection.games.paginate(page: params[:page], per_page: PER_PAGE)
       @refresh = params[:type] == 'refresh'
       cookies['last'] = { value: params[:id], expires: 30.days }
 
@@ -140,11 +145,6 @@ private
       end
     else
       @in_search = true
-      @games = @q.result
-      .group('games.id, collection_games.created_at')
-      .includes(:developers)
-      .paginate(page: params[:page], per_page: PER_PAGE)
-
       q = params[:q]
       query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
       query.map! { |a| a ||= '' }
@@ -155,5 +155,6 @@ private
         }
       end
     end
+
   end
 end
