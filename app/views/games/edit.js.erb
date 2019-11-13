@@ -1,21 +1,21 @@
 var game_id = '<%= @game_id %>';
-var new_game_id = '<%= @new_game_id %>';
-var msg = '<%= @message %>';
-var msg_pos = 'top-right';
-var success = <%= @errors.empty? %>;
 var view = '<%= @view %>';
+
+var msg = '<%= @message %>';
 var reopen = false;
 var form_type;
 
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
-        pos: msg_pos,
+        pos: 'top-right',
         timeout: 5000
     });
 }
 
-if (success) {
+<% if @errors.empty? %>
+
+    var new_game_id = '<%= @new_game_id %>';
 
     if (view === 'panels') {
         reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
@@ -51,6 +51,9 @@ if (success) {
 
     var scroll = $(document).scrollTop().valueOf();
 
+    var new_platform = '<%= @new_platform %>';
+    updatePlatformsFilter(new_platform);
+
     $.ajax({
         url: '/collections/<%= @collection.id %>',
         data: data,
@@ -64,7 +67,7 @@ if (success) {
         }
     });
 
-} else {
+<% else %>
 
      if (view === 'list') {
         var errors = $("#t-ops .add-form-errors");
@@ -76,4 +79,5 @@ if (success) {
 
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
-}
+
+<% end %>

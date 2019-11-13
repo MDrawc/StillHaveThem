@@ -1,21 +1,20 @@
 var game_id = '<%= @game_id %>'
-var msg = '<%= @message %>';
 var view = '<%= @view %>';
-var msg_pos = 'top-right';
-var success = <%= @errors.empty? %>;
-var wi_same_coll = <%= @wi_same_coll %>;
-var copy = <%= @copy %>;
+var msg = '<%= @message %>';
 var form_type;
 
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
-        pos: msg_pos,
+        pos: 'top-right',
         timeout: 5000
     });
 }
 
-if (success) {
+<% if @errors.empty? %>
+
+    var wi_same_coll = <%= @wi_same_coll %>;
+    var copy = <%= @copy %>;
 
     if (view != 'list') {
         UIkit.dropdown("#copy-form-" + game_id).hide();
@@ -77,6 +76,11 @@ if (success) {
 
         var scroll = $(document).scrollTop().valueOf();
 
+        <% if @collection.needs_platform %>
+            var new_platform = '<%= @new_platform %>';
+            updatePlatformsFilter(new_platform);
+        <% end %>
+
         $.ajax({
             url: '/collections/<%= @current.id %>',
             data: data,
@@ -92,7 +96,7 @@ if (success) {
         }
     }
 
-} else {
+<% else %>
 
     if (view === 'list') {
         var errors = $("#t-ops .add-form-errors");
@@ -104,4 +108,4 @@ if (success) {
 
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
-}
+<% end %>

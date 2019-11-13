@@ -24,10 +24,10 @@ class GamesController < ApplicationController
     agame_id = game_params[:id]
     @x_id = params['x_id']
     @errors = []
-
     @game_igdb_id = game_params[:igdb_id]
 
-    if @collection && @collection.needs_platform
+    if @collection.needs_platform
+
       platform, platform_name = game_params[:platform].split(',')
       physical = game_params[:physical]
 
@@ -43,7 +43,7 @@ class GamesController < ApplicationController
         create_from_agame(agame_id, true, platform, platform_name, physical)
       end
 
-    elsif @collection
+    else
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
           @collection.games << @game
@@ -54,8 +54,6 @@ class GamesController < ApplicationController
       else
         create_from_agame(agame_id)
       end
-    else
-      @errors << 'Select collection'
     end
 
     respond_to :js
@@ -93,6 +91,9 @@ class GamesController < ApplicationController
 
     last_platform, last_physical = params[:last_platform], eval(params[:last_physical])
     platform, platform_name = game_params[:platform].split(',')
+
+    @new_platform = platform_name
+
     game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
 
     if game && (game.id == @game_id)
@@ -100,6 +101,7 @@ class GamesController < ApplicationController
     elsif game
       begin
         @collection.games << game
+        save_platform(platform, platform_name)
         @new_game_id = game.id
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
@@ -122,6 +124,8 @@ class GamesController < ApplicationController
         @new_game_id = game.id
 
         @collection.games << game
+        save_platform(platform, platform_name)
+
         @collection.games.delete(@game_id)
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
@@ -161,6 +165,7 @@ class GamesController < ApplicationController
 
       if needs_plat = @collection.needs_platform
         platform, platform_name = game_params[:platform].split(',')
+        @new_platform = platform_name
         game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
       else
         game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
@@ -169,6 +174,8 @@ class GamesController < ApplicationController
       if game
         begin
           @collection.games << game
+          save_platform(platform, platform_name) if needs_plat
+
           message(game, needs_plat, p_verb)
           unless @copy
             @current.games.delete(@game_id)
@@ -192,6 +199,7 @@ class GamesController < ApplicationController
         if game.save
           message(game, needs_plat, p_verb)
           @collection.games << game
+          save_platform(platform, platform_name) if needs_plat
 
           unless @copy
             @current.games.delete(@game_id)
@@ -201,6 +209,7 @@ class GamesController < ApplicationController
           @errors += game.errors.full_messages
         end
       end
+
     end
     respond_to :js
   end
@@ -283,8 +292,8 @@ class GamesController < ApplicationController
 
     def save_platform(id, name)
       unless current_user.platforms.find_by(igdb_id: id)
-        unless new_platform = Platform.find_by({ igdb_id: id, name: name })
-          new_platform = Platform.create({ igdb_id: id, name: name })
+        unless new_platform = Platform.find_by(igdb_id: id)
+          new_platform = Platform.create(igdb_id: id, name: name)
         end
         current_user.platforms << new_platform
       end

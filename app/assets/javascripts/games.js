@@ -116,6 +116,20 @@ function removeCoverSpinner() {
     }, true)
 }
 
+function updatePlatformsFilter(platform) {
+    var $form_select = $('#q_plat_eq');
+    var $options = $form_select.children();
+
+    var values = [];
+    for (var i = 0; i < $options.length; i++) {
+        values.push($options.eq(i).val());
+    }
+    if (!values.includes(platform)) {
+        var option = '<option value="' + platform + '">' + platform + '</option>';
+        $form_select.append(option);
+    }
+}
+
 $(function() {
     removeCoverSpinner();
 });
