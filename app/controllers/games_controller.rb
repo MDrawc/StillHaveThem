@@ -91,6 +91,9 @@ class GamesController < ApplicationController
 
     last_platform, last_physical = params[:last_platform], eval(params[:last_physical])
     platform, platform_name = game_params[:platform].split(',')
+
+    @new_platform = platform_name
+
     game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
 
     if game && (game.id == @game_id)

@@ -49,6 +49,9 @@ if (success) {
         data['page'] = current_page;
     }
 
+    var new_platform = '<%= @new_platform %>';
+    updatePlatformsFilter(new_platform);
+
     var scroll = $(document).scrollTop().valueOf();
 
     $.ajax({
