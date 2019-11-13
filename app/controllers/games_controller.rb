@@ -165,6 +165,7 @@ class GamesController < ApplicationController
 
       if needs_plat = @collection.needs_platform
         platform, platform_name = game_params[:platform].split(',')
+        @new_platform = platform_name
         game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
       else
         game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)

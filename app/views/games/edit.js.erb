@@ -49,10 +49,10 @@ if (msg) {
         data['page'] = current_page;
     }
 
+    var scroll = $(document).scrollTop().valueOf();
+
     var new_platform = '<%= @new_platform %>';
     updatePlatformsFilter(new_platform);
-
-    var scroll = $(document).scrollTop().valueOf();
 
     $.ajax({
         url: '/collections/<%= @collection.id %>',
