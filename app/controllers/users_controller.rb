@@ -24,8 +24,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    respond_to :js
+    if current_user.update(user_params)
+      respond_to :js
+    else
+      @errors = current_user.errors.full_messages
+      respond_to do |format|
+          format.js { render partial: "set_errors" }
+      end
+    end
   end
 
   def change_gpv
@@ -38,13 +44,29 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def settings
-    @user = current_user
+  def access_settings
     respond_to :js
+  end
+
+  def settings
+    if params[:password]
+      if current_user.authenticate(params[:password])
+        @user = current_user
+        respond_to :js
+      else
+        respond_to do |format|
+            format.js { render partial: 'access_error' }
+        end
+      end
+    else
+      respond_to do |format|
+          format.js { render partial: 'authorize' }
+      end
+    end
   end
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :games_per_view)
+      params.require(:user).permit(:email, :password, :games_per_view)
     end
 end

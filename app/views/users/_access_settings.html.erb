@@ -1,0 +1,13 @@
+<p class="header set">Gain access to user settings <span uk-icon="icon: unlock; ratio: 1.4"></span></p>
+  <%= form_with(url: settings_url, method: "get") do |f| %>
+    <table class="set-email-pass">
+      <tr>
+      <td class="uk-position-relative">
+        <%= f.password_field :password, id: 'change-password', class: 'uk-input set-input password', placeholder: 'Enter password' %>
+        <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
+      <td class="btn">
+        <%= submit_tag 'Confirm', class: 'set-confirm' %>
+      </td>
+      </tr>
+    </table>
+  <% end %>
