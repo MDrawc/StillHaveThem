@@ -1,8 +1,37 @@
 <p class="header set">User settings <span uk-icon="icon: settings; ratio: 1.4"></span></p>
 
+<div class="strike part"><span>Change email:</span></div>
+
+  <%= form_with model: @user do |f| %>
+    <table class="set-email-pass">
+      <tr>
+      <td class="uk-position-relative">
+        <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
+        <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
+      <td class="btn">
+        <%= submit_tag 'Confirm', class: 'set-confirm' %>
+      </td>
+      </tr>
+    </table>
+  <% end %>
+
 <div class="strike part"><span>Change password:</span></div>
 
-<div class="strike part"><span>Change email:</span></div>
+  <%= form_with model: @user do |f| %>
+    <table class="set-email-pass">
+      <tr>
+      <td class="uk-position-relative">
+        <%= f.password_field :password, id: 'change-password', class: 'uk-input set-input password', placeholder: 'New password' %>
+        <button class="uk-button unmask" type="button"></button>
+        <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
+
+      <td class="btn">
+        <%= submit_tag 'Confirm', class: 'set-confirm' %>
+      </td>
+      </tr>
+    </table>
+    <p id="password-min">6 characters minimum</p>
+  <% end %>
 
 <div class="strike part"><span>Platforms:</span></div>
 
@@ -35,7 +64,7 @@
  <% end %>
 <div class="strike part"><span>Remove Account:</span></div>
 <p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
-<%= link_to current_user, class: 'uk-button sh-button del-user-btn', method: :delete do %>
+<%= link_to user_url, class: 'uk-button sh-button del-user-btn', method: :delete do %>
 <%= content_tag :span, svg('warning') %>
 Delete Account
 <%= content_tag :span, svg('warning') %>

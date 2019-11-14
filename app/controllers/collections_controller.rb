@@ -4,7 +4,7 @@ before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :correct_guest, only: [:show_guest]
 before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
-PER_PAGE = 30
+PER_PAGE_SH = 30
 
 def new
   @collection = Collection.new
@@ -12,11 +12,11 @@ def new
 end
 
 def show
-  show_or_search(false)
+  show_or_search(false, current_user.gpv)
 end
 
 def show_guest
-  show_or_search(true)
+  show_or_search(true, PER_PAGE_SH)
 end
 
 def create
@@ -126,7 +126,7 @@ private
     return results.any?
   end
 
-  def show_or_search(shared)
+  def show_or_search(shared, per_page)
     @q = @collection.games.ransack(params[:q])
     cookie = shared ? 'shared_view' : 'my_view'
     @view = params[:view] || cookies[cookie] || 'covers'
@@ -134,7 +134,7 @@ private
     @games = @q.result
       .group('games.id, collection_games.created_at')
       .includes(:developers)
-      .paginate(page: params[:page], per_page: PER_PAGE)
+      .paginate(page: params[:page], per_page: per_page)
 
     unless params[:q]
       @refresh = params[:type] == 'refresh'

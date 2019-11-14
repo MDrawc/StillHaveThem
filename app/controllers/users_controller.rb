@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:destroy]
-  before_action :require_same_user, only: [:destroy]
-
-
-
-  before_action :require_user, only: [:change_gpv]
+  before_action :require_user, except: [:new, :create]
 
   def new
     @user = User.new
@@ -28,10 +23,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    current_user.update(user_params)
+    respond_to :js
   end
 
   def change_gpv
@@ -40,28 +34,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    current_user.destroy
     redirect_to root_url
   end
 
   def settings
+    @user = current_user
     respond_to :js
   end
 
   private
-
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :games_per_view)
     end
-
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    def require_same_user
-      if current_user != @user
-        reload
-      end
-    end
-
 end

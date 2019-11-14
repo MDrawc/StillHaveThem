@@ -20,6 +20,9 @@ table.set-platform {
     td.btn:hover {
         background-color: #d4d4d4;
         cursor: pointer;
+        a {
+            color: #333;
+        }
     }
 
     td a {
@@ -91,7 +94,7 @@ a.del-user-btn {
     margin: 0px auto;
 }
 
-#user_gpv {
+#user_games_per_view {
     width: 200px;
 }
 
@@ -100,4 +103,91 @@ a.del-user-btn {
     padding: 0px;
     line-height: initial;
     padding: 5px 10px;
+}
+
+.set-input-icon {
+    position: absolute;
+    left: 5px;
+    top: 4px;
+    color: #999;
+}
+
+table.set-email-pass {
+    border-spacing: 0px 0px;
+    margin: 5px;
+    font-size: 14px;
+
+    input {
+        background: none;
+        border: none;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .set-input {
+        width: 300px;
+        padding-left: 42px;
+        border-radius: 4px 0px 0px 4px;
+    }
+
+    .set-input:focus {
+        background-color: #ddd;
+        color: #666;
+        ~ span svg g g {
+            fill: #666;
+        }
+    }
+
+    td {
+        border: thin solid #afafaf;
+        border-right: none;
+        background: #e3e3e3;
+        padding: 0px;
+    }
+
+    td.btn {
+        transition: background-color 0.1s ease-in-out;
+        cursor: pointer;
+        padding: 0px 10px;
+    }
+
+    td.btn:hover {
+        background-color: #d4d4d4;
+        .set-confirm {
+            color: #333;
+        }
+    }
+
+    td .set-confirm {
+        color: #666;
+        font-size: 14px;
+        display: block;
+        padding: 0px 5px;
+        transition: color 0.1s ease-in-out;
+        cursor: pointer;
+    }
+
+    td .set-confirm:hover {
+        text-decoration: none;
+        color: #333;
+    }
+
+    td:first-child {
+        border-radius: 5px 0px 0px 5px;
+        background: none;
+    }
+
+    td:last-child {
+        border-radius: 0px 5px 5px 0px;
+        border-right: thin solid #afafaf;
+    }
+
+    ~ #password-min {
+        padding-left: 10px;
+    }
+}
+
+#change-password {
+    padding-right: 44px;
 }
