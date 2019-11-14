@@ -160,6 +160,10 @@ a.t-trigger {
     }
 }
 
+div.t {
+    transition: background-color 0.01s;
+}
+
 .t-game.hover-fill div.t, .t-game.focus-fill div.t {
     background-color: #c5c5c5;
 }

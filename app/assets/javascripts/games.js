@@ -59,9 +59,11 @@ function disableSortLinks() {
 }
 
 function listLight(game_id, el_id) {
-    $('#t-' + game_id).addClass('focus-fill');
-    UIkit.util.on('#' + el_id, 'hide', function() {
-        $('#t-' + game_id).removeClass('focus-fill');
+    var $list = $('#t-' + game_id);
+    $list.addClass('focus-fill');
+
+    UIkit.util.once('#' + el_id, 'hide', function() {
+        $list.removeClass('focus-fill');
     });
 }
 
@@ -108,7 +110,6 @@ function presentShadow() {
 
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', function(e) {
-
 
         if (!e.target.currentSrc.startsWith('data:')) {
             $(e.target).parent().find(".spinner").remove();

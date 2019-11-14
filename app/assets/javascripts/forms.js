@@ -111,7 +111,7 @@ function paintItBlack(id) {
     add_form_link.addClass('disabled');
     game_name.addClass('focused');
 
-    UIkit.util.on('#add-form-' + id, 'hide', function() {
+    UIkit.util.once('#add-form-' + id, 'hide', function() {
         add_form_link.removeClass('disabled');
         game_name.removeClass('focused');
     });
