@@ -1,1 +1,13 @@
-console.log('Updated something');
+<% if @is_it_password %>
+  var $input = $('#change-password');
+  var $info = $('#pass-update-info');
+  var text = 'Your password has been changed!';
+  $input.blur().val('');
+<% else %>
+  var $input = $('#change-mail');
+  var $info = $('#mail-update-info');
+  var text = 'Your email address has been updated!';
+  $input.blur();
+<% end %>
+  $input.parent().next().addClass('disabled');
+  $info.text(text).fadeIn(600).delay(600).fadeOut(1500);

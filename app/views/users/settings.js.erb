@@ -3,3 +3,8 @@ var $f_modal_body = $f_modal.find(".uk-modal-body");
 $f_modal_body.removeClass('fit-content');
 $f_modal_body.append('<button class="uk-modal-close-default f-modal-close" type="button" uk-close></button>');
 $f_modal.find(".modal-content").html("<%= j(render 'settings') %>");
+
+passwordUnmask();
+activateChangeEmailPassword();
+activateChangeGpv();
+

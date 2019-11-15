@@ -92,6 +92,10 @@ a.del-user-btn {
     text-align: center;
     border-radius: 3px;
     margin: 0px auto;
+    &.disabled {
+        color: #afafaf;
+        border-color: #ccc;
+    }
 }
 
 #user_games_per_view {
@@ -103,6 +107,13 @@ a.del-user-btn {
     padding: 0px;
     line-height: initial;
     padding: 5px 10px;
+}
+
+.rng-button.disabled {
+    color: #afafaf;
+    border-color: #ccc;
+    cursor: auto;
+    pointer-events: none;
 }
 
 .set-input-icon {
@@ -146,20 +157,35 @@ table.set-email-pass {
         padding: 0px;
     }
 
-    td.btn {
+    .btn {
         transition: background-color 0.1s ease-in-out;
         cursor: pointer;
         padding: 0px 10px;
     }
 
-    td.btn:hover {
+    .btn:hover {
         background-color: #d4d4d4;
-        .set-confirm {
+        input {
             color: #333;
         }
     }
 
-    td .set-confirm {
+    .btn.disabled {
+        background-color: #ececec;
+        cursor: auto;
+
+        input {
+            color: #afafaf;
+            cursor: auto;
+            pointer-events: none;
+        }
+
+        &:hover input {
+            color: #afafaf;
+        }
+    }
+
+    .set-confirm {
         color: #666;
         font-size: 14px;
         display: block;
@@ -168,7 +194,7 @@ table.set-email-pass {
         cursor: pointer;
     }
 
-    td .set-confirm:hover {
+    .set-confirm:hover {
         text-decoration: none;
         color: #333;
     }
@@ -199,4 +225,12 @@ table.set-email-pass {
 .set-warning {
     top: 5px;
     left: 5px;
+}
+
+.update-info {
+    display: none;
+    margin-top: 15px;
+    font-size: 15px;
+    color: #666;
+    font-style: italic;
 }

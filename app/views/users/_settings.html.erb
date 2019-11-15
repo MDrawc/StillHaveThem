@@ -1,40 +1,46 @@
 <p class="header set">User settings <span uk-icon="icon: settings; ratio: 1.4"></span></p>
 
-<div class="strike part"><span>Change email:</span></div>
-
-  <%= form_with model: @user do |f| %>
-    <table class="set-email-pass">
-      <tr>
-      <td class="uk-position-relative">
-        <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
-        <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
-      <td class="btn">
-        <%= submit_tag 'Update', class: 'set-confirm' %>
-      </td>
-      </tr>
-    </table>
-  <% end %>
+<div class="strike part"><span>Change email address:</span></div>
+  <div uk-grid>
+    <%= form_with model: @user do |f| %>
+      <table class="set-email-pass">
+        <tr>
+        <td class="uk-position-relative">
+          <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
+          <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
+        <td class="btn disabled">
+          <%= submit_tag 'Update', id: 'submit-mail', class: 'set-confirm' %>
+        </td>
+        </tr>
+      </table>
+    <% end %>
+    <div>
+      <%= content_tag :p, '', id: 'mail-update-info', class: 'update-info' %>
+    </div>
+  </div>
 
 <div class="strike part"><span>Change password:</span></div>
-
-  <%= form_with model: @user do |f| %>
-    <table class="set-email-pass">
-      <tr>
-      <td class="uk-position-relative">
-        <%= f.password_field :password, id: 'change-password', class: 'uk-input set-input password', placeholder: 'New password' %>
-        <button class="uk-button unmask" type="button"></button>
-        <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
-
-      <td class="btn">
-        <%= submit_tag 'Update', class: 'set-confirm' %>
-      </td>
-      </tr>
-    </table>
-    <p id="password-min">6 characters minimum</p>
-  <% end %>
+  <div uk-grid>
+    <%= form_with model: @user do |f| %>
+      <table class="set-email-pass">
+        <tr>
+        <td class="uk-position-relative">
+          <%= f.password_field :password, id: 'change-password', class: 'uk-input set-input password', placeholder: 'New password' %>
+          <button class="uk-button unmask" type="button"></button>
+          <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
+        <td class="btn disabled">
+          <%= submit_tag 'Update', id: 'submit-password', class: 'set-confirm' %>
+        </td>
+        </tr>
+      </table>
+      <p id="password-min">6 characters minimum</p>
+    <% end %>
+    <div>
+      <%= content_tag :p, '', id: 'pass-update-info', class: 'update-info' %>
+    </div>
+  </div>
 
 <div class="strike part"><span>Platforms:</span></div>
-
 <p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
 <%= render 'platforms/platforms' %>
 <div class="strike part"><span>Games per page:</span></div>
@@ -44,7 +50,7 @@
   <tr>
     <td class="rng-lab">min</td>
     <td>
-    <%= content_tag :p, gpv = current_user.gpv, id: 'gpv-counter' %>
+    <%= content_tag :p, gpv = current_user.gpv, id: 'gpv-counter', class: 'disabled' %>
     </td>
     <td class="rng-lab">max</td>
   </tr>
@@ -57,7 +63,7 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= submit_tag 'Update', class: 'uk-button sh-button rng-button' %></td>
+    <td><%= submit_tag 'Update', id: 'submit-gpv', class: 'uk-button sh-button rng-button disabled' %></td>
     <td></td>
   </tr>
 </table>
@@ -69,13 +75,3 @@
 Delete Account
 <%= content_tag :span, svg('warning') %>
 <% end %>
-
-<script>
-var $slider = $('#user_games_per_view');
-var $counter = $('#gpv-counter')
-
-$slider.on('input', function() {
-    var val = $(this).val();
-    $counter.text(val);
-});
-</script>

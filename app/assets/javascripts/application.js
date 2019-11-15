@@ -18,6 +18,7 @@
 //= require chartkick
 //= require Chart.bundle
 //= require js-cookie
+//= require changeType
 //= require "uikit"
 //= require uikit/uikit-icons.js
 //= require rails-ujs

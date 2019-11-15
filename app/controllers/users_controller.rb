@@ -24,11 +24,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    @is_it_password = !!user_params[:password]
     if current_user.update(user_params)
       respond_to :js
     else
       @errors = current_user.errors.full_messages
-      @is_it_password = !!user_params[:password]
       respond_to do |format|
           format.js { render partial: "set_errors" }
       end
@@ -43,10 +43,6 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     redirect_to root_url
-  end
-
-  def access_settings
-    respond_to :js
   end
 
   def settings
