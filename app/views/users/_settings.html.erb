@@ -9,7 +9,7 @@
         <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
         <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
       <td class="btn">
-        <%= submit_tag 'Confirm', class: 'set-confirm' %>
+        <%= submit_tag 'Update', class: 'set-confirm' %>
       </td>
       </tr>
     </table>
@@ -26,7 +26,7 @@
         <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
 
       <td class="btn">
-        <%= submit_tag 'Confirm', class: 'set-confirm' %>
+        <%= submit_tag 'Update', class: 'set-confirm' %>
       </td>
       </tr>
     </table>
@@ -57,7 +57,7 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= submit_tag 'Confirm', class: 'uk-button sh-button rng-button' %></td>
+    <td><%= submit_tag 'Update', class: 'uk-button sh-button rng-button' %></td>
     <td></td>
   </tr>
 </table>

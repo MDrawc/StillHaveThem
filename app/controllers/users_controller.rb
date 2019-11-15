@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       respond_to :js
     else
       @errors = current_user.errors.full_messages
+      @is_it_password = !!user_params[:password]
       respond_to do |format|
           format.js { render partial: "set_errors" }
       end
