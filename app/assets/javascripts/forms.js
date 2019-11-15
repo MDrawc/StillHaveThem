@@ -7,7 +7,7 @@ function resetFormErrors(form_type, id) {
 
         var formPart = form_selector + ' ' + reset_elements[i];
 
-        $(formPart).on('input', function() {
+        $(formPart).one('input', function() {
             $(errors).html('');
         });
     }

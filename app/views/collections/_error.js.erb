@@ -1,6 +1,6 @@
 $("#coll-icon-input").replaceWith("<%= j(render partial: 'warning', locals: { error: @error }) %>");
 
-$('#collection_name').on('input', function() {
+$('#collection_name').one('input', function() {
     var $icon = $('#coll-icon-input');
 
     if ($icon.hasClass('warning-icon')) {

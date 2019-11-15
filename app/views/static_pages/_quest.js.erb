@@ -1,5 +1,5 @@
 $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: @inquiry.errors }) %>");
-$('#search-igdb-bar').on('input', function() {
+$('#search-igdb-bar').one('input', function() {
     $("#search-errors").replaceWith("<%= j(render partial: 'search_errors', locals: { errors: [] }) %>");
 });
 
@@ -9,9 +9,10 @@ cleanOffcanvas();
 <% if @inquiry.errors.empty? %>
 
     var view = '<%= view %>';
+    var $results = $("#search-results");
 
-    $("#search-results").html("<%= j(render partial:'results', locals: { view: view }) %>");
-    $("#search-results").append("<%= j(content_tag :span, @inquiry.last_form.values.join(','), id: 'last-form') %>");
+    $results.html("<%= j(render partial:'results', locals: { view: view }) %>");
+    $results.append("<%= j(content_tag :span, @inquiry.last_form.values.join(','), id: 'last-form') %>");
     $("#bar-history").html("<%= j(render partial:'records/bar_records') %>");
     activateSearchRecords();
 

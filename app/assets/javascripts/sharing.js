@@ -54,7 +54,7 @@ function resetShWarningIcon(name, input, form, type) {
     var $form = $(form);
     var $input = $form.find(input);
 
-    $input.on('input', function() {
+    $input.one('input', function() {
         if ($error_icon.hasClass('warning-icon')) {
             $error_icon.replaceWith(no_error);
         }
