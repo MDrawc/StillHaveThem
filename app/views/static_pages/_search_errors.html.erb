@@ -1,19 +1,6 @@
 <% if errors.any? %>
-  <span id="search-errors" class="search-warning-icon blink_me"></span>
-  <!-- <span id="search-errors" class="uk-form-icon warning-icon blink_me" uk-icon="warning"></span> -->
-  <div class="errors" uk-dropdown="toggle: #search-errors; pos: left-center; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
-    <% errors = errors.full_messages %>
-    <% if errors.size == 1 %>
-      <p>Please <%= errors.first %></p>
-    <% else %>
-      <p>Please:</p>
-      <ul>
-      <% errors.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-    <% end %>
-  </div>
+  <%= content_tag :span, nil, id: 'search-errors', class: 'search-warning-icon blink_me',
+   'uk-tooltip' => "title: Please #{ errors.full_messages.first }; pos: left" %>
 <% else %>
-  <span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
+  <%= content_tag :span, nil, id: 'search-errors', class: 'uk-form-icon search-icon', 'uk-icon' => 'search' %>
 <% end %>
