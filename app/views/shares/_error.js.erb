@@ -2,19 +2,19 @@ var form = '<%= form %>';
 var type = '<%= type %>';
 <% unless errors[:title].empty? %>
     <% error = "Title #{ errors[:title][0] }" %>
-    $('#' + type + 'title-icon').replaceWith("<%= j(render partial: 'warning', locals: { id: type + 'title-icon', error: error  }) %>");
+    $('#' + type + 'title-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'title-icon', error: error, extra: 'sh-warning'  }) %>");
     resetShWarningIcon('title', '#share_title', form, type);
 <% end %>
 
 <% unless errors[:message].empty? %>
     <% error = "Message #{ errors[:message][0] }" %>
-    $('#' + type + 'message-icon').replaceWith("<%= j(render partial: 'warning', locals: { id: type + 'message-icon', error: error }) %>");
+    $('#' + type + 'message-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'message-icon', error: error, extra: 'sh-warning' }) %>");
     resetShWarningIcon('message', '#share_message', form, type);
 <% end %>
 
 <% unless errors[:shared].empty? %>
     <% error = "#{ errors[:shared][0] }" %>
-    $('#' + type + 'shared-icon').replaceWith("<%= j(render partial: 'warning', locals: { id: type + 'shared-icon', error: error }) %>");
+    $('#' + type + 'shared-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'shared-icon', error: error, extra: 'sh-warning' }) %>");
     resetShWarningIcon('shared', '.sh-check', form, type);
 <% end %>
 

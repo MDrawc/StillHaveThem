@@ -55,7 +55,8 @@ class UsersController < ApplicationController
         respond_to :js
       else
         respond_to do |format|
-            format.js { render partial: 'access_error' }
+            format.js { render partial: 'access_error',
+             locals: { error: 'Wrong password' } }
         end
       end
     else
