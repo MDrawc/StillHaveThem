@@ -335,12 +335,13 @@ div#search-results.mask2:after {
 // HTML, BODY
 html {
     background-color: $background;
+    scrollbar-width: none;
 }
 
 body {
     overflow-y: scroll;
-    scrollbar-width: none;
     -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
@@ -1526,4 +1527,5 @@ a.hide-labels {
 
 .fit-content {
     width: fit-content !important;
+    width: -moz-fit-content !important;
 }
