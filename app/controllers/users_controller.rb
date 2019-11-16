@@ -25,13 +25,12 @@ class UsersController < ApplicationController
 
   def update
     @is_it_password = !!user_params[:password]
-    if current_user.update(user_params)
+    if @is_it_password && user_params[:password].empty?
+      update_errors(['Password can\'t be blank'])
+    elsif current_user.update(user_params)
       respond_to :js
     else
-      @errors = current_user.errors.full_messages
-      respond_to do |format|
-          format.js { render partial: "set_errors" }
-      end
+      update_errors(current_user.errors.full_messages)
     end
   end
 
@@ -66,5 +65,12 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:email, :password, :games_per_view)
+    end
+
+    def update_errors(errors)
+      @errors = errors
+      respond_to do |format|
+          format.js { render partial: "set_errors" }
+      end
     end
 end

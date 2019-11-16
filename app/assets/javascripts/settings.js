@@ -13,8 +13,13 @@ function resetSetWarningIcon(input_id, icon_id, warning_id) {
 
 function activateChangeEmailPassword() {
     $('#change-mail').add('#change-password').on('input', function() {
+        var val = $(this).val();
         var $td_with_button = $(this).parent().next();
         $td_with_button.removeClass('disabled');
+
+        if (val == "") {
+            $td_with_button.addClass('disabled');
+        }
     });
 }
 
