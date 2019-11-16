@@ -4,7 +4,13 @@ $f_modal_body.removeClass('fit-content');
 $f_modal_body.append('<button class="uk-modal-close-default f-modal-close" type="button" uk-close></button>');
 $f_modal.find(".modal-content").html("<%= j(render 'settings') %>");
 
+UIkit.util.once($f_modal, 'hidden', function() {
+    var val = $('#set-reload').attr('data-reload');
+    if (val == 'true') {
+        location.reload();
+    }
+});
+
 passwordUnmask();
 activateChangeEmailPassword();
 activateChangeGpv();
-
