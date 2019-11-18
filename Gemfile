@@ -18,8 +18,9 @@ gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 # Gem for charts
 gem "chartkick"
 
-
-
+# Asset Sync synchronises Assets between Rails and S3
+gem "asset_sync"
+gem "fog-aws"
 
 
 
