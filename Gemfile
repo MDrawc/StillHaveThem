@@ -17,11 +17,6 @@ gem 'jquery-rails'
 gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 # Gem for charts
 gem "chartkick"
-
-# Asset Sync synchronises Assets between Rails and S3
-gem "asset_sync"
-gem "fog-aws"
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
