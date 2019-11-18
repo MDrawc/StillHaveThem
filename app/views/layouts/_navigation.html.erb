@@ -1,5 +1,5 @@
-<%= content_tag :div, title, id: 'logo', class: 'logo' %>
 <% if logged_in? %>
+  <%= content_tag :div, title, id: 'logo', class: 'logo' %>
   <%= link_to '', new_share_url, id: 'social', class: 'nav-icon', remote: true,
   'uk-toggle': 'target: #f-modal', 'uk-icon': 'social',
   'uk-tooltip' => 'title: Share; pos: left' %>

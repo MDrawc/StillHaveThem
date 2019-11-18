@@ -1,30 +1,9 @@
-<div class="uk-flex-center" uk-grid>
-  <div class="uk-width-auto still">
-    <h3>Do You Still Have Them?</h3>
-    <p>If so, why not to maintain your collection
-    with this free app?</p>
-    <p uk-margin>
-      <%= link_to 'Sign In', signin_path,  { :remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-button uk-button-default md-button' }  %>
-      <%= link_to 'Sign Up', signup_path,  { :remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-button uk-button-default md-button' }  %>
-    </p>
-    <div id="signup-modal" class="uk-flex-top" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="modal-header">
-          <p class="header"><span class="signup-title">Create a new account </span><span><%= image_tag('lock.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span><span class="its-free"> - it's free!</span></p>
-          <p class="have-account">Have an account? <%= link_to 'Sign In', signin_path,  {:remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-link-muted' }  %> </p>
-        </div>
-        <div class="modal-content"></div>
-      </div>
-    </div>
-    <div id="signin-modal" class="uk-flex-top" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="modal-header">
-          <p class="header"><span class="signup-title">Log in </span><span><%= image_tag('lock_open.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span></p>
-          <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-link-muted' }  %> </p>
-        </div>
-        <div class="modal-content"></div>
-      </div>
-    </div>
-  </div>
+
+
+<div class="uk-cover-container uk-height-medium">
+    <iframe src="https://www.youtube.com/embed/jHzMYJGOoYc?controls=0autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="1920" height="1080" frameborder="0" allowfullscreen uk-cover></iframe>
+</div>
+
+<div class="uk-cover-container uk-height-medium">
+    <iframe src="https://www.youtube-nocookie.com/embed/c2pz2mlSfXA?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" width="1920" height="1080" frameborder="0" allowfullscreen uk-cover></iframe>
+</div>
