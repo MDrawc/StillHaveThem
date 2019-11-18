@@ -22,15 +22,6 @@ gem "chartkick"
 gem "asset_sync"
 gem "fog-aws"
 
-
-
-# # Use Puma as the app server
-# gem 'puma', '~> 3.11'
-
-
-
-
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -68,6 +59,11 @@ gem "nokogiri", ">= 1.10.4"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+group :production do
+  # Use Puma as the app server
+  gem 'puma', '~> 3.11'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
