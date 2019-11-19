@@ -1,36 +1,70 @@
-
-<div class="uk-cover-container uk-height-medium">
-    <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+<div class="look-title">
+<p>Still Have them</p>
+<span>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam odio eos, numquam sunt mollitia sequi! Ducimus libero possimus dicta doloribus. Soluta eius dicta quidem unde assumenda ratione, hic corporis fugit!
+</span>
 </div>
 
 
-<div class="uk-flex-center" uk-grid>
-  <div class="uk-width-auto still">
-    <h3>Do You Still Have Them?</h3>
-    <p>If so, why not to maintain your collection
-    with this free app?</p>
-    <p uk-margin>
-      <%= link_to 'Sign In', signin_path,  { :remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-button uk-button-default md-button' }  %>
-      <%= link_to 'Sign Up', signup_path,  { :remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-button uk-button-default md-button' }  %>
-    </p>
-    <div id="signup-modal" class="uk-flex-top" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="modal-header">
-          <p class="header"><span class="signup-title">Create a new account </span><span><%= image_tag('lock.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span><span class="its-free"> - it's free!</span></p>
-          <p class="have-account">Have an account? <%= link_to 'Sign In', signin_path,  {:remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-link-muted' }  %> </p>
-        </div>
-        <div class="modal-content"></div>
-      </div>
-    </div>
-    <div id="signin-modal" class="uk-flex-top" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="modal-header">
-          <p class="header"><span class="signup-title">Log in </span><span><%= image_tag('lock_open.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span></p>
-          <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-link-muted' }  %> </p>
-        </div>
-        <div class="modal-content"></div>
-      </div>
-    </div>
+<div class="features uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="animation: fade">
+  <div uk-grid>
+  <div class="f-list">
+    <p>Features</p>
+    <ul class="">
+      <li uk-slideshow-item="0"><a href="#">Search with IGDB</a></li>
+      <li uk-slideshow-item="1"><a href="#">Multiple collections</a></li>
+      <li uk-slideshow-item="2"><a href="#">Game info</a></li>
+      <li uk-slideshow-item="3"><a href="#">Searching/filtering</a></li>
+      <li uk-slideshow-item="4"><a href="#">Different views</a></li>
+      <li uk-slideshow-item="5"><a href="#">Dark Theme</a></li>
+      <li uk-slideshow-item="6"><a href="#">Graphs</a></li>
+      <li uk-slideshow-item="7"><a href="#">Sharing</a></li>
+    </ul>
   </div>
+  <div class="f-movies uk-width-expand">
+    <ul class="uk-slideshow-items">
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/test02.mov" autoplay loop muted playsinline uk-cover></video>
+          <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-transition-slide-bottom">
+              <h3 class="uk-margin-remove">Bottom</h3>
+              <p class="uk-margin-remove">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+      <li>
+        <video src="https://still-have-them.s3.eu-central-1.amazonaws.com/save_02_720p.mov" autoplay loop muted playsinline uk-cover></video>
+      </li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="check-share">
+  Check out the sample collection!
+  <span>- no acount needed!</span>
+</div>
+
+<div class="check-login">
+  Login
+</div>
+
+<div class="create">
+  Create Free Account
+</div>
