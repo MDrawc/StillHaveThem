@@ -230,8 +230,11 @@ table.set-email-pass {
 
 .update-info {
     display: none;
-    margin-top: 15px;
+    margin-top: 9px;
     font-size: 15px;
     color: #666;
     font-style: italic;
+    padding: 5px 15px 5px 10px;
+    border-radius: 5px;
+    background: #dedede;
 }

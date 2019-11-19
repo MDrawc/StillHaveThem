@@ -1,13 +1,14 @@
 <% if @is_it_password %>
   var $input = $('#change-password');
   var $info = $('#pass-update-info');
-  var text = 'Your password has been changed!';
+  var text = ' Password updated';
   $input.blur().val('');
 <% else %>
   var $input = $('#change-mail');
   var $info = $('#mail-update-info');
-  var text = 'Your email address has been updated!';
+  var text = ' Email address updated';
   $input.blur();
 <% end %>
   $input.parent().next().addClass('disabled');
-  $info.text(text).fadeIn(600).delay(600).fadeOut(1500);
+  $info.find('span:last-child').text(text);
+  $info.fadeIn(600).delay(600).fadeOut(1500);
