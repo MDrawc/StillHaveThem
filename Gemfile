@@ -57,7 +57,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
   # Use Puma as the app server
-  gem 'puma', '~> 3.11'
+  gem 'puma', '~> 4.3'
 end
 
 group :development, :test do
