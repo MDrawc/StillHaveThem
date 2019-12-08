@@ -380,7 +380,7 @@ footer {
 
         a {
             color: $light_grey;
-            transition: color 0.2s ease-in-out;
+            transition: color 0.1s ease-in-out;
         }
 
         a:hover {
@@ -675,7 +675,6 @@ input.coll-form {
 }
 
 .search-bar:hover, .search-bar:focus {
-    // box-shadow: -2px 4px 9px 1px rgba(0, 0, 0, 0.22);
     box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
@@ -691,11 +690,11 @@ input.coll-form {
 }
 
 .info-icon:hover ~ .search-bar {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+    box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
 .warning-icon:hover ~ .search-bar {
-    box-shadow: -2px 4px 9px 1px rgba(158, 158, 158, 0.6);
+    box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
 // Errors (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - //

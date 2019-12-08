@@ -4,9 +4,5 @@
   <rect id="svg_3" y="21" x="25" width="14" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" height="38" fill="none"/>
   <rect id="svg_9" y="9" x="1" width="10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" height="50" fill="none"/>
   <polygon id="svg_10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" points="59.0,56.542 52.0,59.0 36.0,11.301 43.0,8.843" fill="none"/>
-  <line stroke="#999" stroke-linecap="round" stroke-linejoin="round" id="svg_12" y2="20.423606" x2="10.146796" y1="20.423606" x1="1.715806" fill-opacity="null" stroke-opacity="null" stroke-width="2.5" fill="none"/>
-  <line stroke="#999" stroke-linecap="round" stroke-linejoin="round" id="svg_13" y2="13.934094" x2="24.539499" y1="13.934094" x1="11.558286" fill-opacity="null" stroke-opacity="null" stroke-width="2.5" fill="none"/>
-  <line stroke="#999" stroke-linecap="round" stroke-linejoin="round" id="svg_22" y2="50.242506" x2="34.397288" y1="50.242506" x1="29.712492" fill-opacity="null" stroke-opacity="null" stroke-width="2.5" fill="none"/>
-  <line stroke="#999" stroke-linecap="round" stroke-linejoin="round" id="svg_26" y2="46.135219" x2="55.095523" y1="48.188862" x1="49.263176" fill-opacity="null" stroke-opacity="null" stroke-width="2.5" fill="none"/>
  </g>
 </svg>

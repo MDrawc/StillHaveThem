@@ -1,80 +1,213 @@
-.features {
-    border-radius: 5px;
-    background: #ccc;
-    box-shadow: -6px 7px 8px -4px #00000073;
+#land-pad {
+    margin-top: 50px;
+    padding-bottom: 20px;
+    max-width: 1100px;
 }
 
-.f-movies .uk-slideshow-items {
-    border-radius: 0px 5px 5px 0px;
-}
+.lp-top {
 
-.f-list {
-    p {
+    font-weight: 200;
 
-        font-size: 28px;
-        padding-left: 30px;
-        padding-top: 20px;
-
+    span {
+        font-size: 30px;
+        letter-spacing: 2px;
     }
+
+    p {
+        font-size: 20px;
+        display: inline-block;
+        border-left: 2px solid #c5c5c5;
+        padding-left: 11px;
+        margin-left: 5px;
+        line-height: 17px;
+        letter-spacing: 1px;
+    }
+
+}
+
+.login-button {
+    letter-spacing: normal;
+    float: right;
+    line-height: 31px;
+    margin-top: 14px;
+    font-weight: 400;
+
+    svg {
+        position: relative;
+        top: 2px;
+        transition: 0.1s ease-in-out;
+    }
+}
+
+.lp-button {
+    background-color: transparent;
+    color: #666;
+    border: thin solid #afafaf;
+    border-radius: 5px;
+
+    padding: 0px 14px 0px 10px;
+
+    &:hover {
+        background-color: #d1d1d1;
+        color: #333;
+        border-color: #999;
+    }
+}
+
+.lp-about {
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    span {
+        background: #d3d3d3;
+        color: #555;
+        padding: 4px 4px;
+        border-radius: 3px;
+    }
+}
+
+.frame {
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 22px;
+    border: 1px solid #afafaf;
+    border-radius: 7px;
+    margin-top: 40px;
+    box-shadow: -2px -1px 8px #00000021;
+    background: #d0d0d0;
+}
+
+.lp-images {
+    border-top: 1px solid #afafaf;
+    border-bottom: 1px solid #afafaf;
+}
+
+.fake-buttons {
+    position: absolute;
+    top: 1px;
+    left: 4px;
+}
+
+.fb {
+    background: #d8d8d8;
+    border: 1px solid #afafaf;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 4px;
+}
+
+.lp-sample rect{
+    stroke: #777;
+    transition: 0.1s ease-in-out;
+}
+
+.lp-sample path{
+    stroke: #777;
+    transition: 0.1s ease-in-out;
+}
+
+.lp-sample:hover rect {
+    stroke: #333;
+}
+
+.lp-sample:hover path {
+    stroke: #333;
+}
+
+.lp-play path {
+    stroke: #666;
+    transition: 0.1s ease-in-out;
+}
+
+.lp-play:hover path {
+    stroke: #333;
+}
+
+.lp-big {
+    line-height: 46px;
+    svg {
+        position: relative;
+        top: -1px;
+    }
+}
+
+.f-head {
+    font-size: 28px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin: 30px 0px;
+}
+
+.f-title {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    border-left: 2px solid #c5c5c5;
+    padding-left: 10px;
+    line-height: 18px;
+
+    & ~ p {
+        margin-top: 0px;
+        font-weight: 300;
+    }
+}
+
+footer.lp-footer {
+    position: initial;
+    margin-top: 100px;
+    float: left;
+
+    li:last-child {
+        padding-left: 0px;
+    }
+}
+
+.lp-dotnav-position {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin-left: 15px;
+    margin-bottom: 63px;
 
     a {
-        color: #666;
+        width: 26px;
+        height: 7px;
+        border-radius: 1px;
     }
 
-    ul {
-        list-style: none;
+    li.uk-active a {
+        background-color: rgba(102, 102, 102, 0.4);
+    }
 
-        li {
-            margin-top: 15px;
-        }
+    li {
+        padding-left: 14px;
     }
 }
 
-.look-title{
+.lp-next {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 300px;
-    // background: #cccccc;
-    background: #f5f5f5;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: -6px 7px 8px -4px #00000073;
+    bottom: 0;
+    margin-left: 284px;
+    margin-bottom: 83px;
 
-    text-align: justify;
+    svg polyline {
+        stroke-width: 1.2;
+    }
 }
 
-.look-title p {
-    color: #666;
-    font-size: 30px;
-    box-shadow: 0px 2px #cacaca;
-}
-
-.look-title span {
+.lp-overlay {
+    width: 266px;
+    height: 40px;
+    padding: 15px 40px 30px 15px;
+    margin: 30px 0px;
+    font-weight: 300;
     font-size: 14px;
-    font-style: italic;
-    color: #999;
-}
-
-.check-share, .check-login, .create {
-    width: fit-content;
-    margin-top: 20px;
-    border-radius: 5px;
-    background: #cccccc;
-    padding: 20px;
-    box-shadow: -6px 7px 8px -4px #00000073;
-    span {
-        display: block;
-        font-size: 14px;
-        color: #999;
-    }
-}
-
-div.check-login {
-    margin-top: 0px;
-    padding: 10px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    box-shadow: -6px 7px 8px -4px #00000073;
+    background: #ececece6;
+    border-radius: 0px 3px 3px 0px;
+    box-shadow: 1px 2px 4px 0 #0000002b;
 }

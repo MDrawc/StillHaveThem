@@ -20,6 +20,9 @@ class StaticPagesController < ApplicationController
           @home_id = current_user.collections.first.id if !current_user.collections.empty?
         end
       end
+      render 'home'
+    else
+      render :partial => 'not_logged', :layout => 'landing'
     end
   end
 
