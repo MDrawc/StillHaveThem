@@ -25,10 +25,12 @@
   </div>
 
   <div>
-  <%= link_to root_url, { class: 'uk-button lp-button lp-play lp-big'} do %>
-    <%= svg 'play' %>
-    Watch app overview
-  <% end %>
+    <div uk-lightbox>
+        <a class="uk-button lp-button lp-play lp-big" href="https://www.youtube-nocookie.com/watch?v=QBOeCu3ina4">
+        <%= svg 'play' %>
+        Watch app overview
+        </a>
+    </div>
   </div>
 </div>
 

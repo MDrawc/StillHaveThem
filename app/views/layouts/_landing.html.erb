@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>Still Have Them</title>
+    <% theme = current_theme %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_link_tag "#{current_theme}", id: 'theme-control', media: 'all' %>
+    <%= stylesheet_link_tag "#{theme}", id: 'theme-control', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0' %>
-    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <%= favicon(theme) %>
   </head>
   <body>
     <div id="land-pad" class="uk-container uk-container-expand">

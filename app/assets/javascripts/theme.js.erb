@@ -1,18 +1,22 @@
 function changeTheme(shared) {
     var cookie = shared ? 'sh_theme' : 'theme';
     $('#change-theme').click(function() {
+        $style_link = $('#theme-control');
+        $favicon_link = $('#favicon-control');
         if (Cookies.get(cookie) == 'theme_dark') {
             $(this).removeClass('active');
             Cookies.set(cookie, 'theme_default', {
                 expires: 365
             });
-            $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
+            $style_link.replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
+            $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon.ico"), id: "favicon-control" %>');
         } else {
             $(this).addClass('active');
             Cookies.set(cookie, 'theme_dark', {
                 expires: 365
             });
-            $('#theme-control').replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
+            $style_link.replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
+            $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon_dark.ico"), id: "favicon-control" %>');
         }
     });
 }

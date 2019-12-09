@@ -4,6 +4,11 @@ module ApplicationHelper
     cookies[:title] || 'Still Have Them'
   end
 
+  def favicon(theme)
+    icon = theme == 'theme_default' ? 'favicon.ico' : 'favicon_dark.ico'
+    return favicon_link_tag asset_path(icon), id: 'favicon-control'
+  end
+
   def svg(name)
     file_path = "#{Rails.root}/app/assets/images/#{name}.svg"
     return File.read(file_path).html_safe if File.exists?(file_path)
