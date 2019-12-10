@@ -83,7 +83,9 @@ module StaticPagesHelper
       'DLC',
       'Expansion',
       'Bundle',
-      'Standalone expansion']
+      'Standalone expansion',
+      'Mod',
+      'Episode']
     return category[category_id]
   end
 

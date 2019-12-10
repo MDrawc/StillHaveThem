@@ -5,7 +5,7 @@ class IgdbQuery
   attr_reader :errors, :input, :query, :query_type, :offset, :results, :last_form
 
   RESULT_LIMIT = 50
-  OFFSET_LIMIT = 150
+  OFFSET_LIMIT = 500
   LIST_LIMIT = 10
   DAYS_LIMIT = 7
   SR_HEX = 2
