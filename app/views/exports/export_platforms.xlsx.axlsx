@@ -1,0 +1,42 @@
+wb = xlsx_package.workbook
+
+sql_games = """SELECT collections.name, games.id, games.name,
+games.first_release_date, games.platform_name, games.physical,
+games.platforms_names, games.summary
+FROM collections
+INNER JOIN collection_games ON collections.id = collection_games.collection_id
+INNER JOIN games ON collection_games.game_id = games.id
+WHERE collections.user_id='#{@user_id}';"""
+
+sql_devs = """SELECT developers.name, developer_games.game_id
+FROM developers
+INNER JOIN developer_games ON developers.id = developer_games.developer_id;"""
+
+games = ActiveRecord::Base.connection.execute(sql_games).values
+devs = ActiveRecord::Base.connection.execute(sql_devs).values
+
+devs = devs.inject(Hash.new { |h,k| h[k] = [] }) { |h, e| h[e[0]] << e[1]; h }
+
+games.each do |g|
+  g << devs.select { |k,v| v.include?(g[1]) }.keys
+end
+
+platforms = games.inject(Hash.new { |h,k| h[k] = [] }) { |all, g| all[g[4]] << g; all }
+
+platforms.each do |k, v|
+  p_name = k || 'No Platform'
+  wb.add_worksheet(name: p_name) do |sheet|
+    sheet.add_row ['', 'Title', 'First Release Date', 'Developer', 'Format', 'Collection', 'Released On', 'Summary']
+
+    v.each_with_index do |game, i|
+
+      date = game[3].nil? ? '-' : Time.at(game[3]).year
+      developer = game[8].nil? ? '-' : game[8].join(', ')
+      form = game[5].nil? ? '-' : (game[5] ? 'physical' : 'digital')
+      plats = game[6].nil? ? '-' : game[6].delete('{}"').gsub(',',', ')
+      summary = game[7] || '-'
+
+      sheet.add_row [i + 1, game[2], date, developer, form, game[0], plats, summary]
+    end
+  end
+end

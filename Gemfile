@@ -17,6 +17,10 @@ gem 'jquery-rails'
 gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 # Gem for charts
 gem "chartkick", ">= 3.3.0"
+#Office Open XML Spreadsheet generator for the Ruby programming language
+gem 'caxlsx'
+# Provides a .axlsx renderer to Rails so you can move all your spreadsheet code from your controller into view files.
+gem 'axlsx_rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -55,10 +59,8 @@ gem "nokogiri", ">= 1.10.4"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-
 # Use Puma as the app server
-gem "puma", ">= 3.12.2"
-
+# gem "puma", ">= 3.12.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

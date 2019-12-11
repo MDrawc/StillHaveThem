@@ -44,9 +44,6 @@
       </p>
     </div>
   </div>
-<div class="strike part"><span>Platforms:</span></div>
-<p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
-<%= render 'platforms/platforms' %>
 <div class="strike part"><span>Games per page:</span></div>
 <p class="discription">Define how many games you want to see per page. Only applies to your collections.</p>
 <%= form_with(url: change_gpv_url) do %>
@@ -72,6 +69,27 @@
   </tr>
 </table>
  <% end %>
+<div class="strike part"><span>Export:</span></div>
+<p class="discription">Export your games library to Office Open XML Spreadsheet. There are two ways to export games from StillHaveThem.</p>
+
+<div class="uk-grid-small export-btns" uk-grid>
+  <div>
+  <%= link_to export_a_url(format: :xlsx), class: 'uk-button lp-button' do %>
+    <span uk-icon="download"></span>
+    Export: Collections as sheets
+  <% end %>
+  </div>
+  <div>
+  <%= link_to export_b_url(format: :xlsx), class: 'uk-button lp-button' do %>
+    <span uk-icon="download"></span>
+    Export: Platforms as sheets
+  <% end %>
+  </div>
+</div>
+
+<div class="strike part"><span>Platforms:</span></div>
+<p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
+<%= render 'platforms/platforms' %>
 <div class="strike part"><span>Remove Account:</span></div>
 <p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
 <%= link_to user_url, class: 'uk-button sh-button del-user-btn', method: :delete do %>

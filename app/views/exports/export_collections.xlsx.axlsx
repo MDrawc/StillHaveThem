@@ -1,0 +1,43 @@
+wb = xlsx_package.workbook
+
+@collections.each do |coll|
+  wb.add_worksheet(name: coll.name) do |sheet|
+    if coll.needs_platform
+      sheet.add_row ['', 'Title', 'First Release Date', 'Developer', 'Platform', 'Format', 'Released On', 'Summary']
+
+      coll.games.each_with_index do |game, i|
+
+        frd = game[:first_release_date]
+        date = frd.nil? ? '-' : Time.at(frd).year
+
+        devs = game.developers.empty? ? '-' : game.developers.pluck(:name).join(', ')
+
+        form = game.physical ? 'physical' : 'digital'
+
+        plats = game.platforms_names
+        platforms = plats.nil? ? '-' : plats.join(', ')
+
+        sheet.add_row [i + 1, game.name, date, devs, game.platform_name, form,
+         platforms, game.summary || '-']
+      end
+
+    else
+      sheet.add_row ['', 'Title', 'First Release Date', 'Developer', 'Released On', 'Summary']
+
+      coll.games.each_with_index do |game, i|
+
+        frd = game[:first_release_date]
+        date = frd.nil? ? '-' : Time.at(frd).year
+
+        devs = game.developers.empty? ? '-' : game.developers.pluck(:name).join(', ')
+
+        plats = game.platforms_names
+        platforms = plats.nil? ? '-' : plats.join(', ')
+
+        sheet.add_row [i + 1, game.name, date, devs,
+         platforms, game.summary || '-']
+      end
+
+    end
+  end
+end

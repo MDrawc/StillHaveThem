@@ -41,4 +41,7 @@ Rails.application.routes.draw do
 
   delete '/user', to: 'users#destroy'
   patch '/user', to: 'users#update'
+
+  get '/export_a', to: 'exports#export_collections', as: 'export_a'
+  get '/export_b', to: 'exports#export_platforms', as: 'export_b'
 end

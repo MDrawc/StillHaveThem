@@ -107,7 +107,7 @@ module StaticPagesHelper
   end
 
   def user_platforms_for_select
-    current_user.platforms.map { |p| [p.name, "#{ p.igdb_id }, #{ p.name }"]}
+    current_user.platforms.map { |p| [p.name, "#{ p.igdb_id },#{ p.name }"]}
   end
 
   def colls_graph_form(user)
