@@ -111,11 +111,11 @@ class Collection < ApplicationRecord
       p_years, d_years, nd_years = [],[],[]
       games.each do |g|
         if g[3]
-          p_years << Time.at(g.second).year
+          p_years << (g.second ? Time.at(g.second).year : 0)
         elsif g[3] == false
-          d_years << Time.at(g.second).year
+          d_years << (g.second ? Time.at(g.second).year : 0)
         else
-          nd_years << Time.at(g.second).year
+          nd_years << (g.second ? Time.at(g.second).year : 0)
         end
       end
 
@@ -132,6 +132,12 @@ class Collection < ApplicationRecord
         datasets[1][:data] << [y, val[1]]
         datasets[2][:data] << [y, val[2]]
         total_values << val.sum
+      end
+
+      if datasets[0][:data].assoc(0)
+        datasets[0][:data][0][0] = '(no data)'
+        datasets[1][:data][0][0] = '(no data)'
+        datasets[2][:data][0][0] = '(no data)'
       end
 
       unless total_values.empty?
@@ -153,12 +159,14 @@ class Collection < ApplicationRecord
       sql = """SELECT developers.name, games.physical
                FROM collection_games
                INNER JOIN collections ON collection_games.collection_id = collections.id
-               INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id
-               INNER JOIN developers ON developer_games.developer_id=developers.id
+               LEFT JOIN developer_games ON collection_games.game_id=developer_games.game_id
+               LEFT JOIN developers ON developer_games.developer_id=developers.id
                INNER JOIN games ON collection_games.game_id = games.id
                #{ where_part };"""
 
       r = ActiveRecord::Base.connection.execute(sql).values
+
+      r.map! { |e| e[0].nil? ? ['~~~', e[1]] : e } if r.assoc(nil)
 
       p_devs, d_devs, nd_devs = [], [], []
       all_devs = []
@@ -173,6 +181,7 @@ class Collection < ApplicationRecord
         end
       end
       all_devs.uniq!
+
       p_dataset, d_dataset, nd_dataset = [], [], []
 
       total_values = []
@@ -186,6 +195,12 @@ class Collection < ApplicationRecord
         sum = values.sum
         total_values << sum
         dominant = [d, sum] if sum > dominant.last
+      end
+
+      if p_dataset.last[0] == '~~~'
+        p_dataset.last[0] = '(no data)'
+        d_dataset.last[0] = '(no data)'
+        nd_dataset.last[0] = '(no data)'
       end
 
       #Stats:
@@ -311,12 +326,13 @@ class Collection < ApplicationRecord
 
     #Chart 4: Games per release year
     if self.needs_platform
+
       p_years, d_years = [],[]
       games.each do |g|
         if g[2]
-          p_years << Time.at(g.first).year
+          p_years << (g.first ? Time.at(g.first).year : 0)
         else
-          d_years << Time.at(g.first).year
+          d_years << (g.first ? Time.at(g.first).year : 0)
         end
       end
 
@@ -333,6 +349,11 @@ class Collection < ApplicationRecord
         total_values << val.sum
       end
 
+      if datasets[0][:data].assoc(0)
+        datasets[0][:data][0][0] = '(no data)'
+        datasets[1][:data][0][0] = '(no data)'
+      end
+
       unless total_values.empty?
         max = total_values.max
         chrt_max = round_to(max, 5)
@@ -344,7 +365,15 @@ class Collection < ApplicationRecord
       chart_4 = { data: datasets, p_labels: p_labels, d_labels: d_labels, max: chrt_max }
     else
 
-      years = games.map { |g| Time.at(g.first).year }
+      years = games. map do |g|
+        if g.first
+          res = Time.at(g.first).year
+        else
+          res = 0
+        end
+        res
+      end
+
       data = []
       values = []
       years.uniq.sort.each do |y|
@@ -352,6 +381,8 @@ class Collection < ApplicationRecord
         data << [y, val]
         values << val
       end
+
+      data[0][0] = '(no data)' if data.assoc(0)
 
       unless values.empty?
         max = values.max
@@ -368,12 +399,14 @@ class Collection < ApplicationRecord
 
       sql = """SELECT developers.name, games.physical
                FROM collection_games
-               INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id
-               INNER JOIN developers ON developer_games.developer_id=developers.id
+               LEFT JOIN developer_games ON collection_games.game_id=developer_games.game_id
+               LEFT JOIN developers ON developer_games.developer_id=developers.id
                INNER JOIN games ON collection_games.game_id = games.id
                WHERE collection_id = '#{self.id}';"""
 
       r = ActiveRecord::Base.connection.execute(sql).values
+
+      r.map! { |e| e[0].nil? ? ['~~~', e[1]] : e } if r.assoc(nil)
 
       p_devs, d_devs = [], []
       all_devs = []
@@ -398,6 +431,11 @@ class Collection < ApplicationRecord
         sum = values.sum
         total_values << sum
         dominant = [d, sum] if sum > dominant.last
+      end
+
+      if p_dataset.last[0] == '~~~'
+        p_dataset.last[0] = '(no data)'
+        d_dataset.last[0] = '(no data)'
       end
 
       #Stats:
@@ -432,8 +470,8 @@ class Collection < ApplicationRecord
     else
       sql ="""SELECT developers.name
               FROM collection_games
-              INNER JOIN developer_games ON collection_games.game_id=developer_games.game_id
-              INNER JOIN developers ON developer_games.developer_id=developers.id
+              LEFT JOIN developer_games ON collection_games.game_id=developer_games.game_id
+              LEFT JOIN developers ON developer_games.developer_id=developers.id
               WHERE collection_id='#{self.id}'
               ORDER BY developers.name ASC;"""
 
@@ -442,6 +480,9 @@ class Collection < ApplicationRecord
       data = []
       dominant = ['', 0]
       values = []
+
+      r.map! { |e| e.nil? ? '~~~' : e } if r.include?(nil)
+
       r.uniq.each do |d|
         val = r.count(d)
         values << val
@@ -449,6 +490,8 @@ class Collection < ApplicationRecord
         data << [d, val]
         dominant = [d, val] if val > dominant.last
       end
+
+      data.last[0] = '(no data)' if  data.last[0] == '~~~'
 
       #Stats:
       stats << (dominant[1] == 0 ? '-' : "#{dominant[0]} (#{dominant[1]})")

@@ -8,17 +8,16 @@ wb = xlsx_package.workbook
       coll.games.each_with_index do |game, i|
 
         frd = game[:first_release_date]
-        date = frd.nil? ? '-' : Time.at(frd).year
-
-        devs = game.developers.empty? ? '-' : game.developers.pluck(:name).join(', ')
+        date = frd.nil? ? '' : Time.at(frd).year
+        devs = game.developers.empty? ? '' : game.developers.pluck(:name).join(', ')
 
         form = game.physical ? 'physical' : 'digital'
 
         plats = game.platforms_names
-        platforms = plats.nil? ? '-' : plats.join(', ')
+        platforms = plats.nil? ? '' : plats.join(', ')
 
         sheet.add_row [i + 1, game.name, date, devs, game.platform_name, form,
-         platforms, game.summary || '-']
+         platforms, game.summary]
       end
 
     else
@@ -27,15 +26,15 @@ wb = xlsx_package.workbook
       coll.games.each_with_index do |game, i|
 
         frd = game[:first_release_date]
-        date = frd.nil? ? '-' : Time.at(frd).year
+        date = frd.nil? ? '' : Time.at(frd).year
 
-        devs = game.developers.empty? ? '-' : game.developers.pluck(:name).join(', ')
+        devs = game.developers.empty? ? '' : game.developers.pluck(:name).join(', ')
 
         plats = game.platforms_names
-        platforms = plats.nil? ? '-' : plats.join(', ')
+        platforms = plats.nil? ? '' : plats.join(', ')
 
         sheet.add_row [i + 1, game.name, date, devs,
-         platforms, game.summary || '-']
+         platforms, game.summary]
       end
 
     end

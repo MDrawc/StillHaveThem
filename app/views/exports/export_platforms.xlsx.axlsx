@@ -30,13 +30,11 @@ platforms.each do |k, v|
 
     v.each_with_index do |game, i|
 
-      date = game[3].nil? ? '-' : Time.at(game[3]).year
-      developer = game[8].nil? ? '-' : game[8].join(', ')
+      date = game[3].nil? ? '' : Time.at(game[3]).year
       form = game[5].nil? ? '-' : (game[5] ? 'physical' : 'digital')
-      plats = game[6].nil? ? '-' : game[6].delete('{}"').gsub(',',', ')
-      summary = game[7] || '-'
+      plats = game[6].nil? ? '' : game[6].delete('{}"').gsub(',',', ')
 
-      sheet.add_row [i + 1, game[2], date, developer, form, game[0], plats, summary]
+      sheet.add_row [i + 1, game[2], date, game[8].join(', '), form, game[0], plats, game[7]]
     end
   end
 end
