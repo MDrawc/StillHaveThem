@@ -1,23 +1,19 @@
 <%= form_for(:session, url: signin_path, remote: true) do |f| %>
-<div class="why">
-  <hr class="uk-divider-vertical md-divider signin">
-  <p class="head">Welcome back!</p>
-    <p>Have a look at your games!</p>
-  <p id="emot-happy">(◡‿◡ )</p>
-</div>
-<div class="input">
-  <p><span id="s-mail-icon"><%= svg 'mail' %></span><%= f.email_field :email, id: 'login-mail', class: 'uk-input login-input uk-form-width-medium', placeholder: 'Email address' %></p>
-</div>
-<div class="input">
-  <p class="password"><span id="s-key-icon"><%= svg 'key' %></span><%= f.password_field :password, id: 'login-password', class: 'password uk-input login-input uk-form-width-medium', placeholder: 'Password' %>
-  <button class="uk-button unmask" type="button"></button></p>
-</div>
-<div class="rem-me">
-  <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %><span class="rem-me">Keep me logged in</span></label>
-</div>
-</div>
-<div class="submit">
-<%= f.button yield(:button_text),
-class: "uk-button uk-button-default create-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
-</div>
+  <div class="uk-position-relative margin-bottom-15">
+    <%= f.email_field :email, id: 'login-mail', class: 'uk-input sign share-input', placeholder: 'Email address' %>
+    <span class="sign-icon sign-ok"><%= svg 'mail' %></span>
+    <span class="warning-icon blink_me sign-er not-visible" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
+  </div>
+  <div class="uk-position-relative">
+    <%= f.password_field :password, id: 'login-password', class: 'password uk-input sign share-input', placeholder: 'Password' %>
+    <button class="uk-button unmask" type="button"></button>
+    <span class="sign-icon sign-ok"><%= svg 'key' %></span>
+    <span class="warning-icon blink_me sign-er not-visible" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
+  </div>
+  <div class="rem-me">
+    <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %> Keep me logged in</label>
+  </div>
+  <div class="submit">
+  <%= f.button yield(:button_text), class: "uk-button sh-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
+  </div>
 <% end %>

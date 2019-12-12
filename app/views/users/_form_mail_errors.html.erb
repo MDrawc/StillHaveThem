@@ -1,5 +1,5 @@
 <% if errors.any? %>
-  <span id="mail-icon" class="warning-icon blink_me"></span>
+  <span id="mail-icon" class="warning-icon blink_me sign-er"></span>
   <div class="errors" uk-dropdown="toggle: #mail-icon; pos: top-left; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
     <% if errors.size == 1 %>
       <p>Email <%= errors.first %></p>
@@ -13,5 +13,5 @@
     <% end %>
   </div>
 <% else %>
-  <%= image_tag('mail.svg', alt: 'mail logo', id: 'mail-icon', draggable: 'false', width: 30)%>
+  <span id="mail-icon" class="sign-icon"><%= svg 'mail' %></span>
 <% end %>

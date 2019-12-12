@@ -1,21 +1,5 @@
 $("#signin-modal").find(".modal-content").html("<%= j(render 'new') %>");
 
-$('#login-mail').on('input', function() {
-    if ($('#s-mail-icon').hasClass('warning-icon')) {
-        $("#s-mail-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "mail" }) %>");
-        $("#s-key-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "key" }) %>");
-    }
-});
-
-$('#login-password').on('input', function() {
-
-    if ($('#s-mail-icon').hasClass('warning-icon')) {
-        $("#s-mail-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "mail" }) %>");
-        $("#s-key-icon").replaceWith("<%= j(render partial: 'login_changed', locals: { type: "key" }) %>");
-    }
-
-});
-
 $('.unmask').on('click', function() {
     if ($(this).prev('input').attr('type') == 'password')
         changeType($(this).prev('input'), 'text');

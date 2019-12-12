@@ -1,33 +1,23 @@
 <%= form_for(@user, url: eval(path), remote: true) do |f| %>
-<div class="why">
-  <hr class="uk-divider-vertical md-divider">
-  <p><span class="head">In a minute,</span> you'll be ready to:</p>
-  <ul>
-    <li>search games</li>
-    <li>create collections</li>
-    <li>get your lent out games back</li>
-    <li>deal with your pile of shame.</li>
-  </ul>
-  <p id="emot-happy">\(^o^)/</p>
+<div class="uk-position-relative margin-bottom-15">
+  <%= f.email_field :email, id: 'signup-mail', class: 'uk-input sign share-input', placeholder: 'Email address' %>
+  <span id="mail-icon" class="sign-icon"><%= svg 'mail' %></span>
 </div>
-<div class="input">
-  <p><span id="mail-icon"><%= svg 'mail' %></span><%= f.email_field :email, id: 'signup-mail', class: 'uk-input login-input uk-form-width-medium', placeholder: 'Email address' %></p>
-</div>
-<div class="input">
-  <p class="password"><span id="key-icon"><%= svg 'key' %></span><%= f.password_field :password, id: 'signup-password', class: 'password uk-input login-input uk-form-width-medium', placeholder: 'Password' %>
-  <button class="uk-button unmask" type="button"></button></p>
+<div class="uk-position-relative">
+  <%= f.password_field :password, id: 'signup-password', class: 'password uk-input sign share-input', placeholder: 'Password' %>
+  <button class="uk-button unmask" type="button"></button>
+  <span id="key-icon" class="sign-icon"><%= svg 'key' %></span>
   <p id="password-min">6 characters minimum</p>
 </div>
 <div class="rem-me">
   <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %><span class="rem-me">Keep me logged in</span></label>
 </div>
-</div>
 <div class="submit">
-<%= f.button yield(:button_text),
-class: "uk-button uk-button-default create-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
-<div class="agree">By clicking the "Create" button you agree to
-  <%= link_to 'Terms of Use', root_url, class: 'uk-link-muted' %> and
-  <%= link_to 'Privacy Policy', root_url, class: 'uk-link-muted' %>.
-</div>
+  <%= f.button yield(:button_text), class: "uk-button sh-button",
+   data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
+  <div class="agree">By clicking the "Create" button you agree to
+    <%= link_to 'Terms of Use', root_url, class: 'uk-link-muted' %> and
+    <%= link_to 'Privacy Policy', root_url, class: 'uk-link-muted' %>.
+  </div>
 </div>
 <% end %>

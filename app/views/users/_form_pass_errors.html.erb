@@ -1,5 +1,5 @@
 <% if errors.any? %>
-  <span id="key-icon" class="warning-icon blink_me"></span>
+  <span id="key-icon" class="warning-icon blink_me sign-er"></span>
   <div class="errors" uk-dropdown="toggle: #key-icon; pos: top-left; mode: hover; animation: uk-animation-scale-up; delay-hide: 0; duration: 100">
     <% if errors.size == 1 %>
       <p>Password <%= errors.first %></p>
@@ -13,5 +13,5 @@
     <% end %>
   </div>
 <% else %>
-  <%= image_tag('key.svg', alt: 'password logo, key', id: 'key-icon', draggable: 'false', width: 30)%>
+  <span id="key-icon" class="sign-icon"><%= svg 'key' %></span>
 <% end %>

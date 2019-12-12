@@ -13,6 +13,17 @@ function resetFormErrors(form_type, id) {
     }
 }
 
+function resetLoginErrors() {
+    $("#login-mail").add('#login-password').on('input', function() {
+        $good = $(".sign-ok");
+        $bad = $(".sign-er");
+        if ($bad.is(':visible')) {
+            $bad.hide();
+            $good.show();
+        }
+    });
+}
+
 function preselectPlatform(form_type, id, platform) {
     var selector = form_type === 'list' ? "#t-ops .modal-content" : '#' + form_type + '-form-' + id;
     var form = $(selector);

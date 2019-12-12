@@ -1157,11 +1157,6 @@ input.coll-form {
     display: none;
 }
 
-// Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-.uk-form-width-medium {
-    width: 250px;
-}
-
 .uk-modal-body {
     background-color: white;
     border-radius: 5px 5px 0px 0px;
@@ -1171,148 +1166,118 @@ input.coll-form {
     color: $dark_grey;
 }
 
-span.signup-title {
-    font-size: 16px;
-}
+// Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-span.its-free {
-    font-size: 14px;
-    font-style: italic;
-}
-
-img.lock-icon {
-    position: relative;
-    top: -8px;
-    left: -2px;
-}
-
-.login-input {
-    background: none;
-    border: none;
+#signin-modal .uk-modal-body, #signup-modal .uk-modal-body {
+    width: 400px;
+    background: #ececec;
     border-radius: 5px;
-    border-bottom: 1px solid #dddddd;
-    font-size: 14px;
-    padding-left: 36px;
 }
 
-.login-input:focus {
-    outline: none;
-    background-color: #eaeaea;
-    color: #666;
-    border-color: #939393;
+#signin-modal .modal-header, #signup-modal .modal-header {
+    border-bottom: 1px solid #afafaf;
+    margin-bottom: 17px;
 }
 
-.why {
-    font-size: 14px;
-    font-style: italic;
-    float: right;
-    width: 260px;
-    padding-top: 5px;
-
-    p {
-        margin-top: 5px;
-        margin-bottom: 0px;
-    }
-
-    ul {
-        margin: 0px;
-        margin-bottom: 5px;
-        padding-left: 48px;
-    }
-
-    .head {
-        font-size: 20px;
-        margin: 0px;
-    }
-}
-
-.submit {
-    margin-top: 35px;
-}
-
-.md-divider {
-    float: left;
-    width: 30px;
-    height: 168px;
+p.header {
     margin: 0px;
+    font-size: 20px;
+    color: #333;
 }
 
-.md-divider.signin {
-    height: 144px;
+hr.sign {
+    color: #afafaf;
+}
+
+#signin-modal .header {
+    margin-top: -5px;
+}
+
+span.lock-icon {
+    vertical-align: text-bottom;
+}
+
+span.user-icon {
+    vertical-align: text-bottom;
+    color: #999;
+    padding-left: 4px;
+    line-height: 28px;
+}
+
+p.have-account {
+    font-size: 12px;
+    margin: 2px 0px 6px;
+}
+
+.sign.share-input {
+    padding-left: 40px;
+}
+
+.share-input:focus {
+    background-color: #ddd;
+    color: #666;
+    ~ span svg g g {
+        fill: #666;
+    }
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.not-visible {
+    display: none;
+}
+
+.sign-er {
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
 #signup-password, #login-password {
-    padding-right: 38px;
+    padding-right: 46px;
 }
 
 #password-min {
     font-size: 12px;
     font-style: italic;
     padding-left: 5px;
+    padding-top: 5px;
     margin: 0px;
     color: #999999;
 }
 
-p#emot-happy {
-    font-size: 22px;
-    color: #5da18d;
-    position: relative;
-    width: 110px;
-
-    // top: -10px;
-    left: 155px;
-}
-
-div.rem-me {
+.rem-me {
     padding-left: 5px;
-    margin-top: 20px;
-}
+    margin-top: 10px;
+    margin-bottom: 20px;
 
-span.rem-me {
-    font-size: 14px;
-    padding-left: 5px;
-}
-
-p.password {
-    margin-bottom: 10px;
+    label {
+        font-size: 14px;
+    }
 }
 
 .agree {
     font-size: 12px;
-    padding-left: 15px;
+    padding-left: 10px;
+    padding-top: 2px;
     float: left;
-    width: 240px;
+    width: 235px;
 }
 
-.create-button {
+.submit button {
     float: left;
 }
 
-p.header {
-    margin: 0px;
-}
-
-.have-account {
-    font-size: 12px;
-    margin-top: 0px;
-    margin-bottom: 20px;
-    padding-left: 2px;
-}
-
-.input {
-    position: relative;
-}
-
-#mail-icon, #key-icon {
-    width: 30px;
-    height: 30px;
+.sign-icon {
     position: absolute;
-    left: 4px;
-    top: 6px;
+    top: 3px;
+    left: 5px;
 }
 
-#s-mail-icon, #s-key-icon {
-    @extend #mail-icon;
+.sign-icon svg g g {
+  transition: 0.2s ease-in-out;
 }
 
 .warning-icon {
@@ -1327,7 +1292,6 @@ p.header {
 
 .search-warning-icon {
     @extend .warning-icon;
-
     position: absolute;
     left: 5px;
     top: 50%;
@@ -1354,10 +1318,6 @@ p.header {
     background: url("eye_hidden.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-}
-
-.new_user label {
-    padding: 0px;
 }
 
 // Strike

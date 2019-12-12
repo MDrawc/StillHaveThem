@@ -192,8 +192,8 @@
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="modal-header">
-      <p class="header"><span class="signup-title">Create a new account </span><span><%= image_tag('lock.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span><span class="its-free"> - it's free!</span></p>
-      <p class="have-account">Have an account? <%= link_to 'Sign In', signin_path,  {:remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-link-muted' }  %> </p>
+      <p class="header">Create a new account <span class="user-icon" uk-icon="icon: user; ratio: 1.4"></span></p>
+      <p class="have-account">Have an account? <%= link_to 'Log In', signin_path,  {:remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-link-muted' }  %></p>
     </div>
     <div class="modal-content"></div>
   </div>
@@ -203,8 +203,8 @@
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="modal-header">
-      <p class="header"><span class="signup-title">Log in </span><span><%= image_tag('lock_open.svg', alt: 'account logo, lock', class: 'lock-icon', draggable: 'false', width: 30)%></span></p>
-      <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-link-muted' }  %> </p>
+      <p class="header">Log in <span class="lock-icon"><%= svg 'lock_open' %></span></p>
+      <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-link-muted' }  %></p>
     </div>
     <div class="modal-content"></div>
   </div>

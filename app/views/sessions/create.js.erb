@@ -1,2 +1,3 @@
-$("#s-mail-icon").replaceWith("<%= j(render partial: 'login_error', locals: { type: "mail" }) %>");
-$("#s-key-icon").replaceWith("<%= j(render partial: 'login_error', locals: { type: "key" }) %>");
+$(".sign-ok").hide();
+$(".sign-er").show();
+resetLoginErrors();
