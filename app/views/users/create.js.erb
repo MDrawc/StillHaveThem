@@ -1,2 +1,17 @@
-$("#mail-icon").replaceWith("<%= j(render partial: 'form_mail_errors', locals: { errors: @errors[:email] }) %>");
-$("#key-icon").replaceWith("<%= j(render partial: 'form_pass_errors', locals: { errors: @errors[:password] }) %>");
+<% if @errors[:email].any? %>
+  mail_tooltip = "title: Email <%= raw @errors[:email].join(', ') %>; pos: top-left";
+  $("#mail-icon").hide();
+  $mail_er = $("#mail-er-icon");
+  $mail_er.attr('uk-tooltip', mail_tooltip);
+  $mail_er.show();
+<% end %>
+
+<% if @errors[:password].any? %>
+  key_tooltip = "title: Password <%= raw @errors[:password].join(', ') %>; pos: top-left";
+  $("#key-icon").hide();
+  $key_er = $("#key-er-icon");
+  $key_er.attr('uk-tooltip', key_tooltip);
+  $key_er.show();
+<% end %>
+
+resetSignupErrors();

@@ -1,14 +1,14 @@
 <%= form_for(:session, url: signin_path, remote: true) do |f| %>
   <div class="uk-position-relative margin-bottom-15">
     <%= f.email_field :email, id: 'login-mail', class: 'uk-input sign share-input', placeholder: 'Email address' %>
-    <span class="sign-icon sign-ok"><%= svg 'mail' %></span>
-    <span class="warning-icon blink_me sign-er not-visible" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
+    <span class="sign-icon login-ok"><%= svg 'mail' %></span>
+    <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>
   <div class="uk-position-relative">
     <%= f.password_field :password, id: 'login-password', class: 'password uk-input sign share-input', placeholder: 'Password' %>
     <button class="uk-button unmask" type="button"></button>
-    <span class="sign-icon sign-ok"><%= svg 'key' %></span>
-    <span class="warning-icon blink_me sign-er not-visible" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
+    <span class="sign-icon login-ok"><%= svg 'key' %></span>
+    <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>
   <div class="rem-me">
     <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %> Keep me logged in</label>

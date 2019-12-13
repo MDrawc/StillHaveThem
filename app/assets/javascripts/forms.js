@@ -15,10 +15,32 @@ function resetFormErrors(form_type, id) {
 
 function resetLoginErrors() {
     $("#login-mail").add('#login-password').on('input', function() {
-        $good = $(".sign-ok");
-        $bad = $(".sign-er");
+        $good = $(".login-ok");
+        $bad = $(".login-er");
         if ($bad.is(':visible')) {
             $bad.hide();
+            $good.show();
+        }
+    });
+}
+
+function resetSignupErrors() {
+    $("#signup-mail").on('input', function() {
+        $good = $("#mail-icon");
+        $bad = $("#mail-er-icon");
+        if ($bad.is(':visible')) {
+            $bad.hide();
+            $bad.attr('uk-tooltip', 'title:; pos: top-left');
+            $good.show();
+        }
+    });
+
+    $('#signup-password').on('input', function() {
+        $good = $("#key-icon");
+        $bad = $("#key-er-icon");
+        if ($bad.is(':visible')) {
+            $bad.hide();
+            $bad.attr('uk-tooltip', 'title:; pos: top-left');
             $good.show();
         }
     });

@@ -1,17 +1,5 @@
 $("#signup-modal").find(".modal-content").html("<%= j(render 'new') %>");
 
-$('#signup-mail').on('input', function() {
-    if ($('#mail-icon').hasClass('warning-icon')) {
-        $("#mail-icon").replaceWith("<%= j(render partial: 'form_mail_errors', locals: { errors: [] }) %>");
-    }
-});
-
-$('#signup-password').on('input', function() {
-    if ($('#key-icon').hasClass('warning-icon')) {
-        $("#key-icon").replaceWith("<%= j(render partial: 'form_pass_errors', locals: { errors: [] }) %>");
-    }
-});
-
 $('.unmask').on('click', function() {
     if ($(this).prev('input').attr('type') == 'password')
         changeType($(this).prev('input'), 'text');
