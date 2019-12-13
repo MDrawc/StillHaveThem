@@ -11,40 +11,6 @@
     padding-left: 5px;
 }
 
-.destroy-coll-icon {
-    position: relative;
-    top: -3px;
-    left: 7px;
-    color: $light_grey;
-}
-
-.uk-modal-footer {
-    border-top: 1px solid #c5c5c5;
-    border-radius: 0px 0px 5px 5px;
-    padding: 20px;
-    width: 450px;
-}
-
-.del-coll-info {
-    color: $light_grey;
-    font-size: 14px;
-    font-style: italic;
-    margin: 10px 0px 0px 0px;
-}
-
-.uk-button.uk-button-primary {
-    background: #bababa;
-}
-
-.uk-button-primary span {
-    position: relative;
-    top: -1px;
-}
-
-.uk-button-primary:hover {
-    background: $warning;
-}
-
 #coll-icon-input {
     position: absolute;
     top: 5px;
