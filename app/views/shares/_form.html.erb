@@ -41,7 +41,7 @@
         <div class="sh-coll-select uk-grid-small uk-child-width-auto uk-grid">
           <%= f.collection_check_boxes :shared, current_user.collections, :id, :name do |c| %>
             <% id = id_prefix + c.object.id.to_s %>
-            <% c.label(for: id, class: "sh-form-check-label") { c.check_box(id: id, class: "uk-checkbox sh-check", type: "checkbox") + ' ' + c.text } %>
+            <% c.label(for: id, class: "sh-form-check-label") { c.check_box(id: id, class: "uk-checkbox", type: "checkbox") + ' ' + c.text } %>
           <% end %>
         </div>
       </div>

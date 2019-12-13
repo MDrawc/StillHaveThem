@@ -129,19 +129,6 @@ p.discription {
     padding-left: 26px;
 }
 
-input.sh-check {
-    border-color: #afafaf;
-    background-color: #ececec;
-}
-
-input.sh-check:checked, input.sh-check:indeterminate {
-    background-color: #75c7af;
-}
-
-input.sh-check:checked:focus, input.sh-check:indeterminate:focus {
-    background-color: #75c7af;
-}
-
 .sh-button {
     background-color: transparent;
     color: #666;
