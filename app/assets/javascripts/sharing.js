@@ -47,8 +47,8 @@ function cancelEditForm(share_id) {
     });
 }
 
-function resetShWarningIcon(name, input, form, type) {
-    var no_error = "<span id='" + type + name + "-icon' class='sh-input-icon' uk-icon='tag'>";
+function resetShWarningIcon(name, icon, input, form, type) {
+    var no_error = "<span id='" + type + name + "-icon' class='sh-input-icon' uk-icon='" + icon + "'>";
     var $error_icon = $('#' + type + name + '-icon');
 
     var $form = $(form);
@@ -65,10 +65,11 @@ function resetShErrorsWithResetButton(type) {
     var $reset_btn =  $('#' + type + 'sh-reset');
     $reset_btn.off();
     $reset_btn.click(function() {
-        var icons = ['title', 'message', 'shared'];
-        for (var i = 0; i < icons.length; i++) {
-            var $error_icon = $('#' + type + icons[i] + '-icon');
-            var no_error = "<span id='" + icons[i] + "-icon' class='sh-input-icon' uk-icon='tag'>";
+        var fields = ['title', 'message', 'shared'];
+        var icons = ['heart', 'comment', 'tag']
+        for (var i = 0; i < fields.length; i++) {
+            var $error_icon = $('#' + type + fields[i] + '-icon');
+            var no_error = "<span id='" + fields[i] + "-icon' class='sh-input-icon' uk-icon='" + icons[i] + "'>";
             if ($error_icon.hasClass('warning-icon')) {
                 $error_icon.replaceWith(no_error);
             }
