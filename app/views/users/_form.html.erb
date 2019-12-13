@@ -1,18 +1,18 @@
 <%= form_for(@user, url: eval(path), remote: true) do |f| %>
 <div class="uk-position-relative margin-bottom-15">
-  <%= f.email_field :email, id: 'signup-mail', class: 'uk-input sign share-input', placeholder: 'Email address' %>
+  <%= f.email_field :email, id: 'signup-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
   <span id="mail-icon" class="sign-icon"><%= svg 'mail' %></span>
   <span id="mail-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
 </div>
 <div class="uk-position-relative">
-  <%= f.password_field :password, id: 'signup-password', class: 'password uk-input sign share-input', placeholder: 'Password' %>
+  <%= f.password_field :password, id: 'signup-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
   <button class="uk-button unmask" type="button"></button>
   <span id="key-icon" class="sign-icon"><%= svg 'key' %></span>
   <span id="key-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
   <p id="password-min">6 characters minimum</p>
 </div>
 <div class="rem-me">
-  <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %><span class="rem-me">Keep me logged in</span></label>
+  <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox") %><span class="rem-me">Keep me logged in</span></label>
 </div>
 <div class="submit">
   <%= f.button yield(:button_text), class: "uk-button sh-button",

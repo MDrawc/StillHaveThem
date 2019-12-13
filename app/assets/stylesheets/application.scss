@@ -604,13 +604,13 @@ li.active:hover .opts {
     border-radius: 2px;
 }
 
-input.coll-form {
-    background-color: transparent;
-    border: 1px solid #cccccc;
+.uk-checkbox:disabled {
+    background-color: #e0e0e0;
+    border-color: #cccccc;
 }
 
 .uk-checkbox:disabled:checked {
-    background-color: #eaeaea;
+    background-color: #d6d6d6;
 }
 
 .uk-radio:focus, .uk-checkbox:focus {
@@ -1168,7 +1168,7 @@ input.coll-form {
 
 // Form - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-#signin-modal .uk-modal-body, #signup-modal .uk-modal-body {
+#signin-modal .uk-modal-body, #signup-modal .uk-modal-body, #coll-modal .uk-modal-body {
     width: 400px;
     background: #ececec;
     border-radius: 5px;
@@ -1179,18 +1179,25 @@ input.coll-form {
     margin-bottom: 17px;
 }
 
+#signin-modal .header {
+    margin-top: -5px;
+}
+
+#signup-modal .header {
+    margin-top: -2px;
+}
+
+#coll-modal .header {
+    margin-top: -4px;
+    border-bottom: 1px solid #afafaf;
+    padding-bottom: 5px;
+    margin-bottom: 17px;
+}
+
 p.header {
     margin: 0px;
     font-size: 20px;
     color: #333;
-}
-
-hr.sign {
-    color: #afafaf;
-}
-
-#signin-modal .header {
-    margin-top: -5px;
 }
 
 span.lock-icon {
@@ -1209,7 +1216,7 @@ p.have-account {
     margin: 2px 0px 6px;
 }
 
-.sign.share-input {
+.pl40.share-input {
     padding-left: 40px;
 }
 

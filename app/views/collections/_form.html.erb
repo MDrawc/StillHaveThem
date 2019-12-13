@@ -1,12 +1,18 @@
 <% new = @collection.new_record? %>
 <%= form_with model: @collection do |f| %>
-<div class="uk-position-relative uk-margin">
-  <p><span id='coll-icon-input'><%= svg 'label' %></span>
-<%= f.text_field :name, class: 'uk-input login-input', placeholder: 'Name', autocomplete: 'off' %></p>
+<div class="uk-position-relative margin-bottom-15">
+<%= f.text_field :name, class: 'uk-input coll-field pl40 share-input', placeholder: 'Name', autocomplete: 'off' %>
+<span id='coll-icon-input'><%= svg 'label' %></span>
+<span id="coll-error" class="warning-icon blink_me coll-er" uk-tooltip="title: ; pos: top-left"></span>
+<p id="password-min">max 30 characters</p>
 </div>
-<div class="uk-margin">
-<label class="<%= new ? nil : 'disabled' %>"><%= f.check_box(:needs_platform, class: 'coll-form uk-checkbox search-checkbox', disabled: !new) %> Require platform and format*</label>
-<p class="small">*You will need to indicate the game's platform and format when adding to this collection</p>
+<div class="coll-require">
+<% if new %>
+  <label class="<%= new ? nil : 'disabled' %>"><%= f.check_box(:needs_platform, checked: true, class: 'uk-checkbox', disabled: !new) %> Require platform and format*</label>
+<% else %>
+  <label class="<%= new ? nil : 'disabled' %>"><%= f.check_box(:needs_platform, class: 'uk-checkbox', disabled: !new) %> Require platform and format*</label>
+<% end %>
+<p class="small">*You need to indicate the game's platform and format when adding to this collection</p>
 </div>
-<%= f.submit((new ? 'Create' : 'Update'), class: "uk-button uk-button-default") %>
+<%= f.submit((new ? 'Create' : 'Update'), class: "uk-button sh-button") %>
 <% end %>

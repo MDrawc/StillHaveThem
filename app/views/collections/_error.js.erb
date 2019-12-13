@@ -1,10 +1,7 @@
-$("#coll-icon-input").replaceWith("<%= j(render partial: 'warning', locals: { error: @error }) %>");
+var error = '<%= @error %>';
+var $coll_error = $("#coll-error");
+$("#coll-icon-input").hide();
+$coll_error.attr('uk-tooltip', error );
+$coll_error.show();
 
-$('#collection_name').one('input', function() {
-    var $icon = $('#coll-icon-input');
-
-    if ($icon.hasClass('warning-icon')) {
-        $icon.replaceWith("<span id='coll-icon-input'><%= j(svg 'label') %></span>");
-    }
-
-});
+resetCollErrors();

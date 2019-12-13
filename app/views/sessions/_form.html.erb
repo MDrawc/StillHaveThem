@@ -1,17 +1,17 @@
 <%= form_for(:session, url: signin_path, remote: true) do |f| %>
   <div class="uk-position-relative margin-bottom-15">
-    <%= f.email_field :email, id: 'login-mail', class: 'uk-input sign share-input', placeholder: 'Email address' %>
+    <%= f.email_field :email, id: 'login-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
     <span class="sign-icon login-ok"><%= svg 'mail' %></span>
     <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>
   <div class="uk-position-relative">
-    <%= f.password_field :password, id: 'login-password', class: 'password uk-input sign share-input', placeholder: 'Password' %>
+    <%= f.password_field :password, id: 'login-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
     <button class="uk-button unmask" type="button"></button>
     <span class="sign-icon login-ok"><%= svg 'key' %></span>
     <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>
   <div class="rem-me">
-    <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox search-checkbox") %> Keep me logged in</label>
+    <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox") %> Keep me logged in</label>
   </div>
   <div class="submit">
   <%= f.button yield(:button_text), class: "uk-button sh-button", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>

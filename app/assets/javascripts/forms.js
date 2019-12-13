@@ -15,8 +15,8 @@ function resetFormErrors(form_type, id) {
 
 function resetLoginErrors() {
     $("#login-mail").add('#login-password').on('input', function() {
-        $good = $(".login-ok");
-        $bad = $(".login-er");
+        var $good = $(".login-ok");
+        var $bad = $(".login-er");
         if ($bad.is(':visible')) {
             $bad.hide();
             $good.show();
@@ -26,8 +26,8 @@ function resetLoginErrors() {
 
 function resetSignupErrors() {
     $("#signup-mail").on('input', function() {
-        $good = $("#mail-icon");
-        $bad = $("#mail-er-icon");
+        var $good = $("#mail-icon");
+        var $bad = $("#mail-er-icon");
         if ($bad.is(':visible')) {
             $bad.hide();
             $bad.attr('uk-tooltip', 'title:; pos: top-left');
@@ -36,11 +36,22 @@ function resetSignupErrors() {
     });
 
     $('#signup-password').on('input', function() {
-        $good = $("#key-icon");
-        $bad = $("#key-er-icon");
+        var $good = $("#key-icon");
+        var $bad = $("#key-er-icon");
         if ($bad.is(':visible')) {
             $bad.hide();
             $bad.attr('uk-tooltip', 'title:; pos: top-left');
+            $good.show();
+        }
+    });
+}
+
+function resetCollErrors() {
+    $('#collection_name').one('input', function() {
+        var $good = $('#coll-icon-input');
+        var $bad = $('#coll-error');
+        if ($bad.is(':visible')) {
+            $bad.hide();
             $good.show();
         }
     });
