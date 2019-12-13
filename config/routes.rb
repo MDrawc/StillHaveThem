@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   delete 'logout_guest', to: 'shares#leave'
   get '/sh_collections/:id/', to: 'collections#show_guest', as: 'show_guest'
 
-  get 'del', to: 'collections#del_form', as: 'del_form'
+  get 'del/:name/:id', to: 'collections#del_form', as: 'del_form'
 
   get '/settings', to: 'users#settings', as: 'settings'
   post '/change_gpv', to: 'users#change_gpv', as: 'change_gpv'

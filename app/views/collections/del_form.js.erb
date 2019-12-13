@@ -1,0 +1,3 @@
+$("#coll-del-modal").find(".modal-content").html("<%= j(render partial: 'delete_form', locals: { coll_id: @coll_id }) %>");
+$('#sad-coll').text('<%= @coll_name %>');
+cancelCollDelete();

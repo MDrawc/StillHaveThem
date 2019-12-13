@@ -14,3 +14,9 @@ function hideShowBackToTop() {
         }
     });
 }
+
+function cancelCollDelete() {
+    $('#coll-uff').one('click', function() {
+        UIkit.modal($("#coll-del-modal")).hide();
+    });
+}

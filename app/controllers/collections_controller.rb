@@ -49,6 +49,8 @@ def update
 end
 
 def del_form
+  @coll_name = params[:name]
+  @coll_id = params[:id]
   respond_to :js
 end
 
