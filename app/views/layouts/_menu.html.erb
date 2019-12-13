@@ -6,7 +6,7 @@
       <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
       <span class="opts">
         <%= link_to '', edit_collection_url(collection), remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: pencil; ratio: 1.25', "uk-toggle": "target: #coll-modal", 'uk-tooltip': "title: Edit; pos: top-left" %>
-        <%= link_to '', collection, method: :delete, remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', 'uk-tooltip': "title: Delete; pos: top-left" %>
+        <%= link_to '', del_form_url, remote: true, class: 'uk-link m-coll-o', 'uk-icon': 'icon: trash; ratio: 1.25', "uk-toggle": "target: #coll-del-modal", 'uk-tooltip': "title: Delete; pos: top-left" %>
       </span>
     </li>
     <% end %>

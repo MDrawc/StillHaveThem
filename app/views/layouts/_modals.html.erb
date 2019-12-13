@@ -1,4 +1,12 @@
 <% if logged_in? %>
+  <div id="coll-del-modal" class="uk-flex-top" uk-modal="bg-close: false">
+    <div class="uk-modal-dialog uk-modal-body">
+      <div class="modal-header">
+        <p class="header">Delete <span id="sad-coll"></span> collection<span class='add-coll-icon'><%= svg 'shelf_icon' %></span></p>
+      </div>
+      <div class="modal-content"></div>
+    </div>
+  </div>
   <div id="coll-modal" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <button class="uk-modal-close-default" type="button" uk-close></button>

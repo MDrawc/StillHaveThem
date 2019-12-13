@@ -48,6 +48,10 @@ def update
   end
 end
 
+def del_form
+  respond_to :js
+end
+
 def destroy
   @collection.destroy
   respond_to :js
