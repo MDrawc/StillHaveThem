@@ -3,7 +3,6 @@ $('li[id^=mc-]').each(function(){ ids.push(this.id)});
 var index = ids.indexOf('mc-<%= @collection.id %>');
 
 $(".side-menu").replaceWith("<%= j(render partial: 'layouts/menu') %>");
-custom_data_confirm();
 
 var url = ''
 if ((id = ids[index-1]) != null) {
