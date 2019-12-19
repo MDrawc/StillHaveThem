@@ -130,6 +130,11 @@
 
 .lp-big {
     line-height: 46px;
+
+    span {
+        padding-right: 2px;
+    }
+
     svg {
         position: relative;
         top: -1px;
