@@ -55,7 +55,6 @@ label.disabled {
 }
 
 // Delete Collection Modal
-
 #sad-coll {
     font-size: 22px;
     color: #777;
@@ -74,4 +73,9 @@ p.all-lost {
     position: relative;
     top: -1px;
     transition: 0.1s ease-in-out;
+}
+
+// Stats and Graphs
+#li-by-collection {
+    display: none;
 }
