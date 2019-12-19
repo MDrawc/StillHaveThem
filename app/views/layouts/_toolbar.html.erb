@@ -4,7 +4,7 @@
   <li>
     <% graph_form_url = shared ? guest_graph_form_url(collection_id) : graph_form_url(collection_id) %>
     <%= link_to svg('chart'), graph_form_url, id: 'chart', class: 'uk-icon', remote: true,
-     'uk-toggle': 'target: #f-modal', 'uk-tooltip' => 'title: Graphs; pos: left' %>
+     'uk-toggle': 'target: #f-modal', 'uk-tooltip' => 'title: Stats and Graphs; pos: left' %>
   </li>
   <li>
     <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }",

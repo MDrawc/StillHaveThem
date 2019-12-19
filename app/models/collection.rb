@@ -433,10 +433,12 @@ class Collection < ApplicationRecord
         dominant = [d, sum] if sum > dominant.last
       end
 
-      if p_dataset.last[0] == '~~~'
+      if p_dataset.last && p_dataset.last[0] == '~~~'
         p_dataset.last[0] = '(no data)'
         d_dataset.last[0] = '(no data)'
       end
+
+      dominant[0] = '(no data)' if dominant[0] == '~~~'
 
       #Stats:
       stats << (dominant[1] == 0 ? '-' : "#{dominant[0]} (#{dominant[1]})")
@@ -491,7 +493,11 @@ class Collection < ApplicationRecord
         dominant = [d, val] if val > dominant.last
       end
 
-      data.last[0] = '(no data)' if  data.last[0] == '~~~'
+      if data.last && data.last[0] == '~~~'
+        data.last[0] = '(no data)'
+      end
+
+      dominant[0] = '(no data)' if dominant[0] == '~~~'
 
       #Stats:
       stats << (dominant[1] == 0 ? '-' : "#{dominant[0]} (#{dominant[1]})")

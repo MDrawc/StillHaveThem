@@ -2,7 +2,7 @@
 <%= content_tag :a, nil, id: 'tool-show', class: tb_open?(false), 'uk-icon': 'chevron-left' %>
 <ul>
   <li>
-  <%= link_to svg('chart'), graph_form_url('all'), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal', 'uk-tooltip' => 'title: Graphs; pos: left' %>
+  <%= link_to svg('chart'), graph_form_url('all'), id: 'chart', class: 'uk-icon', remote: true, 'uk-toggle': 'target: #f-modal', 'uk-tooltip' => 'title: Stats and Graphs; pos: left' %>
   </li>
   <li>
   <%= content_tag :a, svg('dark'), id: 'change-theme', class: "uk-icon #{ current_theme == 'theme_dark' ? 'active' : '' }",
