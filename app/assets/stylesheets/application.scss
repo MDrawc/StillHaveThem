@@ -1404,15 +1404,36 @@ span.add-form-errors {
         display: none;
     }
 
-    .coll-name {
-        font-size: 24px;
-        color: #333;
-    }
-
     .uk-icon {
         padding-left: 10px;
         vertical-align: text-bottom;
     }
+}
+
+.coll-name {
+    font-size: 24px;
+    color: #333;
+    transition: 0.1s ease-in-out;
+}
+
+#graph_collection:hover ~ .ch-slct {
+    color: #666;
+}
+
+.ch-slct {
+    position: relative;
+    top: -3px;
+    transition: 0.1s ease-in-out;
+    color: #afafaf;
+}
+
+.ch-graphs {
+    font-size: 15px;
+    color: #333;
+}
+
+#li-by-collection {
+    display: none;
 }
 
 #first-chart {
@@ -1445,20 +1466,24 @@ span.add-form-errors {
 
 .uk-accordion {
     color: #999;
-    margin-bottom: 0;
+    margin: 0;
 
     li.uk-open a.uk-accordion-title {
         color: #333;
     }
 
     a.uk-accordion-title {
-        font-size: 17px;
+        font-size: 15px;
         color: inherit;
 
         &:focus {
             color: #666;
         }
     }
+}
+
+.uk-accordion > :nth-child(n+2) {
+    margin-top: 10px;
 }
 
 .uk-accordion-content {
@@ -1496,3 +1521,4 @@ a.hide-labels {
     width: fit-content !important;
     width: -moz-fit-content !important;
 }
+

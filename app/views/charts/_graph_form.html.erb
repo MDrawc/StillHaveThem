@@ -1,7 +1,7 @@
 <%= form_with(url: url, method: "get", id: 'graph-form') do %>
 <div uk-form-custom="target: true">
   <%= select_tag(:graph_collection, options_for_select(colls_graph_form(user))) %>
-  <span class="coll-name"></span><%= content_tag :span, svg('big_chart'), class: 'uk-icon' %>
+  <span class="coll-name"></span><%= content_tag :span, svg('select'), class: 'uk-icon ch-slct' %>
 </div>
 <%= submit_tag('render') %>
 <% end %>
@@ -41,30 +41,30 @@
     <div id="in-comparison" class="chrt-holder">
     </div>
   </div>
-  <hr>
+<div class="strike uk-margin-small"><span class="ch-graphs">Graphs: </span></div>
   <ul uk-accordion>
     <li id="li-by-collection">
-      <a class="uk-accordion-title" href="#">Games by collection</a>
+      <a class="uk-accordion-title" href="#"><span class="dzida">Games by collection</span></a>
       <div id="by-collection" class="chrt-holder uk-accordion-content">
       </div>
     </li>
     <li id="li-by-format">
-      <a class="uk-accordion-title" href="#">Games by format</a>
+      <a class="uk-accordion-title" href="#"><span class="dzida">Games by format</span></a>
       <div id="by-format" class="chrt-holder uk-accordion-content">
       </div>
     </li>
     <li id="li-by-platform">
-      <a class="uk-accordion-title" href="#">Games by platform</a>
+      <a class="uk-accordion-title" href="#"><span class="dzida">Games by platform</span></a>
       <div id="by-platform" class="chrt-holder uk-accordion-content">
       </div>
     </li>
     <li>
-      <a class="uk-accordion-title" href="#">Games by release year</a>
+      <a class="uk-accordion-title" href="#"><span class="dzida">Games by release year</span></a>
       <div id="by-release" class="chrt-holder uk-accordion-content">
       </div>
     </li>
     <li>
-      <a class="uk-accordion-title" href="#">Games by developer</a>
+      <a class="uk-accordion-title" href="#"><span class="dzida">Games by developer</span></a>
       <div id="by-developer" class="chrt-holder uk-accordion-content">
       </div>
     </li>
