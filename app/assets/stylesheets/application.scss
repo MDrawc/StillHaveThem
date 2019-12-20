@@ -1522,3 +1522,11 @@ a.hide-labels {
     width: -moz-fit-content !important;
 }
 
+
+.acf-remove svg path {
+    transition: 0.1s ease-in-out;
+}
+
+.acf-remove:hover svg path {
+    stroke: #666;
+}
