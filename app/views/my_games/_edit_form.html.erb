@@ -8,7 +8,7 @@
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 
 <div class="action uk-grid-collapse" uk-grid>
-    <div class="inputs">
+    <div>
         <label class="c-m chosen">Edit</label>
     </div>
     <div class="cf-name uk-text-truncate uk-width-expand">
@@ -18,7 +18,6 @@
 
 <hr class="md">
 <div id="platform-option">
-
     <% if game[:platforms] %>
         <% select_platforms = platforms_for_select(game) %>
     <% else %>

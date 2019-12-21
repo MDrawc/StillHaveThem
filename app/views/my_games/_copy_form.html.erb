@@ -7,7 +7,7 @@
 <%= f.hidden_field :igdb_id, value: igdb_id %>
 
 <div class="action uk-grid-collapse" uk-grid>
-    <div class="inputs">
+    <div class="cm-inputs">
         <label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %></label>
         <label class="c-m" style="padding-left: 3px;">Move<%= radio_button_tag 'copy', false %></label>
     </div>
@@ -58,5 +58,5 @@
         <label><%= f.radio_button(:physical, false, checked: !physical, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
 </div>
-<button name="button" type="submit" class="cf-add-button">Copy</button><span class="add-form-errors"></span>
+<button name="button" type="submit" class="cf-cm-button">Copy</button><span class="add-form-errors"></span>
 <% end %>

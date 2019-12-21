@@ -294,12 +294,20 @@ span.gap {
 }
 
 .white-form {
-    background: #ecececf0;;
+    background: #ecececf0;
 }
 
 hr.md {
-    border-top: 2px solid #bababa;
+    border-top: 1px solid #afafaf;
     margin: 0 0 20px 0;
+}
+
+hr.md.darker {
+    border-color: #a7a7a7;
+}
+
+.cm-inputs {
+    width: 80px;
 }
 
 [class*='uk-dropdown-right'] {
@@ -369,7 +377,7 @@ hr.md {
     padding-bottom: 13px;
 }
 
-.cf-add-button {
+.cf-add-button, .cf-cm-button {
     background: none;
     font-size: 14px;
     color: #999;
@@ -377,6 +385,22 @@ hr.md {
     border-radius: 5px;
     margin-top: 0px;
     margin-bottom: 2px;
+    padding: 2px 8px 3px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+.cf-add-button:hover, .cf-cm-button:hover {
+    color: #666;
+    border-color: #888;
+}
+
+.cf-add-button:focus, .cf-cm-button:focus {
+    outline: none;
+}
+
+.cf-cm-button {
+    width: 55px;
 }
 
 .more-button {
@@ -401,15 +425,6 @@ hr.md {
     &:focus {
         outline: none;
     }
-}
-
-.cf-add-button:hover {
-    color: #666;
-    border: 2px solid #999;
-}
-
-.cf-add-button:focus {
-    outline: none;
 }
 
 .cf-platform-green svg {

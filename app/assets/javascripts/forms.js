@@ -69,7 +69,7 @@ function changeButton(form_type, id) {
     var selector = form_type === 'list' ? "#t-ops .modal-content" : '#' + form_type + '-form-' + id;
     var form = $(selector);
     var element = form.find(".action input[type='radio']");
-    var button = form.find(".cf-add-button");
+    var button = form.find(".cf-cm-button");
     element.on('input', function() {
         var selected = element.filter(":checked");
         if (selected.length > 0) {
