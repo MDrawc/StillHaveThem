@@ -84,11 +84,11 @@
   <% end %>
   <% end %>
   <% unless shared %>
-  <%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form white-form', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top" do %>
+  <%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form wf', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top" do %>
   <span class="loading">Loading</span>
   <% end %>
   <% if needs_platform %>
-  <%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form white-form', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  do %>
+  <%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form wf', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  do %>
   <span class="loading">Loading</span>
   <% end %>
   <% end %>

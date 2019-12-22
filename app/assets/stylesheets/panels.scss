@@ -293,17 +293,21 @@ span.gap {
     max-width: 330px;
 }
 
-.white-form {
+.wf {
     background: #ecececf0;
+
+    hr.md {
+        border-color: #bababa;
+    }
 }
 
 hr.md {
-    border-top: 1px solid #afafaf;
+    border-top: 1px solid #a7a7a7;
     margin: 0 0 20px 0;
 }
 
-hr.md.darker {
-    border-color: #a7a7a7;
+.add-form.wf .strike > span:after {
+    background: #C8C8C8;
 }
 
 .cm-inputs {
@@ -380,14 +384,19 @@ hr.md.darker {
 .cf-add-button, .cf-cm-button {
     background: none;
     font-size: 14px;
-    color: #999;
-    border: 2px solid #bababa;
+    color: #9a9a9a;
+    border: 2px solid #adadad;
     border-radius: 5px;
     margin-top: 0px;
     margin-bottom: 2px;
     padding: 2px 8px 3px;
     cursor: pointer;
     transition: 0.1s ease-in-out;
+}
+
+.wf .cf-add-button, .wf .cf-cm-button {
+    color: #a0a0a0;
+    border: 2px solid #bababa;
 }
 
 .cf-add-button:hover, .cf-cm-button:hover {

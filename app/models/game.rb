@@ -7,8 +7,11 @@ class Game < ApplicationRecord
 
   validates :igdb_id, presence: true, uniqueness: {scope: [:platform, :physical] }
 
-  validates :platform, presence: { message: 'Select platform'}, if: :needs_platform?
-  validates :platform, absence: { message: 'Platform should not be indicated'}, unless: :needs_platform?
+  # validates :platform, presence: { message: 'Select platform'}, if: :needs_platform?
+
+  validate :platform_presence, if: :needs_platform?
+
+  # validates :platform, absence: { message: 'Platform should not be indicated'}, unless: :needs_platform?
 
   validates :physical, inclusion: { in: [true, false], message: 'Select game\'s format'}, if: :needs_platform?
   validates :physical, inclusion: { in: [nil], message: 'Game\'s format should not be indicated'}, unless: :needs_platform?
@@ -24,6 +27,10 @@ class Game < ApplicationRecord
 
   def needs_platform
     needs_platform == true
+  end
+
+  def platform_presence
+    errors.add(:select, 'platform') if platform.blank?
   end
 
   amoeba do
