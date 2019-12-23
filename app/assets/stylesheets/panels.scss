@@ -335,7 +335,7 @@ hr.md {
 }
 
 .g-spin svg {
-    fill: $dark_grey;
+    fill: #777;
     animation: 1s infinite normal rotate;
     animation-timing-function: linear;
 }
@@ -351,11 +351,7 @@ hr.md {
 
 .uk-icon-link.cf-disabled {
     color: #afafaf;
-    cursor: initial;
-}
-
-.uk-icon-link.cf-disabled:hover {
-    color: #afafaf;
+    pointer-events: none;
 }
 
 .cf-name {
@@ -738,6 +734,7 @@ hr.md {
     float: left;
     margin-right: 10px;
     margin-top: 6px;
+    border-radius: 5px;
 }
 
 .pd-slide-items {

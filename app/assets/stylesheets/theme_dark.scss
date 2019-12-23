@@ -179,7 +179,8 @@ li.active .m-add svg {
 }
 
 .game-warning button {
-    color: #bbb;
+    color: #888;
+    border-color: #777;
 }
 
 .game-cover-effect::after {
@@ -230,8 +231,89 @@ div.t-name {
     color: #ccc;
 }
 
+.uk-icon-link {
+    color: #888;
+}
+
+.uk-icon-link:hover, .uk-icon-link:focus {
+    color: #ccc;
+}
+
 .t-game.hover-fill div.t, .t-game.focus-fill div.t {
     background-color: #333;
+}
+
+// Panels (My Games)
+
+.g-panel, .g-menu, .g-right, .thumb-c {
+    background: #444;
+}
+
+.g-menu a {
+    color: #888;
+}
+
+.uk-icon-link.cf-disabled {
+    color: #666;
+}
+
+.g-right {
+    border-color: #444;
+    &.out {
+        border-color: #666;
+    }
+}
+
+.no-thumb {
+    background-color: #2d2d2d;
+}
+
+.no-thumb svg path {
+    fill: #444 !important;
+}
+
+.g-title, .g-summary {
+    color: #ccc;
+}
+
+.g-year, .g-platforms {
+    color: #888;
+}
+
+.g-extra {
+    border-color: #666;
+}
+
+.g-google, .g-google:active, .g-google:focus {
+    background: #666;
+    color: #aaa;
+}
+
+.g-google:hover {
+    background: #5e5e5e;
+    color: #d2d2d2;
+}
+
+.g-metacritic, .g-metacritic:active, .g-metacritic:focus {
+    background: #626262;
+    border-color: #888;
+    transition-property: color, background-color, border-color;
+}
+
+.g-metacritic svg, .g-metacritic:active svg, .g-metacritic:focus svg {
+    fill: #aaa;
+}
+
+.ms-b-down {
+    color: #777;
+
+    &:hover {
+        color: #aaa;
+    }
+}
+
+.pd-slide {
+    background: #3a3a3a;
 }
 
 // No Games, No Results (My Games)
@@ -276,7 +358,7 @@ div.t-name {
 }
 
 .no-cover svg {
-    -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+    -webkit-filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.5));
     filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.5));
 
     path {
@@ -298,4 +380,16 @@ html {
 .uk-tooltip {
     background: #444;
     color: #eee;
+}
+
+// Scroll up
+
+#scroll-up {
+    color: #888;
+    border-color: #666;
+
+    &:hover {
+        background: #444;
+        color: #ccc;
+    }
 }
