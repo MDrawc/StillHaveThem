@@ -163,7 +163,7 @@ li.active .m-add svg {
 
 // Covers (Search IGDB)
 .name.owned {
-    box-shadow: 0px 2px 0px 0px #666;
+    box-shadow: 0px 2px 0px 0px #555;
 }
 
 .plus {
@@ -215,7 +215,6 @@ li.active .m-add svg {
 // List (My Games)
 
 .t-game {
-
     color: #aaa;
 
     div {
@@ -243,6 +242,32 @@ div.t-name {
     background-color: #333;
 }
 
+// List (Search)
+
+.s-table {
+    color: #aaa;
+
+    td {
+        background: #444;
+    }
+
+    tr:hover td {
+        background-color: #333;
+    }
+}
+
+.s-name {
+    color: #ccc;
+}
+
+.s-add a {
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
 // Panels (My Games)
 
 .g-panel, .g-menu, .g-right, .thumb-c {
@@ -259,6 +284,7 @@ div.t-name {
 
 .g-right {
     border-color: #444;
+
     &.out {
         border-color: #666;
     }
@@ -316,9 +342,20 @@ div.t-name {
     background: #3a3a3a;
 }
 
+// Panels (Search)
+
+.g-right-add a {
+    color: #888;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
 // No Games, No Results (My Games)
 #no-games, #no-results {
     color: #666;
+
     p {
         color: #777;
         border-color: #777;
@@ -358,8 +395,8 @@ div.t-name {
 }
 
 .no-cover svg {
-    -webkit-filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(-1px 2px 2px rgba(0, 0, 0, 0.5));
+    -webkit-filter: drop-shadow((-1px) 2px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow((-1px) 2px 2px rgba(0, 0, 0, 0.5));
 
     path {
         filter: none;
@@ -392,4 +429,37 @@ html {
         background: #444;
         color: #ccc;
     }
+}
+
+// Search history
+
+#search-history {
+    border-color: #555;
+
+    .extr {
+        border-color: #555;
+    }
+
+    .title {
+        color: #888;
+    }
+
+    .record {
+        .input {
+            color: #999;
+        }
+    }
+
+    .record:hover {
+        background-color: #3c3c3c;
+        color: #999;
+
+        .input {
+            color: #bbb;
+        }
+    }
+}
+
+.clock {
+    color: #777;
 }
