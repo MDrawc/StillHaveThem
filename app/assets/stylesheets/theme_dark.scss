@@ -419,6 +419,24 @@ html {
     color: #eee;
 }
 
+.uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: #5759a9;
+    border-color: transparent;
+}
+
+.uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
+    background-color: #5759a9;
+}
+
+.uk-radio, .uk-checkbox {
+    border: 1px solid #888;
+}
+
+
+.uk-radio:focus, .uk-checkbox:focus {
+    border-color: #888;
+}
+
 // Scroll up
 
 #scroll-up {
@@ -462,4 +480,72 @@ html {
 
 .clock {
     color: #777;
+}
+
+// Search bar
+
+.search-bar {
+    background-color: #3e3e3e;
+
+    color: #bbb;
+
+    &::placeholder {
+        color: #999;    }
+}
+
+.info-icon {
+    color: #999;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
+.search-icon {
+    color: #999;
+}
+
+.search-dropdown {
+    background-color: #3e3e3ef0;
+    color: #aaa;
+}
+
+.strike > span:after {
+    background-color: #666;
+}
+
+.nav {
+    border-color: #666;
+}
+
+.search-tip, .search-tip a {
+    color: #999;
+}
+
+.search-button, .reset-button {
+    color: #999;
+    &:hover {
+        color: #bbb;
+    }
+}
+
+.none-all a {
+    color: #888;
+
+    &:hover {
+        color: #aaa;
+    }
+}
+
+.nav a.active {
+    color: #999;
+}
+
+.nav a {
+    color: #6f6f6f;
+}
+
+.record:hover {
+    background: #0000002e;
+    color: #ccc;
 }
