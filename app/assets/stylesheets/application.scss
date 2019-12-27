@@ -202,7 +202,7 @@ div#search-results.mask2:after {
     p {
         font-size: 20px;
         margin-left: 8px;
-        color: #a1a1a1;
+        color: #8e8e8e;
         margin-top: 5px;
         letter-spacing: 0.3px;
     }
@@ -227,7 +227,7 @@ div#search-results.mask2:after {
 }
 
 .rotor svg {
-    fill: #aaa;
+    fill: #999;
     animation: 2s infinite search linear;
     animation-direction: reverse;
     width: 80px;
@@ -267,7 +267,7 @@ div#search-results.mask2:after {
     margin: 10px auto;
 
     svg {
-        fill: #aaa;
+        fill: #999;
         animation: 1s infinite normal rotate;
         animation-timing-function: linear;
     }

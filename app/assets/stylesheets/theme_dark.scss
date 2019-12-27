@@ -565,3 +565,21 @@ tr.l-addl {
     background-color: #2d2d2d;
     color: #bbb;
 }
+
+// Search wait
+
+div#search-results.mask1:after {
+    background-color: #2d2d2dad;
+}
+
+div#search-results.mask2:after {
+    background-color: #2d2d2de6;
+}
+
+#search-wait p {
+    color: #a1a1a1;
+}
+
+.rotor svg, .csv_spin svg {
+    fill: #aaa;
+}
