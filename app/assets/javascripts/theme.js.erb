@@ -1,6 +1,8 @@
 function changeTheme(shared) {
     var cookie = shared ? 'sh_theme' : 'theme';
-    $('#change-theme').click(function() {
+    var $switch = $('#change-theme');
+    $switch.off();
+    $switch.click(function() {
         $style_link = $('#theme-control');
         $favicon_link = $('#favicon-control');
         if (Cookies.get(cookie) == 'theme_dark') {
