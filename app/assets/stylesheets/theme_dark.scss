@@ -459,6 +459,14 @@ html {
     border-color: #888;
 }
 
+.mp + svg {
+    fill: #666;
+
+    &:hover {
+        fill: #999;
+    }
+}
+
 // Scroll up
 
 #scroll-up {
@@ -605,4 +613,34 @@ div#search-results.mask2:after {
 
 .rotor svg, .csv_spin svg {
     fill: #aaa;
+}
+
+// Shared
+
+#no-games .home-link:hover {
+    color: #ccc;
+}
+
+.shared-logo {
+    p:first-child {
+        border-color: #555;
+    }
+
+    p.shared {
+        color: #8d8d8d;
+    }
+}
+
+.shared-logo.with-title {
+    .title {
+        color: #8d8d8d;
+    }
+
+    div:last-child {
+        box-shadow: -7px 0px 0 -5px #555;
+    }
+
+    .message:hover {
+        color: #ccc;
+    }
 }
