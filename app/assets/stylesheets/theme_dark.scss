@@ -698,7 +698,7 @@ div#search-results.mask2:after {
     }
 
     .info-title, .info-year {
-        color: #ccc;
+        color: #ddd;
     }
 
     .i-no-cover {
@@ -737,13 +737,10 @@ div#search-results.mask2:after {
     color: #ccc;
 }
 
-.add-coll-icon svg {
-    stroke: #aaa !important;
-}
-
 .sh-button {
     color: #999;
     border-color: #777;
+
     &:hover {
         color: #ccc;
         border-color: #999;
@@ -774,10 +771,84 @@ div#search-results.mask2:after {
     color: #aaa;
 }
 
-.coll-field ~ span path  {
+.coll-field ~ span path {
     stroke: #888;
 }
 
 .coll-field:focus ~ span svg path {
     stroke: #aaa;
+}
+
+p.header {
+    color: #ccc;
+}
+
+#f-modal {
+    color: #aaa;
+
+    .strike > span:after {
+        background-color: #777;
+    }
+}
+
+.sh-check-container {
+    border-color: #777;
+}
+
+.sh-label-info, .sh-none-all a {
+    color: #888;
+}
+
+.share-input:focus ~ span {
+    color: #aaa;
+}
+
+.sh-coll-select {
+    color: #aaa;
+}
+
+div.share-info {
+    color: #aaa;
+    border-color: #777;
+}
+
+.sh-shared-box {
+    border-color: #777;
+}
+
+table.share-toolbar {
+    td {
+        border-color: #777;
+        background-color: #555;
+    }
+
+    td a {
+        color: #bbb;
+        &:hover {
+            color: #ccc;
+        }
+    }
+
+    td.btn:hover {
+        background-color: #666;
+    }
+
+    td:last-child {
+        border-color: #777;
+    }
+}
+
+input.share-link, .world-icon {
+    color: #bbb;
+}
+
+.cp-share-link.copied, .cp-share-link.copied:hover  {
+    color: #8c8fff;
+}
+
+.sh-small-button {
+    color: #888;
+    &:hover {
+        color: #bbb;
+    }
 }

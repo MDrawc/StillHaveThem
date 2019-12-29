@@ -6,14 +6,9 @@
     position: relative;
 }
 
-#f-modal p.header {
-    font-size: 20px;
-    color: #333;
-
-    span {
-        color: #999;
-        vertical-align: text-bottom;
-    }
+#f-modal p.header span {
+    color: #999;
+    vertical-align: text-bottom;
 }
 
 p.discription {
