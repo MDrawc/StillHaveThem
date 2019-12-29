@@ -1,8 +1,8 @@
-<svg width="30px" height="30px" viewbox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<svg width="30px" height="30px" viewbox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="stroke: #999">
  <g>
-  <rect id="svg_2" y="1" x="11" width="14" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" height="58" fill="none"/>
-  <rect id="svg_3" y="21" x="25" width="14" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" height="38" fill="none"/>
-  <rect id="svg_9" y="9" x="1" width="10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" height="50" fill="none"/>
-  <polygon id="svg_10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#999" points="59.0,56.542 52.0,59.0 36.0,11.301 43.0,8.843" fill="none"/>
+  <rect id="svg_2" y="1" x="11" width="14" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"  height="58" fill="none"/>
+  <rect id="svg_3" y="21" x="25" width="14" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"  height="38" fill="none"/>
+  <rect id="svg_9" y="9" x="1" width="10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"  height="50" fill="none"/>
+  <polygon id="svg_10" stroke-width="2.5" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"  points="59.0,56.542 52.0,59.0 36.0,11.301 43.0,8.843" fill="none"/>
  </g>
 </svg>

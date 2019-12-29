@@ -266,6 +266,10 @@ div.t-name {
     }
 }
 
+.s-table tr.focus-fill td {
+    background: #333;
+}
+
 // Panels (My Games)
 
 .g-panel, .g-menu, .g-right, .thumb-c {
@@ -449,6 +453,7 @@ html {
 }
 
 .uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
+    border-color: transparent;
     background-color: #5759a9;
 }
 
@@ -458,6 +463,16 @@ html {
 
 .uk-radio:focus, .uk-checkbox:focus {
     border-color: #888;
+}
+
+.uk-checkbox:disabled:checked {
+    border-color: transparent;
+    background-color: #333;
+}
+
+.uk-checkbox:disabled {
+    background-color: transparent;
+    border-color: #666;
 }
 
 .mp + svg {
@@ -709,4 +724,60 @@ div#search-results.mask2:after {
 
 .uk-close:hover {
     color: #ccc;
+}
+
+// Modals and forms
+
+#signin-modal .uk-modal-body, #signup-modal .uk-modal-body, #coll-modal .uk-modal-body, #f-modal .uk-modal-body {
+    background-color: #444;
+}
+
+#coll-modal .header {
+    border-color: #777;
+    color: #ccc;
+}
+
+.add-coll-icon svg {
+    stroke: #aaa !important;
+}
+
+.sh-button {
+    color: #999;
+    border-color: #777;
+    &:hover {
+        color: #ccc;
+        border-color: #999;
+        background-color: #555;
+    }
+}
+
+.share-input {
+    border-color: #777;
+    color: #aaa;
+
+    &::placeholder {
+        color: #888;
+    }
+
+    &:focus {
+        background-color: #555;
+        color: #ccc;
+        border-color: #999;
+    }
+}
+
+#password-min {
+    color: #888;
+}
+
+.coll-require {
+    color: #aaa;
+}
+
+.coll-field ~ span path  {
+    stroke: #888;
+}
+
+.coll-field:focus ~ span svg path {
+    stroke: #aaa;
 }
