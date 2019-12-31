@@ -55,9 +55,14 @@ label.disabled {
 }
 
 // Delete Collection Modal
+#coll-del-modal .header {
+    color: #666;
+}
+
+
 #sad-coll {
     font-size: 22px;
-    color: #777;
+    color: #333;
 }
 
 .cancel-del {
@@ -72,5 +77,4 @@ p.all-lost {
 .del-f svg {
     position: relative;
     top: -1px;
-    transition: 0.1s ease-in-out;
 }

@@ -472,7 +472,7 @@ html {
 
 .uk-checkbox:disabled {
     background-color: transparent;
-    border-color: #666;
+    border-color: #777;
 }
 
 .mp + svg {
@@ -733,24 +733,32 @@ div#search-results.mask2:after {
 }
 
 #coll-modal .header {
-    border-color: #777;
-    color: #ccc;
+    border-color: #aaa;
+    color: #ddd;
+}
+
+.add-coll-icon svg {
+    stroke: #aaa !important;
 }
 
 .sh-button {
-    color: #999;
-    border-color: #777;
+    color: #aaa;
+    border-color: #888;
 
     &:hover {
-        color: #ccc;
-        border-color: #999;
+        color: #ddd;
+        border-color: #aaa;
         background-color: #555;
     }
 }
 
-.share-input {
-    border-color: #777;
+label.disabled {
     color: #aaa;
+}
+
+.share-input {
+    border-color: #888;
+    color: #ccc;
 
     &::placeholder {
         color: #888;
@@ -759,44 +767,48 @@ div#search-results.mask2:after {
     &:focus {
         background-color: #555;
         color: #ccc;
-        border-color: #999;
+        border-color: #aaa;
     }
 }
 
 #password-min {
-    color: #888;
+    color: #999;
 }
 
 .coll-require {
-    color: #aaa;
+    color: #ccc;
+}
+
+.small {
+    color: #999;
 }
 
 .coll-field ~ span path {
-    stroke: #888;
+    stroke: #999;
 }
 
 .coll-field:focus ~ span svg path {
     stroke: #aaa;
 }
 
-p.header {
-    color: #ccc;
+p.header, #sad-coll {
+    color: #ddd;
 }
 
 #f-modal {
-    color: #aaa;
+    color: #ccc;
 
     .strike > span:after {
-        background-color: #777;
+        background-color: #aaa;
     }
 }
 
 .sh-check-container {
-    border-color: #777;
+    border-color: #888;
 }
 
 .sh-label-info, .sh-none-all a {
-    color: #888;
+    color: #999;
 }
 
 .share-input:focus ~ span {
@@ -804,28 +816,29 @@ p.header {
 }
 
 .sh-coll-select {
-    color: #aaa;
+    color: #bbb;
 }
 
 div.share-info {
-    color: #aaa;
-    border-color: #777;
+    color: #bbb;
+    border-color: #888;
 }
 
 .sh-shared-box {
-    border-color: #777;
+    border-color: #888;
 }
 
 table.share-toolbar {
     td {
-        border-color: #777;
+        border-color: #888;
         background-color: #555;
     }
 
     td a {
-        color: #bbb;
+        color: #aaa;
+
         &:hover {
-            color: #ccc;
+            color: #ddd;
         }
     }
 
@@ -834,7 +847,7 @@ table.share-toolbar {
     }
 
     td:last-child {
-        border-color: #777;
+        border-color: #888;
     }
 }
 
@@ -842,13 +855,48 @@ input.share-link, .world-icon {
     color: #bbb;
 }
 
-.cp-share-link.copied, .cp-share-link.copied:hover  {
+.cp-share-link.copied, .cp-share-link.copied:hover {
     color: #8c8fff;
 }
 
 .sh-small-button {
-    color: #888;
+    color: #aaa;
+
     &:hover {
-        color: #bbb;
+        color: #ccc;
+    }
+}
+
+.sh-check-title, .sh-box-title {
+    color: #aaa;
+}
+
+p.discription {
+    color: #bbb;
+}
+
+#coll-del-modal {
+    .uk-modal-body {
+        background-color: #444;
+    }
+
+    .header {
+        color: #aaa;
+    }
+}
+
+p.all-lost {
+    color: #aaa;
+    border-color: #888;
+}
+
+.lp-button {
+    color: #aaa;
+    border-color: #888;
+
+    &:hover {
+        color: #ddd;
+        border-color: #aaa;
+        background-color: #555;
     }
 }
