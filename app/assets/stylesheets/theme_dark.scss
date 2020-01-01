@@ -788,7 +788,7 @@ label.disabled {
 }
 
 .coll-field:focus ~ span svg path {
-    stroke: #aaa;
+    stroke: #bbb;
 }
 
 p.header, #sad-coll {
@@ -812,7 +812,7 @@ p.header, #sad-coll {
 }
 
 .share-input:focus ~ span {
-    color: #aaa;
+    color: #bbb;
 }
 
 .sh-coll-select {
@@ -899,4 +899,116 @@ p.all-lost {
         border-color: #aaa;
         background-color: #555;
     }
+}
+
+#f-modal .uk-modal-body hr {
+    border-color: #aaa;
+}
+
+.set-input-icon svg g g {
+    fill: #999;
+}
+
+g#icon-116-lock-open {
+    fill: #bbb;
+}
+
+.share-input:focus ~ span svg g g {
+    fill: #bbb;
+}
+
+table.set-platform td {
+    color: #bbb;
+    border-color: #888;
+    background-color: #555;
+
+    &:last-child {
+        border-color: #888;
+    }
+
+    a {
+        color: #bbb;
+    }
+
+    &.btn:hover {
+        background-color: #666;
+
+        a {
+            color: #ddd;
+        }
+    }
+}
+
+.del-user-btn:hover span #icon-61-warning {
+    fill: #ccc;
+}
+
+.rng-lab, .rng-mima {
+    color: #bbb;
+}
+
+#gpv-counter {
+    color: #bbb;
+    border-color: #aaa;
+}
+
+.rng-button.disabled, #gpv-counter.disabled {
+    color: #777;
+    border-color: #666;
+}
+
+table.set-email-pass {
+    td {
+        border-color: #888;
+        background-color: #555
+    }
+
+    td:last-child {
+        border-color: #888;
+    }
+
+    .btn input {
+        color: #bbb;
+    }
+
+    .btn:hover {
+        background-color: #666;
+        input {
+            color: #ddd;
+        }
+    }
+
+    .btn.disabled {
+        background-color: #444;
+    }
+
+    .btn.disabled:hover input {
+        color: #777;
+    }
+
+    .btn.disabled input {
+        color: #777;
+    }
+}
+
+.set-input {
+    color: #ccc;
+
+    &::placeholder {
+        color: #888;
+    }
+
+    &:focus {
+        background-color: #555;
+        color: #ccc;
+
+        ~ span svg g g {
+            fill: #aaa;
+        }
+    }
+}
+
+.update-info {
+    color: #ddd;
+    background-color: #666;
 }

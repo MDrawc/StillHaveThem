@@ -66,6 +66,14 @@ a.del-user-btn {
     }
 }
 
+g#icon-61-warning {
+    transition: 0.1s ease-in-out;
+}
+
+.del-user-btn:hover span #icon-61-warning {
+    fill: #666;
+}
+
 .range-holder {
     font-size: 14px;
     margin: auto;
@@ -141,20 +149,6 @@ table.set-email-pass {
         }
     }
 
-    .set-input {
-        width: 300px;
-        padding-left: 42px;
-        border-radius: 4px 0px 0px 4px;
-    }
-
-    .set-input:focus {
-        background-color: #ddd;
-        color: #666;
-        ~ span svg g g {
-            fill: #666;
-        }
-    }
-
     td {
         border: thin solid #afafaf;
         border-right: none;
@@ -165,7 +159,6 @@ table.set-email-pass {
     .btn {
         transition: background-color 0.1s ease-in-out;
         cursor: pointer;
-        padding: 0px 10px;
     }
 
     .btn:hover {
@@ -197,6 +190,7 @@ table.set-email-pass {
         padding: 0px 5px;
         transition: color 0.1s ease-in-out;
         cursor: pointer;
+        padding: 11px 20px;
     }
 
     .set-confirm:hover {
@@ -216,6 +210,20 @@ table.set-email-pass {
 
     ~ #password-min {
         padding-left: 10px;
+    }
+}
+
+.set-input {
+    width: 300px;
+    padding-left: 42px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.set-input:focus {
+    background-color: #ddd;
+    color: #666;
+    ~ span svg g g {
+        fill: #666;
     }
 }
 
@@ -245,4 +253,8 @@ table.set-email-pass {
 
 .export-btns {
     padding-left: 5px;
+}
+
+.export-btns .lp-button svg {
+    margin-top: -2px;
 }
