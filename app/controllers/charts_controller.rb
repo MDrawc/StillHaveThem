@@ -30,7 +30,7 @@ class ChartsController < ApplicationController
       reload
     end
     respond_to do |format|
-      format.js { render partial: "graphs" }
+      format.js { render partial: "graphs", locals: { shared: false } }
     end
   end
 
@@ -50,7 +50,7 @@ class ChartsController < ApplicationController
       reload
     end
     respond_to do |format|
-      format.js { render partial: "graphs" }
+      format.js { render partial: "graphs", locals: { shared: true } }
     end
   end
 end

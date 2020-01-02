@@ -1,17 +1,17 @@
 <% if @overall %>
-var first_chart = "<%= j(render partial: 'by_format_overall', locals: { data: @charts_data[:chart_1] }) %>";
-var by_collection = "<%= j(render partial: 'by_collection', locals: { data: @charts_data[:chart_2] }) %>";
-var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: true }) %>";
-var by_release = "<%= j(render partial: 'by_release_overall', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform }) %>";
-var by_developer = "<%= j(render partial: 'by_developer_overall', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform }) %>";
+var first_chart = "<%= j(render partial: 'by_format_overall', locals: { data: @charts_data[:chart_1], shared: shared }) %>";
+var by_collection = "<%= j(render partial: 'by_collection', locals: { data: @charts_data[:chart_2], shared: shared }) %>";
+var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: true, shared: shared }) %>";
+var by_release = "<%= j(render partial: 'by_release_overall', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform, shared: shared }) %>";
+var by_developer = "<%= j(render partial: 'by_developer_overall', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform, shared: shared }) %>";
 <% else %>
-var first_chart = "<%= j(render partial: 'in_comparison', locals: { data: @charts_data[:chart_1] }) %>";
+var first_chart = "<%= j(render partial: 'in_comparison', locals: { data: @charts_data[:chart_1], shared: shared }) %>";
 <% if @needs_platform %>
-var by_format = "<%= j(render partial: 'by_format', locals: { data: @charts_data[:chart_2] }) %>";
-var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: false }) %>";
+var by_format = "<%= j(render partial: 'by_format', locals: { data: @charts_data[:chart_2], shared: shared }) %>";
+var by_platform = "<%= j(render partial: 'by_platform', locals: { data: @charts_data[:chart_3], overall: false, shared: shared }) %>";
 <% end %>
-var by_release = "<%= j(render partial: 'by_release', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform }) %>";
-var by_developer = "<%= j(render partial: 'by_developer', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform }) %>";
+var by_release = "<%= j(render partial: 'by_release', locals: { data: @charts_data[:chart_4], needs_platform: @needs_platform, shared: shared }) %>";
+var by_developer = "<%= j(render partial: 'by_developer', locals: { data: @charts_data[:chart_5], needs_platform: @needs_platform, shared: shared }) %>";
 <% end %>
 
 var overall = <%= @overall %>;

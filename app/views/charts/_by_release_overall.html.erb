@@ -2,13 +2,27 @@
 <% unless no_data %>
   <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'by-release-overall' %>
 
-  <% options = { scales: { xAxes: [{ maxBarThickness: 40 }],
-                           yAxes: [ticks: { max: data[:max] }] },
-                 tooltips: { mode: 'index', intersect: false }
-                 } %>
+  <% cookie = shared ? cookies[:sh_theme] : cookies[:theme] %>
+  <% if cookie != 'theme_dark' %>
+
+    <% options = { scales: { xAxes: [{ maxBarThickness: 40 }],
+                         yAxes: [ticks: { max: data[:max] }] },
+               tooltips: { mode: 'index', intersect: false }
+               } %>
+
+    <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
+  <% else %>
+
+    <% options = { legend: { labels: { fontColor: '#ccc' } },
+                scales: { xAxes: [{ maxBarThickness: 40, gridLines: { color: 'rgba(92,92,92,1)' }, ticks: { fontColor: '#ccc' } }],
+                         yAxes: [gridLines: { color: 'rgba(92,92,92,1)', zeroLineColor: 'rgba(92,92,92,1)'}, ticks: { max: data[:max], fontColor: '#ccc' }] },
+               tooltips: { mode: 'index', intersect: false }
+               } %>
+
+    <% colors = ['rgba(87,89,169, 1)','rgba(202,93,157,1)', 'rgba(119, 119, 119, 1)'] %>
+  <% end %>
 
   <% dataset_options = { borderWidth: 0, datalabels: { color: '#fff', opacity: 1 } } %>
-  <% colors = ['rgba(73, 171, 138, 1)','rgba(171, 73, 106, 1)', 'rgba(186, 186, 186, 1)' ] %>
 
   <%= column_chart data[:data],
                    id: 'by-release-overall',

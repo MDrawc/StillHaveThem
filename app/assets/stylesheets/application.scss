@@ -1393,7 +1393,7 @@ span.add-form-errors {
 [id^=moved-] {
     position: relative;
     top: -8px;
-    left: -10px;
+    left: -9px;
 }
 
 .stats {
@@ -1415,7 +1415,7 @@ span.add-form-errors {
 }
 
 .uk-accordion {
-    color: #999;
+    color: #777;
     margin: 0;
 
     li.uk-open a.uk-accordion-title {
@@ -1427,7 +1427,7 @@ span.add-form-errors {
         color: inherit;
 
         &:focus {
-            color: #666;
+            color: #777;
         }
     }
 }
@@ -1443,7 +1443,7 @@ span.add-form-errors {
 a.hide-labels {
     font-size: 12px;
     color: #666;
-    border: thin solid #afafaf;
+    background-color: #dcdcdc;
     border-radius: 3px;
     padding: 2px 0px;
     display: block;
@@ -1456,9 +1456,8 @@ a.hide-labels {
 
     &:hover {
         text-decoration: none;
-        color: #444;
-        border-color: #777;
-        background-color: #d1d1d1;
+        color: #333;
+        background-color: #ccc;
     }
 }
 

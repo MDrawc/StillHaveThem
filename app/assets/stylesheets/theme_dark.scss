@@ -960,7 +960,7 @@ table.set-platform td {
 table.set-email-pass {
     td {
         border-color: #888;
-        background-color: #555
+        background-color: #555;
     }
 
     td:last-child {
@@ -973,6 +973,7 @@ table.set-email-pass {
 
     .btn:hover {
         background-color: #666;
+
         input {
             color: #ddd;
         }
@@ -1011,4 +1012,46 @@ table.set-email-pass {
 .update-info {
     color: #ddd;
     background-color: #666;
+}
+
+// Graphs
+
+.coll-name, .ch-graphs {
+    color: #ddd;
+}
+
+.ch-slct {
+    color: #888;
+}
+
+#graph_collection:hover ~ .ch-slct, .stats {
+    color: #ccc;
+}
+
+.stats tr td:last-child, .uk-accordion {
+    color: #aaa;
+}
+
+.uk-accordion-title::before {
+    filter: brightness(1.7);
+}
+
+.uk-accordion {
+    li.uk-open a.uk-accordion-title {
+        color: #ddd;
+    }
+
+    a.uk-accordion-title:focus {
+        color: #aaa;
+    }
+}
+
+a.hide-labels {
+    color: #bbb;
+    background-color: #555;
+
+    &:hover {
+        color: #ddd;
+        background-color: #666;
+    }
 }

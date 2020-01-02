@@ -1,12 +1,30 @@
 <% no_data = data[:data].empty? %>
 <% unless no_data %>
-  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-collection' %>
-  <% options = { legend: { position: 'left'},
-                plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+
+  <% cookie = shared ? cookies[:sh_theme] : cookies[:theme] %>
+  <% if cookie != 'theme_dark' %>
+
+    <% options = { legend: { position: 'left'},
+                  plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#fff', anchor: 'end' } },
+                  layout: { padding: { top: 15, bottom: 15, right: 15 } }
+                  } %>
+    <% colors = get_colors(data[:data].size) %>
+    <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 } } %>
+
+  <% else %>
+
+  <% options = { legend: { position: 'left', labels: { fontColor: '#ccc' } },
+                plugins: { datalabels: { color: '#fff', borderRadius: 9999, borderWidth: 2, borderColor: '#ccc', anchor: 'end' } },
                 layout: { padding: { top: 15, bottom: 15, right: 15 } }
                 } %>
-  <% colors = get_colors(data[:data].size) %>
-  <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 } } %>
+
+    <% colors = get_colors(data[:data].size, :dark) %>
+    <% dataset_options = { datalabels: { backgroundColor: colors, opacity: 1 }, borderColor: '#ccc' } %>
+
+  <% end %>
+
+  <%= content_tag :a, 'hide labels', class: 'hide-labels', 'chart_id' => 'moved-by-collection' %>
+
   <%= pie_chart data[:data],
   id: 'moved-by-collection',
   donut: true,
