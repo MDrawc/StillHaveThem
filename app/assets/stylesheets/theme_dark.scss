@@ -1055,3 +1055,103 @@ a.hide-labels {
         background-color: #666;
     }
 }
+
+// Add forms
+
+.copy-form, .edit-form, .add-form {
+    background-color: #444;
+    color: #bbb;
+}
+
+.c-m {
+    color: #888;
+}
+
+.chosen {
+    color: #ddd;
+    box-shadow: 0px 4px 0 0px #7274de;
+}
+
+.cf-name {
+    color: #ddd;
+}
+
+hr.md, .wf hr.md {
+    border-color: #777;
+}
+
+.wf .cf-add-button, .wf .cf-cm-button, .cf-add-button, .cf-cm-button {
+    color: #888;
+    border-color: #777;
+    &:hover {
+        color: #bbb;
+        border-color: #aaa;
+    }
+}
+
+.cf-collection-icon svg {
+    stroke: #888 !important;
+}
+
+.cf-collection-green rect, .cf-collection-green polygon, .cf-collection-green line {
+    stroke: #7f82ff;
+}
+
+.cf-platform-icon svg {
+    fill: #888;
+}
+
+.cf-platform-green svg {
+    fill: #7f82ff;
+}
+
+.cf-physical + svg path {
+    fill: #888;
+}
+
+.cf-physical:checked + svg path {
+    fill: #7f82ff;
+}
+
+.cf-digital + svg {
+    fill: #888;
+}
+
+.cf-digital:checked + svg {
+    fill: #7f82ff;
+}
+
+#t-ops .uk-modal-body {
+    background-color: #444;
+    color: #bbb;
+}
+
+.copy-form.wf, .add-form.wf, .edit-form.wf {
+    background-color: #111111f0;
+}
+
+.already-in {
+    color: #999;
+    .title {
+        color: #bbb;
+    }
+}
+
+.add-form .strike > span:after, .add-form.wf .strike > span:after  {
+    background-color: #666;
+}
+
+.acf-remove svg {
+    stroke: #888 !important;
+}
+
+.acf-remove:hover svg path {
+    stroke: #ccc;
+}
+
+// Last changes
+.g-right {
+    color: #999;
+}
+
+// Landing Page
