@@ -38,9 +38,13 @@
 
     <ul class="uk-slideshow-items lp-images">
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
+            <%# image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
             srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01.png" => "1.8x" },
             alt: 'video game collection viewed as game covers') %>
+
+            <%= image_tag('dark_test') %>
+
+
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">The first thing you see upon logging in is YOUR GAMES!</p>
             </div>
@@ -126,7 +130,7 @@
 
 <p class="f-head">Features:</p>
 
-<div class="uk-child-width-1-2" uk-grid>
+<div class="uk-child-width-1-2 feat" uk-grid>
   <div>
       <p class="f-title">SEARCH GAMES WITH IGDB</p>
       <p class="uk-text-justify">Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.</p>
@@ -137,7 +141,7 @@
   </div>
 </div>
 
-<div class="uk-child-width-1-2" uk-grid>
+<div class="uk-child-width-1-2 feat" uk-grid>
   <div>
       <p class="f-title">PLATFORM AND FORMAT INFORMATION</p>
       <p class="uk-text-justify">Create collections that will require platform and format information for each game added to these collections.</p>
@@ -148,7 +152,7 @@
   </div>
 </div>
 
-<div class="uk-child-width-1-2" uk-grid>
+<div class="uk-child-width-1-2 feat" uk-grid>
   <div>
       <p class="f-title">DIFFERENT VIEWS</p>
       <p class="uk-text-justify">There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want. </p>
@@ -159,7 +163,7 @@
   </div>
 </div>
 
-<div class="uk-child-width-1-2" uk-grid>
+<div class="uk-child-width-1-2 feat" uk-grid>
   <div>
       <p class="f-title">SHARE</p>
       <p class="uk-text-justify">Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.</p>
@@ -170,7 +174,7 @@
   </div>
 </div>
 
-<div class="uk-child-width-1-2" uk-grid>
+<div class="uk-child-width-1-2 feat" uk-grid>
   <div>
       <p class="f-title">DARK THEME</p>
       <p class="uk-text-justify">Change background and UI elements to dark. It looks great and is easier on the eyes.</p>

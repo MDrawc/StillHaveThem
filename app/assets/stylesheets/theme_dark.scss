@@ -1127,7 +1127,7 @@ hr.md, .wf hr.md {
 }
 
 .copy-form.wf, .add-form.wf, .edit-form.wf {
-    background-color: #111111f0;
+    background-color: #111111eb;
 }
 
 .already-in {
@@ -1149,9 +1149,116 @@ hr.md, .wf hr.md {
     stroke: #ccc;
 }
 
+// Landing Page
+
+.frame {
+    border-color: #4f4f4f;
+    box-shadow: -2px -1px 20px #00000042;
+    background-color: #222;
+}
+
+.fb {
+    background-color: #555;
+    border-color: #222222;
+}
+
+.lp-images {
+    border-color: #4f4f4f;
+}
+
+.lp-top {
+    color: #bbb;
+}
+
+.lp-top p, .f-title {
+    border-color: #555;
+    color: #aaa;
+}
+
+
+.lp-about span {
+        background-color: #444;
+        color: #bbb;
+}
+
+.feat, .f-head, .lp-about {
+    color: #aaa;
+}
+
+.lp-sample path, .lp-sample rect {
+    stroke: #888;
+}
+
+.lp-sample:hover path, .lp-sample:hover rect {
+    stroke: #bbb;
+}
+
+.lp-play path {
+    stroke: #999;
+}
+
+.lp-play:hover path {
+    stroke: #ccc;
+}
+
+.login-button:hover span {
+    color: #bbb;
+}
+
+.lp-overlay {
+    background-color: #555;
+    box-shadow: 1px 2px 6px 0 #0000003d;
+    color: #ccc;
+}
+
+.lp-big, .login-button {
+    border-color: #777;
+    color: #999;
+    &:hover {
+        border-color: #999;
+        color: #ccc;
+        background-color: #444;
+    }
+}
+
+.uk-dotnav > * > * {
+    border-color: rgba(222, 222, 222, 0.4);
+}
+
+.uk-dotnav > * > :hover, .uk-dotnav > * > :focus {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.lp-dotnav-position li.uk-active a {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.uk-slidenav {
+    color: rgb(153, 153, 153);
+}
+
+.uk-slidenav:hover, .uk-slidenav:focus {
+    color: rgba(220, 220, 220, 0.9);
+}
+
+// Login and Signup form
+
+.rem-me {
+    color: #ccc;
+}
+
+.agree, .have-account {
+    color: #afafaf;
+}
+
+a.uk-link-muted {
+    color: #888;
+    &:hover {
+        color: #ccc;
+    }
+}
+
 // Last changes
 .g-right {
     color: #999;
 }
-
-// Landing Page
