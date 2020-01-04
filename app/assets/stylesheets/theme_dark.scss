@@ -1262,3 +1262,14 @@ a.uk-link-muted {
 .g-right {
     color: #999;
 }
+
+
+// New things
+
+#change-theme-lp span svg {
+    fill: #888;
+}
+
+#change-theme-lp:hover svg {
+    fill: #ccc;
+}

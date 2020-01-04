@@ -215,3 +215,38 @@ footer.lp-footer {
     border-radius: 0px 5px 5px 0px;
     box-shadow: 1px 2px 4px 0 #0000002b;
 }
+
+// #change-theme svg, #change-theme-lp svg {
+//     transform: rotate(45deg);
+// }
+
+#change-theme-lp {
+    width: 144px;
+
+    span:last-child {
+        padding: 0px;
+    }
+}
+
+#change-theme-lp.active {
+
+    svg {
+        transform: rotate(180deg);
+    }
+
+    span:last-child {
+        display:none;
+    }
+
+    &:after {
+        content: 'LIGHT THEME';
+    }
+}
+
+#change-theme-lp span svg {
+    fill: #777;
+}
+
+#change-theme-lp:hover svg {
+    fill: #444;
+}

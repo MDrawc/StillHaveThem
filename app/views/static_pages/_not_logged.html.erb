@@ -32,19 +32,21 @@
         </a>
     </div>
   </div>
+
+  <div>
+    <%= content_tag :a, id: 'change-theme-lp', class: "uk-button lp-button lp-big #{ current_theme == 'theme_dark' ? 'active' : '' }" do %>
+    <span><%= svg('dark') %></span><span> Dark Theme</span>
+    <% end %>
+  </div>
 </div>
 
 <div class="frame" uk-slideshow="ratio: 1180:643; animation: fade">
 
     <ul class="uk-slideshow-items lp-images">
         <li>
-            <%# image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
             srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01.png" => "1.8x" },
             alt: 'video game collection viewed as game covers') %>
-
-            <%= image_tag('dark_test') %>
-
-
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">The first thing you see upon logging in is YOUR GAMES!</p>
             </div>
@@ -213,3 +215,7 @@
     <div class="modal-content"></div>
   </div>
 </div>
+
+<script>
+  changeThemeLp();
+</script>

@@ -22,3 +22,35 @@ function changeTheme(shared) {
         }
     });
 }
+
+function changeThemeLp() {
+    var $switch = $('#change-theme-lp');
+    $switch.off();
+    $switch.click(function() {
+        $style_link = $('#theme-control');
+        $favicon_link = $('#favicon-control');
+        if (Cookies.get('theme') == 'theme_dark') {
+            $(this).removeClass('active');
+            Cookies.set('theme', 'theme_default', {
+                expires: 365
+            });
+            Cookies.set('sh_theme', 'theme_default', {
+                expires: 365
+            });
+            $style_link.replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
+            $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon.ico"), id: "favicon-control" %>');
+        } else {
+            $(this).addClass('active');
+            Cookies.set('theme', 'theme_dark', {
+                expires: 365
+            });
+
+            Cookies.set('sh_theme', 'theme_dark', {
+                expires: 365
+            });
+
+            $style_link.replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
+            $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon_dark.ico"), id: "favicon-control" %>');
+        }
+    });
+}
