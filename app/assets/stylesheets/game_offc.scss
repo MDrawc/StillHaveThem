@@ -87,9 +87,12 @@
 
 .metacritic {
     border: 3px solid #656565;
+    transition-property: color, background-color, border-color;
+
     svg {
         max-width: 92%;
         fill: #a5a5a5;
+        transition: 0.1s ease-in-out;
     }
 }
 
@@ -98,13 +101,23 @@
     height: 30px;
 }
 
+a.ex-link.metacritic:hover {
+    background: #4e4e4e;
+    border-color: #888;
+}
+
 .metacritic:hover svg {
-    fill: #c9c9c9;
+    fill: #ccc;
 }
 
 .google svg {
     max-width: unset;
     width: 24px;
+}
+
+a.ex-link.google:hover {
+    color: #d4d4d4;
+    background: #4e4e4e;
 }
 
 // Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
