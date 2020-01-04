@@ -144,7 +144,7 @@ private
 
     unless params[:q]
       @refresh = params[:type] == 'refresh'
-      cookies['last'] = { value: params[:id], expires: 30.days }
+      cookies['last'] = { value: params[:id], expires: 30.days } unless shared
 
       respond_to do |format|
         format.js { render partial: "show", locals: { shared: shared } }

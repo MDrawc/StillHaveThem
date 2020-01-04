@@ -21,8 +21,8 @@ function changeLogo() {
 
         var save = function() {
 
-            if ($input.val() === '') {
-                var logo = 'still have them';
+            if ($input.val().trim() === '') {
+                var logo = 'Still Have Them';
                 Cookies.remove('title');
             } else {
                 var logo = $input.val();
