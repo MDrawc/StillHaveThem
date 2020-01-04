@@ -3,6 +3,7 @@ function changeTheme(shared) {
     var $switch = $('#change-theme');
     $switch.off();
     $switch.click(function() {
+        $(".g-right").removeClass('move');
         $style_link = $('#theme-control');
         $favicon_link = $('#favicon-control');
         if (Cookies.get(cookie) == 'theme_dark') {

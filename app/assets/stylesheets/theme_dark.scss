@@ -29,12 +29,12 @@ footer ul a {
 // Menu
 li.active .m-coll {
     color: #bbb;
-    border-color: #5759a9;
+    border-color: #6466c3;
 }
 
 .m-coll {
     color: #888;
-    border-color: #5759a9;
+    border-color: #6466c3;
 
     &:hover {
         color: #bbb;
@@ -42,12 +42,12 @@ li.active .m-coll {
 }
 
 li.active .m-add {
-    border-color: #5759a9;
+    border-color: #6466c3;
 }
 
 .m-add {
     color: #888;
-    border-color: #5759a9;
+    border-color: #6466c3;
 
     &:hover svg {
         color: #bbb;
@@ -168,7 +168,7 @@ li.active .m-add svg {
     background: #666;
 
     &:hover {
-        background: #5759a9;
+        background: #6466c3;
     }
 }
 
@@ -448,13 +448,13 @@ html {
 }
 
 .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
-    background-color: #5759a9;
+    background-color: #6466c3;
     border-color: transparent;
 }
 
 .uk-radio:checked:focus, .uk-checkbox:checked:focus, .uk-checkbox:indeterminate:focus {
     border-color: transparent;
-    background-color: #5759a9;
+    background-color: #6466c3;
 }
 
 .uk-radio, .uk-checkbox {
@@ -1065,8 +1065,8 @@ a.hide-labels {
 
 .c-m {
     color: #888;
-}
 
+}
 .chosen {
     color: #ddd;
     box-shadow: 0px 4px 0 0px #7274de;
@@ -1127,7 +1127,7 @@ hr.md, .wf hr.md {
 }
 
 .copy-form.wf, .add-form.wf, .edit-form.wf {
-    background-color: #111111eb;
+    background-color: #111111f0;
 }
 
 .already-in {

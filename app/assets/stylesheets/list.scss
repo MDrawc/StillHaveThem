@@ -171,7 +171,8 @@ div.t {
 .t-menu {
     position: absolute;
     height: 100%;
-    width: 83px;
+    // width: 83px;
+    width: 89px;
     top: 0;
     right: 0px;
     padding-right: 10px;
@@ -182,11 +183,17 @@ div.t {
     a {
         position: relative;
         top: -2px;
+        padding-left: 3px;
+    }
+
+    a:first-child {
+        padding: 0px;
     }
 }
 
 .t-menu.out {
-    right: -82px;
+    // right: -82px;
+    right: -88px;
 }
 
 div.menu-shadow {

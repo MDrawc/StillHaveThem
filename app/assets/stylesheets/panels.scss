@@ -294,7 +294,7 @@ span.gap {
 }
 
 .wf {
-    background: #ecececeb;
+    background: #ecececf0;
 
     hr.md {
         border-color: #bababa;
@@ -635,13 +635,18 @@ hr.md {
     border-right: thin solid #d2d2d2;
     border-radius: 0px 5px 5px 0px;
     z-index: 1;
-    transition: border-radius 0.3s linear, border 0.3s linear;
+    transition: none;
     font-weight: 300;
 
     p {
         margin: 0;
     }
 }
+
+.g-right.move {
+    transition: border-radius 0.3s linear, border 0.3s linear;
+}
+
 
 .g-right.out {
     border-right: thin solid #a7a7a7;
