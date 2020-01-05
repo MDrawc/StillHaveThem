@@ -360,6 +360,18 @@ body::-webkit-scrollbar {
     padding-bottom: 160px;
 }
 
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
 // FOOTER
 footer {
     position: absolute;

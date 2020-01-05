@@ -1,4 +1,4 @@
-<%= form_for(@user, url: eval(path), remote: true) do |f| %>
+<%= form_for(@user, url: signup_path, remote: true) do |f| %>
 <div class="uk-position-relative margin-bottom-15">
   <%= f.email_field :email, id: 'signup-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
   <span id="mail-icon" class="sign-icon"><%= svg 'mail' %></span>

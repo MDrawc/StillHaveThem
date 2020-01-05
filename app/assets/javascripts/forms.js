@@ -77,7 +77,7 @@ function changeButton(form_type, id) {
             selected.parent().addClass('chosen');
             selected_val = selected.val();
         }
-        b_name = eval(selected_val) ? 'Copy' : 'Move';
+        b_name = selected_val === 'true' ? 'Copy' : 'Move';
         button.text(b_name);
     });
 }

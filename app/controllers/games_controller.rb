@@ -16,7 +16,7 @@ class GamesController < ApplicationController
         'platforms_names').symbolize_keys
 
     @x_id = x_id
-    @owned = eval(params[:owned])
+    @owned = params[:owned] == 'true'
     respond_to :js
   end
 

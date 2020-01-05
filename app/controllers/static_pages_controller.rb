@@ -82,6 +82,7 @@ class StaticPagesController < ApplicationController
 
     #LOAD MORE - more games in new offset request:
     elsif params[:last_form]
+
       @inquiry = IgdbQuery.new(eval(params[:last_form]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
                  eval(params[:last_query]))

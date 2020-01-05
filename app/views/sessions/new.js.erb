@@ -1,9 +1,2 @@
 $("#signin-modal").find(".modal-content").html("<%= j(render 'new') %>");
-
-$('.unmask').on('click', function() {
-    if ($(this).prev('input').attr('type') == 'password')
-        changeType($(this).prev('input'), 'text');
-    else
-        changeType($(this).prev('input'), 'password');
-    return false;
-});
+passwordUnmask();

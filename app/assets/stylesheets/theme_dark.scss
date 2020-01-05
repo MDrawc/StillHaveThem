@@ -1304,3 +1304,12 @@ div.menu-shadow {
 .t-game, .s-table tr {
     box-shadow: -3px 4px 4px -2px rgba(0, 0, 0, 0.26);
 }
+
+// Input autofill
+
+@-webkit-keyframes autofill {
+    to {
+        color: #ccc;
+        background: transparent;
+    }
+}
