@@ -1290,3 +1290,17 @@ g#icon-61-warning {
 .warning-icon, .search-warning-icon {
     background: url("dark_warning.svg");
 }
+
+// Shadows
+
+.g-panel, .g-menu-shadow, .copy-form, .edit-form, .add-form {
+    box-shadow: -3px 4px 5px -2px rgba(0, 0, 0, 0.26);
+}
+
+div.menu-shadow {
+    box-shadow: -6px 4px 4px -2px rgba(0, 0, 0, 0.26);
+}
+
+.t-game, .s-table tr {
+    box-shadow: -3px 4px 4px -2px rgba(0, 0, 0, 0.26);
+}

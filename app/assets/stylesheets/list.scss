@@ -145,7 +145,7 @@ a.t-trigger {
 .t-game {
     margin-bottom: 10px;
     border-radius: 3px 0px 0px 3px;
-    box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.11);
+    box-shadow: -3px 4px 3px -2px rgba(0, 0, 0, 0.13);
     font-size: 14px;
     color: $dark_grey;
     position: relative;
@@ -204,7 +204,7 @@ div.menu-shadow {
     top: 0;
     right: 0;
     z-index: -1;
-    box-shadow: -6px 4px 3px -2px rgba(0, 0, 0, 0.11);
+    box-shadow: -6px 4px 3px -2px rgba(0, 0, 0, 0.13);
     transition: width 0.3s linear, box-shadow 0.3s linear;
 }
 
