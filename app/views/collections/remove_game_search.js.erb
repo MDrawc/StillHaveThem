@@ -1,15 +1,13 @@
-var success = <%= @success %>;
-var remove_underline = <%= @remove_underline %>;
-var msg_pos = 'top-right'
+<% if @success %>
+    var remove_underline = <%= @remove_underline %>;
 
-UIkit.notification({
-    message: $('<div/>').html('<%= @message %>').text(),
-    status: 'warning',
-    pos: msg_pos,
-    timeout: 5000
-});
+    UIkit.notification({
+        message: $('<div/>').html('<%= @message %>').text(),
+        status: 'warning',
+        pos: 'top-right',
+        timeout: 5000
+    });
 
-if (success) {
     var game_id = '<%= @game.igdb_id %>';
     var x_id = '<%= @x_id %>';
     var uniq_results = x_id === game_id;
@@ -61,4 +59,4 @@ if (success) {
             $(this).attr('uk-icon', 'plus');
         });
     }
-}
+<% end %>
