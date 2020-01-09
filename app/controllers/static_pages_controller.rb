@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
   before_action :require_user, only: [:search_page, :search]
+
+  layout  '_landing', :only => [:info, :doc]
+
   LIMIT = 50
   # For duplicates removal:
   @@last_result_ids = []
@@ -24,6 +27,15 @@ class StaticPagesController < ApplicationController
     else
       render :partial => 'not_logged', :layout => 'landing'
     end
+  end
+
+  def info
+    @doc = params[:doc]
+  end
+
+  def doc
+    @doc = params[:doc]
+    respond_to :js
   end
 
   def search_page

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  get 'info', to: 'static_pages#info', as: 'info'
+  get 'doc', to: 'static_pages#doc', as: 'doc'
+
   get 'search', to: 'static_pages#search_page'
   get 'search_games', to: 'static_pages#search'
   get 'signup', to: 'users#new'

@@ -1,0 +1,55 @@
+<div class="lp-top">
+  <span>Still Have Them</span>
+  <p>Do you keep your games?</p>
+</div>
+
+<%= link_to root_url, class: 'uk-icon back' do %>
+  <%= svg('back') %><span>Back</span>
+<% end %>
+
+<ul id="doc-tab" uk-tab>
+  <li><a id="terms" href="#">Terms and Conditions</a></li>
+  <li><a id="privacy" href="#">Privacy Policy</a></li>
+  <li><a id="cookies" href="#">Cookies Policy</a></li>
+  <li><a id="about" href="#">About</a></li>
+</ul>
+
+<div id="doc_place">
+  <%= render partial: @doc %>
+</div>
+
+
+<div id="top_and_back">
+
+<%= link_to root_url, class: 'uk-icon back' do %>
+  <%= svg('back') %><span>Back</span>
+<% end %>
+
+<a id="t-scroll" href="#target" uk-scroll="duration: 600" class="uk-icon">
+<span uk-icon="icon: arrow-up; ratio: 1.2"></span><span>Top</span>
+</a>
+
+</div>
+
+<script>
+  var $tab = $('#doc-tab');
+  var $liments = $tab.find('li')
+  $liments.removeClass('uk-active');
+  $liments.find('#' + '<%= @doc %>').parent().addClass('uk-active');
+
+  $tab.find('a').click(function() {
+          $.ajax({
+              url: '/doc/',
+              data: { doc: $(this).attr('id') }
+          });
+  });
+
+  var $top_and_back = $('#top_and_back');
+  $(window).scroll(function() {
+     if($(window).scrollTop() + $(window).height() == getDocHeight()) {
+        $top_and_back.css('opacity', 1);
+     } else {
+        $top_and_back.css('opacity', 0);
+     }
+  });
+</script>

@@ -96,7 +96,6 @@ $disabled: #b4b4b4;
 }
 
 .shared-logo.with-title {
-
     width: calc(100% - 60px);
 
     div:last-child {
@@ -122,6 +121,7 @@ $disabled: #b4b4b4;
         display: block;
         font-size: 14px;
         max-width: 300px;
+
         &:hover {
             color: #666;
             text-decoration: none;
@@ -1182,7 +1182,7 @@ p.have-account {
 }
 
 .share-input:focus ~ span svg g g {
-        fill: #666;
+    fill: #666;
 }
 
 .margin-bottom-15 {
@@ -1238,7 +1238,7 @@ p.have-account {
 }
 
 .sign-icon svg g g {
-  transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 .warning-icon {
@@ -1253,6 +1253,7 @@ p.have-account {
 
 .search-warning-icon {
     @extend .warning-icon;
+
     position: absolute;
     left: 5px;
     top: 50%;
@@ -1479,11 +1480,119 @@ a.hide-labels {
     width: -moz-fit-content !important;
 }
 
-
 .acf-remove svg path {
     transition: 0.1s ease-in-out;
 }
 
 .acf-remove:hover svg path {
     stroke: #666;
+}
+
+// Terms
+
+.uk-tab > .uk-active > a {
+    border-color: #49ab8a;
+}
+
+.uk-tab > * > a {
+    padding: 5px 0px;
+    border-bottom: 4px solid transparent;
+}
+
+.uk-tab::before {
+    border-color: #afafaf;
+}
+
+.uk-tab {
+    margin-top: 10px;
+}
+
+#doc_place {
+    .main {
+        font-size: 30px;
+
+        span {
+            font-size: 14px;
+            border-radius: 3px;
+            margin-left: 10px;
+            background: #ccc;
+            padding: 3px 8px;
+            position: relative;
+            top: -2px;
+        }
+    }
+
+    p {
+        margin: 15px 0px;
+    }
+
+    h1 {
+        border-bottom: 1px solid #afafaf;
+        color: #666;
+        font-size: 24px;
+        margin-top: 30px;
+    }
+
+    h2 {
+        color: #666;
+        font-size: 20px;
+        padding-left: 6px;
+        border-left: 3px solid #bbb;
+        line-height: 18px;
+        margin-top: 30px;
+    }
+
+    h3 {
+        font-size: 15px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0px 5px #cecece;
+        padding-bottom: 1px;
+        display: inline;
+    }
+}
+
+.back {
+    color: #999;
+    font-size: 15px;
+    font-weight: 300;
+    transition: 0.1s ease-in-out;
+    margin-top: 10px;
+
+    span {
+        padding-left: 3px;
+    }
+
+    svg {
+        width: 20px;
+    }
+
+    &:hover {
+        color: #666;
+        text-decoration: none;
+    }
+}
+
+a#t-scroll {
+    color: #999;
+    margin-left: 10px;
+    font-weight: 300;
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+        color: #666;
+        text-decoration: none;
+    }
+
+    svg {
+        position: relative;
+        top: -2px;
+    }
+}
+
+div#top_and_back {
+    opacity: 0;
+    margin-top: 20px;
+    transition: opacity 0.3s ease-in-out;
 }

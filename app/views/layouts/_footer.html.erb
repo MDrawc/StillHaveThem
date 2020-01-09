@@ -1,6 +1,7 @@
 <footer>
   <ul>
-    <li><%= link_to "TERMS", root_url, class: "about-link" %></li>
-    <li><%= link_to "PRIVACY", root_url, class: "about-link" %></li>
+    <li><%= link_to "?", info_url(doc: 'about'), class: "about-link" %></li>
+    <li><%= link_to "TERMS", info_url(doc: 'terms'), class: "about-link" %></li>
+    <li><%= link_to "PRIVACY", info_url(doc: 'privacy'), class: "about-link" %></li>
   </ul>
 </footer>

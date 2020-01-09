@@ -1,11 +1,26 @@
-#land-pad {
-    margin-top: 50px;
-    padding-bottom: 20px;
+#land-container {
+    min-height: 100vh;
     max-width: 1100px;
+    position: relative;
+}
+
+#land-wrap {
+    padding-top: 50px;
+    padding-bottom: 156px;
+}
+
+footer.lp-footer {
+    position: absolute;
+    bottom: 0;
+    height: 36px;
+    right: unset;
+
+    li:last-child {
+        padding-left: 0px;
+    }
 }
 
 .lp-top {
-
     font-weight: 200;
 
     span {
@@ -22,7 +37,6 @@
         line-height: 17px;
         letter-spacing: 1px;
     }
-
 }
 
 .login-button {
@@ -43,7 +57,6 @@
     color: #666;
     border: thin solid #afafaf;
     border-radius: 5px;
-
     padding: 0px 14px 0px 10px;
 
     &:hover {
@@ -100,12 +113,12 @@
     margin-left: 4px;
 }
 
-.lp-sample rect{
+.lp-sample rect {
     stroke: #777;
     transition: 0.1s ease-in-out;
 }
 
-.lp-sample path{
+.lp-sample path {
     stroke: #777;
     transition: 0.1s ease-in-out;
 }
@@ -158,16 +171,6 @@
     & ~ p {
         margin-top: 0px;
         font-weight: 300;
-    }
-}
-
-footer.lp-footer {
-    position: initial;
-    margin-top: 100px;
-    float: left;
-
-    li:last-child {
-        padding-left: 0px;
     }
 }
 
@@ -229,13 +232,12 @@ footer.lp-footer {
 }
 
 #change-theme-lp.active {
-
     svg {
         transform: rotate(180deg);
     }
 
     span:last-child {
-        display:none;
+        display: none;
     }
 
     &:after {
