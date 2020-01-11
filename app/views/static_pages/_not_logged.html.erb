@@ -40,12 +40,14 @@
   </div>
 </div>
 
+<% dark_suffix = current_theme == 'theme_dark' ? '_dark' : '' %>
+
 <div class="frame" uk-slideshow="ratio: 1180:643; animation: fade">
 
     <ul class="uk-slideshow-items lp-images">
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01#{ dark_suffix }.png" => "1.8x" },
             alt: 'video game collection viewed as game covers') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">The first thing you see upon logging in is YOUR GAMES!</p>
@@ -53,8 +55,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02#{ dark_suffix }.png" => "1.8x" },
             alt: 'video game collection, game info and screenshots') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Review each game's basic info and view screenshots.</p>
@@ -62,8 +64,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03#{ dark_suffix }.png" => "1.8x" },
             alt: 'video game collection viewed as panels, open panel shows game info and screenshots') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Change between three different games views. Find the one that suits you best.</p>
@@ -71,8 +73,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04#{ dark_suffix }.png" => "1.8x" },
             alt: 'video game collection viewed as a list, modal shows game info and screenshots') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Or, switch between them seamlessly whenever you want.</p>
@@ -80,8 +82,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05#{ dark_suffix }.png" => "1.8x" },
             alt: 'search video games form with options and filters') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Search games by title, developer or character. Use basic search filters.</p>
@@ -89,8 +91,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06#{ dark_suffix }.png" => "1.8x" },
             alt: 'search history') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Use search history to go back to previous results.</p>
@@ -98,8 +100,8 @@
         </li>
 
         <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07.png" => "1.8x" },
+            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07#{ dark_suffix }.png",
+            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07#{ dark_suffix }.png" => "1.8x" },
             alt: 'stats and graphs about your video game collection') %>
             <div class="lp-overlay uk-position-bottom-left">
                 <p class="uk-margin-remove">Learn more about your collection by studying stats and graphs.</p>
