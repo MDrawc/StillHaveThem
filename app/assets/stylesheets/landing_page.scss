@@ -20,6 +20,14 @@ footer.lp-footer {
     }
 }
 
+.lp-top-grid {
+    margin-bottom: 20px;
+
+    div.uk-width-auto {
+        margin-top: 14px;
+    }
+}
+
 .lp-top {
     font-weight: 200;
 
@@ -41,14 +49,13 @@ footer.lp-footer {
 
 .login-button {
     letter-spacing: normal;
-    float: right;
     line-height: 31px;
-    margin-top: 14px;
     font-weight: 400;
 
     svg {
         position: relative;
-        top: 2px;
+        top: 1px;
+        vertical-align: text-bottom;
     }
 }
 
@@ -220,7 +227,13 @@ footer.lp-footer {
 }
 
 #change-theme-lp {
-    width: 144px;
+    color: #777;
+    padding: 0px;
+    line-height: 33px;
+
+    span {
+        padding-right: 3px;
+    }
 
     span:last-child {
         padding: 0px;
@@ -242,9 +255,14 @@ footer.lp-footer {
 }
 
 #change-theme-lp span svg {
-    fill: #777;
+    fill: #888;
+    transition: 0.1s ease-in-out;
 }
 
-#change-theme-lp:hover svg {
-    fill: #444;
+#change-theme-lp:hover {
+    color: #555;
+
+    svg {
+        fill: #555;
+    }
 }

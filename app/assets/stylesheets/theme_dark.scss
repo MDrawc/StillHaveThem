@@ -1277,12 +1277,20 @@ a.uk-link-muted {
 
 // New things
 
-#change-theme-lp span svg {
-    fill: #888;
+#change-theme-lp {
+    color: #999;
+
+    span svg {
+        fill: #888;
+    }
 }
 
-#change-theme-lp:hover svg {
-    fill: #ccc;
+#change-theme-lp:hover {
+    color: #bbb;
+
+    svg {
+        fill: #bbb;
+    }
 }
 
 // Warning

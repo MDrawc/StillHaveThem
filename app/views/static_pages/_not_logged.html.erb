@@ -1,10 +1,20 @@
-<div class="lp-top">
-  <span>Still Have Them</span>
-  <p>Do you keep your games?</p>
-  <%= link_to signin_path,  { :remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-button lp-button login-button' }  do %>
-  <span uk-icon="lock"></span>
-  LogIn
-  <% end %>
+<div class="lp-top-grid" uk-grid>
+
+  <div class="lp-top uk-width-expand"><span>Still Have Them</span>
+    <p>Do you keep your games?</p>
+  </div>
+
+  <div class="uk-width-auto">
+    <%= content_tag :a, id: 'change-theme-lp', class: "uk-button #{ current_theme == 'theme_dark' ? 'active' : '' }" do %>
+    <span><%= svg('dark') %></span><span> Dark Theme</span>
+    <% end %>
+  </div>
+
+  <div class="uk-width-auto">
+  <%= link_to signin_path,  { :remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-button lp-button login-button' } do %>
+    <span uk-icon="lock"></span> LOGIN
+    <% end %>
+  </div>
 </div>
 
 <p class="lp-about uk-text-justify"><span>Still Have Them</span> is a <span>free</span> tool to help you keep track of your <span>video game collection</span>. It’s simple design is oriented around your games and your games only. There are <span>no distracions</span> and <span>no ads.</span></p>
@@ -31,12 +41,6 @@
         Watch app overview
         </a>
     </div>
-  </div>
-
-  <div>
-    <%= content_tag :a, id: 'change-theme-lp', class: "uk-button lp-button lp-big #{ current_theme == 'theme_dark' ? 'active' : '' }" do %>
-    <span><%= svg('dark') %></span><span> Dark Theme</span>
-    <% end %>
   </div>
 </div>
 
