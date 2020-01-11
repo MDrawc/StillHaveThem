@@ -103,7 +103,7 @@ function changeMyView(shared) {
         var cookie = 'my_view';
     }
 
-    $changers = $('.change-my-view');
+    var $changers = $('.change-my-view');
 
     $changers.off();
     $changers.click(function() {
@@ -120,7 +120,7 @@ function changeMyView(shared) {
         };
 
         if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-            search = $('#r-q').text().split(',');
+            var search = $('#r-q').text().split(',');
             data['q'] = {
                 name_dev_cont: search[0],
                 plat_eq: search[1],
@@ -128,7 +128,7 @@ function changeMyView(shared) {
                 s: $('#r-s').text()
             };
         } else if ($('#r-q').text().length != 0) {
-            search = $('#r-q').text().split(',');
+            var search = $('#r-q').text().split(',');
             data['q'] = {
                 name_dev_cont: search[0],
                 plat_eq: search[1],
@@ -153,7 +153,7 @@ function changeMyView(shared) {
 }
 
 function changeSearchView() {
-    $changers = $('.change-s-view')
+    var $changers = $('.change-s-view')
     $changers.off();
     $changers.click(function() {
 

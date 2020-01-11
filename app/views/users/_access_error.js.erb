@@ -1,4 +1,4 @@
-$icon = $('#password-icon');
+var $icon = $('#password-icon');
 $icon.hide();
 $icon.after("<%= j(render partial: 'shared/warning', locals: { id: 'warning-icon', error: error, extra: 'set-warning' }) %>");
 resetSetWarningIcon('#enter-password','#password-icon', '#warning-icon');

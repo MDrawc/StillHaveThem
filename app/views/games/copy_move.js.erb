@@ -28,7 +28,7 @@ if (msg) {
         };
 
         if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-            search = $('#r-q').text().split(',');
+            var search = $('#r-q').text().split(',');
             data['q'] = {
                 name_dev_cont: search[0],
                 plat_eq: search[1],
@@ -36,7 +36,7 @@ if (msg) {
                 s: $('#r-s').text()
             };
         } else if ($('#r-q').text().length != 0) {
-            search = $('#r-q').text().split(',');
+            var search = $('#r-q').text().split(',');
             data['q'] = {
                 name_dev_cont: search[0],
                 plat_eq: search[1],

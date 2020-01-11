@@ -4,8 +4,8 @@ function changeTheme(shared) {
     $switch.off();
     $switch.click(function() {
         $(".g-right").removeClass('move');
-        $style_link = $('#theme-control');
-        $favicon_link = $('#favicon-control');
+        var $style_link = $('#theme-control');
+        var $favicon_link = $('#favicon-control');
         if (Cookies.get(cookie) == 'theme_dark') {
             $(this).removeClass('active');
             Cookies.set(cookie, 'theme_default', {
@@ -28,8 +28,8 @@ function changeThemeLp() {
     var $switch = $('#change-theme-lp');
     $switch.off();
     $switch.click(function() {
-        $style_link = $('#theme-control');
-        $favicon_link = $('#favicon-control');
+        var $style_link = $('#theme-control');
+        var $favicon_link = $('#favicon-control');
         if (Cookies.get('theme') == 'theme_dark') {
             $(this).removeClass('active');
             Cookies.set('theme', 'theme_default', {
@@ -38,6 +38,7 @@ function changeThemeLp() {
             Cookies.set('sh_theme', 'theme_default', {
                 expires: 365
             });
+
             $style_link.replaceWith('<%= stylesheet_link_tag "theme_default", id: "theme-control" %>');
             $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon.ico"), id: "favicon-control" %>');
         } else {
@@ -45,13 +46,16 @@ function changeThemeLp() {
             Cookies.set('theme', 'theme_dark', {
                 expires: 365
             });
-
             Cookies.set('sh_theme', 'theme_dark', {
                 expires: 365
             });
-
             $style_link.replaceWith('<%= stylesheet_link_tag "theme_dark", id: "theme-control" %>');
             $favicon_link.replaceWith('<%= favicon_link_tag asset_path("favicon_dark.ico"), id: "favicon-control" %>');
+
+
+
+
+
         }
     });
 }
