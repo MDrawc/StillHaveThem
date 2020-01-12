@@ -103,6 +103,18 @@ footer.lp-footer {
 .lp-images {
     border-top: 1px solid #afafaf;
     border-bottom: 1px solid #afafaf;
+
+    img {
+        position: absolute;
+    }
+}
+
+img.hidden {
+    display: none;
+}
+
+.light-img {
+    z-index: 1;
 }
 
 .fake-buttons {
@@ -225,13 +237,13 @@ footer.lp-footer {
     background: #ececece6;
     border-radius: 0px 5px 5px 0px;
     box-shadow: 1px 2px 4px 0 #0000002b;
+    z-index: 1;
 }
 
 #change-theme-lp {
     color: #777;
     padding: 0px;
     line-height: 33px;
-    width: 144px;
 
     span {
         padding-right: 3px;
@@ -240,6 +252,10 @@ footer.lp-footer {
     span:last-child {
         padding: 0px;
     }
+}
+
+.with-theme {
+    width: 144px;
 }
 
 #change-theme-lp.active {
@@ -258,7 +274,7 @@ footer.lp-footer {
 
 #change-theme-lp span svg {
     fill: #888;
-    transition: 0.1s ease-in-out;
+    transition: fill 0.1s ease-in-out;
 }
 
 #change-theme-lp:hover {
