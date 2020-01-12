@@ -741,6 +741,19 @@ div#search-results.mask2:after {
     background-color: #444;
 }
 
+#message-modal .uk-modal-body {
+    background-color: #444;
+    color: #ccc;
+    p {
+        color: #aaa;
+    }
+}
+
+table.share-toolbar td.btn.disabled {
+    background-color: #444;
+}
+
+
 #coll-modal .header {
     border-color: #aaa;
     color: #ddd;
