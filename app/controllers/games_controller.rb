@@ -157,7 +157,7 @@ class GamesController < ApplicationController
       cord = coll_ids == coll_ids.sort ? :asc : :desc
 
       if coll_ids.uniq.size == 1
-        @collection = @current = current_user.collections.find(coll_ids.first)
+        @collection = @current = current_user.collections.find(coll_ids[0])
         @wi_same_coll = true
       else
         @current, @collection = current_user.collections.where(id: coll_ids).unscope(:order).order(id: cord)

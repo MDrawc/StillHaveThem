@@ -5,14 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
-#My user:
-user = User.new
-user.email = 'pistolisloaded@gmail.com'
-user.password = 'andy21'
-user.save!
-
-user.collections.create(name: 'My Collection', needs_platform: true)
-user.collections.create(name: 'Wishlist')
-user.collections.create(name: 'I\'ve Played This')
