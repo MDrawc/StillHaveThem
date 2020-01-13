@@ -20,7 +20,10 @@ def show_guest
 end
 
 def create
+  cord = current_user.collections.last.cord + 1
   @collection = current_user.collections.build(collection_params)
+  @collection.cord = cord
+
   @errors = nil
 
   if @collection.save

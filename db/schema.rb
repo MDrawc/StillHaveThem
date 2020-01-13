@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_150704) do
     t.datetime "updated_at", null: false
     t.boolean "needs_platform", default: false
     t.integer "cord"
-    t.index ["cord"], name: "index_collections_on_cord", unique: true
+    t.index ["cord"], name: "index_collections_on_cord"
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
