@@ -2,7 +2,7 @@ module CollectionsHelper
 
   def create_initial_collections(user)
     initial_collections = [
-      {name: 'My Collection', needs_platform: true, cord: 1 },
+      {name: 'Main Collection', needs_platform: true, cord: 1 },
       {name: 'Wishlist', cord: 2 }
     ]
 

@@ -40,3 +40,71 @@ function activateChangeGpv() {
         }
     });
 }
+
+function activateChangeOrder() {
+    var $submit = $('#submit-cord');
+    var $ships = $('.cord-ship');
+    var $ups = $('.cord-up');
+    var $downs = $('.cord-down');
+    var max = $ships.length;
+
+    $ups.click(function() {
+        var $coll = $(this).parent();
+        var coll_top = $coll.css('top').slice(0, -2);
+        var sid = Number($coll.attr('data-s'));
+
+        if (sid > 1) {
+            var $prev = $ships.filter('[data-s=' + (sid - 1) + ']');
+
+            $coll.css('top', Number(coll_top) - 40);
+            $prev.css('top', Number(coll_top));
+            $submit.css('top', Number(coll_top));
+
+            $coll.attr('data-s', sid - 1);
+            $prev.attr('data-s', sid);
+            $submit.removeClass('disabled');
+        }
+    });
+
+    $downs.click(function() {
+        var $coll = $(this).parent();
+        var coll_top = $coll.css('top').slice(0, -2);
+        var sid = Number($coll.attr('data-s'));
+
+        if (sid < max) {
+            var $next = $ships.filter('[data-s=' + (sid + 1) + ']');
+
+            $coll.css('top', Number(coll_top) + 40);
+            $next.css('top', Number(coll_top));
+            $submit.css('top', Number(coll_top));
+
+            $coll.attr('data-s', sid + 1);
+            $next.attr('data-s', sid);
+            $submit.removeClass('disabled');
+        }
+    });
+
+    $submit.click(function() {
+
+        var data = {
+            cord: {}
+        };
+
+        $ships.each(function() {
+            data['cord'][$(this).attr('id').slice(4)] = $(this).attr('data-s');
+        });
+
+        $(this).addClass('done').attr('value', 'done');
+
+        $(this).delay(500).queue(function() {
+            $(this).removeClass('done').addClass('disabled').attr('value', 'update');
+            $(this).dequeue();
+        });
+
+        $.ajax({
+            url: '/change_order',
+            method: 'POST',
+            data: data
+        });
+    });
+}

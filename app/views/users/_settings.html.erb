@@ -45,7 +45,7 @@
     </div>
   </div>
 <div class="strike part"><span>Games per page:</span></div>
-<p class="discription">Define how many games you want to see per page. This setting does not apply to shared collections.</p>
+<p class="discription">Choose how many games you want to see per page. This setting does not apply to shared collections.</p>
 <%= form_with(url: change_gpv_url) do %>
 <table class="range-holder">
   <tr>
@@ -69,6 +69,11 @@
   </tr>
 </table>
  <% end %>
+
+<div class="strike part"><span>Collections order:</span></div>
+<p class="discription">Change the order in which collections appear in menu and forms.</p>
+<%= render 'collections/collections_order' %>
+
 <div class="strike part"><span>Export:</span></div>
 <p class="discription">Export your games library to Office Open XML Spreadsheet. There are two ways to export games from StillHaveThem.</p>
 

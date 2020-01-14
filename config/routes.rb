@@ -49,4 +49,6 @@ Rails.application.routes.draw do
 
   get '/export_a', to: 'exports#export_collections', as: 'export_a'
   get '/export_b', to: 'exports#export_platforms', as: 'export_b'
+
+  post '/change_order', to: 'collections#change_order', as: 'change_order'
 end

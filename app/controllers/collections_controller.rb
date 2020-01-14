@@ -20,7 +20,13 @@ def show_guest
 end
 
 def create
-  cord = current_user.collections.last.cord + 1
+
+  if (last_coll = current_user.collections.last)
+    cord = last_coll.cord + 1
+  else
+    cord = 1
+  end
+
   @collection = current_user.collections.build(collection_params)
   @collection.cord = cord
 
@@ -37,6 +43,14 @@ def create
 end
 
 def edit
+  respond_to :js
+end
+
+def change_order
+  cord = params[:cord]
+  current_user.collections.each do |c|
+    c.update(cord: cord[c.id.to_s]) if cord.keys.include?(c.id.to_s)
+  end
   respond_to :js
 end
 

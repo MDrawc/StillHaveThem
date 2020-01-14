@@ -1,0 +1,25 @@
+<% unless (collections = current_user.collections).empty? %>
+
+  <div class="uk-grid-collapse cord-grid" uk-grid>
+    <% space_height = collections.count * 40 - 10 %>
+    <div class="uk-width-auto cord-space" style="height:<%= space_height %>px;">
+      <% names = [] %>
+      <% collections.each_with_index do |c, i| %>
+        <%= content_tag :div, id: "cid-#{ c.id }", class: 'cord-ship',
+        'data-s': i + 1, style: "top:#{ i*40 }px;" do %>
+          <%= content_tag :span, c.name, class: 'uk-text-truncate' %>
+          <%= content_tag :a, '', class: 'cord-btn sh-button cord-up', 'uk-icon': 'chevron-up' %>
+          <%= content_tag :a, '', class: 'cord-btn sh-button cord-down', 'uk-icon': 'chevron-down' %>
+        <% end %>
+        <% names << c.name %>
+      <% end %>
+      <%= content_tag :div, names.max_by { |n| n.size }, class: 'fake-ship' %>
+    </div>
+    <div class='cord-update uk-position-relative'>
+      <%= submit_tag 'Update', id: 'submit-cord', class: 'uk-button sh-button rng-button disabled',
+      style: "top:#{ space_height * 0.5 - 15 }px;" %>
+    </div>
+  </div>
+<% else %>
+  <span class="no-sh">- no collections -</span>
+<% end %>

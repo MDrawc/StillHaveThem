@@ -1,7 +1,7 @@
-<div class="side-menu">
+<div id="side-menu">
   <ul>
     <li id="m-search"><%= link_to '', search_url, remote: true, class: 'm-add', 'uk-icon': 'search' %></li>
-    <% current_user.collections.each do |collection| %>
+    <% current_user.collections.order(cord: :asc).each do |collection| %>
     <li id="mc-<%= collection.id %>">
       <%= link_to collection.name, collection, remote: true , class: 'm-coll' %>
       <span class="opts">

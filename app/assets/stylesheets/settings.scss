@@ -258,3 +258,68 @@ table.set-email-pass {
 .export-btns .lp-button svg {
     margin-top: -2px;
 }
+
+// Collections order
+
+.cord-grid {
+    margin-bottom: 20px;
+}
+
+.cord-space {
+    position: relative;
+    height: 500px;
+    margin-left: 5px;
+}
+
+.cord-ship{
+    position: absolute;
+    top: 0;
+    border-bottom: 1px solid #afafaf;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    height: 30px;
+    font-size: 14px;
+    transition: top 0.2s ease-in-out;
+    text-align: right;
+    width: 100%;
+
+    span {
+        float: left;
+        text-align: left;
+    }
+}
+
+a.cord-btn {
+    border-radius: 3px;
+    transition: 0.1s ease-in-out;
+
+    &.cord-up {
+        margin-right: 3px;
+    }
+}
+
+.cord-update {
+    border-left: 1px solid #afafaf;
+    margin-left: 30px;
+}
+
+#submit-cord {
+    border-left: none;
+    position: absolute;
+    border-radius: 0px 5px 5px 0px;
+    width: 75px;
+    transition: 0.2s ease-in-out;
+
+    &.done {
+        pointer-events: none;
+    }
+}
+
+.fake-ship {
+    font-size: 14px;
+    margin-right: 70px;
+    visibility: hidden;
+}
+
+
+
