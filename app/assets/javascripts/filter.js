@@ -4,8 +4,9 @@ function filter() {
         var status = [];
         status.push($('#q_name_dev_cont').val().length == 0);
 
-        if ($('#q_plat_eq').length) {
-            status.push($('#q_plat_eq').val().length == 0);
+        var $q_plat = $('#q_plat_eq');
+        if ($q_plat.length) {
+            status.push($q_plat.val().length == 0);
         }
 
         if ($('#q_physical_eq').length) {
@@ -17,14 +18,16 @@ function filter() {
             })) {
             $('#search-reset').hide();
         } else {
-            if ($('#search-reset').is(':hidden')) {
-                $('#search-reset').show();
+            var $search_reset = $('#search-reset');
+            if ($search_reset.is(':hidden')) {
+                $search_reset.show();
             }
         }
     }
 
     function refresh() {
-        $.get($("#game_search").attr("action"), $("#game_search").serialize(), null, "script");
+        var $game_search = $("#game_search");
+        $.get($game_search.attr("action"), $game_search.serialize(), null, "script");
         return false;
     }
 
@@ -32,19 +35,22 @@ function filter() {
         showHideClose();
         refresh();
     });
+
     $('#q_plat_eq').on('input', function() {
         showHideClose();
         refresh();
     });
+
     $("#game_search input[type='radio']").on('input', function() {
         showHideClose();
         refresh();
     });
+
     $('#search-reset').click(function() {
         $("#q_name_dev_cont").val("");
         $('#q_plat_eq').prop('selectedIndex', 0)
         $("#q_physical_eq").prop('checked', true);
         $('.select-input ~ span').text('All Platforms');
-        $('#search-reset').hide();
+        $(this).hide();
     });
 }

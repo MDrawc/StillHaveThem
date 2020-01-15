@@ -79,7 +79,6 @@ end
 def remove_game
   @game = @collection.games.find_by_id(params[:game_id])
   @view = params[:view]
-  @success = false
 
   if @game
     @collection.games.delete(@game)
@@ -88,11 +87,11 @@ def remove_game
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
     @message += "from " + coll_link(@collection)
-    @success = true
+    respond_to :js
   else
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
   end
-  respond_to :js
+
 end
 
 def remove_game_search
@@ -152,7 +151,7 @@ private
   def show_or_search(shared, per_page)
     @q = @collection.games.ransack(params[:q])
     cookie = shared ? 'shared_view' : 'my_view'
-    @view = params[:view] || cookies[cookie] || 'covers'
+    @view = params[:gsview] || cookies[cookie] || 'covers'
 
     @games = @q.result
       .group('games.id, collection_games.created_at')
@@ -167,11 +166,12 @@ private
         format.js { render partial: "show", locals: { shared: shared } }
       end
     else
-      @in_search = true
+      # debugger
       q = params[:q]
       query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
       query.map! { |a| a ||= '' }
       sort = q[:s]
+      @in_search = (q.keys != ['s'] && q.values.join != 'on')
       respond_to do |format|
         format.js { render partial: "search",
           locals: { query: query, sort: sort, shared: shared }

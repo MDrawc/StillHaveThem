@@ -8,7 +8,7 @@ cleanOffcanvas();
 
 $(".my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection, shared: shared }) %>');
 
-$('.game_search #view').attr('value', view);
+$('#gsview').attr('value', view);
 $('#r-q').text(<%= raw query %>);
 $('#r-s').text('<%= sort %>');
 

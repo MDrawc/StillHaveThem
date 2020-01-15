@@ -1,72 +1,65 @@
-var msg_pos = 'top-right'
-var success = <%= @success %>;
-
 UIkit.notification({
     message: $('<div/>').html('<%= @message %>').text(),
     status: 'warning',
-    pos: msg_pos,
+    pos: 'top-right',
     timeout: 5000
 });
 
-if (success) {
+var data = {
+    type: 'refresh',
+    view: '<%= @view %>'
+};
 
-    var data = {
-        type: 'refresh',
-        view: '<%= @view %>'
+var $rq = $('#r-q');
+var rs = $rq.next().text();
+var rq = $rq.text();
+if ( rq != ',,on' && rq != ',,') {
+    var search = rq.split(',');
+    data['q'] = {
+        name_dev_cont: search[0],
+        plat_eq: search[1],
+        physical_eq: search[2],
     };
-
-    if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-        var search = $('#r-q').text().split(',');
-        data['q'] = {
-            name_dev_cont: search[0],
-            plat_eq: search[1],
-            physical_eq: search[2],
-            s: $('#r-s').text()
-        };
-    } else if ($('#r-q').text().length != 0) {
-        var search = $('#r-q').text().split(',');
-        data['q'] = {
-            name_dev_cont: search[0],
-            plat_eq: search[1],
-            physical_eq: search[2]
-        };
-    } else if ($('#r-s').text().length != 0) {
-        data['q'] = {
-            s: $('#r-s').text()
-        };
-    }
-
-    if ($('.pr em.current').length != 0) {
-        var current_page = $('.pr em.current').text();
-
-        switch(view) {
-            case 'covers':
-                var selector = '.game-space';
-                break;
-            case 'panels':
-                var selector = '.g-panel';
-                break;
-            case 'list':
-                var selector = '.t-game';
-                break;
-        }
-        var num_of_games = $(selector).length;
-        if (num_of_games == 1) {
-            current_page -= 1;
-        }
-
-        data['page'] = current_page;
-    }
-
-    var scroll = $(document).scrollTop().valueOf();
-
-    $.ajax({
-        url: '/collections/<%= @collection.id %>',
-        data: data,
-
-        complete: function(data) {
-            $(document).scrollTop(scroll);
-        }
-
-    });
 }
+
+if (rs.length != 0) {
+    data['q'] = {
+        s: rs
+    };
+}
+
+var $pagi = $('.pr em.current');
+
+if ($pagi.length != 0) {
+    var current_page = $pagi.text();
+
+    switch(view) {
+        case 'covers':
+            var selector = '.game-space';
+            break;
+        case 'panels':
+            var selector = '.g-panel';
+            break;
+        case 'list':
+            var selector = '.t-game';
+            break;
+    }
+    var num_of_games = $(selector).length;
+    if (num_of_games == 1) {
+        current_page -= 1;
+    }
+
+    data['page'] = current_page;
+}
+
+var scroll = $(document).scrollTop().valueOf();
+
+$.ajax({
+    url: '/collections/<%= @collection.id %>',
+    data: data,
+
+    complete: function(data) {
+        $(document).scrollTop(scroll);
+    }
+
+});

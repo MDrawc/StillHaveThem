@@ -8,7 +8,7 @@
 <span class="s-icon" uk-icon="icon: search"></span>
 <%= f.search_field(:name_dev_cont, placeholder: "Title or Developer", class: 'uk-input search-input', autofocus: "true", autocomplete: "off", disabled: empty) %>
 <% end %>
-<%= hidden_field_tag 'view', view %>
+<%= hidden_field_tag 'gsview', view %>
 <% if needs_platform %>
 <div class="srch-div first"></div>
 <div uk-form-custom="target: true">
