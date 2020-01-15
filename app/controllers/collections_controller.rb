@@ -166,12 +166,11 @@ private
         format.js { render partial: "show", locals: { shared: shared } }
       end
     else
-      # debugger
       q = params[:q]
       query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
       query.map! { |a| a ||= '' }
       sort = q[:s]
-      @in_search = (q.keys != ['s'] && q.values.join != 'on')
+      @in_search = !(q.keys == ['s'] || q.values.join == 'on')
       respond_to do |format|
         format.js { render partial: "search",
           locals: { query: query, sort: sort, shared: shared }

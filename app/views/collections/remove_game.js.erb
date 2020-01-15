@@ -23,9 +23,13 @@ if ( rq != ',,on' && rq != ',,') {
 }
 
 if (rs.length != 0) {
-    data['q'] = {
-        s: rs
-    };
+    if (data['q']) {
+        data['q']['s'] = rs;
+    } else {
+        data['q'] = {
+            s: rs
+        };
+    }
 }
 
 var $pagi = $('.pr em.current');
