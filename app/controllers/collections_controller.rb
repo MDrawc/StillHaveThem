@@ -90,13 +90,14 @@ def remove_game
     respond_to :js
   else
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
+    respond_to do |format|
+        format.js { render partial: "problem_msg.js" }
+    end
   end
-
 end
 
 def remove_game_search
   @x_id = params[:x_id]
-  @success = false
 
   if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
@@ -105,13 +106,15 @@ def remove_game_search
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
     @message += "from " + coll_link(@collection)
-    @success = true
 
     @remove_underline = !owned?(@game.igdb_id)
+    respond_to :js
   else
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
+    respond_to do |format|
+        format.js { render partial: "problem_msg.js" }
+    end
   end
-  respond_to :js
 end
 
 private

@@ -1,51 +1,37 @@
-<% if @success %>
-    var remove_underline = <%= @remove_underline %>;
+UIkit.notification({
+    message: $('<div/>').html('<%= @message %>').text(),
+    status: 'warning',
+    pos: 'top-right',
+    timeout: 5000
+});
 
-    UIkit.notification({
-        message: $('<div/>').html('<%= @message %>').text(),
-        status: 'warning',
-        pos: 'top-right',
-        timeout: 5000
-    });
+var remove_underline = <%= @remove_underline %>;
+var game_id = '<%= @game.igdb_id %>';
+var x_id = '<%= @x_id %>';
+var uniq_results = x_id === game_id;
+var view = $('#view-container').attr('view');
 
-    var game_id = '<%= @game.igdb_id %>';
-    var x_id = '<%= @x_id %>';
-    var uniq_results = x_id === game_id;
-    var new_already = "<%= j(render partial: 'search/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id, x_id: @x_id }) %>";
+if (view == 'list') {
+    var $form = $("#t-ops");
+} else {
+    var $form = $("#add-form-" + x_id);
+}
 
-    var view = $('#view-container').attr('view');
+$form.find(".already-in").html("<%= j(render partial: 'search/already_in', locals: { game_name: @game.name, igdb_id: @game.igdb_id, x_id: @x_id }) %>");
+$form.find(".add-form-errors").html('');
 
-    var already, errors_place;
+if (remove_underline) {
 
-    switch (view) {
-        case 'covers':
-            already = "#add-form-" + x_id + " .already-in";
-            errors_place = '#add-form-' + x_id + ' .add-form-errors';
-            break;
-        case 'panels':
-            already = "#add-form-" + x_id + " .already-in";
-            errors_place = '#add-form-' + x_id + ' .add-form-errors';
-            break;
-        default:
-            already = "#t-ops .already-in";
-            errors_place = '#t-ops .add-form-errors';
-    }
+    if (view === 'covers') {
 
-    $(already).html(new_already);
-    $(errors_place).html('');
-
-    if (remove_underline) {
-
-        if (view === 'covers') {
-
-            if (uniq_results) {
-                var name_el = $('#gs-' + game_id).find('.game-name span');
-            } else {
-                var name_el = $('[id^=gs-' + game_id + '-]').find('.game-name span');
-            }
-
-            name_el.removeClass('owned');
+        if (uniq_results) {
+            var name_el = $('#gs-' + game_id).find('.game-name span');
+        } else {
+            var name_el = $('[id^=gs-' + game_id + '-]').find('.game-name span');
         }
+
+        name_el.removeClass('owned');
+    } else {
 
         if (uniq_results) {
             var add_links = $('#add-' + game_id)
@@ -58,5 +44,6 @@
             $(this).attr('href', href.replace('true', 'false'));
             $(this).attr('uk-icon', 'plus');
         });
+
     }
-<% end %>
+}

@@ -1,4 +1,4 @@
-var active_el_id = $('li.active').attr('id');
+var active_el_id = $('#side-menu').find("li.active").attr('id');
 UIkit.modal($('#coll-modal')).hide();
 $("#side-menu").replaceWith("<%= j(render partial: 'layouts/menu') %>");
 $('#' + active_el_id).addClass('active');

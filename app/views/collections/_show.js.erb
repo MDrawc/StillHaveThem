@@ -1,4 +1,4 @@
-$("li.active").removeClass('active');
+$('#side-menu').find("li.active").removeClass('active');
 $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
 var refresh = <%= @refresh %>;
