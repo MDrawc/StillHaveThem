@@ -8,7 +8,7 @@
 </div>
 <% if !@games.empty? %>
 <div class="uk-grid-collapse" uk-grid>
-    <div class="uk-width-5-6 page-info-front page-links pr">
+    <div id="pr" class="uk-width-5-6 page-info-front page-links">
         <%= js_will_paginate @games, container: false %>
     </div>
     <% @games.select('games.*, collection_games.created_at').each do |game| %>

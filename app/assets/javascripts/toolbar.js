@@ -140,8 +140,10 @@ function changeMyView(shared) {
             };
         }
 
-        if ($('.pr em.current').length != 0) {
-            var current_page = $('.pr em.current').text();
+        var $pagi = $('#pr').find('em.current');
+
+        if ($pagi.length != 0) {
+            var current_page = $pagi.text();
             data['page'] = current_page;
         }
 

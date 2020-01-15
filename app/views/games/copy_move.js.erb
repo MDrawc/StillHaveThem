@@ -48,8 +48,10 @@ if (msg) {
             };
         }
 
-        if ($('.pr em.current').length != 0) {
-            var current_page = $('.pr em.current').text();
+        var $pagi = $('#pr').find('em.current');
+
+        if ($pagi.length != 0) {
+            var current_page = $pagi.text();
 
             if (!copy) {
 
@@ -97,15 +99,13 @@ if (msg) {
     }
 
 <% else %>
-
     if (view === 'list') {
-        var errors = $("#t-ops .add-form-errors");
+        var errors = $("#t-ops").find(".add-form-errors");
         form_type = 'list';
     } else {
-        var errors = $("#copy-form-" + game_id + " .add-form-errors");
+        var errors = $("#copy-form-" + game_id).find(".add-form-errors");
         form_type = 'copy';
     }
-
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
 <% end %>

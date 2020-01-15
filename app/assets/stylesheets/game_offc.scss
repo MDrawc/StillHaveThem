@@ -121,7 +121,7 @@ a.ex-link.google:hover {
 }
 
 // Flip Game Info Button- - - - - - - - - - - - - - - - - - - - - - - - - - - //
-.flip {
+#flip {
     background: none;
     padding: 0px;
     border: none;
@@ -143,7 +143,7 @@ a.ex-link.google:hover {
     }
 }
 
-.flip-right {
+#flip.flip-right {
     transform: rotate(180deg);
 }
 
