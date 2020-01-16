@@ -1,7 +1,7 @@
 $("#big-c").html("<%= j(render partial: 'search_page') %>");
-$("li.active").removeClass('active');
+$('#side-menu').find("li.active").removeClass('active');
 $("#m-search").addClass('active');
-$('input#search-igdb-bar').focus();
+$('#search-igdb-bar').focus();
 changeSearchBar();
 activateSearchWait();
 clearNoResults();

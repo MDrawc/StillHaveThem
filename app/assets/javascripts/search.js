@@ -1,11 +1,10 @@
 function changeSearchBar() {
-
     var bar = $('#search-igdb-bar');
 
     $("[id^=search_query_type]").on('input', function() {
         var selectedVal = "";
         var selected = $("input[type='radio']:checked");
-        if (selected.length > 0) {
+        if (selected.length) {
             selectedVal = selected.val();
         }
 
@@ -83,7 +82,6 @@ function switchSearchBarTabs() {
         $history.hide();
         $filters.show();
     });
-
 }
 
 function checkAllNone(form_id, button_id) {
@@ -111,7 +109,6 @@ function activateSearchRecords() {
 
         var form = document.getElementById('search-form');
         form.reset();
-
 
         if (custom === 'true') {
 

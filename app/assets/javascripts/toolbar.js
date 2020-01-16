@@ -87,10 +87,8 @@ function closeAllPanels() {
     var $switch = $('#close-panels');
     $switch.off();
     $switch.click(function() {
-        var $arrows = $('.g-hide');
-        var $drops = $('.g-drop');
-        $arrows.hide();
-        $drops.slideUp('fast');
+        $('.g-hide').hide();
+        $('.g-drop').slideUp('fast');
     });
 }
 
@@ -177,7 +175,7 @@ function changeSearchView() {
 
         var last_form = $('#last-form');
 
-        if (last_form.length > 0) {
+        if (last_form.length) {
 
             last_form = last_form.text().split(',');
 

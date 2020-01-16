@@ -1,7 +1,9 @@
 var view = '<%= view %>';
 
-$("#show-more").html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
-$("#show-more").attr('id', 'showed_more');
+var $show_more = $('#show-more');
+
+$show_more.html("<%= j(render :partial => 'results', :locals => { view: view }) %>");
+$show_more.attr('id', 'showed_more');
 
 switch (view) {
     case 'list_view':
