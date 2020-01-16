@@ -1,14 +1,13 @@
 function changeSearchBar() {
-    var bar = $('#search-igdb-bar');
+    var $bar = $('#search-igdb-bar');
+    var $infc = $('#infc');
+    var $srch_type =  $('#srch-type');
 
-    var $search_part = $('#bar-search');
-    $search_part.find('.uk-radio').on('input', function() {
-        var selectedVal = "";
-        var selected = $("input[type='radio']:checked", $search_part);
-        selectedVal = selected.val();
+    $('#bar-search').find('.uk-radio').on('input', function() {
+        var val = $(this).val();
 
         var ph_ending;
-        switch (selectedVal) {
+        switch (val) {
         case 'char':
             ph_ending = 'characters...';
             break;
@@ -18,8 +17,18 @@ function changeSearchBar() {
         default:
             ph_ending = 'games...';
         }
+        $srch_type.text('(' + val + ')');
+        $bar.attr('placeholder', 'Search video game ' + ph_ending)
+    });
 
-        bar.attr('placeholder', 'Search video game ' + ph_ending)
+    $bar.on('input', function() {
+        if ($(this).val()) {
+            $infc.hide();
+            $srch_type.show();
+        } else {
+            $srch_type.hide();
+            $infc.show();
+        }
     });
 }
 
@@ -103,9 +112,10 @@ function checkAllNone(form_id, button_id) {
 }
 
 function activateSearchRecords() {
+    var $infc = $('#infc');
+    var $srch_type =  $('#srch-type');
 
     $('.record').click(function() {
-
         searchWait();
         var input = $(this).attr('i');
         var endpoint = $(this).attr('e');
@@ -133,7 +143,10 @@ function activateSearchRecords() {
         $('#search-igdb-bar').val(input);
         $('#search_query_type_' + endpoint).prop('checked', true)
 
+        $srch_type.text('(' + endpoint + ')');
+        $infc.hide();
+        $srch_type.show();
+
         Rails.fire(form, 'submit');
     });
-
 }
