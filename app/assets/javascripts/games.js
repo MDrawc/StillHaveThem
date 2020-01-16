@@ -55,7 +55,7 @@ function moreInfo() {
 }
 
 function disableSortLinks() {
-    $('a.sort_link').addClass('not-active');
+    $('.sort_link').addClass('not-active');
 }
 
 function listLight(game_id, el_id) {
@@ -110,7 +110,6 @@ function presentShadow() {
 
 function removeCoverSpinner() {
     UIkit.util.on(document, 'load', '.game-cover', function(e) {
-
         if (!e.target.currentSrc.startsWith('data:')) {
             $(e.target).parent().find(".spinner").remove();
         }

@@ -1,21 +1,25 @@
 function changeSearchBar() {
     var bar = $('#search-igdb-bar');
 
-    $("[id^=search_query_type]").on('input', function() {
+    var $search_part = $('#bar-search');
+    $search_part.find('.uk-radio').on('input', function() {
         var selectedVal = "";
-        var selected = $("input[type='radio']:checked");
-        if (selected.length) {
-            selectedVal = selected.val();
+        var selected = $("input[type='radio']:checked", $search_part);
+        selectedVal = selected.val();
+
+        var ph_ending;
+        switch (selectedVal) {
+        case 'char':
+            ph_ending = 'characters...';
+            break;
+        case 'dev':
+            ph_ending = 'developers...';
+            break;
+        default:
+            ph_ending = 'games...';
         }
 
-        if (selectedVal === 'char') {
-            bar.attr('placeholder', 'Search video game characters...')
-        } else if (selectedVal === 'dev') {
-            bar.attr('placeholder', 'Search video game developers...')
-        } else if (selectedVal === 'game') {
-            bar.attr('placeholder', 'Search video games...')
-        }
-
+        bar.attr('placeholder', 'Search video game ' + ph_ending)
     });
 }
 

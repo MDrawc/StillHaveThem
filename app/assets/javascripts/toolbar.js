@@ -18,17 +18,21 @@ function modifyToolbar(view) {
 }
 
 function activateSearchToolbar(view, type) {
-    $('#toolbar').removeClass('waiting');
-    $('.change-s-view').removeClass('active');
+
+    var $toolbar = $('#toolbar');
+    $toolbar.removeClass('waiting');
+
+    $('.change-s-view', $toolbar).removeClass('active');
     $('#' + view).addClass('active');
-    if (view == 'panel_view') {
+    if (view === 'panel_view') {
         $('#close-panels').parent().show();
     } else {
         $('#close-panels').parent().hide();
     }
 
+    var $addl = $('#addl-hide');
+
     if (type != 'game') {
-        var $addl = $('#addl-hide');
         $addl.parent().show();
         $addl.off();
 
@@ -46,7 +50,6 @@ function activateSearchToolbar(view, type) {
             }
         });
     } else {
-        var $addl = $('#addl-hide');
         $addl.off();
         $addl.parent().hide();
     }
@@ -210,9 +213,9 @@ function changeSearchView() {
 
 function showHideToolbar(shared) {
     var cookie = shared ? 'sh_tb_open' : 'tb_open';
-    var $on = $('#tool-show');
-    var $off = $('#tool-hide');
     var $toolbar = $('#toolbar');
+    var $on = $('#tool-show', $toolbar);
+    var $off = $('#tool-hide', $toolbar);
 
     $on.click(function() {
         $on.hide();
@@ -225,7 +228,6 @@ function showHideToolbar(shared) {
         $toolbar.removeClass('open');
         Cookies.set(cookie, '')
     });
-
 }
 
 function toggleEditMenu() {
@@ -234,9 +236,9 @@ function toggleEditMenu() {
 
     show.click(function() {
         if ((menu = $(".g-menu")).length) {
-            var added = $(".g-right");
+            var added = menu.next();
             added.addClass('move');
-            var menu_shadow = $(".g-menu-shadow");
+            var menu_shadow = menu.find(".g-menu-shadow");
             if (menu.hasClass("out")) {
                 menu.removeClass('out');
                 added.removeClass('out');
@@ -251,8 +253,8 @@ function toggleEditMenu() {
                 Cookies.set("edit_open", "true");
             }
         } else if ((menu = $(".t-menu")).length) {
-            var added = $(".t-added");
-            var menu_shadow = $(".menu-shadow");
+            var added = menu.prev();
+            var menu_shadow = menu.find(".menu-shadow");
             if (menu.hasClass("out")) {
                 menu.removeClass('out');
                 added.removeClass('out');
@@ -268,7 +270,7 @@ function toggleEditMenu() {
             }
         } else {
             menu = $(".c-menu");
-            var shr = $('.shr');
+            var shr = menu.prev();
 
             if (menu.hasClass('hidden')) {
 
@@ -284,7 +286,7 @@ function toggleEditMenu() {
 
                 menu.addClass('hidden');
 
-                var ucs = $('.uc-s');
+                var ucs = menu.next();
                 if (ucs.hasClass('hidden')) {
                     shr.addClass('hidden');
                 }

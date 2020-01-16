@@ -1,23 +1,22 @@
-function changeLogo() {
+function transformTitle(input) {
+    var words = input.toLocaleLowerCase().split(' ');
+    var result = '';
 
+    words.forEach(function(element) {
+        if (element != '') {
+            result += element.charAt(0).toUpperCase() + element.slice(1);
+            result += ' '
+        }
+    });
+
+    return result.trimEnd();
+}
+
+function changeLogo() {
     $('#logo').click(function() {
         var $el = $(this);
         var $input = $('<input type="text">').val($el.text());
         $el.html($input);
-
-        function transformTitle(input) {
-            var words = input.toLocaleLowerCase().split(' ');
-            var result = '';
-
-            words.forEach(function(element) {
-                if (element != '') {
-                    result += element.charAt(0).toUpperCase() + element.slice(1);
-                    result += ' '
-                }
-            });
-
-            return result.trimEnd();
-        }
 
         var save = function() {
 

@@ -12,7 +12,7 @@ function resetShForm(form_id) {
 }
 
 function copyShareLinks() {
-    $('a.cp-share-link').click(function() {
+    $('.cp-share-link').click(function() {
         var $link = $('#' + $(this).attr('target'));
         $link.prop('disabled', false);
         $link.select();
