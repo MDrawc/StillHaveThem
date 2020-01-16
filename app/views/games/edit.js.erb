@@ -1,6 +1,5 @@
 var game_id = '<%= @game_id %>';
 var view = '<%= @view %>';
-
 var msg = '<%= @message %>';
 var reopen = false;
 var form_type;
@@ -23,30 +22,31 @@ if (msg) {
 
     var data = { type: 'refresh', view: view };
 
-    if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-        var search = $('#r-q').text().split(',');
+    var $rq = $('#r-q');
+    var rs = $rq.next().text();
+    var rq = $rq.text();
+    if ( rq != ',,on' && rq != ',,') {
+        var search = rq.split(',');
         data['q'] = {
             name_dev_cont: search[0],
             plat_eq: search[1],
             physical_eq: search[2],
-            s: $('#r-s').text()
         };
-    } else if ($('#r-q').text().length != 0) {
-        var search = $('#r-q').text().split(',');
-        data['q'] = {
-            name_dev_cont: search[0],
-            plat_eq: search[1],
-            physical_eq: search[2]
-        };
-    } else if ($('#r-s').text().length != 0) {
-        data['q'] = {
-            s: $('#r-s').text()
-        };
+    }
+
+    if (rs.length) {
+        if (data['q']) {
+            data['q']['s'] = rs;
+        } else {
+            data['q'] = {
+                s: rs
+            };
+        }
     }
 
     var $pagi = $('#pr').find('em.current');
 
-    if ($pagi.length != 0) {
+    if ($pagi.length) {
         var current_page = $pagi.text();
         data['page'] = current_page;
     }
@@ -71,15 +71,15 @@ if (msg) {
 
 <% else %>
 
-     if (view === 'list') {
-        var errors = $("#t-ops .add-form-errors");
+    if (view === 'list') {
+        var $errors = $("#t-ops").find(".add-form-errors");
         form_type = 'list';
     } else {
-        var errors = $("#edit-form-" + game_id + " .add-form-errors");
+        var $errors = $("#edit-form-" + game_id).find(".add-form-errors");
         form_type = 'edit';
     }
 
-    errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
+    $errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(form_type, game_id);
 
 <% end %>

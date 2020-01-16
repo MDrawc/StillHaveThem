@@ -5,7 +5,6 @@ function set_offc() {
 }
 
 function flip_offc() {
-
     var $body = $(document.body);
     var $flip = $('#flip');
 

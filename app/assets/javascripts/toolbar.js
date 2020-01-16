@@ -119,30 +119,31 @@ function changeMyView(shared) {
             view: view
         };
 
-        if ($('#r-q').text().length != 0 && $('#r-s').text().length != 0) {
-            var search = $('#r-q').text().split(',');
+        var $rq = $('#r-q');
+        var rs = $rq.next().text();
+        var rq = $rq.text();
+        if ( rq != ',,on' && rq != ',,') {
+            var search = rq.split(',');
             data['q'] = {
                 name_dev_cont: search[0],
                 plat_eq: search[1],
                 physical_eq: search[2],
-                s: $('#r-s').text()
             };
-        } else if ($('#r-q').text().length != 0) {
-            var search = $('#r-q').text().split(',');
-            data['q'] = {
-                name_dev_cont: search[0],
-                plat_eq: search[1],
-                physical_eq: search[2]
-            };
-        } else if ($('#r-s').text().length != 0) {
-            data['q'] = {
-                s: $('#r-s').text()
-            };
+        }
+
+        if (rs.length) {
+            if (data['q']) {
+                data['q']['s'] = rs;
+            } else {
+                data['q'] = {
+                    s: rs
+                };
+            }
         }
 
         var $pagi = $('#pr').find('em.current');
 
-        if ($pagi.length != 0) {
+        if ($pagi.length) {
             var current_page = $pagi.text();
             data['page'] = current_page;
         }
@@ -234,7 +235,7 @@ function toggleEditMenu() {
     var menu;
 
     show.click(function() {
-        if ((menu = $(".g-menu")).length != 0) {
+        if ((menu = $(".g-menu")).length) {
             var added = $(".g-right");
             added.addClass('move');
             var menu_shadow = $(".g-menu-shadow");
@@ -251,7 +252,7 @@ function toggleEditMenu() {
                 show.addClass('active');
                 Cookies.set("edit_open", "true");
             }
-        } else if ((menu = $(".t-menu")).length != 0) {
+        } else if ((menu = $(".t-menu")).length) {
             var added = $(".t-added");
             var menu_shadow = $(".menu-shadow");
             if (menu.hasClass("out")) {

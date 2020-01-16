@@ -76,7 +76,7 @@ function fitNameInNoCover() {
 }
 
 function listHover() {
-    if ($('.list-grid').length != 0) {
+    if ($('.list-grid').length) {
         $('.t-game').hover(function() {
             $(this).addClass('hover-fill');
         }, function() {
@@ -122,9 +122,10 @@ function updatePlatformsFilter(platform) {
     var $options = $form_select.children();
 
     var values = [];
-    for (var i = 0; i < $options.length; i++) {
-        values.push($options.eq(i).val());
-    }
+    $options.each(function() {
+        values.push($(this).val());
+    });
+
     if (!values.includes(platform)) {
         var option = '<option value="' + platform + '">' + platform + '</option>';
         $form_select.append(option);

@@ -1,3 +1,3 @@
 listLight('<%= @hg_id %>', 't-game-show');
-$("#t-game-show .modal-content").html("<%= j(render partial: 'shared/list_show', locals: { game: @game }) %>");
+$("#t-game-show").find(".modal-content").html("<%= j(render partial: 'shared/list_show', locals: { game: @game }) %>");
 presentShadow();

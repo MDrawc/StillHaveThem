@@ -1,5 +1,5 @@
 var $open_edit_forms = $('.sh_edit_form');
-if ($open_edit_forms.length != 0) {
+if ($open_edit_forms.length) {
   var old_share_id = $open_edit_forms.attr('share_id');
   $open_edit_forms.remove();
   $old_share = $('#share-' + old_share_id);

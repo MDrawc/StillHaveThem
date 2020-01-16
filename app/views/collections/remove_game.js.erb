@@ -22,7 +22,7 @@ if ( rq != ',,on' && rq != ',,') {
     };
 }
 
-if (rs.length != 0) {
+if (rs.length) {
     if (data['q']) {
         data['q']['s'] = rs;
     } else {
@@ -34,7 +34,7 @@ if (rs.length != 0) {
 
 var $pagi = $('#pr').find('em.current');
 
-if ($pagi.length != 0) {
+if ($pagi.length) {
     var current_page = $pagi.text();
 
     switch(view) {

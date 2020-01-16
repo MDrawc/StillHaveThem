@@ -13,7 +13,7 @@ switch (view) {
         form = 'add';
         break;
     default:
-        $("#t-ops .modal-content").html(form_partial);
+        $("#t-ops").find(".modal-content").html(form_partial);
         form = 'list';
         listLight('<%= @data[:igdb_id]%>', 't-ops');
 }
