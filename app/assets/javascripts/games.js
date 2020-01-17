@@ -131,6 +131,32 @@ function updatePlatformsFilter(platform) {
     }
 }
 
+function addRqRsToData(data) {
+    var $rq = $('#r-q');
+    var rs = $rq.next().text();
+    var rq = $rq.text();
+    if (rq != ',,on' && rq != ',,') {
+        var search = rq.split(',');
+        data['q'] = {
+            name_dev_cont: search[0],
+            plat_eq: search[1],
+            physical_eq: search[2],
+        };
+    }
+
+    if (rs.length) {
+        if (data['q']) {
+            data['q']['s'] = rs;
+        } else {
+            data['q'] = {
+                s: rs
+            };
+        }
+    }
+
+    return data
+}
+
 $(function() {
     removeCoverSpinner();
 });

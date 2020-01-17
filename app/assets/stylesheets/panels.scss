@@ -377,7 +377,7 @@ hr.md {
     padding-bottom: 13px;
 }
 
-.cf-add-button, .cf-cm-button {
+.cf-add-button, #cf-cm-button {
     background: none;
     font-size: 14px;
     color: #9a9a9a;
@@ -390,21 +390,21 @@ hr.md {
     transition: 0.1s ease-in-out;
 }
 
-.wf .cf-add-button, .wf .cf-cm-button {
+.wf .cf-add-button, .wf #cf-cm-button {
     color: #a0a0a0;
     border: 2px solid #bababa;
 }
 
-.cf-add-button:hover, .cf-cm-button:hover {
+.cf-add-button:hover, #cf-cm-button:hover {
     color: #666;
     border-color: #888;
 }
 
-.cf-add-button:focus, .cf-cm-button:focus {
+.cf-add-button:focus, #cf-cm-button:focus {
     outline: none;
 }
 
-.cf-cm-button {
+#cf-cm-button {
     width: 55px;
 }
 

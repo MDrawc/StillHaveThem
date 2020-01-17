@@ -76,16 +76,15 @@ function changeButton(form_type, id) {
     } else {
         var $form = $('#' + form_type + '-form-' + id);
     }
-    var $element = $form.find(".action input[type='radio']");
-    var $button = $form.find(".cf-cm-button");
-    $element.on('input', function() {
-        var selected = $element.filter(":checked");
-        if (selected.length) {
-            $form.find('.c-m').removeClass('chosen')
-            selected.parent().addClass('chosen');
-        }
-        b_name = selected.val() === 'true' ? 'Copy' : 'Move';
-        $button.text(b_name);
+
+    var $button = $form.find("#cf-cm-button");
+    var $radios = $form.find(".action input[type='radio']");
+
+    $radios.on('input', function() {
+        $form.find('.c-m').removeClass('chosen')
+        var $selected = $radios.filter(":checked");
+        $selected.parent().addClass('chosen');
+        $button.text($selected.val() === 'true' ? 'Copy' : 'Move');
     });
 }
 

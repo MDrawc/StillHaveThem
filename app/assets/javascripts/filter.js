@@ -7,14 +7,11 @@ function filter() {
         var $q_plat = $('#q_plat_eq');
         if ($q_plat.length) {
             status.push($q_plat.val().length == 0);
-        }
-
-        if ($('#q_physical_eq').length) {
-            status.push($("#game_search input[type='radio']:checked").val() == 'on');
+            status.push($("#game_search").find("input[type='radio']:checked").val() == 'on');
         }
 
         if (status.every(function(e) {
-                return (e == true)
+                return (e === true)
             })) {
             $('#search-reset').hide();
         } else {
@@ -41,7 +38,7 @@ function filter() {
         refresh();
     });
 
-    $("#game_search input[type='radio']").on('input', function() {
+    $("#game_search").find("input[type='radio']").on('input', function() {
         showHideClose();
         refresh();
     });
@@ -50,7 +47,7 @@ function filter() {
         $("#q_name_dev_cont").val("");
         $('#q_plat_eq').prop('selectedIndex', 0)
         $("#q_physical_eq").prop('checked', true);
-        $('.select-input ~ span').text('All Platforms');
+        $('.select-input').next().empty();
         $(this).hide();
     });
 }

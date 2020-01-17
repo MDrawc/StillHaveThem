@@ -1102,7 +1102,7 @@ hr.md, .wf hr.md {
     border-color: #777;
 }
 
-.wf .cf-add-button, .wf .cf-cm-button, .cf-add-button, .cf-cm-button {
+.wf .cf-add-button, .wf #cf-cm-button, .cf-add-button, #cf-cm-button {
     color: #888;
     border-color: #777;
 
@@ -1394,4 +1394,11 @@ div.menu-shadow {
 
 .cord-ship, .cord-update {
     border-color: #999;
+}
+
+// Search Type Warning
+span#srch-type {
+    color: #999999;
+    background: #3e3e3e;
+    border-color: #898989;
 }

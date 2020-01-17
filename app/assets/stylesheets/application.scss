@@ -667,7 +667,7 @@ li.active:hover .opts {
 
 .search-bar {
     padding-left: 40px;
-    padding-right: 60px;
+    padding-right: 40px;
     border-radius: 5px;
     height: 40px;
     width: 400px;
@@ -1601,11 +1601,15 @@ div#top_and_back {
 span#srch-type {
     display: none;
     position: absolute;
-    font-size: 14px;
-    right: 10px;
-    top: 8px;
+    font-size: 13px;
+    right: 40px;
+    top: 10px;
+    border-radius: 3px;
+    border: thin solid #a5a5a5;
+    padding: 0px 4px;
     font-style: italic;
     color: #888888;
     font-weight: 300;
     pointer-events: none;
+    background: #d4d4d4;
 }
