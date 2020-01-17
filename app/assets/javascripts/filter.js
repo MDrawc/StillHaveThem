@@ -1,4 +1,4 @@
-function filter() {
+function filterGames() {
 
     function showHideClose() {
         var status = [];
