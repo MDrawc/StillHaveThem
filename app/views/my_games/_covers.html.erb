@@ -75,12 +75,12 @@
   <%= content_tag :hr, nil, class: "shr #{ extra }" %>
   <%= content_tag :div, nil, class: "c-menu hidden"%>
   <% end %>
-  <%= content_tag :div , class: "uc-s #{ ucs_class }" do %>
-  <% if needs_platform %>
-  <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
-  <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
-  <% end %>
-  <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
+  <%= content_tag :div , class: "uc-s #{ ucs_class } #{ 'h57' if needs_platform }" do %>
+    <% if needs_platform %>
+      <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
+      <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
+    <% end %>
+    <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
   <% end %>
   <% end %>
   <% unless shared %>

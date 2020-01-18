@@ -61,22 +61,17 @@ function underCover(shared) {
     uc.off();
     uc.click(function() {
         var shr = $('.shr');
-        var ucs = $('.uc-s');
+        var menu = shr.next();
+        var ucs = menu.next();
         if (ucs.hasClass('hidden')) {
-
             if (shr.hasClass('hidden')) {
                 shr.removeClass('hidden');
             }
-
-            $('.uc-s').removeClass('hidden');
+            ucs.removeClass('hidden');
             uc.addClass('active');
             Cookies.set(cookie, 'false');
-
         } else {
-
             ucs.addClass('hidden');
-
-            var menu = $('.c-menu');
             if (menu.hasClass('hidden')) {
                 shr.addClass('hidden');
             }
@@ -198,7 +193,7 @@ function showHideToolbar(shared) {
     var $off = $('#tool-hide', $toolbar);
 
     $on.click(function() {
-        $on.hide();
+        $(this).hide();
         $toolbar.addClass('open');
         Cookies.set(cookie, 'open')
     });

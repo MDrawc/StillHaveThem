@@ -28,10 +28,14 @@
 }
 
 .uc-s {
-    height: 57px;
+    height: 21px;
     transition: height 0.3s;
     overflow-y: hidden;
     font-weight: 300;
+
+    &.h57 {
+        height: 57px;
+    }
 
     &.hidden {
         height: 0;
@@ -41,11 +45,14 @@
 .shr {
     border-top: thin solid #bababa;
     width: 150px;
-    margin: 0 auto 5px;
-    transition: width 0.3s;
+    margin: 5px auto;
+    transition-delay: 0s, 0.2s;
+    transition-duration: 0.3s, 0.2s;
+    transition-property: width, margin;
 
     &.hidden {
         width: 0px;
+        margin: 0px auto;
     }
 }
 
@@ -237,11 +244,11 @@
 }
 
 .game-space {
-    padding-bottom: 30px !important;
+    padding-bottom: 25px !important;
 }
 
 .game-release-date {
-    margin: 0px 0px 5px;
+    margin: 0px;
     font-size: 14px;
     font-weight: 300;
     font-style: italic;
