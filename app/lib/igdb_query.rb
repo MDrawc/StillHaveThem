@@ -372,7 +372,7 @@ class IgdbQuery
         c[:summary] = g['summary']
         c[:status] = g['status']
         c[:category] = g['category']
-        if g['cover']
+        if g['cover'].class == Hash
           c[:cover] = g['cover']['image_id']
           c[:cover_height] = g['cover']['height']
           c[:cover_width]= g['cover']['width']
