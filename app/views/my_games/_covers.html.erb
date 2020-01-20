@@ -94,15 +94,20 @@
   <% end %>
   <% end %>
   <% end %>
+
+
+
   <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
     <%= js_will_paginate @games, container: false %>
   </div>
 </div>
+
 <div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
   <div class="uk-offcanvas-bar">
     <span class="loading">Loading</span>
   </div>
 </div>
+
 <% else %>
 <%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

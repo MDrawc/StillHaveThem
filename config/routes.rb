@@ -51,4 +51,8 @@ Rails.application.routes.draw do
   get '/export_b', to: 'exports#export_platforms', as: 'export_b'
 
   post '/change_order', to: 'collections#change_order', as: 'change_order'
+
+  #delete!
+
+  get '/test', to: 'static_pages#test', as: 'test'
 end
