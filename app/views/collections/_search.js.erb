@@ -17,10 +17,12 @@ switch (view) {
         listHover();
         break;
     case 'covers':
+        activateDropdowns();
         underCover(<%= shared %>);
         fitNameInNoCover();
         break;
     case 'panels':
+        activateDropdowns();
         closeAllPanels();
         openPanels(ids);
         moreInfo();
@@ -28,5 +30,3 @@ switch (view) {
 }
 
 modifyToolbar(view);
-
-$('#q_name_dev_cont').focus();

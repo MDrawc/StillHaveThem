@@ -26,7 +26,8 @@
         <% end %>
         <%= content_tag :div, id: "gr-#{ x_id }", class: 'g-right-add' do %>
            <% add = @owned.include?(igdb_id) ? ['check','Add more'] : ['plus', 'Add'] %>
-           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }", remote: true, 'uk-icon': add.first %>
+           <%= link_to '', new_game_url(x_id: x_id, owned: add.first == 'check'), id: "add-#{ x_id }",
+           class: "my_dd", 'data-mother' => "#gr-#{ x_id }", remote: true, 'uk-icon': add.first %>
         <% end %>
         </div>
         <%= content_tag :div, id: "g-drop-#{ x_id }", class: 'g-drop s-mod' do %>
@@ -64,8 +65,8 @@
         <% end %>
         <%= content_tag :button, '', id: "g-hide-#{ x_id }", class: 'g-hide uk-icon-link', 'uk-icon': 'chevron-up' %>
     <% end %>
-    <%= content_tag(:div, id: "add-form-#{ x_id }", class: 'add-form', 'uk-dropdown': "toggle: #add-#{ x_id }; mode: click; boundary: #gr-#{ x_id }; boundary-align: true;  delay-hide: 100;  pos: right-top") do %>
-        <span class="loading">Loading</span>
-    <% end %>
 <% end %>
 </div>
+<%= content_tag(:div, id: "f-lone", class: 'add-form wf', 'uk-dropdown': "toggle: #z; mode: click; boundary-align: true;  delay-hide: 100;  pos: right-top") do %>
+  <span class="loading">Loading</span>
+<% end %>

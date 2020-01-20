@@ -20,9 +20,11 @@ cleanOffcanvas();
             break;
         case 'cover_view':
             fitNameInNoCover();
+            activateDropdowns();
             morePlatforms();
             break;
         case 'panel_view':
+            activateDropdowns();
             moreInfo();
             closeAllPanels();
             $('.g-drop').slideUp(0);

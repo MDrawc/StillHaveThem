@@ -57,16 +57,20 @@
   <ul class="uk-iconnav">
     <li>
       <% if needs_platform %>
-      <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-edit-#{ id }", remote: true, 'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
+      <%= link_to('', edit_form_url(game_id: id, collection_id: collection.id,
+       view: @view), class: 'my_dd', remote: true, 'data-mother' => "#gs-#{ id }",
+        'uk-icon': 'pencil', 'uk-tooltip' => "title: Edit; pos: top-center") %>
       <% else %>
       <%= content_tag(:a, '', class: 'uk-icon-link cf-disabled', 'uk-icon': 'pencil') %>
       <% end %>
     </li>
     <li>
-      <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view), id: "g-copy-#{ id }", remote: true, 'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
+      <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id,
+       view: @view), class: 'my_dd', remote: true, 'data-mother' => "#gs-#{ id }",
+        'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
     </li>
     <li>
-      <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), id: "g-delete-#{ id }", method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
+      <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
     </li>
   </ul>
   <% end %>
@@ -76,38 +80,29 @@
   <%= content_tag :div, nil, class: "c-menu hidden"%>
   <% end %>
   <%= content_tag :div , class: "uc-s #{ ucs_class } #{ 'h57' if needs_platform }" do %>
-    <% if needs_platform %>
-      <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
-      <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
-    <% end %>
-    <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
-  <% end %>
-  <% end %>
-  <% unless shared %>
-  <%= content_tag :div, id: "copy-form-#{ id }", class: 'copy-form wf', 'uk-dropdown': "toggle: #g-copy-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top" do %>
-  <span class="loading">Loading</span>
-  <% end %>
   <% if needs_platform %>
-  <%= content_tag :div, id: "edit-form-#{ id }", class: 'edit-form wf', 'uk-dropdown': "toggle: #g-edit-#{ id }; mode: click; delay-hide: 100; boundary: #gs-#{ id }; boundary-align: true; pos: right-top"  do %>
-  <span class="loading">Loading</span>
+  <%= content_tag(:p, game.platform_name, class: 'game-platform') %>
+  <%= content_tag(:p, "(#{ game.physical ? 'Physical' : 'Digital' })", class: 'game-platform') %>
+  <% end %>
+  <%= content_tag(:p, game.created_at.to_date ,class: 'g-added italic') %>
   <% end %>
   <% end %>
   <% end %>
-  <% end %>
-
-
-
   <div class="uk-width-1-1 page-links cover-mod cover-mod-bottom">
     <%= js_will_paginate @games, container: false %>
   </div>
 </div>
-
 <div id="i-lone" uk-offcanvas="mode: none; bg-close: true">
   <div class="uk-offcanvas-bar">
     <span class="loading">Loading</span>
   </div>
 </div>
-
+<% unless shared %>
+<%= content_tag :div, id: 'f-lone', class: 'copy-form wf',
+'uk-dropdown': "toggle: #z; mode: click; delay-hide: 100; boundary-align: true; pos: right-top" do %>
+<span class="loading">Loading</span>
+<% end %>
+<% end %>
 <% else %>
 <%= render partial: 'my_games/no_games', locals: { my_search: @in_search } %>
 <% end %>

@@ -1080,7 +1080,7 @@ a.hide-labels {
 
 // Add forms
 
-.copy-form, .edit-form, .add-form {
+.copy-form, .add-form {
     background-color: #444;
     color: #bbb;
 }
@@ -1149,7 +1149,7 @@ hr.md, .wf hr.md {
     color: #bbb;
 }
 
-.copy-form.wf, .add-form.wf, .edit-form.wf {
+.copy-form.wf, .add-form.wf {
     background-color: #111111f0;
 }
 
@@ -1318,7 +1318,7 @@ g#icon-61-warning {
 
 // Shadows
 
-.g-panel, .g-menu-shadow, .copy-form, .edit-form, .add-form {
+.g-panel, .g-menu-shadow, .copy-form, .add-form {
     box-shadow: -3px 4px 5px -2px rgba(0, 0, 0, 0.26);
 }
 

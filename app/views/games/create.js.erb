@@ -19,20 +19,16 @@ if (msg) {
     Cookies.set('last_coll', '<%= @collection.id %>')
     switch (view) {
         case 'covers':
-            var drop_element = "#add-form-" + x_id;
-            UIkit.dropdown(drop_element).hide();
-
+            UIkit.dropdown('#f-lone').hide();
             if (uniq_results) {
                 var name_el = $('#gs-' + game_id).find('.game-name span');
             } else {
                 var name_el = $('[id^=gs-' + game_id + '-]').find('.game-name span');
             }
-
             name_el.addClass('owned');
             break;
         case 'panels':
-            var drop_element = "#add-form-" + x_id;
-            UIkit.dropdown(drop_element).hide();
+            UIkit.dropdown('#f-lone').hide();
             break;
         default:
             UIkit.modal("#t-ops").hide();
@@ -55,10 +51,10 @@ if (msg) {
     switch (view) {
         case 'list':
             $("#t-ops").find(".add-form-errors").html(errors);
-            resetFormErrors('list', x_id)
+            resetFormErrors(true, x_id)
             break;
         default:
-            $("#add-form-" + x_id).find(".add-form-errors").html(errors);
-            resetFormErrors('add', x_id)
+            $("#f-lone").find(".add-form-errors").html(errors);
+            resetFormErrors(false, x_id)
     }
 <% end %>

@@ -1,10 +1,9 @@
 <% if @view == 'list' %>
   $("#t-ops").find(".modal-content").html("<%= j(render partial: 'my_games/edit_form', locals: { game: @game, collection: @collection, view: @view }) %>");
-  var form = 'list'
+  var is_list = true;
   listLight('<%= @game.id %>', 't-ops');
 <% else %>
-  $("#edit-form-<%= @game.id %>").html("<%= j(render partial: 'my_games/edit_form', locals: { game: @game, collection: @collection, view: @view }) %>");
-  var form = 'edit'
+  $("#f-lone").html("<%= j(render partial: 'my_games/edit_form', locals: { game: @game, collection: @collection, view: @view }) %>");
+  var is_list = false;
 <% end %>
-
-preselectPlatform(form, <%= @game.id %>, <%= @game.platform %>);
+preselectPlatform(is_list, <%= @game.platform %>);

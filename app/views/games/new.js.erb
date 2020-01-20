@@ -1,22 +1,19 @@
 var form_partial = "<%= j(render partial: 'search/add_form', locals: { data: @data, owned: @owned, x_id: @x_id }) %>";
 var view = $('#view-container').attr('view');
-var form;
-
 switch (view) {
     case 'covers':
         paintItBlack('<%= @x_id %>');
-        $("#add-form-<%= @x_id %>").html(form_partial);
-        form = 'add';
+        $("#f-lone").html(form_partial);
+        var is_list = false;
         break;
     case 'panels':
-        $("#add-form-<%= @x_id %>").html(form_partial);
-        form = 'add';
+        $("#f-lone").html(form_partial);
+        var is_list = false;
         break;
     default:
         $("#t-ops").find(".modal-content").html(form_partial);
-        form = 'list';
+        var is_list = true;
         listLight('<%= @data[:igdb_id]%>', 't-ops');
 }
-
-selectLastColl(form, '<%= @x_id %>');
-activateForm(form, '<%= @x_id %>');
+selectLastColl(is_list, '<%= @x_id %>');
+activateForm(is_list, '<%= @x_id %>', true);

@@ -1,8 +1,6 @@
 var game_id = '<%= @game_id %>'
 var view = '<%= @view %>';
 var msg = '<%= @message %>';
-var form_type;
-
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
@@ -10,14 +8,13 @@ if (msg) {
         timeout: 5000
     });
 }
-
 <% if @errors.empty? %>
 
     var wi_same_coll = <%= @wi_same_coll %>;
     var copy = <%= @copy %>;
 
     if (view != 'list') {
-        UIkit.dropdown("#copy-form-" + game_id).hide();
+        UIkit.dropdown("#f-lone").hide();
     }
 
     if (wi_same_coll || !copy) {
@@ -82,11 +79,11 @@ if (msg) {
 <% else %>
     if (view === 'list') {
         var errors = $("#t-ops").find(".add-form-errors");
-        form_type = 'list';
+        is_list = true;
     } else {
-        var errors = $("#copy-form-" + game_id).find(".add-form-errors");
-        form_type = 'copy';
+        var errors = $("#f-lone").find(".add-form-errors");
+        is_list = false;
     }
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors(form_type, game_id);
+    resetFormErrors(is_list, game_id);
 <% end %>

@@ -17,6 +17,7 @@ switch (view) {
         listHover();
         break;
     case 'covers':
+        activateDropdowns();
         underCover(<%= shared %>);
         fitNameInNoCover();
         break;
@@ -24,6 +25,7 @@ switch (view) {
         if (refresh) {
             openPanels(ids);
         }
+        activateDropdowns();
         closeAllPanels()
         moreInfo();
         break;

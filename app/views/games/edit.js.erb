@@ -2,8 +2,6 @@ var game_id = '<%= @game_id %>';
 var view = '<%= @view %>';
 var msg = '<%= @message %>';
 var reopen = false;
-var form_type;
-
 if (msg) {
     UIkit.notification({
         message: $('<div/>').html(msg).text(),
@@ -11,28 +9,19 @@ if (msg) {
         timeout: 5000
     });
 }
-
 <% if @errors.empty? %>
-
     var new_game_id = '<%= @new_game_id %>';
-
     if (view === 'panels') {
         reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
     }
-
     var data = { type: 'refresh', view: view };
-
     data = addRqRsToData(data);
-
     var $pagi = $('#pr').find('em.current');
-
     if ($pagi.length) {
         var current_page = $pagi.text();
         data['page'] = current_page;
     }
-
     var scroll = $(document).scrollTop().valueOf();
-
     var new_platform = '<%= @new_platform %>';
     updatePlatformsFilter(new_platform);
 
@@ -50,16 +39,13 @@ if (msg) {
     });
 
 <% else %>
-
     if (view === 'list') {
         var $errors = $("#t-ops").find(".add-form-errors");
-        form_type = 'list';
+        var is_list = true;
     } else {
-        var $errors = $("#edit-form-" + game_id).find(".add-form-errors");
-        form_type = 'edit';
+        var $errors = $("#f-lone").find(".add-form-errors");
+        var is_list = false;
     }
-
     $errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors(form_type, game_id);
-
+    resetFormErrors(is_list, game_id);
 <% end %>

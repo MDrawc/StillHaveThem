@@ -1,10 +1,20 @@
-function resetFormErrors(form_type, id) {
+function activateDropdowns() {
+    var $buttons = $('.my_dd');
+    var $drop = $('#f-lone');
+
+    $buttons.click(function() {
+      var mother = $(this).attr('data-mother');
+      UIkit.dropdown($drop, { boundary: mother}).show();
+    });
+}
+
+function resetFormErrors(is_list, id) {
     var reset_elements = ['#collection', '#game_platform', '#game_physical_true', '#game_physical_false','#copy_true', '#copy_false'];
 
-    if (form_type === 'list') {
+    if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {
-        var $form = $('#' + form_type + '-form-' + id);
+        var $form = $('#f-lone');
     }
 
     var $errors = $form.find('.add-form-errors');
@@ -59,22 +69,22 @@ function resetCollErrors() {
     });
 }
 
-function preselectPlatform(form_type, id, platform) {
-    if (form_type === 'list') {
+function preselectPlatform(is_list, platform) {
+    if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {
-        var $form = $('#' + form_type + '-form-' + id);
+        var $form = $('#f-lone');
     }
     var $element = $form.find('#game_platform').find("option[value^='" + platform + ",']");
     $element.attr("selected", "selected");
     $form.find('.cf-platform-icon').attr('class', 'cf-platform-green');
 }
 
-function changeButton(form_type, id) {
-    if (form_type === 'list') {
+function changeButton(is_list, id) {
+    if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {
-        var $form = $('#' + form_type + '-form-' + id);
+        var $form = $('#f-lone');
     }
 
     var $button = $form.find("#cf-cm-button");
@@ -88,25 +98,25 @@ function changeButton(form_type, id) {
     });
 }
 
-function selectLastColl(form_type, id) {
+function selectLastColl(is_list, id) {
     var coll_id = Cookies.get('last_coll');
 
     if (coll_id) {
-        if (form_type === 'list') {
+        if (is_list) {
             var $form = $('#t-ops').find('.modal-content');
         } else {
-            var $form = $('#' + form_type + '-form-' + id);
+            var $form = $('#f-lone');
         }
         var $el = $form.find('#collection').find("option[value^='" + coll_id + ",']");
         $el.attr("selected", "selected");
     }
 }
 
-function activateForm(form_type, id) {
-    if (form_type === 'list') {
+function activateForm(is_list, id, is_add = false) {
+    if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {
-        var $form = $('#' + form_type + '-form-' + id);
+        var $form = $('#f-lone');
     }
 
     var select_element = $form.find('#collection');
@@ -115,7 +125,7 @@ function activateForm(form_type, id) {
     var needs_platform = $form.find('#game_needs_platform');
 
     // Check auto-chosen collection in add-form:
-    if (form_type === 'add') {
+    if (is_add) {
         var value = select_element.val();
         var cv = value.length ? (value.split(",")[1] == 'true') : 'select';
         if (cv === false) {
@@ -146,10 +156,10 @@ function activateForm(form_type, id) {
 }
 
 function updatePlatformIcon(form_type, id) {
-    if (form_type === 'list') {
+    if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {
-        var $form = $('#' + form_type + '-form-' + id);
+        var $form = $('#f-lone');
     }
 
     var select_element = $form.find('#game_platform');
@@ -173,7 +183,7 @@ function paintItBlack(id) {
     $add_form_link.addClass('disabled');
     $game_name.addClass('focused');
 
-    UIkit.util.once('#add-form-' + id, 'hide', function() {
+    UIkit.util.once('#f-lone', 'hide', function() {
         $add_form_link.removeClass('disabled');
         $game_name.removeClass('focused');
     });
