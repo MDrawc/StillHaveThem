@@ -1,0 +1,32 @@
+    <div class="g-extra">
+        <% if screens = game[:screenshots] %>
+        <% urls = screens_urls(screens) %>
+        <div class="uk-position-relative pd-slide" uk-slideshow="animation: fade" uk-lightbox="toggle: .full-scrn; animation: fade">
+            <div class="g-spin"><%= svg 'loading' %></div>
+            <ul class="uk-slideshow-items pd-slide-items">
+                <% urls.each do |url| %>
+                <li>
+                    <%= image_tag('', 'data-src' => url[:small], alt: '', 'uk-cover': '', 'uk-img': '') %>
+                    <%= content_tag(:a, '', href: url[:big], class: 'full-scrn') %>
+                    <div class="shadow"></div>
+                </li>
+                <% end %>
+            </ul>
+            <a class="pd-arr left" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            <a class="pd-arr right" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        </div>
+        <% end %>
+        <% if summary = get_summary(game, 280, 50) %>
+        <p class="g-summary"><%= summary[:start] %><% if summary[:end] %><span class="dots" id="dots-<%= g_id %>"><%= summary[:span] %><button class="uk-icon-link uk-icon ms-b-down" onclick="shortSummary(<%= g_id %>)" uk-icon="icon: triangle-down"></button></span> <span id="more-<%= g_id %>" class="more"><%= summary[:end] %><button class="uk-icon-link uk-icon ms-b-up" onclick="shortSummary(<%= g_id %>)" uk-icon="icon: triangle-up"></button></span>
+    </p>
+    <% end %>
+    <% end %>
+    <% if platforms = game[:platforms_names] %>
+    <p class="g-platforms">Platforms: <%= platforms.join(', ') %></p>
+    <% end %>
+    <div class="g-links">
+        <%= link_to '',"http://www.google.com/search?q=%22#{ game.name.gsub(' ', '+') }%22+video+game" , class: "ex-link g-google uk-icon-button uk-margin-small-right", target: "_blank", "uk-icon" => "google" %>
+        <%= link_to svg('metacritic_icon'),"https://www.metacritic.com/search/game/#{ game.name.gsub(' ', '%20') }/results" , class: "ex-link g-metacritic uk-icon-button uk-margin-small-right", target: "_blank" %>
+    </div>
+</div>
+<button id="g-hide-<%= g_id %>" class="g-hide uk-icon-link" uk-icon="chevron-up"></button>

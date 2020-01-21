@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :require_user, except: [:cover_show, :list_show]
+  before_action :require_user, except: [:cover_show, :list_show, :panel_show]
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
   before_action :find_collection_for_create, only: [:create]
   SR_HEX = 2
@@ -74,6 +74,12 @@ class GamesController < ApplicationController
 
   def cover_show
     @game = Agame.find_by(igdb_id: params[:igdb_id])
+    respond_to :js
+  end
+
+  def panel_show
+    @game = Agame.find_by(igdb_id: params[:igdb_id])
+    @g_id = params[:g_id]
     respond_to :js
   end
 

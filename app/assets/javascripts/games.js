@@ -25,32 +25,31 @@ function morePlatforms() {
     });
 }
 
+function activateHidee(hidee, drop) {
+    hidee.click(function() {
+        if (drop.is(':visible')) {
+            hidee.hide();
+            drop.slideUp('fast');
+        }
+    });
+}
+
 function moreInfo() {
-    $('.g-click').each(function() {
+    $('.g-click').click(function() {
         var id = $(this).attr('gameid');
-        var hidee = $('#g-hide-' + id);
+        var igdb_id = $(this).attr('igdb_id');
         var drop = $('#g-drop-' + id);
-
-        $(this).off();
-        hidee.off();
-
-        $(this).click(function() {
-            if (drop.is(':hidden')) {
-                hidee.show();
-                drop.slideDown('fast');
-            } else {
-                hidee.hide();
-                drop.slideUp('fast');
-            }
-        });
-
-
-        hidee.click(function() {
-            if (drop.is(':visible')) {
-                hidee.hide();
-                drop.slideUp('fast');
-            }
-        });
+        if (drop.hasClass('empty')) {
+            $.ajax({
+                url: '/ps/' + igdb_id + '/' + id
+            });
+        } else if (drop.is(':hidden')) {
+            drop.slideDown('fast');
+            $('#g-hide-' + id).show();
+        } else {
+            $('#g-hide-' + id).hide();
+            drop.slideUp('fast');
+        }
     });
 }
 
