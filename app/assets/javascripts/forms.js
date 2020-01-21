@@ -8,7 +8,7 @@ function activateDropdowns() {
     });
 }
 
-function resetFormErrors(is_list, id) {
+function resetFormErrors(is_list) {
     var reset_elements = ['#collection', '#game_platform', '#game_physical_true', '#game_physical_false','#copy_true', '#copy_false'];
 
     if (is_list) {
@@ -98,7 +98,7 @@ function changeButton(is_list, id) {
     });
 }
 
-function selectLastColl(is_list, id) {
+function selectLastColl(is_list) {
     var coll_id = Cookies.get('last_coll');
 
     if (coll_id) {
@@ -112,7 +112,7 @@ function selectLastColl(is_list, id) {
     }
 }
 
-function activateForm(is_list, id, is_add = false) {
+function activateForm(is_list, is_add = false) {
     if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
     } else {

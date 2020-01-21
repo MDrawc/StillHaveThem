@@ -27,7 +27,6 @@ class GamesController < ApplicationController
     @game_igdb_id = game_params[:igdb_id]
 
     if @collection.needs_platform
-
       platform, platform_name = game_params[:platform].split(',')
       physical = game_params[:physical]
 
@@ -42,7 +41,6 @@ class GamesController < ApplicationController
       else
         create_from_agame(agame_id, true, platform, platform_name, physical)
       end
-
     else
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
@@ -55,7 +53,6 @@ class GamesController < ApplicationController
         create_from_agame(agame_id)
       end
     end
-
     respond_to :js
   end
 
@@ -143,7 +140,7 @@ class GamesController < ApplicationController
 
   def copy_move
     @errors = []
-    @game_id = params[:game_id]
+    game_id = params[:game_id]
     @view = params[:view]
     @copy = eval(params[:copy])
     p_verb = @copy ? 'copied' : 'moved'
@@ -178,7 +175,7 @@ class GamesController < ApplicationController
 
           message(game, needs_plat, p_verb)
           unless @copy
-            @current.games.delete(@game_id)
+            @current.games.delete(game_id)
           end
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
@@ -202,7 +199,7 @@ class GamesController < ApplicationController
           save_platform(platform, platform_name) if needs_plat
 
           unless @copy
-            @current.games.delete(@game_id)
+            @current.games.delete(game_id)
           end
 
         else

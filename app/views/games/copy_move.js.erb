@@ -1,4 +1,3 @@
-var game_id = '<%= @game_id %>'
 var view = '<%= @view %>';
 var msg = '<%= @message %>';
 if (msg) {
@@ -85,5 +84,5 @@ if (msg) {
         is_list = false;
     }
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors(is_list, game_id);
+    resetFormErrors(is_list);
 <% end %>

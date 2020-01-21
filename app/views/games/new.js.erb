@@ -15,5 +15,5 @@ switch (view) {
         var is_list = true;
         listLight('<%= @data[:igdb_id]%>', 't-ops');
 }
-selectLastColl(is_list, '<%= @x_id %>');
-activateForm(is_list, '<%= @x_id %>', true);
+selectLastColl(is_list);
+activateForm(is_list, true);

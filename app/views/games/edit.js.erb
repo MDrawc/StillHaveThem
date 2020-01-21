@@ -1,18 +1,14 @@
-var game_id = '<%= @game_id %>';
 var view = '<%= @view %>';
-var msg = '<%= @message %>';
-var reopen = false;
-if (msg) {
+<% if @errors.empty? %>
     UIkit.notification({
-        message: $('<div/>').html(msg).text(),
+        message: $('<div/>').html('<%= @message %>').text(),
         pos: 'top-right',
         timeout: 5000
     });
-}
-<% if @errors.empty? %>
+    var reopen = false;
     var new_game_id = '<%= @new_game_id %>';
     if (view === 'panels') {
-        reopen = $('#g-drop-' + game_id).attr('style') == 'display: block;';
+        reopen = $('#g-drop-' + '<%= @game_id %>').attr('style') == 'display: block;';
     }
     var data = { type: 'refresh', view: view };
     data = addRqRsToData(data);
@@ -47,5 +43,5 @@ if (msg) {
         var is_list = false;
     }
     $errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
-    resetFormErrors(is_list, game_id);
+    resetFormErrors(is_list);
 <% end %>

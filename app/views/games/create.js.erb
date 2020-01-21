@@ -1,20 +1,14 @@
-var x_id = '<%= @x_id %>';
-var msg = '<%= @message %>';
 var view = $('#view-container').attr('view');
 
-if (msg) {
-    UIkit.notification({
-        message: $('<div/>').html(msg).text(),
-        pos: 'top-right',
-        timeout: 5000
-    });
-}
-
 <% if @errors.empty? %>
+    UIkit.notification({
+            message: $('<div/>').html('<%= @message %>').text(),
+            pos: 'top-right',
+            timeout: 5000
+    });
 
     var game_id = '<%= @game_igdb_id %>';
-
-    var uniq_results = x_id === game_id;
+    var uniq_results = '<%= @x_id %>' === game_id;
 
     Cookies.set('last_coll', '<%= @collection.id %>')
     switch (view) {
@@ -45,16 +39,15 @@ if (msg) {
         $(this).attr('href', href.replace('false', 'true'));
         $(this).attr('uk-icon', 'check');
     });
-
 <% else %>
     var errors = "<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>";
     switch (view) {
         case 'list':
             $("#t-ops").find(".add-form-errors").html(errors);
-            resetFormErrors(true, x_id)
+            resetFormErrors(true)
             break;
         default:
             $("#f-lone").find(".add-form-errors").html(errors);
-            resetFormErrors(false, x_id)
+            resetFormErrors(false)
     }
 <% end %>

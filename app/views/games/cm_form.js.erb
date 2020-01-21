@@ -10,5 +10,5 @@ if (<%= @collection.needs_platform %>) {
     preselectPlatform(is_list, <%= @game.platform %>);
 }
 changeButton(is_list, <%= @game.id %>);
-activateForm(is_list, <%= @game.id %>);
+activateForm(is_list);
 updatePlatformIcon(is_list, <%= @game.id %>);
