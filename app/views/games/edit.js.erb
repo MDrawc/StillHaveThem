@@ -7,9 +7,13 @@ var view = '<%= @view %>';
     });
     var data = { view: view };
 
-    var game_id = '<%= @game_id %>';
-    if (view === 'panels' && $('#g-drop-' + game_id).is(':visible')) {
-        data['reopen'] = ['<%= @new_game_id %>'];
+    if (view === 'panels') {
+        data['reopen'] = findOpenPanels();
+        var game_id = '<%= @game_id %>';
+        if ($('#g-drop-' + game_id).is(':visible')) {
+            data['reopen'].splice(data['reopen'].indexOf(game_id), 1);
+            data['reopen'].push('<%= @new_game_id %>');
+        }
     }
 
     data = addRqRsToData(data);

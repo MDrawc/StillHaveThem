@@ -19,11 +19,13 @@ if (msg) {
     if (wi_same_coll || !copy) {
 
         var data = { view: view };
-
         data = addRqRsToData(data);
 
-        var $pagi = $('#pr').find('em.current');
+        if (view === 'panels') {
+            data['reopen'] = findOpenPanels();
+        }
 
+        var $pagi = $('#pr').find('em.current');
         if ($pagi.length) {
             var current_page = $pagi.text();
 

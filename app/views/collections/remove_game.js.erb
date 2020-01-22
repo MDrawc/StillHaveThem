@@ -6,11 +6,13 @@ UIkit.notification({
 });
 
 var data = { view: '<%= @view %>' };
-
 data = addRqRsToData(data);
 
-var $pagi = $('#pr').find('em.current');
+if (view === 'panels') {
+    data['reopen'] = findOpenPanels();
+}
 
+var $pagi = $('#pr').find('em.current');
 if ($pagi.length) {
     var current_page = $pagi.text();
 
@@ -29,7 +31,6 @@ if ($pagi.length) {
     if (num_of_games == 1) {
         current_page -= 1;
     }
-
     data['page'] = current_page;
 }
 
@@ -38,9 +39,7 @@ var scroll = $(document).scrollTop().valueOf();
 $.ajax({
     url: '/collections/<%= @collection.id %>',
     data: data,
-
     complete: function(data) {
         $(document).scrollTop(scroll);
     }
-
 });

@@ -63,6 +63,14 @@ function moreInfo() {
     });
 }
 
+function findOpenPanels() {
+    var open_ids = [];
+    $('.g-drop').filter(':visible').each(function() {
+        open_ids.push($(this).attr('id').slice(7));
+    });
+    return open_ids;
+}
+
 function disableSortLinks() {
     $('.sort_link').addClass('not-active');
 }
@@ -93,38 +101,6 @@ function listHover() {
         });
     }
 }
-
-
-
-
-
-
-
-// function getIdsOfOpenPanels() {
-//     var ids = [];
-//     var arr = $('.g-drop');
-//     arr.each(function() {
-//         if ($(this).attr('style') == 'display: block;') {
-//             ids.push($(this).attr('id'));
-//         }
-//     });
-//     return ids;
-// }
-
-// function openPanels(ids) {
-//     ids.forEach(function(id) {
-//         $('#' + id).show();
-//     });
-// }
-
-
-
-
-
-
-
-
-
 
 function presentShadow() {
     $("#ts-img").one("load", function() {
