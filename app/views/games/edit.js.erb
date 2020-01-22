@@ -6,9 +6,8 @@ var view = '<%= @view %>';
         timeout: 5000
     });
     var reopen = false;
-    var new_game_id = '<%= @new_game_id %>';
     if (view === 'panels') {
-        reopen = $('#g-drop-' + '<%= @game_id %>').attr('style') == 'display: block;';
+        reopen = $('#g-drop-' + '<%= @game_id %>').is(':visible');
     }
     var data = { type: 'refresh', view: view };
     data = addRqRsToData(data);
@@ -29,11 +28,10 @@ var view = '<%= @view %>';
             $(document).scrollTop(scroll);
 
             if (reopen) {
-                $('#g-drop-' + new_game_id).show();
+                reopenPanels(['<%= @igdb_id %>'],['<%= @new_game_id %>'])
             }
         }
     });
-
 <% else %>
     if (view === 'list') {
         var $errors = $("#t-ops").find(".add-form-errors");

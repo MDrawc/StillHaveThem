@@ -84,6 +84,14 @@ function listHover() {
     }
 }
 
+
+
+
+
+
+
+
+
 function getIdsOfOpenPanels() {
     var ids = [];
     var arr = $('.g-drop');
@@ -100,6 +108,20 @@ function openPanels(ids) {
         $('#' + id).show();
     });
 }
+
+function reopenPanels(igdb_id, g_id) {
+    var g_id_length = g_id.length;
+    for (var i = 0; i < g_id_length; i++) {
+        $.ajax({
+            url: '/ps/' + igdb_id[i] + '/' + g_id[i]
+        });
+    }
+}
+
+
+
+
+
 
 function presentShadow() {
     $("#ts-img").one("load", function() {

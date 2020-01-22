@@ -106,6 +106,7 @@ class GamesController < ApplicationController
         @collection.games << game
         save_platform(platform, platform_name)
         @new_game_id = game.id
+        @igdb_id = game.igdb_id
 
         new_rec = CollectionGame.find_by(collection_id: collection_id, game_id: game.id)
         new_rec.created_at = created_at
@@ -125,6 +126,7 @@ class GamesController < ApplicationController
 
       if game.save
         @new_game_id = game.id
+        @igdb_id = game.igdb_id
 
         @collection.games << game
         save_platform(platform, platform_name)
@@ -140,7 +142,6 @@ class GamesController < ApplicationController
         @errors += game.errors.full_messages
       end
     end
-
     respond_to :js
   end
 
