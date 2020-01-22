@@ -5,10 +5,7 @@ UIkit.notification({
     timeout: 5000
 });
 
-var data = {
-    type: 'refresh',
-    view: '<%= @view %>'
-};
+var data = { view: '<%= @view %>' };
 
 data = addRqRsToData(data);
 

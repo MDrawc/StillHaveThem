@@ -1,9 +1,5 @@
 var view = '<%= @view %>';
 
-if (view === 'panels') {
-    var ids = getIdsOfOpenPanels();
-}
-
 cleanOffcanvas();
 
 $(".my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection, shared: shared }) %>');
@@ -23,8 +19,11 @@ switch (view) {
         break;
     case 'panels':
         activateDropdowns();
+
+        var r_ids = <%= raw @reopen %>;
+        activatePreHidee(r_ids);
+
         closeAllPanels();
-        openPanels(ids);
         moreInfo();
         break;
 }

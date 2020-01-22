@@ -162,9 +162,9 @@ private
       .paginate(page: params[:page], per_page: per_page)
 
     unless params[:q]
-      @refresh = params[:type] == 'refresh'
       cookies['last'] = { value: params[:id], expires: 30.days } unless shared
-
+      @reopen = params[:reopen] || []
+      @reopen.map!(&:to_i)
       respond_to do |format|
         format.js { render partial: "show", locals: { shared: shared } }
       end
@@ -174,6 +174,8 @@ private
       query.map! { |a| a ||= '' }
       sort = q[:s]
       @in_search = !(q.keys == ['s'] || q.values.join == 'on')
+      @reopen = params[:reopen] || []
+      @reopen.map!(&:to_i)
       respond_to do |format|
         format.js { render partial: "search",
           locals: { query: query, sort: sort, shared: shared }

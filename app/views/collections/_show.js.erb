@@ -1,12 +1,7 @@
 $('#side-menu').find("li.active").removeClass('active');
 $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
-var refresh = <%= @refresh %>;
 var no_games = <%= @games.empty? %>;
-
-if (refresh && view === 'panels') {
-    var ids = getIdsOfOpenPanels();
-}
 
 cleanOffcanvas();
 
@@ -22,10 +17,15 @@ switch (view) {
         fitNameInNoCover();
         break;
     case 'panels':
-        if (refresh) {
-            openPanels(ids);
-        }
+
+
         activateDropdowns();
+
+
+        var r_ids = <%= raw @reopen %>;
+        activatePreHidee(r_ids);
+
+
         closeAllPanels()
         moreInfo();
         break;

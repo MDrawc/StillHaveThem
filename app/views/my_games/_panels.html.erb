@@ -63,7 +63,13 @@
         <%= content_tag(:p, game.created_at.to_date ,class: 'g-added') %>
         <% end %>
     </div>
-    <%= content_tag :div, id: "g-drop-#{ id }", class: 'g-drop empty' do %>
+    <% if @reopen.include?(id) %>
+        <%= content_tag :div, id: "g-drop-#{ id }", class: 'g-drop s-mod' do %>
+            <%= render partial: 'shared/panel_show', locals: { game: game, g_id: game.id } %>
+        <% end %>
+    <% else %>
+        <%= content_tag :div, id: "g-drop-#{ id }", class: 'g-drop empty' do %>
+        <% end %>
     <% end %>
     <% end %>
     <% end %>

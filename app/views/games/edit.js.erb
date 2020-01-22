@@ -5,12 +5,15 @@ var view = '<%= @view %>';
         pos: 'top-right',
         timeout: 5000
     });
-    var reopen = false;
-    if (view === 'panels') {
-        reopen = $('#g-drop-' + '<%= @game_id %>').is(':visible');
+    var data = { view: view };
+
+    var game_id = '<%= @game_id %>';
+    if (view === 'panels' && $('#g-drop-' + game_id).is(':visible')) {
+        data['reopen'] = ['<%= @new_game_id %>'];
     }
-    var data = { type: 'refresh', view: view };
+
     data = addRqRsToData(data);
+
     var $pagi = $('#pr').find('em.current');
     if ($pagi.length) {
         var current_page = $pagi.text();
@@ -24,12 +27,7 @@ var view = '<%= @view %>';
         url: '/collections/<%= @collection.id %>',
         data: data,
         complete: function(data) {
-
             $(document).scrollTop(scroll);
-
-            if (reopen) {
-                reopenPanels(['<%= @igdb_id %>'],['<%= @new_game_id %>'])
-            }
         }
     });
 <% else %>

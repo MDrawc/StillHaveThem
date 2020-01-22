@@ -2,9 +2,6 @@ var id = '<%= @g_id %>';
 var $drop = $('#g-drop-' + id);
 $drop.html("<%= j(render partial: 'shared/panel_show', locals: { game: @game, g_id: @g_id }) %>")
      .removeClass('empty')
-     .show();
-     // .slideDown('fast');
-
+     .slideDown('fast');
 var $hidee = $('#g-hide-' + id);
-$hidee.show();
 activateHidee($hidee, $drop);

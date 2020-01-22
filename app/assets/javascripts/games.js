@@ -34,6 +34,16 @@ function activateHidee(hidee, drop) {
     });
 }
 
+function activatePreHidee(r_ids) {
+    var r_ids_length = r_ids.length;
+    if (r_ids_length) {
+        for (var i = 0; i < r_ids_length; i++) {
+            var $hidee = $('#g-hide-' + r_ids[i]);
+            activateHidee($hidee, $hidee.parent());
+        }
+    }
+}
+
 function moreInfo() {
     $('.g-click').click(function() {
         var id = $(this).attr('gameid');
@@ -90,33 +100,26 @@ function listHover() {
 
 
 
+// function getIdsOfOpenPanels() {
+//     var ids = [];
+//     var arr = $('.g-drop');
+//     arr.each(function() {
+//         if ($(this).attr('style') == 'display: block;') {
+//             ids.push($(this).attr('id'));
+//         }
+//     });
+//     return ids;
+// }
+
+// function openPanels(ids) {
+//     ids.forEach(function(id) {
+//         $('#' + id).show();
+//     });
+// }
 
 
-function getIdsOfOpenPanels() {
-    var ids = [];
-    var arr = $('.g-drop');
-    arr.each(function() {
-        if ($(this).attr('style') == 'display: block;') {
-            ids.push($(this).attr('id'));
-        }
-    });
-    return ids;
-}
 
-function openPanels(ids) {
-    ids.forEach(function(id) {
-        $('#' + id).show();
-    });
-}
 
-function reopenPanels(igdb_id, g_id) {
-    var g_id_length = g_id.length;
-    for (var i = 0; i < g_id_length; i++) {
-        $.ajax({
-            url: '/ps/' + igdb_id[i] + '/' + g_id[i]
-        });
-    }
-}
 
 
 
