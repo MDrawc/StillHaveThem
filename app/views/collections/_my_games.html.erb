@@ -34,7 +34,7 @@
 <% end %>
 <div id='r-q'>,,on</div>
 <div id='r-s'></div>
-<div class="my-games">
+<div id="my-games">
     <%= render partial: "my_games/#{ view }", locals: { collection: collection, shared: shared } %>
 </div>
 <%= render partial: 'layouts/toolbar', locals: { collection_id: collection.id, view: view, shared: shared } %>

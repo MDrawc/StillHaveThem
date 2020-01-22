@@ -17,15 +17,9 @@ switch (view) {
         fitNameInNoCover();
         break;
     case 'panels':
-
-
         activateDropdowns();
-
-
         var r_ids = <%= raw @reopen %>;
         activatePreHidee(r_ids);
-
-
         closeAllPanels()
         moreInfo();
         break;

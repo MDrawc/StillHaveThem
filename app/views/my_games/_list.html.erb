@@ -55,7 +55,7 @@
         <%= js_will_paginate @games, container: false %>
     </div>
 </div>
-<div id="t-game-show" uk-modal ="container: .my-games">
+<div id="t-game-show" uk-modal ="container: #my-games">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" uk-overflow-auto>
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="modal-content">
@@ -64,7 +64,7 @@
     </div>
 </div>
 <% unless shared %>
-<div id="t-ops" uk-modal ="container: .my-games">
+<div id="t-ops" uk-modal ="container: #my-games">
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <div class="modal-content">
             <span class="loading">Loading</span>
