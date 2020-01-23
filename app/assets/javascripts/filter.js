@@ -24,7 +24,11 @@ function filterGames() {
 
     function refresh() {
         var $game_search = $("#game_search");
-        $.get($game_search.attr("action"), $game_search.serialize(), null, "script");
+        var data = $game_search.serialize();
+        if ($('#gsview').val() === 'panels') {
+          data += addOpenPanelsData();
+        }
+        $.get($game_search.attr("action"), data, null, "script");
         return false;
     }
 

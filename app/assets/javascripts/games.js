@@ -71,6 +71,15 @@ function findOpenPanels() {
     return open_ids;
 }
 
+function addOpenPanelsData() {
+    var open = '';
+    var prefix = '&reopen%5B%5D=';
+    $('.g-drop').filter(':visible').each(function() {
+        open += prefix + $(this).attr('id').slice(7);
+    });
+    return open;
+}
+
 function disableSortLinks() {
     $('.sort_link').addClass('not-active');
 }

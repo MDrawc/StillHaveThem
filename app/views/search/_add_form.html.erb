@@ -14,11 +14,11 @@
     <%= hidden_field_tag 'x_id', x_id %>
     <div class="select-collection">
         <div uk-form-custom="target: > * > span:last-child">
-                <%= f.select(:collection, options_for_select(collections), {}, { id: 'collection' }) %>
-                <span class="bigs">
-                    <span class="cf-collection-green"><%= svg 'shelf_icon' %></span>
-                    <span></span>
-                </span>
+            <%= f.select(:collection, options_for_select(collections), {}, { id: 'collection' }) %>
+            <span class="bigs">
+                <span class="cf-collection-green"><%= svg 'shelf_icon' %></span>
+                <span></span>
+            </span>
         </div>
     </div>
     <div id="platform-option">
