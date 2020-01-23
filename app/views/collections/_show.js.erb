@@ -1,5 +1,9 @@
 $('#side-menu').find("li.active").removeClass('active');
 $("#mc-<%= @collection.id %>").addClass('active');
+
+<% if @view == 'panels' %>
+    var r_ids = <%= raw @reopen %>;
+<% end %>
 var view = '<%= @view %>';
 var no_games = <%= @games.empty? %>;
 
@@ -18,7 +22,6 @@ switch (view) {
         break;
     case 'panels':
         activateDropdowns();
-        var r_ids = <%= raw @reopen %>;
         activatePreHidee(r_ids);
         closeAllPanels()
         moreInfo();

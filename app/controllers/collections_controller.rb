@@ -163,11 +163,7 @@ private
 
     unless params[:q]
       cookies['last'] = { value: params[:id], expires: 30.days } unless shared
-
-      @reopen = params[:reopen] || []
-      @reopen.map!(&:to_i)
-      params.delete :reopen
-
+      prepare_reopen if @view == 'panels'
       respond_to do |format|
         format.js { render partial: "show", locals: { shared: shared } }
       end
@@ -177,16 +173,18 @@ private
       query.map! { |a| a ||= '' }
       sort = q[:s]
       @in_search = !(q.keys == ['s'] || q.values.join == 'on')
-
-      @reopen = params[:reopen] || []
-      @reopen.map!(&:to_i)
-      params.delete :reopen
-
+      prepare_reopen if @view == 'panels'
       respond_to do |format|
         format.js { render partial: "search",
           locals: { query: query, sort: sort, shared: shared }
         }
       end
     end
+  end
+
+  def prepare_reopen
+      @reopen = params[:reopen] || []
+      @reopen.map!(&:to_i)
+      params.delete :reopen
   end
 end

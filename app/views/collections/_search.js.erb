@@ -1,3 +1,6 @@
+<% if @view == 'panels' %>
+    var r_ids = <%= raw @reopen %>;
+<% end %>
 var view = '<%= @view %>';
 
 cleanOffcanvas();
@@ -19,7 +22,6 @@ switch (view) {
         break;
     case 'panels':
         activateDropdowns();
-        var r_ids = <%= raw @reopen %>;
         activatePreHidee(r_ids);
         closeAllPanels();
         moreInfo();
