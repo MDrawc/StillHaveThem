@@ -1,57 +1,59 @@
-function showHideClose() {
+function showHideClose(form, name, plat, reset) {
     var status = [];
-    status.push($('#q_name_dev_cont').val().length == 0);
+    status.push(name.val().length === 0);
 
-    var $q_plat = $('#q_plat_eq');
-    if ($q_plat.length) {
-        status.push($q_plat.val().length == 0);
-        status.push($("#game_search").find("input[type='radio']:checked").val() == 'on');
+    if (plat.length) {
+        status.push(plat.val().length === 0);
+        status.push(form.find("input[type='radio']:checked").val() == 'on');
     }
 
     if (status.every(function(e) {
             return (e === true)
         })) {
-        $('#search-reset').hide();
+        reset.hide();
     } else {
-        var $search_reset = $('#search-reset');
-        if ($search_reset.is(':hidden')) {
-            $search_reset.show();
+        if (reset.is(':hidden')) {
+            reset.show();
         }
     }
 }
 
-function refresh() {
-    var $game_search = $("#game_search");
-    var data = $game_search.serialize();
+function refresh(form) {
+    var data = form.serialize();
     if ($('#gsview').val() === 'panels') {
         data += addOpenPanelsData();
     }
-    $.get($game_search.attr("action"), data, null, "script");
+    $.get(form.attr("action"), data, null, "script");
     return false;
 }
 
 function filterGames() {
-    $("#q_name_dev_cont").keyup(function() {
-        showHideClose();
-        refresh();
+    var $form = $("#game_search");
+    var $reset = $('#search-reset');
+    var $name = $("#q_name_dev_cont");
+    var $plat = $('#q_plat_eq');
+
+    $name.keyup(function() {
+        showHideClose($form, $name, $plat, $reset);
+        refresh($form);
     });
 
-    $('#q_plat_eq').on('input', function() {
-        showHideClose();
-        refresh();
+    $plat.on('input', function() {
+        showHideClose($form, $name, $plat, $reset);
+        refresh($form);
     });
 
-    $("#game_search").find("input[type='radio']").on('input', function() {
-        showHideClose();
-        refresh();
+    $form.find("input[type='radio']").on('input', function() {
+        showHideClose($form, $name, $plat, $reset);
+        refresh($form);
     });
 
-    $('#search-reset').click(function() {
-        $("#q_name_dev_cont").val("");
-        $('#q_plat_eq').prop('selectedIndex', 0)
+    $reset.click(function() {
+        $name.val("");
+        $plat.prop('selectedIndex', 0)
         $("#q_physical_eq").prop('checked', true);
-        $('.select-input').next().empty();
+        $form.find('.select-input').next().empty();
         $(this).hide();
-        refresh();
+        refresh($form);
     });
 }
