@@ -1,6 +1,7 @@
 function changeSearchBar() {
     var $bar = $('#search-igdb-bar');
     var $srch_type =  $('#srch-type');
+    var $reset = $('#src-reset');
 
     $('#bar-search').find('.uk-radio').on('input', function() {
         var val = $(this).val();
@@ -26,6 +27,10 @@ function changeSearchBar() {
         } else {
             $srch_type.hide();
         }
+    });
+
+    $reset.click(function() {
+        $srch_type.hide();
     });
 }
 
