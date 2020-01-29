@@ -287,6 +287,7 @@ class GamesController < ApplicationController
 
     def add_developers(devs)
       if devs
+        devs.uniq!
         found = Developer.where(name: devs)
         not_found = devs - found.map(&:name)
         added = Developer.create(not_found.map { |d| { name: d } })
