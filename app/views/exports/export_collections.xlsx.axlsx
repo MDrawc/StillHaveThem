@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 
-@collections.each do |coll|
+@collections.includes(games: [:developers]).each do |coll|
   wb.add_worksheet(name: coll.name) do |sheet|
     if coll.needs_platform
       sheet.add_row ['', 'Title', 'First Release Date', 'Developer', 'Platform', 'Format', 'Released On', 'Summary']

@@ -156,7 +156,7 @@ class StaticPagesController < ApplicationController
     def owned(results)
       res = []
       igdb_ids = results.map { |g| g[:igdb_id] }
-      current_user.collections.each do |c|
+      current_user.collections.includes(:games).each do |c|
         res += c.games.where(igdb_id: igdb_ids).pluck(:igdb_id)
       end
       return res.uniq

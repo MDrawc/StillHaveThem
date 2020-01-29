@@ -145,7 +145,7 @@ private
 
   def owned?(igdb_id)
     results = []
-    current_user.collections.each do |collection|
+    current_user.collections.includes(:games).each do |collection|
       results << collection.games.any? { |game| game.igdb_id == igdb_id }
     end
     return results.any?

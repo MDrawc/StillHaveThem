@@ -124,7 +124,7 @@ module StaticPagesHelper
   end
 
   def check_for_games(options = {})
-    collections = current_user.collections
+    collections = current_user.collections.includes(:games)
     # collections = collections.sort_by { |c| [c.needs_platform ? 1 : 0] }
     id = options[:game_id] || options[:igdb_id]
 
@@ -136,7 +136,7 @@ module StaticPagesHelper
       results[collection] = findings if findings.present?
     end
 
-    return results.present? ? results : false
+    return results.empty? ? false : results
   end
 
   def present_bar_record(record)
