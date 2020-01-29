@@ -204,6 +204,7 @@ class Collection < ApplicationRecord
       end
 
       #Stats:
+      dominant[0] = '(no data)' if dominant[0] == '~~~'
       stats[5] = (dominant[1] == 0 ? '-' : "#{dominant[0]} (#{dominant[1]})")
 
       num_of_devs = all_devs.size
