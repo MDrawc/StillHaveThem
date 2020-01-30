@@ -1,5 +1,5 @@
 <% if @results.present? %>
-  <%= render 'search/' + view %>
+  <%= render partial: 'search/' + view, locals: { load_more: load_more } %>
   <% if @inquiry.is_more? %>
     <div id="show-more">
       <%= form_tag("/search_games", method: :get, remote: true) do %>
