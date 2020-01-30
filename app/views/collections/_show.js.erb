@@ -7,8 +7,6 @@ $("#mc-<%= @collection.id %>").addClass('active');
 var view = '<%= @view %>';
 var no_games = <%= @games.empty? %>;
 
-cleanOffcanvas();
-
 $("#big-c").html("<%= j(render partial: 'my_games', locals: { collection: @collection, view: @view, shared: shared }) %>");
 
 switch (view) {

@@ -3,8 +3,6 @@
 <% end %>
 var view = '<%= @view %>';
 
-cleanOffcanvas();
-
 $("#my-games").html('<%= j(render partial: "my_games/#{ @view }", locals: { collection: @collection, shared: shared }) %>');
 
 $('#gsview').attr('value', view);
