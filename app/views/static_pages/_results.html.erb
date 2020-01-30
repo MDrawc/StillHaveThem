@@ -1,39 +1,27 @@
 <% if @results.present? %>
   <%= render 'search/' + view %>
-  <% if @more_in_req %>
-  <div id="show-more">
-    <%= form_tag("/search_games", method: :get, remote: true) do %>
-    <%= hidden_field_tag :cut, true %>
-    <%= hidden_field_tag :view, view %>
-    <%= submit_tag "Load more",
-    class: "more-button",
-    data: { disable_with: "Please wait..." } %>
-    <% end %>
-  </div>
-  <% elsif @more_in_off %>
+  <% if @inquiry.is_more? %>
     <div id="show-more">
       <%= form_tag("/search_games", method: :get, remote: true) do %>
-      <%= hidden_field_tag :last_form, @more_in_off[:last_form] %>
-      <%= hidden_field_tag :last_query, @more_in_off[:query] %>
-      <%= hidden_field_tag :last_offset, @more_in_off[:offset] %>
+      <%= hidden_field_tag :last_form, @inquiry.last_form %>
+      <%= hidden_field_tag :last_query, @inquiry.query %>
+      <%= hidden_field_tag :last_offset, @inquiry.offset %>
       <%= hidden_field_tag :view, view %>
       <%= button_tag "Load more", type: 'submit',
       class: "more-button",
       data: { disable_with: "<span class=\"loading\">Please wait<span/>" } %>
       <% end %>
     </div>
-  <% else %>
-    <% if @status == 2 %>
-      <div class="no-more">
-        <button class="more-button" uk-scroll>Can't show you more<br/>Please try a more precise query</button>
-      </div>
-    <% end %>
+  <% elsif @inquiry.status_id == 2 %>
+    <div class="no-more">
+      <button class="more-button" uk-scroll>Can't show you more<br/>Please try a more precise query</button>
+    </div>
   <% end %>
 <% elsif @inquiry.offset > 0 %>
   <div class="no-more">
-    <button class="more-button" uk-scroll>There must have been a mistake, nothing more to load</button>
+    <button class="more-button" uk-scroll>Sorry for a mistake, nothing more to load</button>
   </div>
 <% else %>
-<%= render partial: 'search/no_results' %>
+  <%= render partial: 'search/no_results' %>
 <% end %>
 <%= render partial: 'shared/scroll_up' %>
