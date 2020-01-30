@@ -27,7 +27,3 @@ function flip_offc() {
         $(this).toggleClass('flip-right');
     });
 }
-
-function cleanOffcanvas() {
-    $("#i-lone").remove();
-}
