@@ -11,11 +11,11 @@ switch (view) {
     case 'cover_view':
         cleanOffcanvas()
         fitNameInNoCover();
-        activateDropdowns();
+        activateDropdowns($show_more);
         morePlatforms();
         break;
     case 'panel_view':
-        activateDropdowns();
+        activateDropdowns($show_more);
         moreInfo();
         $('.g-drop').slideUp(0);
         break;

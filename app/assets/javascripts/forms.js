@@ -1,10 +1,12 @@
-function activateDropdowns() {
-    var $buttons = $('.my_dd');
+function activateDropdowns($more) {
+    var $buttons = $more ? $more.find('.my_dd') : $('.my_dd');
     var $drop = $('#f-lone');
 
     $buttons.click(function() {
-      var mother = $(this).attr('data-mother');
-      UIkit.dropdown($drop, { boundary: mother}).show();
+        var mother = $(this).attr('data-mother');
+        UIkit.dropdown($drop, {
+            boundary: mother
+        }).show();
     });
 }
 
