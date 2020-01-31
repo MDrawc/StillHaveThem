@@ -52,4 +52,6 @@ Rails.application.routes.draw do
   get '/export_b', to: 'exports#export_platforms', as: 'export_b'
 
   post '/change_order', to: 'collections#change_order', as: 'change_order'
+
+  resources :account_activations, only: [:edit]
 end

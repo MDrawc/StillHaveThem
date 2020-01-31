@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      create_initial_collections(@user)
-      log_in(@user)
+      @user.send_activation_email
+      # log_in(@user)
+
+      # Please check your email to activate your account.
       reload
     else
       @errors = @user.errors.messages

@@ -10,9 +10,14 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:rem_me] == '1' ? remember(user) : forget(user)
-      reload
+      if user.activated?
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        reload
+      else
+        #inform that account is not activated!!
+        reload
+      end
     else
       respond_to do |format|
         format.js
