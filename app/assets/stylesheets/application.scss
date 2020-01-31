@@ -1245,7 +1245,7 @@ p.have-account {
 .warning-icon {
     width: 30px;
     height: 30px;
-    background: url("warning.svg");
+    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/warning.svg");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -1266,7 +1266,7 @@ p.have-account {
 .password + .unmask {
     width: 35px;
     height: 35px;
-    background: url("eye.svg");
+    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/eye.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     position: absolute;
@@ -1278,7 +1278,7 @@ p.have-account {
 }
 
 .password[type="text"] + .unmask {
-    background: url("eye_hidden.svg");
+    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/eye_hidden.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
