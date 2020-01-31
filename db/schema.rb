@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_150704) do
+ActiveRecord::Schema.define(version: 2020_01_31_135226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_150704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "games_per_view", default: 30
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
