@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       respond_to do |format|
-          format.js { render partial: 'check_email' }
+          format.js { render partial: 'auth_needed', locals: { email: @user.email } }
       end
     else
       @errors = @user.errors.messages

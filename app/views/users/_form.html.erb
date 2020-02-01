@@ -15,7 +15,7 @@
   <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox") %><span class="rem-me">Keep me logged in</span></label>
 </div>
 <div class="submit">
-  <%= f.button yield(:button_text), class: "uk-button sh-button",
+  <%= f.button yield(:button_text), class: "uk-button sh-button sign-up",
    data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
   <div class="agree">By clicking the "Create" button you agree to
     <%= link_to 'Terms of Use', info_url(doc: 'terms'), class: 'uk-link-muted' %> and

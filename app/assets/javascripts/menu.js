@@ -1,6 +1,6 @@
 function remove_active_create_coll() {
     UIkit.util.once('#coll-modal', 'hide', function() {
-        $('#m-add-coll').removeClass('active')
+        $('#m-add-coll').removeClass('active');
     });
 }
 
@@ -8,9 +8,9 @@ function hideShowBackToTop() {
     var $button = $('#scroll-up');
     $(window).scroll(function() {
         if ($(window).scrollTop() > 200) {
-            $button.fadeIn()
+            $button.fadeIn();
         } else {
-            $button.fadeOut()
+            $button.fadeOut();
         }
     });
 }

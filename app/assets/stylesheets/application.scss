@@ -1615,13 +1615,28 @@ span#srch-type {
     background: #d4d4d4;
 }
 
+// Check Your Email
+//
+.auth-hr {
+    border-color: #afafaf;
+    margin-top: 5px;
+}
 
-// Delete Test
+.auth-icon {
+    border: thin solid #a5a5a5;
+    border-radius: 50%;
+    padding: 4px;
+    color: #999;
+    vertical-align: text-bottom;
+    margin-left: 5px;
+}
 
+// Min width for buttons with "disable_with"
 
-.test {
-    background: #b7b7b7;
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
+.sign-up {
+    min-width: 114.5px;
+}
+
+.sign-in {
+    min-width: 108px;
 }

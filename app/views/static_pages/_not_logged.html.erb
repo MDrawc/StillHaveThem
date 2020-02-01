@@ -249,19 +249,6 @@
     <div class="modal-content"></div>
   </div>
 </div>
-
 <script>
   changeThemeLp();
-
-
-  function removeCoverSpinner() {
-      UIkit.util.on(document, 'load', '.game-cover', function(e) {
-
-          if (!e.target.currentSrc.startsWith('data:')) {
-              $(e.target).parent().find(".spinner").remove();
-          }
-      }, true)
-  }
-
-
 </script>

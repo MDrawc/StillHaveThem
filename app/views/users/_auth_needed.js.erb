@@ -1,0 +1,14 @@
+$modal = $('#signup-modal');
+$header = $modal.find('.modal-header');
+$content = $modal.find('.modal-content');
+$header.hide();
+$content.html('<%= j(render partial: 'check_email', locals: { email: email })%>');
+
+UIkit.util.once($modal, 'hidden', function() {
+    $header.show();
+    $content.empty();
+});
+
+$('#done-btn').one("click", function() {
+  UIkit.modal($modal).hide();
+});
