@@ -13,10 +13,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      # log_in(@user)
-
-      # Please check your email to activate your account.
-      reload
+      respond_to do |format|
+          format.js { render partial: 'check_email' }
+      end
     else
       @errors = @user.errors.messages
       respond_to do |format|

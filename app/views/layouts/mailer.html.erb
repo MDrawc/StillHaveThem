@@ -3,11 +3,81 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+
+      html {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+          color: #999;
+      }
+
+      body {
+        background: #ddd;
+      }
+
+      .mail-content {
+          background: #fff;
+          width: 500px;
+          margin: 20px auto;
+          margin-bottom: 15px;
+          border-radius: 5px;
+          box-sizing: border-box;
+          padding: 40px;
+          border: 1px solid #afafaf;
+      }
+
+      .welcome {
+        color: #666;
+        font-size: 18px;
+        margin-top: 0px;
+      }
+
+      .mail-button {
+        display: block;
+        background: #49AB8A;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+        border-radius: 5px;
+        margin: 20px 0px;
+        font-weight: 500;
+      }
+
+      .mail-follow {
+          color: #44987c;
+          word-break: break-all;
+          line-height: 26px;
+      }
+
+      .mail-logo {
+          letter-spacing: 0.5px;
+          font-weight: 300;
+          font-size: 24px;
+          display: block;
+          margin: 0px 0px 20px;
+          margin: 0px auto;
+          width: 500px;
+          margin-top: 40px;
+      }
+
+      .mail-logo span {
+          border-bottom: 2px solid #c5c5c5;
+      }
+
+      .generated {
+          font-size: 12px;
+          color: #777;
+          margin: 0px auto;
+          width: 600px;
+          text-align: center;
+      }
     </style>
   </head>
-
   <body>
+    <p class="mail-logo"><span>Still Have Them</span></p>
+    <div class="mail-content">
     <%= yield %>
+    </div>
+    <p class="generated">This is an automatically generated e-mail, please do not reply to it.</p>
   </body>
 </html>

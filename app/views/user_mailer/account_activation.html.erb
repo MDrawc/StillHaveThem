@@ -1,7 +1,5 @@
-<h1>Still Have Them</h1>
-
-<p>Hi,</p>
-
-<p>Welcome to the Still Have Them! Click on the link below to activate your account:</p>
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<p class="welcome">Welcome to the Still Have Them!</p>
+<p>Activate your account by clicking the button below:</p>
+<% link = edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= link_to "Activate Account", link, class: 'mail-button' %>
+Or follow this link: <%= link_to link, link, class: 'mail-follow' %>
