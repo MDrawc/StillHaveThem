@@ -6,9 +6,15 @@
 <% else %>
   var $input = $('#change-mail');
   var $info = $('#mail-update-info');
-  var text = ' Email address updated';
+  var text = ' Check email and reactivate account!';
   $input.blur();
 <% end %>
   $input.parent().next().addClass('disabled');
   $info.find('span:last-child').text(text);
-  $info.fadeIn(600).delay(600).fadeOut(1500);
+
+
+  if ($info.is(':hidden')) {
+    $info.fadeIn(600);
+  } else {
+    $info.fadeOut(600).delay(100).fadeIn(600);
+  }

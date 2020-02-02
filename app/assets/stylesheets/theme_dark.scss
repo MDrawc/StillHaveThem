@@ -1405,11 +1405,10 @@ span#srch-type {
 }
 
 // Check Your Email
-
-.auth {
-    color: #ccc;
-}
-
 .auth-icon {
     color: #b7b7b7;
+}
+
+.auth, .resend:hover {
+    color: #ccc;
 }

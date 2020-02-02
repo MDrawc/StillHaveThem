@@ -27,13 +27,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    @is_it_password = !!user_params[:password]
-    if @is_it_password && user_params[:password].empty?
-      update_errors(['Password can\'t be blank'])
-    elsif current_user.update(user_params)
-      respond_to :js
+    @is_it_password = false
+    if user_params.keys.first == 'email'
+      if current_user.update(user_params)
+        current_user.deactivate_and_send_new
+        respond_to :js
+      else
+        update_errors(current_user.errors.full_messages)
+      end
     else
-      update_errors(current_user.errors.full_messages)
+      @is_it_password = true
+      if user_params[:password].empty?
+        update_errors(['Password can\'t be blank'])
+      elsif current_user.update(user_params)
+        respond_to :js
+      else
+        update_errors(current_user.errors.full_messages)
+      end
     end
   end
 

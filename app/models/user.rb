@@ -52,6 +52,12 @@ class User < ApplicationRecord
     update_attribute(:activated_at, Time.zone.now)
   end
 
+  def deactivate_and_send_new
+    self.deactivate
+    self.new_activation_digest
+    self.send_activation_email
+  end
+
   def deactivate
     update_attribute(:activated,    false)
     update_attribute(:activated_at, nil)
