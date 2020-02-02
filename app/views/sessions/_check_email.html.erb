@@ -1,0 +1,10 @@
+<p class="header">Activate Your Account <span class="auth-icon" uk-icon="check"></span></p>
+<hr class="auth-hr">
+<p class="auth">You must activate before logging in.</p>
+<p class="auth">Please check your <%= content_tag :b, email %> email for activation link.</p>
+
+<%= form_with(url: resend_activ_link_url) do |f| %>
+<%= f.hidden_field :email, value: email %>
+<%= content_tag :a, 'Done', id: 'done-btn', class: 'uk-button sh-button' %>
+<%= submit_tag('Resend activation email', class: 'uk-button uk-button-link resend') %>
+<% end %>

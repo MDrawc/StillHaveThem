@@ -1640,3 +1640,12 @@ span#srch-type {
 .sign-in {
     min-width: 108px;
 }
+
+.resend {
+    padding-left: 5px;
+    text-transform: initial;
+    color: #999;
+    &:hover {
+        color: #666;
+    }
+}

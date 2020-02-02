@@ -15,8 +15,10 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         reload
       else
-        #inform that account is not activated!!
-        reload
+        respond_to do |format|
+            format.js { render partial: 'shared/auth_needed',
+              locals: { email: user.email, selector: '#signin-modal' } }
+        end
       end
     else
       respond_to do |format|

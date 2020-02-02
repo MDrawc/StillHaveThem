@@ -52,6 +52,11 @@ class User < ApplicationRecord
     update_attribute(:activated_at, Time.zone.now)
   end
 
+  def deactivate
+    update_attribute(:activated,    false)
+    update_attribute(:activated_at, nil)
+  end
+
   def create_initial_collections
     initial_collections = [
       {name: 'Main Collection', needs_platform: true, cord: 1 },
@@ -63,6 +68,11 @@ class User < ApplicationRecord
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  def new_activation_digest
+      self.activation_token = User.new_token
+      self.update_attribute(:activation_digest, User.digest(activation_token))
   end
 
   private

@@ -12,9 +12,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.create_initial_collections
       @user.send_activation_email
       respond_to do |format|
-          format.js { render partial: 'auth_needed', locals: { email: @user.email } }
+            format.js { render partial: 'shared/auth_needed',
+              locals: { email: @user.email, selector: '#signup-modal' } }
       end
     else
       @errors = @user.errors.messages

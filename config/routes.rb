@@ -54,4 +54,6 @@ Rails.application.routes.draw do
   post '/change_order', to: 'collections#change_order', as: 'change_order'
 
   resources :account_activations, only: [:edit]
+
+  post '/ral', to: 'account_activations#resend_activation_link', as: 'resend_activ_link'
 end
