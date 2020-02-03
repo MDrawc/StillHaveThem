@@ -1,11 +1,15 @@
 <% if @is_it_password %>
   var $icon = $('#password-icon');
+  var $warning = $icon.next();
   $icon.hide();
-  $icon.after("<%= j(render partial: 'shared/warning', locals: { id: 'pass-warning-icon', error: @errors.first, extra: 'set-warning' }) %>");
-  resetSetWarningIcon('#change-password','#password-icon', '#pass-warning-icon');
+  $warning.attr("uk-tooltip", "title: <%= raw @errors.first %>; pos: top-left");
+  $warning.show();
+  resetSetWarningIcon('#change-password',$icon, $warning);
 <% else %>
   var $icon = $('#email-icon');
+  var $warning = $icon.next();
   $icon.hide();
-  $icon.after("<%= j(render partial: 'shared/warning', locals: { id: 'mail-warning-icon', error: @errors.join(', '), extra: 'set-warning' }) %>");
-  resetSetWarningIcon('#change-mail','#email-icon', '#mail-warning-icon');
+  $warning.attr("uk-tooltip", "title: <%= raw @errors.join(', ') %>; pos: top-left");
+  $warning.show();
+  resetSetWarningIcon('#change-mail',$icon, $warning);
 <% end %>

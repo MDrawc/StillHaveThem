@@ -1,12 +1,8 @@
-function resetSetWarningIcon(input_id, icon_id, warning_id) {
-    var $no_error = $(icon_id);
-    var $error_icon = $(warning_id);
-
-    var $input = $(input_id);
-    $input.one('input', function() {
-        if ($error_icon.length) {
-            $error_icon.remove();
-            $no_error.show();
+function resetSetWarningIcon(input_id, $icon, $warning) {
+    $(input_id).one('input', function() {
+        if ($warning.is(':visible')) {
+            $warning.hide();
+            $icon.show();
         }
     });
 }
