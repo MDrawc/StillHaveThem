@@ -9,10 +9,6 @@
           color: #999;
       }
 
-      body {
-        background: #ddd;
-      }
-
       .mail-content {
           background: #fff;
           width: 500px;
@@ -60,10 +56,6 @@
           margin-top: 40px;
       }
 
-      .mail-logo span {
-          border-bottom: 2px solid #c5c5c5;
-      }
-
       .generated {
           font-size: 12px;
           color: #777;
@@ -73,8 +65,8 @@
       }
     </style>
   </head>
-  <body>
-    <p class="mail-logo"><span>Still Have Them</span></p>
+  <body style="background: #ddd;">
+    <p class="mail-logo"><span style="border-bottom: 2px solid #c5c5c5;">Still Have Them</span></p>
     <div class="mail-content">
     <%= yield %>
     </div>
