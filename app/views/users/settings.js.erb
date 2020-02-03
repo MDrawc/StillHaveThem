@@ -8,6 +8,11 @@ UIkit.util.once($f_modal, 'hidden', function() {
     var val = $('#set-reload').attr('data-reload');
     if (val == 'true') {
         location.reload();
+    } else if (val == 'logout') {
+      $.ajax({
+          url: '/async_logout',
+          method: 'DELETE'
+      });
     }
 });
 

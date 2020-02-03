@@ -8,6 +8,13 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.account_activation(user)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/email_confirmation
+  def email_confirmation
+    user = User.first
+    user.activation_token = User.new_token
+    UserMailer.email_confirmation(user)
+  end
+
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/password_reset
   def password_reset
     UserMailer.password_reset

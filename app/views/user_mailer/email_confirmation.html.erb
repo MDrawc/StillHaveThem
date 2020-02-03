@@ -1,0 +1,5 @@
+<p class="welcome">You've changed your email!</p>
+<p>Confirm your new email by clicking the button below:</p>
+<% link = edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= link_to "Confirm email", link, class: 'mail-button' %>
+Or follow this link: <%= link_to link, link, class: 'mail-follow' %>

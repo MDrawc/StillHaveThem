@@ -7,12 +7,11 @@
   var $input = $('#change-mail');
   var $info = $('#mail-update-info');
   var text = ' Check email and reactivate account!';
+  $('#set-reload').attr('data-reload', 'logout');
   $input.blur();
 <% end %>
   $input.parent().next().addClass('disabled');
   $info.find('span:last-child').text(text);
-
-
   if ($info.is(':hidden')) {
     $info.fadeIn(600);
   } else {

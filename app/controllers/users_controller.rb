@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     if user_params.keys.first == 'email'
       if current_user.update(user_params)
         current_user.deactivate_and_send_new
+        current_user.forget
         respond_to :js
       else
         update_errors(current_user.errors.full_messages)

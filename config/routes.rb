@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  delete 'async_logout', to: 'sessions#async_destroy'
   post 'copy_move', to: 'games#copy_move'
   post 'edit', to: 'games#edit'
 

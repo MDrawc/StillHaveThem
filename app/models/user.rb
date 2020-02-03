@@ -55,7 +55,7 @@ class User < ApplicationRecord
   def deactivate_and_send_new
     self.deactivate
     self.new_activation_digest
-    self.send_activation_email
+    self.send_reactivation_email
   end
 
   def deactivate
@@ -74,6 +74,10 @@ class User < ApplicationRecord
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  def send_reactivation_email
+    UserMailer.email_confirmation(self).deliver_now
   end
 
   def new_activation_digest
