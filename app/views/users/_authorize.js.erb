@@ -2,14 +2,16 @@ var $f_modal = $("#f-modal");
 var $f_modal_body = $f_modal.find(".uk-modal-body");
 $f_modal_body.addClass('fit-content');
 
-$f_modal_body.find('.f-modal-close').remove();
-var button = '<button class="uk-modal-close-default f-modal-close" type="button" uk-close></button>';
+var $button = $f_modal_body.find('.f-modal-close');
+$button.hide();
+
+$f_modal.find(".modal-content").html("<%= j(render 'access_settings') %>");
+
+UIkit.modal($f_modal).show();
 
 UIkit.util.once($f_modal, 'hidden', function() {
     $f_modal_body.removeClass('fit-content');
-    $f_modal_body.append(button);
+    $button.show();
 });
-
-$f_modal.find(".modal-content").html("<%= j(render 'access_settings') %>");
 
 $('#enter-password').focus();
