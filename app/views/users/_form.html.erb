@@ -11,9 +11,6 @@
   <span id="key-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
   <p id="password-min">6 characters minimum</p>
 </div>
-<div class="rem-me">
-  <label><%= f.check_box(:rem_me, checked: true, class: "uk-checkbox") %><span class="rem-me">Keep me logged in</span></label>
-</div>
 <div class="submit">
   <%= f.button yield(:button_text), class: "uk-button sh-button sign-up",
    data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
