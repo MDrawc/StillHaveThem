@@ -1,2 +1,4 @@
-$("#signin-modal").find(".modal-content").html("<%= j(render 'new') %>");
+var $modal = $("#signin-modal");
+$modal.find(".modal-content").html("<%= j(render 'new') %>");
+UIkit.modal($modal).show();
 passwordUnmask();

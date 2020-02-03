@@ -11,7 +11,7 @@
   </div>
 
   <div class="uk-width-auto">
-  <%= link_to signin_path,  { :remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-button lp-button login-button' } do %>
+  <%= link_to signin_path,  { :remote => true, class: 'uk-button lp-button login-button' } do %>
     <span uk-icon="lock"></span> LOGIN
     <% end %>
   </div>
@@ -21,7 +21,7 @@
 
 <div class="uk-grid-small" uk-grid>
   <div>
-  <%= link_to signup_path,  { :remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-button lp-button lp-big' } do %>
+  <%= link_to signup_path,  { :remote => true, class: 'uk-button lp-button lp-big' } do %>
   <span uk-icon="user"></span>
   Sign Up
   <% end %>
@@ -233,7 +233,7 @@
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="modal-header">
       <p class="header">Create a new account <span class="user-icon" uk-icon="icon: user; ratio: 1.4"></span></p>
-      <p class="have-account">Have an account? <%= link_to 'Log In', signin_path,  {:remote => true, "uk-toggle" => "target: #signin-modal", class: 'uk-link-muted' }  %></p>
+      <p class="have-account">Have an account? <%= link_to 'Log In', signin_path,  {:remote => true, class: 'uk-link-muted' }  %></p>
     </div>
     <div class="modal-content"></div>
   </div>
@@ -244,7 +244,7 @@
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="modal-header">
       <p class="header">Log in <span class="lock-icon"><%= svg 'lock_open' %></span></p>
-      <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, "uk-toggle" => "target: #signup-modal", class: 'uk-link-muted' }  %></p>
+      <p class="have-account">Don't have an account? <%= link_to 'Sign Up', signup_path,  {:remote => true, class: 'uk-link-muted' }  %></p>
     </div>
     <div class="modal-content"></div>
   </div>
