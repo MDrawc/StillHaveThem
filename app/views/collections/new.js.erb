@@ -1,6 +1,7 @@
 var $modal = $("#coll-modal");
 $modal.find('#coll-action').text('Create');
 $modal.find(".modal-content").html("<%= j(render 'form') %>");
+UIkit.modal($modal).show();
 $('#collection_name').focus();
 $("#m-add-coll").addClass('active');
 remove_active_create_coll();

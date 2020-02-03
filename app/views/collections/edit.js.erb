@@ -1,5 +1,6 @@
 var $modal = $("#coll-modal");
 $modal.find('#coll-action').text('Edit');
 $modal.find(".modal-content").html("<%= j(render 'form') %>");
+UIkit.modal($modal).show();
 var input = $('#collection_name');
 var temp = input.focus().val(); input.val('').val(temp);
