@@ -172,7 +172,7 @@ table.set-email-pass {
         background-color: #ececec;
         cursor: auto;
 
-        input {
+        button {
             color: #afafaf;
             cursor: auto;
             pointer-events: none;
@@ -191,6 +191,13 @@ table.set-email-pass {
         transition: color 0.1s ease-in-out;
         cursor: pointer;
         padding: 11px 20px;
+        min-width: 88px;
+        background: none;
+        border: none;
+    }
+
+    .set-confirm:focus {
+        outline: none;
     }
 
     .set-confirm:hover {

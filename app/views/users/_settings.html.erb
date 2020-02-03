@@ -9,7 +9,7 @@
           <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
           <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
         <td class="btn disabled">
-          <%= submit_tag 'Update', id: 'submit-mail', class: 'set-confirm' %>
+          <%= button_tag 'Update', id: 'submit-mail', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
         </td>
         </tr>
       </table>
@@ -31,7 +31,7 @@
           <button class="uk-button unmask" type="button"></button>
           <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
         <td class="btn disabled">
-          <%= submit_tag 'Update', id: 'submit-password', class: 'set-confirm' %>
+          <%= button_tag 'Update', id: 'submit-password', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
         </td>
         </tr>
       </table>
