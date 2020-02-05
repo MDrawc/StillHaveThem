@@ -1,6 +1,6 @@
 class SharesController < ApplicationController
   layout 'shared'
-  before_action :require_user, except: [:shared, :wrong_link, :leave]
+  before_action :require_user, except: [:shared, :leave]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
@@ -46,13 +46,9 @@ class SharesController < ApplicationController
       @first_id = share.shared.first
       @no_message = share.message.empty?
     else
-      redirect_to action: 'wrong_link', token: params[:token]
+      kill_guest
+      render 'wrong_link', locals: { link: shared_url(params[:token]) }
     end
-  end
-
-  def wrong_link
-    kill_guest
-    @link = "www.stillhavethem.com/shared/#{ params[:token] }"
   end
 
   def destroy
