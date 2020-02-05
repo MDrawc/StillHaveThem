@@ -1641,6 +1641,14 @@ span#srch-type {
     min-width: 108px;
 }
 
+.send-reset {
+    min-width: 180.5px;
+}
+
+.update-pass {
+    min-width: 197px;
+}
+
 .resend {
     padding-left: 5px;
     text-transform: initial;
@@ -1652,4 +1660,37 @@ span#srch-type {
 
 .submit {
     margin-top: 20px;
+}
+
+
+// Pasword Reset
+
+.reset-pass {
+    font-size: 14px;
+    margin-left: 10px;
+    line-height: 40px;
+}
+
+.reset-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 300;
+}
+
+.reset-hr {
+    border-color: #afafaf;
+}
+
+.password-reset {
+    background: #ececec;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+    padding: 20px;
+    overflow: auto;
+    width: 360px;
+    margin-top: 40px;
 }

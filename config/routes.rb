@@ -57,4 +57,6 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
 
   post '/ral', to: 'account_activations#resend_activation_link', as: 'resend_activ_link'
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end

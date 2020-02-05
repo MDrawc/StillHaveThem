@@ -15,5 +15,6 @@
   </div>
   <div class="submit">
   <%= f.button yield(:button_text), class: "uk-button sh-button sign-in", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
+  <%= link_to 'Reset password', new_password_reset_url, remote: true, class: 'reset-pass uk-link-muted' %>
   </div>
 <% end %>

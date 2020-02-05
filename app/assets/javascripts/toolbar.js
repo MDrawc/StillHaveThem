@@ -290,7 +290,7 @@ function labelsHiders() {
         for (var i in chart_ids) {
             var chart = Chartkick.charts[chart_ids[i]].getChartObject();
             var datasets = chart.data.datasets;
-            disp = datasets[0].datalabels['opacity'];
+            var disp = datasets[0].datalabels['opacity'];
 
             if (disp == 1) {
 

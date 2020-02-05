@@ -1,14 +1,10 @@
-var $modal = $('<%= selector %>');
+var $modal = $('#signin-modal');
 var $header = $modal.find('.modal-header');
 var $content = $modal.find('.modal-content');
 $header.hide();
-$content.html('<%= j(render partial: 'check_email', locals: { email: email })%>');
+$content.html('<%= j(render partial: 'forgot_form')%>');
 
 UIkit.util.once($modal, 'hidden', function() {
     $header.show();
     $content.empty();
-});
-
-$('#done-btn').one("click", function() {
-  UIkit.modal($modal).hide();
 });

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
   before_save { email.downcase! }
 
@@ -48,8 +48,7 @@ class User < ApplicationRecord
   end
 
   def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at, Time.zone.now)
+    update_columns(activated: true, activated_at: Time.zone.now)
   end
 
   def deactivate_and_send_new
@@ -59,8 +58,7 @@ class User < ApplicationRecord
   end
 
   def deactivate
-    update_attribute(:activated,    false)
-    update_attribute(:activated_at, nil)
+    update_columns(activated: false, activated_at: nil)
   end
 
   def create_initial_collections
@@ -83,6 +81,19 @@ class User < ApplicationRecord
   def new_activation_digest
       self.activation_token = User.new_token
       self.update_attribute(:activation_digest, User.digest(activation_token))
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 
   private

@@ -1,0 +1,6 @@
+var $modal = $('#signin-modal');
+var $content = $modal.find('.modal-content');
+$content.html('<%= j(render partial: 'check_email', locals: { email: @email })%>');
+$('#done-btn').one("click", function() {
+  UIkit.modal($modal).hide();
+});

@@ -77,10 +77,10 @@ if (msg) {
 <% else %>
     if (view === 'list') {
         var errors = $("#t-ops").find(".add-form-errors");
-        is_list = true;
+        var is_list = true;
     } else {
         var errors = $("#f-lone").find(".add-form-errors");
-        is_list = false;
+        var is_list = false;
     }
     errors.html("<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>");
     resetFormErrors(is_list);

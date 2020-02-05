@@ -18,10 +18,8 @@ class AccountActivationsController < ApplicationController
     if user && !user.activated?
       user.new_activation_digest
       user.send_activation_email
-        respond_to do |format|
-            format.js { render partial: 'shared/auth_needed',
-              locals: { email: user.email, selector: '#signin-modal' } }
-        end
+      @email = user.email
+      respond_to :js
     else
       reload
     end
