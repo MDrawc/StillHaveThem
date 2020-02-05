@@ -7,13 +7,14 @@ class StaticPagesController < ApplicationController
     if logged_in?
       last = cookies['last']
       if current_user.collection_ids.include?(last.to_i)
-        @home_id = last
+        home_id = last
       else
         unless last == 'search'
-          @home_id = current_user.collections.first.id if !current_user.collections.empty?
+          home_id = current_user.collections.first.id if !current_user.collections.empty?
         end
       end
-      render 'home'
+      url = home_id ? '/collections/' + home_id : '/search'
+      render 'home', locals: { url: url }
     else
       @just_land = true
       render :partial => 'not_logged', :layout => 'landing'
