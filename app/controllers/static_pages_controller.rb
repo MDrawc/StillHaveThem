@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
       end
       render 'home'
     else
+      @just_land = true
       render :partial => 'not_logged', :layout => 'landing'
     end
   end

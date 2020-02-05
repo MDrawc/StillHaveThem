@@ -1,0 +1,25 @@
+<% if @just_land %>
+<div class="lp-top-grid" uk-grid>
+  <div class="lp-top uk-width-expand"><span>Still Have Them</span>
+  <p>Do you keep your games?</p>
+</div>
+<div class="uk-width-auto with-theme">
+  <%= content_tag :a, id: 'change-theme-lp', class: "uk-button #{ theme == 'theme_dark' ? 'active' : '' }" do %>
+  <span><%= svg('dark') %></span><span> Dark Theme</span>
+  <% end %>
+</div>
+<div class="uk-width-auto">
+  <%= link_to signin_path,  { :remote => true, class: 'uk-button lp-button login-button' } do %>
+  <span uk-icon="lock"></span> LOGIN
+  <% end %>
+</div>
+</div>
+<% else %>
+<div class="lp-top">
+<span>Still Have Them</span>
+<p>Do you keep your games?</p>
+</div>
+<%= link_to root_url, class: 'uk-icon back' do %>
+<%= svg('back') %><span>Back</span>
+<% end %>
+<% end %>
