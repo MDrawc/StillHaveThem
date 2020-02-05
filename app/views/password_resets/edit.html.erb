@@ -6,7 +6,7 @@
   <%= svg('back') %><span>Back</span>
 <% end %>
 <hr class="reset-hr">
-<div class="password-reset">
+<div class="password-reset width360">
   <p class="header">Reset Password <span class="auth-icon reset-icon">!</span></p>
   <hr class="auth-hr">
   <%= form_for(@user, url: password_reset_url(params[:id]), remote: true) do |f| %>

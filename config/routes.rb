@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'g_graphs', to: 'charts#graphs_for_guest', as: 'guest_graphs'
 
   get 'shared/:token', to: 'shares#shared', as: 'shared'
-  get 'wrong_link', to: 'shares#wrong_link', as: 'wrong_link'
+  get 'wrong_share_link', to: 'shares#wrong_link'
 
   delete 'logout_guest', to: 'shares#leave'
   get '/sh_collections/:id/', to: 'collections#show_guest', as: 'show_guest'

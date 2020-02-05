@@ -1,5 +1,4 @@
 class AccountActivationsController < ApplicationController
-  layout  '_landing', :only => [:wrong_activ_link]
 
   def edit
     user = User.find_by(email: params[:email])
@@ -8,7 +7,7 @@ class AccountActivationsController < ApplicationController
       log_in user
       redirect_to root_url
     else
-      redirect_to root_url
+      render 'shared/wrong_link', layout: '_landing'
     end
   end
 
