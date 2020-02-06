@@ -6,7 +6,7 @@
     <p class="auth">Enter a new password for your account.</p>
     <div class="uk-position-relative">
       <%= hidden_field_tag :email, @user.email %>
-      <%= f.password_field :password, id: 'rest-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
+      <%= f.password_field :password, id: 'reset-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
       <button class="uk-button unmask" type="button">
         <%= svg 'eye' %>
         <%= svg 'eye_hidden' %>

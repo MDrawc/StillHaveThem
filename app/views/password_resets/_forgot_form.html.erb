@@ -1,11 +1,10 @@
 <p class="header">Reset Password <span class="auth-icon reset-icon">!</span></p>
 <hr class="auth-hr">
 <p class="auth">To reset your password, please provide your email address.</p>
-
 <%= form_for(:password_reset, url: password_resets_url, remote: true) do |f| %>
   <div class="uk-position-relative margin-bottom-15">
     <%= f.email_field :email, id: 'reset-pass-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
-    <span id="reset-ok" class="sign-icon"><%= svg 'mail' %></span>
+    <span class="sign-icon"><%= svg 'mail' %></span>
     <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>
   <div class="submit">

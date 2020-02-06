@@ -60,7 +60,7 @@ class UsersController < ApplicationController
         respond_to :js
       else
         respond_to do |format|
-            format.js { render partial: 'access_error' }
+            format.js { render partial: 'access_settings_error' }
         end
       end
     else
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     def update_errors(errors)
       @errors = errors
       respond_to do |format|
-          format.js { render partial: "set_errors" }
+          format.js { render partial: "settings_error" }
       end
     end
 end

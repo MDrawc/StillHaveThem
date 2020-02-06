@@ -1,19 +1,19 @@
 <p class="header set">User settings <span uk-icon="icon: settings; ratio: 1.4"></span></p>
 <span id='set-reload' data-reload="false" hidden></span>
 <div class="strike part"><span>Change email address:</span></div>
-  <div uk-grid>
-    <%= form_with model: @user do |f| %>
-      <table class="set-email-pass">
-        <tr>
-        <td class="uk-position-relative">
-          <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
-          <%= content_tag :span, svg('mail'), id: 'email-icon', class: 'set-input-icon'%>
-          <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
+<div uk-grid>
+  <%= form_with model: @user do |f| %>
+  <table class="set-email-pass">
+    <tr>
+      <td class="uk-position-relative">
+        <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
+        <%= content_tag :span, svg('mail'), class: 'set-input-icon'%>
+        <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
         <td class="btn disabled">
           <%= button_tag 'Update', id: 'submit-mail', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
         </td>
-        </tr>
-      </table>
+      </tr>
+    </table>
     <% end %>
     <div>
       <p id="mail-update-info" class="update-info">
@@ -22,88 +22,84 @@
       </p>
     </div>
   </div>
-<div class="strike part"><span>Change password:</span></div>
+  <div class="strike part"><span>Change password:</span></div>
   <div uk-grid>
     <%= form_with model: @user do |f| %>
-      <table class="set-email-pass">
-        <tr>
+    <table class="set-email-pass">
+      <tr>
         <td class="uk-position-relative">
           <%= f.password_field :password, id: 'change-password', class: 'uk-input set-input password', placeholder: 'New password', autocomplete: 'new-password' %>
           <button class="uk-button unmask" type="button">
-            <%= svg 'eye' %>
-            <%= svg 'eye_hidden' %>
+          <%= svg 'eye' %>
+          <%= svg 'eye_hidden' %>
           </button>
           <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
           <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
-        <td class="btn disabled">
-          <%= button_tag 'Update', id: 'submit-password', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
-        </td>
+          <td class="btn disabled">
+            <%= button_tag 'Update', id: 'submit-password', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
+          </td>
         </tr>
       </table>
       <p id="password-min">6 characters minimum</p>
-    <% end %>
-    <div>
-      <p id="pass-update-info" class="update-info">
-        <span uk-icon="check"></span>
-        <span></span>
-      </p>
+      <% end %>
+      <div>
+        <p id="pass-update-info" class="update-info">
+          <span uk-icon="check"></span>
+          <span></span>
+        </p>
+      </div>
     </div>
-  </div>
-<div class="strike part"><span>Games per page:</span></div>
-<p class="discription">Choose how many games you want to see per page. This setting does not apply to shared collections.</p>
-<%= form_with(url: change_gpv_url) do %>
-<table class="range-holder">
-  <tr>
-    <td class="rng-lab">min</td>
-    <td>
-    <%= content_tag :p, gpv = current_user.gpv, id: 'gpv-counter', class: 'disabled' %>
-    </td>
-    <td class="rng-lab">max</td>
-  </tr>
-  <tr>
-    <td class="rng-mima">5</td>
-    <td>
-      <%= range_field(:user, :games_per_view, in: 5..50, step: 1, value: gpv) %>
-    </td>
-    <td class="rng-mima">50</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><%= submit_tag 'Update', id: 'submit-gpv', class: 'uk-button sh-button rng-button disabled' %></td>
-    <td></td>
-  </tr>
-</table>
- <% end %>
-
-<div class="strike part"><span>Collections order:</span></div>
-<p class="discription">Change the order in which collections appear in menu and forms.</p>
-<%= render 'collections/collections_order' %>
-
-<div class="strike part"><span>Export:</span></div>
-<p class="discription">Export your games library to Office Open XML Spreadsheet. There are two options for export, depending on how you want games to be organized inside a spreadsheet.</p>
-
-<div class="uk-grid-small export-btns" uk-grid>
-  <div>
-  <%= link_to export_a_url(format: :xlsx), class: 'uk-button lp-button' do %>
-    <span uk-icon="download"></span>
-    Export: Collections as sheets
-  <% end %>
-  </div>
-  <div>
-  <%= link_to export_b_url(format: :xlsx), class: 'uk-button lp-button' do %>
-    <span uk-icon="download"></span>
-    Export: Platforms as sheets
-  <% end %>
-  </div>
-</div>
-
-<div class="strike part"><span>Platforms:</span></div>
-<p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
-<%= render 'platforms/platforms' %>
-<div class="strike part"><span>Remove Account:</span></div>
-<p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
-<%= link_to user_url, class: 'uk-button sh-button del-user-btn', method: :delete do %>
-<%= content_tag :span, svg('warning') %>
-Delete Account
-<%= content_tag :span, svg('warning') %>
-<% end %>
+    <div class="strike part"><span>Games per page:</span></div>
+    <p class="discription">Choose how many games you want to see per page. This setting does not apply to shared collections.</p>
+    <%= form_with(url: change_gpv_url) do %>
+    <table class="range-holder">
+      <tr>
+        <td class="rng-lab">min</td>
+        <td>
+          <%= content_tag :p, gpv = current_user.gpv, id: 'gpv-counter', class: 'disabled' %>
+        </td>
+        <td class="rng-lab">max</td>
+      </tr>
+      <tr>
+        <td class="rng-mima">5</td>
+        <td>
+          <%= range_field(:user, :games_per_view, in: 5..50, step: 1, value: gpv) %>
+        </td>
+        <td class="rng-mima">50</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag 'Update', id: 'submit-gpv', class: 'uk-button sh-button rng-button disabled' %></td>
+        <td></td>
+      </tr>
+    </table>
+    <% end %>
+    <div class="strike part"><span>Collections order:</span></div>
+    <p class="discription">Change the order in which collections appear in menu and forms.</p>
+    <%= render 'collections/collections_order' %>
+    <div class="strike part"><span>Export:</span></div>
+    <p class="discription">Export your games library to Office Open XML Spreadsheet. There are two options for export, depending on how you want games to be organized inside a spreadsheet.</p>
+    <div class="uk-grid-small export-btns" uk-grid>
+      <div>
+        <%= link_to export_a_url(format: :xlsx), class: 'uk-button lp-button' do %>
+        <span uk-icon="download"></span>
+        Export: Collections as sheets
+        <% end %>
+      </div>
+      <div>
+        <%= link_to export_b_url(format: :xlsx), class: 'uk-button lp-button' do %>
+        <span uk-icon="download"></span>
+        Export: Platforms as sheets
+        <% end %>
+      </div>
+    </div>
+    <div class="strike part"><span>Platforms:</span></div>
+    <p class="discription">List of platforms lets you filter your games. You obtain a platform by adding a game to a collection that requires such information. You can delete unwanted platforms below. Deleting platform will not delete your games for this platform, will only disable filter option for this platform.</p>
+    <%= render 'platforms/platforms' %>
+    <div class="strike part"><span>Remove Account:</span></div>
+    <p class="discription">Deleting account will remove all your data. If you change your mind, you won't be able to recover it.</p>
+    <%= link_to user_url, class: 'uk-button sh-button del-user-btn', method: :delete do %>
+    <%= content_tag :span, svg('warning') %>
+    Delete Account
+    <%= content_tag :span, svg('warning') %>
+    <% end %>

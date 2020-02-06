@@ -1,12 +1,3 @@
-function resetSetWarningIcon(input_id, $icon, $warning) {
-    $(input_id).one('input', function() {
-        if ($warning.is(':visible')) {
-            $warning.hide();
-            $icon.show();
-        }
-    });
-}
-
 function activateChangeEmailPassword() {
     $('#change-mail').add('#change-password').on('input', function() {
         var val = $(this).val();

@@ -3,7 +3,7 @@
 <%= form_with(url: settings_url, method: "get") do |f| %>
   <div class="uk-position-relative uk-margin">
     <%= f.password_field :password, id: 'enter-password', class: 'uk-input share-input', placeholder: 'Enter password' %>
-    <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon' %>
+    <%= content_tag :span, svg('key'), class: 'set-input-icon' %>
     <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
   </div>
   <%= submit_tag 'Confirm', class: 'uk-button sh-button uk-width-1-1' %>

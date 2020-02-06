@@ -1,214 +1,178 @@
 <p class="lp-about uk-text-justify"><span>Still Have Them</span> is a <span>free</span> tool to help you keep track of your <span>video game collection</span>. It’s simple design is oriented around your games and your games only. There are <span>no distracions</span> and <span>no ads.</span></p>
-
 <div class="uk-grid-small" uk-grid>
   <div>
-  <%= link_to signup_path,  { :remote => true, class: 'uk-button lp-button lp-big' } do %>
-  <span uk-icon="user"></span>
-  Sign Up
-  <% end %>
+    <%= link_to signup_path,  { :remote => true, class: 'uk-button lp-button lp-big' } do %>
+    <span uk-icon="user"></span>
+    Sign Up
+    <% end %>
   </div>
-
   <div>
-  <%= link_to root_url + '/shared/sample_collection', class: 'uk-button lp-button lp-sample lp-big', target: '_blank' do %>
+    <%= link_to root_url + '/shared/sample_collection', class: 'uk-button lp-button lp-sample lp-big', target: '_blank' do %>
     <span><%= svg 'shelf28' %></span>
     View a sample collection
-  <% end %>
+    <% end %>
   </div>
-
   <div>
     <div uk-lightbox>
-        <a class="uk-button lp-button lp-play lp-big" href="https://www.youtube-nocookie.com/watch?v=7m3zqULVAsA">
+      <a class="uk-button lp-button lp-play lp-big" href="https://www.youtube-nocookie.com/watch?v=7m3zqULVAsA">
         <span><%= svg 'play' %></span>
         Watch UI overview
-        </a>
+      </a>
     </div>
   </div>
 </div>
-
 <% img_mod = current_theme == 'theme_dark' ? ['hidden',''] : ['','hidden'] %>
-
 <div class="frame" uk-slideshow="ratio: 1180:643; animation: fade">
-
-    <ul class="uk-slideshow-items lp-images">
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01.png" => "1.8x" },
-            alt: 'video game collection viewed as game covers', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01_dark.png" => "1.8x" },
-            alt: 'video game collection viewed as game covers', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">The first thing you see upon logging in is YOUR GAMES!</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02.png" => "1.8x" },
-            alt: 'video game collection, game info and screenshots', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02_dark.png" => "1.8x" },
-            alt: 'video game collection, game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Review each game's basic info and view screenshots.</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03.png" => "1.8x" },
-            alt: 'video game collection viewed as panels, open panel shows game info and screenshots', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03_dark.png" => "1.8x" },
-            alt: 'video game collection viewed as panels, open panel shows game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Change between three different games views. Find the one that suits you best.</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04.png" => "1.8x" },
-            alt: 'video game collection viewed as a list, modal shows game info and screenshots', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04_dark.png" => "1.8x" },
-            alt: 'video game collection viewed as a list, modal shows game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Or, switch between them seamlessly whenever you want.</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05.png" => "1.8x" },
-            alt: 'search video games form with options and filters', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05_dark.png" => "1.8x" },
-            alt: 'search video games form with options and filters', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Search games by title, developer or character. Use basic search filters.</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06.png" => "1.8x" },
-            alt: 'search history', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06_dark.png" => "1.8x" },
-            alt: 'search history', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Use search history to go back to previous results.</p>
-            </div>
-        </li>
-
-        <li>
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07.png" => "1.8x" },
-            alt: 'stats and graphs about your video game collection', class: "light-img #{ img_mod[0] }") %>
-
-            <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07_dark.png",
-            srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07_dark.png" => "1.8x" },
-            alt: 'stats and graphs about your video game collection', class: "dark-img #{ img_mod[1] }") %>
-
-            <div class="lp-overlay uk-position-bottom-left">
-                <p class="uk-margin-remove">Learn more about your collection by studying stats and graphs.</p>
-            </div>
-        </li>
+  <ul class="uk-slideshow-items lp-images">
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01.png" => "1.8x" },
+      alt: 'video game collection viewed as game covers', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small01_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/01_dark.png" => "1.8x" },
+      alt: 'video game collection viewed as game covers', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">The first thing you see upon logging in is YOUR GAMES!</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02.png" => "1.8x" },
+      alt: 'video game collection, game info and screenshots', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small02_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/02_dark.png" => "1.8x" },
+      alt: 'video game collection, game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Review each game's basic info and view screenshots.</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03.png" => "1.8x" },
+      alt: 'video game collection viewed as panels, open panel shows game info and screenshots', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small03_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/03_dark.png" => "1.8x" },
+      alt: 'video game collection viewed as panels, open panel shows game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Change between three different games views. Find the one that suits you best.</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04.png" => "1.8x" },
+      alt: 'video game collection viewed as a list, modal shows game info and screenshots', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small04_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/04_dark.png" => "1.8x" },
+      alt: 'video game collection viewed as a list, modal shows game info and screenshots', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Or, switch between them seamlessly whenever you want.</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05.png" => "1.8x" },
+      alt: 'search video games form with options and filters', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small05_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/05_dark.png" => "1.8x" },
+      alt: 'search video games form with options and filters', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Search games by title, developer or character. Use basic search filters.</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06.png" => "1.8x" },
+      alt: 'search history', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small06_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/06_dark.png" => "1.8x" },
+      alt: 'search history', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Use search history to go back to previous results.</p>
+      </div>
+    </li>
+    <li>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07.png" => "1.8x" },
+      alt: 'stats and graphs about your video game collection', class: "light-img #{ img_mod[0] }") %>
+      <%= image_tag("https://still-have-them.s3.eu-central-1.amazonaws.com/small07_dark.png",
+      srcset: { "https://still-have-them.s3.eu-central-1.amazonaws.com/07_dark.png" => "1.8x" },
+      alt: 'stats and graphs about your video game collection', class: "dark-img #{ img_mod[1] }") %>
+      <div class="lp-overlay uk-position-bottom-left">
+        <p class="uk-margin-remove">Learn more about your collection by studying stats and graphs.</p>
+      </div>
+    </li>
+  </ul>
+  <div class="lp-scr-info">
+    <a class="lp-next" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+  </div>
+  <div class="lp-dotnav-position">
+    <ul class="uk-dotnav">
+      <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+      <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+      <li uk-slideshow-item="2"><a href="#">Item 3</a></li>
+      <li uk-slideshow-item="3"><a href="#">Item 4</a></li>
+      <li uk-slideshow-item="4"><a href="#">Item 5</a></li>
+      <li uk-slideshow-item="5"><a href="#">Item 6</a></li>
+      <li uk-slideshow-item="6"><a href="#">Item 7</a></li>
     </ul>
-
-    <div class="lp-scr-info">
-      <a class="lp-next" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-    </div>
-
-    <div class="lp-dotnav-position">
-        <ul class="uk-dotnav">
-            <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
-            <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
-            <li uk-slideshow-item="2"><a href="#">Item 3</a></li>
-            <li uk-slideshow-item="3"><a href="#">Item 4</a></li>
-            <li uk-slideshow-item="4"><a href="#">Item 5</a></li>
-            <li uk-slideshow-item="5"><a href="#">Item 6</a></li>
-            <li uk-slideshow-item="6"><a href="#">Item 7</a></li>
-        </ul>
-    </div>
-
+  </div>
   <div class="fake-buttons">
     <div class="fb"></div>
     <div class="fb"></div>
     <div class="fb"></div>
   </div>
 </div>
-
 <p class="f-head">Features:</p>
-
 <div class="uk-child-width-1-2 feat" uk-grid>
   <div>
-      <p class="f-title">SEARCH GAMES WITH IGDB</p>
-      <p class="uk-text-justify">Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.</p>
+    <p class="f-title">SEARCH GAMES WITH IGDB</p>
+    <p class="uk-text-justify">Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.</p>
   </div>
   <div>
-      <p class="f-title">MULTIPLE COLLECTIONS</p>
-      <p class="uk-text-justify">Create multiple collections and store games according to your preferences.</p>
+    <p class="f-title">MULTIPLE COLLECTIONS</p>
+    <p class="uk-text-justify">Create multiple collections and store games according to your preferences.</p>
   </div>
 </div>
-
 <div class="uk-child-width-1-2 feat" uk-grid>
   <div>
-      <p class="f-title">PLATFORM AND FORMAT INFORMATION</p>
-      <p class="uk-text-justify">Create collections that will require platform and format information for each game added to these collections.</p>
+    <p class="f-title">PLATFORM AND FORMAT INFORMATION</p>
+    <p class="uk-text-justify">Create collections that will require platform and format information for each game added to these collections.</p>
   </div>
   <div>
-      <p class="f-title">MOVE, COPY AND EDIT GAMES</p>
-      <p class="uk-text-justify">Move, and copy games between and inside collections. Edit games format and platform information. </p>
+    <p class="f-title">MOVE, COPY AND EDIT GAMES</p>
+    <p class="uk-text-justify">Move, and copy games between and inside collections. Edit games format and platform information. </p>
   </div>
 </div>
-
 <div class="uk-child-width-1-2 feat" uk-grid>
   <div>
-      <p class="f-title">DIFFERENT VIEWS</p>
-      <p class="uk-text-justify">There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want. </p>
+    <p class="f-title">DIFFERENT VIEWS</p>
+    <p class="uk-text-justify">There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want. </p>
   </div>
   <div>
-      <p class="f-title">SEARCH, FILTER AND SORT</p>
-      <p class="uk-text-justify">Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.</p>
+    <p class="f-title">SEARCH, FILTER AND SORT</p>
+    <p class="uk-text-justify">Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.</p>
   </div>
 </div>
-
 <div class="uk-child-width-1-2 feat" uk-grid>
   <div>
-      <p class="f-title">SHARE</p>
-      <p class="uk-text-justify">Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.</p>
+    <p class="f-title">SHARE</p>
+    <p class="uk-text-justify">Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.</p>
   </div>
   <div>
-      <p class="f-title">STATS AND GRAPHS</p>
-      <p class="uk-text-justify">Check single collection stats or take a look at your whole library. Enjoy data presented in nice-looking graphs.</p>
+    <p class="f-title">STATS AND GRAPHS</p>
+    <p class="uk-text-justify">Check single collection stats or take a look at your whole library. Enjoy data presented in nice-looking graphs.</p>
   </div>
 </div>
-
 <div class="uk-child-width-1-2 feat" uk-grid>
   <div>
-      <p class="f-title">DARK THEME</p>
-      <p class="uk-text-justify">Change background and UI elements to dark. It looks great and is easier on the eyes.</p>
+    <p class="f-title">DARK THEME</p>
+    <p class="uk-text-justify">Change background and UI elements to dark. It looks great and is easier on the eyes.</p>
   </div>
   <div>
-      <p class="f-title">EXPORT</p>
-      <p class="uk-text-justify">Export your collections to spreadsheet document at any time.</p>
+    <p class="f-title">EXPORT</p>
+    <p class="uk-text-justify">Export your collections to spreadsheet document at any time.</p>
   </div>
 </div>
-
 <div id="signup-modal" class="uk-flex-top" uk-modal>
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -219,7 +183,6 @@
     <div class="modal-content"></div>
   </div>
 </div>
-
 <div id="signin-modal" class="uk-flex-top" uk-modal>
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
     <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -231,5 +194,5 @@
   </div>
 </div>
 <script>
-  changeThemeLp();
+changeThemeLp();
 </script>

@@ -11,7 +11,9 @@ function activateDropdowns($more) {
 }
 
 function resetFormErrors(is_list) {
-    var reset_elements = ['#collection', '#game_platform', '#game_physical_true', '#game_physical_false','#copy_true', '#copy_false'];
+    var reset_elements_ids = ['#collection',
+     '#game_platform', '#game_physical_true',
+      '#game_physical_false', '#copy_true', '#copy_false'];
 
     if (is_list) {
         var $form = $('#t-ops').find('.modal-content');
@@ -20,7 +22,7 @@ function resetFormErrors(is_list) {
     }
 
     var $errors = $form.find('.add-form-errors');
-    var $form_parts = $form.find(reset_elements.join(', '));
+    var $form_parts = $form.find(reset_elements_ids.join(', '));
 
     $form_parts.one('input', function() {
         $errors.html('');

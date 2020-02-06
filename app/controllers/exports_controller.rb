@@ -13,9 +13,7 @@ class ExportsController < ApplicationController
   end
 
   def export_platforms
-
     @user_id = current_user.id
-
     respond_to do |format|
       format.xlsx {
         response.headers[

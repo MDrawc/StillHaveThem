@@ -1,6 +1,7 @@
-var $icon = $('#reset-ok');
-var $warning = $icon.next();
-$icon.hide();
-$warning.attr("uk-tooltip", "title: Password <%= raw @user.errors[:password].first %>; pos: top-left");
-$warning.show();
-resetSetWarningIcon('#rest-password',$icon, $warning);
+var $input = $('#reset-password');
+var $ok_icon = $('#reset-ok');
+var $error_icon = $ok_icon.next();
+var tooltip = "title: Password <%= raw @user.errors[:password].first %>; pos: top-left";
+$ok_icon.hide();
+$error_icon.attr("uk-tooltip", tooltip).show();
+resetSimpleError($input, $ok_icon, $error_icon);

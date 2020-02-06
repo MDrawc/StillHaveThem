@@ -16,7 +16,7 @@ class PasswordResetsController < ApplicationController
       respond_to :js
     else
       respond_to do |format|
-        format.js { render partial: 'forget_error' }
+        format.js { render partial: 'get_email_error' }
       end
     end
   end
