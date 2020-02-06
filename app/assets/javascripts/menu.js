@@ -15,12 +15,6 @@ function hideShowBackToTop() {
     });
 }
 
-function cancelCollDelete() {
-    $('#coll-uff').one('click', function() {
-        UIkit.modal($("#coll-del-modal")).hide();
-    });
-}
-
 function getDocHeight() {
     var D = document;
     return Math.max(
@@ -28,4 +22,27 @@ function getDocHeight() {
         D.body.offsetHeight, D.documentElement.offsetHeight,
         D.body.clientHeight, D.documentElement.clientHeight
     );
+}
+
+function activateInfoDoc(doc) {
+  var $tab = $('#doc-tab');
+  var $liments = $tab.find('li')
+  $liments.removeClass('uk-active');
+  $liments.find('#' + doc).parent().addClass('uk-active');
+
+  $tab.find('a').click(function() {
+          $.ajax({
+              url: '/doc/',
+              data: { doc: $(this).attr('id') }
+          });
+  });
+
+  var $top_and_back = $('#top_and_back');
+  $(window).scroll(function() {
+     if($(window).scrollTop() + $(window).height() == getDocHeight()) {
+        $top_and_back.css('opacity', 1);
+     } else {
+        $top_and_back.css('opacity', 0);
+     }
+  });
 }

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'doc', to: 'static_pages#doc', as: 'doc'
 
   get 'search', to: 'static_pages#search_page'
-  get 'search_games', to: 'static_pages#search'
+  get 'search_games', to: 'search_igdb#search'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'signin', to: 'sessions#new'

@@ -1,7 +1,7 @@
-var error = '<%= @error %>';
-var $coll_error = $("#coll-error");
-$("#coll-icon-input").hide();
-$coll_error.attr('uk-tooltip', error );
-$coll_error.show();
-
-resetCollErrors();
+var $input = $('#collection_name');
+var $ok_icon = $input.next();
+var $error_icon = $ok_icon.next();
+$error_icon.attr('uk-tooltip', '<%= error %>');
+$ok_icon.hide();
+$error_icon.show();
+resetSimpleError($input, $ok_icon, $error_icon);

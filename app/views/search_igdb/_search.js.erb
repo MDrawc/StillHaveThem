@@ -1,0 +1,31 @@
+clearSearchWait();
+var view = '<%= view %>';
+var $results = $("#search-results");
+$results.html("<%= j(render partial: 'results', locals: { view: view, load_more: false }) %>");
+$results.append("<%= j(content_tag :span, @inquiry.last_form.values.join(','), id: 'last-form') %>");
+$("#bar-history").html("<%= j(render partial:'records/bar_records') %>");
+activateSearchRecords();
+
+switch (view) {
+    case 'list_view':
+        break;
+    case 'cover_view':
+        fitNameInNoCover();
+        activateDropdowns();
+        morePlatforms();
+        break;
+    case 'panel_view':
+        activateDropdowns();
+        moreInfo();
+        closeAllPanels();
+        $('.g-drop').slideUp(0);
+        break;
+}
+
+$(function() {
+    activateSearchToolbar(view, '<%= @inquiry.query_type %>');
+    changeSearchView();
+    showHideToolbar(false);
+    changeTheme(false);
+    hideShowBackToTop();
+});

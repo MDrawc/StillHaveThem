@@ -1,6 +1,0 @@
-<% if errors.any? %>
-  <%= content_tag :span, nil, id: 'search-errors', class: 'search-warning-icon blink_me',
-   'uk-tooltip' => "title: Please #{ errors.full_messages.first }; pos: left" %>
-<% else %>
-  <%= content_tag :span, nil, id: 'search-errors', class: 'uk-form-icon search-icon', 'uk-icon' => 'search' %>
-<% end %>

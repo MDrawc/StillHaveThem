@@ -2,7 +2,7 @@ require 'net/https'
 
 class IgdbQuery
   extend ActiveModel::Naming
-  attr_reader :errors, :input, :query, :query_type, :offset, :results, :last_form
+  attr_reader :errors, :base, :input, :query, :query_type, :offset, :results, :last_form
 
   RESULT_LIMIT = 50
   OFFSET_LIMIT = 500
@@ -150,6 +150,15 @@ class IgdbQuery
       return 2 # There are more results but limit has been reached
     else
       return 3 # Fully finished search
+    end
+  end
+
+  def error_msg
+    error_messages = errors.full_messages
+    if error_messages.size > 1
+      return 'Please ' + error_messages.join(' and ')
+    else
+      return 'Please ' + error_messages[0]
     end
   end
 

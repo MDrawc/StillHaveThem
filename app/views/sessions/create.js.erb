@@ -1,3 +1,6 @@
-$(".login-ok").hide();
-$(".login-er").show();
-resetLoginErrors();
+var $ok_icon = $(".login-ok");
+var $error_icon = $(".login-er");
+$ok_icon.hide();
+$error_icon.show();
+var $inputs = $("#login-mail").add('#login-password');
+resetSimpleError($inputs, $ok_icon, $error_icon);

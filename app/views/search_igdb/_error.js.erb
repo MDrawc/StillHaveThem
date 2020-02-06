@@ -1,0 +1,17 @@
+clearSearchWait();
+var $ok_icon = $("#search-ok");
+var $error_icon = $ok_icon.next();
+$error_icon.attr('uk-tooltip', 'title: <%= message %>; pos: left');
+$ok_icon.hide();
+$error_icon.show();
+
+var $inputs = $('#search-igdb-bar').add('.search-checkbox');
+resetSimpleError($inputs, $ok_icon, $error_icon);
+
+var $buttons = $('#src-reset').add('#p-none').add('#p-all');
+$buttons.one('click', function() {
+    if ($error_icon.is(':visible')) {
+        $error_icon.hide();
+        $ok_icon.show();
+    }
+});

@@ -20,24 +20,21 @@ def show_guest
 end
 
 def create
-
   if (last_coll = current_user.collections.last)
     cord = last_coll.cord + 1
   else
     cord = 1
   end
 
-  @collection = current_user.collections.build(collection_params)
-  @collection.cord = cord
+  collection = current_user.collections.build(collection_params)
+  collection.cord = cord
 
-  @errors = nil
-
-  if @collection.save
+  if collection.save
     respond_to :js
   else
-    @error = @collection.errors.full_messages.first
+    error = collection.errors.full_messages.first
     respond_to do |format|
-        format.js { render partial: "error" }
+        format.js { render partial: "error", locals: { error: error } }
     end
   end
 end
@@ -46,23 +43,23 @@ def edit
   respond_to :js
 end
 
+def update
+  if @collection.update(collection_params)
+    respond_to :js
+  else
+    error = @collection.errors.full_messages.first
+    respond_to do |format|
+        format.js { render partial: "error", locals: { error: error } }
+    end
+  end
+end
+
 def change_order
   cord = params[:cord]
   current_user.collections.each do |c|
     c.update(cord: cord[c.id.to_s]) if cord.keys.include?(c.id.to_s)
   end
   respond_to :js
-end
-
-def update
-  if @collection.update(collection_params)
-    respond_to :js
-  else
-    @error = @collection.errors.full_messages.first
-    respond_to do |format|
-        format.js { render partial: "error" }
-    end
-  end
 end
 
 def del_form

@@ -5,6 +5,6 @@
 
 <%= form_with(url: resend_activ_link_url) do |f| %>
 <%= f.hidden_field :email, value: email %>
-<%= content_tag :a, 'Done', id: 'done-btn', class: 'uk-button sh-button' %>
+<%= content_tag :a, 'Done', id: 'done-btn', class: 'uk-button sh-button uk-modal-close' %>
 <%= submit_tag('Resend activation email', class: 'uk-button uk-button-link resend') %>
 <% end %>

@@ -27,71 +27,14 @@ function resetFormErrors(is_list) {
     });
 }
 
-
-
-// THE SAME
-// THE SAME
-// THE SAME
-// THE SAME
-//
-//
-
-function resetSimpleError(input_selector, ok_icon, error_icon) {
-    $(input_selector).on('input', function() {
+function resetSimpleError(inputs, ok_icon, error_icon) {
+    inputs.one('input', function() {
         if (error_icon.is(':visible')) {
             error_icon.hide();
             ok_icon.show();
         }
     });
 }
-
-
-function resetLoginErrors() {
-    $("#login-mail").add('#login-password').on('input', function() {
-        var $good = $(".login-ok");
-        var $bad = $(".login-er");
-        if ($bad.is(':visible')) {
-            $bad.hide();
-            $good.show();
-        }
-    });
-}
-
-function resetSignupErrors() {
-    $("#signup-mail").on('input', function() {
-        var $good = $("#mail-icon");
-        var $bad = $("#mail-er-icon");
-        if ($bad.is(':visible')) {
-            $bad.hide();
-            $good.show();
-        }
-    });
-
-    $('#signup-password').on('input', function() {
-        var $good = $("#key-icon");
-        var $bad = $("#key-er-icon");
-        if ($bad.is(':visible')) {
-            $bad.hide();
-            $good.show();
-        }
-    });
-}
-
-function resetCollErrors() {
-    $('#collection_name').one('input', function() {
-        var $good = $('#coll-icon-input');
-        var $bad = $('#coll-error');
-        if ($bad.is(':visible')) {
-            $bad.hide();
-            $good.show();
-        }
-    });
-}
-
-// THE SAME
-// THE SAME
-// THE SAME
-// THE SAME
 
 function preselectPlatform(is_list, platform) {
     if (is_list) {
