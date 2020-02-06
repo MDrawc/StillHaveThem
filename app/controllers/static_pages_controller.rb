@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
           home_id = current_user.collections.first.id if !current_user.collections.empty?
         end
       end
-      url = home_id ? '/collections/' + home_id : '/search'
+      url = home_id ? "/collections/#{ home_id }" : '/search'
       render 'home', locals: { url: url }
     else
       @just_land = true

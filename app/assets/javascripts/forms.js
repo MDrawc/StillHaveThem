@@ -193,10 +193,11 @@ function paintItBlack(id) {
 
 function passwordUnmask() {
     $('.unmask').on('click', function() {
-        if ($(this).prev('input').attr('type') == 'password')
-            changeType($(this).prev('input'), 'text');
+        $input = $(this).prev('input')
+        if ($input.attr('type') == 'password')
+            changeType($input, 'text');
         else
-            changeType($(this).prev('input'), 'password');
+            changeType($input, 'password');
         return false;
     });
 }
