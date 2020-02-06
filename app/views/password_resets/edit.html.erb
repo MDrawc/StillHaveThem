@@ -7,7 +7,10 @@
     <div class="uk-position-relative">
       <%= hidden_field_tag :email, @user.email %>
       <%= f.password_field :password, id: 'rest-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
-      <button class="uk-button unmask" type="button"></button>
+      <button class="uk-button unmask" type="button">
+        <%= svg 'eye' %>
+        <%= svg 'eye_hidden' %>
+      </button>
       <span id="reset-ok" class="sign-icon"><%= svg 'key' %></span>
       <span class="warning-icon blink_me login-er"></span>
       <p id="password-min">6 characters minimum</p>

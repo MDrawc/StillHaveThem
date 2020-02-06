@@ -6,7 +6,10 @@
 </div>
 <div class="uk-position-relative">
   <%= f.password_field :password, id: 'signup-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
-  <button class="uk-button unmask" type="button"></button>
+  <button class="uk-button unmask" type="button">
+    <%= svg 'eye' %>
+    <%= svg 'eye_hidden' %>
+  </button>
   <span id="key-icon" class="sign-icon"><%= svg 'key' %></span>
   <span id="key-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
   <p id="password-min">6 characters minimum</p>
