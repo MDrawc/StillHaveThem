@@ -1,21 +1,28 @@
-var form = '<%= form %>';
 var type = '<%= type %>';
+var $form = $('<%= form %>');
 <% unless errors[:title].empty? %>
-    <% error = "Title #{ errors[:title][0] }" %>
-    $('#' + type + 'title-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'title-icon', error: error, extra: 'sh-warning'  }) %>");
-    resetShWarningIcon('title', 'heart', '#share_title', form, type);
+    var $title_input = $form.find('#share_title');
+    var $title_ok_icon = $('#' + type + 'title-icon');
+    var $title_error_icon = $title_ok_icon.next();
+    $title_ok_icon.hide();
+    $title_error_icon.attr('uk-tooltip', "title: Title <%= errors[:title][0] %>; pos: top-left").show();
+    resetSimpleError($title_input, $title_ok_icon, $title_error_icon);
 <% end %>
-
 <% unless errors[:message].empty? %>
-    <% error = "Message #{ errors[:message][0] }" %>
-    $('#' + type + 'message-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'message-icon', error: error, extra: 'sh-warning' }) %>");
-    resetShWarningIcon('message', 'comment', '#share_message', form, type);
+    var $comment_input = $form.find('#share_message');
+    var $comment_ok_icon = $('#' + type + 'message-icon');
+    var $comment_error_icon = $comment_ok_icon.next();
+    $comment_ok_icon.hide();
+    $comment_error_icon.attr('uk-tooltip', "title: Message <%= errors[:message][0] %>; pos: top-left").show();
+    resetSimpleError($comment_input, $comment_ok_icon, $comment_error_icon);
 <% end %>
-
 <% unless errors[:shared].empty? %>
-    <% error = "#{ errors[:shared][0] }" %>
-    $('#' + type + 'shared-icon').replaceWith("<%= j(render partial: 'shared/warning', locals: { id: type + 'shared-icon', error: error, extra: 'sh-warning' }) %>");
-    resetShWarningIcon('shared', 'tag', '.sh-check', form, type);
+    var $tag_input = $form.find('.sh-check');
+    var $tag_ok_icon = $('#' + type + 'shared-icon');
+    var $tag_error_icon = $tag_ok_icon.next();
+    $tag_ok_icon.hide();
+    $tag_error_icon.attr('uk-tooltip', "title: <%= errors[:shared][0] %>; pos: top-left").show();
+    resetSimpleError($tag_input, $tag_ok_icon, $tag_error_icon);
 <% end %>
 
 resetShErrorsWithResetButton(type);

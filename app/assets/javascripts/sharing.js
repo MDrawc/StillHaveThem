@@ -47,31 +47,18 @@ function cancelEditForm(share_id) {
     });
 }
 
-function resetShWarningIcon(name, icon, input, form, type) {
-    var no_error = "<span id='" + type + name + "-icon' class='sh-input-icon' uk-icon='" + icon + "'>";
-    var $error_icon = $('#' + type + name + '-icon');
-
-    var $form = $(form);
-    var $input = $form.find(input);
-
-    $input.one('input', function() {
-        if ($error_icon.hasClass('warning-icon')) {
-            $error_icon.replaceWith(no_error);
-        }
-    });
-}
-
 function resetShErrorsWithResetButton(type) {
     var $reset_btn =  $('#' + type + 'sh-reset');
     $reset_btn.off();
-    $reset_btn.click(function() {
+    $reset_btn.one('click', function() {
         var fields = ['title', 'message', 'shared'];
-        var icons = ['heart', 'comment', 'tag']
-        for (var i = 0; i < fields.length; i++) {
-            var $error_icon = $('#' + type + fields[i] + '-icon');
-            var no_error = "<span id='" + fields[i] + "-icon' class='sh-input-icon' uk-icon='" + icons[i] + "'>";
-            if ($error_icon.hasClass('warning-icon')) {
-                $error_icon.replaceWith(no_error);
+        var f_length = fields.length;
+        for (var i = 0; i < f_length; i++) {
+            var $ok_icon = $('#' + type + fields[i] + '-icon');
+            var $error_icon = $ok_icon.next();
+            if ($error_icon.is(':visible')) {
+                $error_icon.hide();
+                $ok_icon.show();
             }
         }
     });
