@@ -27,6 +27,13 @@ function resetFormErrors(is_list) {
     });
 }
 
+
+
+// THE SAME
+// THE SAME
+// THE SAME
+// THE SAME
+
 function resetLoginErrors() {
     $("#login-mail").add('#login-password').on('input', function() {
         var $good = $(".login-ok");
@@ -44,7 +51,6 @@ function resetSignupErrors() {
         var $bad = $("#mail-er-icon");
         if ($bad.is(':visible')) {
             $bad.hide();
-            $bad.attr('uk-tooltip', 'title:; pos: top-left');
             $good.show();
         }
     });
@@ -54,7 +60,6 @@ function resetSignupErrors() {
         var $bad = $("#key-er-icon");
         if ($bad.is(':visible')) {
             $bad.hide();
-            $bad.attr('uk-tooltip', 'title:; pos: top-left');
             $good.show();
         }
     });
@@ -70,6 +75,11 @@ function resetCollErrors() {
         }
     });
 }
+
+// THE SAME
+// THE SAME
+// THE SAME
+// THE SAME
 
 function preselectPlatform(is_list, platform) {
     if (is_list) {

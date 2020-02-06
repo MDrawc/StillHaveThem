@@ -86,7 +86,6 @@ class StaticPagesController < ApplicationController
   end
 
   private
-
     def owned(results)
       res = []
       igdb_ids = results.map { |g| g[:igdb_id] }

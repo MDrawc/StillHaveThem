@@ -2,7 +2,7 @@
 <div class="uk-position-relative margin-bottom-15">
   <%= f.email_field :email, id: 'signup-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
   <span id="mail-icon" class="sign-icon"><%= svg 'mail' %></span>
-  <span id="mail-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
+  <span id="mail-er-icon" class="warning-icon blink_me sign-er"></span>
 </div>
 <div class="uk-position-relative">
   <%= f.password_field :password, id: 'signup-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
@@ -11,7 +11,7 @@
     <%= svg 'eye_hidden' %>
   </button>
   <span id="key-icon" class="sign-icon"><%= svg 'key' %></span>
-  <span id="key-er-icon" class="warning-icon blink_me sign-er" uk-tooltip=""></span>
+  <span id="key-er-icon" class="warning-icon blink_me sign-er"></span>
   <p id="password-min">6 characters minimum</p>
 </div>
 <div class="submit">
