@@ -1,5 +1,6 @@
 <%= form_for("search", url: 'search_games', method: :get, html: {remote: true, id: 'search-form'} ) do |f| %>
-<span id="search-errors" class="uk-form-icon search-icon" uk-icon="search"></span>
+<span id="search-ok" class="uk-form-icon search-icon" uk-icon="search"></span>
+<span id="search-error" class="search-warning-icon blink_me"></span>
 <span id="srch-type">game</span>
 <span id="infc" class="info-icon" uk-icon="info" uk-tooltip="title: IGDB: Free Video Game Database; pos: right"></span>
 <%= f.text_field(:inquiry, placeholder: "Search video games..." , id: "search-igdb-bar", class: "uk-search-input search-bar", autofocus: "true", autocomplete: "off") %>

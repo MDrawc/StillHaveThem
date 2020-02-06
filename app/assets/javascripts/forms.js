@@ -33,6 +33,18 @@ function resetFormErrors(is_list) {
 // THE SAME
 // THE SAME
 // THE SAME
+//
+//
+
+function resetSimpleError(input_selector, ok_icon, error_icon) {
+    $(input_selector).on('input', function() {
+        if (error_icon.is(':visible')) {
+            error_icon.hide();
+            ok_icon.show();
+        }
+    });
+}
+
 
 function resetLoginErrors() {
     $("#login-mail").add('#login-password').on('input', function() {
