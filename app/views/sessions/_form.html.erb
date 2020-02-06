@@ -6,7 +6,10 @@
   </div>
   <div class="uk-position-relative">
     <%= f.password_field :password, id: 'login-password', class: 'password uk-input pl40 share-input', placeholder: 'Password' %>
-    <button class="uk-button unmask" type="button"></button>
+    <button class="uk-button unmask" type="button">
+      <%= svg 'eye' %>
+      <%= svg 'eye_hidden' %>
+      </button>
     <span class="sign-icon login-ok"><%= svg 'key' %></span>
     <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
   </div>

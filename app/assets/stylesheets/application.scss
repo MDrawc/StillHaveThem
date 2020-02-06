@@ -1261,26 +1261,20 @@ p.have-account {
     margin-top: -15px;
 }
 
-// Eye (unmask password)
-
-.password + .unmask {
+// Unmask button
+.unmask {
     width: 35px;
     height: 35px;
-    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/eye.svg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
     position: absolute;
     right: 6px;
-    top: 3px;
     border: none;
     cursor: pointer;
     padding: 0px;
+    background: none;
 }
 
-.password[type="text"] + .unmask {
-    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/eye_hidden.svg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+.eye-hidden {
+    display: none;
 }
 
 // Strike
