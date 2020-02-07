@@ -41,7 +41,8 @@
             <label><%= f.radio_button(:physical, false, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
         </div>
     </div>
-    <button name="button" type="submit" class="cf-add-button">Add</button><span class="add-form-errors"></span>
+    <button name="button" type="submit" class="cf-add-button">Add</button>
+    <span class="add-form-errors blink_me"><%= svg 'x_warning' %><span></span></span>
     <% end %>
     <div class="already-in">
         <%= render(partial: 'search/already_in', locals: { igdb_id: data[:igdb_id], x_id: x_id }) if owned %>

@@ -15,18 +15,25 @@ function resetFormErrors(is_list) {
      '#game_platform', '#game_physical_true',
       '#game_physical_false', '#copy_true', '#copy_false'];
 
-    if (is_list) {
-        var $form = $('#t-ops').find('.modal-content');
-    } else {
-        var $form = $('#f-lone');
-    }
-
-    var $errors = $form.find('.add-form-errors');
+    var $form = is_list ? $('#t-ops') : $('#f-lone');
+    var $error = $form.find('.add-form-errors');
     var $form_parts = $form.find(reset_elements_ids.join(', '));
-
     $form_parts.one('input', function() {
-        $errors.html('');
+        $error.hide();
     });
+}
+
+function handleAddFormErrors(view, msg) {
+    if (view === 'list') {
+        var $error = $("#t-ops").find(".add-form-errors");
+        var is_list = true;
+    } else {
+        var $error = $("#f-lone").find(".add-form-errors");
+        var is_list = false;
+    }
+    $error.find('span').text(msg);
+    $error.show();
+    resetFormErrors(is_list);
 }
 
 function resetSimpleError(inputs, ok_icon, error_icon) {

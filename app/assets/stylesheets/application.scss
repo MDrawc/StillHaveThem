@@ -1322,15 +1322,10 @@ p.have-account {
     margin: 0px 0px 20px 0px;
 }
 
-.add-acc-errors {
-    font-size: 12px;
+.add-form-errors {
+    display: none;
+    font-size: 13px;
     font-style: italic;
-}
-
-span.add-form-errors {
-    height: 25px;
-    position: relative;
-    top: -1px;
 }
 
 // F-modal and Charts

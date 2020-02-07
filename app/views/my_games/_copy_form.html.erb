@@ -58,5 +58,6 @@
         <label><%= f.radio_button(:physical, false, checked: !physical, class: "cf-digital") %><%= svg 'digital_icon' %> Digital</label>
     </div>
 </div>
-<button name="button" type="submit" id="cf-cm-button">Copy</button><span class="add-form-errors"></span>
+<button name="button" type="submit" id="cf-cm-button">Copy</button>
+<span class="add-form-errors blink_me"><%= svg 'x_warning' %><span></span></span>
 <% end %>

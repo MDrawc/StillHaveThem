@@ -39,14 +39,5 @@ var view = $('#view-container').attr('view');
         $(this).attr('uk-icon', 'check');
     });
 <% else %>
-    var errors = "<%= j(render partial: 'add_form_errors', locals: { errors: @errors }) %>";
-    switch (view) {
-        case 'list':
-            $("#t-ops").find(".add-form-errors").html(errors);
-            resetFormErrors(true)
-            break;
-        default:
-            $("#f-lone").find(".add-form-errors").html(errors);
-            resetFormErrors(false)
-    }
+    handleAddFormErrors(view, '<%= @errors.join(', ') %>');
 <% end %>
