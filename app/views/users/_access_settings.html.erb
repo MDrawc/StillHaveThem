@@ -6,5 +6,5 @@
     <%= content_tag :span, svg('key'), class: 'set-input-icon' %>
     <%= content_tag :span, svg('warning'), class: 'blink_me set-warning' %>
   </div>
-  <%= submit_tag 'Confirm', class: 'uk-button sh-button uk-width-1-1' %>
+  <%= f.button 'Confirm', class: "uk-button sh-button uk-width-1-1", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
 <% end %>
