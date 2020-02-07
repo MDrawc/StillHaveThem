@@ -81,17 +81,17 @@ class IgdbQuery
       setup(obj)
       @where, @search , @sort  = '', '', ''
 
-      puts ">> Using input: #{ @input }"
-      puts ">> Query type: #{ @query_type }"
-      puts ">> Corrected input: #{ @fixed_input }"
-      puts ">> Input type: #{ @type }"
-      puts ">> Offset: #{ @offset}"
-      puts ">> Platforms: #{ @platforms }"
-      puts ">> Categories: #{ @categories }"
-      puts ">> Erotic: #{ @erotic }"
-      puts ">> Only released: #{ @only_released }"
+      # puts ">> Using input: #{ @input }"
+      # puts ">> Query type: #{ @query_type }"
+      # puts ">> Corrected input: #{ @fixed_input }"
+      # puts ">> Input type: #{ @type }"
+      # puts ">> Offset: #{ @offset}"
+      # puts ">> Platforms: #{ @platforms }"
+      # puts ">> Categories: #{ @categories }"
+      # puts ">> Erotic: #{ @erotic }"
+      # puts ">> Only released: #{ @only_released }"
     else
-      puts ">> Using query (load more feature): #{ query.inspect }"
+      # puts ">> Using query (load more feature): #{ query.inspect }"
       @query = change_offset(query, @offset)
       case @query[:endpoint]
       when 'games' then @query_type = :game
@@ -99,7 +99,7 @@ class IgdbQuery
       when 'characters' then @query_type = :char
       end
       setup(obj) unless @query_type == :game
-      puts ">> New query: #{ @query.inspect }"
+      # puts ">> New query: #{ @query.inspect }"
     end
   end
 
@@ -230,7 +230,7 @@ class IgdbQuery
       puts '>> [ Checking if query exists in DB ]'
       if (results = Query.where(@query)).present?
         ancestor = results.first
-        puts ">> Query already exists: #{ ancestor.inspect }"
+        # puts ">> Query already exists: #{ ancestor.inspect }"
         if (ancestor.updated_at > DAYS_LIMIT.day.ago)
           puts '>> Query is considered actual. Copying results(games ids).'
           @games_ids = ancestor.results if ancestor.results
@@ -269,10 +269,10 @@ class IgdbQuery
           @addl = get_addl(results)
         end
       end
-      print ">> Received #{ @games_ids.size } games ids: " if @games_ids
-      puts @games_ids.inspect
-      puts ">> Response size: #{ @response_size }"
-      puts ">> Additional info's size: #{ @addl.size }" if @addl
+      # print ">> Received #{ @games_ids.size } games ids: " if @games_ids
+      # puts @games_ids.inspect
+      # puts ">> Response size: #{ @response_size }"
+      # puts ">> Additional info's size: #{ @addl.size }" if @addl
     end
 
     def save_query
@@ -302,7 +302,7 @@ class IgdbQuery
           c[key].size.times { addl << c['name'] } if c[key]
       end
 
-      puts ">> Additional info array: #{ addl }"
+      # puts ">> Additional info array: #{ addl }"
       addl
     end
 
@@ -318,7 +318,6 @@ class IgdbQuery
 
     def compose_results
       puts '>> [ Composing Results ]'
-
       # Finds stored in DB games (ignores duplicates):
       res = Agame.where(igdb_id: @games_ids)
 
@@ -341,7 +340,7 @@ class IgdbQuery
         puts '>> DB have all the games. Searching IGDB unnecessary.'
       else
         @missing_games = @games_ids - res.map { |g| g[:igdb_id] }
-        puts ">> DB is missing games(igdb_id): #{ @missing_games }"
+        # puts ">> DB is missing games(igdb_id): #{ @missing_games }"
         puts '>> Searching IGDB for full set of information is necessary.'
       end
     end
@@ -361,7 +360,7 @@ class IgdbQuery
         results = convert_to_games(results)
       end
 
-      puts ">> Received #{ @response_size } results."
+      # puts ">> Received #{ @response_size } results."
 
       convert_and_save(results)
     end
@@ -410,21 +409,19 @@ class IgdbQuery
       res_to_h = @results.map { |g| g.except(:id, :created_at, :updated_at) }
       to_update = already_exists - res_to_h
 
-      puts ">> Converted games: #{ converted.map { |g| g[:name] } }"
-      puts ">> Already existing games: #{ already_exists.map { |g| g[:name] } }"
-      puts ">> New games: #{ new_games.map { |g| g[:name] } }"
-      puts ">> Games that needs update: #{ to_update.map { |g| g[:name] } }"
+      # puts ">> Converted games: #{ converted.map { |g| g[:name] } }"
+      # puts ">> Already existing games: #{ already_exists.map { |g| g[:name] } }"
+      # puts ">> New games: #{ new_games.map { |g| g[:name] } }"
+      # puts ">> Games that needs update: #{ to_update.map { |g| g[:name] } }"
 
       update_ids = to_update.map do |u|
         @results.select { |g| g[:igdb_id] == u[:igdb_id] }.first[:id]
       end
 
-      puts ">> Games that needs update - ids: #{ update_ids }"
-      puts ">> Saving #{new_games.size} new games"
+      # puts ">> Games that needs update - ids: #{ update_ids }"
+      # puts ">> Saving #{new_games.size} new games"
 
       begin
-      # Old - without 'activerecord-import'
-      # Agame.create(new_games)
 
       #New - with 'activerecord-import'
       games = new_games.uniq.map { |g| Agame.new(g) }
@@ -433,7 +430,7 @@ class IgdbQuery
       rescue ActiveRecord::RecordNotUnique
       end
 
-      puts ">> Updating #{to_update.size} existing games"
+      # puts ">> Updating #{to_update.size} existing games"
       Agame.update(update_ids, to_update)
 
       unless @query_type == :game
@@ -444,7 +441,7 @@ class IgdbQuery
 
       @results = converted
 
-      puts ">> Results size: #{ @results.size }"
+      # puts ">> Results size: #{ @results.size }"
     end
 
     def request(endpoint, body)
@@ -454,7 +451,7 @@ class IgdbQuery
       request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{ endpoint }"),
        { 'user-key' => ENV['IGDB_KEY'] })
       request.body = body
-      puts ">> Full request: #{ request.body }"
+      # puts ">> Full request: #{ request.body }"
       begin
         results = JSON.parse http.request(request).body
         rescue JSON::ParserError
@@ -500,7 +497,7 @@ class IgdbQuery
       end
 
       unless @platforms.values.all?
-        puts ">> Plaforms array: #{@platforms}"
+        # puts ">> Plaforms array: #{@platforms}"
 
         yes_categories = []
         yes_platforms = []
@@ -511,19 +508,19 @@ class IgdbQuery
           end
         end
 
-        puts ">> Prepared helper arrays:"
-        puts ">> - keep categories: #{yes_categories}"
-        puts ">> - keep platforms: #{yes_platforms}"
+        # puts ">> Prepared helper arrays:"
+        # puts ">> - keep categories: #{yes_categories}"
+        # puts ">> - keep platforms: #{yes_platforms}"
 
         results.keep_if do |game|
           a = (yes_categories & game[:platforms_categories])
           b = (yes_platforms & game[:platforms])
-          puts ">> [ #{ game[:name] } ], released on platforms: #{ game[:platforms] }"
-          puts ">> - common categories: #{ a }"
-          puts ">> - common platforms: #{ b }"
-          puts ". "*40
-          puts ">> DELETED?, #{ !(a.any? || b.any?) ? 'Yes' : 'No' }"
-          puts ". "*40
+          # puts ">> [ #{ game[:name] } ], released on platforms: #{ game[:platforms] }"
+          # puts ">> - common categories: #{ a }"
+          # puts ">> - common platforms: #{ b }"
+          # puts ". "*40
+          # puts ">> DELETED?, #{ !(a.any? || b.any?) ? 'Yes' : 'No' }"
+          # puts ". "*40
           a.any? || b.any?
         end
       end
@@ -602,9 +599,9 @@ class IgdbQuery
           end
         end
 
-        puts '>> [ Preparing \'where\' Part of Query - Categories & Platforms]'
-        puts ">> Accepted categories: #{ yes_categories }"
-        puts ">> Accepted platforms: #{ yes_platforms }"
+        # puts '>> [ Preparing \'where\' Part of Query - Categories & Platforms]'
+        # puts ">> Accepted categories: #{ yes_categories }"
+        # puts ">> Accepted platforms: #{ yes_platforms }"
 
         is_category_added = false
         @where.blank? ? @where += 'w (' : @where += '& ('
@@ -689,7 +686,7 @@ class IgdbQuery
       end
       body = @search + @where + @sort + "limit #{RESULT_LIMIT}; " + "offset #{@offset};"
       @query = { endpoint: endpoint, body: body }
-      puts ">> Query: #{ @query }"
+      # puts ">> Query: #{ @query }"
     end
 
     def shorten_platform_names(p_names)
