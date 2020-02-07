@@ -1,6 +1,5 @@
 <script>
-  var url = '/sh_collections/<%= @first_id %>';
   $.ajax({
-      url: url
+      url: '<%= @url %>'
   }).done(set_offc());
 </script>

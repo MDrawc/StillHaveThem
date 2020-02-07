@@ -43,7 +43,7 @@ class SharesController < ApplicationController
     if share
       share.note_visit
       log_guest(share)
-      @first_id = share.shared.first
+      @url = "/sh_collections/#{share.shared.first}"
       @no_message = share.message.empty?
     else
       kill_guest
