@@ -5,7 +5,7 @@
   <div class="uk-position-relative margin-bottom-15">
     <%= f.email_field :email, id: 'reset-pass-mail', class: 'uk-input pl40 share-input', placeholder: 'Email address' %>
     <span class="sign-icon"><%= svg 'mail' %></span>
-    <span class="warning-icon blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"></span>
+    <span class="blink_me login-er" uk-tooltip="title: Email or Password is incorrect; pos: top-left"><%= svg 'warning' %></span>
   </div>
   <div class="submit">
   <%= f.button 'Send Reset Link', class: "uk-button sh-button send-reset", data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>

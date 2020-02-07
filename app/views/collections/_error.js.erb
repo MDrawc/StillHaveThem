@@ -1,7 +1,7 @@
 var $input = $('#collection_name');
 var $ok_icon = $input.next();
 var $error_icon = $ok_icon.next();
-$error_icon.attr('uk-tooltip', '<%= error %>');
+$error_icon.attr('uk-tooltip', "title: <%= raw error %>; pos: top-left");
 $ok_icon.hide();
 $error_icon.show();
 resetSimpleError($input, $ok_icon, $error_icon);

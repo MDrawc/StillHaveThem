@@ -138,8 +138,19 @@ p.discription {
 }
 
 .sh-warning {
+    width: 30px;
+    height: 30px;
+    position: absolute;
     display: none;
     top: 5px;
+    left: 3px;
+}
+
+.sh-warning-check {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: none;
     left: 3px;
 }
 

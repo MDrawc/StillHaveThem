@@ -181,10 +181,6 @@ li.active .m-add svg {
     border-color: #777;
 }
 
-g.x-warning-g {
-    fill: #aaa;
-}
-
 .game-cover-effect::after {
     background: linear-gradient(to left top, rgba(75, 235, 236, 0) 50%, rgba(255, 255, 255, 0.07) 80%, rgba(255, 255, 255, 0.14) 100%);
 }
@@ -1316,8 +1312,8 @@ g#icon-61-warning {
     fill: #bbb;
 }
 
-.warning-icon, .search-warning-icon {
-    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/dark_warning.svg");
+g.warning {
+    fill: #bbb;
 }
 
 // Shadows

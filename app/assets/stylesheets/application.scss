@@ -705,14 +705,22 @@ li.active:hover .opts {
     box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
-.warning-icon:hover ~ .search-bar {
+.search-warning-icon:hover ~ .search-bar {
     box-shadow: -2px 4px 7px 0px rgba(0, 0, 0, 0.22);
 }
 
 // Errors (Search IGDB)- - - - - - - - - - - - - - - - - - - - - - - - - - - //
-.warning-icon {
+
+.search-warning-icon {
     pointer-events: all !important;
     color: #999;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 50%;
+    margin-top: -15px;
 }
 
 .blink_me {
@@ -1191,6 +1199,8 @@ p.have-account {
 }
 
 .login-er, .sign-er {
+    width: 30px;
+    height: 30px;
     display: none;
     position: absolute;
     top: 5px;
@@ -1240,28 +1250,6 @@ p.have-account {
 
 .sign-icon svg g g {
     transition: 0.2s ease-in-out;
-}
-
-.warning-icon {
-    width: 30px;
-    height: 30px;
-    background: url("https://still-have-them.s3.eu-central-1.amazonaws.com/warning.svg");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-}
-
-.search-warning-icon {
-    @extend .warning-icon;
-
-
-    display: none;
-
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    margin-top: -15px;
 }
 
 // Unmask button

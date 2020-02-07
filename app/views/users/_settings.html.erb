@@ -8,7 +8,7 @@
       <td class="uk-position-relative">
         <%= f.email_field :email, id: 'change-mail', class: 'uk-input set-input', placeholder: 'New email address' %>
         <%= content_tag :span, svg('mail'), class: 'set-input-icon'%>
-        <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
+        <%= content_tag :span, svg('warning'), class: 'blink_me set-warning' %>
         <td class="btn disabled">
           <%= button_tag 'Update', id: 'submit-mail', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
         </td>
@@ -34,7 +34,7 @@
           <%= svg 'eye_hidden' %>
           </button>
           <%= content_tag :span, svg('key'), id: 'password-icon', class: 'set-input-icon'%>
-          <%= content_tag :span, nil, class: 'warning-icon blink_me set-warning' %>
+          <%= content_tag :span, svg('warning'), class: 'blink_me set-warning' %>
           <td class="btn disabled">
             <%= button_tag 'Update', id: 'submit-password', class: 'set-confirm', data: { disable_with: "<div uk-spinner=\"ratio: 0.5\"></div>" } %>
           </td>

@@ -23,7 +23,7 @@
       placeholder: 'Title of shared page',
       autocomplete: 'off' %>
       <%= content_tag :span, nil, id: ic_pref + 'title-icon', class: 'sh-input-icon', 'uk-icon' => 'heart' %>
-      <span class="warning-icon blink_me sh-warning"></span>
+      <span class="blink_me sh-warning"><%= svg 'warning' %></span>
       <div class="sh-label-info">optional, max 50 characters</div>
     </div>
     <div class="uk-position-relative uk-margin-small">
@@ -31,7 +31,7 @@
       placeholder: 'Leave a message',
       autocomplete: 'off' %>
       <%= content_tag :span, nil, id: ic_pref + 'message-icon', class: 'sh-input-icon', 'uk-icon' => 'comment' %>
-      <span class="warning-icon blink_me sh-warning"></span>
+      <span class="blink_me sh-warning"><%= svg 'warning' %></span>
       <div class="sh-label-info">optional, max 300 characters</div>
     </div>
   </div>
@@ -39,7 +39,7 @@
     <div class="uk-position-relative sh-check-container">
       <span class="sh-check-title">
         <%= content_tag :span, nil, id: ic_pref + 'shared-icon', class: 'sh-input-icon', 'uk-icon' => 'tag' %>
-        <span class="warning-icon blink_me sh-warning"></span>
+        <span class="blink_me sh-warning-check"><%= svg 'warning' %></span>
       Collections to share</span>
       <div class="sh-coll-select uk-grid-small uk-child-width-auto uk-grid">
         <%= f.collection_check_boxes :shared, current_user.collections, :id, :name do |c| %>
