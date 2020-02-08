@@ -4,13 +4,7 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      last_id = cookies['last']
-      if current_user.collection_ids.include?(last_id.to_i)
-        home_id = last_id
-      elsif last_id != 'search'
-        home_id = current_user.collections.first.id if !current_user.collections.empty?
-      end
-      url = home_id ? "/collections/#{ home_id }" : '/search'
+      url = GetLastVisitedPath.call(user: current_user, cookie: cookies[:last])
       render 'home', locals: { url: url }
     else
       @just_land = true
