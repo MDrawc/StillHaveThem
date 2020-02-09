@@ -5,16 +5,18 @@ class SearchIgdbController < ApplicationController
   def search
     view = params[:view] || cookies['s_view'] || 'cover_view'
     if params[:search]
-
-
-
-      @inquiry = IgdbQuery.new(params[:search])
-
+      @inquiry = SearchIgdb.new(params[:search])
       if @inquiry.validate!
-        search_record = build_record(params[:search])
+
+
+
         @inquiry.search
+        search_record = build_record(params[:search])
         search_record.results = @inquiry.results.size
         search_record.save
+
+
+
         if @inquiry.results.present?
           #Prepare data to fix_duplicates with new offset request:
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
@@ -30,6 +32,7 @@ class SearchIgdbController < ApplicationController
       else
         js_partial('error', { message: @inquiry.error_msg })
       end
+
 
 
     elsif params[:last_form]

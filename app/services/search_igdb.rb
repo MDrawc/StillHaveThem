@@ -1,6 +1,6 @@
 require 'net/https'
 
-class IgdbQuery
+class SearchIgdb
   extend ActiveModel::Naming
   attr_reader :errors, :base, :input, :query, :query_type, :offset, :results, :last_form
 

@@ -17,7 +17,7 @@ class GetLastVisitedPath < ApplicationService
     def prepare_path
       if @collection_ids.include?(@cookie.to_i)
         collection_id = @cookie
-      else @cookie != 'search'
+      elsif @cookie != 'search'
         collection_id = @collection_ids[0] if !@collection_ids.empty?
       end
       path = collection_id ? "/collections/#{ collection_id }" : '/search'
