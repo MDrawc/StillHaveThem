@@ -6,17 +6,17 @@ before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
 PER_PAGE_SH = 30
 
-def new
-  @collection = Collection.new
-  respond_to :js
-end
-
 def show
   show_or_search(false, current_user.gpv)
 end
 
 def show_guest
   show_or_search(true, PER_PAGE_SH)
+end
+
+def new
+  @collection = Collection.new
+  respond_to :js
 end
 
 def create
@@ -32,10 +32,7 @@ def create
   if collection.save
     respond_to :js
   else
-    error = collection.errors.full_messages.first
-    respond_to do |format|
-        format.js { render partial: "error", locals: { error: error } }
-    end
+    js_partial('error', { error: collection.errors.full_messages.first })
   end
 end
 
