@@ -80,7 +80,6 @@ class SearchIgdb
       @fixed_input, @type = analyze_input(@input)
       setup(obj)
       @where, @search , @sort  = '', '', ''
-
       # puts ">> Using input: #{ @input }"
       # puts ">> Query type: #{ @query_type }"
       # puts ">> Corrected input: #{ @fixed_input }"
@@ -92,7 +91,7 @@ class SearchIgdb
       # puts ">> Only released: #{ @only_released }"
     else
       # puts ">> Using query (load more feature): #{ query.inspect }"
-      @query = change_offset(query, @offset)
+      @query = change_offset(query.symbolize_keys, @offset)
       case @query[:endpoint]
       when 'games' then @query_type = :game
       when 'companies' then @query_type = :dev

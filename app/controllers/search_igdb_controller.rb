@@ -14,7 +14,7 @@ class SearchIgdbController < ApplicationController
                                  results_size: results_size)
         unless results_size.zero?
           @results = @inquiry.results
-          @@last_result_ids = @results.map { |game| game[:igdb_id] }
+          @@last_result_ids = @results.pluck(:igdb_id)
           @owned = FindOwnedGames.call(user: current_user, results: @results)
         end
         @history_records = current_user.records
@@ -26,19 +26,32 @@ class SearchIgdbController < ApplicationController
 
 
 
+      last_form = JSON.parse params[:last_form].gsub('=>', ':') unless params[:last_form].empty?
 
-      @inquiry = IgdbQuery.new(eval(params[:last_form]),
-                 params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
-                 eval(params[:last_query]))
+
+      last_query = JSON.parse params[:last_query].gsub('=>', ':')
+      new_offset = params[:last_offset].to_i + SearchIgdb::RESULT_LIMIT
+      @inquiry = SearchIgdb.new(last_form, new_offset, last_query)
+
+
+
+
+
 
       @inquiry.search
+
       @inquiry.fix_duplicates(@@last_result_ids) if @inquiry.query_type == :game
 
       if @inquiry.results.present?
-        @@last_result_ids += @inquiry.results.map { |game| game[:igdb_id] }
-        @owned = owned(@inquiry.results)
         @results = @inquiry.results
+        @@last_result_ids += @results.pluck(:igdb_id)
+        @owned = FindOwnedGames.call(user: current_user, results: @results)
       end
+
+
+
+
+
       js_partial('load_more', { view: view })
     end
   end
@@ -50,6 +63,6 @@ class SearchIgdbController < ApplicationController
   def load_more
   end
 
-  def prepare_results
+  def prepare_results()
   end
 end

@@ -4,7 +4,7 @@
     <div id="show-more">
       <%= form_tag("/search_games", method: :get, remote: true) do %>
       <%= hidden_field_tag :last_form, @inquiry.last_form %>
-      <%= hidden_field_tag :last_query, @inquiry.query %>
+      <%= hidden_field_tag :last_query, @inquiry.query.stringify_keys %>
       <%= hidden_field_tag :last_offset, @inquiry.offset %>
       <%= hidden_field_tag :view, view %>
       <%= button_tag "Load more", type: 'submit',
