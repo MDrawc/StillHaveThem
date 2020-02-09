@@ -70,7 +70,7 @@
         'uk-icon': 'copy', 'uk-tooltip' => "title: Copy / Move; pos: top-center") %>
     </li>
     <li>
-      <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
+      <%= link_to('', remove_url(game_id: id, id: collection.id, view: @view), method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: top-center') %>
     </li>
   </ul>
   <% end %>

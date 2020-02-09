@@ -1,8 +1,9 @@
 class CollectionsController < ApplicationController
 before_action :require_user, except: [:show_guest]
-before_action :correct_user, only: [:show, :edit, :update, :destroy]
+before_action :correct_user, only:
+                    [:show, :edit, :update, :destroy,
+                     :remove_game, :remove_game_search]
 before_action :correct_guest, only: [:show_guest]
-before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
 def show
   show_or_search(false, current_user.gpv)
@@ -122,11 +123,6 @@ private
   def correct_guest
     @collection = shared_collections.find_by_id(params[:id])
     redirect_to root_url if @collection.nil?
-  end
-
-  def correct_user_for_rm
-    @collection = current_user.collections.find_by_id(params[:collection_id])
-    reload if @collection.nil?
   end
 
   def owned?(igdb_id)

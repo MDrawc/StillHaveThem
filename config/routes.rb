@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   resources :shares, only: [:new, :edit, :create, :update, :destroy]
   resources :platforms, only: [:destroy]
 
-  delete '/rm/:game_id/:collection_id/:view', to: 'collections#remove_game', as: 'remove'
-  delete '/rm_s/:game_id/:collection_id', to: 'collections#remove_game_search', as: 'remove_s'
+  delete '/rm/', to: 'collections#remove_game', as: 'remove'
+  delete '/rm_s/', to: 'collections#remove_game_search', as: 'remove_s'
 
   get 'edit_form/:game_id/:collection_id/:view', to: 'games#edit_form', as: 'edit_form'
   get 'cm_form/:game_id/:collection_id/:view', to: 'games#cm_form', as: 'cm_form'

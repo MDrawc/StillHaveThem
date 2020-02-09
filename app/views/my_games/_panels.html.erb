@@ -49,7 +49,7 @@
                 'data-mother' => "#g-menu-#{ id }", 'uk-tooltip' => "title: Copy / Move; pos: right") %>
             </li>
             <li>
-                <%= link_to('', remove_url(game_id: id, collection_id: collection.id, view: @view), class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
+                <%= link_to('', remove_url(game_id: id, id: collection.id, view: @view), class: 'uk-icon-link', method: :delete, remote: true, 'uk-icon': 'trash', 'uk-tooltip': 'title: Delete; pos: right') %>
             </li>
         </ul>
         <%= content_tag :div,nil, class: "g-menu-shadow #{ extra }" %>
