@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
   end
 
   def search_page
-    @records = current_user.records
+    @history_records = current_user.records
     respond_to :js
   end
 end

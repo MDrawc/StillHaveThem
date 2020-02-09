@@ -4,8 +4,10 @@ class SearchIgdbController < ApplicationController
 
   def search
     view = params[:view] || cookies['s_view'] || 'cover_view'
-    #FIRST SEARCH
     if params[:search]
+
+
+
       @inquiry = IgdbQuery.new(params[:search])
 
       if @inquiry.validate!
@@ -16,24 +18,25 @@ class SearchIgdbController < ApplicationController
         if @inquiry.results.present?
           #Prepare data to fix_duplicates with new offset request:
           @@last_result_ids = @inquiry.results.map { |game| game[:igdb_id] }
+
+
           #Check owned games for underlining them in view:
-          @owned = owned(@inquiry.results)
           @results = @inquiry.results
+          @owned = owned(@results)
         end
 
-        @records = current_user.records
-
-        respond_to do |format|
-          format.js { render partial: "search", locals: { view: view } }
-        end
+        @history_records = current_user.records
+        js_partial('search', { view: view })
       else
-        respond_to do |format|
-          format.js { render partial: "error", locals: { message: @inquiry.error_msg } }
-        end
+        js_partial('error', { message: @inquiry.error_msg })
       end
 
-    #LOAD MORE
+
     elsif params[:last_form]
+
+
+
+
       @inquiry = IgdbQuery.new(eval(params[:last_form]),
                  params[:last_offset].to_i + IgdbQuery::RESULT_LIMIT,
                  eval(params[:last_query]))
@@ -50,9 +53,9 @@ class SearchIgdbController < ApplicationController
         @results = @inquiry.results
       end
 
-      respond_to do |format|
-        format.js { render partial: "load_more", locals: { view: view } }
-      end
+
+
+      js_partial('load_more', { view: view })
     end
   end
 
