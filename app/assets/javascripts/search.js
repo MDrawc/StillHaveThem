@@ -1,36 +1,34 @@
-function changeSearchBar() {
-    var $bar = $('#search-igdb-bar');
-    var $srch_type =  $('#srch-type');
-    var $reset = $('#src-reset');
-
+function changeSearchBar($search_bar, $search_type) {
     $('#bar-search').find('.uk-radio').on('input', function() {
         var val = $(this).val();
 
         var ph_ending;
         switch (val) {
         case 'char':
-            ph_ending = 'characters...';
+            ph_ending = 'game characters...';
             break;
         case 'dev':
-            ph_ending = 'developers...';
+            ph_ending = 'game developers...';
             break;
         default:
             ph_ending = 'games...';
         }
-        $srch_type.text(val);
-        $bar.attr('placeholder', 'Search video game ' + ph_ending)
+        $search_type.text(val);
+        $search_bar.attr('placeholder', 'Search video ' + ph_ending)
     });
 
-    $bar.on('input', function() {
+    $search_bar.on('input', function() {
         if ($(this).val()) {
-            $srch_type.show();
+            $search_type.show();
         } else {
-            $srch_type.hide();
+            $search_type.hide();
         }
     });
 
+    var $reset = $('#src-reset');
     $reset.click(function() {
-        $srch_type.hide();
+        $search_type.text('game').hide();
+        $search_bar.attr('placeholder', 'Search video games...')
     });
 }
 
@@ -113,9 +111,7 @@ function checkAllNone(form_id, button_id) {
     });
 }
 
-function activateSearchRecords() {
-    var $srch_type =  $('#srch-type');
-
+function activateSearchRecords($search_bar, $search_type) {
     $('.record').click(function() {
         searchWait();
         var input = $(this).attr('i');
@@ -126,7 +122,6 @@ function activateSearchRecords() {
         form.reset();
 
         if (custom === 'true') {
-
             var ids = ['console', 'arcade', 'portable', 'pc', 'linux', 'mac', 'mobile',
                 'computer', 'other', 'only_released', 'dlc', 'expansion', 'bundle', 'standalone',
                 'erotic'
@@ -141,11 +136,22 @@ function activateSearchRecords() {
             });
         }
 
-        $('#search-igdb-bar').val(input);
+        var ph_ending;
+        switch (endpoint) {
+        case 'char':
+            ph_ending = 'game characters...';
+            break;
+        case 'dev':
+            ph_ending = 'game developers...';
+            break;
+        default:
+            ph_ending = 'games...';
+        }
+
+        $search_bar.attr('placeholder', 'Search video ' + ph_ending).val(input);
         $('#search_query_type_' + endpoint).prop('checked', true)
 
-        $srch_type.text(endpoint);
-        $srch_type.show();
+        $search_type.text(endpoint).show();
 
         Rails.fire(form, 'submit');
     });

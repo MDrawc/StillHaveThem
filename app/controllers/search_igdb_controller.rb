@@ -27,9 +27,8 @@ class SearchIgdbController < ApplicationController
 
 
       last_form = JSON.parse params[:last_form].gsub('=>', ':') unless params[:last_form].empty?
-
-
       last_query = JSON.parse params[:last_query].gsub('=>', ':')
+
       new_offset = params[:last_offset].to_i + SearchIgdb::RESULT_LIMIT
       @inquiry = SearchIgdb.new(last_form, new_offset, last_query)
 

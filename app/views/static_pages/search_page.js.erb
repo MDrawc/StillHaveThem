@@ -1,11 +1,14 @@
 $("#big-c").html("<%= j(render partial: 'search_page') %>");
 $('#side-menu').find("li.active").removeClass('active');
 $("#m-search").addClass('active');
-$('#search-igdb-bar').focus();
-changeSearchBar();
+
+var $search_bar = $('#search-igdb-bar');
+var $search_type =  $('#srch-type');
+$search_bar.focus();
+changeSearchBar($search_bar, $search_type);
+activateSearchRecords($search_bar, $search_type);
 activateSearchWait();
 clearNoResults();
 switchSearchBarTabs();
 checkAllNone('platforms-grid', 'p');
-activateSearchRecords();
 Cookies.set('last', 'search', { expires: 30 });

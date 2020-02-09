@@ -4,8 +4,7 @@ var $results = $("#search-results");
 $results.html("<%= j(render partial: 'results', locals: { view: view, load_more: false }) %>");
 $results.append("<%= j(content_tag :span, @inquiry.last_form.values.join(','), id: 'last-form') %>");
 $("#bar-history").html("<%= j(render partial:'records/bar_records') %>");
-activateSearchRecords();
-
+activateSearchRecords($('#search-igdb-bar'), $('#srch-type'));
 switch (view) {
     case 'list_view':
         break;
