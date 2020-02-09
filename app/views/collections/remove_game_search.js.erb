@@ -1,9 +1,4 @@
-UIkit.notification({
-    message: $('<div/>').html('<%= @message %>').text(),
-    status: 'warning',
-    pos: 'top-right',
-    timeout: 5000
-});
+show_notification('<%= @message %>');
 
 var remove_underline = <%= @remove_underline %>;
 var game_id = '<%= @game.igdb_id %>';

@@ -31,17 +31,17 @@ class SearchIgdbController < ApplicationController
   end
 
   private
-  def prepare_results(is_load_more:)
-    @results = @inquiry.results
-    unless is_load_more
-      @@last_result_ids = @results.pluck(:igdb_id)
-    else
-      @@last_result_ids += @results.pluck(:igdb_id)
+    def prepare_results(is_load_more:)
+      @results = @inquiry.results
+      unless is_load_more
+        @@last_result_ids = @results.pluck(:igdb_id)
+      else
+        @@last_result_ids += @results.pluck(:igdb_id)
+      end
+      @owned = FindOwnedGamesIds.call(user: current_user, results: @results)
     end
-    @owned = FindOwnedGames.call(user: current_user, results: @results)
-  end
 
-  def string_to_hash(data)
-    JSON.parse data.gsub('=>', ':')
-  end
+    def string_to_hash(data)
+      JSON.parse data.gsub('=>', ':')
+    end
 end

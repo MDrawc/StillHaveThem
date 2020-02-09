@@ -1,3 +1,12 @@
+function show_notification(message) {
+    UIkit.notification({
+        message: $('<div/>').html(message).text(),
+        status: 'warning',
+        pos: 'top-right',
+        timeout: 5000
+    });
+}
+
 function activateDropdowns($more) {
     var $buttons = $more ? $more.find('.my_dd') : $('.my_dd');
     var $drop = $('#f-lone');

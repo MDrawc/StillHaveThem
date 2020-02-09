@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def js_partial(partial, locals)
+  def js_partial(partial, locals = nil)
     respond_to do |format|
       format.js { render partial: partial, locals: locals }
     end

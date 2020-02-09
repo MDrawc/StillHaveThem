@@ -1,10 +1,6 @@
 var view = '<%= @view %>';
 <% if @errors.empty? %>
-    UIkit.notification({
-        message: $('<div/>').html('<%= @message %>').text(),
-        pos: 'top-right',
-        timeout: 5000
-    });
+    show_notification('<%= @message %>');
     var data = { view: view };
 
     if (view === 'panels') {

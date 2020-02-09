@@ -1,10 +1,6 @@
 var view = $('#view-container').attr('view');
 <% if @errors.empty? %>
-    UIkit.notification({
-            message: $('<div/>').html('<%= @message %>').text(),
-            pos: 'top-right',
-            timeout: 5000
-    });
+    show_notification('<%= @message %>');
 
     var game_id = '<%= @game_igdb_id %>';
     var uniq_results = '<%= @x_id %>' === game_id;

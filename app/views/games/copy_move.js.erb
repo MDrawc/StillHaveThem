@@ -1,11 +1,7 @@
 var view = '<%= @view %>';
 var msg = '<%= @message %>';
 if (msg) {
-    UIkit.notification({
-        message: $('<div/>').html(msg).text(),
-        pos: 'top-right',
-        timeout: 5000
-    });
+    show_notification(msg);
 }
 <% if @errors.empty? %>
 

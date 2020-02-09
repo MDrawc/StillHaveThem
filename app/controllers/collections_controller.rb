@@ -4,14 +4,12 @@ before_action :correct_user, only: [:show, :edit, :update, :destroy]
 before_action :correct_guest, only: [:show_guest]
 before_action :correct_user_for_rm, only: [:remove_game, :remove_game_search]
 
-PER_PAGE_SH = 30
-
 def show
   show_or_search(false, current_user.gpv)
 end
 
 def show_guest
-  show_or_search(true, PER_PAGE_SH)
+  show_or_search(true, Collection::GAMES_PER_PAGE_SHARED)
 end
 
 def new
@@ -20,15 +18,7 @@ def new
 end
 
 def create
-  if (last_coll = current_user.collections.last)
-    cord = last_coll.cord + 1
-  else
-    cord = 1
-  end
-
-  collection = current_user.collections.build(collection_params)
-  collection.cord = cord
-
+  collection = BuildNewCollection.call(user: current_user, data: collection_params)
   if collection.save
     respond_to :js
   else
@@ -44,10 +34,7 @@ def update
   if @collection.update(collection_params)
     respond_to :js
   else
-    error = @collection.errors.full_messages.first
-    respond_to do |format|
-        format.js { render partial: "error", locals: { error: error } }
-    end
+    js_partial('error', { error: @collection.errors.full_messages.first })
   end
 end
 
@@ -76,17 +63,24 @@ def remove_game
 
   if @game
     @collection.games.delete(@game)
+
+
     @message = "<span class='b'>Removed</span> #{@game.name} "
     if @collection.needs_platform
       @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
     end
     @message += "from " + coll_link(@collection)
+
+
+
     respond_to :js
   else
+
+
     @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
-    respond_to do |format|
-        format.js { render partial: "problem_msg.js" }
-    end
+
+
+    js_partial('problem_msg')
   end
 end
 
@@ -112,10 +106,8 @@ def remove_game_search
 end
 
 private
-
   def collection_params
-    params.require(:collection).permit(:name,
-     :needs_platform)
+    params.require(:collection).permit(:name, :needs_platform)
   end
 
   def coll_link(collection)
@@ -123,7 +115,7 @@ private
   end
 
   def correct_user
-    @collection = current_user.collections.find_by(id: params[:id])
+    @collection = current_user.collections.find_by_id(params[:id])
     reload if @collection.nil?
   end
 
