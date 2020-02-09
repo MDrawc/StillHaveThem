@@ -4,18 +4,12 @@ class ChartsController < ApplicationController
 
   def form
     @coll_id = params[:id]
-    respond_to do |format|
-      format.js { render partial: "form",
-       locals: { url: '/graphs', user: current_user } }
-    end
+    js_partial('form', { url: '/graphs', user: current_user })
   end
 
   def guest_form
     @coll_id = params[:id]
-    respond_to do |format|
-      format.js { render partial: "form",
-       locals: { url: '/g_graphs', user: guest } }
-    end
+    js_partial('form', { url: '/g_graphs', user: guest })
   end
 
   def graphs
@@ -29,9 +23,7 @@ class ChartsController < ApplicationController
     else
       reload
     end
-    respond_to do |format|
-      format.js { render partial: "graphs", locals: { shared: false } }
-    end
+    js_partial('graphs', { shared: false })
   end
 
   def graphs_for_guest
@@ -49,8 +41,6 @@ class ChartsController < ApplicationController
     else
       reload
     end
-    respond_to do |format|
-      format.js { render partial: "graphs", locals: { shared: true } }
-    end
+    js_partial('graphs', { shared: true })
   end
 end
