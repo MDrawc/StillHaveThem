@@ -75,7 +75,8 @@ def remove_game_search
   if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
     @message = RemoveNotif.call(game: @game, collection: @collection)
-    @remove_underline = !owned?(@game.igdb_id)
+    @remove_underline = !CheckIfUserHasGame.call(user: current_user,
+                                                igdb_id: @game.igdb_id)
     respond_to :js
   else
     js_partial('problem_msg')
@@ -99,21 +100,16 @@ private
 
   def show_or_search(shared, per_page)
     @q = @collection.games.ransack(params[:q])
-
     cookie = shared ? 'shared_view' : 'my_view'
     @view = params[:gsview] || cookies[cookie] || 'covers'
-
     @games = @q.result
       .group('games.id, collection_games.created_at')
       .includes(:developers)
       .paginate(page: params[:page], per_page: per_page)
-
     unless params[:q]
       cookies['last'] = { value: params[:id], expires: 30.days } unless shared
       prepare_reopen if @view == 'panels'
-      respond_to do |format|
-        format.js { render partial: "show", locals: { shared: shared } }
-      end
+      js_partial('show', { shared: shared })
     else
       q = params[:q]
       query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
@@ -121,20 +117,8 @@ private
       sort = q[:s]
       @in_search = !(q.keys == ['s'] || q.values.join == 'on')
       prepare_reopen if @view == 'panels'
-      respond_to do |format|
-        format.js { render partial: "search",
-          locals: { query: query, sort: sort, shared: shared }
-        }
-      end
+      js_partial('search', { query: query, sort: sort, shared: shared })
     end
-  end
-
-  def owned?(igdb_id)
-    results = []
-    current_user.collections.includes(:games).each do |collection|
-      results << collection.games.any? { |game| game.igdb_id == igdb_id }
-    end
-    return results.any?
   end
 
   def prepare_reopen
