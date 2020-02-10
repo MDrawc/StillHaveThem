@@ -61,58 +61,30 @@ end
 def remove_game
   @game = @collection.games.find_by_id(params[:game_id])
   @view = params[:view]
-
   if @game
     @collection.games.delete(@game)
-
-
-    @message = "<span class='b'>Removed</span> #{@game.name} "
-    if @collection.needs_platform
-      @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
-    end
-    @message += "from " + coll_link(@collection)
-
-
-
+    @message = RemoveNotif.call(game: @game, collection: @collection)
     respond_to :js
   else
-
-
-    @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
-
-
     js_partial('problem_msg')
   end
 end
 
 def remove_game_search
   @x_id = params[:x_id]
-
   if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
-    @message = "<span class='b'>Removed</span> #{@game.name} "
-    if @collection.needs_platform
-      @message += "<span class='d'>(#{@game.platform_name}, #{@game.physical ? 'Physical' : 'Digital'})</span> "
-    end
-    @message += "from " + coll_link(@collection)
-
+    @message = RemoveNotif.call(game: @game, collection: @collection)
     @remove_underline = !owned?(@game.igdb_id)
     respond_to :js
   else
-    @message = "Game <span class='b'>does not belong</span> to " + coll_link(@collection)
-    respond_to do |format|
-        format.js { render partial: "problem_msg.js" }
-    end
+    js_partial('problem_msg')
   end
 end
 
 private
   def collection_params
     params.require(:collection).permit(:name, :needs_platform)
-  end
-
-  def coll_link(collection)
-    "<a class='c' data-remote='true' href='#{ collection_path(collection) }' >#{ collection.name }</a>"
   end
 
   def correct_user
@@ -125,16 +97,9 @@ private
     redirect_to root_url if @collection.nil?
   end
 
-  def owned?(igdb_id)
-    results = []
-    current_user.collections.includes(:games).each do |collection|
-      results << collection.games.any? { |game| game.igdb_id == igdb_id }
-    end
-    return results.any?
-  end
-
   def show_or_search(shared, per_page)
     @q = @collection.games.ransack(params[:q])
+
     cookie = shared ? 'shared_view' : 'my_view'
     @view = params[:gsview] || cookies[cookie] || 'covers'
 
@@ -162,6 +127,14 @@ private
         }
       end
     end
+  end
+
+  def owned?(igdb_id)
+    results = []
+    current_user.collections.includes(:games).each do |collection|
+      results << collection.games.any? { |game| game.igdb_id == igdb_id }
+    end
+    return results.any?
   end
 
   def prepare_reopen

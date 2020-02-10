@@ -34,7 +34,9 @@ class GamesController < ApplicationController
         begin
           @collection.games << @game
           save_platform(platform, platform_name)
-          message(@game, true)
+
+          @message = AddCopyNotif.call(game: @game, collection: @collection)
+
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
         end
@@ -45,7 +47,7 @@ class GamesController < ApplicationController
       if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
         begin
           @collection.games << @game
-          message(@game, false)
+          @message = AddCopyNotif.call(game: @game, collection: @collection)
         rescue ActiveRecord::RecordNotUnique
           @errors << 'Already in collection'
         end
@@ -112,7 +114,13 @@ class GamesController < ApplicationController
         new_rec.created_at = created_at
         new_rec.save
 
-        edit_message(last_platform, last_physical, game)
+
+        @message = EditNotif.call(game: game,
+                                  ex_platform: last_platform,
+                                  ex_physical: last_physical)
+
+
+
       rescue ActiveRecord::RecordNotUnique
         @errors << 'Already in collection'
       else
@@ -137,7 +145,12 @@ class GamesController < ApplicationController
         new_rec.created_at = created_at
         new_rec.save
 
-        edit_message(last_platform, last_physical, game)
+
+
+
+        @message = EditNotif.call(game: game,
+                          ex_platform: last_platform,
+                          ex_physical: last_physical)
       else
         @errors += game.errors.full_messages
       end
@@ -150,7 +163,7 @@ class GamesController < ApplicationController
     game_id = params[:game_id]
     @view = params[:view]
     @copy = eval(params[:copy])
-    p_verb = @copy ? 'copied' : 'moved'
+    verb = @copy ? 'copied' : 'moved'
     @wi_same_coll = false;
 
     if params[:collection].empty?
@@ -180,7 +193,10 @@ class GamesController < ApplicationController
           @collection.games << game
           save_platform(platform, platform_name) if needs_plat
 
-          message(game, needs_plat, p_verb)
+          @message = AddCopyNotif.call(game: game,
+                                       collection: @collection,
+                                       verb: verb)
+
           unless @copy
             @current.games.delete(game_id)
           end
@@ -201,7 +217,11 @@ class GamesController < ApplicationController
         end
 
         if game.save
-          message(game, needs_plat, p_verb)
+
+          @message = AddCopyNotif.call(game: game,
+                                       collection: @collection,
+                                       verb: verb)
+
           @collection.games << game
           save_platform(platform, platform_name) if needs_plat
 
@@ -250,7 +270,10 @@ class GamesController < ApplicationController
         begin
         if @game.save
           save_platform(platform, platform_name) if needs_platform
-          message(@game, needs_platform)
+
+
+          @message = AddCopyNotif.call(game: @game, collection: @collection)
+
         else
           @errors += @game.errors.messages.values
         end
@@ -265,24 +288,6 @@ class GamesController < ApplicationController
     def convert_agame(agame)
       game_data = agame.as_json.symbolize_keys
       return game_data.except(:id, :created_at, :updated_at, :themes, :developers, :platforms_categories)
-    end
-
-    def message(game, needs_platform = true, p_verb = 'added')
-      collection_link = "<a class='c' data-remote='true' href='#{collection_path(@collection)}' >#{ @collection.name }</a>"
-      if needs_platform
-        @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
-        " <span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>" +
-        " to " + collection_link
-      else
-        @message = "<span class='g'>#{ p_verb.capitalize }</span> #{ game.name }" +
-        " to " + collection_link
-      end
-    end
-
-    def edit_message(last_platform, last_physical, game)
-      @message = "<span class='g'>Edited</span> #{ game.name }: " +
-      "<span class='d'>(#{ last_platform}, #{ last_physical ? 'Physical' : 'Digital'})</span> -> " +
-      "<span class='d'>(#{ game.platform_name}, #{ game.physical ? 'Physical' : 'Digital'})</span>"
     end
 
     def add_developers(devs)
