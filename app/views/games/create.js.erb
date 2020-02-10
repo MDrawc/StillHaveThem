@@ -2,7 +2,7 @@ var view = $('#view-container').attr('view');
 <% if @errors.empty? %>
     show_notification('<%= @message %>');
 
-    var game_id = '<%= @game_igdb_id %>';
+    var game_id = '<%= @igdb_id %>';
     var uniq_results = '<%= @x_id %>' === game_id;
 
     Cookies.set('last_coll', '<%= @collection.id %>')

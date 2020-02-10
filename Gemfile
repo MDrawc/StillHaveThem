@@ -62,6 +62,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Puma as the app server
 # gem "puma", ">= 3.12.2"
 
+# Responders
+gem 'responders', '~> 3.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

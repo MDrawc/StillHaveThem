@@ -1,88 +1,45 @@
 class GamesController < ApplicationController
   before_action :require_user, except: [:cover_show, :list_show, :panel_show]
   before_action :find_game_and_collection, only: [:edit_form, :cm_form]
-  before_action :find_collection_for_create, only: [:create]
-  SR_HEX = 2
+  before_action :find_collection, only: [:create]
+  before_action :find_agame, only: [:list_show, :cover_show, :panel_show]
+  respond_to :js
 
   def new
     @game = Game.new()
-    x_id = params[:x_id]
-    igdb_id = x_id.include?('-') ?  x_id.slice(0..-(2*SR_HEX+1)) : x_id
-
-    @data = Agame.find_by(igdb_id: igdb_id).attributes.slice('id',
-     'igdb_id',
-      'name',
-       'platforms',
-        'platforms_names').symbolize_keys
-
-    @x_id = x_id
+    @x_id = params[:x_id]
     @owned = params[:owned] == 'true'
-    respond_to :js
+    @data = GetDataForGameAdding.call(x_id: @x_id)
   end
 
   def create
-    agame_id = game_params[:id]
     @x_id = params['x_id']
-    @errors = []
-    @game_igdb_id = game_params[:igdb_id]
-
-    if @collection.needs_platform
-      platform, platform_name = game_params[:platform].split(',')
-      physical = game_params[:physical]
-
-      if @game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: physical)
-        begin
-          @collection.games << @game
-          save_platform(platform, platform_name)
-
-          @message = AddCopyNotif.call(game: @game, collection: @collection)
-
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in collection'
-        end
-      else
-        create_from_agame(agame_id, true, platform, platform_name, physical)
-      end
-    else
-      if @game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
-        begin
-          @collection.games << @game
-          @message = AddCopyNotif.call(game: @game, collection: @collection)
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in collection'
-        end
-      else
-        create_from_agame(agame_id)
-      end
-    end
-    respond_to :js
+    add_game = AddGame.call(user: current_user,
+                            collection: @collection,
+                            data: game_params,
+                            x_id: @x_id)
+    @errors = add_game.errors
+    @message = add_game.message
+    @igdb_id = add_game.igdb_id
   end
 
   def edit_form
     @view = params[:view]
-    respond_to :js
   end
 
   def cm_form
     @view = params[:view]
-    respond_to :js
   end
 
   def list_show
-    @game = Agame.find_by(igdb_id: params[:igdb_id])
     @hg_id = params[:hg_id]
-    respond_to :js
   end
 
   def cover_show
-    @game = Agame.find_by(igdb_id: params[:igdb_id])
-    respond_to :js
   end
 
   def panel_show
-    @game = Agame.find_by(igdb_id: params[:igdb_id])
     @g_id = params[:g_id]
-    respond_to :js
   end
 
   def edit
@@ -155,7 +112,6 @@ class GamesController < ApplicationController
         @errors += game.errors.full_messages
       end
     end
-    respond_to :js
   end
 
   def copy_move
@@ -235,12 +191,35 @@ class GamesController < ApplicationController
       end
 
     end
-    respond_to :js
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   private
     def game_params
       params.require(:game).permit(:id, :igdb_id, :collection, :needs_platform, :platform, :physical)
+    end
+
+    def find_agame
+      @game = Agame.find_by(igdb_id: params[:igdb_id])
     end
 
     def find_game_and_collection
@@ -252,8 +231,8 @@ class GamesController < ApplicationController
       end
     end
 
-    def find_collection_for_create
-      coll_id = game_params[:collection] .split(',').first.to_i
+    def find_collection
+      coll_id = game_params[:collection].split(',').first.to_i
       @collection = current_user.collections.find_by_id(coll_id)
       reload if @collection.nil?
     end
@@ -301,11 +280,17 @@ class GamesController < ApplicationController
     end
 
     def save_platform(id, name)
+
+
+
       unless current_user.platforms.find_by(igdb_id: id)
         unless new_platform = Platform.find_by(igdb_id: id)
           new_platform = Platform.create(igdb_id: id, name: name)
         end
         current_user.platforms << new_platform
       end
+
+
+
     end
 end
