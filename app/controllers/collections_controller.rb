@@ -40,16 +40,12 @@ def update
 end
 
 def change_order
-  cord = params[:cord]
-  current_user.collections.each do |c|
-    c.update(cord: cord[c.id.to_s]) if cord.keys.include?(c.id.to_s)
-  end
+  ChangeCollectionsOrder.call(user: current_user, new_order: params[:cord])
   respond_to :js
 end
 
 def del_form
-  @coll_name = params[:name]
-  @coll_id = params[:id]
+  @coll_name, @coll_id  = params[:name], params[:id]
   respond_to :js
 end
 
@@ -84,6 +80,34 @@ def remove_game_search
 end
 
 private
+  def show_or_search(shared, per_page)
+    q = params[:q]
+    @q = @collection.games.ransack(q)
+    cookie = shared ? 'shared_view' : 'my_view'
+    @view = params[:gsview] || cookies[cookie] || 'covers'
+    @games = @q.result
+      .group('games.id, collection_games.created_at')
+      .includes(:developers)
+      .paginate(page: params[:page], per_page: per_page)
+    unless q
+      cookies['last'] = { value: params[:id], expires: 30.days } unless shared
+      prepare_reopen if @view == 'panels'
+      js_partial('show', { shared: shared })
+    else
+      query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
+      query.map! { |a| a ||= '' }
+      @in_search = !(q.keys == ['s'] || q.values.join == 'on')
+      prepare_reopen if @view == 'panels'
+      js_partial('search', { query: query, sort: q[:s], shared: shared })
+    end
+  end
+
+  def prepare_reopen
+      @reopen = params[:reopen] || []
+      @reopen.map!(&:to_i)
+      params.delete :reopen
+  end
+
   def collection_params
     params.require(:collection).permit(:name, :needs_platform)
   end
@@ -96,34 +120,5 @@ private
   def correct_guest
     @collection = shared_collections.find_by_id(params[:id])
     redirect_to root_url if @collection.nil?
-  end
-
-  def show_or_search(shared, per_page)
-    @q = @collection.games.ransack(params[:q])
-    cookie = shared ? 'shared_view' : 'my_view'
-    @view = params[:gsview] || cookies[cookie] || 'covers'
-    @games = @q.result
-      .group('games.id, collection_games.created_at')
-      .includes(:developers)
-      .paginate(page: params[:page], per_page: per_page)
-    unless params[:q]
-      cookies['last'] = { value: params[:id], expires: 30.days } unless shared
-      prepare_reopen if @view == 'panels'
-      js_partial('show', { shared: shared })
-    else
-      q = params[:q]
-      query = [q[:name_dev_cont], q[:plat_eq], q[:physical_eq]]
-      query.map! { |a| a ||= '' }
-      sort = q[:s]
-      @in_search = !(q.keys == ['s'] || q.values.join == 'on')
-      prepare_reopen if @view == 'panels'
-      js_partial('search', { query: query, sort: sort, shared: shared })
-    end
-  end
-
-  def prepare_reopen
-      @reopen = params[:reopen] || []
-      @reopen.map!(&:to_i)
-      params.delete :reopen
   end
 end
