@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   delete '/rm_s/', to: 'collections#remove_game_search', as: 'remove_s'
 
   get 'edit_form/:game_id/:collection_id/:view', to: 'games#edit_form', as: 'edit_form'
-  get 'cm_form/:game_id/:collection_id/:view', to: 'games#cm_form', as: 'cm_form'
+  get 'copy_form/:game_id/:collection_id/:view', to: 'games#copy_form', as: 'copy_form'
 
   get 'ls/:igdb_id/:hg_id', to: 'games#list_show', as: 'list_show'
   get 'cs/:igdb_id', to: 'games#cover_show', as: 'cover_show'

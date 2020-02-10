@@ -44,7 +44,7 @@
                 <% end %>
             </li>
             <li>
-                <%= link_to('', cm_form_url(game_id: id, collection_id: collection.id, view: @view),
+                <%= link_to('', copy_form_url(game_id: id, collection_id: collection.id, view: @view),
                 class: 'my_dd uk-icon-link', remote: true, 'uk-icon': 'copy',
                 'data-mother' => "#g-menu-#{ id }", 'uk-tooltip' => "title: Copy / Move; pos: right") %>
             </li>

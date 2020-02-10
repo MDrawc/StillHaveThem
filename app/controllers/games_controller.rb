@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :require_user, except: [:cover_show, :list_show, :panel_show]
-  before_action :find_game_and_collection, only: [:edit_form, :cm_form]
+  before_action :find_game_and_collection, only: [:edit_form, :copy_form]
   before_action :find_collection, only: [:create]
   before_action :find_agame, only: [:list_show, :cover_show, :panel_show]
   respond_to :js
@@ -27,7 +27,7 @@ class GamesController < ApplicationController
     @view = params[:view]
   end
 
-  def cm_form
+  def copy_form
     @view = params[:view]
   end
 
