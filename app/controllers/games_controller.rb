@@ -1,9 +1,6 @@
 class GamesController < ApplicationController
   before_action :require_user, except: [:cover_show, :list_show, :panel_show]
   before_action :find_game_and_collection, only: [:edit_form, :copy_form]
-
-
-
   before_action :find_collection, only: [:create]
   before_action :find_agame, only: [:list_show, :cover_show, :panel_show]
   respond_to :js
@@ -31,16 +28,16 @@ class GamesController < ApplicationController
     edit_game = EditGame.new(user: current_user,
                         collection_id: params[:collection],
                         data: game_params)
-
-    @new_platform = edit_game.new_platform
-    @collection = edit_game.collection
-
+    edit_game.call
     @errors = edit_game.errors
-    @message = edit_game.message
-    @game_id = edit_game.game_id
-    @new_game_id = edit_game.new_game_id
+    if @errors.empty?
+      @message = edit_game.message
+      @game_id = edit_game.game_id
+      @new_game_id = edit_game.new_game_id
+      @new_platform = edit_game.platform_name
+      @collection = edit_game.collection
+    end
   end
-
 
   def copy_move
     @errors = []
@@ -151,7 +148,9 @@ class GamesController < ApplicationController
 
   private
     def game_params
-      params.require(:game).permit(:id, :igdb_id, :collection, :needs_platform, :platform, :physical)
+      params.require(:game).permit(:id, :igdb_id, :collection, :needs_platform,
+                                   :platform, :physical, :last_platform,
+                                   :last_physical)
     end
 
     def find_collection
