@@ -18,6 +18,9 @@ class AddGame
   def call
     if find_the_same_game
       add_found_game
+    elsif find_similiar_game
+      duplicate_and_modify
+      add_found_game
     else
       create_from_agame and
         save_new_game
@@ -42,6 +45,25 @@ class AddGame
         @message = AddCopyNotif.call(game: @game, collection: @collection)
       rescue ActiveRecord::RecordNotUnique
         @errors << 'Already in collection'
+      end
+    end
+
+    def find_similiar_game
+      @game = Game.find_by(igdb_id: @igdb_id)
+    end
+
+    def duplicate_and_modify
+      @game = @game.amoeba_dup
+      if @needs_platform
+        @game.needs_platform = true
+        @game.platform = @platform_id
+        @game.platform_name = @platform_name
+        @game.physical = @physical
+      else
+        @game.needs_platform = false
+        @game.platform = nil
+        @game.platform_name = nil
+        @game.physical = nil
       end
     end
 
