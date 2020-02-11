@@ -15,9 +15,9 @@ class GamesController < ApplicationController
 
   def create
     @x_id = params['x_id']
-    add_game = AddGame.new(user: current_user,
-                            collection: @collection,
-                            data: game_params)
+    add_game = GameManager::AddGame.new(user: current_user,
+                                        collection: @collection,
+                                        data: game_params)
     add_game.call
     @errors = add_game.errors
     @message = add_game.message
@@ -25,9 +25,9 @@ class GamesController < ApplicationController
   end
 
   def edit
-    edit_game = EditGame.new(user: current_user,
-                        collection_id: params[:collection],
-                        data: game_params)
+    edit_game = GameManager::EditGame.new(user: current_user,
+                                          collection_id: params[:collection],
+                                          data: game_params)
     edit_game.call
     @errors = edit_game.errors
     if @errors.empty?
@@ -41,11 +41,11 @@ class GamesController < ApplicationController
 
   def copy_or_move
     @copy = params[:copy] == 'true'
-    copy_game = CopyGame.new(user: current_user,
-                        current_id: params[:current],
-                        collection_info: params[:collection],
-                        copy: @copy,
-                        data: game_params)
+    copy_game = GameManager::CopyGame.new(user: current_user,
+                                          current_id: params[:current],
+                                          collection_info: params[:collection],
+                                          copy: @copy,
+                                          data: game_params)
     copy_game.call
     @errors = copy_game.errors
     if @errors.empty?

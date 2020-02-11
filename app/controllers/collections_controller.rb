@@ -19,7 +19,8 @@ def new
 end
 
 def create
-  collection = BuildNewCollection.call(user: current_user, data: collection_params)
+  collection = BuildNewCollection.call(user: current_user,
+                                       data: collection_params)
   if collection.save
     respond_to :js
   else
@@ -59,7 +60,8 @@ def remove_game
   @view = params[:view]
   if @game
     @collection.games.delete(@game)
-    @message = RemoveNotif.call(game: @game, collection: @collection)
+    @message = NotifManager::RemoveNotif.call(game: @game,
+                                              collection: @collection)
     respond_to :js
   else
     js_partial('problem_msg')
@@ -70,7 +72,8 @@ def remove_game_search
   @x_id = params[:x_id]
   if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
-    @message = RemoveNotif.call(game: @game, collection: @collection)
+    @message = NotifManager::RemoveNotif.call(game: @game,
+                                              collection: @collection)
     @remove_underline = !CheckIfUserHasGame.call(user: current_user,
                                                 igdb_id: @game.igdb_id)
     respond_to :js
