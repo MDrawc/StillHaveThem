@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   delete 'async_logout', to: 'sessions#async_destroy'
-  post 'copy_move', to: 'games#copy_move'
+  post 'copy_or_move', to: 'games#copy_or_move'
   post 'edit', to: 'games#edit'
 
   resources :collections, except: :index

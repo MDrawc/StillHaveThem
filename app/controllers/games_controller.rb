@@ -39,7 +39,27 @@ class GamesController < ApplicationController
     end
   end
 
-  def copy_move
+  def copy_or_move
+    @view = params[:view]
+    @copy = params[:copy] == 'true'
+    copy_game = CopyGame.new(user: current_user,
+                        current_id: params[:current],
+                        collection_info: params[:collection],
+                        copy: @copy,
+                        data: game_params)
+    copy_game.call
+    @errors = copy_game.errors
+    if @errors.empty?
+      @message = copy_game.message
+      @new_platform = copy_game.platform_name
+      @inside_current = copy_game.inside_current
+      @current = copy_game.current
+      @collection = copy_game.collection
+    end
+  end
+
+
+  def copy_move_duper
     @errors = []
     game_id = params[:game_id]
     @view = params[:view]
@@ -48,18 +68,22 @@ class GamesController < ApplicationController
     @wi_same_coll = false;
 
     if params[:collection].empty?
+
       @errors << 'Select collection'
       @current = current_user.collections.find(params[:current].to_i)
+
     else
+
+
       coll_ids = [params[:current].to_i, params[:collection].split(',').first.to_i]
       cord = coll_ids == coll_ids.sort ? :asc : :desc
-
       if coll_ids.uniq.size == 1
         @collection = @current = current_user.collections.find(coll_ids[0])
         @wi_same_coll = true
       else
         @current, @collection = current_user.collections.where(id: coll_ids).unscope(:order).order(id: cord)
       end
+
 
       if needs_plat = @collection.needs_platform
         platform, platform_name = game_params[:platform].split(',')

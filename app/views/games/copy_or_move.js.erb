@@ -1,32 +1,21 @@
 var view = '<%= @view %>';
-var msg = '<%= @message %>';
-if (msg) {
-    show_notification(msg);
-}
 <% if @errors.empty? %>
-
-    var wi_same_coll = <%= @wi_same_coll %>;
+    show_notification('<%= @message %>');
+    var inside_current = <%= @inside_current %>;
     var copy = <%= @copy %>;
-
     if (view != 'list') {
         UIkit.dropdown("#f-lone").hide();
     }
-
-    if (wi_same_coll || !copy) {
-
+    if (inside_current || !copy) {
         var data = { view: view };
         data = addRqRsToData(data);
-
         if (view === 'panels') {
             data['reopen'] = findOpenPanels();
         }
-
         var $pagi = $('#pr').find('em.current');
         if ($pagi.length) {
             var current_page = $pagi.text();
-
             if (!copy) {
-
                 switch (view) {
                     case 'covers':
                         var selector = '.game-space';
@@ -42,19 +31,14 @@ if (msg) {
                 if (num_of_games == 1) {
                     current_page -= 1;
                 }
-
             }
-
             data['page'] = current_page;
         }
-
         var scroll = $(document).scrollTop().valueOf();
-
         <% if @collection.needs_platform %>
             var new_platform = '<%= @new_platform %>';
             updatePlatformsFilter(new_platform);
         <% end %>
-
         $.ajax({
             url: '/collections/<%= @current.id %>',
             data: data,
@@ -62,14 +46,11 @@ if (msg) {
                 $(document).scrollTop(scroll);
             }
         });
-
     } else {
-
         if (view === 'list') {
             UIkit.modal("#t-ops").hide();
         }
     }
-
 <% else %>
     handleAddFormErrors(view, '<%= @errors.join(', ') %>');
 <% end %>

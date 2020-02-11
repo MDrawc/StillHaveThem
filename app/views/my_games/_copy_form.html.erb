@@ -1,11 +1,10 @@
 <% game_name, igdb_id, id = game.name, game.igdb_id, game.id %>
 <% needs_platform = collection.needs_platform %>
-<%= form_for(:game, url: copy_move_path, remote: true) do |f| %>
+<%= form_for(:game, url: copy_or_move_path, remote: true) do |f| %>
 <%= hidden_field_tag :current, collection.id %>
-<%= hidden_field_tag :game_id, id %>
 <%= hidden_field_tag :view, view %>
+<%= f.hidden_field :game_id, value: id %>
 <%= f.hidden_field :igdb_id, value: igdb_id %>
-
 <div class="action uk-grid-collapse" uk-grid>
     <div class="cm-inputs">
         <label class="c-m chosen">Copy<%= radio_button_tag 'copy', true, checked: true %></label>
@@ -15,7 +14,6 @@
         <%= game_name %>
     </div>
 </div>
-
 <hr class="md">
 <div class="select-collection">
     <div uk-form-custom="target: > * > span:last-child">
@@ -29,9 +27,9 @@
 <% disp = needs_platform ? 'box' : 'none' %>
 <div id="platform-option" style="display: <%= disp %>">
     <% if game[:platforms] %>
-        <% select_platforms = platforms_for_select(game) %>
+    <% select_platforms = platforms_for_select(game) %>
     <% else %>
-        <% select_platforms = user_platforms_for_select %>
+    <% select_platforms = user_platforms_for_select %>
     <% end %>
     <%= f.hidden_field :needs_platform, value: false %>
     <div class="uk-margin select-platform">
