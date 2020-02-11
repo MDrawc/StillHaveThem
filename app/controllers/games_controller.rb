@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   before_action :find_game_and_collection, only: [:edit_form, :copy_form]
   before_action :find_collection, only: [:create]
   before_action :find_agame, only: [:list_show, :cover_show, :panel_show]
+  before_action :get_view, only: [:edit, :copy_or_move, :edit_form, :copy_form]
   respond_to :js
 
   def new
@@ -24,7 +25,6 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @view = params[:view]
     edit_game = EditGame.new(user: current_user,
                         collection_id: params[:collection],
                         data: game_params)
@@ -40,7 +40,6 @@ class GamesController < ApplicationController
   end
 
   def copy_or_move
-    @view = params[:view]
     @copy = params[:copy] == 'true'
     copy_game = CopyGame.new(user: current_user,
                         current_id: params[:current],
@@ -58,105 +57,10 @@ class GamesController < ApplicationController
     end
   end
 
-
-  def copy_move_duper
-    @errors = []
-    game_id = params[:game_id]
-    @view = params[:view]
-    @copy = eval(params[:copy])
-    verb = @copy ? 'copied' : 'moved'
-    @wi_same_coll = false;
-
-    if params[:collection].empty?
-
-      @errors << 'Select collection'
-      @current = current_user.collections.find(params[:current].to_i)
-
-    else
-
-
-      coll_ids = [params[:current].to_i, params[:collection].split(',').first.to_i]
-      cord = coll_ids == coll_ids.sort ? :asc : :desc
-      if coll_ids.uniq.size == 1
-        @collection = @current = current_user.collections.find(coll_ids[0])
-        @wi_same_coll = true
-      else
-        @current, @collection = current_user.collections.where(id: coll_ids).unscope(:order).order(id: cord)
-      end
-
-
-      if needs_plat = @collection.needs_platform
-        platform, platform_name = game_params[:platform].split(',')
-        @new_platform = platform_name
-        game = Game.find_by(igdb_id: game_params[:igdb_id], platform: platform, physical: game_params[:physical])
-      else
-        game = Game.find_by(igdb_id: game_params[:igdb_id], needs_platform: false)
-      end
-
-      if game
-        begin
-          @collection.games << game
-          save_platform(platform, platform_name) if needs_plat
-
-          @message = AddCopyNotif.call(game: game,
-                                       collection: @collection,
-                                       verb: verb)
-
-          unless @copy
-            @current.games.delete(game_id)
-          end
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Already in collection'
-        end
-      else
-        game = Game.find_by(igdb_id: game_params[:igdb_id]).amoeba_dup
-
-        if needs_plat
-          game.platform, game.platform_name = platform, platform_name
-          game.physical = game_params[:physical]
-          game.needs_platform = true
-        else
-          game.platform, game.platform_name = nil, nil
-          game.physical = nil
-          game.needs_platform = false
-        end
-
-        if game.save
-
-          @message = AddCopyNotif.call(game: game,
-                                       collection: @collection,
-                                       verb: verb)
-
-          @collection.games << game
-          save_platform(platform, platform_name) if needs_plat
-
-          unless @copy
-            @current.games.delete(game_id)
-          end
-
-        else
-          @errors += game.errors.full_messages
-        end
-      end
-
-    end
-  end
-
-
-
-
-
-
-
-
-
-
   def edit_form
-    @view = params[:view]
   end
 
   def copy_form
-    @view = params[:view]
   end
 
   def list_show
@@ -194,5 +98,9 @@ class GamesController < ApplicationController
 
     def find_agame
       @game = Agame.find_by(igdb_id: params[:igdb_id])
+    end
+
+    def get_view
+      @view = params[:view]
     end
 end
