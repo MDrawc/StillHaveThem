@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_04_122030) do
+ActiveRecord::Schema.define(version: 2020_02_11_133451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_02_04_122030) do
 
   create_table "developers", force: :cascade do |t|
     t.string "name"
+    t.index ["name"], name: "index_developers_on_name", unique: true
   end
 
   create_table "games", force: :cascade do |t|

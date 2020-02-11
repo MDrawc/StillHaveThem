@@ -19,7 +19,7 @@ class GetDataForGameAdding < ApplicationService
     end
 
     def get_data_from_agame
-      data = Agame.find_by(igdb_id: @igdb_id).data_for_adding
+      data = Agame.find_by(igdb_id: @igdb_id).data_for_add_form
     end
 end
 

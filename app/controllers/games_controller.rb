@@ -14,32 +14,13 @@ class GamesController < ApplicationController
 
   def create
     @x_id = params['x_id']
-    add_game = AddGame.call(user: current_user,
+    add_game = AddGame.new(user: current_user,
                             collection: @collection,
-                            data: game_params,
-                            x_id: @x_id)
+                            data: game_params)
+    add_game.call
     @errors = add_game.errors
     @message = add_game.message
     @igdb_id = add_game.igdb_id
-  end
-
-  def edit_form
-    @view = params[:view]
-  end
-
-  def copy_form
-    @view = params[:view]
-  end
-
-  def list_show
-    @hg_id = params[:hg_id]
-  end
-
-  def cover_show
-  end
-
-  def panel_show
-    @g_id = params[:g_id]
   end
 
   def edit
@@ -202,24 +183,34 @@ class GamesController < ApplicationController
 
 
 
+  def edit_form
+    @view = params[:view]
+  end
 
+  def copy_form
+    @view = params[:view]
+  end
 
+  def list_show
+    @hg_id = params[:hg_id]
+  end
 
+  def cover_show
+  end
 
-
-
-
-
-
-
+  def panel_show
+    @g_id = params[:g_id]
+  end
 
   private
     def game_params
       params.require(:game).permit(:id, :igdb_id, :collection, :needs_platform, :platform, :physical)
     end
 
-    def find_agame
-      @game = Agame.find_by(igdb_id: params[:igdb_id])
+    def find_collection
+      coll_id = game_params[:collection].split(',').first.to_i
+      @collection = current_user.collections.find_by_id(coll_id)
+      reload if @collection.nil?
     end
 
     def find_game_and_collection
@@ -231,66 +222,7 @@ class GamesController < ApplicationController
       end
     end
 
-    def find_collection
-      coll_id = game_params[:collection].split(',').first.to_i
-      @collection = current_user.collections.find_by_id(coll_id)
-      reload if @collection.nil?
-    end
-
-    def create_from_agame(id, needs_platform = false, platform = nil, platform_name = nil, physical = nil)
-      if agame = Agame.find_by_id(id)
-        @game = @collection.games.build(convert_agame(agame))
-        if needs_platform
-          @game.needs_platform = true
-          @game.platform, @game.platform_name = platform, platform_name
-          @game.physical = physical
-        end
-        add_developers(agame.developers)
-        begin
-        if @game.save
-          save_platform(platform, platform_name) if needs_platform
-
-
-          @message = AddCopyNotif.call(game: @game, collection: @collection)
-
-        else
-          @errors += @game.errors.messages.values
-        end
-        rescue ActiveRecord::RecordNotUnique
-          @errors << 'Please try again in a moment'
-        end
-      else
-        @errors << 'Please repeat the search and try again'
-      end
-    end
-
-    def convert_agame(agame)
-      game_data = agame.as_json.symbolize_keys
-      return game_data.except(:id, :created_at, :updated_at, :themes, :developers, :platforms_categories)
-    end
-
-    def add_developers(devs)
-      if devs
-        devs.uniq!
-        found = Developer.where(name: devs)
-        not_found = devs - found.map(&:name)
-        added = Developer.create(not_found.map { |d| { name: d } })
-        @game.developers << (found + added)
-      end
-    end
-
-    def save_platform(id, name)
-
-
-
-      unless current_user.platforms.find_by(igdb_id: id)
-        unless new_platform = Platform.find_by(igdb_id: id)
-          new_platform = Platform.create(igdb_id: id, name: name)
-        end
-        current_user.platforms << new_platform
-      end
-
-
-
+    def find_agame
+      @game = Agame.find_by(igdb_id: params[:igdb_id])
     end
 end
