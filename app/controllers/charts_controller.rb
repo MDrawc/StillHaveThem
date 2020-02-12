@@ -12,35 +12,35 @@ class ChartsController < ApplicationController
     js_partial('form', { url: '/g_graphs', user: guest })
   end
 
-  def graphs
-    @overall, @needs_platform = false, false
-    if params[:graph_collection] == 'all'
-      @charts_data = Collection.data_for_overall_graphs(current_user)
-      @overall = true
-    elsif coll = current_user.collections.find_by_id(params[:graph_collection])
-      @charts_data = coll.data_for_graphs
-      @needs_platform = coll.needs_platform
-    else
-      reload
-    end
-    js_partial('graphs', { shared: false })
+  def graphs_for_user
+    graphs(shared: false)
   end
 
   def graphs_for_guest
-    @overall, @needs_platform = false, false
-    if params[:graph_collection] == 'all'
-      @charts_data = Collection.data_for_overall_graphs(guest)
-      @overall = true
-    elsif guest.shared.include?(params[:graph_collection].to_i)
-      if coll = Collection.find_by_id(params[:graph_collection])
-        @charts_data = coll.data_for_graphs
-        @needs_platform = coll.needs_platform
-      else
-        reload
-      end
-    else
-      reload
-    end
-    js_partial('graphs', { shared: true })
+    graphs(shared: true)
   end
+
+  private
+    def graphs(shared:)
+      @overall, @needs_platform = false, false
+      if params[:graph_collection] == 'all'
+        obj = shared ? guest : current_user
+        @charts_data = GatherOverallDataForGraphs.call(obj: obj)
+        @overall = true
+      else
+        if shared
+          coll = Collection.find_by_id(params[:graph_collection])
+        else
+          coll = current_user.collections.find_by_id(params[:graph_collection])
+        end
+
+        if coll
+          @charts_data = GatherDataForGraphs.call(collection: coll)
+          @needs_platform = coll.needs_platform
+        else
+          reload
+        end
+      end
+      js_partial('graphs', { shared: shared })
+    end
 end

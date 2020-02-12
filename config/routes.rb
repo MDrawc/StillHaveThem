@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get 'graph_form/:id', to: 'charts#form', as: 'graph_form'
   get 'g_graph_form/:id', to: 'charts#guest_form', as: 'guest_graph_form'
 
-  get 'graphs', to: 'charts#graphs', as: 'graphs'
+  get 'graphs', to: 'charts#graphs_for_user', as: 'graphs'
   get 'g_graphs', to: 'charts#graphs_for_guest', as: 'guest_graphs'
 
   get 'shared/:token', to: 'shares#shared', as: 'shared'
