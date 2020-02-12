@@ -102,7 +102,7 @@ module GameManager
 
       def compose_message
         verb = @copy ? 'copied' : 'moved'
-        @message = NotifManager::AddCopyNotif.call(game: @game,
+        @message = NotifCreator::AddCopyNotif.call(game: @game,
                                                    collection: @collection,
                                                    verb: verb)
       end

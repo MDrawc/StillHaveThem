@@ -25,7 +25,7 @@ class ChartsController < ApplicationController
       @overall, @needs_platform = false, false
       if params[:graph_collection] == 'all'
         obj = shared ? guest : current_user
-        @charts_data = GatherOverallDataForGraphs.call(obj: obj)
+        @charts_data = GatherDataForOverallGraphs.call(obj: obj)
         @overall = true
       else
         if shared

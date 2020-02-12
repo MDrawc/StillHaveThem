@@ -1,4 +1,4 @@
-module NotifManager
+module NotifCreator
   class EditNotif < ApplicationService
     def initialize(game:, ex_platform:, ex_physical:)
       @game = game

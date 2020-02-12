@@ -1,4 +1,4 @@
-class GatherOverallDataForGraphs < ApplicationService
+class GatherDataOverallForGraphs < ApplicationService
   def initialize(obj:)
     @obj = obj
     @shared = obj.class.name == 'Share'

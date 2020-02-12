@@ -113,7 +113,7 @@ module GameManager
       end
 
       def compose_message
-        @message = NotifManager::AddCopyNotif.call(game: @game,
+        @message = NotifCreator::AddCopyNotif.call(game: @game,
                                                    collection: @collection)
       end
 

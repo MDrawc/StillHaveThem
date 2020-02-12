@@ -1,4 +1,4 @@
-module NotifManager
+module NotifCreator
   class RemoveNotif < ApplicationService
     def initialize(game:, collection:)
       @game = game

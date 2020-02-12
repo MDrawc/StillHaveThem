@@ -1,4 +1,4 @@
-module NotifManager
+module NotifCreator
   class AddCopyNotif < ApplicationService
     def initialize(game:, collection:, verb: 'added')
       @game = game
