@@ -95,7 +95,7 @@ module GameManager
       end
 
       def compose_message
-        @message = NotifCreator::EditNotif.call(game: @game,
+        @message = NotifComposer::ComposeEditNotif.call(game: @game,
                                                 ex_platform: @last_platform,
                                                 ex_physical: @last_physical)
       end

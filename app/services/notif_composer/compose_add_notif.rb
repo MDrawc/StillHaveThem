@@ -1,5 +1,5 @@
-module NotifCreator
-  class AddCopyNotif < ApplicationService
+module NotifComposer
+  class ComposeAddNotif < ApplicationService
     def initialize(game:, collection:, verb: 'added')
       @game = game
       @collection = collection

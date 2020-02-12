@@ -60,7 +60,7 @@ def remove_game
   @view = params[:view]
   if @game
     @collection.games.delete(@game)
-    @message = NotifCreator::RemoveNotif.call(game: @game,
+    @message = NotifComposer::ComposeRemoveNotif.call(game: @game,
                                               collection: @collection)
     respond_to :js
   else
@@ -72,7 +72,7 @@ def remove_game_search
   @x_id = params[:x_id]
   if @game = @collection.games.find_by_id(params[:game_id])
     @collection.games.delete(@game)
-    @message = NotifCreator::RemoveNotif.call(game: @game,
+    @message = NotifComposer::ComposeRemoveNotif.call(game: @game,
                                               collection: @collection)
     @remove_underline = !CheckIfUserHasGame.call(user: current_user,
                                                 igdb_id: @game.igdb_id)
