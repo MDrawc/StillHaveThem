@@ -11,10 +11,8 @@ class UsersController < ApplicationController
     if @user.save
       @user.create_initial_collections
       @user.send_activation_email
-      respond_to do |format|
-            format.js { render partial: 'shared/auth_needed',
-              locals: { email: @user.email, selector: '#signup-modal' } }
-      end
+      js_partial('shared/auth_needed', { email: @user.email,
+                                         selector: '#signup-modal' })
     else
       @errors = @user.errors.messages
       respond_to :js
@@ -59,14 +57,10 @@ class UsersController < ApplicationController
         @user = current_user
         respond_to :js
       else
-        respond_to do |format|
-            format.js { render partial: 'access_settings_error' }
-        end
+        js_partial('access_settings_error')
       end
     else
-      respond_to do |format|
-          format.js { render partial: 'authorize' }
-      end
+      js_partial('authorize')
     end
   end
 
@@ -77,8 +71,6 @@ class UsersController < ApplicationController
 
     def update_errors(errors)
       @errors = errors
-      respond_to do |format|
-          format.js { render partial: "settings_error" }
-      end
+      js_partial('settings_error')
     end
 end

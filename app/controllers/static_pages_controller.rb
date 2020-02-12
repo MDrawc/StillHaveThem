@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   before_action :require_user, only: [:search_page]
   layout  '_landing', :only => [:info, :doc]
+  respond_to :js, except: :home
 
   def home
     if logged_in?
@@ -18,11 +19,9 @@ class StaticPagesController < ApplicationController
 
   def doc
     @doc = params[:doc]
-    respond_to :js
   end
 
   def search_page
     @history_records = current_user.records
-    respond_to :js
   end
 end

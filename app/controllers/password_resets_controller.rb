@@ -15,9 +15,7 @@ class PasswordResetsController < ApplicationController
       @user.send_password_reset_email
       respond_to :js
     else
-      respond_to do |format|
-        format.js { render partial: 'get_email_error' }
-      end
+      js_partial('get_email_error')
     end
   end
 
@@ -27,12 +25,12 @@ class PasswordResetsController < ApplicationController
   def update
     if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
-      reset_error
+      js_partial('reset_error')
     elsif @user.update_attributes(user_params)
       log_in @user
       respond_to :js
     else
-      reset_error
+      js_partial('reset_error')
     end
   end
 
@@ -55,12 +53,6 @@ class PasswordResetsController < ApplicationController
     def check_expiration
       if @user.password_reset_expired?
         render 'shared/wrong_link'
-      end
-    end
-
-    def reset_error
-      respond_to do |format|
-        format.js { render partial: 'reset_error' }
       end
     end
 end

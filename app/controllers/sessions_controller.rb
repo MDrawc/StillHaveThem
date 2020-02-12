@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :js
   end
 
   def create
@@ -14,15 +11,11 @@ class SessionsController < ApplicationController
         params[:session][:rem_me] == '1' ? remember(user) : forget(user)
         reload
       else
-        respond_to do |format|
-            format.js { render partial: 'shared/auth_needed',
-              locals: { email: user.email, selector: '#signin-modal' } }
-        end
+        js_partial('shared/auth_needed', { email: user.email,
+                                           selector: '#signin-modal' })
       end
     else
-      respond_to do |format|
-        format.js
-      end
+      respond_to :js
     end
   end
 

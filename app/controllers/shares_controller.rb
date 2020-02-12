@@ -3,6 +3,7 @@ class SharesController < ApplicationController
   before_action :require_user, except: [:shared, :leave]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+
   def new
     @share = Share.new
     get_shares_with_coll_names
@@ -15,10 +16,9 @@ class SharesController < ApplicationController
       get_shares_with_coll_names
       respond_to :js
     else
-      respond_to do |format|
-          format.js { render partial: "error", locals: { errors: @share.errors,
-            form: '#share-form', type: ''} }
-      end
+      js_partial('error', { errors: @share.errors,
+                            form: '#share-form',
+                            type: ''})
     end
   end
 
@@ -32,9 +32,9 @@ class SharesController < ApplicationController
       find_coll_name
       respond_to :js
     else
-      respond_to do |format|
-          format.js { render partial: "error", locals: { errors: @share.errors, form: "#ed-share-form-#{ @share.id }", type: 'ed-'}  }
-      end
+      js_partial('error', { errors: @share.errors,
+                            form: "#ed-share-form-#{ @share.id }",
+                            type: 'ed-'})
     end
   end
 
