@@ -48,11 +48,11 @@ class GatherDataForOverallGraphs < ApplicationService
       chart_data = { 'Physical' => physical,
                      'Digital' => digital,
                      'Not defined' => not_defined }
-      set_format_stats(chart_data)
+      set_format_stat(chart_data)
       chart_data
     end
 
-    def set_format_stats(format_data)
+    def set_format_stat(format_data)
       max = format_data.values.max
       count = format_data.values.count(max)
 
@@ -60,8 +60,8 @@ class GatherDataForOverallGraphs < ApplicationService
         @result[:stats][3] = format_data.key(max) + " (#{ max })"
       else
         res = ''
-        format_data.each { |k,v| res += (k + '-') if v == max }
-        @result[:stats][3] = "tie #{ res[0...-1] } (#{ max })".downcase
+        format_data.each { |k,v| res += (k + ' & ') if v == max }
+        @result[:stats][3] = "#{ res[0...-3] } (#{ max })".downcase
       end
     end
 

@@ -71,7 +71,7 @@ class GatherDataForGraphs < ApplicationService
       if physical > digital
         @result[:stats] << "physical (#{physical})"
       elsif physical == digital
-        @result[:stats] << "tie (physical: #{physical}, digital: #{digital})"
+        @result[:stats] << "physical & digital (#{digital})"
       else
         @result[:stats] << "digital (#{digital})"
       end
