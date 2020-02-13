@@ -89,35 +89,6 @@ module StaticPagesHelper
     return category[category_id]
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  def check_for_games(id)
-    collections = current_user.collections.includes(:games)
-    results = {}
-
-    collections.each do |collection|
-      findings = collection.games.igdb(id)
-      results[collection] = findings if ! findings.empty?
-    end
-
-    return results.empty? ? false : results
-  end
-
-
   # Record presenter?
 
   def present_bar_record(record)

@@ -38,6 +38,18 @@ class User < ApplicationRecord
     self.collections.map { |c| [c.name, "#{c.id},#{c.needs_platform}"] }
   end
 
+  def find_where_game_is(igdb_id)
+    collections = self.collections.includes(:games)
+    results = {}
+
+    collections.each do |collection|
+      findings = collection.games.igdb(igdb_id)
+      results[collection] = findings if !findings.empty?
+    end
+
+    return results.empty? ? false : results
+  end
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
