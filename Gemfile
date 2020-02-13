@@ -58,7 +58,7 @@ gem "nokogiri", ">= 1.10.4"
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Puma as the app server
-# gem "puma", ">= 3.12.2"
+gem "puma", ">= 3.12.2"
 
 # Responders
 gem 'responders', '~> 3.0'
