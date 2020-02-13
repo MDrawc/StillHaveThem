@@ -37,8 +37,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 # Amoeba - easy cloning of active_record objects including associations
 gem 'amoeba'
-# Random color generator
-gem 'color-generator', '~> 0.0.4'
 # A library for bulk insertion of data into your database using ActiveRecord
 gem 'activerecord-import'
 # Remediation

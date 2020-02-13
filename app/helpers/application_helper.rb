@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def title
     cookies[:title] || 'Still Have Them'
   end
@@ -40,5 +39,4 @@ module ApplicationHelper
   def current_sh_theme
     cookies[:sh_theme] || 'theme_default'
   end
-
 end

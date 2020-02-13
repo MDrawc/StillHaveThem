@@ -1,6 +1,6 @@
 <%= form_with(url: url, method: "get", id: 'graph-form') do %>
 <div uk-form-custom="target: true">
-  <%= select_tag(:graph_collection, options_for_select(colls_graph_form(user))) %>
+  <%= select_tag(:graph_collection, options_for_select(user.collections_for_charts)) %>
   <span class="coll-name"></span><%= content_tag :span, svg('select'), class: 'uk-icon ch-slct' %>
 </div>
 <%= submit_tag('render') %>

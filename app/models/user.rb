@@ -22,6 +22,22 @@ class User < ApplicationRecord
     games_per_view
   end
 
+  def collections_for_charts
+    [['Overall', 'all']] + self.collections.pluck(:name, :id)
+  end
+
+  def platforms_names
+    self.platforms.pluck(:name)
+  end
+
+  def platforms_for_select
+    self.platforms.map { |p| [p.name, "#{ p.igdb_id },#{ p.name }"]}
+  end
+
+  def collections_for_select
+    self.collections.map { |c| [c.name, "#{c.id},#{c.needs_platform}"] }
+  end
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))

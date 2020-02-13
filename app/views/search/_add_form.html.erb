@@ -7,7 +7,7 @@
     </div>
 </div>
 <hr class="md">
-<% unless (collections = collections_for_select(current_user)).empty? %>
+<% unless (collections = collections_for_select).empty? %>
     <%= form_with model: @game do |f| %>
     <%= f.hidden_field :id, value: data[:id] %>
     <%= f.hidden_field :igdb_id, value: data[:igdb_id] %>
@@ -25,7 +25,7 @@
         <% if data[:platforms] %>
             <% select_platforms = platforms_for_select(data) %>
         <% else %>
-            <% select_platforms = user_platforms_for_select %>
+            <% select_platforms = current_user.platforms_for_select %>
         <% end %>
         <div class="uk-margin select-platform">
             <div uk-form-custom="target: > * > span:last-child">

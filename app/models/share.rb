@@ -23,6 +23,15 @@ class Share < ApplicationRecord
     !title.empty? || !message.empty?
   end
 
+  def collections_for_charts
+    shared_colls = Collection.where(id: self.shared).pluck(:name, :id)
+    [['All Shared', 'all']] + shared_colls
+  end
+
+  def platforms_names
+    User.find_by_id(self.user_id).platforms_names
+  end
+
   private
 
     def prepare_shared
