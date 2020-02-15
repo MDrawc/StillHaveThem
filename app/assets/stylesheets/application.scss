@@ -1596,7 +1596,7 @@ span#srch-type {
 }
 
 // Check Your Email
-//
+
 .auth-hr {
     border-color: #afafaf;
     margin-top: 5px;
@@ -1676,4 +1676,23 @@ span#srch-type {
 
 .width360{
     width: 360px;
+}
+// About Link
+
+.me-link {
+    color: #666;
+    box-shadow: 0 3px 0 0 #ccc;
+    padding-bottom: 1px;
+    &:hover {
+        color: #555;
+        text-decoration: none;
+        box-shadow: 0 3px 0 0 #bababa;
+    }
+}
+
+.drawing {
+    width: 400px;
+    float: right;
+    margin-top: -50px;
+    margin-left: 20px
 }

@@ -1423,3 +1423,14 @@ span#srch-type {
     background-color: #444;
     color: #ccc;
 }
+
+// About Link
+
+.me-link {
+    color: #aaa;
+    box-shadow: 0 3px 0 0 #4e4e4e;
+    &:hover {
+        color: #ccc;
+        box-shadow: 0 3px 0 0 #666;
+    }
+}
