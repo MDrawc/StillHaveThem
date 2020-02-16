@@ -1,4 +1,5 @@
 # Still Have Them
+Simple tool to help you maintain your video game collection.
 
 ## Table of contents
 * [General info](#general-info)
@@ -10,11 +11,19 @@
 * [Acknowledgments](#acknowledgments)
 
 ## General info
+The design goal for [ StillHaveThem ](https://www.stillhavethem.com) was to make service that provides clean, distraction-free space for user and his games. Place where your games are in the spotlight and essential tools are easily available without the need to navigate through many subpages.
+
+I built this project to improve my web development skills and keep track of my video game collection.
+
+[ Check sample StillHaveThem collection ](https://www.stillhavethem.com//shared/sample_collection)
+[ Check my collection ](https://www.stillhavethem.com)
+[ Watch StillHaveThem UI overview ](https://www.youtube.com/watch?v=7m3zqULVAsA)
 
 ## Features
 
 ## Status
-Project is finished for now. Improvements will come.
+Project is finished. Improvements will come. 
+If you know, how to make this app faster, more responsive let me know. I will be forever grateful.
 
 ## Built with
 * [ Ruby on Rails ](https://rubyonrails.org) - Server-side web application framework.
