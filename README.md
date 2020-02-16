@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://www.stillhavethem.com">
-    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/test.png">
   </a>
 </p>
 
