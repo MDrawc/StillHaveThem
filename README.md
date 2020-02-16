@@ -14,9 +14,10 @@
 ## Features
 
 ## Status
+Project is finished for now. Improvements will come.
 
 ## Built with
-* [ Ruby on Rails ](https://rubyonrails.org)
+* [ Ruby on Rails ](https://rubyonrails.org) - Server-side web application framework.
 * [ jQuery ](https://jquery.com) - jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
 * [ UIkit ](https://getuikit.com) - A lightweight and modular front-end framework.
 for developing fast and powerful web interfaces.
@@ -31,10 +32,8 @@ for developing fast and powerful web interfaces.
 * [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
 * [ responders ](https://github.com/heartcombo/responders) - A set of Rails responders to dry up your application.
 
-## Feedback
-
 ## Contact
-sdasds
+If you have any questions/suggestions or found a bug, please contact me by email at support@stillhavethem.com
 
 ## Acknowledgments
 Thanks to Internet for having answers to my questions.
