@@ -64,14 +64,13 @@ If you have any questions/suggestions or found a bug, please contact me by email
 
 ## Acknowledgments
 Thanks to Internet for having answers to my questions.
-
-* [ SendGrid ](https://sendgrid.com) - Email Delivery.
-* [ Chart.js ](https://www.chartjs.org) - Simple yet flexible JavaScript charting for designers & developers.
-* [ Chartkick ](https://chartkick.com) - Create beautiful JavaScript charts with one line of Ruby.
-* [ Ransack ](https://github.com/activerecord-hackery/ransack) - Object-based searching.
 * [ activerecord-import ](https://github.com/zdennis/activerecord-import) - A library for bulk insertion of data into your database using ActiveRecord.
 * [ amoeba ](https://github.com/amoeba-rb/amoeba) - A ruby gem to allow the copying of ActiveRecord objects and their associated children, configurable with a DSL on the model.
 * [ caxlsx ](https://github.com/caxlsx/caxlsx) - Axlsx excels at helping you generate beautiful Office Open XML Spreadsheet documents without having to understand the entire ECMA specification.
+* [ Chartkick ](https://chartkick.com) - Create beautiful JavaScript charts with one line of Ruby.
+* [ Chart.js ](https://www.chartjs.org) - Simple yet flexible JavaScript charting for designers & developers.
 * [ dotenv ](https://github.com/bkeepers/dotenv) - A Ruby gem to load environment variables from `.env`.
+* [ Ransack ](https://github.com/activerecord-hackery/ransack) - Object-based searching.
 * [ responders ](https://github.com/heartcombo/responders) - A set of Rails responders to dry up your application.
+* [ SendGrid ](https://sendgrid.com) - Email Delivery.
 * [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
