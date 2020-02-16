@@ -1,7 +1,7 @@
-<h1 align="center"> GitPoint </h1> <br>
+<h1 align="center"> StillHaveThem </h1> <br>
 <p align="center">
   <a href="https://www.stillhavethem.com">
-    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/logo.jpg">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/logo.jpg" width="300">
   </a>
 </p>
 
