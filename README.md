@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://www.stillhavethem.com">
-    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/test.png">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://i.imgur.com/sMH24RC.png">
   </a>
 </p>
 
@@ -31,6 +31,12 @@ I built this project to improve my web development skills and keep track of my v
 ## Key Features
 * **SEARCH GAMES WITH IGDB** - Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.
 
+<p align="center">
+  <a href="https://www.stillhavethem.com">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://i.imgur.com/fx7TJgE.png">
+  </a>
+</p>
+
 * **MULTIPLE COLLECTIONS** - Create multiple collections and store games according to your preferences.
 
 * **PLATFORM AND FORMAT INFORMATION** - Create collections that will require platform and format information for each game added to these collections.
@@ -45,7 +51,19 @@ I built this project to improve my web development skills and keep track of my v
 
 * **STATS AND GRAPHS** - Check single collection stats or take a look at your whole library. Enjoy data presented in nice-looking graphs.
 
+<p align="center">
+  <a href="https://www.stillhavethem.com">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://i.imgur.com/s2A0Cyx.png">
+  </a>
+</p>
+
 * **DARK THEME** - Change background and UI elements to dark. It looks great and is easier on the eyes.
+
+<p align="center">
+  <a href="https://www.stillhavethem.com">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://i.imgur.com/y7ZgsVt.png">
+  </a>
+</p>
 
 * **EXPORT** - Export your collections to spreadsheet document at any time.
 
