@@ -1,12 +1,11 @@
-<h1 align="center"> StillHaveThem </h1> <br>
+# Still Have Them
+> Simple tool to help you maintain your video game collection.
+
 <p align="center">
   <a href="https://www.stillhavethem.com">
     <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/logo.jpg" width="300">
   </a>
 </p>
-
-# Still Have Them
-> Simple tool to help you maintain your video game collection.
 
 ## Table of contents
 * [General info](#general-info)
