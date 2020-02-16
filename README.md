@@ -49,7 +49,7 @@ I built this project to improve my web development skills and keep track of my v
 * **EXPORT** - Export your collections to spreadsheet document at any time.
 
 ## Status
-Project is finished. Improvements will come. 
+Project is finished. Improvements will come.
 If you have any ideas on how to make this app more responsive, let me know. I will be forever grateful.
 
 ## Built with
@@ -68,10 +68,13 @@ Thanks to Internet for having answers to my questions.
 * [ activerecord-import ](https://github.com/zdennis/activerecord-import) - A library for bulk insertion of data into your database using ActiveRecord.
 * [ amoeba ](https://github.com/amoeba-rb/amoeba) - A ruby gem to allow the copying of ActiveRecord objects and their associated children, configurable with a DSL on the model.
 * [ caxlsx ](https://github.com/caxlsx/caxlsx) - Axlsx excels at helping you generate beautiful Office Open XML Spreadsheet documents without having to understand the entire ECMA specification.
+* [ changeTypeAttr.js ](https://gist.github.com/bminer/3559343) - Cross-browser solution for changing the 'type' attribute of an `<input/>` tag.
 * [ Chartkick ](https://chartkick.com) - Create beautiful JavaScript charts with one line of Ruby.
 * [ Chart.js ](https://www.chartjs.org) - Simple yet flexible JavaScript charting for designers & developers.
 * [ dotenv ](https://github.com/bkeepers/dotenv) - A Ruby gem to load environment variables from `.env`.
+* [ js-cookie ](https://github.com/js-cookie/js-cookie) - A simple, lightweight JavaScript API for handling browser cookies.
 * [ Ransack ](https://github.com/activerecord-hackery/ransack) - Object-based searching.
 * [ responders ](https://github.com/heartcombo/responders) - A set of Rails responders to dry up your application.
 * [ SendGrid ](https://sendgrid.com) - Email Delivery.
+* [ textFit ](https://github.com/STRML/textFit) - A jQuery-free component that quickly fits single and multi-line text to the width (and optionally height) of its container.
 * [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
