@@ -58,6 +58,13 @@ If you know, how to make this app faster, more responsive let me know. I will be
 * [ UIkit ](https://getuikit.com) - A lightweight and modular front-end framework.
 for developing fast and powerful web interfaces.
 * [ IGDB Free Video Game Database API ](https://api.igdb.com/?gclid=CjwKCAjw_MnmBRAoEiwAPRRWW6AhgyyZFod6rI-o-UyXokH6N0tRh8BNrjy_BDDOr2PpF2o6lUGNnhoCXvoQAvD_BwE) - Instant access to video game information you need without the hassle.
+
+## Contact
+If you have any questions/suggestions or found a bug, please contact me by email at support@stillhavethem.com
+
+## Acknowledgments
+Thanks to Internet for having answers to my questions.
+
 * [ SendGrid ](https://sendgrid.com) - Email Delivery.
 * [ Chart.js ](https://www.chartjs.org) - Simple yet flexible JavaScript charting for designers & developers.
 * [ Chartkick ](https://chartkick.com) - Create beautiful JavaScript charts with one line of Ruby.
@@ -68,9 +75,3 @@ for developing fast and powerful web interfaces.
 * [ dotenv ](https://github.com/bkeepers/dotenv) - A Ruby gem to load environment variables from `.env`.
 * [ responders ](https://github.com/heartcombo/responders) - A set of Rails responders to dry up your application.
 * [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
-
-## Contact
-If you have any questions/suggestions or found a bug, please contact me by email at support@stillhavethem.com
-
-## Acknowledgments
-Thanks to Internet for having answers to my questions.
