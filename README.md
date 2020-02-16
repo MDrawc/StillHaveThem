@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://www.stillhavethem.com">
-    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/logo.jpg" width="300">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://still-have-them.s3.eu-central-1.amazonaws.com/small01.png" width="300">
   </a>
 </p>
 
