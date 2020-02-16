@@ -43,6 +43,8 @@ I built this project to improve my web development skills and keep track of my v
 
 * **DIFFERENT VIEWS** - There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want.
 
+
+
 * **SEARCH, FILTER AND SORT** - Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.
 
 * **SHARE** - Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.
