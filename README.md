@@ -1,5 +1,5 @@
 # Still Have Them
-Simple tool to help you maintain your video game collection.
+> Simple tool to help you maintain your video game collection.
 
 ## Table of contents
 * [General info](#general-info)
@@ -41,15 +41,16 @@ If you know, how to make this app faster, more responsive let me know. I will be
 * [ UIkit ](https://getuikit.com) - A lightweight and modular front-end framework.
 for developing fast and powerful web interfaces.
 * [ IGDB Free Video Game Database API ](https://api.igdb.com/?gclid=CjwKCAjw_MnmBRAoEiwAPRRWW6AhgyyZFod6rI-o-UyXokH6N0tRh8BNrjy_BDDOr2PpF2o6lUGNnhoCXvoQAvD_BwE) - Instant access to video game information you need without the hassle.
+* [ SendGrid ](https://sendgrid.com) - Email Delivery.
 * [ Chart.js ](https://www.chartjs.org) - Simple yet flexible JavaScript charting for designers & developers.
 * [ Chartkick ](https://chartkick.com) - Create beautiful JavaScript charts with one line of Ruby.
 * [ Ransack ](https://github.com/activerecord-hackery/ransack) - Object-based searching.
-* [ amoeba ](https://github.com/amoeba-rb/amoeba) - A ruby gem to allow the copying of ActiveRecord objects and their associated children, configurable with a DSL on the model.
 * [ activerecord-import ](https://github.com/zdennis/activerecord-import) - A library for bulk insertion of data into your database using ActiveRecord.
-* [ dotenv ](https://github.com/bkeepers/dotenv) - A Ruby gem to load environment variables from `.env`.
+* [ amoeba ](https://github.com/amoeba-rb/amoeba) - A ruby gem to allow the copying of ActiveRecord objects and their associated children, configurable with a DSL on the model.
 * [ caxlsx ](https://github.com/caxlsx/caxlsx) - Axlsx excels at helping you generate beautiful Office Open XML Spreadsheet documents without having to understand the entire ECMA specification.
-* [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
+* [ dotenv ](https://github.com/bkeepers/dotenv) - A Ruby gem to load environment variables from `.env`.
 * [ responders ](https://github.com/heartcombo/responders) - A set of Rails responders to dry up your application.
+* [ will_paginate ](https://github.com/mislav/will_paginate) - Pagination library for Rails, Sinatra, Merb, DataMapper, and more.
 
 ## Contact
 If you have any questions/suggestions or found a bug, please contact me by email at support@stillhavethem.com
