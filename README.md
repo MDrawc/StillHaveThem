@@ -50,7 +50,7 @@ I built this project to improve my web development skills and keep track of my v
 
 ## Status
 Project is finished. Improvements will come. 
-If you know, how to make this app faster, more responsive let me know. I will be forever grateful.
+If you have any ideas on how to make this app more responsive, let me know. I will be forever grateful.
 
 ## Built with
 * [ Ruby on Rails ](https://rubyonrails.org) - Server-side web application framework.
