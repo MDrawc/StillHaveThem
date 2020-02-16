@@ -3,7 +3,7 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Features](#features)
+* [Key Features](#key-features)
 * [Status](#status)
 * [Built with](#built-with)
 * [Feedback](#feedback)
@@ -19,17 +19,26 @@ I built this project to improve my web development skills and keep track of my v
 * [ Check my collection ](https://www.stillhavethem.com)
 * [ Watch StillHaveThem UI overview ](https://www.youtube.com/watch?v=7m3zqULVAsA)
 
-## Features
-* SEARCH GAMES WITH IGDB - Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.
-* MULTIPLE COLLECTIONS - Create multiple collections and store games according to your preferences.
-* PLATFORM AND FORMAT INFORMATION - Create collections that will require platform and format information for each game added to these collections.
-* MOVE, COPY AND EDIT GAMES - Move, and copy games between and inside collections. Edit games format and platform information.
-* DIFFERENT VIEWS - There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want.
-* SEARCH, FILTER AND SORT - Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.
-* SHARE - Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.
-* STATS AND GRAPHS - Check single collection stats or take a look at your whole library. Enjoy data presented in nice-looking graphs.
-* DARK THEME - Change background and UI elements to dark. It looks great and is easier on the eyes.
-* EXPORT - Export your collections to spreadsheet document at any time.
+## Key Features
+* *SEARCH GAMES WITH IGDB* - Easy search and add games with IGDB, the world’s largest database for video and computer games. You can revisit last searches with search history. Search by game title, developer or character.
+
+* *MULTIPLE COLLECTIONS* - Create multiple collections and store games according to your preferences.
+
+* *PLATFORM AND FORMAT INFORMATION* - Create collections that will require platform and format information for each game added to these collections.
+
+* *MOVE, COPY AND EDIT GAMES* - Move, and copy games between and inside collections. Edit games format and platform information.
+
+* *DIFFERENT VIEWS* - There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want.
+
+* *SEARCH, FILTER AND SORT* - Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.
+
+* *SHARE* - Share collections with anyone (including people who don’t have a StillHaveThem account) via a unique URL. Shareable links can be maintained and edited.
+
+* *STATS AND GRAPHS* - Check single collection stats or take a look at your whole library. Enjoy data presented in nice-looking graphs.
+
+* *DARK THEME* - Change background and UI elements to dark. It looks great and is easier on the eyes.
+
+* *EXPORT* - Export your collections to spreadsheet document at any time.
 
 ## Status
 Project is finished. Improvements will come. 
