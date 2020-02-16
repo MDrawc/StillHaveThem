@@ -43,7 +43,9 @@ I built this project to improve my web development skills and keep track of my v
 
 * **DIFFERENT VIEWS** - There are three different ways to view your games: as covers, as panels and inside a list. You can seamlessly switch between views whenever you want.
 
-![changing views](https://i.imgur.com/pjh3LdD.gif)
+<p align="center">
+    <img alt="StillHaveThem" title="StillHaveThem" src="https://i.imgur.com/zgqjr3F.gif">
+</p>
 
 * **SEARCH, FILTER AND SORT** - Easily search and filter through your games. Search by game's title or developer, filter by platform and format, sort by release date, title and date added.
 
