@@ -61,6 +61,7 @@ for developing fast and powerful web interfaces.
 
 ## Contact
 If you have any questions/suggestions or found a bug, please contact me by email at support@stillhavethem.com
+:vulcan_salute:
 
 ## Acknowledgments
 Thanks to Internet for having answers to my questions.
