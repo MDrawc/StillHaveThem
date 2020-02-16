@@ -23,7 +23,7 @@ The design goal for [ StillHaveThem ](https://www.stillhavethem.com) was to make
 
 I built this project to improve my web development skills and keep track of my video game collection.
 
-* [ Check sample StillHaveThem collection ](https://www.stillhavethem.com//shared/sample_collection)
+* [ Check sample StillHaveThem collection ](https://www.stillhavethem.com/shared/samplecollection)
 * [ Check my collection ](https://www.stillhavethem.com)
 * [ Watch StillHaveThem UI overview ](https://www.youtube.com/watch?v=7m3zqULVAsA)
 
