@@ -1,5 +1,5 @@
 # Still Have Them
- 
+
 [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
 
 > Simple tool to help you maintain your video game collection.
@@ -25,7 +25,7 @@ The design goal for [ StillHaveThem ](https://www.stillhavethem.com) was to make
 I built this project to improve my web development skills and keep track of my video game collection.
 
 * [ View StillHaveThem sample collection ](https://www.stillhavethem.com/shared/samplecollection)
-* [ Check my collection ](https://www.stillhavethem.com)
+* [ Check my collection ](https://www.stillhavethem.com/shared/2heMplS9K-_AF4dEwrf2ULApPKQ)
 * [ Watch StillHaveThem UI overview ](https://www.youtube.com/watch?v=7m3zqULVAsA)
 
 ## Key Features
