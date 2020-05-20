@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Bcrypt for users passwords
 gem 'bcrypt', '~>3.1.7'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg', '~> 1.2', '>= 1.2.3'
 # Ruby gem to load environment variables from `.env`.
 gem 'dotenv-rails', groups: [:development, :test]
 # jQuery
@@ -42,6 +42,9 @@ gem 'activerecord-import'
 # Remediation
 # Upgrade nokogiri to version 1.10.4 or later. For example:
 gem "nokogiri", ">= 1.10.4"
+
+#Rack middleware to force subdomain redirects, e.g: www or www2
+gem 'rack-www', '~> 2.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
