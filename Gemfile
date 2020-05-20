@@ -43,9 +43,6 @@ gem 'activerecord-import'
 # Upgrade nokogiri to version 1.10.4 or later. For example:
 gem "nokogiri", ">= 1.10.4"
 
-#Rack middleware to force subdomain redirects, e.g: www or www2
-gem 'rack-www', '~> 2.3'
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
