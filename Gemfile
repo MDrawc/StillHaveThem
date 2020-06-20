@@ -20,7 +20,7 @@ gem "chartkick", ">= 3.3.0"
 #Office Open XML Spreadsheet generator for the Ruby programming language
 gem 'caxlsx'
 # Provides a .axlsx renderer to Rails so you can move all your spreadsheet code from your controller into view files.
-gem 'axlsx_rails'
+gem 'caxlsx_rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
