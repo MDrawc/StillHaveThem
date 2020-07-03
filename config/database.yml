@@ -78,8 +78,13 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+#production:
+#  <<: *default
+#  database: yvgc_production
+#  username: yvgc
+#  password: <%= ENV['YVGC_DATABASE_PASSWORD'] %>  
 production:
   <<: *default
-  database: yvgc_production
-  username: yvgc
-  password: <%= ENV['YVGC_DATABASE_PASSWORD'] %>
+  database: sht_database
+  username: stillhavethem
+  password: andy21
