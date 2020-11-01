@@ -445,10 +445,10 @@ class SearchIgdb
 
     def request(endpoint, body)
       puts '>> [ Sending Request ]'
-      http = Net::HTTP.new('api-v3.igdb.com', 443)
+      http = Net::HTTP.new('api.igdb.com', 443)
       http.use_ssl = true
-      request = Net::HTTP::Get.new(URI("https://api-v3.igdb.com/#{ endpoint }"),
-       { 'user-key' => ENV['IGDB_KEY'] })
+      request = Net::HTTP::Post.new(URI("https://api.igdb.com/v4/#{ endpoint }"),
+       {'Client-ID' => ENV['TWITCH_ID'], 'Authorization' => "Bearer #{ENV['TWITCH_TOKEN']}"})
       request.body = body
       # puts ">> Full request: #{ request.body }"
       begin
