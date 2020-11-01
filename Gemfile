@@ -59,9 +59,7 @@ gem "nokogiri", ">= 1.10.4"
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Puma as the app server
-#gem "puma", ">= 3.12.2"
-gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
-
+gem "puma", ">= 3.12.2"
 
 # Responders
 gem 'responders', '~> 3.0'
