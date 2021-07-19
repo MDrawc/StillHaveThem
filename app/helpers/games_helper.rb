@@ -67,11 +67,12 @@ module GamesHelper
   def convert_status(status_id)
     status = [ nil,
       nil,
-     'Alpha state',
-     'Beta state',
-     'Early access',
-     'Shut down',
-     'Cancelled']
+     'Alpha',
+     'Beta',
+     'Early Access',
+     'Shut Down',
+     'Cancelled',
+     'Rumored']
     return status[status_id]
   end
 
