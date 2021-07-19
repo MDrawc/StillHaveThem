@@ -82,7 +82,13 @@ module GamesHelper
       'Bundle',
       'Standalone expansion',
       'Mod',
-      'Episode']
+      'Episode',
+      'Season',
+      'Remake',
+      'Remaster',
+      'Expanded Game',
+      'Port',
+      'Fork']
     return category[category_id]
   end
 end
