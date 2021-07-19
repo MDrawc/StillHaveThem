@@ -80,7 +80,7 @@ module GamesHelper
       'DLC',
       'Expansion',
       'Bundle',
-      'Standalone expansion',
+      'Standalone Expansion',
       'Mod',
       'Episode',
       'Season',
